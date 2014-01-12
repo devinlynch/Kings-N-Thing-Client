@@ -37,6 +37,7 @@
 		DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E314E1541400655D44 /* atlas@2x.png */; };
 		DE4F80EE14E1541400655D44 /* atlas@2x.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E414E1541400655D44 /* atlas@2x.xml */; };
 		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
+		DEAA579F1883368B00C204CF /* GameMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA579E1883368B00C204CF /* GameMenu.m */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,8 @@
 		DE4F80E314E1541400655D44 /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atlas@2x.png"; sourceTree = "<group>"; };
 		DE4F80E414E1541400655D44 /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "atlas@2x.xml"; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DEAA579D1883368B00C204CF /* GameMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMenu.h; sourceTree = "<group>"; };
+		DEAA579E1883368B00C204CF /* GameMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMenu.m; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -226,6 +229,8 @@
 				DE4A3DE410FFB2AF00FDA492 /* Game.m */,
 				DE4F80D414E153E600655D44 /* Media.h */,
 				DE4F80D514E153E600655D44 /* Media.m */,
+				DEAA579D1883368B00C204CF /* GameMenu.h */,
+				DEAA579E1883368B00C204CF /* GameMenu.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				DEAA579F1883368B00C204CF /* GameMenu.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				DE4A3DE510FFB2AF00FDA492 /* Game.m in Sources */,
 				DE4F80D614E153E600655D44 /* Media.m in Sources */,
