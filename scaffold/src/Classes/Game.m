@@ -21,6 +21,24 @@
 @implementation Game
 {
     SPSprite *_contents;
+    
+    //Tiles
+    SPImage *_backTile;
+    SPImage *_seaTile;
+    SPImage *_desertTile;
+    SPImage *_forestTile;
+    SPImage *_mountainTile;
+    SPImage *_swampTile;
+    SPImage *_frozenTile;
+    SPImage *_jungleTile;
+    SPImage *_plainesTile;
+    
+    //Other images
+    SPImage *_rack;
+    SPImage *_bowl;
+    SPImage *_dice;
+    SPImage *_creatureDice;
+    SPTextField *_bankText;
 }
 
 - (id)init
@@ -63,38 +81,71 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
 
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"background.jpg"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"masterGameBoard.png"];
     [_contents addChild:background];
+    [background addEventListener:@selector(onTouch:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+   
+   
     
-    NSString *text = @"To find out how to create your own game out of this scaffold, "
-                     @"have a look at the 'First Steps' section of the Sparrow website!";
+    //Tiles
+    _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
+    _seaTile.x = 10;
+    _seaTile.y = 250;
+    [_contents addChild:_seaTile];
     
-    SPTextField *textField = [[SPTextField alloc] initWithWidth:280 height:80 text:text];
-    textField.x = (background.width - textField.width) / 2;
-    textField.y = (background.height / 2) - 135;
-    [_contents addChild:textField];
-
-    SPImage *image = [[SPImage alloc] initWithTexture:[Media atlasTexture:@"sparrow"]];
-    image.pivotX = (int)image.width  / 2;
-    image.pivotY = (int)image.height / 2;
-    image.x = background.width  / 2;
-    image.y = background.height / 2 + 40;
-    [_contents addChild:image];
+    _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
+    _jungleTile.x = 60;
+    _jungleTile.y = 250;
+    [_contents addChild:_jungleTile];
     
-    [self updateLocations];
+    _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+    _desertTile.x = 110;
+    _desertTile.y = 250;
+    [_contents addChild:_desertTile];
     
-    // play a sound when the image is touched
-    [image addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
+    _forestTile.x = 160;
+    _forestTile.y = 250;
+    [_contents addChild:_forestTile];
     
-    // and animate it a little
-    SPTween *tween = [SPTween tweenWithTarget:image time:1.5 transition:SP_TRANSITION_EASE_IN_OUT];
-    [tween animateProperty:@"y" targetValue:image.y + 30];
-    [tween animateProperty:@"rotation" targetValue:0.1];
-    tween.repeatCount = 0; // repeat indefinitely
-    tween.reverse = YES;
-    [Sparrow.juggler addObject:tween];
     
-
+    //Other images
+    _rack = [[SPImage alloc] initWithContentsOfFile:@"Rack.png"];
+    _rack.x = 5;
+    _rack.y = 350;
+    [_contents addChild:_rack];
+    
+    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
+    _bowl.x = 235;
+    _bowl.y = 325;
+    [_contents addChild:_bowl];
+    
+    _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Bank: 0"];
+    _bankText.x = 225;
+    _bankText.y = 445;
+    _bankText.color = SP_YELLOW;
+    [_contents addChild:_bankText];
+    
+    _dice = [[SPImage alloc] initWithContentsOfFile:@"dice6.png"];
+    _dice.x = 5;
+    _dice.y = 10;
+    [_contents addChild:_dice];
+    
+    _creatureDice = [[SPImage alloc] initWithContentsOfFile:@"creature5.png"];
+    _creatureDice.x = 5;
+    _creatureDice.y = 45;
+    [_contents addChild:_creatureDice];
+    
+    
+    
+    
+    //Event listeners for each image (to do: make a loop)
+   
+    [_seaTile addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_jungleTile addEventListener:@selector(onImageTouched2:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_desertTile addEventListener:@selector(onImageTouched3:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_forestTile addEventListener:@selector(onImageTouched4:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
     // The controller autorotates the game to all supported device orientations. 
     // Choose the orienations you want to support in the Xcode Target Settings ("Summary"-tab).
     // To update the game content accordingly, listen to the "RESIZE" event; it is dispatched
@@ -116,6 +167,102 @@
     // Sparrow's minimum deployment target is iOS 5.
 }
 
+- (void) onTouch: (SPTouchEvent*) event
+{
+    // NSLog(@"IM TOUCHED!");
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
+    
+    if (touches.count == 1)
+    {
+        // one finger touching -> move
+//        SPTouch *touch = touches[0];
+//        SPPoint *movement = [touch movementInSpace:self.parent];
+//        
+//        
+//      
+//            self.x += movement.x;
+//            self.y += movement.y;
+//
+//        NSLog(@"x: %f y: %f", movement.x, movement.y);
+        
+        
+        //   NSLog(@"One finga");
+    }
+    else if (touches.count >= 2)
+    {
+        //NSLog(@"Two finga");
+        
+        SPTouch *touch1 = [touches objectAtIndex:0];
+        SPTouch *touch2 = [touches objectAtIndex:1];
+        
+        SPPoint *touch1PrevPos = [touch1 previousLocationInSpace:self.parent];
+        SPPoint *touch1Pos = [touch1 locationInSpace:self.parent];
+        SPPoint *touch2PrevPos = [touch2 previousLocationInSpace:self.parent];
+        SPPoint *touch2Pos = [touch2 locationInSpace:self.parent];
+        SPPoint *prevVector = [touch1PrevPos subtractPoint:touch2PrevPos];
+        SPPoint *currentVector = [touch1Pos subtractPoint:touch2Pos];
+        
+        float sizeDiff = currentVector.length / prevVector.length;
+        float xavg = (touch1Pos.x + touch2Pos.x ) / 2;
+        float yavg = (touch2Pos.y + touch1Pos.y) / 2;
+        
+        SPMatrix *mat = [self transformationMatrix];
+        [mat translateXBy:-xavg yBy:-yavg];
+        if (self.scaleX * sizeDiff > 0.5f) [mat scaleBy:sizeDiff];
+        [mat translateXBy:xavg yBy:yavg];
+        [self setTransformationMatrix:mat];
+    }
+}
+
+- (void)setTransformationMatrix:(SPMatrix *)matrix {
+    self.scaleX = matrix.a;
+	self.scaleY = matrix.d;
+	self.x = matrix.tx;
+	self.y = matrix.ty;
+}
+
+
+- (void)onImageTouched:(SPTouchEvent *)event
+{
+    NSLog(@"Touched");
+    
+    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
+    SPPoint *location = [touch locationInSpace:self];
+    _seaTile.x = location.x;
+    _seaTile.y = location.y;
+}
+
+
+- (void)onImageTouched2:(SPTouchEvent *)event
+{
+    NSLog(@"Touched");
+    
+    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
+    SPPoint *location = [touch locationInSpace:self];
+    _jungleTile.x = location.x;
+    _jungleTile.y = location.y;
+}
+
+- (void)onImageTouched3:(SPTouchEvent *)event
+{
+    NSLog(@"Touched");
+    
+    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
+    SPPoint *location = [touch locationInSpace:self];
+    _desertTile.x = location.x;
+    _desertTile.y = location.y;
+}
+
+- (void)onImageTouched4:(SPTouchEvent *)event
+{
+    NSLog(@"Touched");
+    
+    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
+    SPPoint *location = [touch locationInSpace:self];
+    _forestTile.x = location.x;
+    _forestTile.y = location.y;
+}
+
 - (void)updateLocations
 {
     int gameWidth  = Sparrow.stage.width;
@@ -125,11 +272,6 @@
     _contents.y = (int) (gameHeight - _contents.height) / 2;
 }
 
-- (void)onImageTouched:(SPTouchEvent *)event
-{
-    NSSet *touches = [event touchesWithTarget:self andPhase:SPTouchPhaseEnded];
-    if ([touches anyObject]) [Media playSound:@"sound.caf"];
-}
 
 - (void)onResize:(SPResizeEvent *)event
 {
