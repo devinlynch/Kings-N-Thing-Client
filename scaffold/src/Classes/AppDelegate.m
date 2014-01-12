@@ -30,6 +30,8 @@ void onUncaughtException(NSException *exception)
     
     _viewController = [[SPViewController alloc] init];
     
+    _viewController.multitouchEnabled = YES;
+    
     // Enable some common settings here:
     //
     // _viewController.showStats = YES;
