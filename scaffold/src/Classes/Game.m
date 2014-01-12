@@ -10,7 +10,6 @@
 @interface Game ()
 
 - (void)setup;
-- (void)onImageTouched:(SPTouchEvent *)event;
 - (void)onResize:(SPResizeEvent *)event;
 
 @end
@@ -20,6 +19,8 @@
 
 @implementation Game
 {
+    NSMutableArray *gamePieces;
+    
     SPSprite *_contents;
     
     //Tiles
@@ -77,13 +78,16 @@
     // Create some placeholder content: a background image, the Sparrow logo, and a text field.
     // The positions are updated when the device is rotated. To make that easy, we put all objects
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
+    
+    
+    gamePieces = [[NSMutableArray alloc] init];
 
     _contents = [SPSprite sprite];
     [self addChild:_contents];
 
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"masterGameBoard.png"];
     [_contents addChild:background];
-    [background addEventListener:@selector(onTouch:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
    
    
     
@@ -92,21 +96,28 @@
     _seaTile.x = 10;
     _seaTile.y = 250;
     [_contents addChild:_seaTile];
+    [gamePieces addObject:_seaTile];
     
     _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     _jungleTile.x = 60;
     _jungleTile.y = 250;
     [_contents addChild:_jungleTile];
+    [gamePieces addObject:_jungleTile];
+
     
     _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
     _desertTile.x = 110;
     _desertTile.y = 250;
     [_contents addChild:_desertTile];
+    [gamePieces addObject:_desertTile];
+
     
     _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
     _forestTile.x = 160;
     _forestTile.y = 250;
     [_contents addChild:_forestTile];
+    [gamePieces addObject:_forestTile];
+
     
     
     //Other images
@@ -114,37 +125,47 @@
     _rack.x = 5;
     _rack.y = 350;
     [_contents addChild:_rack];
+    [gamePieces addObject:_rack];
+
     
     _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
     _bowl.x = 235;
     _bowl.y = 325;
     [_contents addChild:_bowl];
+    [gamePieces addObject:_bowl];
+
     
     _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Bank: 0"];
     _bankText.x = 225;
     _bankText.y = 445;
     _bankText.color = SP_YELLOW;
     [_contents addChild:_bankText];
+    [gamePieces addObject:_bankText];
+
     
     _dice = [[SPImage alloc] initWithContentsOfFile:@"dice6.png"];
     _dice.x = 5;
     _dice.y = 10;
     [_contents addChild:_dice];
+    [gamePieces addObject:_dice];
+
     
     _creatureDice = [[SPImage alloc] initWithContentsOfFile:@"creature5.png"];
     _creatureDice.x = 5;
     _creatureDice.y = 45;
     [_contents addChild:_creatureDice];
+    [gamePieces addObject:_creatureDice];
+
     
     
     
     
     //Event listeners for each image (to do: make a loop)
    
-    [_seaTile addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    [_jungleTile addEventListener:@selector(onImageTouched2:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    [_desertTile addEventListener:@selector(onImageTouched3:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    [_forestTile addEventListener:@selector(onImageTouched4:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_seaTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_jungleTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_desertTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_forestTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     // The controller autorotates the game to all supported device orientations. 
     // Choose the orienations you want to support in the Xcode Target Settings ("Summary"-tab).
@@ -221,46 +242,91 @@
 	self.y = matrix.ty;
 }
 
-
-- (void)onImageTouched:(SPTouchEvent *)event
-{
-    NSLog(@"Touched");
+- (void)onMoveBoard:(SPTouchEvent*)event {
     
-    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
-    SPPoint *location = [touch locationInSpace:self];
-    _seaTile.x = location.x;
-    _seaTile.y = location.y;
+    SPImage *img = (SPImage*)event.target;
+    
+	
+		NSArray *touchesMoved = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
+        
+		// Movement of self (x,y)
+		if (touchesMoved.count == 1) {
+			SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
+			SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+            
+			float diffX = [self x] + (currentPos.x - previousPos.x);
+			float diffY = [self y] + (currentPos.y - previousPos.y);
+            
+            img.x += diffX;
+            img.y += diffY;
+			
+            for(SPDisplayObjectContainer *piece in gamePieces){
+                piece.x += diffX;
+                piece.y += diffY;
+            }
+            
+            // Pinch zoom in /out
+		} else if (touchesMoved.count == 2) {
+			SPPoint *previousPos1 = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+			SPPoint *previousPos2 = [[touchesMoved objectAtIndex:1] previousLocationInSpace:[self parent]];
+            
+			SPPoint *currentPos1 = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
+			SPPoint *currentPos2 = [[touchesMoved objectAtIndex:1] locationInSpace:[self parent]];
+            
+			float distance1 = [SPPoint distanceFromPoint:currentPos1 toPoint:currentPos2];
+			float distance2 = [SPPoint distanceFromPoint:previousPos1 toPoint:previousPos2];
+            
+			float scaleX = (([self scaleX] / distance2) * distance1);
+			float scaleY = (([self scaleY] / distance2) * distance1);
+            
+			if (scaleX > 0.50 && scaleX <= 1.00) {
+				img.scaleX = scaleX;
+                img.scaleY = scaleY;
+			}
+            
+            for(SPDisplayObjectContainer *piece in gamePieces){
+                piece.scaleX = scaleX;
+                piece.scaleY = scaleY;
+            }
+            
+		}
+        
+		if ([self x] < 0 && [self width] + [self x] < 480) {
+			[self setX:[self x] + (480 - ([self width] + [self x]))];
+		}
+        
+		if ([self y] < 0 && [self height] + [self y] < 320) {
+			[self setY:[self y] + (320 - ([self height] + [self y]))];
+		}
+	
 }
 
-
-- (void)onImageTouched2:(SPTouchEvent *)event
-{
-    NSLog(@"Touched");
+- (void)onMoveTile:(SPTouchEvent*)event {
     
-    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
-    SPPoint *location = [touch locationInSpace:self];
-    _jungleTile.x = location.x;
-    _jungleTile.y = location.y;
-}
-
-- (void)onImageTouched3:(SPTouchEvent *)event
-{
-    NSLog(@"Touched");
+    SPImage *img = (SPImage*)event.target;
+	
+    NSArray *touchesMoved = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
     
-    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
-    SPPoint *location = [touch locationInSpace:self];
-    _desertTile.x = location.x;
-    _desertTile.y = location.y;
-}
-
-- (void)onImageTouched4:(SPTouchEvent *)event
-{
-    NSLog(@"Touched");
+    // Movement of self (x,y)
+    if (touchesMoved.count == 1) {
+        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
+        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+        
+        float diffX = [self x] + (currentPos.x - previousPos.x);
+        float diffY = [self y] + (currentPos.y - previousPos.y);
+        
+        img.x += diffX;
+        img.y += diffY;
+    }
     
-    SPTouch *touch = [[event.touches allObjects]objectAtIndex:0];
-    SPPoint *location = [touch locationInSpace:self];
-    _forestTile.x = location.x;
-    _forestTile.y = location.y;
+    if ([self x] < 0 && [self width] + [self x] < 480) {
+        [self setX:[self x] + (480 - ([self width] + [self x]))];
+    }
+    
+    if ([self y] < 0 && [self height] + [self y] < 320) {
+        [self setY:[self y] + (320 - ([self height] + [self y]))];
+    }
+	
 }
 
 - (void)updateLocations
