@@ -27,9 +27,8 @@
 {
     if ((self = [super init]))
     {
-        // move quad to center, so that scaling works like expected
-        _quad = quad;
        
+        _quad = quad;
         [_quad addEventListener:@selector(onTouchEvent:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
         [self addChild:_quad];
     }
@@ -52,14 +51,10 @@
         // one finger touching -> move
         SPTouch *touch = touches[0];
         SPPoint *movement = [touch movementInSpace:self.parent];
+
+        self.x += movement.x;
+        self.y += movement.y;
         
-        NSLog(@"%f", self.width);
-        
-        if(self.width != 320)
-        {
-            self.x += movement.x;
-            self.y += movement.y;
-        }
 
     }
     else if (touches.count >= 2)

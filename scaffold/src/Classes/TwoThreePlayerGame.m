@@ -98,10 +98,11 @@
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
     
+    //necessary or else it gets placed off screen
     background.x = 0;
-    
     background.y = 0;
     
+    // used to handle movement and zooming of board
     TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     
     //Tiles
@@ -131,6 +132,7 @@
     [sheet addChild:_forestTile];
     [gamePieces addObject:_forestTile];
     
+    //Adding the sheet to contents so that it appears
     [_contents addChild: sheet];
 
     
@@ -148,6 +150,8 @@
     [_contents addChild:_bowl];
     [gamePieces addObject:_bowl];
     
+    
+    /* Adding to _contents will ensure that these pieces do not move with the board*/
     
     _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Bank: 0"];
     _bankText.x = 225;
@@ -169,10 +173,6 @@
     _creatureDice.y = 45;
     [_contents addChild:_creatureDice];
 
-    
-    
-
-    
     
     //Event listeners for each image (to do: make a loop)
 
@@ -205,8 +205,6 @@
 
 - (void)onMoveTile:(SPTouchEvent*)event {
     
-    NSLog(@"Moving Tile");
-    
     SPImage *img = (SPImage*)event.target;
 	
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
@@ -222,7 +220,6 @@
  
         
     }
-
 
 }
 
