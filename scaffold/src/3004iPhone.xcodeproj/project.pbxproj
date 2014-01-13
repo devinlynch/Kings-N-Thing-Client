@@ -12,9 +12,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		414C595F188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		414C5963188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		414C596A188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
@@ -341,8 +338,6 @@
 		DE991F8418846D09006C759F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DE991F7A18846CFD006C759F /* FourPlayerGame.h */,
-				DE991F7B18846CFD006C759F /* FourPlayerGame.m */,
 				DE991F7C18846CFD006C759F /* Scene.h */,
 				DE991F7D18846CFD006C759F /* Scene.m */,
 				DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */,

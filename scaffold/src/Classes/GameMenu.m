@@ -1,4 +1,3 @@
-#import "FourPlayerGame.h"
 #import "TwoThreePlayerGame.h"
 #import "GameMenu.h"
 #import "Scene.h"
@@ -29,13 +28,9 @@
         _mainMenu.y = _offsetY;
         [self addChild:_mainMenu];
         
-//        SPImage *logo = [SPImage imageWithContentsOfFile:@"logo.png"];
-//        logo.y = _offsetY + 5;
-//        [_mainMenu addChild:logo];
         
         // choose which scenes will be accessible
-        NSArray *scenesToCreate = @[@"4 Players", [FourPlayerGame class],
-                                    @"2-3 Players",[TwoThreePlayerGame class]];
+        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class]];
         
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
         int count = 0;
@@ -61,8 +56,8 @@
             ++count;
         }
         
-        [self addEventListener:@selector(onSceneClosing:) atObject:self
-                       forType:EventTypeSceneClosing];
+//        [self addEventListener:@selector(onSceneClosing:) atObject:self
+//                       forType:EventTypeSceneClosing];
         
     }
     return self;
