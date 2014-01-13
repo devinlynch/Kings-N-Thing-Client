@@ -14,3 +14,9 @@ build/*
 # osx noise
 .DS_Store
 profile
+
+*.xcuserstate
+
+scaffold/src/3004iPhone.xcodeproj/xcuserdata/devinlynch.xcuserdatad/xcschemes/3004iPhone.xcscheme
+
+scaffold/src/3004iPhone.xcodeproj/xcuserdata/devinlynch.xcuserdatad/xcschemes/xcschememanagement.plist
