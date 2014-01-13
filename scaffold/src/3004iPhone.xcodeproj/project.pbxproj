@@ -421,6 +421,7 @@
 			files = (
 				DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */,
 				DE4F80E814E1541400655D44 /* sound.caf in Resources */,
+				414C5963188367F400096390 /* forest-tile.png in Resources */,
 				DE4F80E914E1541400655D44 /* atlas.png in Resources */,
 				DEAA57BC1883421D00C204CF /* moutain-tile.png in Resources */,
 				DEAA57B71883421D00C204CF /* back-tile.png in Resources */,
