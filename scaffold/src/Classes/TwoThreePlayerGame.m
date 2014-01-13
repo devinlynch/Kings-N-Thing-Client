@@ -249,14 +249,6 @@
         }
         
     }
-    
-    if ([self x] < 0 && [self width] + [self x] < 480) {
-        [self setX:[self x] + (480 - ([self width] + [self x]))];
-    }
-    
-    if ([self y] < 0 && [self height] + [self y] < 320) {
-        [self setY:[self y] + (320 - ([self height] + [self y]))];
-    }
 	
 }
 
@@ -279,15 +271,7 @@
         img.x += diffX;
         img.y += diffY;
     }
-    
-    if ([self x] < 0 && [self width] + [self x] < 480) {
-        [self setX:[self x] + (480 - ([self width] + [self x]))];
-    }
-    
-    if ([self y] < 0 && [self height] + [self y] < 320) {
-        [self setY:[self y] + (320 - ([self height] + [self y]))];
-    }
-	
+
 }
 
 - (void)updateLocations

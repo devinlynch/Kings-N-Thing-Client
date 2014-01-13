@@ -1,4 +1,3 @@
-#import "FourPlayerGame.h"
 #import "TwoThreePlayerGame.h"
 #import "GameMenu.h"
 #import "Scene.h"
@@ -31,8 +30,7 @@
         
         
         // choose which scenes will be accessible
-        NSArray *scenesToCreate = @[@"4 Players", [FourPlayerGame class],
-                                    @"2-3 Players",[TwoThreePlayerGame class]];
+        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class]];
         
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
         int count = 0;
