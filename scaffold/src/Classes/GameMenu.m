@@ -29,9 +29,6 @@
         _mainMenu.y = _offsetY;
         [self addChild:_mainMenu];
         
-//        SPImage *logo = [SPImage imageWithContentsOfFile:@"logo.png"];
-//        logo.y = _offsetY + 5;
-//        [_mainMenu addChild:logo];
         
         // choose which scenes will be accessible
         NSArray *scenesToCreate = @[@"4 Players", [FourPlayerGame class],
@@ -61,8 +58,8 @@
             ++count;
         }
         
-        [self addEventListener:@selector(onSceneClosing:) atObject:self
-                       forType:EventTypeSceneClosing];
+//        [self addEventListener:@selector(onSceneClosing:) atObject:self
+//                       forType:EventTypeSceneClosing];
         
     }
     return self;

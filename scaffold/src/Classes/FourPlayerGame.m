@@ -160,9 +160,6 @@
     [gamePieces addObject:_creatureDice];
     
     
-    
-    
-    
     //Event listeners for each image (to do: make a loop)
     
     [_seaTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
@@ -191,52 +188,6 @@
     // Sparrow's minimum deployment target is iOS 5.
 }
 
-- (void) onTouch: (SPTouchEvent*) event
-{
-    // NSLog(@"IM TOUCHED!");
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
-    
-    if (touches.count == 1)
-    {
-        // one finger touching -> move
-        //        SPTouch *touch = touches[0];
-        //        SPPoint *movement = [touch movementInSpace:self.parent];
-        //
-        //
-        //
-        //            self.x += movement.x;
-        //            self.y += movement.y;
-        //
-        //        NSLog(@"x: %f y: %f", movement.x, movement.y);
-        
-        
-        //   NSLog(@"One finga");
-    }
-    else if (touches.count >= 2)
-    {
-        //NSLog(@"Two finga");
-        
-        SPTouch *touch1 = [touches objectAtIndex:0];
-        SPTouch *touch2 = [touches objectAtIndex:1];
-        
-        SPPoint *touch1PrevPos = [touch1 previousLocationInSpace:self.parent];
-        SPPoint *touch1Pos = [touch1 locationInSpace:self.parent];
-        SPPoint *touch2PrevPos = [touch2 previousLocationInSpace:self.parent];
-        SPPoint *touch2Pos = [touch2 locationInSpace:self.parent];
-        SPPoint *prevVector = [touch1PrevPos subtractPoint:touch2PrevPos];
-        SPPoint *currentVector = [touch1Pos subtractPoint:touch2Pos];
-        
-        float sizeDiff = currentVector.length / prevVector.length;
-        float xavg = (touch1Pos.x + touch2Pos.x ) / 2;
-        float yavg = (touch2Pos.y + touch1Pos.y) / 2;
-        
-        SPMatrix *mat = [self transformationMatrix];
-        [mat translateXBy:-xavg yBy:-yavg];
-        if (self.scaleX * sizeDiff > 0.5f) [mat scaleBy:sizeDiff];
-        [mat translateXBy:xavg yBy:yavg];
-        [self setTransformationMatrix:mat];
-    }
-}
 
 - (void)setTransformationMatrix:(SPMatrix *)matrix {
     self.scaleX = matrix.a;
@@ -254,19 +205,19 @@
     
     // Movement of self (x,y)
     if (touchesMoved.count == 1) {
-//        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-//        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-//        
-//        float diffX = [self x] + (currentPos.x - previousPos.x);
-//        float diffY = [self y] + (currentPos.y - previousPos.y);
-//        
-//        img.x += diffX;
-//        img.y += diffY;
-//        
-//        for(SPDisplayObjectContainer *piece in gamePieces){
-//            piece.x += diffX;
-//            piece.y += diffY;
-//        }
+        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
+        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+        
+        float diffX = [self x] + (currentPos.x - previousPos.x);
+        float diffY = [self y] + (currentPos.y - previousPos.y);
+        
+        img.x += diffX;
+        img.y += diffY;
+        
+        for(SPDisplayObjectContainer *piece in gamePieces){
+            piece.x += diffX;
+            piece.y += diffY;
+        }
         
         // Pinch zoom in /out
     } else if (touchesMoved.count == 2) {
