@@ -7,6 +7,7 @@
 //
 
 #import "TwoThreePlayerGame.h"
+#import "TouchSheet.h"
 
 
 // --- private interface ---------------------------------------------------------------------------
@@ -26,6 +27,9 @@
     NSMutableArray *gamePieces;
     
     SPSprite *_contents;
+    
+    int _gameWidth;
+    int _gameHeight;
     
     //Tiles
     SPImage *_backTile;
@@ -83,6 +87,9 @@
     // The positions are updated when the device is rotated. To make that easy, we put all objects
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
     
+    _gameWidth  = Sparrow.stage.width;
+    _gameHeight = Sparrow.stage.height;
+    
     
     gamePieces = [[NSMutableArray alloc] init];
     
@@ -90,36 +97,38 @@
     [self addChild:_contents];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
-    [_contents addChild:background];
-    [background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
+    background.x = 0;
     
+    background.y = 0;
+    
+    TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     
     //Tiles
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
     _seaTile.x = 10;
     _seaTile.y = 250;
-    [_contents addChild:_seaTile];
+    [sheet addChild:_seaTile];
     [gamePieces addObject:_seaTile];
     
     _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     _jungleTile.x = 60;
     _jungleTile.y = 250;
-    [_contents addChild:_jungleTile];
+    [sheet addChild:_jungleTile];
     [gamePieces addObject:_jungleTile];
     
     
     _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
     _desertTile.x = 110;
     _desertTile.y = 250;
-    [_contents addChild:_desertTile];
+    [sheet addChild:_desertTile];
     [gamePieces addObject:_desertTile];
     
     
     _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
     _forestTile.x = 160;
     _forestTile.y = 250;
-    [_contents addChild:_forestTile];
+    [sheet addChild:_forestTile];
     [gamePieces addObject:_forestTile];
     
     
@@ -128,14 +137,14 @@
     _rack = [[SPImage alloc] initWithContentsOfFile:@"Rack.png"];
     _rack.x = 5;
     _rack.y = 350;
-    [_contents addChild:_rack];
+    [sheet addChild:_rack];
     [gamePieces addObject:_rack];
     
     
     _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
     _bowl.x = 235;
     _bowl.y = 325;
-    [_contents addChild:_bowl];
+    [sheet addChild:_bowl];
     [gamePieces addObject:_bowl];
     
     
@@ -143,25 +152,25 @@
     _bankText.x = 225;
     _bankText.y = 445;
     _bankText.color = SP_YELLOW;
-    [_contents addChild:_bankText];
+    [sheet addChild:_bankText];
     [gamePieces addObject:_bankText];
     
     
     _dice = [[SPImage alloc] initWithContentsOfFile:@"dice6.png"];
     _dice.x = 5;
     _dice.y = 10;
-    [_contents addChild:_dice];
+    [sheet addChild:_dice];
     [gamePieces addObject:_dice];
     
     
     _creatureDice = [[SPImage alloc] initWithContentsOfFile:@"creature5.png"];
     _creatureDice.x = 5;
     _creatureDice.y = 45;
-    [_contents addChild:_creatureDice];
+    [sheet addChild:_creatureDice];
     [gamePieces addObject:_creatureDice];
     
     
-    
+    [_contents addChild: sheet];
     
     
     //Event listeners for each image (to do: make a loop)
@@ -199,6 +208,62 @@
 	self.y = matrix.ty;
 }
 
+
+- (void)onTouchEvent:(SPTouchEvent*)event
+{
+    
+    SPImage *img = (SPImage *) event.target;
+    
+    NSArray *touches = [[event touchesWithTarget:img andPhase:SPTouchPhaseMoved] allObjects];
+    
+    if (touches.count == 1)
+    {
+        // one finger touching -> move
+        SPTouch *touch = touches[0];
+        SPPoint *movement = [touch movementInSpace:img.parent];
+        
+        img.x += movement.x;
+        img.y += movement.y;
+    }
+    else if (touches.count >= 2)
+    {
+        // two fingers touching -> rotate and scale
+        SPTouch *touch1 = touches[0];
+        SPTouch *touch2 = touches[1];
+        
+        SPPoint *touch1PrevPos = [touch1 previousLocationInSpace:img.parent];
+        SPPoint *touch1Pos = [touch1 locationInSpace:img.parent];
+        SPPoint *touch2PrevPos = [touch2 previousLocationInSpace:img.parent];
+        SPPoint *touch2Pos = [touch2 locationInSpace:img.parent];
+        
+        SPPoint *prevVector = [touch1PrevPos subtractPoint:touch2PrevPos];
+        SPPoint *vector = [touch1Pos subtractPoint:touch2Pos];
+        
+        // update pivot point based on previous center
+        SPPoint *touch1PrevLocalPos = [touch1 previousLocationInSpace:img];
+        SPPoint *touch2PrevLocalPos = [touch2 previousLocationInSpace:img];
+        img.pivotX = (touch1PrevLocalPos.x + touch2PrevLocalPos.x) * 0.5f;
+        img.pivotY = (touch1PrevLocalPos.y + touch2PrevLocalPos.y) * 0.5f;
+        
+        // update location based on the current center
+        img.x = (touch1Pos.x + touch2Pos.x) * 0.5f;
+        img.y = (touch1Pos.y + touch2Pos.y) * 0.5f;
+        
+
+        
+        //Rotating. Will add later
+        
+//        float angleDiff = vector.angle - prevVector.angle;
+//        img.rotation += angleDiff;
+//        
+
+        
+        float sizeDiff = vector.length / prevVector.length;
+        img.scaleX = img.scaleY = MAX(0.5f, self.scaleX * sizeDiff);
+        
+    }
+}
+
 - (void)onMoveBoard:(SPTouchEvent*)event {
     
     SPImage *img = (SPImage*)event.target;
@@ -214,14 +279,17 @@
         float diffX = [img.parent x] + (currentPos.x - previousPos.x);
         float diffY = [img.parent y] + (currentPos.y - previousPos.y);
         
-        img.x += diffX;
-        img.y += diffY;
+        if(!((img.x + diffX) > 0) && !((img.x + img.width + diffX) < _gameWidth) &&
+           !((img.y + diffY) > 0) && !((img.y + img.height + diffY) < _gameHeight)){
+            img.x += diffX;
+            img.y += diffY;
         
-        for(SPDisplayObjectContainer *piece in gamePieces){
-            piece.x += diffX;
-            piece.y += diffY;
+            for(SPDisplayObjectContainer *piece in gamePieces){
+                piece.x += diffX;
+                piece.y += diffY;
+            }
         }
-        
+    
         // Pinch zoom in /out
     } else if (touchesMoved.count == 2) {
         
@@ -276,11 +344,11 @@
 
 - (void)updateLocations
 {
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
+    _gameWidth  = Sparrow.stage.width;
+    _gameHeight = Sparrow.stage.height;
     
-    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
-    _contents.y = (int) (gameHeight - _contents.height) / 2;
+    _contents.x = (int) (_gameWidth  - _contents.width)  / 2;
+    _contents.y = (int) (_gameHeight - _contents.height) / 2;
 }
 
 
