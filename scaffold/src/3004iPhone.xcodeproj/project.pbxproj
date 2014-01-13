@@ -70,6 +70,8 @@
 		DE991FA318847430006C759F /* sea-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9418847430006C759F /* sea-tile.png */; };
 		DE991FA418847430006C759F /* swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9518847430006C759F /* swamp-tile.png */; };
 		DE991FB21884785E006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FB11884785E006C759F /* TwoThreeBoard.png */; };
+		DE991FB6188479E0006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FB5188479E0006C759F /* mainMenuBackground.png */; };
+		DE991FB9188479EB006C759F /* Button-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FB8188479EB006C759F /* Button-Normal@2x.png */; };
 		DEAA57A71883420300C204CF /* creature5.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A51883420300C204CF /* creature5.png */; };
 		DEAA57A81883420300C204CF /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A61883420300C204CF /* dice6.png */; };
 		DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AA1883421000C204CF /* masterGameBoard.png */; };
@@ -181,6 +183,8 @@
 		DE991F9418847430006C759F /* sea-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sea-tile.png"; sourceTree = "<group>"; };
 		DE991F9518847430006C759F /* swamp-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swamp-tile.png"; sourceTree = "<group>"; };
 		DE991FB11884785E006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
+		DE991FB5188479E0006C759F /* mainMenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMenuBackground.png; sourceTree = "<group>"; };
+		DE991FB8188479EB006C759F /* Button-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Normal@2x.png"; sourceTree = "<group>"; };
 		DEAA57A51883420300C204CF /* creature5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creature5.png; path = ../../../../../../../../../../../../../../creature5.png; sourceTree = "<group>"; };
 		DEAA57A61883420300C204CF /* dice6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice6.png; path = ../../../../../../../../../../../../../../dice6.png; sourceTree = "<group>"; };
 		DEAA57AA1883421000C204CF /* masterGameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = masterGameBoard.png; path = ../../../../../../../../../../../../../../masterGameBoard.png; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 			isa = PBXGroup;
 			children = (
 				DE991FB11884785E006C759F /* TwoThreeBoard.png */,
+				DE991FB8188479EB006C759F /* Button-Normal@2x.png */,
+				DE991FB5188479E0006C759F /* mainMenuBackground.png */,
 				DE991F8718847430006C759F /* back-tile.png */,
 				DE991F8818847430006C759F /* background.jpg */,
 				DE991F8918847430006C759F /* Bowl.png */,
@@ -494,6 +500,7 @@
 				414C5963188367F400096390 /* (null) in Resources */,
 				DE991F9918847430006C759F /* desert-tile.png in Resources */,
 				DE4F80E914E1541400655D44 /* atlas.png in Resources */,
+				DE991FB6188479E0006C759F /* mainMenuBackground.png in Resources */,
 				DEAA57BC1883421D00C204CF /* moutain-tile.png in Resources */,
 				DEAA57B71883421D00C204CF /* back-tile.png in Resources */,
 				DE991F9A18847430006C759F /* dice6.png in Resources */,
@@ -541,6 +548,7 @@
 				DEAA57BA1883421D00C204CF /* frozen-tile.png in Resources */,
 				DEAA57BF1883421D00C204CF /* swamp-tile.png in Resources */,
 				DEAA57AD1883421400C204CF /* Rack.png in Resources */,
+				DE991FB9188479EB006C759F /* Button-Normal@2x.png in Resources */,
 				DE0C7111162417B800357F6E /* Icon@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
