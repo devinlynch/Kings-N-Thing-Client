@@ -4,7 +4,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Game.h"
+#import "GameMenu.h"
 #import "UDPMessageReceiver.h"
 
 // --- c functions ---
