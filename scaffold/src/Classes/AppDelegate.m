@@ -5,6 +5,7 @@
 
 #import "AppDelegate.h"
 #import "Game.h"
+#import "UDPMessageReceiver.h"
 
 // --- c functions ---
 
@@ -43,6 +44,8 @@ void onUncaughtException(NSException *exception)
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
     
+    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
+    [udpMessageReceiver startListeningOnPort:3004];
     return YES;
 }
 
