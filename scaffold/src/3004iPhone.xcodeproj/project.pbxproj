@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		412C1A9D18848F1B00AE149D /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 412C1A9C18848F1B00AE149D /* TouchSheet.m */; };
+		412C1A9F1884A30000AE149D /* C_City_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 412C1A9E1884A30000AE149D /* C_City_B.png */; };
 		99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F14FC11883932300872890 /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F14FC01883932300872890 /* Rack.png */; };
@@ -97,6 +98,7 @@
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		412C1A9B18848F1B00AE149D /* TouchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSheet.h; sourceTree = "<group>"; };
 		412C1A9C18848F1B00AE149D /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
+		412C1A9E1884A30000AE149D /* C_City_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = C_City_B.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		DE4F80DD14E1541400655D44 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				412C1A9E1884A30000AE149D /* C_City_B.png */,
 				DE991FB11884785E006C759F /* TwoThreeBoard.png */,
 				DE991FB8188479EB006C759F /* Button-Normal@2x.png */,
 				DE991FB5188479E0006C759F /* mainMenuBackground.png */,
@@ -466,6 +469,7 @@
 				DE991F9A18847430006C759F /* dice6.png in Resources */,
 				DE991FA418847430006C759F /* swamp-tile.png in Resources */,
 				DE4F80EA14E1541400655D44 /* atlas.xml in Resources */,
+				412C1A9F1884A30000AE149D /* C_City_B.png in Resources */,
 				DE991FA118847430006C759F /* plaines-tile.png in Resources */,
 				DE991FB21884785E006C759F /* TwoThreeBoard.png in Resources */,
 				DE991F9818847430006C759F /* Bowl.png in Resources */,

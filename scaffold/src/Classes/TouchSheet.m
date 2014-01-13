@@ -53,8 +53,14 @@
         SPTouch *touch = touches[0];
         SPPoint *movement = [touch movementInSpace:self.parent];
         
-        self.x += movement.x;
-        self.y += movement.y;
+        NSLog(@"%f", self.width);
+        
+        if(self.width != 320)
+        {
+            self.x += movement.x;
+            self.y += movement.y;
+        }
+
     }
     else if (touches.count >= 2)
     {
@@ -76,15 +82,27 @@
         self.pivotX = (touch1PrevLocalPos.x + touch2PrevLocalPos.x) * 0.5f;
         self.pivotY = (touch1PrevLocalPos.y + touch2PrevLocalPos.y) * 0.5f;
         
+        
+        
+        
         // update location based on the current center
+        
         self.x = (touch1Pos.x + touch2Pos.x) * 0.5f;
         self.y = (touch1Pos.y + touch2Pos.y) * 0.5f;
+        
+        //Rotation code
 
-        float angleDiff = vector.angle - prevVector.angle;
-        self.rotation += angleDiff;   
+//        float angleDiff = vector.angle - prevVector.angle;
+//        self.rotation += angleDiff;
+        
+        
         
         float sizeDiff = vector.length / prevVector.length;
-        self.scaleX = self.scaleY = MAX(0.5f, self.scaleX * sizeDiff);        
+        
+        //dont let it zoom out under its original size or too big
+        if(self.scaleX * sizeDiff >= 1.00f && self.scaleX * sizeDiff <= 3.00f){
+          self.scaleX = self.scaleY = MAX(0.5f, self.scaleX * sizeDiff);
+        }
     }
 }
 
