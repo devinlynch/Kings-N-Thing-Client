@@ -42,7 +42,7 @@
 		DE991F501883D0C8006C759F /* Button-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F4F1883D0C8006C759F /* Button-Normal@2x.png */; };
 		DE991F531883D135006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F521883D135006C759F /* Scene.m */; };
 		DE991F561883D234006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F551883D234006C759F /* TwoThreePlayerGame.m */; };
-		DE991F581883D2F6006C759F /* SmallBoard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F571883D2F6006C759F /* SmallBoard@2x.png */; };
+		DE991F5D1883D5AC006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F5C1883D5AC006C759F /* TwoThreeBoard.png */; };
 		DEAA57A71883420300C204CF /* creature5.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A51883420300C204CF /* creature5.png */; };
 		DEAA57A81883420300C204CF /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A61883420300C204CF /* dice6.png */; };
 		DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AA1883421000C204CF /* masterGameBoard.png */; };
@@ -128,7 +128,7 @@
 		DE991F521883D135006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DE991F541883D234006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
 		DE991F551883D234006C759F /* TwoThreePlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoThreePlayerGame.m; sourceTree = "<group>"; };
-		DE991F571883D2F6006C759F /* SmallBoard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SmallBoard@2x.png"; path = "../../../../../../../../../../../../../../SmallBoard@2x.png"; sourceTree = "<group>"; };
+		DE991F5C1883D5AC006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwoThreeBoard.png; path = ../../../../../../../../../../../../../../TwoThreeBoard.png; sourceTree = "<group>"; };
 		DEAA57A51883420300C204CF /* creature5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creature5.png; path = ../../../../../../../../../../../../../../creature5.png; sourceTree = "<group>"; };
 		DEAA57A61883420300C204CF /* dice6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice6.png; path = ../../../../../../../../../../../../../../dice6.png; sourceTree = "<group>"; };
 		DEAA57AA1883421000C204CF /* masterGameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = masterGameBoard.png; path = ../../../../../../../../../../../../../../masterGameBoard.png; sourceTree = "<group>"; };
@@ -170,6 +170,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DE991F591883D3E5006C759F /* Scenes */,
 				DE4F80D714E153EA00655D44 /* Game */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
@@ -263,16 +264,10 @@
 		DE4F80D714E153EA00655D44 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				DE991F4A1883CDF6006C759F /* FourPlayerGame.h */,
-				DE991F4B1883CDF6006C759F /* FourPlayerGame.m */,
-				DE991F541883D234006C759F /* TwoThreePlayerGame.h */,
-				DE991F551883D234006C759F /* TwoThreePlayerGame.m */,
 				DE4A3DE310FFB2AF00FDA492 /* GameMenu.h */,
 				DE4A3DE410FFB2AF00FDA492 /* GameMenu.m */,
 				DE4F80D414E153E600655D44 /* Media.h */,
 				DE4F80D514E153E600655D44 /* Media.m */,
-				DE991F511883D135006C759F /* Scene.h */,
-				DE991F521883D135006C759F /* Scene.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -300,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				DE991F4F1883D0C8006C759F /* Button-Normal@2x.png */,
-				DE991F571883D2F6006C759F /* SmallBoard@2x.png */,
+				DE991F5C1883D5AC006C759F /* TwoThreeBoard.png */,
 				DE991F4D1883CF42006C759F /* mainMenuBackground.png */,
 				DEAA57A51883420300C204CF /* creature5.png */,
 				DEAA57A61883420300C204CF /* dice6.png */,
@@ -330,6 +325,19 @@
 				DE115962162320F800A25086 /* background@2x.jpg */,
 			);
 			path = 2x;
+			sourceTree = "<group>";
+		};
+		DE991F591883D3E5006C759F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DE991F4A1883CDF6006C759F /* FourPlayerGame.h */,
+				DE991F4B1883CDF6006C759F /* FourPlayerGame.m */,
+				DE991F541883D234006C759F /* TwoThreePlayerGame.h */,
+				DE991F551883D234006C759F /* TwoThreePlayerGame.m */,
+				DE991F511883D135006C759F /* Scene.h */,
+				DE991F521883D135006C759F /* Scene.m */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,7 +431,6 @@
 				DE0C71011624177000357F6E /* Default.png in Resources */,
 				DE991F501883D0C8006C759F /* Button-Normal@2x.png in Resources */,
 				DEAA57B91883421D00C204CF /* forest-tile.png in Resources */,
-				DE991F581883D2F6006C759F /* SmallBoard@2x.png in Resources */,
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
 				DE0C71051624177800357F6E /* Default-568h@2x.png in Resources */,
 				DE0C71071624178400357F6E /* Default-Portrait~ipad.png in Resources */,
@@ -439,6 +446,7 @@
 				DEAA57BA1883421D00C204CF /* frozen-tile.png in Resources */,
 				DEAA57BF1883421D00C204CF /* swamp-tile.png in Resources */,
 				DEAA57AD1883421400C204CF /* Rack.png in Resources */,
+				DE991F5D1883D5AC006C759F /* TwoThreeBoard.png in Resources */,
 				DE0C7111162417B800357F6E /* Icon@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

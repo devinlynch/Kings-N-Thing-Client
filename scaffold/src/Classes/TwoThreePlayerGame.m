@@ -89,7 +89,7 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"SmallBoard@2x.png"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
     [_contents addChild:background];
     [background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
@@ -222,8 +222,10 @@
         
         SPPoint *touch1PrevPos = [touch1 previousLocationInSpace:self.parent];
         SPPoint *touch1Pos = [touch1 locationInSpace:self.parent];
+        
         SPPoint *touch2PrevPos = [touch2 previousLocationInSpace:self.parent];
         SPPoint *touch2Pos = [touch2 locationInSpace:self.parent];
+        
         SPPoint *prevVector = [touch1PrevPos subtractPoint:touch2PrevPos];
         SPPoint *currentVector = [touch1Pos subtractPoint:touch2Pos];
         
@@ -255,22 +257,24 @@
     
     // Movement of self (x,y)
     if (touchesMoved.count == 1) {
-        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-        
-        float diffX = [self x] + (currentPos.x - previousPos.x);
-        float diffY = [self y] + (currentPos.y - previousPos.y);
-        
-        img.x += diffX;
-        img.y += diffY;
-        
-        for(SPDisplayObjectContainer *piece in gamePieces){
-            piece.x += diffX;
-            piece.y += diffY;
-        }
+//        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
+//        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+//        
+//        float diffX = [self x] + (currentPos.x - previousPos.x);
+//        float diffY = [self y] + (currentPos.y - previousPos.y);
+//        
+//        img.x += diffX;
+//        img.y += diffY;
+//        
+//        for(SPDisplayObjectContainer *piece in gamePieces){
+//            piece.x += diffX;
+//            piece.y += diffY;
+//        }
         
         // Pinch zoom in /out
     } else if (touchesMoved.count == 2) {
+        
+        
         SPPoint *previousPos1 = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
         SPPoint *previousPos2 = [[touchesMoved objectAtIndex:1] previousLocationInSpace:[self parent]];
         

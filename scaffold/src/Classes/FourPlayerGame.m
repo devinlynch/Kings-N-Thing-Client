@@ -254,19 +254,19 @@
     
     // Movement of self (x,y)
     if (touchesMoved.count == 1) {
-        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-        
-        float diffX = [self x] + (currentPos.x - previousPos.x);
-        float diffY = [self y] + (currentPos.y - previousPos.y);
-        
-        img.x += diffX;
-        img.y += diffY;
-        
-        for(SPDisplayObjectContainer *piece in gamePieces){
-            piece.x += diffX;
-            piece.y += diffY;
-        }
+//        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
+//        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+//        
+//        float diffX = [self x] + (currentPos.x - previousPos.x);
+//        float diffY = [self y] + (currentPos.y - previousPos.y);
+//        
+//        img.x += diffX;
+//        img.y += diffY;
+//        
+//        for(SPDisplayObjectContainer *piece in gamePieces){
+//            piece.x += diffX;
+//            piece.y += diffY;
+//        }
         
         // Pinch zoom in /out
     } else if (touchesMoved.count == 2) {
