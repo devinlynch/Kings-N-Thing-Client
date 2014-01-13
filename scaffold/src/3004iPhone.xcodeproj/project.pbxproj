@@ -55,6 +55,8 @@
 		DE9920021884825B006C759F /* swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FF41884825B006C759F /* swamp-tile.png */; };
 		DE9920031884825B006C759F /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FF51884825B006C759F /* masterGameBoard.png */; };
 		DE9920041884825B006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FF61884825B006C759F /* TwoThreeBoard.png */; };
+		DE99200C188487FD006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99200B188487FD006C759F /* mainMenuBackground.png */; };
+		DE99200F18848836006C759F /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99200E18848836006C759F /* Rack.png */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,8 @@
 		DE991FF41884825B006C759F /* swamp-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swamp-tile.png"; sourceTree = "<group>"; };
 		DE991FF51884825B006C759F /* masterGameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masterGameBoard.png; sourceTree = "<group>"; };
 		DE991FF61884825B006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
+		DE99200B188487FD006C759F /* mainMenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMenuBackground.png; sourceTree = "<group>"; };
+		DE99200E18848836006C759F /* Rack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rack.png; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -318,6 +322,8 @@
 				DE991FEB1884825B006C759F /* landtiles */,
 				DE991FF51884825B006C759F /* masterGameBoard.png */,
 				DE991FF61884825B006C759F /* TwoThreeBoard.png */,
+				DE99200B188487FD006C759F /* mainMenuBackground.png */,
+				DE99200E18848836006C759F /* Rack.png */,
 			);
 			path = 1x;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				DE9920011884825B006C759F /* sea-tile.png in Resources */,
 				DE115963162320F800A25086 /* background@2x.jpg in Resources */,
 				414C596A188367F400096390 /* (null) in Resources */,
+				DE99200F18848836006C759F /* Rack.png in Resources */,
 				414C595F188367F400096390 /* (null) in Resources */,
 				DE991FFF1884825B006C759F /* moutain-tile.png in Resources */,
 				DE0C71011624177000357F6E /* Default.png in Resources */,
@@ -460,6 +467,7 @@
 				DE0C710B162417A600357F6E /* Icon.png in Resources */,
 				DE9920001884825B006C759F /* plaines-tile.png in Resources */,
 				DE9920021884825B006C759F /* swamp-tile.png in Resources */,
+				DE99200C188487FD006C759F /* mainMenuBackground.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				DE991FF81884825B006C759F /* creature5.png in Resources */,
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
