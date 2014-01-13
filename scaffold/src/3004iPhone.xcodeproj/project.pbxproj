@@ -12,19 +12,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		414C595F188367F400096390 /* back-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5952188367F400096390 /* back-tile.png */; };
-		414C5960188367F400096390 /* creature5.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5953188367F400096390 /* creature5.png */; };
-		414C5961188367F400096390 /* desert-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5954188367F400096390 /* desert-tile.png */; };
-		414C5962188367F400096390 /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5955188367F400096390 /* dice6.png */; };
-		414C5963188367F400096390 /* forest-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5956188367F400096390 /* forest-tile.png */; };
-		414C5964188367F400096390 /* frozen-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5957188367F400096390 /* frozen-tile.png */; };
-		414C5965188367F400096390 /* guy.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5958188367F400096390 /* guy.png */; };
-		414C5966188367F400096390 /* jungle-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C5959188367F400096390 /* jungle-tile.png */; };
-		414C5967188367F400096390 /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C595A188367F400096390 /* masterGameBoard.png */; };
-		414C5968188367F400096390 /* moutain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C595B188367F400096390 /* moutain-tile.png */; };
-		414C5969188367F400096390 /* plaines-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C595C188367F400096390 /* plaines-tile.png */; };
-		414C596A188367F400096390 /* sea-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C595D188367F400096390 /* sea-tile.png */; };
-		414C596B188367F400096390 /* swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 414C595E188367F400096390 /* swamp-tile.png */; };
+		414C595F188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		414C5963188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		414C596A188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F14FBF188391B000872890 /* Bowl.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F14FBE188391B000872890 /* Bowl.png */; };
@@ -61,6 +51,9 @@
 		DE991F611883DBED006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F601883DBED006C759F /* mainMenuBackground.png */; };
 		DE991F631883DBF2006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F621883DBF2006C759F /* TwoThreeBoard.png */; };
 		DE991F651883DF0F006C759F /* Bowl.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F641883DF0F006C759F /* Bowl.png */; };
+		DE991F8018846CFD006C759F /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7B18846CFD006C759F /* FourPlayerGame.m */; };
+		DE991F8118846CFD006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7D18846CFD006C759F /* Scene.m */; };
+		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
 		DEAA57A71883420300C204CF /* creature5.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A51883420300C204CF /* creature5.png */; };
 		DEAA57A81883420300C204CF /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A61883420300C204CF /* dice6.png */; };
 		DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AA1883421000C204CF /* masterGameBoard.png */; };
@@ -69,7 +62,6 @@
 		DEAA57B81883421D00C204CF /* desert-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AF1883421D00C204CF /* desert-tile.png */; };
 		DEAA57B91883421D00C204CF /* forest-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B01883421D00C204CF /* forest-tile.png */; };
 		DEAA57BA1883421D00C204CF /* frozen-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B11883421D00C204CF /* frozen-tile.png */; };
-		DEAA57BB1883421D00C204CF /* jungle-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B21883421D00C204CF /* jungle-tile.png */; };
 		DEAA57BC1883421D00C204CF /* moutain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B31883421D00C204CF /* moutain-tile.png */; };
 		DEAA57BD1883421D00C204CF /* plaines-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B41883421D00C204CF /* plaines-tile.png */; };
 		DEAA57BE1883421D00C204CF /* sea-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B51883421D00C204CF /* sea-tile.png */; };
@@ -144,16 +136,19 @@
 		DE4F80E314E1541400655D44 /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atlas@2x.png"; sourceTree = "<group>"; };
 		DE4F80E414E1541400655D44 /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "atlas@2x.xml"; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DE991F4A1883CDF6006C759F /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
 		DE991F4B1883CDF6006C759F /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
-		DE991F511883D135006C759F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DE991F521883D135006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
-		DE991F541883D234006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
 		DE991F551883D234006C759F /* TwoThreePlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoThreePlayerGame.m; sourceTree = "<group>"; };
 		DE991F5E1883DBB8006C759F /* Button-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Button-Normal@2x.png"; path = "../../../../../../../../../../../../../../landtiles/Button-Normal@2x.png"; sourceTree = "<group>"; };
 		DE991F601883DBED006C759F /* mainMenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mainMenuBackground.png; path = ../../../../../../../../../../../../../../landtiles/mainMenuBackground.png; sourceTree = "<group>"; };
 		DE991F621883DBF2006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwoThreeBoard.png; path = ../../../../../../../../../../../../../../landtiles/TwoThreeBoard.png; sourceTree = "<group>"; };
 		DE991F641883DF0F006C759F /* Bowl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bowl.png; path = "../../../../../../../../../../../../../../Kings-N-Things-Images/Bowl.png"; sourceTree = "<group>"; };
+		DE991F7A18846CFD006C759F /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
+		DE991F7B18846CFD006C759F /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
+		DE991F7C18846CFD006C759F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		DE991F7D18846CFD006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
+		DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoThreePlayerGame.m; sourceTree = "<group>"; };
 		DEAA57A51883420300C204CF /* creature5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creature5.png; path = ../../../../../../../../../../../../../../creature5.png; sourceTree = "<group>"; };
 		DEAA57A61883420300C204CF /* dice6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice6.png; path = ../../../../../../../../../../../../../../dice6.png; sourceTree = "<group>"; };
 		DEAA57AA1883421000C204CF /* masterGameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = masterGameBoard.png; path = ../../../../../../../../../../../../../../masterGameBoard.png; sourceTree = "<group>"; };
@@ -162,7 +157,6 @@
 		DEAA57AF1883421D00C204CF /* desert-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "desert-tile.png"; path = "../../../../../../../../../../../../../../landtiles/desert-tile.png"; sourceTree = "<group>"; };
 		DEAA57B01883421D00C204CF /* forest-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forest-tile.png"; path = "../../../../../../../../../../../../../../landtiles/forest-tile.png"; sourceTree = "<group>"; };
 		DEAA57B11883421D00C204CF /* frozen-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "frozen-tile.png"; path = "../../../../../../../../../../../../../../landtiles/frozen-tile.png"; sourceTree = "<group>"; };
-		DEAA57B21883421D00C204CF /* jungle-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jungle-tile.png"; path = "../../../../../../../../../../../../../../landtiles/jungle-tile.png"; sourceTree = "<group>"; };
 		DEAA57B31883421D00C204CF /* moutain-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moutain-tile.png"; path = "../../../../../../../../../../../../../../landtiles/moutain-tile.png"; sourceTree = "<group>"; };
 		DEAA57B41883421D00C204CF /* plaines-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plaines-tile.png"; path = "../../../../../../../../../../../../../../landtiles/plaines-tile.png"; sourceTree = "<group>"; };
 		DEAA57B51883421D00C204CF /* sea-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sea-tile.png"; path = "../../../../../../../../../../../../../../landtiles/sea-tile.png"; sourceTree = "<group>"; };
@@ -195,6 +189,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DE991F8418846D09006C759F /* Scene */,
 				99F14FB318838A6A00872890 /* Networking */,
 				DE4F80D714E153EA00655D44 /* Game */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
@@ -340,19 +335,6 @@
 			children = (
 				99F14FC01883932300872890 /* Rack.png */,
 				99F14FBE188391B000872890 /* Bowl.png */,
-				414C5952188367F400096390 /* back-tile.png */,
-				414C5953188367F400096390 /* creature5.png */,
-				414C5954188367F400096390 /* desert-tile.png */,
-				414C5955188367F400096390 /* dice6.png */,
-				414C5956188367F400096390 /* forest-tile.png */,
-				414C5957188367F400096390 /* frozen-tile.png */,
-				414C5958188367F400096390 /* guy.png */,
-				414C5959188367F400096390 /* jungle-tile.png */,
-				414C595A188367F400096390 /* masterGameBoard.png */,
-				414C595B188367F400096390 /* moutain-tile.png */,
-				414C595C188367F400096390 /* plaines-tile.png */,
-				414C595D188367F400096390 /* sea-tile.png */,
-				414C595E188367F400096390 /* swamp-tile.png */,
 				DE4F80DE14E1541400655D44 /* atlas.png */,
 				DE4F80DF14E1541400655D44 /* atlas.xml */,
 				DE115960162320F100A25086 /* background.jpg */,
@@ -370,17 +352,17 @@
 			path = 2x;
 			sourceTree = "<group>";
 		};
-		DE991F591883D3E5006C759F /* Scenes */ = {
+		DE991F8418846D09006C759F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DE991F4A1883CDF6006C759F /* FourPlayerGame.h */,
-				DE991F4B1883CDF6006C759F /* FourPlayerGame.m */,
-				DE991F541883D234006C759F /* TwoThreePlayerGame.h */,
-				DE991F551883D234006C759F /* TwoThreePlayerGame.m */,
-				DE991F511883D135006C759F /* Scene.h */,
-				DE991F521883D135006C759F /* Scene.m */,
+				DE991F7A18846CFD006C759F /* FourPlayerGame.h */,
+				DE991F7B18846CFD006C759F /* FourPlayerGame.m */,
+				DE991F7C18846CFD006C759F /* Scene.h */,
+				DE991F7D18846CFD006C759F /* Scene.m */,
+				DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */,
+				DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */,
 			);
-			name = Scenes;
+			name = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,7 +443,7 @@
 			files = (
 				DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */,
 				DE4F80E814E1541400655D44 /* sound.caf in Resources */,
-				414C5963188367F400096390 /* forest-tile.png in Resources */,
+				414C5963188367F400096390 /* (null) in Resources */,
 				DE4F80E914E1541400655D44 /* atlas.png in Resources */,
 				DEAA57BC1883421D00C204CF /* moutain-tile.png in Resources */,
 				DEAA57B71883421D00C204CF /* back-tile.png in Resources */,
@@ -473,8 +455,8 @@
 				DE991F5F1883DBB8006C759F /* Button-Normal@2x.png in Resources */,
 				DE115961162320F100A25086 /* background.jpg in Resources */,
 				DE115963162320F800A25086 /* background@2x.jpg in Resources */,
-				414C596A188367F400096390 /* sea-tile.png in Resources */,
-				414C595F188367F400096390 /* back-tile.png in Resources */,
+				414C596A188367F400096390 /* (null) in Resources */,
+				414C595F188367F400096390 /* (null) in Resources */,
 				99F14FBF188391B000872890 /* Bowl.png in Resources */,
 				DE0C71011624177000357F6E /* Default.png in Resources */,
 				DEAA57B91883421D00C204CF /* forest-tile.png in Resources */,
@@ -506,9 +488,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE991F8018846CFD006C759F /* FourPlayerGame.m in Sources */,
 				DE991F531883D135006C759F /* Scene.m in Sources */,
 				DE991F561883D234006C759F /* TwoThreePlayerGame.m in Sources */,
 				DE991F4C1883CDF6006C759F /* FourPlayerGame.m in Sources */,
+				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
+				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
