@@ -1,13 +1,11 @@
 //
-//  GameMenu.h
-//  3004iPhone
-//
-//  Created by Richard Ison on 1/12/2014.
-//
+//  Game.h
+//  AppScaffold
 //
 
-#import "SPStage.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIDevice.h>
 
-@interface GameMenu : SPStage
+@interface GameMenu : SPSprite
 
 @end
