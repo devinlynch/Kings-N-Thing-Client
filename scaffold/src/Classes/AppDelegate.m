@@ -4,7 +4,8 @@
 //
 
 #import "AppDelegate.h"
-#import "Game.h"
+#import "GameMenu.h"
+#import "UDPMessageReceiver.h"
 
 // --- c functions ---
 
@@ -34,15 +35,17 @@ void onUncaughtException(NSException *exception)
     
     // Enable some common settings here:
     //
-    // _viewController.showStats = YES;
-    // _viewController.multitouchEnabled = YES;
+     _viewController.showStats = YES;
+     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[Game class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[GameMenu class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
     
+    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
+    [udpMessageReceiver startListeningOnPort:3004];
     return YES;
 }
 

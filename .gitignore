@@ -1,4 +1,3 @@
-
 #CocoaPods
 Pods
 
@@ -14,3 +13,9 @@ build/*
 # osx noise
 .DS_Store
 profile
+
+*.xcuserstate
+
+scaffold/src/3004iPhone.xcodeproj/xcuserdata
+
+scaffold/src/3004iPhone.xcodeproj/xcuserdata
