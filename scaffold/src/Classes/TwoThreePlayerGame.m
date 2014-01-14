@@ -126,7 +126,8 @@
             _backTile.x = 133;
             _backTile.y = 20 + ((i  * (_backTile.height + 4)));
             [sheet addChild: _backTile];
-            [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+          
+            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
             
         }
         
@@ -137,7 +138,8 @@
             _backTile.x = 133 - (_backTile.width - 10);
             _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
                 [sheet addChild: _backTile];
-                [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+             
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             }
         
@@ -147,7 +149,8 @@
                 _backTile.x = 133 + (_backTile.width - 10);
                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
                  [sheet addChild: _backTile];
-                [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             }
             drawNext = false;
@@ -160,7 +163,8 @@
             _backTile.x = 133;
             _backTile.y = 20 + ((i  * (_backTile.height + 4)));
             [sheet addChild: _backTile];
-            [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+          
+            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
         }
             if (drawNext) {
@@ -170,7 +174,8 @@
                     _backTile.x = 133 - ((_backTile.width * 2) - 20);
                     _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
                     [sheet addChild: _backTile];
-                    [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+             
+                    [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 
                 //Drawing hexagon for right side after first hexagon (3)
@@ -179,7 +184,8 @@
                     _backTile.x = 133 + ((_backTile.width * 2) - 20);
                     _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
                     [sheet addChild: _backTile];
-                    [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+           
+                    [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 
                 drawNext = false;
@@ -188,7 +194,7 @@
         [sheet addChild: _backTile];
     
 
-        [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+              [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     }
     
     
@@ -312,7 +318,34 @@
         img.y += movement.y;
         
         
+        
     }
+    
+}
+
+
+-(void)onClickTile:(SPTouchEvent*) event
+{
+    SPImage * img = (SPImage*) event.target;
+    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        NSLog(@"TOUCHED");
+        // one finger touching -> move
+ //       SPTouch *touch = touches[0];
+//        SPPoint *movement = [touch movementInSpace:self.parent];
+//        
+//        img.x += movement.x;
+//        img.y += movement.y;
+        img = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
+        NSLog(@"Changed tile????");
+
+        
+        
+    }
+    
     
 }
 

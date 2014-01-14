@@ -48,7 +48,7 @@
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
     
     if (touches.count == 1)
-    {                
+    {
         // one finger touching -> move
         SPTouch *touch = touches[0];
         SPPoint *movement = [touch movementInSpace:self.parent];
