@@ -12,6 +12,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		412C1A9D18848F1B00AE149D /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 412C1A9C18848F1B00AE149D /* TouchSheet.m */; };
+		412C1A9F1884A30000AE149D /* C_City_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 412C1A9E1884A30000AE149D /* C_City_B.png */; };
 		99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
@@ -101,6 +103,9 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		412C1A9B18848F1B00AE149D /* TouchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSheet.h; sourceTree = "<group>"; };
+		412C1A9C18848F1B00AE149D /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
+		412C1A9E1884A30000AE149D /* C_City_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = C_City_B.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
@@ -257,6 +262,15 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		412C1A9918848F1000AE149D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				412C1A9B18848F1B00AE149D /* TouchSheet.h */,
+				412C1A9C18848F1B00AE149D /* TouchSheet.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		99F14FB318838A6A00872890 /* Networking */ = {
@@ -566,6 +580,7 @@
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				DE9453B81885CE5B00C4A71F /* TileMenu.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				412C1A9D18848F1B00AE149D /* TouchSheet.m in Sources */,
 				99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,

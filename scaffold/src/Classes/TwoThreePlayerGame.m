@@ -125,6 +125,8 @@
     
     [self drawStart];
     
+    // used to handle movement and zooming of board
+    TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     
     //Tiles
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
@@ -179,25 +181,21 @@
     _bankText.y = 445;
     _bankText.color = SP_YELLOW;
     [_contents addChild:_bankText];
-    [gamePieces addObject:_bankText];
+
     
     
     _dice = [[SPImage alloc] initWithContentsOfFile:@"dice6.png"];
     _dice.x = 5;
     _dice.y = 10;
     [_contents addChild:_dice];
-    [gamePieces addObject:_dice];
+
     
     
     _creatureDice = [[SPImage alloc] initWithContentsOfFile:@"creature5.png"];
     _creatureDice.x = 5;
     _creatureDice.y = 45;
     [_contents addChild:_creatureDice];
-    [gamePieces addObject:_creatureDice];
-    
-    
-    
-    
+
     
     //Event listeners for each image (to do: make a loop)
    
@@ -391,11 +389,11 @@
 
 - (void)updateLocations
 {
-    int gameWidth  = Sparrow.stage.width;
-    int gameHeight = Sparrow.stage.height;
+    _gameWidth  = Sparrow.stage.width;
+    _gameHeight = Sparrow.stage.height;
     
-    _contents.x = (int) (gameWidth  - _contents.width)  / 2;
-    _contents.y = (int) (gameHeight - _contents.height) / 2;
+    _contents.x = (int) (_gameWidth  - _contents.width)  / 2;
+    _contents.y = (int) (_gameHeight - _contents.height) / 2;
 }
 
 
