@@ -50,6 +50,9 @@
     SPImage *_dice;
     SPImage *_creatureDice;
     SPTextField *_bankText;
+    
+    //TouchSheet
+    TouchSheet *_sheet;
 }
 
 - (id)init
@@ -105,7 +108,8 @@
     background.y = 0;
     
     // used to handle movement and zooming of board
-    TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
+    //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
+    _sheet = [[TouchSheet alloc] initWithQuad:background];
     
     //[background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
@@ -125,7 +129,7 @@
             _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
             _backTile.x = 133;
             _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-            [sheet addChild: _backTile];
+            [_sheet addChild: _backTile];
           
             [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
             
@@ -137,7 +141,7 @@
             _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
             _backTile.x = 133 - (_backTile.width - 10);
             _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
-                [sheet addChild: _backTile];
+                [_sheet addChild: _backTile];
              
                 [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
@@ -148,7 +152,7 @@
                 _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
                 _backTile.x = 133 + (_backTile.width - 10);
                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
-                 [sheet addChild: _backTile];
+                 [_sheet addChild: _backTile];
             
                 [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
@@ -162,7 +166,7 @@
             _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
             _backTile.x = 133;
             _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-            [sheet addChild: _backTile];
+            [_sheet addChild: _backTile];
           
             [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
@@ -173,7 +177,7 @@
                     _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
                     _backTile.x = 133 - ((_backTile.width * 2) - 20);
                     _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
-                    [sheet addChild: _backTile];
+                    [_sheet addChild: _backTile];
              
                     [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
@@ -183,7 +187,7 @@
                     _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
                     _backTile.x = 133 + ((_backTile.width * 2) - 20);
                     _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
-                    [sheet addChild: _backTile];
+                    [_sheet addChild: _backTile];
            
                     [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
@@ -191,7 +195,7 @@
                 drawNext = false;
             }
         
-        [sheet addChild: _backTile];
+        [_sheet addChild: _backTile];
     
 
               [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
@@ -229,7 +233,7 @@
     
     
     //Adding the sheet to contents so that it appears
-    [_contents addChild: sheet];
+    [_contents addChild: _sheet];
     
     
     //Other images
@@ -334,13 +338,15 @@
     if (touches.count == 1)
     {
         NSLog(@"TOUCHED");
+        //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:img];
+
         //Randomize based on game logic
         [img removeFromParent];
         newimg = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
         newimg.x = img.x;
         newimg.y = img.y;
         
-        [_contents addChild:newimg];
+        [_sheet addChild:newimg];
         NSLog(@"Changed tile????");
 
         
