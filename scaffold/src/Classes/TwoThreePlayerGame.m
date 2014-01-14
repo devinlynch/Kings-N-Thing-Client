@@ -111,29 +111,100 @@
     
     
     //Hexagon
-
+    
+    //Drawing hexagons for middle (5)
     for (int i = 0; i < 5; i++){
+        bool drawNext = false;
         _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
         _backTile.x = 133;
         _backTile.y = 20 + ((i  * (_backTile.height + 4)));
        
+        //Draw missing tile
+        if (i == 1){
+            drawNext = true;
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133;
+            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+            [sheet addChild: _backTile];
+            [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+        }
+        
+        if (drawNext) {
+            //Drawing hexagon for left side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133 - (_backTile.width - 10);
+            _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
+                [sheet addChild: _backTile];
+                [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+            }
+        
+            //Drawing hexagon for right side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                _backTile.x = 133 + (_backTile.width - 10);
+               _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
+                 [sheet addChild: _backTile];
+                [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+            }
+            drawNext = false;
+        }
+        
+        //Draw missing tile 2
+        if (i == 2){
+            drawNext = true;
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133;
+            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+            [sheet addChild: _backTile];
+            [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+        }
+            if (drawNext) {
+                //Drawing hexagon for right side after first hexagon (3)
+                for (int j = 0; j < 3; j ++) {
+                    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                    _backTile.x = 133 - ((_backTile.width * 2) - 20);
+                    _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
+                    [sheet addChild: _backTile];
+                    [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                }
+                
+                //Drawing hexagon for right side after first hexagon (3)
+                for (int j = 0; j < 3; j ++) {
+                    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                    _backTile.x = 133 + ((_backTile.width * 2) - 20);
+                    _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
+                    [sheet addChild: _backTile];
+                    [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                }
+                
+                drawNext = false;
+            }
+        
         [sheet addChild: _backTile];
     
 
         [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     }
     
+    
+    
+    
     //Tiles
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
     _seaTile.x = 10;
     _seaTile.y = 250;
     //[sheet addChild:_seaTile];
-    [gamePieces addObject:_seaTile];
+    [gamePieces addObject:_seaTile ];
     
     _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     _jungleTile.x = 60;
     _jungleTile.y = 250;
-   // [sheet addChild:_jungleTile];
+    //[sheet addChild:_jungleTile];
     [gamePieces addObject:_jungleTile];
     
     
