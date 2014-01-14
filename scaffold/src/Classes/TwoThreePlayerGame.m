@@ -103,6 +103,7 @@
     _gameWidth  = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
+    
     gamePieces = [[NSMutableArray alloc] init];
     
     _contents = [SPSprite sprite];
@@ -116,6 +117,7 @@
     background.y = 0;
     
     // used to handle movement and zooming of board
+    TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     _sheet = [[TouchSheet alloc] initWithQuad:background];
     
@@ -125,8 +127,6 @@
     
     [self drawStart];
     
-    // used to handle movement and zooming of board
-    TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     
     //Tiles
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
@@ -155,6 +155,9 @@
    // [sheet addChild:_forestTile];
     [gamePieces addObject:_forestTile];
     
+    //Adding the sheet to contents so that it appears
+    [_contents addChild: sheet];
+
     
     //Adding the sheet to contents so that it appears
     [_contents addChild: _sheet];
@@ -176,6 +179,7 @@
     
     
     /* Adding to _contents will ensure that these pieces do not move with the board*/
+    
     _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Bank: 0"];
     _bankText.x = 225;
     _bankText.y = 445;
