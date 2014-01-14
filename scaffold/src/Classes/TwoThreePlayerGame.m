@@ -327,19 +327,20 @@
 -(void)onClickTile:(SPTouchEvent*) event
 {
     SPImage * img = (SPImage*) event.target;
+    SPImage *newimg;
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
     if (touches.count == 1)
     {
         NSLog(@"TOUCHED");
-        // one finger touching -> move
- //       SPTouch *touch = touches[0];
-//        SPPoint *movement = [touch movementInSpace:self.parent];
-//        
-//        img.x += movement.x;
-//        img.y += movement.y;
-        img = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
+        //Randomize based on game logic
+        [img removeFromParent];
+        newimg = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+        newimg.x = img.x;
+        newimg.y = img.y;
+        
+        [_contents addChild:newimg];
         NSLog(@"Changed tile????");
 
         
