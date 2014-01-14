@@ -8,6 +8,8 @@
 
 #import "TwoThreePlayerGame.h"
 #import "TouchSheet.h"
+#import "Scene.h"
+#import "TileMenu.h"
 
 
 // --- private interface ---------------------------------------------------------------------------
@@ -16,6 +18,7 @@
 
 - (void)setup;
 - (void)onResize:(SPResizeEvent *)event;
+- (void)showScene:(SPSprite *)scene;
 
 @end
 
@@ -26,11 +29,13 @@
 {
     NSMutableArray *gamePieces;
     
+    SPSprite *_currentScene;
+    
     SPSprite *_contents;
+    
     
     int _gameWidth;
     int _gameHeight;
-    
     
     
     //Tiles
@@ -53,6 +58,9 @@
     
     //TouchSheet
     TouchSheet *_sheet;
+    
+    //Booleans
+    bool isViewable;
 }
 
 - (id)init
@@ -114,94 +122,8 @@
     //[background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
-    //Hexagon
     
-    //Drawing hexagons for middle (5)
-    for (int i = 0; i < 5; i++){
-        bool drawNext = false;
-        _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-        _backTile.x = 133;
-        _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-       
-        //Draw missing tile
-        if (i == 1){
-            drawNext = true;
-            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-            _backTile.x = 133;
-            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-            [_sheet addChild: _backTile];
-          
-            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-            
-        }
-        
-        if (drawNext) {
-            //Drawing hexagon for left side after first hexagon (4)
-            for (int j = 0; j < 4; j ++) {
-            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-            _backTile.x = 133 - (_backTile.width - 10);
-            _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
-                [_sheet addChild: _backTile];
-             
-                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-
-            }
-        
-            //Drawing hexagon for right side after first hexagon (4)
-            for (int j = 0; j < 4; j ++) {
-                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                _backTile.x = 133 + (_backTile.width - 10);
-               _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
-                 [_sheet addChild: _backTile];
-            
-                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-
-            }
-            drawNext = false;
-        }
-        
-        //Draw missing tile 2
-        if (i == 2){
-            drawNext = true;
-            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-            _backTile.x = 133;
-            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-            [_sheet addChild: _backTile];
-          
-            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-
-        }
-            if (drawNext) {
-                //Drawing hexagon for right side after first hexagon (3)
-                for (int j = 0; j < 3; j ++) {
-                    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                    _backTile.x = 133 - ((_backTile.width * 2) - 20);
-                    _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
-                    [_sheet addChild: _backTile];
-             
-                    [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-                }
-                
-                //Drawing hexagon for right side after first hexagon (3)
-                for (int j = 0; j < 3; j ++) {
-                    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                    _backTile.x = 133 + ((_backTile.width * 2) - 20);
-                    _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
-                    [_sheet addChild: _backTile];
-           
-                    [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-                }
-                
-                drawNext = false;
-            }
-        
-        [_sheet addChild: _backTile];
-    
-
-              [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    }
-    
-    
+    [self drawStart];
     
     
     //Tiles
@@ -335,6 +257,9 @@
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
+    //Double Click to see tile menu
+    NSArray *clickTileMenu = [[event touchesWithTarget:self andPhase:SPTouchPhaseEnded] allObjects];
+    
     if (touches.count == 1)
     {
         NSLog(@"TOUCHED");
@@ -342,18 +267,126 @@
 
         //Randomize based on game logic
         [img removeFromParent];
-        newimg = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+        newimg = [[SPImage alloc] initWithContentsOfFile:@"swamp-tile.png"];
         newimg.x = img.x;
         newimg.y = img.y;
         
         [_sheet addChild:newimg];
         NSLog(@"Changed tile????");
-
         
+        //Double Click
+        SPTouch * clickTileMenu = [touches objectAtIndex:0];
+        
+        if (clickTileMenu.tapCount == 2){
+            NSLog(@"le double click");
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+            
+          
+        
+        }
         
     }
     
     
+    
+    
+}
+
+
+
+
+-(void) drawStart
+{
+
+    //Hexagon
+    
+    //Drawing hexagons for middle (5)
+    for (int i = 0; i < 5; i++){
+        bool drawNext = false;
+        _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+        _backTile.x = 133;
+        _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+        
+        //Draw missing tile
+        if (i == 1){
+            drawNext = true;
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133;
+            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+            [_sheet addChild: _backTile];
+            
+            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+        }
+        
+        if (drawNext) {
+            //Drawing hexagon for left side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                _backTile.x = 133 - (_backTile.width - 10);
+                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
+                [_sheet addChild: _backTile];
+                
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                
+            }
+            
+            //Drawing hexagon for right side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                _backTile.x = 133 + (_backTile.width - 10);
+                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
+                [_sheet addChild: _backTile];
+                
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                
+            }
+            drawNext = false;
+        }
+        
+        //Draw missing tile 2
+        if (i == 2){
+            drawNext = true;
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133;
+            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+            [_sheet addChild: _backTile];
+            
+            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+        }
+        if (drawNext) {
+            //Drawing hexagon for right side after first hexagon (3)
+            for (int j = 0; j < 3; j ++) {
+                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                _backTile.x = 133 - ((_backTile.width * 2) - 20);
+                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
+                [_sheet addChild: _backTile];
+                
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            }
+            
+            //Drawing hexagon for right side after first hexagon (3)
+            for (int j = 0; j < 3; j ++) {
+                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                _backTile.x = 133 + ((_backTile.width * 2) - 20);
+                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
+                [_sheet addChild: _backTile];
+                
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            }
+            
+            drawNext = false;
+        }
+        
+        [_sheet addChild: _backTile];
+        
+        
+        [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    }
+
+
+
 }
 
 - (void)updateLocations

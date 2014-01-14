@@ -56,8 +56,8 @@
             ++count;
         }
         
-//        [self addEventListener:@selector(onSceneClosing:) atObject:self
-//                       forType:EventTypeSceneClosing];
+        [self addEventListener:@selector(onSceneClosing:) atObject:self
+                       forType:EventTypeSceneClosing];
         
     }
     return self;
