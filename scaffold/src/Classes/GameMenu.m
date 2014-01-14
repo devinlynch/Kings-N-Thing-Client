@@ -19,7 +19,7 @@
         
         // add background image
         SPImage *background = [SPImage imageWithContentsOfFile:@"mainMenuBackground.png"];
-        background.y = _offsetY > 0.0f ? 0.0 : -44;
+       // background.y = _offsetY > 0.0f ? 0.0 : -44;
         background.blendMode = SP_BLEND_MODE_NONE;
         [self addChild:background];
         
@@ -27,7 +27,6 @@
         _mainMenu = [[SPSprite alloc] init];
         _mainMenu.y = _offsetY;
         [self addChild:_mainMenu];
-        
         
         // choose which scenes will be accessible
         NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class]];
@@ -43,7 +42,8 @@
             Class sceneClass = scenesToCreate[index++];
             
             SPButton *button = [SPButton buttonWithUpState:buttonTexture text:sceneTitle];
-            button.x = count % 2 == 0 ? 28 : 167;
+           // button.x = count % 2 == 0 ? 28 : 167;
+            button.x = (Sparrow.stage.width / 2) - button.width /2;
             button.y = _offsetY + 170 + (count / 2) * 52;
             button.name = NSStringFromClass(sceneClass);
             

@@ -7,6 +7,7 @@
 //
 
 #import "TwoThreePlayerGame.h"
+#import "TouchSheet.h"
 
 
 // --- private interface ---------------------------------------------------------------------------
@@ -26,6 +27,9 @@
     NSMutableArray *gamePieces;
     
     SPSprite *_contents;
+    
+    int _gameWidth;
+    int _gameHeight;
     
     //Tiles
     SPImage *_backTile;
@@ -83,6 +87,8 @@
     // The positions are updated when the device is rotated. To make that easy, we put all objects
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
     
+    _gameWidth  = Sparrow.stage.width;
+    _gameHeight = Sparrow.stage.height;
     
     gamePieces = [[NSMutableArray alloc] init];
     
@@ -90,8 +96,16 @@
     [self addChild:_contents];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
-    [_contents addChild:background];
-    [background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    //[_contents addChild:background];
+    
+    //necessary or else it gets placed off screen
+    background.x = 0;
+    background.y = 0;
+    
+    // used to handle movement and zooming of board
+    TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
+    
+    //[background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
     
@@ -99,29 +113,32 @@
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
     _seaTile.x = 10;
     _seaTile.y = 250;
-    [_contents addChild:_seaTile];
+    [sheet addChild:_seaTile];
     [gamePieces addObject:_seaTile];
     
     _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     _jungleTile.x = 60;
     _jungleTile.y = 250;
-    [_contents addChild:_jungleTile];
+    [sheet addChild:_jungleTile];
     [gamePieces addObject:_jungleTile];
     
     
     _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
     _desertTile.x = 110;
     _desertTile.y = 250;
-    [_contents addChild:_desertTile];
+    [sheet addChild:_desertTile];
     [gamePieces addObject:_desertTile];
     
     
     _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
     _forestTile.x = 160;
     _forestTile.y = 250;
-    [_contents addChild:_forestTile];
+    [sheet addChild:_forestTile];
     [gamePieces addObject:_forestTile];
     
+    
+    //Adding the sheet to contents so that it appears
+    [_contents addChild: sheet];
     
     
     //Other images
@@ -139,6 +156,7 @@
     [gamePieces addObject:_bowl];
     
     
+    /* Adding to _contents will ensure that these pieces do not move with the board*/
     _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Bank: 0"];
     _bankText.x = 225;
     _bankText.y = 445;
@@ -192,86 +210,25 @@
     // Sparrow's minimum deployment target is iOS 5.
 }
 
-- (void)setTransformationMatrix:(SPMatrix *)matrix {
-    self.scaleX = matrix.a;
-	self.scaleY = matrix.d;
-	self.x = matrix.tx;
-	self.y = matrix.ty;
-}
-
-- (void)onMoveBoard:(SPTouchEvent*)event {
-    
-    SPImage *img = (SPImage*)event.target;
-    
-	
-    NSArray *touchesMoved = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
-    
-    // Movement of self (x,y)
-    if (touchesMoved.count == 1) {
-        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-        
-        float diffX = [img.parent x] + (currentPos.x - previousPos.x);
-        float diffY = [img.parent y] + (currentPos.y - previousPos.y);
-        
-        img.x += diffX;
-        img.y += diffY;
-        
-        for(SPDisplayObjectContainer *piece in gamePieces){
-            piece.x += diffX;
-            piece.y += diffY;
-        }
-        
-        // Pinch zoom in /out
-    } else if (touchesMoved.count == 2) {
-        
-        
-        SPPoint *previousPos1 = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-        SPPoint *previousPos2 = [[touchesMoved objectAtIndex:1] previousLocationInSpace:[self parent]];
-        
-        SPPoint *currentPos1 = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *currentPos2 = [[touchesMoved objectAtIndex:1] locationInSpace:[self parent]];
-        
-        float distance1 = [SPPoint distanceFromPoint:currentPos1 toPoint:currentPos2];
-        float distance2 = [SPPoint distanceFromPoint:previousPos1 toPoint:previousPos2];
-        
-        float scaleX = (([img.parent scaleX] / distance2) * distance1);
-        float scaleY = (([img.parent scaleY] / distance2) * distance1);
-        
-        if (scaleX > 0.50 && scaleX <= 1.00) {
-            img.scaleX = scaleX;
-            img.scaleY = scaleY;
-        }
-        
-        for(SPDisplayObjectContainer *piece in gamePieces){
-            piece.scaleX = scaleX;
-            piece.scaleY = scaleY;
-        }
-        
-    }
-	
-}
 
 - (void)onMoveTile:(SPTouchEvent*)event {
     
-    NSLog(@"Moving Tile");
-    
     SPImage *img = (SPImage*)event.target;
-	
-    NSArray *touchesMoved = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
     
-    // Movement of self (x,y)
-    if (touchesMoved.count == 1) {
-        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
+    
+    if (touches.count == 1)
+    {
+        // one finger touching -> move
+        SPTouch *touch = touches[0];
+        SPPoint *movement = [touch movementInSpace:self.parent];
         
-        float diffX = [img.parent x] + (currentPos.x - previousPos.x);
-        float diffY = [img.parent y] + (currentPos.y - previousPos.y);
+        img.x += movement.x;
+        img.y += movement.y;
         
-        img.x += diffX;
-        img.y += diffY;
+        
     }
-
+    
 }
 
 - (void)updateLocations
