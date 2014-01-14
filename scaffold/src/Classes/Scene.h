@@ -7,7 +7,7 @@
 //
 
 #import "SPSprite.h"
-SP_EXTERN NSString * const EventTypeSceneClosing;
+//SP_EXTERN NSString * const EventTypeSceneClosing;
 
 @interface Scene : SPSprite
 

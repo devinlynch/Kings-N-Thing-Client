@@ -12,12 +12,10 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		414C595F188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		414C5963188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		414C596A188367F400096390 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		412C1A9D18848F1B00AE149D /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 412C1A9C18848F1B00AE149D /* TouchSheet.m */; };
+		412C1A9F1884A30000AE149D /* C_City_B.png in Resources */ = {isa = PBXBuildFile; fileRef = 412C1A9E1884A30000AE149D /* C_City_B.png */; };
 		99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
-		99F14FBF188391B000872890 /* Bowl.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F14FBE188391B000872890 /* Bowl.png */; };
 		99F14FC11883932300872890 /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F14FC01883932300872890 /* Rack.png */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
@@ -28,7 +26,6 @@
 		DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C710C162417AC00357F6E /* Icon~ipad.png */; };
 		DE0C710F162417B400357F6E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C710E162417B400357F6E /* Icon@2x.png */; };
 		DE0C7111162417B800357F6E /* Icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C7110162417B800357F6E /* Icon@2x~ipad.png */; };
-		DE115961162320F100A25086 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE115960162320F100A25086 /* background.jpg */; };
 		DE115963162320F800A25086 /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE115962162320F800A25086 /* background@2x.jpg */; };
 		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
@@ -44,14 +41,6 @@
 		DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E314E1541400655D44 /* atlas@2x.png */; };
 		DE4F80EE14E1541400655D44 /* atlas@2x.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E414E1541400655D44 /* atlas@2x.xml */; };
 		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
-		DE991F4C1883CDF6006C759F /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F4B1883CDF6006C759F /* FourPlayerGame.m */; };
-		DE991F531883D135006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F521883D135006C759F /* Scene.m */; };
-		DE991F561883D234006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F551883D234006C759F /* TwoThreePlayerGame.m */; };
-		DE991F5F1883DBB8006C759F /* Button-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F5E1883DBB8006C759F /* Button-Normal@2x.png */; };
-		DE991F611883DBED006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F601883DBED006C759F /* mainMenuBackground.png */; };
-		DE991F631883DBF2006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F621883DBF2006C759F /* TwoThreeBoard.png */; };
-		DE991F651883DF0F006C759F /* Bowl.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F641883DF0F006C759F /* Bowl.png */; };
-		DE991F8018846CFD006C759F /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7B18846CFD006C759F /* FourPlayerGame.m */; };
 		DE991F8118846CFD006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7D18846CFD006C759F /* Scene.m */; };
 		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
 		DE991F9618847430006C759F /* back-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F8718847430006C759F /* back-tile.png */; };
@@ -66,24 +55,11 @@
 		DE991F9F18847430006C759F /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9018847430006C759F /* masterGameBoard.png */; };
 		DE991FA018847430006C759F /* moutain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9118847430006C759F /* moutain-tile.png */; };
 		DE991FA118847430006C759F /* plaines-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9218847430006C759F /* plaines-tile.png */; };
-		DE991FA218847430006C759F /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9318847430006C759F /* Rack.png */; };
 		DE991FA318847430006C759F /* sea-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9418847430006C759F /* sea-tile.png */; };
 		DE991FA418847430006C759F /* swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991F9518847430006C759F /* swamp-tile.png */; };
 		DE991FB21884785E006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FB11884785E006C759F /* TwoThreeBoard.png */; };
 		DE991FB6188479E0006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FB5188479E0006C759F /* mainMenuBackground.png */; };
 		DE991FB9188479EB006C759F /* Button-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FB8188479EB006C759F /* Button-Normal@2x.png */; };
-		DEAA57A71883420300C204CF /* creature5.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A51883420300C204CF /* creature5.png */; };
-		DEAA57A81883420300C204CF /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57A61883420300C204CF /* dice6.png */; };
-		DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AA1883421000C204CF /* masterGameBoard.png */; };
-		DEAA57AD1883421400C204CF /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AC1883421400C204CF /* Rack.png */; };
-		DEAA57B71883421D00C204CF /* back-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AE1883421D00C204CF /* back-tile.png */; };
-		DEAA57B81883421D00C204CF /* desert-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57AF1883421D00C204CF /* desert-tile.png */; };
-		DEAA57B91883421D00C204CF /* forest-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B01883421D00C204CF /* forest-tile.png */; };
-		DEAA57BA1883421D00C204CF /* frozen-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B11883421D00C204CF /* frozen-tile.png */; };
-		DEAA57BC1883421D00C204CF /* moutain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B31883421D00C204CF /* moutain-tile.png */; };
-		DEAA57BD1883421D00C204CF /* plaines-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B41883421D00C204CF /* plaines-tile.png */; };
-		DEAA57BE1883421D00C204CF /* sea-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B51883421D00C204CF /* sea-tile.png */; };
-		DEAA57BF1883421D00C204CF /* swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAA57B61883421D00C204CF /* swamp-tile.png */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +96,9 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		412C1A9B18848F1B00AE149D /* TouchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSheet.h; sourceTree = "<group>"; };
+		412C1A9C18848F1B00AE149D /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
+		412C1A9E1884A30000AE149D /* C_City_B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = C_City_B.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
@@ -154,15 +133,6 @@
 		DE4F80E314E1541400655D44 /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atlas@2x.png"; sourceTree = "<group>"; };
 		DE4F80E414E1541400655D44 /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "atlas@2x.xml"; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DE991F4B1883CDF6006C759F /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
-		DE991F521883D135006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
-		DE991F551883D234006C759F /* TwoThreePlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoThreePlayerGame.m; sourceTree = "<group>"; };
-		DE991F5E1883DBB8006C759F /* Button-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Button-Normal@2x.png"; path = "../../../../../../../../../../../../../../landtiles/Button-Normal@2x.png"; sourceTree = "<group>"; };
-		DE991F601883DBED006C759F /* mainMenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mainMenuBackground.png; path = ../../../../../../../../../../../../../../landtiles/mainMenuBackground.png; sourceTree = "<group>"; };
-		DE991F621883DBF2006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwoThreeBoard.png; path = ../../../../../../../../../../../../../../landtiles/TwoThreeBoard.png; sourceTree = "<group>"; };
-		DE991F641883DF0F006C759F /* Bowl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bowl.png; path = "../../../../../../../../../../../../../../Kings-N-Things-Images/Bowl.png"; sourceTree = "<group>"; };
-		DE991F7A18846CFD006C759F /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
-		DE991F7B18846CFD006C759F /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
 		DE991F7C18846CFD006C759F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DE991F7D18846CFD006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
@@ -185,18 +155,6 @@
 		DE991FB11884785E006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
 		DE991FB5188479E0006C759F /* mainMenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMenuBackground.png; sourceTree = "<group>"; };
 		DE991FB8188479EB006C759F /* Button-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Normal@2x.png"; sourceTree = "<group>"; };
-		DEAA57A51883420300C204CF /* creature5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = creature5.png; path = ../../../../../../../../../../../../../../creature5.png; sourceTree = "<group>"; };
-		DEAA57A61883420300C204CF /* dice6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice6.png; path = ../../../../../../../../../../../../../../dice6.png; sourceTree = "<group>"; };
-		DEAA57AA1883421000C204CF /* masterGameBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = masterGameBoard.png; path = ../../../../../../../../../../../../../../masterGameBoard.png; sourceTree = "<group>"; };
-		DEAA57AC1883421400C204CF /* Rack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Rack.png; path = ../../../../../../../../../../../../../../Rack.png; sourceTree = "<group>"; };
-		DEAA57AE1883421D00C204CF /* back-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back-tile.png"; path = "../../../../../../../../../../../../../../landtiles/back-tile.png"; sourceTree = "<group>"; };
-		DEAA57AF1883421D00C204CF /* desert-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "desert-tile.png"; path = "../../../../../../../../../../../../../../landtiles/desert-tile.png"; sourceTree = "<group>"; };
-		DEAA57B01883421D00C204CF /* forest-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forest-tile.png"; path = "../../../../../../../../../../../../../../landtiles/forest-tile.png"; sourceTree = "<group>"; };
-		DEAA57B11883421D00C204CF /* frozen-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "frozen-tile.png"; path = "../../../../../../../../../../../../../../landtiles/frozen-tile.png"; sourceTree = "<group>"; };
-		DEAA57B31883421D00C204CF /* moutain-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moutain-tile.png"; path = "../../../../../../../../../../../../../../landtiles/moutain-tile.png"; sourceTree = "<group>"; };
-		DEAA57B41883421D00C204CF /* plaines-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plaines-tile.png"; path = "../../../../../../../../../../../../../../landtiles/plaines-tile.png"; sourceTree = "<group>"; };
-		DEAA57B51883421D00C204CF /* sea-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sea-tile.png"; path = "../../../../../../../../../../../../../../landtiles/sea-tile.png"; sourceTree = "<group>"; };
-		DEAA57B61883421D00C204CF /* swamp-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "swamp-tile.png"; path = "../../../../../../../../../../../../../../landtiles/swamp-tile.png"; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -225,6 +183,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				412C1A9918848F1000AE149D /* Helpers */,
 				DE991F8418846D09006C759F /* Scene */,
 				99F14FB318838A6A00872890 /* Networking */,
 				DE4F80D714E153EA00655D44 /* Game */,
@@ -290,6 +249,15 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		412C1A9918848F1000AE149D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				412C1A9B18848F1B00AE149D /* TouchSheet.h */,
+				412C1A9C18848F1B00AE149D /* TouchSheet.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		99F14FB318838A6A00872890 /* Networking */ = {
@@ -369,6 +337,7 @@
 		DE4F80DD14E1541400655D44 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				412C1A9E1884A30000AE149D /* C_City_B.png */,
 				DE991FB11884785E006C759F /* TwoThreeBoard.png */,
 				DE991FB8188479EB006C759F /* Button-Normal@2x.png */,
 				DE991FB5188479E0006C759F /* mainMenuBackground.png */,
@@ -409,8 +378,6 @@
 		DE991F8418846D09006C759F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DE991F7A18846CFD006C759F /* FourPlayerGame.h */,
-				DE991F7B18846CFD006C759F /* FourPlayerGame.m */,
 				DE991F7C18846CFD006C759F /* Scene.h */,
 				DE991F7D18846CFD006C759F /* Scene.m */,
 				DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */,
@@ -495,59 +462,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEAA57AB1883421000C204CF /* masterGameBoard.png in Resources */,
 				DE4F80E814E1541400655D44 /* sound.caf in Resources */,
-				414C5963188367F400096390 /* (null) in Resources */,
 				DE991F9918847430006C759F /* desert-tile.png in Resources */,
 				DE4F80E914E1541400655D44 /* atlas.png in Resources */,
 				DE991FB6188479E0006C759F /* mainMenuBackground.png in Resources */,
-				DEAA57BC1883421D00C204CF /* moutain-tile.png in Resources */,
-				DEAA57B71883421D00C204CF /* back-tile.png in Resources */,
 				DE991F9A18847430006C759F /* dice6.png in Resources */,
 				DE991FA418847430006C759F /* swamp-tile.png in Resources */,
 				DE4F80EA14E1541400655D44 /* atlas.xml in Resources */,
+				412C1A9F1884A30000AE149D /* C_City_B.png in Resources */,
 				DE991FA118847430006C759F /* plaines-tile.png in Resources */,
 				DE991FB21884785E006C759F /* TwoThreeBoard.png in Resources */,
 				DE991F9818847430006C759F /* Bowl.png in Resources */,
 				99F14FC11883932300872890 /* Rack.png in Resources */,
 				DE991FA018847430006C759F /* moutain-tile.png in Resources */,
 				DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */,
-				DEAA57A71883420300C204CF /* creature5.png in Resources */,
 				DE4F80EE14E1541400655D44 /* atlas@2x.xml in Resources */,
 				DE991FA318847430006C759F /* sea-tile.png in Resources */,
-				DE991F5F1883DBB8006C759F /* Button-Normal@2x.png in Resources */,
-				DE115961162320F100A25086 /* background.jpg in Resources */,
 				DE115963162320F800A25086 /* background@2x.jpg in Resources */,
-				414C596A188367F400096390 /* (null) in Resources */,
-				414C595F188367F400096390 /* (null) in Resources */,
-				99F14FBF188391B000872890 /* Bowl.png in Resources */,
-				DE991FA218847430006C759F /* Rack.png in Resources */,
 				DE0C71011624177000357F6E /* Default.png in Resources */,
-				DEAA57B91883421D00C204CF /* forest-tile.png in Resources */,
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
 				DE0C71051624177800357F6E /* Default-568h@2x.png in Resources */,
 				DE991F9B18847430006C759F /* forest-tile.png in Resources */,
 				DE991F9C18847430006C759F /* frozen-tile.png in Resources */,
 				DE0C71071624178400357F6E /* Default-Portrait~ipad.png in Resources */,
 				DE991F9618847430006C759F /* back-tile.png in Resources */,
-				DE991F631883DBF2006C759F /* TwoThreeBoard.png in Resources */,
-				DEAA57BD1883421D00C204CF /* plaines-tile.png in Resources */,
 				DE991F9E18847430006C759F /* jungle-tile.png in Resources */,
 				DE991F9F18847430006C759F /* masterGameBoard.png in Resources */,
 				DE0C71091624179300357F6E /* Default-Landscape~ipad.png in Resources */,
-				DE991F651883DF0F006C759F /* Bowl.png in Resources */,
 				DE991F9718847430006C759F /* background.jpg in Resources */,
-				DE991F611883DBED006C759F /* mainMenuBackground.png in Resources */,
-				DEAA57B81883421D00C204CF /* desert-tile.png in Resources */,
 				DE0C710B162417A600357F6E /* Icon.png in Resources */,
-				DEAA57A81883420300C204CF /* dice6.png in Resources */,
-				DEAA57BE1883421D00C204CF /* sea-tile.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				DE991F9D18847430006C759F /* guy.png in Resources */,
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
-				DEAA57BA1883421D00C204CF /* frozen-tile.png in Resources */,
-				DEAA57BF1883421D00C204CF /* swamp-tile.png in Resources */,
-				DEAA57AD1883421400C204CF /* Rack.png in Resources */,
 				DE991FB9188479EB006C759F /* Button-Normal@2x.png in Resources */,
 				DE0C7111162417B800357F6E /* Icon@2x~ipad.png in Resources */,
 			);
@@ -560,13 +506,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE991F8018846CFD006C759F /* FourPlayerGame.m in Sources */,
-				DE991F531883D135006C759F /* Scene.m in Sources */,
-				DE991F561883D234006C759F /* TwoThreePlayerGame.m in Sources */,
-				DE991F4C1883CDF6006C759F /* FourPlayerGame.m in Sources */,
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				412C1A9D18848F1B00AE149D /* TouchSheet.m in Sources */,
 				99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
