@@ -35,7 +35,6 @@
 		DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E314E1541400655D44 /* atlas@2x.png */; };
 		DE4F80EE14E1541400655D44 /* atlas@2x.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E414E1541400655D44 /* atlas@2x.xml */; };
 		DE5C4E6E138ED109004892CA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5C4E6D138ED109004892CA /* libz.dylib */; };
-		DE991F8018846CFD006C759F /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7B18846CFD006C759F /* FourPlayerGame.m */; };
 		DE991F8118846CFD006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7D18846CFD006C759F /* Scene.m */; };
 		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
 		DE991FF71884825B006C759F /* Bowl.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FE81884825B006C759F /* Bowl.png */; };
@@ -119,8 +118,6 @@
 		DE4F80E314E1541400655D44 /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atlas@2x.png"; sourceTree = "<group>"; };
 		DE4F80E414E1541400655D44 /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "atlas@2x.xml"; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DE991F7A18846CFD006C759F /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
-		DE991F7B18846CFD006C759F /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
 		DE991F7C18846CFD006C759F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DE991F7D18846CFD006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
@@ -439,14 +436,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE4F80E814E1541400655D44 /* sound.caf in Resources */,
-				414C5963188367F400096390 /* (null) in Resources */,
 				DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */,
 				DE4F80EE14E1541400655D44 /* atlas@2x.xml in Resources */,
 				DE9920011884825B006C759F /* sea-tile.png in Resources */,
 				DE115963162320F800A25086 /* background@2x.jpg in Resources */,
-				414C596A188367F400096390 /* (null) in Resources */,
 				DE99200F18848836006C759F /* Rack.png in Resources */,
-				414C595F188367F400096390 /* (null) in Resources */,
 				DE991FFF1884825B006C759F /* moutain-tile.png in Resources */,
 				DE0C71011624177000357F6E /* Default.png in Resources */,
 				DE9920041884825B006C759F /* TwoThreeBoard.png in Resources */,
@@ -479,7 +473,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE991F8018846CFD006C759F /* FourPlayerGame.m in Sources */,
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,

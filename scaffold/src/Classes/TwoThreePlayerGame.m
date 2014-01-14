@@ -109,11 +109,11 @@
     [gamePieces addObject:_jungleTile];
     
     
-//    _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
-//    _desertTile.x = 110;
-//    _desertTile.y = 250;
-//    [_contents addChild:_desertTile];
-//    [gamePieces addObject:_desertTile];
+    _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+    _desertTile.x = 110;
+    _desertTile.y = 250;
+    [_contents addChild:_desertTile];
+    [gamePieces addObject:_desertTile];
     
     
     _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
@@ -168,7 +168,7 @@
     
     [_seaTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     [_jungleTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-//    [_desertTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [_desertTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     [_forestTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     // The controller autorotates the game to all supported device orientations.
