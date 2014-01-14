@@ -31,6 +31,8 @@
     int _gameWidth;
     int _gameHeight;
     
+    
+    
     //Tiles
     SPImage *_backTile;
     SPImage *_seaTile;
@@ -109,46 +111,43 @@
     
     
     //Hexagon
-    
-   
-    _backTile.x = 134;
-    _backTile.y = 19;
-    
-    for (int i = 0; i < 19; i++){
-    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-    _backTile.x = 134;
-    _backTile.y = 19 + (i  * _backTile.height);
-       
 
-    [sheet addChild: _backTile];
-         [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    for (int i = 0; i < 5; i++){
+        _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+        _backTile.x = 133;
+        _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+       
+        [sheet addChild: _backTile];
+    
+
+        [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     }
     
     //Tiles
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
     _seaTile.x = 10;
     _seaTile.y = 250;
-    [sheet addChild:_seaTile];
+    //[sheet addChild:_seaTile];
     [gamePieces addObject:_seaTile];
     
     _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     _jungleTile.x = 60;
     _jungleTile.y = 250;
-    [sheet addChild:_jungleTile];
+   // [sheet addChild:_jungleTile];
     [gamePieces addObject:_jungleTile];
     
     
     _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
     _desertTile.x = 110;
     _desertTile.y = 250;
-    [sheet addChild:_desertTile];
+   // [sheet addChild:_desertTile];
     [gamePieces addObject:_desertTile];
     
     
     _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
     _forestTile.x = 160;
     _forestTile.y = 250;
-    [sheet addChild:_forestTile];
+   // [sheet addChild:_forestTile];
     [gamePieces addObject:_forestTile];
     
     
