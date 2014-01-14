@@ -4,7 +4,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Game.h"
+#import "GameMenu.h"
 #import "UDPMessageReceiver.h"
 
 // --- c functions ---
@@ -35,7 +35,7 @@ void onUncaughtException(NSException *exception)
     
     // Enable some common settings here:
     //
-    // _viewController.showStats = YES;
+     _viewController.showStats = YES;
      _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
