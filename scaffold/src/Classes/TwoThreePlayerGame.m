@@ -108,6 +108,21 @@
     //[background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
+    //Hexagon
+    
+   
+    _backTile.x = 134;
+    _backTile.y = 19;
+    
+    for (int i = 0; i < 19; i++){
+    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+    _backTile.x = 134;
+    _backTile.y = 19 + (i  * _backTile.height);
+       
+
+    [sheet addChild: _backTile];
+         [_backTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    }
     
     //Tiles
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
@@ -183,7 +198,7 @@
     
     
     //Event listeners for each image (to do: make a loop)
-    
+   
     [_seaTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     [_jungleTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     [_desertTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
