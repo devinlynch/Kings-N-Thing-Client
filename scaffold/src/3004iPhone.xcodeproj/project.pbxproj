@@ -43,7 +43,6 @@
 		DE945398188501AC00C4A71F /* dice6.png in Resources */ = {isa = PBXBuildFile; fileRef = DE945392188501AC00C4A71F /* dice6.png */; };
 		DE94539C1885074A00C4A71F /* back-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DE94539B1885074A00C4A71F /* back-tile.png */; };
 		DE94539E1885122900C4A71F /* Button-Normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE94539D1885122900C4A71F /* Button-Normal@2x.png */; };
-		DE9453A81885C6A200C4A71F /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9453A71885C6A200C4A71F /* TouchSheet.m */; };
 		DE9453AF1885CD0700C4A71F /* T_Swamp_065.png in Resources */ = {isa = PBXBuildFile; fileRef = DE9453AA1885CD0700C4A71F /* T_Swamp_065.png */; };
 		DE9453B01885CD0700C4A71F /* T_Swamp_066.png in Resources */ = {isa = PBXBuildFile; fileRef = DE9453AB1885CD0700C4A71F /* T_Swamp_066.png */; };
 		DE9453B11885CD0700C4A71F /* T_Swamp_067.png in Resources */ = {isa = PBXBuildFile; fileRef = DE9453AC1885CD0700C4A71F /* T_Swamp_067.png */; };
@@ -139,8 +138,6 @@
 		DE945392188501AC00C4A71F /* dice6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice6.png; sourceTree = "<group>"; };
 		DE94539B1885074A00C4A71F /* back-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-tile.png"; sourceTree = "<group>"; };
 		DE94539D1885122900C4A71F /* Button-Normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Normal@2x.png"; sourceTree = "<group>"; };
-		DE9453A61885C6A200C4A71F /* TouchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSheet.h; sourceTree = "<group>"; };
-		DE9453A71885C6A200C4A71F /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
 		DE9453AA1885CD0700C4A71F /* T_Swamp_065.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_065.png; sourceTree = "<group>"; };
 		DE9453AB1885CD0700C4A71F /* T_Swamp_066.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_066.png; sourceTree = "<group>"; };
 		DE9453AC1885CD0700C4A71F /* T_Swamp_067.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_067.png; sourceTree = "<group>"; };
@@ -436,8 +433,6 @@
 		DE99201A1884BFBE006C759F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DE9453A61885C6A200C4A71F /* TouchSheet.h */,
-				DE9453A71885C6A200C4A71F /* TouchSheet.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -571,7 +566,6 @@
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				DE9453B81885CE5B00C4A71F /* TileMenu.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				DE9453A81885C6A200C4A71F /* TouchSheet.m in Sources */,
 				99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
