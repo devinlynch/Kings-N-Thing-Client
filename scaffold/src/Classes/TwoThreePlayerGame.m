@@ -7,6 +7,7 @@
 //
 
 #import "TwoThreePlayerGame.h"
+#import "TouchSheet.h"
 
 
 // --- private interface ---------------------------------------------------------------------------
@@ -27,6 +28,11 @@
     
     SPSprite *_contents;
     
+    int _gameWidth;
+    int _gameHeight;
+    
+    
+    
     //Tiles
     SPImage *_backTile;
     SPImage *_seaTile;
@@ -44,6 +50,9 @@
     SPImage *_dice;
     SPImage *_creatureDice;
     SPTextField *_bankText;
+    
+    //TouchSheet
+    TouchSheet *_sheet;
 }
 
 - (id)init
@@ -83,6 +92,8 @@
     // The positions are updated when the device is rotated. To make that easy, we put all objects
     // in one sprite (_contents): it will simply be rotated to be upright when the device rotates.
     
+    _gameWidth  = Sparrow.stage.width;
+    _gameHeight = Sparrow.stage.height;
     
     gamePieces = [[NSMutableArray alloc] init];
     
@@ -90,8 +101,106 @@
     [self addChild:_contents];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
-    [_contents addChild:background];
-    [background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    //[_contents addChild:background];
+    
+    //necessary or else it gets placed off screen
+    background.x = 0;
+    background.y = 0;
+    
+    // used to handle movement and zooming of board
+    //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
+    _sheet = [[TouchSheet alloc] initWithQuad:background];
+    
+    //[background addEventListener:@selector(onMoveBoard:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+    
+    //Hexagon
+    
+    //Drawing hexagons for middle (5)
+    for (int i = 0; i < 5; i++){
+        bool drawNext = false;
+        _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+        _backTile.x = 133;
+        _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+       
+        //Draw missing tile
+        if (i == 1){
+            drawNext = true;
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133;
+            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+            [_sheet addChild: _backTile];
+          
+            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+        }
+        
+        if (drawNext) {
+            //Drawing hexagon for left side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133 - (_backTile.width - 10);
+            _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
+                [_sheet addChild: _backTile];
+             
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+            }
+        
+            //Drawing hexagon for right side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                _backTile.x = 133 + (_backTile.width - 10);
+               _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
+                 [_sheet addChild: _backTile];
+            
+                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+            }
+            drawNext = false;
+        }
+        
+        //Draw missing tile 2
+        if (i == 2){
+            drawNext = true;
+            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+            _backTile.x = 133;
+            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+            [_sheet addChild: _backTile];
+          
+            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+        }
+            if (drawNext) {
+                //Drawing hexagon for right side after first hexagon (3)
+                for (int j = 0; j < 3; j ++) {
+                    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                    _backTile.x = 133 - ((_backTile.width * 2) - 20);
+                    _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
+                    [_sheet addChild: _backTile];
+             
+                    [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                }
+                
+                //Drawing hexagon for right side after first hexagon (3)
+                for (int j = 0; j < 3; j ++) {
+                    _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
+                    _backTile.x = 133 + ((_backTile.width * 2) - 20);
+                    _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
+                    [_sheet addChild: _backTile];
+           
+                    [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                }
+                
+                drawNext = false;
+            }
+        
+        [_sheet addChild: _backTile];
+    
+
+              [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    }
+    
     
     
     
@@ -99,29 +208,32 @@
     _seaTile = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
     _seaTile.x = 10;
     _seaTile.y = 250;
-    [_contents addChild:_seaTile];
-    [gamePieces addObject:_seaTile];
+    //[sheet addChild:_seaTile];
+    [gamePieces addObject:_seaTile ];
     
     _jungleTile = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     _jungleTile.x = 60;
     _jungleTile.y = 250;
-    [_contents addChild:_jungleTile];
+    //[sheet addChild:_jungleTile];
     [gamePieces addObject:_jungleTile];
     
     
     _desertTile = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
     _desertTile.x = 110;
     _desertTile.y = 250;
-    [_contents addChild:_desertTile];
+   // [sheet addChild:_desertTile];
     [gamePieces addObject:_desertTile];
     
     
     _forestTile = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
     _forestTile.x = 160;
     _forestTile.y = 250;
-    [_contents addChild:_forestTile];
+   // [sheet addChild:_forestTile];
     [gamePieces addObject:_forestTile];
     
+    
+    //Adding the sheet to contents so that it appears
+    [_contents addChild: _sheet];
     
     
     //Other images
@@ -139,6 +251,7 @@
     [gamePieces addObject:_bowl];
     
     
+    /* Adding to _contents will ensure that these pieces do not move with the board*/
     _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Bank: 0"];
     _bankText.x = 225;
     _bankText.y = 445;
@@ -165,7 +278,7 @@
     
     
     //Event listeners for each image (to do: make a loop)
-    
+   
     [_seaTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     [_jungleTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     [_desertTile addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
@@ -192,149 +305,55 @@
     // Sparrow's minimum deployment target is iOS 5.
 }
 
-- (void) onTouch: (SPTouchEvent*) event
-{
-    // NSLog(@"IM TOUCHED!");
+
+- (void)onMoveTile:(SPTouchEvent*)event {
+    
+    SPImage *img = (SPImage*)event.target;
+    
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
     
     if (touches.count == 1)
     {
         // one finger touching -> move
-        //        SPTouch *touch = touches[0];
-        //        SPPoint *movement = [touch movementInSpace:self.parent];
-        //
-        //
-        //
-        //            self.x += movement.x;
-        //            self.y += movement.y;
-        //
-        //        NSLog(@"x: %f y: %f", movement.x, movement.y);
+        SPTouch *touch = touches[0];
+        SPPoint *movement = [touch movementInSpace:self.parent];
+        
+        img.x += movement.x;
+        img.y += movement.y;
         
         
-        //   NSLog(@"One finga");
+        
     }
-    else if (touches.count >= 2)
+    
+}
+
+
+-(void)onClickTile:(SPTouchEvent*) event
+{
+    SPImage * img = (SPImage*) event.target;
+    SPImage *newimg;
+    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
     {
-        //NSLog(@"Two finga");
-        
-        SPTouch *touch1 = [touches objectAtIndex:0];
-        SPTouch *touch2 = [touches objectAtIndex:1];
-        
-        SPPoint *touch1PrevPos = [touch1 previousLocationInSpace:self.parent];
-        SPPoint *touch1Pos = [touch1 locationInSpace:self.parent];
-        
-        SPPoint *touch2PrevPos = [touch2 previousLocationInSpace:self.parent];
-        SPPoint *touch2Pos = [touch2 locationInSpace:self.parent];
-        
-        SPPoint *prevVector = [touch1PrevPos subtractPoint:touch2PrevPos];
-        SPPoint *currentVector = [touch1Pos subtractPoint:touch2Pos];
-        
-        float sizeDiff = currentVector.length / prevVector.length;
-        float xavg = (touch1Pos.x + touch2Pos.x ) / 2;
-        float yavg = (touch2Pos.y + touch1Pos.y) / 2;
-        
-        SPMatrix *mat = [self transformationMatrix];
-        [mat translateXBy:-xavg yBy:-yavg];
-        if (self.scaleX * sizeDiff > 0.5f) [mat scaleBy:sizeDiff];
-        [mat translateXBy:xavg yBy:yavg];
-        [self setTransformationMatrix:mat];
-    }
-}
+        NSLog(@"TOUCHED");
+        //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:img];
 
-- (void)setTransformationMatrix:(SPMatrix *)matrix {
-    self.scaleX = matrix.a;
-	self.scaleY = matrix.d;
-	self.x = matrix.tx;
-	self.y = matrix.ty;
-}
+        //Randomize based on game logic
+        [img removeFromParent];
+        newimg = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+        newimg.x = img.x;
+        newimg.y = img.y;
+        
+        [_sheet addChild:newimg];
+        NSLog(@"Changed tile????");
 
-- (void)onMoveBoard:(SPTouchEvent*)event {
-    
-    SPImage *img = (SPImage*)event.target;
-    
-	
-    NSArray *touchesMoved = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
-    
-    // Movement of self (x,y)
-    if (touchesMoved.count == 1) {
-//        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-//        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-//        
-//        float diffX = [self x] + (currentPos.x - previousPos.x);
-//        float diffY = [self y] + (currentPos.y - previousPos.y);
-//        
-//        img.x += diffX;
-//        img.y += diffY;
-//        
-//        for(SPDisplayObjectContainer *piece in gamePieces){
-//            piece.x += diffX;
-//            piece.y += diffY;
-//        }
         
-        // Pinch zoom in /out
-    } else if (touchesMoved.count == 2) {
-        
-        
-        SPPoint *previousPos1 = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-        SPPoint *previousPos2 = [[touchesMoved objectAtIndex:1] previousLocationInSpace:[self parent]];
-        
-        SPPoint *currentPos1 = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *currentPos2 = [[touchesMoved objectAtIndex:1] locationInSpace:[self parent]];
-        
-        float distance1 = [SPPoint distanceFromPoint:currentPos1 toPoint:currentPos2];
-        float distance2 = [SPPoint distanceFromPoint:previousPos1 toPoint:previousPos2];
-        
-        float scaleX = (([self scaleX] / distance2) * distance1);
-        float scaleY = (([self scaleY] / distance2) * distance1);
-        
-        if (scaleX > 0.50 && scaleX <= 1.00) {
-            img.scaleX = scaleX;
-            img.scaleY = scaleY;
-        }
-        
-        for(SPDisplayObjectContainer *piece in gamePieces){
-            piece.scaleX = scaleX;
-            piece.scaleY = scaleY;
-        }
         
     }
     
-    if ([self x] < 0 && [self width] + [self x] < 480) {
-        [self setX:[self x] + (480 - ([self width] + [self x]))];
-    }
     
-    if ([self y] < 0 && [self height] + [self y] < 320) {
-        [self setY:[self y] + (320 - ([self height] + [self y]))];
-    }
-	
-}
-
-- (void)onMoveTile:(SPTouchEvent*)event {
-    
-    SPImage *img = (SPImage*)event.target;
-	
-    NSArray *touchesMoved = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
-    
-    // Movement of self (x,y)
-    if (touchesMoved.count == 1) {
-        SPPoint *currentPos = [[touchesMoved objectAtIndex:0] locationInSpace:[self parent]];
-        SPPoint *previousPos = [[touchesMoved objectAtIndex:0] previousLocationInSpace:[self parent]];
-        
-        float diffX = [self x] + (currentPos.x - previousPos.x);
-        float diffY = [self y] + (currentPos.y - previousPos.y);
-        
-        img.x += diffX;
-        img.y += diffY;
-    }
-    
-    if ([self x] < 0 && [self width] + [self x] < 480) {
-        [self setX:[self x] + (480 - ([self width] + [self x]))];
-    }
-    
-    if ([self y] < 0 && [self height] + [self y] < 320) {
-        [self setY:[self y] + (320 - ([self height] + [self y]))];
-    }
-	
 }
 
 - (void)updateLocations
