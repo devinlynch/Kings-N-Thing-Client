@@ -7,10 +7,14 @@
 //
 
 #import "TileMenu.h"
+#import "TwoThreePlayerGame.h"
+#import "Scene.h"
 
 @implementation TileMenu
 {
     SPSprite *_contents;
+    SPSprite *_currentScene;
+    SPSprite *_tileMenu;
     
     SPImage *_swamp_065;
     SPImage *_swamp_066;
@@ -36,7 +40,7 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
 
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"mainMenuBackground.png"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"SwampTileMenu.png"];
     
     [_contents addChild:background];
     
@@ -62,11 +66,64 @@
     _swamp_069.y = 190;
     [_contents addChild:_swamp_069];
     
+     [_swamp_065 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+     [_swamp_066 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+     [_swamp_067 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+     [_swamp_068 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+     [_swamp_069 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
+    SPButton * button = [SPButton buttonWithUpState:buttonTexture text:@"Back"];
     
+    button.x = 320 / 2 - button.width /2;
+    button.y = 370;
     
+    [_contents addChild:button];
     
+    [button addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+  
+
+
 }
 
+- (void)onButtonTriggered:(SPEvent *)event
+{
+    TwoThreePlayerGame * game = [[TwoThreePlayerGame alloc]init];
+    [self showScene:game];
+    
+
+}
+
+- (void)showScene:(SPSprite *)scene {
+    //if ([self containsChild:_currentScene]) {
+     //   [self removeChild:_currentScene];
+   // }
+    [self addChild:scene];
+    _currentScene = scene;
+}
+
+
+- (void)onMoveTile:(SPTouchEvent*)event {
+    
+    SPImage *img = (SPImage*)event.target;
+    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
+    
+    if (touches.count == 1)
+    {
+        // one finger touching -> move
+        SPTouch *touch = touches[0];
+        SPPoint *movement = [touch movementInSpace:self.parent];
+        
+        img.x += movement.x;
+        img.y += movement.y;
+        
+        
+        
+    }
+    
+}
 
 
 @end

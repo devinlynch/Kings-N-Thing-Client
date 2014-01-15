@@ -67,6 +67,7 @@
 		DEAD9A851885EF7B00196017 /* T_Swamp_067.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A801885EF7B00196017 /* T_Swamp_067.png */; };
 		DEAD9A861885EF7B00196017 /* T_Swamp_068.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A811885EF7B00196017 /* T_Swamp_068.png */; };
 		DEAD9A871885EF7B00196017 /* T_Swamp_069.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A821885EF7B00196017 /* T_Swamp_069.png */; };
+		DEAD9A891885F89500196017 /* SwampTileMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A881885F89500196017 /* SwampTileMenu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,7 @@
 		DEAD9A801885EF7B00196017 /* T_Swamp_067.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_067.png; sourceTree = "<group>"; };
 		DEAD9A811885EF7B00196017 /* T_Swamp_068.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_068.png; sourceTree = "<group>"; };
 		DEAD9A821885EF7B00196017 /* T_Swamp_069.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_069.png; sourceTree = "<group>"; };
+		DEAD9A881885F89500196017 /* SwampTileMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwampTileMenu.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 		DE9453B41885CD1B00C4A71F /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				DEAD9A881885F89500196017 /* SwampTileMenu.png */,
 				DE94539D1885122900C4A71F /* Button-Normal@2x.png */,
 				DE991FF51884825B006C759F /* masterGameBoard.png */,
 				DE991FF61884825B006C759F /* TwoThreeBoard.png */,
@@ -549,6 +552,7 @@
 				DE9920001884825B006C759F /* plaines-tile.png in Resources */,
 				DE9920021884825B006C759F /* swamp-tile.png in Resources */,
 				DE99200C188487FD006C759F /* mainMenuBackground.png in Resources */,
+				DEAD9A891885F89500196017 /* SwampTileMenu.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				DE945393188501AC00C4A71F /* dice1.png in Resources */,
 				DE991FF81884825B006C759F /* creature5.png in Resources */,
