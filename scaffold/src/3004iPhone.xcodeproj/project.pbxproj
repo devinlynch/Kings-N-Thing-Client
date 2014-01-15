@@ -580,6 +580,7 @@
 				DE9453B81885CE5B00C4A71F /* TileMenu.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				99F14FB818838AA300872890 /* GCDAsyncUdpSocket.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				DE4A3DE510FFB2AF00FDA492 /* GameMenu.m in Sources */,
