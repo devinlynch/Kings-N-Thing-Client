@@ -52,8 +52,10 @@
         SPTouch *touch = touches[0];
         SPPoint *movement = [touch movementInSpace:self.parent];
 
+       
         self.x += movement.x;
         self.y += movement.y;
+        
         
 
     }

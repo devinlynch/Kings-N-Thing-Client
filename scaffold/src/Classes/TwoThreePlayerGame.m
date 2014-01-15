@@ -30,7 +30,6 @@
     NSMutableArray *gamePieces;
     
     SPSprite *_currentScene;
-    
     SPSprite *_contents;
     
     
@@ -259,13 +258,10 @@
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
-    //Double Click to see tile menu
-    NSArray *clickTileMenu = [[event touchesWithTarget:self andPhase:SPTouchPhaseEnded] allObjects];
-    
-    if (touches.count == 1)
+     if (touches.count == 1)
     {
         NSLog(@"TOUCHED");
-        //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:img];
+       
 
         //Randomize based on game logic
         [img removeFromParent];
@@ -274,28 +270,46 @@
         newimg.y = img.y;
         
         [_sheet addChild:newimg];
-        NSLog(@"Changed tile????");
-        
-        //Double Click
-        SPTouch * clickTileMenu = [touches objectAtIndex:0];
-        
-        if (clickTileMenu.tapCount == 2){
-            NSLog(@"le double click");
-            [NSObject cancelPreviousPerformRequestsWithTarget:self];
-            
-          
-        
-        }
+        [newimg addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
         
     }
-    
-    
-    
-    
 }
 
 
+-(void) tileDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
 
+    if (touches.count == 1)
+    {
+        
+    //Double Click
+    SPTouch * clickTileMenu = [touches objectAtIndex:0];
+    
+        if (clickTileMenu.tapCount == 2){
+            NSLog(@"le double click");
+            
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+
+            [self showTileMenu];
+            
+           
+        }
+
+    }
+
+}
+
+- (void)showScene:(SPSprite *)scene {
+  
+    [self addChild:scene];
+    scene.visible = YES;
+}
+
+- (void)showTileMenu {
+    TileMenu *tileScene = [[TileMenu alloc] init];
+    [self showScene:tileScene];
+}
 
 -(void) drawStart
 {
