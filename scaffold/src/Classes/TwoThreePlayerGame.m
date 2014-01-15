@@ -300,11 +300,14 @@
 }
 
 - (void)showScene:(SPSprite *)scene {
-//    if ([self containsChild:_currentScene]) {
-//        [self removeChild:_currentScene];
-//    }
+    //if ([self containsChild:_currentScene]) {
+    //    [self removeChild:_currentScene];
+   // }
+    
     [self addChild:scene];
+    _currentScene.visible = NO;
     _currentScene = scene;
+    scene.visible = YES;
 }
 
 - (void)showTileMenu {
