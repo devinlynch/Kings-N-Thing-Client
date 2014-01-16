@@ -57,9 +57,7 @@
     
     //TouchSheet
     TouchSheet *_sheet;
-    
-    //Booleans
-    bool isViewable;
+
 }
 
 - (id)init
@@ -114,6 +112,7 @@
     //necessary or else it gets placed off screen
     background.x = 0;
     background.y = 0;
+    
     
     // used to handle movement and zooming of board
     TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
@@ -260,9 +259,8 @@
     
      if (touches.count == 1)
     {
-        NSLog(@"TOUCHED");
+        NSLog(@"le tile click");
        
-
         //Randomize based on game logic
         [img removeFromParent];
         newimg = [[SPImage alloc] initWithContentsOfFile:@"swamp-tile.png"];
@@ -279,13 +277,11 @@
 -(void) tileDoubleClick: (SPTouchEvent*) event
 {
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-
     if (touches.count == 1)
     {
         
     //Double Click
     SPTouch * clickTileMenu = [touches objectAtIndex:0];
-    
         if (clickTileMenu.tapCount == 2){
             NSLog(@"le double click");
             

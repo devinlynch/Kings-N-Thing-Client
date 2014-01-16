@@ -48,6 +48,7 @@
 		DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C710C162417AC00357F6E /* Icon~ipad.png */; };
 		DE0C710F162417B400357F6E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C710E162417B400357F6E /* Icon@2x.png */; };
 		DE115963162320F800A25086 /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE115962162320F800A25086 /* background@2x.jpg */; };
+		DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1807881888699200B03892 /* ScaledGamePiece.m */; };
 		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		DE3F093A11B7B9DC009D4DB0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
@@ -192,6 +193,8 @@
 		DE0C710E162417B400357F6E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		DE0C7110162417B800357F6E /* Icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x~ipad.png"; sourceTree = "<group>"; };
 		DE115962162320F800A25086 /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background@2x.jpg"; sourceTree = "<group>"; };
+		DE1807871888699100B03892 /* ScaledGamePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaledGamePiece.h; sourceTree = "<group>"; };
+		DE1807881888699200B03892 /* ScaledGamePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaledGamePiece.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -605,6 +608,8 @@
 			children = (
 				4131C2941885EA99009775EA /* TouchSheet.h */,
 				4131C2951885EA99009775EA /* TouchSheet.m */,
+				DE1807871888699100B03892 /* ScaledGamePiece.h */,
+				DE1807881888699200B03892 /* ScaledGamePiece.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -760,6 +765,7 @@
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
 				4131C2EC18877054009775EA /* NonCityVill.m in Sources */,
 				4131C2B618876CAE009775EA /* Player.m in Sources */,
+				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
 				4131C2D918876FCA009775EA /* SpecialIncomeCounters.m in Sources */,

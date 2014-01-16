@@ -9,6 +9,7 @@
 #import "TileMenu.h"
 #import "TwoThreePlayerGame.h"
 #import "Scene.h"
+#import "ScaledGamePiece.h"
 
 @implementation TileMenu
 {
@@ -16,11 +17,12 @@
     SPSprite *_currentScene;
     SPSprite *_tileMenu;
     
-    SPImage *_swamp_065;
-    SPImage *_swamp_066;
-    SPImage *_swamp_067;
-    SPImage *_swamp_068;
-    SPImage *_swamp_069;
+    ScaledGamePiece *_swamp_065;
+    ScaledGamePiece *_swamp_066;
+    ScaledGamePiece *_swamp_067;
+    ScaledGamePiece *_swamp_068;
+    ScaledGamePiece *_swamp_069;
+    
     
     
  
@@ -45,33 +47,18 @@
     [_contents addChild:background];
     
     //Test: adding swamp cards
-    _swamp_065 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_065.png"];
-    _swamp_065.x = 5;
-    _swamp_065.y = 10;
-    [_contents addChild:_swamp_065];
-    _swamp_066 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_066.png"];
-    _swamp_066.x = 5;
-    _swamp_066.y = 50;
-    [_contents addChild:_swamp_066];
-    _swamp_067 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_067.png"];
-    _swamp_067.x = 5;
-    _swamp_067.y = 90;
-    [_contents addChild:_swamp_067];
-    _swamp_068 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_068.png"];
-    _swamp_068.x = 5;
-    _swamp_068.y = 140;
-    [_contents addChild:_swamp_068];
-    _swamp_069 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_069.png"];
-    _swamp_069.x = 5;
-    _swamp_069.y = 190;
-    [_contents addChild:_swamp_069];
-    
-     [_swamp_065 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-     [_swamp_066 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-     [_swamp_067 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-     [_swamp_068 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-     [_swamp_069 addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
+    
+//    [self scaleImage:_swamp_065 fileName:@"T_Swamp_065.png" addParent:_contents setX:5 setY:50];
+//    [self scaleImage:_swamp_066 fileName:@"T_Swamp_066.png" addParent:_contents setX:5 setY:90];
+//    [self scaleImage:_swamp_067 fileName:@"T_Swamp_067.png" addParent:_contents setX:5 setY:130];
+//    [self scaleImage:_swamp_068 fileName:@"T_Swamp_068.png" addParent:_contents setX:5 setY:170];
+//    [self scaleImage:_swamp_069 fileName:@"T_Swamp_069.png" addParent:_contents setX:5 setY:200];
+    
+    _swamp_065 = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Swamp_065.png"];
+    
+    [_contents addChild:_swamp_065];
+    
 
     SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
     SPButton * button = [SPButton buttonWithUpState:buttonTexture text:@"Back"];
@@ -87,16 +74,23 @@
 
 }
 
+- (void) scaleImage:(ScaledGamePiece*)image fileName:(NSString*) file addParent:(SPSprite*) add setX:(float)posX setY:(float)posY{
+    
+    image = [[ScaledGamePiece alloc]initWithContentsOfFile:file];
+    image.scaleX = 0.7f;
+    image.scaleY = 0.7f;
+    image.x = posX;
+    image.y = posY;
+    [add addChild:image];
+}
+
+
+
 - (void)onButtonTriggered:(SPEvent *)event
 {
     
     NSLog(@"Back to twoThreeBoard");
-
-    
     _contents.visible = NO;
-    
-    
-
 }
 
 - (void)showScene:(SPSprite *)scene {
@@ -108,26 +102,26 @@
 }
 
 
-- (void)onMoveTile:(SPTouchEvent*)event {
-    
-    SPImage *img = (SPImage*)event.target;
-    
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
-    
-    if (touches.count == 1)
-    {
-        // one finger touching -> move
-        SPTouch *touch = touches[0];
-        SPPoint *movement = [touch movementInSpace:self.parent];
-        
-        img.x += movement.x;
-        img.y += movement.y;
-        
-        
-        
-    }
-    
-}
+//- (void)onMoveTile:(SPTouchEvent*)event {
+//    
+//    SPImage *img = (SPImage*)event.target;
+//    
+//    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
+//    
+//    if (touches.count == 1)
+//    {
+//        // one finger touching -> move
+//        SPTouch *touch = touches[0];
+//        SPPoint *movement = [touch movementInSpace:self.parent];
+//        
+//        img.x += movement.x;
+//        img.y += movement.y;
+//        
+//        
+//        
+//    }
+//    
+//}
 
 
 @end
