@@ -38,6 +38,7 @@
 		4131C2F3188770B6009775EA /* FortLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2F2188770B6009775EA /* FortLevel.m */; };
 		4131C2F6188770C1009775EA /* CombatType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2F5188770C1009775EA /* CombatType.m */; };
 		4131C2F9188770D1009775EA /* SpecialAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2F8188770D1009775EA /* SpecialAbility.m */; };
+		4131C2FC188876AC009775EA /* LoginMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2FB188876AC009775EA /* LoginMenu.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
@@ -177,6 +178,8 @@
 		4131C2F5188770C1009775EA /* CombatType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatType.m; sourceTree = "<group>"; };
 		4131C2F7188770D1009775EA /* SpecialAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialAbility.h; sourceTree = "<group>"; };
 		4131C2F8188770D1009775EA /* SpecialAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialAbility.m; sourceTree = "<group>"; };
+		4131C2FA188876AC009775EA /* LoginMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMenu.h; sourceTree = "<group>"; };
+		4131C2FB188876AC009775EA /* LoginMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMenu.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
@@ -270,7 +273,7 @@
 			children = (
 				4131C2A618876C21009775EA /* Models */,
 				DE99201A1884BFBE006C759F /* Helpers */,
-				DE991F8418846D09006C759F /* Scene */,
+				DE991F8418846D09006C759F /* Scenes */,
 				99F14FB318838A6A00872890 /* Networking */,
 				DE4F80D714E153EA00655D44 /* Game */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
@@ -487,8 +490,6 @@
 		DE4F80D714E153EA00655D44 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				DE4A3DE310FFB2AF00FDA492 /* GameMenu.h */,
-				DE4A3DE410FFB2AF00FDA492 /* GameMenu.m */,
 				DE4F80D414E153E600655D44 /* Media.h */,
 				DE4F80D514E153E600655D44 /* Media.m */,
 			);
@@ -571,17 +572,21 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		DE991F8418846D09006C759F /* Scene */ = {
+		DE991F8418846D09006C759F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DE4A3DE310FFB2AF00FDA492 /* GameMenu.h */,
+				DE4A3DE410FFB2AF00FDA492 /* GameMenu.m */,
 				DE991F7C18846CFD006C759F /* Scene.h */,
 				DE991F7D18846CFD006C759F /* Scene.m */,
 				DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */,
 				DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */,
 				DE9453B61885CE5B00C4A71F /* TileMenu.h */,
 				DE9453B71885CE5B00C4A71F /* TileMenu.m */,
+				4131C2FA188876AC009775EA /* LoginMenu.h */,
+				4131C2FB188876AC009775EA /* LoginMenu.m */,
 			);
-			name = Scene;
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 		DE991FEB1884825B006C759F /* landtiles */ = {
@@ -748,6 +753,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4131C2E018876FF8009775EA /* MagicItems.m in Sources */,
+				4131C2FC188876AC009775EA /* LoginMenu.m in Sources */,
 				4131C2CF18876EA9009775EA /* ControlMarker.m in Sources */,
 				4131C2B318876C9B009775EA /* HexLocation.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
