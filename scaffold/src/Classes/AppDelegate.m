@@ -4,7 +4,7 @@
 //
 
 #import "AppDelegate.h"
-#import "GameMenu.h"
+#import "LoginMenu.h"
 #import "UDPMessageReceiver.h"
 
 // --- c functions ---
@@ -39,7 +39,7 @@ void onUncaughtException(NSException *exception)
      _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[GameMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[LoginMenu class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
