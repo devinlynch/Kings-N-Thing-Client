@@ -10,4 +10,6 @@
 
 @implementation Treasure
 
+@synthesize goldValue = _goldValue;
+
 @end

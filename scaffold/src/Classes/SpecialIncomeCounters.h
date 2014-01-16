@@ -8,6 +8,11 @@
 
 #import "Thing.h"
 
-@interface SpecialIncomeCounters : Thing
+@interface SpecialIncomeCounters : Thing{
+    int _goldValue;
+}
+
+@property int goldValue;
+
 
 @end

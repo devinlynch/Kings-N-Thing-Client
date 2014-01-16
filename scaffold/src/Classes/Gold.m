@@ -10,4 +10,6 @@
 
 @implementation Gold
 
+@synthesize goldValue = _goldValue;
+
 @end

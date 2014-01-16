@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BoardContainer : NSObject
+@interface BoardContainer : NSObject{
+    NSString *_containerID;
+    NSString *_containerName;
+    NSString *_containerLocation;
+}
+
+@property NSString *containerID, *containerName, *containerLocation;
 
 @end

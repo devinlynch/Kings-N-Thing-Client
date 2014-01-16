@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GamePiece : NSObject
+@interface GamePiece : NSObject{
+    NSString *_gamePieceID;
+}
+
+@property NSString *gamePieceID;
 
 @end
