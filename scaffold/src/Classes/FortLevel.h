@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FortLevel : NSObject
+@interface FortLevel : NSObject{
+    NSString *_fortLevelID;
+    int _levelNum;
+    int _cost;
+}
+
+@property NSString *fortLevelID;
+@property int levelNum, cost;
+
+
 
 @end

@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CombatType : NSObject
+@interface CombatType : NSObject{
+    NSString *_combatTypeID;
+    NSString *_combatTypeName;
+}
+
+@property NSString *combatTypeID, *combatTypeName;
 
 @end

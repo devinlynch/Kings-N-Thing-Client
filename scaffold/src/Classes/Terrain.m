@@ -10,4 +10,7 @@
 
 @implementation Terrain
 
+@synthesize terrainID   = _terrainID;
+@synthesize terrainName = _terrainName;
+
 @end

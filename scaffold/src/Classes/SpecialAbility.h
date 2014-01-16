@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SpecialAbility : NSObject
+@interface SpecialAbility : NSObject{
+    NSString *_specialAbilityID;
+}
+
+@property NSString *specialAbilityID;
 
 @end

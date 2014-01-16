@@ -10,4 +10,6 @@
 
 @implementation SpecialCharacter
 
+@synthesize specialAbility = _specialAbility;
+
 @end

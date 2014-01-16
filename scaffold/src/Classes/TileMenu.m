@@ -48,6 +48,14 @@
     _swamp_065 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_065.png"];
     _swamp_065.x = 5;
     _swamp_065.y = 10;
+    
+    
+//     Example for scaling
+//    _swamp_065.scaleX = 0.5f;
+//    _swamp_065.scaleY = 0.5f;
+
+    
+    
     [_contents addChild:_swamp_065];
     _swamp_066 = [[SPImage alloc] initWithContentsOfFile:@"T_Swamp_066.png"];
     _swamp_066.x = 5;

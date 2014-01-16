@@ -8,6 +8,10 @@
 
 #import "Thing.h"
 
-@interface Creature : Thing
+@interface Creature : Thing{
+    int _combatValue;
+}
+
+@property int combatValue;
 
 @end

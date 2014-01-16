@@ -7,7 +7,12 @@
 //
 
 #import "GamePiece.h"
+#import "Terrain.h"
 
-@interface HexTile : GamePiece
+@interface HexTile : GamePiece{
+    Terrain *_terrain;
+}
+
+@property Terrain *terrain;
 
 @end

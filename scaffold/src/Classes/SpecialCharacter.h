@@ -7,7 +7,12 @@
 //
 
 #import "Counter.h"
+#import "SpecialAbility.h"
 
-@interface SpecialCharacter : Counter
+@interface SpecialCharacter : Counter{
+    SpecialAbility *_specialAbility;
+}
+
+@property SpecialAbility *specialAbility;
 
 @end

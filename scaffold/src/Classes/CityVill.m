@@ -10,4 +10,6 @@
 
 @implementation CityVill
 
+@synthesize combatValue = _combatValue;
+
 @end
