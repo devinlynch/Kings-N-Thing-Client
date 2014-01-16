@@ -8,6 +8,10 @@
 
 #import "SpecialIncomeCounters.h"
 
-@interface CityVill : SpecialIncomeCounters
+@interface CityVill : SpecialIncomeCounters{
+    int _combatValue;
+}
+
+@property int combatValue;
 
 @end

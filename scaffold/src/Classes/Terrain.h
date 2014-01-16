@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Terrain : NSObject
+@interface Terrain : NSObject{
+    NSString *_terrainID;
+    NSString *_terrainName;
+}
+
+@property NSString *terrainID, *terrainName;
 
 @end

@@ -10,4 +10,7 @@
 
 @implementation CombatType
 
+@synthesize combatTypeID   = _combatTypeID;
+@synthesize combatTypeName = _combatTypeName;
+
 @end

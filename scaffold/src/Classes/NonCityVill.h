@@ -7,7 +7,12 @@
 //
 
 #import "SpecialIncomeCounters.h"
+#import "Terrain.h"
 
-@interface NonCityVill : SpecialIncomeCounters
+@interface NonCityVill : SpecialIncomeCounters{
+    Terrain *_terrain;
+}
+
+@property Terrain *terrain;
 
 @end

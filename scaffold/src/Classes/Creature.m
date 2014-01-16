@@ -10,4 +10,6 @@
 
 @implementation Creature
 
+@synthesize combatValue = _combatValue;
+
 @end

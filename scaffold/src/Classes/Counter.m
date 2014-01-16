@@ -10,4 +10,6 @@
 
 @implementation Counter
 
+@synthesize counterName = _counterName;
+
 @end

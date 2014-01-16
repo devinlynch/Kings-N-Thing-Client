@@ -10,4 +10,6 @@
 
 @implementation GamePiece
 
+@synthesize gamePieceID = _gamePieceID;
+
 @end

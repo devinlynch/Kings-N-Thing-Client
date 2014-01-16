@@ -10,4 +10,6 @@
 
 @implementation HexTile
 
+@synthesize terrain = _terrain;
+
 @end

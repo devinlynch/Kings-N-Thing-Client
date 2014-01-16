@@ -10,4 +10,6 @@
 
 @implementation SpecialAbility
 
+@synthesize specialAbilityID = _specialAbilityID;
+
 @end

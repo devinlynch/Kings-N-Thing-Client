@@ -10,4 +10,6 @@
 
 @implementation SpecialIncomeCounters
 
+@synthesize goldValue = _goldValue;
+
 @end
