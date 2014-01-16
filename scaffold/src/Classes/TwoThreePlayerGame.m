@@ -313,7 +313,6 @@
 
 -(void) drawStart
 {
-
     //Hexagon
     
     //Drawing hexagons for middle (5)
@@ -372,7 +371,7 @@
             
         }
         if (drawNext) {
-            //Drawing hexagon for right side after first hexagon (3)
+            //Drawing hexagon for left side after first hexagon (3)
             for (int j = 0; j < 3; j ++) {
                 _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
                 _backTile.x = 133 - ((_backTile.width * 2) - 20);
