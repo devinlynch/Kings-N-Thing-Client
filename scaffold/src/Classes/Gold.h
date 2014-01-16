@@ -8,6 +8,10 @@
 
 #import "Thing.h"
 
-@interface Gold : Thing
+@interface Gold : Thing{
+    int _goldValue;
+}
+
+@property int goldValue;
 
 @end

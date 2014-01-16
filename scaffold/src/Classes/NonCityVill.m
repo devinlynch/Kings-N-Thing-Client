@@ -10,4 +10,6 @@
 
 @implementation NonCityVill
 
+@synthesize terrain = _terrain;
+
 @end

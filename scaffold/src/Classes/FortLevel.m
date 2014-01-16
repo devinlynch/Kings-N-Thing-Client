@@ -10,4 +10,8 @@
 
 @implementation FortLevel
 
+@synthesize fortLevelID = _fortLevelID;
+@synthesize cost        = _cost;
+@synthesize levelNum    = _levelNum;
+
 @end

@@ -8,6 +8,10 @@
 
 #import "GamePiece.h"
 
-@interface Counter : GamePiece
+@interface Counter : GamePiece{
+    NSString *_counterName;
+}
+
+@property NSString *counterName;
 
 @end

@@ -7,7 +7,14 @@
 //
 
 #import "Counter.h"
+#import "FortLevel.h"
 
-@interface Fort : Counter
+@interface Fort : Counter{
+    int _combatValue;
+    FortLevel *_level;
+}
+
+@property int combatValue;
+@property FortLevel *level;
 
 @end
