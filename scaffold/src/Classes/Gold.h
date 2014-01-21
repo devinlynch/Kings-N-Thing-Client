@@ -9,9 +9,9 @@
 #import "Thing.h"
 
 @interface Gold : Thing{
-    int _goldValue;
+    NSInteger *_goldValue;
 }
 
-@property int goldValue;
+@property NSInteger *goldValue;
 
 @end

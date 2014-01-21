@@ -10,9 +10,10 @@
 
 @interface User : Player{
     NSString *_userID, *_username, *_password, *_hostName;
-    int *_port;
+    NSInteger *_port;
 }
 
 @property NSString *userID, *username, *password, *hostName;
+@property NSInteger *port;
 
 @end
