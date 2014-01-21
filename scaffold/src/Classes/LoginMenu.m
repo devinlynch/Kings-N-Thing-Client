@@ -117,6 +117,11 @@
     _currentScene = [[sceneClass alloc] init];
     _currentScene.y = _offsetY;
     _loginMenu.visible = NO;
+    
+    _usernameTextField.hidden = YES;
+    _passwordTextField.hidden = YES;
+    
+    
     [self addChild:_currentScene];
 }
 
@@ -124,7 +129,7 @@
 {
     [_currentScene removeFromParent];
     _currentScene = nil;
-    _loginMenu.visible = YES;
+    _loginMenu.visible = NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
