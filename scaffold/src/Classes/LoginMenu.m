@@ -117,6 +117,9 @@
     _currentScene = [[sceneClass alloc] init];
     _currentScene.y = _offsetY;
     _loginMenu.visible = NO;
+    
+    _usernameTextField.hidden = YES;
+    _passwordTextField.hidden = YES;
     [self addChild:_currentScene];
 }
 
