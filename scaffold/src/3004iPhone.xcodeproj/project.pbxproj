@@ -44,6 +44,11 @@
 		4144CB51188EEF87003A29E4 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB50188EEF87003A29E4 /* Game.m */; };
 		4144CB54188EEFBB003A29E4 /* Phase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB53188EEFBB003A29E4 /* Phase.m */; };
 		4144CB57188EF0F7003A29E4 /* Bank.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB56188EF0F7003A29E4 /* Bank.m */; };
+		4144CB65188EFACC003A29E4 /* TestEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB64188EFACC003A29E4 /* TestEventHandler.m */; };
+		4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB67188EFAE9003A29E4 /* ClientReactor.m */; };
+		4144CB6D188EFAE9003A29E4 /* clientReactor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4144CB68188EFAE9003A29E4 /* clientReactor.plist */; };
+		4144CB6E188EFAE9003A29E4 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB6A188EFAE9003A29E4 /* Event.m */; };
+		4144CB71188EFAF3003A29E4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB70188EFAF3003A29E4 /* Message.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
@@ -196,6 +201,17 @@
 		4144CB53188EEFBB003A29E4 /* Phase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phase.m; sourceTree = "<group>"; };
 		4144CB55188EF0F7003A29E4 /* Bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bank.h; sourceTree = "<group>"; };
 		4144CB56188EF0F7003A29E4 /* Bank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bank.m; sourceTree = "<group>"; };
+		4144CB62188EFACC003A29E4 /* EventHandlerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandlerProtocol.h; sourceTree = "<group>"; };
+		4144CB63188EFACC003A29E4 /* TestEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestEventHandler.h; sourceTree = "<group>"; };
+		4144CB64188EFACC003A29E4 /* TestEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEventHandler.m; sourceTree = "<group>"; };
+		4144CB66188EFAE9003A29E4 /* ClientReactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientReactor.h; sourceTree = "<group>"; };
+		4144CB67188EFAE9003A29E4 /* ClientReactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientReactor.m; sourceTree = "<group>"; };
+		4144CB68188EFAE9003A29E4 /* clientReactor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clientReactor.plist; sourceTree = "<group>"; };
+		4144CB69188EFAE9003A29E4 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		4144CB6A188EFAE9003A29E4 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		4144CB6B188EFAE9003A29E4 /* ReactorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactorProtocol.h; sourceTree = "<group>"; };
+		4144CB6F188EFAF3003A29E4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		4144CB70188EFAF3003A29E4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
@@ -471,9 +487,44 @@
 			name = Attributes;
 			sourceTree = "<group>";
 		};
+		4144CB5E188EFA63003A29E4 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				4144CB6F188EFAF3003A29E4 /* Message.h */,
+				4144CB70188EFAF3003A29E4 /* Message.m */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		4144CB60188EFA6C003A29E4 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				4144CB66188EFAE9003A29E4 /* ClientReactor.h */,
+				4144CB67188EFAE9003A29E4 /* ClientReactor.m */,
+				4144CB68188EFAE9003A29E4 /* clientReactor.plist */,
+				4144CB69188EFAE9003A29E4 /* Event.h */,
+				4144CB6A188EFAE9003A29E4 /* Event.m */,
+				4144CB6B188EFAE9003A29E4 /* ReactorProtocol.h */,
+				4144CB61188EFA8B003A29E4 /* Event Handlers */,
+			);
+			name = Reactor;
+			sourceTree = "<group>";
+		};
+		4144CB61188EFA8B003A29E4 /* Event Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				4144CB62188EFACC003A29E4 /* EventHandlerProtocol.h */,
+				4144CB63188EFACC003A29E4 /* TestEventHandler.h */,
+				4144CB64188EFACC003A29E4 /* TestEventHandler.m */,
+			);
+			name = "Event Handlers";
+			sourceTree = "<group>";
+		};
 		99F14FB318838A6A00872890 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				4144CB60188EFA6C003A29E4 /* Reactor */,
+				4144CB5E188EFA63003A29E4 /* JSON */,
 				99F14FB518838A8B00872890 /* GCD */,
 				99F14FB918838ADF00872890 /* UDPMessageReceiver.h */,
 				99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */,
@@ -767,6 +818,7 @@
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				DE945393188501AC00C4A71F /* dice1.png in Resources */,
 				DE991FF81884825B006C759F /* creature5.png in Resources */,
+				4144CB6D188EFAE9003A29E4 /* clientReactor.plist in Resources */,
 				DEAD9A851885EF7B00196017 /* T_Swamp_067.png in Resources */,
 				DE945394188501AC00C4A71F /* dice2.png in Resources */,
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
@@ -782,13 +834,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
+				4144CB65188EFACC003A29E4 /* TestEventHandler.m in Sources */,
 				4131C2E018876FF8009775EA /* MagicItems.m in Sources */,
 				4131C2FC188876AC009775EA /* LoginMenu.m in Sources */,
 				4131C2CF18876EA9009775EA /* ControlMarker.m in Sources */,
 				4131C2B318876C9B009775EA /* HexLocation.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
+				4144CB71188EFAF3003A29E4 /* Message.m in Sources */,
 				4131C2F9188770D1009775EA /* SpecialAbility.m in Sources */,
 				4131C2B018876C8D009775EA /* PlayingCup.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
@@ -801,6 +856,7 @@
 				4131C2B618876CAE009775EA /* Player.m in Sources */,
 				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
+				4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */,
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
 				4144CB54188EEFBB003A29E4 /* Phase.m in Sources */,
 				4144CB4A188DDA25003A29E4 /* Counter.m in Sources */,
