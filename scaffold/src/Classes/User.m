@@ -10,5 +10,11 @@
 
 @implementation User
 
+@synthesize userID = _userID;
+@synthesize username = _username;
+@synthesize password = _password;
+@synthesize port = _port;
+@synthesize hostName = _hostName;
+
 
 @end

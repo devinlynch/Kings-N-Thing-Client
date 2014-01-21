@@ -10,9 +10,9 @@
 #import "FortLevel.h"
 
 @interface Fort : CounterType{
-    int _combatValue;
+ NSInteger *_combatValue;
 }
 
-@property int combatValue;
+@propertyNSInteger *combatValue;
 
 @end

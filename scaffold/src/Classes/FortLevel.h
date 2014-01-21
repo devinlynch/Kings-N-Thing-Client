@@ -10,12 +10,12 @@
 
 @interface FortLevel : NSObject{
     NSString *_fortLevelID;
-    int _levelNum;
-    int _cost;
+    NSInteger *_levelNum;
+    NSInteger *_cost;
 }
 
 @property NSString *fortLevelID;
-@property int levelNum, cost;
+@property NSInteger *levelNum, *cost;
 
 
 
