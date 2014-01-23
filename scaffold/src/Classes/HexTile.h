@@ -11,8 +11,15 @@
 
 @interface HexTile : GamePiece{
     Terrain *_terrain;
+    BOOL    _isHilighted;
+    NSArray *_neighbours;
 }
 
 @property Terrain *terrain;
+@property BOOL isHilighted;
+@property NSArray *neighbours;
+
+-(void) unhilight;
+-(void)  hilight;
 
 @end

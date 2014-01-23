@@ -11,5 +11,16 @@
 @implementation HexTile
 
 @synthesize terrain = _terrain;
+@synthesize isHilighted = _isHilighted;
+@synthesize neighbours = _neighbours;
+
+
+- (void)unhilight{
+    _isHilighted = NO;
+}
+
+- (void)hilight{
+    _isHilighted = YES;
+}
 
 @end

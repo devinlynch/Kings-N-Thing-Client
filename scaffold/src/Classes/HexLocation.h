@@ -8,6 +8,8 @@
 
 #import "BoardContainer.h"
 
-@interface HexLocation : BoardContainer
+@interface HexLocation : BoardContainer{
+    
+}
 
 @end
