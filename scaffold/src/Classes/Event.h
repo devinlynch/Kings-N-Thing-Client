@@ -15,6 +15,8 @@
 
 @property(strong) NSString *type;
 @property(strong) Message  *msg;
+@property(weak) id delegateListener;
+@property(strong) NSDictionary *requestParams;
 
 
 -(id) initForType: (NSString*)t withMessage:(Message*)m ;

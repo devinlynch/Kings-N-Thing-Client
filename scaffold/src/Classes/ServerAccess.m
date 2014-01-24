@@ -23,18 +23,29 @@
     return nil;
 }
 
+static ServerAccess *instance;
+
++(ServerAccess*) instance{
+    @synchronized(self){
+        if(!instance)
+            instance = [[ServerAccess alloc] init];
+    }
+    return instance;
+}
+
+
 typedef enum HttpRequestMethods {
     POSTREQUEST,
     GETREQUEST
 } HttpRequestMethods;
 
--(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSDictionary*) params andErrorCall:(block_t) call{
+-(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSDictionary*) params  andDelegateListener: (id) delegateListener andErrorCall:(block_t) call{
     NSString *postBody = [Utils httpParamsFromDictionary:params];
     NSLog(@"Doing post:%@ with params: %@", req, postBody);
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://localhost:5000/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://localhost:5000/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
@@ -60,9 +71,11 @@ typedef enum HttpRequestMethods {
                  // TODO: How do we want to handle a bad reponse?
              }
              Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
+             [e setRequestParams:params];
+             [e setDelegateListener:delegateListener];
              [reactor dispatch:e];
          } else{
-             NSLog(@"could not connect to server, doing call");
+             NSLog(@"could not connect to server, doing call, got response code: %d and error: %@", responseStatusCode, error);
              if(theCall != nil)
                  theCall();
          }
@@ -78,10 +91,19 @@ typedef enum HttpRequestMethods {
     }
 }
 
--(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password{
+-(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener:(id<LoginProtocol>)delegateListener{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
-    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"account/login" withParams:dic andErrorCall:^{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"account/login" withParams:dic andDelegateListener: delegateListener andErrorCall:^{
         NSLog(@"Error doing login post request");
+        [delegateListener didLoginWithSuccess:NO andError:nil];
+    }];
+}
+
+-(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener:(id<LoginProtocol>)delegateListener{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"register" withParams:dic andDelegateListener: delegateListener andErrorCall:^{
+        NSLog(@"Error doing login post request");
+        [delegateListener didLoginWithSuccess:NO andError:nil];
     }];
 }
 

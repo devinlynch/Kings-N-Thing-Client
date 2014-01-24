@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JSONSerializable.h"
-enum ResponseError {
+typedef enum ResponseError {
     BAD_USERNAME_AND_PASSWORD,
     ALREADY_LOGGED_IN,
     ALREADY_REGISTERED,

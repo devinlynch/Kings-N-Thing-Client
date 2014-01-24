@@ -12,7 +12,7 @@
 
 @synthesize type;
 @synthesize msg;
-
+@synthesize delegateListener, requestParams;
 
 -(id) init {
     self = [super init];

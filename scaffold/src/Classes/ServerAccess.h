@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LoginProtocol.h"
 @class ClientReactor;
 
 typedef void (^block_t)();
@@ -14,6 +15,9 @@ typedef void (^block_t)();
 {
     ClientReactor *reactor;
 }
--(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password;
++(ServerAccess*) instance;
+
+-(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
+-(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
 
 @end

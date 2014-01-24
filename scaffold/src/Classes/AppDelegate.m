@@ -6,8 +6,8 @@
 #import "AppDelegate.h"
 #import "LoginMenu.h"
 #import "UDPMessageReceiver.h"
-
-// --- c functions ---
+#import "ServerAccess.h"
+#import "LoginViewController.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -24,12 +24,12 @@ void onUncaughtException(NSException *exception)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSSetUncaughtExceptionHandler(&onUncaughtException);
+   /* NSSetUncaughtExceptionHandler(&onUncaughtException);
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
     
-    _viewController = [[SPViewController alloc] init];
+    /*_viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
     
@@ -41,11 +41,27 @@ void onUncaughtException(NSException *exception)
     
     [_viewController startWithRoot:[LoginMenu class] supportHighResolutions:YES doubleOnPad:YES];
     
-    [_window setRootViewController:_viewController];
+    
+    LoginViewController *_view = [[LoginViewController alloc] initWithNibName:@"LoginView" bundle:nil];
     [_window makeKeyAndVisible];
+    [_window setRootViewController:_view];
+    //[_window makeKeyAndVisible];
+    
+    
+    ///TEST
+    ServerAccess *a = [[ServerAccess alloc] init];
+    [a loginWithUsername:@"test" andPassword:@"test"];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];
+    [udpMessageReceiver startListeningOnPort:3004];*/
+    
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
+    UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
+    [_window setRootViewController:yourController];
+    [_window makeKeyAndVisible];
     return YES;
 }
 
