@@ -52,7 +52,8 @@ typedef enum HttpRequestMethods {
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
-    
+    [request setTimeoutInterval:20];
+    //TODO: handle timeout
     NSOperationQueue *queue =[[NSOperationQueue alloc] init];
     
     __block block_t theCall = call;
@@ -64,7 +65,7 @@ typedef enum HttpRequestMethods {
          NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
          int responseStatusCode = [httpResponse statusCode];
          
-         if(responseStatusCode == 200){
+         if(responseStatusCode == 200 && data != nil && error == nil){
              ServerResponseMessage *responseMessage = [Utils responseMessageFromJSONData:data];
              
              if(responseMessage == nil) {
@@ -103,7 +104,7 @@ typedef enum HttpRequestMethods {
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
     [self asynchronousRequestOfType:POSTREQUEST toUrl:@"register" withParams:dic andDelegateListener: delegateListener andErrorCall:^{
         NSLog(@"Error doing login post request");
-        [delegateListener didLoginWithSuccess:NO andError:nil];
+        [delegateListener didRegisterWithSuccess:NO andError:nil];
     }];
 }
 

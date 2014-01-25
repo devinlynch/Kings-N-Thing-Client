@@ -15,8 +15,7 @@
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json {
     self = [self init];
     
-    NSString *responseErrorNumberAsString = [json objectForKey:@"responseError"];
-    self.responseError = [responseErrorNumberAsString integerValue];
+    self.responseError = [json objectForKey:@"responseError"];
     
     return self;
 }

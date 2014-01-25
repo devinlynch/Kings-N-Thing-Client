@@ -16,23 +16,41 @@
 -(void)handleEvent: (Event*) event{
     ServerResponseMessage *message = (ServerResponseMessage*)event.msg;
     ServerMessageError *error = message.error;
-    if([event.delegateListener conformsToProtocol:@protocol(LoginProtocol)]){
+    if( ! [event.delegateListener conformsToProtocol:@protocol(LoginProtocol)] ){
         NSLog(@"FOR SOME REASON THE DELEGATE LISTENER OF A LOGIN EVENT IS NOT IMPLEMENTING LOGINPROTOCOL.  WHYYYYYYYYY?");
     }
     id<LoginProtocol> delegateListener = event.delegateListener;
     if(error != nil) {
-        NSLog(@"Did login with error");
+        NSLog(@"Did login or register with error");
         [delegateListener didLoginWithSuccess:NO andError:error];
         return;
     }
     
-    NSLog(@"Did login with success");
-    NSDictionary *userJSON = [message.data.map objectForKey:@"user"];
-    User *user = [[User alloc] initFromJSON:userJSON];
-    [User setInstance:user];
+    BOOL isLoggedIn = false;
+    BOOL isRegister = [event.type isEqualToString:@"register"];
+    if(isRegister){
+        NSString *isLoggedInS =[message.data.map objectForKey:@"isLoggedIn"];
+        if(isLoggedInS != nil){
+            isLoggedIn = [isLoggedInS isEqualToString:@"true"];
+        }
+    } else{
+        isLoggedIn  = true;
+    }
     
-    NSLog(@"Received User: %@", user.username);
-    [delegateListener didLoginWithSuccess:YES andError:nil];
+    if(isLoggedIn) {
+         NSDictionary *userJSON = [message.data.map objectForKey:@"user"];
+        User *user = [[User alloc] initFromJSON: userJSON];
+        [User setInstance:user];
+        
+        if(!isRegister)
+            [delegateListener didLoginWithSuccess:YES andError:nil];
+        else
+            [delegateListener didRegisterAndLoginWithSuccess:YES andError:nil];
+    } else if(isRegister) {
+        [delegateListener didRegisterWithSuccess:YES andError:nil];
+    } else{
+        [delegateListener didLoginWithSuccess:NO andError:nil];
+    }
 }
 
 @end

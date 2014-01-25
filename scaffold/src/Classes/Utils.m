@@ -8,7 +8,7 @@
 
 #import "Utils.h"
 #import "ServerResponseMessage.h"
-
+#import "MBProgressHUD.h"
 @implementation Utils
 
 +(NSDictionary*) dictionaryFromJSONData: (NSData* ) data{
@@ -44,6 +44,29 @@
     }
     
     return returnS;
+}
+
++(void) showAlertWithTitle: (NSString* ) title message: (NSString*) message delegate: (id) delegate cancelButtonTitle: (NSString*) cancelButtonTitle {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:delegate
+                                              cancelButtonTitle:cancelButtonTitle
+                                              otherButtonTitles: nil];
+        [alert show];
+    });
+}
+
++(void) showLoaderOnView: (UIView*) view animated: (BOOL) animated{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD showHUDAddedTo:view animated:animated];
+    });
+}
+
++(void) removeLoaderOnView: (UIView*) view animated: (BOOL) animated{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:view animated:animated];
+    });
 }
 
 @end

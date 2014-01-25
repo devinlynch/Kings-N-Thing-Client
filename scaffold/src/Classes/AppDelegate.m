@@ -60,6 +60,7 @@ void onUncaughtException(NSException *exception)
 
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
+    
     [_window setRootViewController:yourController];
     [_window makeKeyAndVisible];
     return YES;

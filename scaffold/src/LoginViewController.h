@@ -12,6 +12,8 @@
 @interface LoginViewController : UIViewController<LoginProtocol>
 {
     BOOL hasPressedRegister;
+    CGFloat loginY;
+    CGFloat registerY;
 }
 @property IBOutlet UITextField *usernameField;
 @property IBOutlet UITextField *passwordField;

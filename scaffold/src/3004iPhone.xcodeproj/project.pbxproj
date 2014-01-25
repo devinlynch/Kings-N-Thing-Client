@@ -80,6 +80,11 @@
 		992D755C1891A28E00753C85 /* Medieval_wallpapers_39.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */; };
 		99DF9C7618914F8300746646 /* AccountEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C7518914F8300746646 /* AccountEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
+		99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */; };
+		99E74F2318931A640048CEA0 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2118931A640048CEA0 /* bg_1.png */; };
+		99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2218931A640048CEA0 /* bg_1@2x.png */; };
+		99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2618931B130048CEA0 /* NavigationViewController.m */; };
+		99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2918932E130048CEA0 /* MainMenuViewController.m */; };
 		99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B8301891E47500CAAD3B /* Storyboard.storyboard */; };
 		99E8B83418923DE300CAAD3B /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83218923DE300CAAD3B /* bg.png */; };
 		99E8B83518923DE300CAAD3B /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83318923DE300CAAD3B /* bg@2x.png */; };
@@ -291,6 +296,14 @@
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
+		99E74F1A1892D3FB0048CEA0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		99E74F2118931A640048CEA0 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
+		99E74F2218931A640048CEA0 /* bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1@2x.png"; sourceTree = "<group>"; };
+		99E74F2518931B130048CEA0 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		99E74F2618931B130048CEA0 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		99E74F2818932E130048CEA0 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		99E74F2918932E130048CEA0 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		99E8B8301891E47500CAAD3B /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		99E8B83218923DE300CAAD3B /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		99E8B83318923DE300CAAD3B /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
@@ -674,9 +687,15 @@
 		992D75511891A0F600753C85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99E74F1A1892D3FB0048CEA0 /* MBProgressHUD.h */,
+				99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */,
 				991151801891B03C004E8FFB /* LoginViewController.h */,
 				991151811891B03C004E8FFB /* LoginViewController.m */,
 				99E8B8301891E47500CAAD3B /* Storyboard.storyboard */,
+				99E74F2518931B130048CEA0 /* NavigationViewController.h */,
+				99E74F2618931B130048CEA0 /* NavigationViewController.m */,
+				99E74F2818932E130048CEA0 /* MainMenuViewController.h */,
+				99E74F2918932E130048CEA0 /* MainMenuViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -723,6 +742,8 @@
 		DE0C71121624180300357F6E /* system */ = {
 			isa = PBXGroup;
 			children = (
+				99E74F2118931A640048CEA0 /* bg_1.png */,
+				99E74F2218931A640048CEA0 /* bg_1@2x.png */,
 				99E8B83618923F3100CAAD3B /* Default-568h@2x.png */,
 				DE0C71081624179300357F6E /* Default-Landscape~ipad.png */,
 				DE0C71061624178400357F6E /* Default-Portrait~ipad.png */,
@@ -1022,6 +1043,7 @@
 				DE991FFF1884825B006C759F /* moutain-tile.png in Resources */,
 				991151601891A8D1004E8FFB /* field.png in Resources */,
 				DE0C71011624177000357F6E /* Default.png in Resources */,
+				99E74F2318931A640048CEA0 /* bg_1.png in Resources */,
 				DE9920041884825B006C759F /* TwoThreeBoard.png in Resources */,
 				9911515A1891A82F004E8FFB /* login_sel.png in Resources */,
 				DEAD9A861885EF7B00196017 /* T_Swamp_068.png in Resources */,
@@ -1030,6 +1052,7 @@
 				DE991FFB1884825B006C759F /* desert-tile.png in Resources */,
 				DE945395188501AC00C4A71F /* dice3.png in Resources */,
 				DE945398188501AC00C4A71F /* dice6.png in Resources */,
+				99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */,
 				9911516B1891AB16004E8FFB /* btn@2x.png in Resources */,
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
 				99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */,
@@ -1090,12 +1113,14 @@
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
 				4144CB71188EFAF3003A29E4 /* Message.m in Sources */,
 				4131C2F9188770D1009775EA /* SpecialAbility.m in Sources */,
+				99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */,
 				99098DBD188F5C3200139EA4 /* Utils.m in Sources */,
 				4131C2B018876C8D009775EA /* PlayingCup.m in Sources */,
 				99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
 				4131C2E918877047009775EA /* CityVill.m in Sources */,
+				99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */,
 				4131C2981885EB1F009775EA /* GCDAsyncUdpSocket.m in Sources */,
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
 				4144CB51188EEF87003A29E4 /* Game.m in Sources */,
@@ -1119,6 +1144,7 @@
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
+				99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */,
 				4131C2C418876DBF009775EA /* Fort.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,

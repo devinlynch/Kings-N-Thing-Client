@@ -12,5 +12,7 @@
 @protocol LoginProtocol <NSObject>
 
 -(void) didLoginWithSuccess: (BOOL) success andError: (ServerMessageError*) error;
+-(void) didRegisterWithSuccess: (BOOL) success andError: (ServerMessageError*) error;
+-(void) didRegisterAndLoginWithSuccess: (BOOL) success andError: (ServerMessageError*) error;
 
 @end

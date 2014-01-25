@@ -13,13 +13,13 @@
 
 static User *instance;
 
+/**
+ Represents the user who is currently logged in
+ */
 +(User*) instance{
     @synchronized(self){
-        if(!instance)
-            instance = [[User alloc] init];
+        return instance;
     }
-    
-    return instance;
 }
 
 +(User*) reInitInstance{
