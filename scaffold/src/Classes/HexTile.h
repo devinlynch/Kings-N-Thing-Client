@@ -10,14 +10,16 @@
 #import "Terrain.h"
 
 @interface HexTile : GamePiece{
+    NSInteger _tileNumber;
     Terrain *_terrain;
     BOOL    _isHilighted;
-    NSArray *_neighbours;
 }
 
 @property Terrain *terrain;
 @property BOOL isHilighted;
-@property NSArray *neighbours;
+@property NSInteger tileNumber;
+
+-(HexTile*) initWithTerrain: (Terrain *) terrain andTileNumber:(int) number;
 
 -(void) unhilight;
 -(void)  hilight;

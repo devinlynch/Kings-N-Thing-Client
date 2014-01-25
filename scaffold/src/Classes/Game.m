@@ -11,24 +11,27 @@
 @implementation Game
 
 @synthesize players = _players;
+@synthesize bank = _bank;
+@synthesize rack = _rack;
+@synthesize hexLocations = _hexLocations;
 
 
--(void)findPathFromTile:(HexTile *)location withMoves:(int)moves{
+-(void)findPathFromLocation:(HexLocation *)location withMoves:(int)moves{
     
-    if(location.isHilighted){
+    if(location.tile.isHilighted){
         return;
     }
     
     if (moves == 0) {
-        [location hilight];
+        [[location tile] hilight];
         return;
     }
     else{
-        [location hilight];
+        [[location tile] hilight];
     }
     
-    for (HexTile *tile in [location neighbours]){
-        [self findPathFromTile:tile withMoves:--moves];
+    for (HexLocation *tileLocation in [location neighbours]){
+        [self findPathFromLocation:tileLocation withMoves:--moves];
     }
     
     

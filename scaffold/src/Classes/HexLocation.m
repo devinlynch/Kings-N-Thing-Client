@@ -10,4 +10,8 @@
 
 @implementation HexLocation
 
+@synthesize tile = _tile;
+@synthesize neighbours = _neighbours;
+
+
 @end

@@ -7,9 +7,14 @@
 //
 
 #import "BoardContainer.h"
+#import "HexTile.h"
 
 @interface HexLocation : BoardContainer{
-    
+    HexTile *_tile;
+    NSMutableDictionary *_neighbours;
 }
+
+@property HexTile *tile;
+@property NSMutableDictionary *neighbours;
 
 @end

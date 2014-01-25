@@ -12,8 +12,14 @@
 
 @synthesize terrain = _terrain;
 @synthesize isHilighted = _isHilighted;
-@synthesize neighbours = _neighbours;
+@synthesize tileNumber = _tileNumber;
 
+
+-(HexTile*)initWithTerrain:(Terrain *)terrain andTileNumber:(int)number{
+    self.terrain = terrain;
+    _tileNumber = number;
+    return [super init];
+}
 
 - (void)unhilight{
     _isHilighted = NO;
