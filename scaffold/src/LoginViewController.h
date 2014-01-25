@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LoginProtocol.h"
 
-@interface LoginViewController : UIViewController<LoginProtocol>
+@interface LoginViewController : UIViewController<LoginProtocol, UIAlertViewDelegate, UITextFieldDelegate>
 {
     BOOL hasPressedRegister;
     CGFloat loginY;

@@ -11,6 +11,7 @@
 #import "Utils.h"
 #import "ServerMessageError.h"
 #import "MBProgressHUD.h"
+#import "KeychainItemWrapper.h"
 
 @interface LoginViewController ()
 
@@ -33,6 +34,25 @@
     registerY = self.registerButton.center.y;
     self.navigationController.navigationBar.hidden=YES;
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+     [self.view addGestureRecognizer:tap];
+    
+    [_usernameField setDelegate:self];
+    [_passwordField setDelegate:self];
+    [_passwordAgainField setDelegate:self];
+    
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
+    
+    NSString *username = [wrapper objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *password = [wrapper objectForKey:(__bridge id)(kSecValueData)];
+    
+    if (![username isEqualToString:@""] ) {
+        [[ServerAccess instance] loginWithUsername:username andPassword:password andDelegateListener:self];
+    }
     
 	// Do any additional setup after loading the view.
 }
@@ -130,6 +150,16 @@
 }
 
 -(void) handleSuccessfulLogin{
+    
+    
+    UIAlertView *loginAlert = [[UIAlertView alloc]initWithTitle:@"Remember Login?"
+                                                      message:@"Would you like to save your login info?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"No"
+                                            otherButtonTitles:@"Yes", nil];
+    
+    [loginAlert show];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"login" sender:self];
     });
@@ -154,6 +184,32 @@
     
     [Utils showAlertWithTitle:@"Error" message:message delegate:nil cancelButtonTitle: @"Ok"];
     NSLog(@"Error while logging in or registering in LoginViewController");
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
+        
+        [wrapper setObject:[self.usernameField text] forKey:(__bridge id)kSecAttrAccount];
+        [wrapper setObject:[self.passwordField text] forKey:(__bridge id)kSecValueData];
+    }
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+
+-(void)dismissKeyboard {
+    
+    
+    [self.view endEditing:YES];
 }
 
 @end
