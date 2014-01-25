@@ -175,7 +175,7 @@
                                 <rect key="frame" x="60" y="292" width="200" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Join a Game" backgroundImage="btn.png">
+                                <state key="normal" title="Host a Game" backgroundImage="btn.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -194,19 +194,20 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="findGameButton" destination="WN4-Ya-zft" id="Hsf-ZY-qFe"/>
-                        <outlet property="joinGameButton" destination="SPd-Rf-bQd" id="F9U-0c-7q3"/>
+                        <outlet property="hostGameButton" destination="SPd-Rf-bQd" id="IWN-o5-BuG"/>
                         <outlet property="quickMatchButton" destination="FHO-hY-AKp" id="cWv-0u-X9B"/>
                         <outlet property="welcomeText" destination="d3S-MA-OtK" id="R5Q-FG-PQ8"/>
+                        <segue destination="l1y-t8-S7Y" kind="push" identifier="joinGameSpecifics" id="fes-AO-n8V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZG-L8-PEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="805" y="152"/>
+            <point key="canvasLocation" x="795" y="109"/>
         </scene>
-        <!--View Controller-->
+        <!--Find Lobby View Controller-->
         <scene sceneID="ikf-IM-6wx">
             <objects>
-                <viewController id="l1y-t8-S7Y" sceneMemberID="viewController">
+                <viewController id="l1y-t8-S7Y" customClass="FindLobbyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xh1-dI-mQR"/>
                         <viewControllerLayoutGuide type="bottom" id="1Xl-ry-wcl"/>
@@ -214,19 +215,80 @@
                     <view key="view" contentMode="scaleToFill" id="hRp-wy-Pep">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="A7l-PK-122">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaV-Cn-MaW">
+                                <rect key="frame" x="121" y="145" width="78" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.97999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.97999999999999998" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How many players would you like to play with?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkw-qu-hgD">
+                                <rect key="frame" x="9" y="116" width="302" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sRn-Tx-WpL">
+                                <rect key="frame" x="100" y="190" width="120" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Go" backgroundImage="btn.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="btn_sel.png"/>
+                                <state key="highlighted" backgroundImage="btn_sel.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressGoButton:" destination="l1y-t8-S7Y" eventType="touchUpInside" id="xLO-4L-Hhd"/>
+                                    <action selector="didPressMatchButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="2UV-Zs-kSf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kac-q7-zle"/>
+                    <connections>
+                        <outlet property="detailstextField" destination="uaV-Cn-MaW" id="7oM-fg-aqb"/>
+                        <outlet property="goButton" destination="sRn-Tx-WpL" id="Fgh-ra-F8n"/>
+                        <outlet property="infoLabel" destination="zkw-qu-hgD" id="tP9-5h-ZZS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="enj-bT-gnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="221"/>
+            <point key="canvasLocation" x="1224" y="109"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg.png" width="320" height="568"/>
         <image name="bg_1.png" width="320" height="568"/>
+        <image name="bg_1.png" width="320" height="568"/>
         <image name="btn.png" width="200" height="40"/>
+        <image name="btn.png" width="200" height="40"/>
+        <image name="btn.png" width="200" height="40"/>
+        <image name="btn.png" width="200" height="40"/>
+        <image name="btn.png" width="200" height="40"/>
+        <image name="btn.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
+        <image name="btn_sel.png" width="200" height="40"/>
         <image name="btn_sel.png" width="200" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

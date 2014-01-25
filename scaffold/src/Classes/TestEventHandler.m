@@ -8,11 +8,11 @@
 
 #import "TestEventHandler.h"
 #import "Event.h"
-
+#import "Message.h"
 @implementation TestEventHandler
 
 -(void) handleEvent:(Event *)event{
-    NSLog(@"Test event handler");
+    NSLog(@"Test event handler data: %@", event.msg.data.map);
 }
 
 @end

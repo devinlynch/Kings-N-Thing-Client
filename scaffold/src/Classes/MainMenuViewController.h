@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LobbyProtocol.h"
 
-@interface MainMenuViewController : UIViewController
+@interface MainMenuViewController : UIViewController{
+    
+}
 @property IBOutlet UIButton *quickMatchButton;
 @property IBOutlet UIButton *findGameButton;
-@property IBOutlet UIButton *joinGameButton;
+@property IBOutlet UIButton *hostGameButton;
 @property IBOutlet UILabel *welcomeText;
 
 

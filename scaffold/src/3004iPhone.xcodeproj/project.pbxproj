@@ -78,7 +78,6 @@
 		992D75571891A18D00753C85 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75551891A18D00753C85 /* logo.png */; };
 		992D75581891A18D00753C85 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75561891A18D00753C85 /* logo@2x.png */; };
 		992D755C1891A28E00753C85 /* Medieval_wallpapers_39.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */; };
-		99DF9C7618914F8300746646 /* AccountEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C7518914F8300746646 /* AccountEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
 		99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */; };
 		99E74F2318931A640048CEA0 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2118931A640048CEA0 /* bg_1.png */; };
@@ -90,6 +89,11 @@
 		99E8B83518923DE300CAAD3B /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83318923DE300CAAD3B /* bg@2x.png */; };
 		99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83618923F3100CAAD3B /* Default-568h@2x.png */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
+		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
+		99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */; };
+		99F9B6E81894390A00E4A788 /* JoinLobbyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E71894390A00E4A788 /* JoinLobbyNotification.m */; };
+		99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6EA1894399300E4A788 /* GameLobby.m */; };
+		99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
 		DE0C71071624178400357F6E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71061624178400357F6E /* Default-Portrait~ipad.png */; };
@@ -291,8 +295,6 @@
 		992D75551891A18D00753C85 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		992D75561891A18D00753C85 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Medieval_wallpapers_39.jpg; sourceTree = "<group>"; };
-		99DF9C7418914F8300746646 /* AccountEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountEventHandler.h; sourceTree = "<group>"; };
-		99DF9C7518914F8300746646 /* AccountEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountEventHandler.m; sourceTree = "<group>"; };
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
@@ -312,6 +314,17 @@
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		99F14FB918838ADF00872890 /* UDPMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPMessageReceiver.h; sourceTree = "<group>"; };
 		99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPMessageReceiver.m; sourceTree = "<group>"; };
+		99F9B6DA1894176D00E4A788 /* MessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageHandler.h; sourceTree = "<group>"; };
+		99F9B6DB1894176D00E4A788 /* MessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageHandler.m; sourceTree = "<group>"; };
+		99F9B6E018941F5100E4A788 /* LobbyEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyEventHandler.h; sourceTree = "<group>"; };
+		99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyEventHandler.m; sourceTree = "<group>"; };
+		99F9B6E31894254700E4A788 /* LobbyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyProtocol.h; sourceTree = "<group>"; };
+		99F9B6E61894390A00E4A788 /* JoinLobbyNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinLobbyNotification.h; sourceTree = "<group>"; };
+		99F9B6E71894390A00E4A788 /* JoinLobbyNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinLobbyNotification.m; sourceTree = "<group>"; };
+		99F9B6E91894399300E4A788 /* GameLobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLobby.h; sourceTree = "<group>"; };
+		99F9B6EA1894399300E4A788 /* GameLobby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLobby.m; sourceTree = "<group>"; };
+		99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindLobbyViewController.h; sourceTree = "<group>"; };
+		99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindLobbyViewController.m; sourceTree = "<group>"; };
 		DE0C71001624177000357F6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE0C71021624177500357F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE0C71061624178400357F6E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -497,6 +510,8 @@
 				4144CB50188EEF87003A29E4 /* Game.m */,
 				4144CB52188EEFBB003A29E4 /* Phase.h */,
 				4144CB53188EEFBB003A29E4 /* Phase.m */,
+				99F9B6E91894399300E4A788 /* GameLobby.h */,
+				99F9B6EA1894399300E4A788 /* GameLobby.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -601,6 +616,8 @@
 			children = (
 				4144CB6F188EFAF3003A29E4 /* Message.h */,
 				4144CB70188EFAF3003A29E4 /* Message.m */,
+				99F9B6DA1894176D00E4A788 /* MessageHandler.h */,
+				99F9B6DB1894176D00E4A788 /* MessageHandler.m */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -622,13 +639,11 @@
 		4144CB61188EFA8B003A29E4 /* Event Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				99F9B6DF18941E1100E4A788 /* HTTP */,
+				99F9B6DE18941E0B00E4A788 /* UDP */,
 				4144CB62188EFACC003A29E4 /* EventHandlerProtocol.h */,
 				4144CB63188EFACC003A29E4 /* TestEventHandler.h */,
 				4144CB64188EFACC003A29E4 /* TestEventHandler.m */,
-				99DF9C7418914F8300746646 /* AccountEventHandler.h */,
-				99DF9C7518914F8300746646 /* AccountEventHandler.m */,
-				99DF9C771891508F00746646 /* LoginEventHandler.h */,
-				99DF9C781891508F00746646 /* LoginEventHandler.m */,
 			);
 			name = "Event Handlers";
 			sourceTree = "<group>";
@@ -696,6 +711,8 @@
 				99E74F2618931B130048CEA0 /* NavigationViewController.m */,
 				99E74F2818932E130048CEA0 /* MainMenuViewController.h */,
 				99E74F2918932E130048CEA0 /* MainMenuViewController.m */,
+				99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */,
+				99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -704,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				99DF9C7B189167D400746646 /* LoginProtocol.h */,
+				99F9B6E31894254700E4A788 /* LobbyProtocol.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -718,6 +736,7 @@
 		99F14FB318838A6A00872890 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				99F9B6E4189438EF00E4A788 /* NSNotification Objects */,
 				990BEFB4188F222900D7CA03 /* Resonse */,
 				990BEFAF188F1ED300D7CA03 /* Server */,
 				4144CB60188EFA6C003A29E4 /* Reactor */,
@@ -737,6 +756,33 @@
 				99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */,
 			);
 			name = GCD;
+			sourceTree = "<group>";
+		};
+		99F9B6DE18941E0B00E4A788 /* UDP */ = {
+			isa = PBXGroup;
+			children = (
+				99F9B6E018941F5100E4A788 /* LobbyEventHandler.h */,
+				99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */,
+			);
+			name = UDP;
+			sourceTree = "<group>";
+		};
+		99F9B6DF18941E1100E4A788 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				99DF9C771891508F00746646 /* LoginEventHandler.h */,
+				99DF9C781891508F00746646 /* LoginEventHandler.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
+		99F9B6E4189438EF00E4A788 /* NSNotification Objects */ = {
+			isa = PBXGroup;
+			children = (
+				99F9B6E61894390A00E4A788 /* JoinLobbyNotification.h */,
+				99F9B6E71894390A00E4A788 /* JoinLobbyNotification.m */,
+			);
+			name = "NSNotification Objects";
 			sourceTree = "<group>";
 		};
 		DE0C71121624180300357F6E /* system */ = {
@@ -1101,7 +1147,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
+				99F9B6E81894390A00E4A788 /* JoinLobbyNotification.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
+				99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */,
 				990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */,
 				4144CB65188EFACC003A29E4 /* TestEventHandler.m in Sources */,
 				4131C2E018876FF8009775EA /* MagicItems.m in Sources */,
@@ -1130,12 +1178,13 @@
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */,
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
+				99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */,
 				4144CB54188EEFBB003A29E4 /* Phase.m in Sources */,
 				990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */,
 				4144CB4A188DDA25003A29E4 /* Counter.m in Sources */,
 				991151821891B03C004E8FFB /* LoginViewController.m in Sources */,
+				99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */,
 				4131C2D918876FCA009775EA /* SpecialIncomeCounters.m in Sources */,
-				99DF9C7618914F8300746646 /* AccountEventHandler.m in Sources */,
 				4131C2AA18876C70009775EA /* BoardContainer.m in Sources */,
 				4131C2D618876FB8009775EA /* RandomEvent.m in Sources */,
 				4131C2C718876DF3009775EA /* Thing.m in Sources */,
@@ -1146,6 +1195,7 @@
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */,
 				4131C2C418876DBF009775EA /* Fort.m in Sources */,
+				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,

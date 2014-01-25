@@ -8,12 +8,18 @@
 
 #import "MainMenuViewController.h"
 #import "User.h"
-@interface MainMenuViewController ()
+#import "ServerAccess.h"
+#import "Utils.h"
+#import "FindLobbyViewController.h"
 
+@interface MainMenuViewController ()
+{
+    enum GameLobbySearchType pressedType;
+}
 @end
 
 @implementation MainMenuViewController
-@synthesize quickMatchButton, findGameButton, joinGameButton, welcomeText;
+@synthesize quickMatchButton, findGameButton, hostGameButton, welcomeText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,11 +53,23 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 -(IBAction)didPressMatchButton:(id)sender;
 {
+    if(sender == hostGameButton) {
+        pressedType = HOST_A_GAME;
+    } else if(sender == findGameButton) {
+        pressedType = SEARCH_FOR_HOST;
+    } else{
+        pressedType = QUICK_MATCH;
+    }
     
+    [self performSegueWithIdentifier:@"joinGameSpecifics" sender:self];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    FindLobbyViewController *controller = segue.destinationViewController;
+    controller.type = pressedType;
 }
 
 @end

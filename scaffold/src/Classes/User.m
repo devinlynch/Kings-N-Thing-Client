@@ -37,7 +37,7 @@ static User *instance;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
-    if(self && json != nil) {
+    if(self && json) {
         [self setUsername:[json objectForKey:@"username"]];
         [self setUserID:[json objectForKey:@"userId"]];
     }

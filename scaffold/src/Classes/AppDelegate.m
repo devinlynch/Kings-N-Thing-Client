@@ -61,6 +61,9 @@ void onUncaughtException(NSException *exception)
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
+    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
+    [udpMessageReceiver startListeningOnPort:3004];
+    
     [_window setRootViewController:yourController];
     [_window makeKeyAndVisible];
     return YES;

@@ -7,13 +7,14 @@
 //
 
 #import "UDPMessageReceiver.h"
-
+#import "MessageHandler.h"
 @implementation UDPMessageReceiver
 
 -(id) init{
     self = [super init];
     if(self) {
         udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+        [udpSocket setDelegate:self];
     }
     return self;
 }
@@ -41,6 +42,7 @@
 	}
 }
 
+
 -(void) stop {
     if(isRunning){
         [udpSocket close];
@@ -53,18 +55,8 @@
         withFilterContext:(id)filterContext
 {
 	if (!isRunning) return;
-	
-	NSString *msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	if (msg)
-	{
-		NSLog(@"Got message: %@", msg);
-	}
-	else
-	{
-		NSLog(@"Error converting received data into UTF-8 String");
-	}
-	
-	[udpSocket sendData:data toAddress:address withTimeout:-1 tag:0];
+    	
+	[MessageHandler handleUDPReceivedJSONData:data];
 }
 
 @end
