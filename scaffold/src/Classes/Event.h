@@ -11,12 +11,18 @@
 
 @class Client;
 
+typedef enum ReceivedMessageType{
+    HTTP_MESSAGE_TYPE,
+    UDP_MESSAGE_TYPE
+} ReceivedMessageType;
+
 @interface Event : NSObject
 
 @property(strong) NSString *type;
 @property(strong) Message  *msg;
 @property(weak) id delegateListener;
 @property(strong) NSDictionary *requestParams;
+@property ReceivedMessageType receivedMessageType;
 
 
 -(id) initForType: (NSString*)t withMessage:(Message*)m ;

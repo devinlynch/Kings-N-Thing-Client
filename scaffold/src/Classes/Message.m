@@ -14,6 +14,6 @@
 @synthesize type=_type;
 @synthesize error=_error;
 @synthesize data=_data;
-
+@synthesize createdDate=_createdDate;
 
 @end

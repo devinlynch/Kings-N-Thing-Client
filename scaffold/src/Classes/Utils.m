@@ -19,7 +19,7 @@
 
 +(ServerResponseMessage*) responseMessageFromJSONData: (NSData* ) data{
     NSDictionary *json = [self dictionaryFromJSONData:data];
-    
+    NSLog(@"Got json: %@", json);
     ServerResponseMessage *msg = nil;
     if(json != nil)
         msg = [[ServerResponseMessage alloc] initFromJSON:json];

@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "JSONSerializable.h"
 
-@interface Game : NSObject{
-    NSArray *_players;
+@interface Game : NSObject <JSONSerializable>{
+    NSMutableArray *_users;
 }
 
-@property NSArray *players;
+@property NSMutableArray *users;
 
 @end

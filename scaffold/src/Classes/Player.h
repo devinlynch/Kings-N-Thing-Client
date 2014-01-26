@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
-@interface Player : NSObject
+@interface Player : NSObject <JSONSerializable>
+{
+    User *_user;
+}
+
+@property User *user;
 
 @end

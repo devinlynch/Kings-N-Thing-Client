@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "LoginProtocol.h"
+#import "LobbyProtocol.h"
+
 @class ClientReactor;
 
 typedef void (^block_t)();
@@ -19,5 +21,10 @@ typedef void (^block_t)();
 
 -(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
 -(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
+-(void) findAnyLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener;
+-(void) searchLobby: (NSString*) usernameOfHost andDelegateListener: (id<LobbyProtocol>) delegateListener;
+-(void) hostLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener;
+-(void) unregisterFromLobby;
+-(void) getLobbyState: (NSString*) gameLobbyId;
 
 @end

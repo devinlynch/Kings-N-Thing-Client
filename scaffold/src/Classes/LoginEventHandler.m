@@ -11,6 +11,8 @@
 #import "LoginProtocol.h"
 #import "User.h"
 #import "ServerResponseMessage.h"
+#import "Game.h"
+
 @implementation LoginEventHandler
 
 -(void)handleEvent: (Event*) event{
@@ -20,7 +22,7 @@
         NSLog(@"FOR SOME REASON THE DELEGATE LISTENER OF A LOGIN EVENT IS NOT IMPLEMENTING LOGINPROTOCOL.  WHYYYYYYYYY?");
     }
     id<LoginProtocol> delegateListener = event.delegateListener;
-    if(error != nil) {
+    if(error != nil && ! [error.responseError isEqualToString:@"ALREADY_LOGGED_IN"]) {
         NSLog(@"Did login or register with error");
         [delegateListener didLoginWithSuccess:NO andError:error];
         return;
@@ -37,8 +39,16 @@
         isLoggedIn  = true;
     }
     
+    NSDictionary *gameDic = [message.data.map objectForKey:@"game"];
+    if(gameDic != nil) {
+        NSLog(@"In login handler, user already in game, firing notification");
+        //User is already in game
+        Game *game = [[Game alloc] initFromJSON:gameDic];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameStarted" object:game];
+    }
+    
     if(isLoggedIn) {
-         NSDictionary *userJSON = [message.data.map objectForKey:@"user"];
+        NSDictionary *userJSON = [message.data.map objectForKey:@"user"];
         User *user = [[User alloc] initFromJSON: userJSON];
         [User setInstance:user];
         

@@ -15,5 +15,6 @@
 
 -(id)initWithProperties;
 -(id)initWithDictionary: (NSDictionary*) dictionary;
++(ClientReactor*) instance;
 
 @end
