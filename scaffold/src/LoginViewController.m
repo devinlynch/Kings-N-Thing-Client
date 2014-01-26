@@ -11,6 +11,7 @@
 #import "Utils.h"
 #import "ServerMessageError.h"
 #import "MBProgressHUD.h"
+#import "KeychainItemWrapper.h"
 
 @interface LoginViewController ()
 
@@ -34,11 +35,40 @@
     self.navigationController.navigationBar.hidden=YES;
     [super viewDidLoad];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+     [self.view addGestureRecognizer:tap];
+    
+    [_usernameField setDelegate:self];
+    [_passwordField setDelegate:self];
+    [_passwordAgainField setDelegate:self];
+    
+    
+    
+    //get keychain
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
+    
+    //get username and password
+    NSString *username = [wrapper objectForKey:(__bridge id)(kSecAttrAccount)];
+    NSString *password = [wrapper objectForKey:(__bridge id)(kSecValueData)];
+    
+    
+    // if not empty then attempt login
+    if (![username isEqualToString:@""] ) {
+        [[ServerAccess instance] loginWithUsername:username andPassword:password andDelegateListener:self];
+    }
+    
+    saveLogin = YES;
+    
+    
 	// Do any additional setup after loading the view.
 }
 
 -(void) viewDidAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden=YES;
+
 }
 -(void) viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden=YES;
@@ -57,6 +87,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(IBAction)didPressLogin:(id)sender{
     [self showLoader];
@@ -104,6 +135,8 @@
     [Utils removeLoaderOnView:self.view animated:YES];
     if(success) {
         NSLog(@"Success in controller");
+        
+        
         [self handleSuccessfulLogin];
     } else{
         [self displayMessageFromError:error isRegister:NO];
@@ -130,6 +163,16 @@
 }
 
 -(void) handleSuccessfulLogin{
+    
+    
+    if (saveLogin) {
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
+        
+        [wrapper setObject:[self.usernameField text] forKey:(__bridge id)kSecAttrAccount];
+        [wrapper setObject:[self.passwordField text] forKey:(__bridge id)kSecValueData];
+    }
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"login" sender:self];
     });
@@ -154,6 +197,44 @@
     
     [Utils showAlertWithTitle:@"Error" message:message delegate:nil cancelButtonTitle: @"Ok"];
     NSLog(@"Error while logging in or registering in LoginViewController");
+}
+
+
+
+- (IBAction)segmentSwitch:(id)sender {
+    
+    NSLog(@"Segment touched");
+
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedSegment == 0) {
+        
+        NSLog(@"Save login");
+        
+        saveLogin = YES;
+    }
+    else{
+        
+        NSLog(@"Do not save login");
+        
+        saveLogin = NO;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+
+-(void)dismissKeyboard {
+    
+    
+    [self.view endEditing:YES];
 }
 
 @end

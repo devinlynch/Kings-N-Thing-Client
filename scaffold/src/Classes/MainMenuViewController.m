@@ -8,9 +8,8 @@
 
 #import "MainMenuViewController.h"
 #import "User.h"
-#import "ServerAccess.h"
-#import "Utils.h"
-#import "FindLobbyViewController.h"
+#import "KeychainItemWrapper.h"
+@interface MainMenuViewController ()
 
 @interface MainMenuViewController ()
 {
@@ -40,7 +39,7 @@
     User *user = [User instance];
     if(user == nil) {
         //TODO go back to login screen I guess?
-        return;
+        [self dismissViewControllerAnimated:YES completion:^{}];
     }
     
     welcomeText.text = [welcomeText.text stringByReplacingOccurrencesOfString:@"@@username@@" withString:user.username];
@@ -73,6 +72,24 @@
         FindLobbyViewController *controller = segue.destinationViewController;
         controller.type = pressedType;
     }    
+}
+
+- (IBAction)didPressLogoutButton:(id)sender {
+    NSLog(@"Did press logout");
+    
+    //clear the keychain
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
+    [wrapper resetKeychainItem];
+    
+    //reset the user
+    [User reInitInstance];
+    
+    //dismiss view
+    dispatch_async(dispatch_get_main_queue(), ^{
+           [self dismissViewControllerAnimated:YES completion:^{ }];
+    });
+    
+ 
 }
 
 @end

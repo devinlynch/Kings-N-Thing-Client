@@ -49,6 +49,8 @@
 		4144CB6D188EFAE9003A29E4 /* clientReactor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4144CB68188EFAE9003A29E4 /* clientReactor.plist */; };
 		4144CB6E188EFAE9003A29E4 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB6A188EFAE9003A29E4 /* Event.m */; };
 		4144CB71188EFAF3003A29E4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB70188EFAF3003A29E4 /* Message.m */; };
+		41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41852B941893458600BFD1B0 /* KeychainItemWrapper.m */; };
+		41852B981893490600BFD1B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41852B971893490600BFD1B0 /* Security.framework */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
 		99098DA1188F554C00139EA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -265,6 +267,9 @@
 		4144CB6B188EFAE9003A29E4 /* ReactorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactorProtocol.h; sourceTree = "<group>"; };
 		4144CB6F188EFAF3003A29E4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		4144CB70188EFAF3003A29E4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		41852B931893458600BFD1B0 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		41852B941893458600BFD1B0 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		41852B971893490600BFD1B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99098D98188F54C500139EA4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		99098D9E188F554C00139EA4 /* 3004iPhone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "3004iPhone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41852B981893490600BFD1B0 /* Security.framework in Frameworks */,
 				99098D99188F54C500139EA4 /* libz.dylib in Frameworks */,
 				DE4A3DB910FFB0FE00FDA492 /* libSparrow.a in Frameworks */,
 				DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */,
@@ -493,6 +499,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				41852B971893490600BFD1B0 /* Security.framework */,
 				99098D98188F54C500139EA4 /* libz.dylib */,
 				DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */,
 				DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */,
@@ -684,6 +691,8 @@
 		99098DB6188F5BAC00139EA4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				41852B931893458600BFD1B0 /* KeychainItemWrapper.h */,
+				41852B941893458600BFD1B0 /* KeychainItemWrapper.m */,
 				99098DBB188F5C3200139EA4 /* Utils.h */,
 				99098DBC188F5C3200139EA4 /* Utils.m */,
 			);
@@ -1174,6 +1183,7 @@
 				990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */,
 				4144CB65188EFACC003A29E4 /* TestEventHandler.m in Sources */,
 				4131C2E018876FF8009775EA /* MagicItems.m in Sources */,
+				41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */,
 				4131C2FC188876AC009775EA /* LoginMenu.m in Sources */,
 				4131C2CF18876EA9009775EA /* ControlMarker.m in Sources */,
 				4131C2B318876C9B009775EA /* HexLocation.m in Sources */,

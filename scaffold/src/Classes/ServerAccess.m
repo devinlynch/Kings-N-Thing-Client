@@ -51,7 +51,7 @@ typedef enum HttpRequestMethods {
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.0.13:5000/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://localhost:8080/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
