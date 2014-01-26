@@ -15,9 +15,12 @@
     ServerMessageData *_data;
     ServerMessageError *_error;
     NSString *_type;
+    NSDate *_createdDate;
 }
 
 @property NSString *type;
+@property NSDate *createdDate;
+
 @property ServerMessageError *error;
 @property ServerMessageData *data;
 

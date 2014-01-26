@@ -6,9 +6,8 @@
 //
 //
 
-#import "Player.h"
 #import "JSONSerializable.h"
-@interface User : Player<JSONSerializable>{
+@interface User : NSObject<JSONSerializable>{
     NSString *_userID, *_username, *_password, *_hostName;
     int *_port;
 }

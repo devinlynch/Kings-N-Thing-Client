@@ -6,8 +6,7 @@
 //
 //
 
-#import "AccountEventHandler.h"
 #import "EventHandlerProtocol.h"
-@interface LoginEventHandler : AccountEventHandler<EventHandlerProtocol>
+@interface LoginEventHandler : NSObject<EventHandlerProtocol>
 
 @end

@@ -1,28 +1,27 @@
 //
-//  Game.m
+//  GameState.m
 //  3004iPhone
 //
-//  Created by John Marsh on 1/21/2014.
+//  Created by Devin Lynch on 2014-01-26.
 //
 //
 
-#import "Game.h"
+#import "GameState.h"
+#import "Player.h"
 
-@implementation Game
-
-@synthesize users = _users;
+@implementation GameState
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {
         NSArray *playersJsonArr = [json objectForKey:@"players"];
         if(playersJsonArr != nil){
-            [self setUsers:[[NSMutableArray alloc] init]];
+            [self setPlayers:[[NSMutableArray alloc] init]];
             for(id o in playersJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                     NSDictionary *playerDic = (NSDictionary*) o;
-                    User *u = [[User alloc] initFromJSON:playerDic];
-                    [self.users addObject:u];
+                    Player *u = [[Player alloc] initFromJSON:playerDic];
+                    [self.players addObject:u];
                 }
             }
         }
