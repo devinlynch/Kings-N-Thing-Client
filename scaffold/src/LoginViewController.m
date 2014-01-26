@@ -45,20 +45,30 @@
     [_passwordField setDelegate:self];
     [_passwordAgainField setDelegate:self];
     
+    
+    
+    //get keychain
     KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
     
+    //get username and password
     NSString *username = [wrapper objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *password = [wrapper objectForKey:(__bridge id)(kSecValueData)];
     
+    
+    // if not empty then attempt login
     if (![username isEqualToString:@""] ) {
         [[ServerAccess instance] loginWithUsername:username andPassword:password andDelegateListener:self];
     }
+    
+    saveLogin = YES;
+    
     
 	// Do any additional setup after loading the view.
 }
 
 -(void) viewDidAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden=YES;
+
 }
 -(void) viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden=YES;
@@ -77,6 +87,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 -(IBAction)didPressLogin:(id)sender{
     [self showLoader];
@@ -124,6 +135,8 @@
     [Utils removeLoaderOnView:self.view animated:YES];
     if(success) {
         NSLog(@"Success in controller");
+        
+        
         [self handleSuccessfulLogin];
     } else{
         [self displayMessageFromError:error isRegister:NO];
@@ -152,13 +165,13 @@
 -(void) handleSuccessfulLogin{
     
     
-    UIAlertView *loginAlert = [[UIAlertView alloc]initWithTitle:@"Remember Login?"
-                                                      message:@"Would you like to save your login info?"
-                                                     delegate:self
-                                            cancelButtonTitle:@"No"
-                                            otherButtonTitles:@"Yes", nil];
+    if (saveLogin) {
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
+        
+        [wrapper setObject:[self.usernameField text] forKey:(__bridge id)kSecAttrAccount];
+        [wrapper setObject:[self.passwordField text] forKey:(__bridge id)kSecValueData];
+    }
     
-    [loginAlert show];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"login" sender:self];
@@ -186,15 +199,27 @@
     NSLog(@"Error while logging in or registering in LoginViewController");
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
-        
-        [wrapper setObject:[self.usernameField text] forKey:(__bridge id)kSecAttrAccount];
-        [wrapper setObject:[self.passwordField text] forKey:(__bridge id)kSecValueData];
-    }
+
+
+- (IBAction)segmentSwitch:(id)sender {
     
+    NSLog(@"Segment touched");
+
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedSegment == 0) {
+        
+        NSLog(@"Save login");
+        
+        saveLogin = YES;
+    }
+    else{
+        
+        NSLog(@"Do not save login");
+        
+        saveLogin = NO;
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

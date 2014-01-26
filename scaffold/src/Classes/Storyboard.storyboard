@@ -94,6 +94,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dUG-Qn-sVS">
+                                <rect key="frame" x="169" y="147" width="100" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Yes"/>
+                                    <segment title="No"/>
+                                </segments>
+                                <color key="tintColor" red="0.055388077445652217" green="0.055388077445652217" blue="0.055388077445652217" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentSwitch:" destination="YUX-yO-aDV" eventType="valueChanged" id="ppd-nS-Fh8"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remember me:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpI-xb-Qf9">
+                                <rect key="frame" x="43" y="150" width="118" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -108,8 +127,9 @@
                         <outlet property="passwordAgainField" destination="YPc-8h-oIB" id="CCc-Lt-hSR"/>
                         <outlet property="passwordField" destination="hdv-9A-oNY" id="yl9-6q-VZS"/>
                         <outlet property="registerButton" destination="mYe-m0-dbf" id="9sm-I0-l5d"/>
+                        <outlet property="saveLoginSwitch" destination="dUG-Qn-sVS" id="JSr-gz-WWB"/>
                         <outlet property="usernameField" destination="ukd-Wz-Gdl" id="zLD-Cp-WiA"/>
-                        <segue destination="QJt-Cv-cOH" kind="push" identifier="login" id="C17-gt-wKg"/>
+                        <segue destination="QJt-Cv-cOH" kind="modal" identifier="login" id="C17-gt-wKg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mil-vW-jWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,6 +207,22 @@
                                     <action selector="didPressMatchButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="EUW-hj-dls"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EjP-mc-jlr">
+                                <rect key="frame" x="60" y="340" width="200" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Logout" backgroundImage="btn.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="btn_sel.png"/>
+                                <state key="highlighted" backgroundImage="btn_sel.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressLogoutButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="5IJ-u7-SPn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -195,6 +231,7 @@
                     <connections>
                         <outlet property="findGameButton" destination="WN4-Ya-zft" id="Hsf-ZY-qFe"/>
                         <outlet property="joinGameButton" destination="SPd-Rf-bQd" id="F9U-0c-7q3"/>
+                        <outlet property="logoutButton" destination="EjP-mc-jlr" id="rMN-hi-M2I"/>
                         <outlet property="quickMatchButton" destination="FHO-hY-AKp" id="cWv-0u-X9B"/>
                         <outlet property="welcomeText" destination="d3S-MA-OtK" id="R5Q-FG-PQ8"/>
                     </connections>

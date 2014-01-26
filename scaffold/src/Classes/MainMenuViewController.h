@@ -13,9 +13,11 @@
 @property IBOutlet UIButton *findGameButton;
 @property IBOutlet UIButton *joinGameButton;
 @property IBOutlet UILabel *welcomeText;
+@property IBOutlet UIButton *logoutButton;
 
 
 -(IBAction)didPressMatchButton:(id)sender;
 
+- (IBAction)didPressLogoutButton:(id)sender;
 
 @end
