@@ -13,6 +13,8 @@
 }
 
 @property NSString *userID, *username, *password, *hostName;
-@property NSInteger *port;
++(User*) instance;
++(User*) reInitInstance;
++(void) setInstance: (User*) user;
 
 @end

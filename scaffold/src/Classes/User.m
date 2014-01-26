@@ -11,11 +11,37 @@
 @implementation User
 @synthesize userID,username,password,hostName;
 
-@synthesize userID = _userID;
-@synthesize username = _username;
-@synthesize password = _password;
-@synthesize port = _port;
-@synthesize hostName = _hostName;
+static User *instance;
 
+/**
+ Represents the user who is currently logged in
+ */
++(User*) instance{
+    @synchronized(self){
+        return instance;
+    }
+}
+
++(User*) reInitInstance{
+    @synchronized(self){
+        instance = [[User alloc] init];
+    }
+    return instance;
+}
+
++(void) setInstance: (User*) user{
+    @synchronized(self){
+        instance = user;
+    }
+}
+
+-(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
+    self=[super init];
+    if(self && json) {
+        [self setUsername:[json objectForKey:@"username"]];
+        [self setUserID:[json objectForKey:@"userId"]];
+    }
+    return self;
+}
 
 @end
