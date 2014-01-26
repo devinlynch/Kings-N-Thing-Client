@@ -24,5 +24,7 @@ typedef void (^block_t)();
 -(void) findAnyLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener;
 -(void) searchLobby: (NSString*) usernameOfHost andDelegateListener: (id<LobbyProtocol>) delegateListener;
 -(void) hostLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener;
+-(void) unregisterFromLobby;
+-(void) getLobbyState;
 
 @end

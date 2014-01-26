@@ -8,6 +8,7 @@
 #import "UDPMessageReceiver.h"
 #import "ServerAccess.h"
 #import "LoginViewController.h"
+#import "IPManager.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -63,6 +64,8 @@ void onUncaughtException(NSException *exception)
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
     [udpMessageReceiver startListeningOnPort:3004];
+    
+    NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
     
     [_window setRootViewController:yourController];
     [_window makeKeyAndVisible];

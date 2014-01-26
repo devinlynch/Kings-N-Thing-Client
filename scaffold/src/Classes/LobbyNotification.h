@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ServerMessageError.h"
 #import "GameLobby.h"
-@interface JoinLobbyNotification : NSObject
+@interface LobbyNotification : NSObject
 @property (strong) ServerMessageError *error;
 @property GameLobby* gameLobby;
 @end

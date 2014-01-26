@@ -6,8 +6,8 @@
 //
 //
 
-#import "JoinLobbyNotification.h"
+#import "LobbyNotification.h"
 
-@implementation JoinLobbyNotification
+@implementation LobbyNotification
 @synthesize gameLobby, error;
 @end

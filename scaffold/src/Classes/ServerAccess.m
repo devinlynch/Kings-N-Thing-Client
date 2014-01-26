@@ -11,6 +11,7 @@
 #import "ServerResponseMessage.h"
 #import "Utils.h"
 #import "MessageHandler.h"
+#import "IPManager.h"
 
 @implementation ServerAccess
 
@@ -39,13 +40,18 @@ typedef enum HttpRequestMethods {
     GETREQUEST
 } HttpRequestMethods;
 
--(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSDictionary*) params  andDelegateListener: (id) delegateListener andErrorCall:(block_t) errorCall andSuccessCall: (block_t) successCall{
+-(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSMutableDictionary*) params  andDelegateListener: (id) delegateListener andErrorCall:(block_t) errorCall andSuccessCall: (block_t) successCall{
+    
+    // Always send hostname and port number that we are listneing on
+    [params setValue:[IPManager getIPAddress: YES] forKey:@"hostName"];
+    [params setValue:@"3004" forKey:@"port"];
+    
     NSString *postBody = [Utils httpParamsFromDictionary:params];
     NSLog(@"Doing post:%@ with params: %@", req, postBody);
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://localhost:5000/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.0.13:5000/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
@@ -98,7 +104,7 @@ typedef enum HttpRequestMethods {
 }
 
 -(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener:(id<LoginProtocol>)delegateListener{
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
     [self asynchronousRequestOfType:POSTREQUEST toUrl:@"account/login" withParams:dic andDelegateListener: delegateListener andErrorCall:^{
         NSLog(@"Error doing login post request");
         [delegateListener didLoginWithSuccess:NO andError:nil];
@@ -106,7 +112,7 @@ typedef enum HttpRequestMethods {
 }
 
 -(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener:(id<LoginProtocol>)delegateListener{
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
     [self asynchronousRequestOfType:POSTREQUEST toUrl:@"register" withParams:dic andDelegateListener: delegateListener andErrorCall:^{
         NSLog(@"Error doing login post request");
         [delegateListener didRegisterWithSuccess:NO andError:nil];
@@ -114,21 +120,21 @@ typedef enum HttpRequestMethods {
 }
 
 -(void) findAnyLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener{
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", nil];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", nil];
     [self handleJoinLobbyWithParams:dic type:@"joinLobby" delegateListener:delegateListener];
 }
 
 -(void) searchLobby: (NSString*) usernameOfHost andDelegateListener: (id<LobbyProtocol>) delegateListener{
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: usernameOfHost , @"usernameOfHost", nil];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: usernameOfHost , @"usernameOfHost", nil];
     [self handleJoinLobbyWithParams:dic type:@"searchLobby" delegateListener:delegateListener];
 }
 
 -(void) hostLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener{
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", nil];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", nil];
     [self handleJoinLobbyWithParams:dic type:@"hostLobby" delegateListener:delegateListener];
 }
 
--(void) handleJoinLobbyWithParams: (NSDictionary*) params type: (NSString*) type delegateListener: (id<LobbyProtocol>) delegateListener {
+-(void) handleJoinLobbyWithParams: (NSMutableDictionary*) params type: (NSString*) type delegateListener: (id<LobbyProtocol>) delegateListener {
     [self asynchronousRequestOfType:POSTREQUEST toUrl:[NSString stringWithFormat:@"lobby/%@",type] withParams:params andDelegateListener: delegateListener andErrorCall:^{
         NSLog(@"Error joining a lobby");
         [delegateListener didStartSearchingForLobbyAndWasError:YES];
@@ -136,6 +142,19 @@ typedef enum HttpRequestMethods {
         NSLog(@"Returned success from server when telling it we want to join a lobby, UDP messages should now be sent once we are in one");
         [delegateListener didStartSearchingForLobbyAndWasError:NO];
     }];
+}
+
+-(void) unregisterFromLobby{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"lobby/unregisterFromLobby" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+    } andSuccessCall:^{
+        NSLog(@"Unregistered from lobby");
+    }];
+}
+
+-(void) getLobbyState{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"lobby/getLobbyState" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error getting lobby state");
+    } andSuccessCall:nil];
 }
 
 @end

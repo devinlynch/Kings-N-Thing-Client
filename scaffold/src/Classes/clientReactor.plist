@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.5.METHOD</key>
+	<string>handleNewGameLobbyState:</string>
+	<key>EVENT.5.CLASS</key>
+	<string>LobbyEventHandler</string>
+	<key>EVENT.5.TYPE</key>
+	<string>gameLobbyState</string>
+	<key>EVENT.4.METHOD</key>
+	<string>handleJoinLobby:</string>
 	<key>EVENT.4.CLASS</key>
 	<string>LobbyEventHandler</string>
 	<key>EVENT.4.TYPE</key>

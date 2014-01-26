@@ -17,4 +17,7 @@
 
 @interface LobbyEventHandler : NSObject<EventHandlerProtocol>
 
+-(void) handleJoinLobby: (Event*) event;
+-(void) handleNewGameLobbyState: (Event*) event;
+
 @end

@@ -79,6 +79,8 @@
 		992D75581891A18D00753C85 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75561891A18D00753C85 /* logo@2x.png */; };
 		992D755C1891A28E00753C85 /* Medieval_wallpapers_39.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
+		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
+		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
 		99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */; };
 		99E74F2318931A640048CEA0 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2118931A640048CEA0 /* bg_1.png */; };
 		99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2218931A640048CEA0 /* bg_1@2x.png */; };
@@ -91,7 +93,7 @@
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
 		99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */; };
-		99F9B6E81894390A00E4A788 /* JoinLobbyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E71894390A00E4A788 /* JoinLobbyNotification.m */; };
+		99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E71894390A00E4A788 /* LobbyNotification.m */; };
 		99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6EA1894399300E4A788 /* GameLobby.m */; };
 		99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
@@ -298,6 +300,10 @@
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
+		99DFAD91189493A30092CF1A /* GameLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLobbyViewController.h; sourceTree = "<group>"; };
+		99DFAD92189493A30092CF1A /* GameLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLobbyViewController.m; sourceTree = "<group>"; };
+		99DFAD941894B4A40092CF1A /* IPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPManager.h; sourceTree = "<group>"; };
+		99DFAD951894B4A40092CF1A /* IPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPManager.m; sourceTree = "<group>"; };
 		99E74F1A1892D3FB0048CEA0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		99E74F2118931A640048CEA0 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
@@ -319,8 +325,8 @@
 		99F9B6E018941F5100E4A788 /* LobbyEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyEventHandler.h; sourceTree = "<group>"; };
 		99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyEventHandler.m; sourceTree = "<group>"; };
 		99F9B6E31894254700E4A788 /* LobbyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyProtocol.h; sourceTree = "<group>"; };
-		99F9B6E61894390A00E4A788 /* JoinLobbyNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinLobbyNotification.h; sourceTree = "<group>"; };
-		99F9B6E71894390A00E4A788 /* JoinLobbyNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinLobbyNotification.m; sourceTree = "<group>"; };
+		99F9B6E61894390A00E4A788 /* LobbyNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyNotification.h; sourceTree = "<group>"; };
+		99F9B6E71894390A00E4A788 /* LobbyNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyNotification.m; sourceTree = "<group>"; };
 		99F9B6E91894399300E4A788 /* GameLobby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLobby.h; sourceTree = "<group>"; };
 		99F9B6EA1894399300E4A788 /* GameLobby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLobby.m; sourceTree = "<group>"; };
 		99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindLobbyViewController.h; sourceTree = "<group>"; };
@@ -713,6 +719,8 @@
 				99E74F2918932E130048CEA0 /* MainMenuViewController.m */,
 				99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */,
 				99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */,
+				99DFAD91189493A30092CF1A /* GameLobbyViewController.h */,
+				99DFAD92189493A30092CF1A /* GameLobbyViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -745,6 +753,8 @@
 				99F14FB918838ADF00872890 /* UDPMessageReceiver.h */,
 				99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */,
 				990BEFC1188F291C00D7CA03 /* JSONSerializable.h */,
+				99DFAD941894B4A40092CF1A /* IPManager.h */,
+				99DFAD951894B4A40092CF1A /* IPManager.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -779,8 +789,8 @@
 		99F9B6E4189438EF00E4A788 /* NSNotification Objects */ = {
 			isa = PBXGroup;
 			children = (
-				99F9B6E61894390A00E4A788 /* JoinLobbyNotification.h */,
-				99F9B6E71894390A00E4A788 /* JoinLobbyNotification.m */,
+				99F9B6E61894390A00E4A788 /* LobbyNotification.h */,
+				99F9B6E71894390A00E4A788 /* LobbyNotification.m */,
 			);
 			name = "NSNotification Objects";
 			sourceTree = "<group>";
@@ -1146,8 +1156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */,
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
-				99F9B6E81894390A00E4A788 /* JoinLobbyNotification.m in Sources */,
+				99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
 				99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */,
 				990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */,
@@ -1159,6 +1170,7 @@
 				990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
+				99DFAD961894B4A40092CF1A /* IPManager.m in Sources */,
 				4144CB71188EFAF3003A29E4 /* Message.m in Sources */,
 				4131C2F9188770D1009775EA /* SpecialAbility.m in Sources */,
 				99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */,

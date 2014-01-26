@@ -68,8 +68,10 @@
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    FindLobbyViewController *controller = segue.destinationViewController;
-    controller.type = pressedType;
+    if([segue.destinationViewController isKindOfClass:[FindLobbyViewController class]]){
+        FindLobbyViewController *controller = segue.destinationViewController;
+        controller.type = pressedType;
+    }    
 }
 
 @end

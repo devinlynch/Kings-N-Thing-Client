@@ -9,10 +9,13 @@
 #import "FindLobbyViewController.h"
 #import "ServerAccess.h"
 #import "Utils.h"
-#import "JoinLobbyNotification.h"
+#import "LobbyNotification.h"
+#import "GameLobbyViewController.h"
 
 @interface FindLobbyViewController ()
-
+{
+    GameLobby *gameLobby;
+}
 @end
 
 
@@ -84,10 +87,10 @@
     NSString *message;
     if(type == HOST_A_GAME || type == QUICK_MATCH) {
         NSUInteger numPlayers = [detailstextField.text integerValue];
-        if(numPlayers <= 0 || numPlayers > 4) {
+        if(numPlayers <= 1 || numPlayers > 4) {
             isOK = NO;
         }
-        message = @"You must enter a number between 1 and 4.";
+        message = @"You must enter a number between 2 and 4.";
     } else{
         message = @"Please enter a username.";
     }
@@ -100,17 +103,16 @@
 }
 
 -(void) didStartSearchingForLobbyAndWasError:(BOOL)isError {
-    if(isError)
+    if(isError){
         [Utils showAlertWithTitle:@"Error" message:@"There was an error finding a lobby.  Please try again." delegate:self cancelButtonTitle:@"Ok"];
-    else {
-        //TODO show searching notif
+        [Utils removeLoaderOnView:self.view animated:YES];
     }
 }
 
 -(void) handleJoinLobby: (NSNotification*) notif {
     [Utils removeLoaderOnView:self.view animated:YES];
     NSLog(@"Handling notif!");
-    JoinLobbyNotification *notification = notif.object;
+    LobbyNotification *notification = notif.object;
     
     if(notification.error != nil || notification.gameLobby == nil) {
         NSLog(@"Error joining game lobby: %@", notification.error);
@@ -126,8 +128,18 @@
         [Utils showAlertWithTitle:@"Error" message:message delegate:self cancelButtonTitle:@"Ok"];
     } else{
         NSLog(@"Did join game lobby: %@", notification.gameLobby);
+        gameLobby = notification.gameLobby;
+        [self performSegueWithIdentifier:@"joinedLobby" sender:self];
     }
     
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if([segue.destinationViewController isKindOfClass:[GameLobbyViewController class]]){
+       GameLobbyViewController *controller = segue.destinationViewController;
+       controller.gameLobby = gameLobby;
+    }
 }
 
 @end
