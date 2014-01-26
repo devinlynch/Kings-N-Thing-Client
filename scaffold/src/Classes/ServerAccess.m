@@ -151,8 +151,8 @@ typedef enum HttpRequestMethods {
     }];
 }
 
--(void) getLobbyState{
-    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"lobby/getLobbyState" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+-(void) getLobbyState : (NSString*) gameLobbyId{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"lobby/getLobbyState" withParams:[[NSMutableDictionary alloc] initWithObjectsAndKeys: gameLobbyId, @"gameLobbyId", nil] andDelegateListener: nil andErrorCall:^{
         NSLog(@"Error getting lobby state");
     } andSuccessCall:nil];
 }

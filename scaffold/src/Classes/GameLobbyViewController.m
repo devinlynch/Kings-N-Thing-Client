@@ -39,6 +39,11 @@
                                              selector:@selector(handleNewLobbyState:)
                                                  name:@"newLobbyState"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleGameStarted:)
+                                                 name:@"gameStarted"
+                                               object:nil];
     [self reloadValuesForGameLobby];
     [self startLobbyStateChecker];
 }
@@ -53,12 +58,19 @@
     LobbyNotification *notification = notif.object;
     
     GameLobby *newGameLobby = notification.gameLobby;
-    if(newGameLobby != nil) {
+    if(newGameLobby != nil && notification.error == nil) {
         gameLobby = newGameLobby;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self reloadValuesForGameLobby];
         });
+    } else{
+        [self unregisterAndLeave];
     }
+}
+
+-(void) handleGameStarted: (NSNotification*) notif{
+    Game* game = notif.object;
+    NSLog(@"In GameLobbyViewController and got game started message for game %@", game);
 }
 
 -(void) reloadValuesForGameLobby{
@@ -109,6 +121,10 @@
 }
 
 -(IBAction)didPressLeave:(id)sender{
+    [self unregisterAndLeave];
+}
+
+-(void) unregisterAndLeave{
     [[ServerAccess instance] unregisterFromLobby];
     [self performSegueWithIdentifier:@"backToMainMenu" sender:self];
 }
@@ -123,7 +139,7 @@
 
 - (void) startLobbyStateChecker
 {
-    lobbyStateChecker = [NSTimer scheduledTimerWithTimeInterval:3
+    lobbyStateChecker = [NSTimer scheduledTimerWithTimeInterval:5
                                                     target:self
                                                   selector:@selector(updateState:)
                                                   userInfo:nil
@@ -137,7 +153,7 @@
 }
 
 -(void) updateState:(NSTimer*)theTimer {
-    [[ServerAccess instance] getLobbyState];
+    [[ServerAccess instance] getLobbyState: gameLobby.gameLobbyId];
 }
 
 @end

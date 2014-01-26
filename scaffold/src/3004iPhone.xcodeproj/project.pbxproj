@@ -78,6 +78,8 @@
 		992D75571891A18D00753C85 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75551891A18D00753C85 /* logo.png */; };
 		992D75581891A18D00753C85 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75561891A18D00753C85 /* logo@2x.png */; };
 		992D755C1891A28E00753C85 /* Medieval_wallpapers_39.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */; };
+		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
+		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
 		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
 		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
@@ -297,6 +299,10 @@
 		992D75551891A18D00753C85 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		992D75561891A18D00753C85 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Medieval_wallpapers_39.jpg; sourceTree = "<group>"; };
+		99A78F1E18957B1E005D31E5 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
+		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
+		99A78F2318957DE4005D31E5 /* GameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventHandler.m; sourceTree = "<group>"; };
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
@@ -518,6 +524,8 @@
 				4144CB53188EEFBB003A29E4 /* Phase.m */,
 				99F9B6E91894399300E4A788 /* GameLobby.h */,
 				99F9B6EA1894399300E4A788 /* GameLobby.m */,
+				99A78F1E18957B1E005D31E5 /* GameState.h */,
+				99A78F1F18957B1E005D31E5 /* GameState.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -773,6 +781,8 @@
 			children = (
 				99F9B6E018941F5100E4A788 /* LobbyEventHandler.h */,
 				99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */,
+				99A78F2218957DE4005D31E5 /* GameEventHandler.h */,
+				99A78F2318957DE4005D31E5 /* GameEventHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -1195,6 +1205,7 @@
 				990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */,
 				4144CB4A188DDA25003A29E4 /* Counter.m in Sources */,
 				991151821891B03C004E8FFB /* LoginViewController.m in Sources */,
+				99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */,
 				99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */,
 				4131C2D918876FCA009775EA /* SpecialIncomeCounters.m in Sources */,
 				4131C2AA18876C70009775EA /* BoardContainer.m in Sources */,
@@ -1211,6 +1222,7 @@
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,
 				4131C2F3188770B6009775EA /* FortLevel.m in Sources */,
 				DE4A3DE510FFB2AF00FDA492 /* GameMenu.m in Sources */,
 				4131C2DD18876FF0009775EA /* Gold.m in Sources */,

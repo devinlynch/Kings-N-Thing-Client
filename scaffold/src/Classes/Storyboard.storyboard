@@ -396,31 +396,7 @@
     <resources>
         <image name="bg.png" width="320" height="568"/>
         <image name="bg_1.png" width="320" height="568"/>
-        <image name="bg_1.png" width="320" height="568"/>
-        <image name="bg_1.png" width="320" height="568"/>
         <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
-        <image name="btn_sel.png" width="200" height="40"/>
         <image name="btn_sel.png" width="200" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

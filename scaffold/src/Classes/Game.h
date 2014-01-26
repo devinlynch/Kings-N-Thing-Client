@@ -11,9 +11,9 @@
 #import "JSONSerializable.h"
 
 @interface Game : NSObject <JSONSerializable>{
-    NSMutableArray *_players;
+    NSMutableArray *_users;
 }
 
-@property NSMutableArray *players;
+@property NSMutableArray *users;
 
 @end

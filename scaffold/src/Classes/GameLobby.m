@@ -17,10 +17,13 @@
 @synthesize isPrivate=_isPrivate;
 @synthesize host=_host;
 @synthesize game=_game;
+@synthesize gameLobbyId=_gameLobbyId;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {
+        [self setGameLobbyId:[json objectForKey:@"gameLobbyId"]];
+        
         NSString* numPlay = [json objectForKey:@"numberOfPlayersWanted"];
         if(numPlay != nil)
             [self setNumberOfPlayersWanted: numPlay.integerValue];

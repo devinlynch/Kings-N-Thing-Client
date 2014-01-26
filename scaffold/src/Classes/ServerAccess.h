@@ -25,6 +25,6 @@ typedef void (^block_t)();
 -(void) searchLobby: (NSString*) usernameOfHost andDelegateListener: (id<LobbyProtocol>) delegateListener;
 -(void) hostLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener;
 -(void) unregisterFromLobby;
--(void) getLobbyState;
+-(void) getLobbyState: (NSString*) gameLobbyId;
 
 @end

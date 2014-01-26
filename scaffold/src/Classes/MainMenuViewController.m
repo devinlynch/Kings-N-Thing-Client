@@ -40,6 +40,7 @@
     User *user = [User instance];
     if(user == nil) {
         //TODO go back to login screen I guess?
+        return;
     }
     
     welcomeText.text = [welcomeText.text stringByReplacingOccurrencesOfString:@"@@username@@" withString:user.username];

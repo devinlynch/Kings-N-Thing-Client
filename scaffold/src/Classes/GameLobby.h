@@ -18,6 +18,7 @@
     Game *_game;
     User *_host;
     NSMutableArray *_users;
+    NSString* _gameLobbyId;
 }
 
 @property int numberOfPlayersWanted;
@@ -25,5 +26,6 @@
 @property Game *game;
 @property User *host;
 @property NSMutableArray *users;
+@property NSString* gameLobbyId;
 
 @end
