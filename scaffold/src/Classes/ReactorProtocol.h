@@ -17,4 +17,5 @@
 -(void)register: (id<EventHandlerProtocol>) eventHandler forType: (NSString *)type;
 -(void)deregister: (id) eventHandler forType: (NSString *)type;
 -(void)dispatch: (Event*)event;
+
 @end

@@ -9,6 +9,7 @@
 #import "User.h"
 
 @implementation User
+@synthesize userID,username,password,hostName;
 
 @synthesize userID = _userID;
 @synthesize username = _username;

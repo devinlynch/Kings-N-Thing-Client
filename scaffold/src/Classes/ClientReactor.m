@@ -26,8 +26,16 @@ static NSString *DEFAULT_HANDLER = @"DEFAULT";
 static NSString *DEFAULT_METHOD = @"handleEvent:";
 static int START_VALUE = 1;
 
-// By default, there is an empty reactor
+static ClientReactor* instance;
++(ClientReactor*) instance{
+    @synchronized(self) {
+        if(instance == nil)
+            instance = [[ClientReactor alloc] initWithProperties];
+        return instance;
+    }
+}
 
+// By default, there is an empty reactor
 -(id) init {
     self = [super init];
     if (self) {
