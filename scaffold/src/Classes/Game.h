@@ -12,19 +12,19 @@
 #import "Bank.h"
 #import "Rack.h"
 #import "HexLocation.h"
+#import "JSONSerializable.h"
 
-@interface Game : NSObject{
-    NSMutableDictionary *_players;
+@interface Game : NSObject <JSONSerializable>{
     Bank *_bank;
     Rack *_rack;
     NSMutableDictionary *_hexLocations;
+    NSMutableArray *_users;
 }
 
-@property NSMutableDictionary *players;
 @property Bank *bank;
 @property Rack *rack;
 @property NSMutableDictionary *hexLocations;
-
+@property NSMutableArray *users;
 
 -(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
 

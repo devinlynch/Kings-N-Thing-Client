@@ -7,13 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ServerMessageError.h"
+#import "ServerMessageData.h"
 
 @interface Message : NSObject
+{
+    ServerMessageData *_data;
+    ServerMessageError *_error;
+    NSString *_type;
+    NSDate *_createdDate;
+}
 
-@property NSMutableDictionary *head, *body;
+@property NSString *type;
+@property NSDate *createdDate;
 
--(Message *)initWithType:(NSString*)type;
--(Message *)initFromJSON:(NSData*)data;
--(NSData*)toJSON;
+@property ServerMessageError *error;
+@property ServerMessageData *data;
 
 @end
