@@ -13,6 +13,6 @@
  NSInteger *_combatValue;
 }
 
-@propertyNSInteger *combatValue;
+@property NSInteger *combatValue;
 
 @end

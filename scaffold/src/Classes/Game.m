@@ -10,9 +10,25 @@
 
 @implementation Game
 
-@synthesize players = _players;
+@synthesize users = _users;
 
-
+-(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
+    self=[super init];
+    if(self && json != nil) {
+        NSArray *playersJsonArr = [json objectForKey:@"players"];
+        if(playersJsonArr != nil){
+            [self setUsers:[[NSMutableArray alloc] init]];
+            for(id o in playersJsonArr) {
+                if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
+                    NSDictionary *playerDic = (NSDictionary*) o;
+                    User *u = [[User alloc] initFromJSON:playerDic];
+                    [self.users addObject:u];
+                }
+            }
+        }
+    }
+    return self;
+}
 
 
 @end
