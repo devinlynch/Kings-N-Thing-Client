@@ -52,8 +52,6 @@
 		4144CB7C188F564D003A29E4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4144CB7B188F564D003A29E4 /* XCTest.framework */; };
 		4144CB7D188F564E003A29E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		4144CB7E188F564E003A29E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		4144CB84188F564E003A29E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4144CB82188F564E003A29E4 /* InfoPlist.strings */; };
-		4144CB86188F564E003A29E4 /* _004iPhone_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB85188F564E003A29E4 /* _004iPhone_Tests.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
@@ -225,10 +223,6 @@
 		4144CB70188EFAF3003A29E4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		4144CB7A188F564D003A29E4 /* 3004iPhone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "3004iPhone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4144CB7B188F564D003A29E4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		4144CB81188F564E003A29E4 /* 3004iPhone Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "3004iPhone Tests-Info.plist"; sourceTree = "<group>"; };
-		4144CB83188F564E003A29E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4144CB85188F564E003A29E4 /* _004iPhone_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _004iPhone_Tests.m; sourceTree = "<group>"; };
-		4144CB87188F564E003A29E4 /* 3004iPhone Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3004iPhone Tests-Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
@@ -551,7 +545,6 @@
 		4144CB7F188F564E003A29E4 /* 3004iPhone Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4144CB85188F564E003A29E4 /* _004iPhone_Tests.m */,
 				4144CB80188F564E003A29E4 /* Supporting Files */,
 			);
 			path = "3004iPhone Tests";
@@ -560,9 +553,6 @@
 		4144CB80188F564E003A29E4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4144CB81188F564E003A29E4 /* 3004iPhone Tests-Info.plist */,
-				4144CB82188F564E003A29E4 /* InfoPlist.strings */,
-				4144CB87188F564E003A29E4 /* 3004iPhone Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -901,7 +891,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4144CB84188F564E003A29E4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,7 +952,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4144CB86188F564E003A29E4 /* _004iPhone_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,17 +969,6 @@
 			targetProxy = DE4A3DB710FFB0F500FDA492 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4144CB82188F564E003A29E4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4144CB83188F564E003A29E4 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
