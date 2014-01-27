@@ -9,7 +9,7 @@
 #import "MainMenuViewController.h"
 #import "User.h"
 #import "KeychainItemWrapper.h"
-@interface MainMenuViewController ()
+#import "FindLobbyViewController.h"
 
 @interface MainMenuViewController ()
 {
@@ -18,6 +18,7 @@
 @end
 
 @implementation MainMenuViewController
+
 @synthesize quickMatchButton, findGameButton, hostGameButton, welcomeText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

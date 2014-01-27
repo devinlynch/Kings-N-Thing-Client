@@ -10,6 +10,10 @@
 
 @implementation Game
 
+
+@synthesize bank = _bank;
+@synthesize rack = _rack;
+@synthesize hexLocations = _hexLocations;
 @synthesize users = _users;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
@@ -30,5 +34,26 @@
     return self;
 }
 
+-(void)findPathFromLocation:(HexLocation *)location withMoves:(int)moves{
+    
+    if(location.tile.isHilighted){
+        return;
+    }
+    
+    if (moves == 0) {
+        [[location tile] hilight];
+        return;
+    }
+    else{
+        [[location tile] hilight];
+    }
+    
+    for (HexLocation *tileLocation in [location neighbours]){
+        [self findPathFromLocation:tileLocation withMoves:--moves];
+    }
+    
+    
+
+}
 
 @end
