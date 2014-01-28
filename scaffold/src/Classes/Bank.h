@@ -6,8 +6,8 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
 
-@interface Bank : BoardContainer
+@interface Bank : BoardLocation
 
 @end

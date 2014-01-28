@@ -6,12 +6,13 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
 
-@implementation BoardContainer
+@implementation BoardLocation
 
 @synthesize containerID       = _containerID;
 @synthesize containerLocation = _containerLocation;
 @synthesize containerName     = _containerName;
+@synthesize pieces            = _pieces;
 
 @end

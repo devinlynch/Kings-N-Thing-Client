@@ -6,11 +6,11 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
 #import "HexTile.h"
 #import "Stack.h"
 
-@interface HexLocation : BoardContainer{
+@interface HexLocation : BoardLocation{
     HexTile *_tile;
     NSMutableDictionary *_neighbours;
     NSMutableArray *_stacks;

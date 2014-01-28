@@ -11,6 +11,9 @@
 
 @implementation GameState
 
+@synthesize players = _players;
+@synthesize game = _game;
+
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {

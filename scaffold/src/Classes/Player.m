@@ -9,7 +9,10 @@
 #import "Player.h"
 
 @implementation Player
+
 @synthesize user=_user;
+
+
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {

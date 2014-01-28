@@ -6,8 +6,8 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
 
-@interface PlayingCup : BoardContainer
+@interface PlayingCup : BoardLocation
 
 @end

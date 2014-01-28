@@ -6,10 +6,10 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
 #import "HexLocation.h"
 
-@interface Stack : BoardContainer{
+@interface Stack : BoardLocation{
     HexLocation *_location;
 }
 
