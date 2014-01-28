@@ -11,6 +11,5 @@
 @implementation Fort
 
 @synthesize combatValue = _combatValue;
-@synthesize level       = _level;
 
 @end

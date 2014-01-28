@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EVENT.6.METHOD</key>
+	<string>handleGameStarted:</string>
+	<key>EVENT.6.CLASS</key>
+	<string>GameEventHandler</string>
+	<key>EVENT.6.TYPE</key>
+	<string>gameStarted</string>
+	<key>EVENT.5.METHOD</key>
+	<string>handleNewGameLobbyState:</string>
+	<key>EVENT.5.CLASS</key>
+	<string>LobbyEventHandler</string>
+	<key>EVENT.5.TYPE</key>
+	<string>gameLobbyState</string>
+	<key>EVENT.4.METHOD</key>
+	<string>handleJoinLobby:</string>
+	<key>EVENT.4.CLASS</key>
+	<string>LobbyEventHandler</string>
+	<key>EVENT.4.TYPE</key>
+	<string>joinLobby</string>
+	<key>EVENT.3.TYPE</key>
+	<string>register</string>
+	<key>EVENT.3.CLASS</key>
+	<string>LoginEventHandler</string>
+	<key>EVENT.2.TYPE</key>
+	<string>login</string>
+	<key>EVENT.2.CLASS</key>
+	<string>LoginEventHandler</string>
+	<key>EVENT.1.TYPE</key>
+	<string>TEST</string>
+	<key>EVENT.1.CLASS</key>
+	<string>TestEventHandler</string>
+</dict>
+</plist>

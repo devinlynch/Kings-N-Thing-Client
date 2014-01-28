@@ -2,7 +2,7 @@
 //  Counter.m
 //  3004iPhone
 //
-//  Created by John Marsh on 1/15/2014.
+//  Created by John Marsh on 1/20/2014.
 //
 //
 
@@ -10,6 +10,6 @@
 
 @implementation Counter
 
-@synthesize counterName = _counterName;
+@synthesize counterType = _counterType;
 
 @end

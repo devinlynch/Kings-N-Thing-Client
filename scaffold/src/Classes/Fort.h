@@ -6,15 +6,13 @@
 //
 //
 
-#import "Counter.h"
+#import "CounterType.h"
 #import "FortLevel.h"
 
-@interface Fort : Counter{
-    int _combatValue;
-    FortLevel *_level;
+@interface Fort : CounterType{
+ NSInteger *_combatValue;
 }
 
-@property int combatValue;
-@property FortLevel *level;
+@property NSInteger *combatValue;
 
 @end

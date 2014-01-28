@@ -9,9 +9,9 @@
 #import "SpecialIncomeCounters.h"
 
 @interface CityVill : SpecialIncomeCounters{
-    int _combatValue;
+ NSInteger *_combatValue;
 }
 
-@property int combatValue;
+@property NSInteger *combatValue;
 
 @end

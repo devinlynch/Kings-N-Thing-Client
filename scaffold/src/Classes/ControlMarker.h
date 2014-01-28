@@ -6,8 +6,8 @@
 //
 //
 
-#import "Counter.h"
+#import "CounterType.h"
 
-@interface ControlMarker : Counter
+@interface ControlMarker : CounterType
 
 @end

@@ -127,7 +127,7 @@
 {
     [_currentScene removeFromParent];
     _currentScene = nil;
-    _loginMenu.visible = YES;
+    _loginMenu.visible = NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
