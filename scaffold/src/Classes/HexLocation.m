@@ -12,6 +12,6 @@
 
 @synthesize tile = _tile;
 @synthesize neighbours = _neighbours;
-
+@synthesize stacks = _stacks;
 
 @end
