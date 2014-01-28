@@ -445,7 +445,7 @@
     
     _contents = [SPSprite sprite];
     [self addChild:_contents];
-    
+   
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
     //[_contents addChild:background];
     

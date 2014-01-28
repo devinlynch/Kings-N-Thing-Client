@@ -67,32 +67,23 @@
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		9911515A1891A82F004E8FFB /* login_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151561891A82F004E8FFB /* login_sel.png */; };
-		9911515B1891A82F004E8FFB /* login_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151571891A82F004E8FFB /* login_sel@2x.png */; };
 		9911515C1891A82F004E8FFB /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151581891A82F004E8FFB /* login.png */; };
-		9911515D1891A82F004E8FFB /* login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151591891A82F004E8FFB /* login@2x.png */; };
 		991151601891A8D1004E8FFB /* field.png in Resources */ = {isa = PBXBuildFile; fileRef = 9911515E1891A8D1004E8FFB /* field.png */; };
 		991151611891A8D1004E8FFB /* field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9911515F1891A8D1004E8FFB /* field@2x.png */; };
-		991151681891AB16004E8FFB /* btn_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151641891AB16004E8FFB /* btn_sel.png */; };
-		991151691891AB16004E8FFB /* btn_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151651891AB16004E8FFB /* btn_sel@2x.png */; };
-		9911516A1891AB16004E8FFB /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151661891AB16004E8FFB /* btn.png */; };
 		9911516B1891AB16004E8FFB /* btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 991151671891AB16004E8FFB /* btn@2x.png */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
-		992D75571891A18D00753C85 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75551891A18D00753C85 /* logo.png */; };
 		992D75581891A18D00753C85 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992D75561891A18D00753C85 /* logo@2x.png */; };
-		992D755C1891A28E00753C85 /* Medieval_wallpapers_39.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
 		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
 		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
 		99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */; };
-		99E74F2318931A640048CEA0 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2118931A640048CEA0 /* bg_1.png */; };
 		99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2218931A640048CEA0 /* bg_1@2x.png */; };
 		99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2618931B130048CEA0 /* NavigationViewController.m */; };
 		99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2918932E130048CEA0 /* MainMenuViewController.m */; };
 		99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B8301891E47500CAAD3B /* Storyboard.storyboard */; };
 		99E8B83418923DE300CAAD3B /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83218923DE300CAAD3B /* bg.png */; };
-		99E8B83518923DE300CAAD3B /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83318923DE300CAAD3B /* bg@2x.png */; };
 		99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83618923F3100CAAD3B /* Default-568h@2x.png */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
@@ -268,6 +259,7 @@
 		DE9920041884825B006C759F /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = DE991FF61884825B006C759F /* TwoThreeBoard.png */; };
 		DE99200C188487FD006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99200B188487FD006C759F /* mainMenuBackground.png */; };
 		DE99200F18848836006C759F /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99200E18848836006C759F /* Rack.png */; };
+		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		DEAD9A831885EF7B00196017 /* T_Swamp_065.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A7E1885EF7B00196017 /* T_Swamp_065.png */; };
 		DEAD9A841885EF7B00196017 /* T_Swamp_066.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A7F1885EF7B00196017 /* T_Swamp_066.png */; };
@@ -640,6 +632,8 @@
 		DE991FF61884825B006C759F /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
 		DE99200B188487FD006C759F /* mainMenuBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMenuBackground.png; sourceTree = "<group>"; };
 		DE99200E18848836006C759F /* Rack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rack.png; sourceTree = "<group>"; };
+		DEA17CEC189801B200A743C6 /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
+		DEA17CED189801B200A743C6 /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DEAD9A7E1885EF7B00196017 /* T_Swamp_065.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_065.png; sourceTree = "<group>"; };
 		DEAD9A7F1885EF7B00196017 /* T_Swamp_066.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_066.png; sourceTree = "<group>"; };
@@ -1108,21 +1102,6 @@
 		DE4F80DC14E1541400655D44 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
-				99E8B83218923DE300CAAD3B /* bg.png */,
-				99E8B83318923DE300CAAD3B /* bg@2x.png */,
-				991151641891AB16004E8FFB /* btn_sel.png */,
-				9911515E1891A8D1004E8FFB /* field.png */,
-				991151651891AB16004E8FFB /* btn_sel@2x.png */,
-				991151661891AB16004E8FFB /* btn.png */,
-				991151671891AB16004E8FFB /* btn@2x.png */,
-				9911515F1891A8D1004E8FFB /* field@2x.png */,
-				991151561891A82F004E8FFB /* login_sel.png */,
-				991151571891A82F004E8FFB /* login_sel@2x.png */,
-				991151581891A82F004E8FFB /* login.png */,
-				991151591891A82F004E8FFB /* login@2x.png */,
-				992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */,
-				992D75551891A18D00753C85 /* logo.png */,
-				992D75561891A18D00753C85 /* logo@2x.png */,
 				DE4F80DD14E1541400655D44 /* 1x */,
 				DE4F80E214E1541400655D44 /* 2x */,
 			);
@@ -1133,6 +1112,7 @@
 		DE4F80DD14E1541400655D44 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				DEA17CF01898048E00A743C6 /* Login Images */,
 				DE951F171891765600A5C77C /* TileCreatures */,
 				DEAD9A7D1885EF7B00196017 /* Swamp */,
 				DE9453B51885CD3000C4A71F /* Other */,
@@ -1327,6 +1307,8 @@
 				DE991F7D18846CFD006C759F /* Scene.m */,
 				DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */,
 				DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */,
+				DEA17CEC189801B200A743C6 /* FourPlayerGame.h */,
+				DEA17CED189801B200A743C6 /* FourPlayerGame.m */,
 				DE9453B61885CE5B00C4A71F /* TileMenu.h */,
 				DE9453B71885CE5B00C4A71F /* TileMenu.m */,
 				4131C2FA188876AC009775EA /* LoginMenu.h */,
@@ -1360,6 +1342,29 @@
 				DE1807881888699200B03892 /* ScaledGamePiece.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		DEA17CF01898048E00A743C6 /* Login Images */ = {
+			isa = PBXGroup;
+			children = (
+				99E8B83218923DE300CAAD3B /* bg.png */,
+				99E8B83318923DE300CAAD3B /* bg@2x.png */,
+				991151641891AB16004E8FFB /* btn_sel.png */,
+				9911515E1891A8D1004E8FFB /* field.png */,
+				991151651891AB16004E8FFB /* btn_sel@2x.png */,
+				991151661891AB16004E8FFB /* btn.png */,
+				991151671891AB16004E8FFB /* btn@2x.png */,
+				9911515F1891A8D1004E8FFB /* field@2x.png */,
+				991151561891A82F004E8FFB /* login_sel.png */,
+				991151571891A82F004E8FFB /* login_sel@2x.png */,
+				991151581891A82F004E8FFB /* login.png */,
+				991151591891A82F004E8FFB /* login@2x.png */,
+				992D755B1891A28E00753C85 /* Medieval_wallpapers_39.jpg */,
+				992D75551891A18D00753C85 /* logo.png */,
+				992D75561891A18D00753C85 /* logo@2x.png */,
+			);
+			name = "Login Images";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		DEAD9A7D1885EF7B00196017 /* Swamp */ = {
@@ -1559,7 +1564,6 @@
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
 				99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */,
 				DE9920031884825B006C759F /* masterGameBoard.png in Resources */,
-				DE0C71051624177800357F6E /* Default-568h@2x.png in Resources */,
 				DE951FAE1891765600A5C77C /* T_Forest_095.png in Resources */,
 				DE951FB91891765600A5C77C /* T_Frozen_Waste_052.png in Resources */,
 				DE951FE81891765600A5C77C /* T_Plains_017.png in Resources */,
@@ -1723,6 +1727,7 @@
 				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
+				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,
 				4131C2F3188770B6009775EA /* FortLevel.m in Sources */,
