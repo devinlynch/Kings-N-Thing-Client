@@ -120,8 +120,6 @@
     
     _usernameTextField.hidden = YES;
     _passwordTextField.hidden = YES;
-    
-    
     [self addChild:_currentScene];
 }
 

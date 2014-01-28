@@ -8,7 +8,10 @@
 
 #import "ScaledGamePiece.h"
 
-@implementation ScaledGamePiece
+@implementation ScaledGamePiece{
+
+
+}
 
 - (id) initWithContentsOfFile:(NSString *)path
 {
@@ -22,6 +25,7 @@
  
     return img;
 }
+
 
 - (void)onMoveTile:(SPTouchEvent*)event {
     
@@ -37,11 +41,7 @@
         
         img.x += movement.x;
         img.y += movement.y;
-        
-        
-        
     }
-    
 }
 
 @end
