@@ -10,10 +10,8 @@
 
 @implementation Game
 
-
-@synthesize bank = _bank;
-@synthesize rack = _rack;
-@synthesize hexLocations = _hexLocations;
+@synthesize gameID = _gameID;
+@synthesize gameState = _gameState;
 @synthesize users = _users;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{

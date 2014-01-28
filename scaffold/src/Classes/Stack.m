@@ -7,6 +7,7 @@
 //
 
 #import "Stack.h"
+#import "HexLocation.h"
 
 @implementation Stack
 

@@ -7,7 +7,9 @@
 //
 
 #import "BoardLocation.h"
-#import "HexLocation.h"
+
+
+@class HexLocation;
 
 @interface Stack : BoardLocation{
     HexLocation *_location;

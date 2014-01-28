@@ -53,6 +53,7 @@
 		41852B981893490600BFD1B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41852B971893490600BFD1B0 /* Security.framework */; };
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
 		41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C011898309A00CA876D /* GUIStateHandler.m */; };
+		41B01C051898321D00CA876D /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C041898321D00CA876D /* Move.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
 		99098DA1188F554C00139EA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -276,6 +277,8 @@
 		41B01BFB1898126400CA876D /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		41B01C001898309A00CA876D /* GUIStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIStateHandler.h; sourceTree = "<group>"; };
 		41B01C011898309A00CA876D /* GUIStateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIStateHandler.m; sourceTree = "<group>"; };
+		41B01C031898321D00CA876D /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		41B01C041898321D00CA876D /* Move.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Move.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99098D98188F54C500139EA4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		99098D9E188F554C00139EA4 /* 3004iPhone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "3004iPhone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -539,6 +542,8 @@
 				99F9B6EA1894399300E4A788 /* GameLobby.m */,
 				99A78F1E18957B1E005D31E5 /* GameState.h */,
 				99A78F1F18957B1E005D31E5 /* GameState.m */,
+				41B01C031898321D00CA876D /* Move.h */,
+				41B01C041898321D00CA876D /* Move.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1217,6 +1222,7 @@
 				4144CB51188EEF87003A29E4 /* Game.m in Sources */,
 				4131C2EC18877054009775EA /* NonCityVill.m in Sources */,
 				4131C2B618876CAE009775EA /* Player.m in Sources */,
+				41B01C051898321D00CA876D /* Move.m in Sources */,
 				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */,

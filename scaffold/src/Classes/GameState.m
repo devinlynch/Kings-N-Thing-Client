@@ -8,6 +8,7 @@
 
 #import "GameState.h"
 #import "Player.h"
+#import "Game.h"
 
 @implementation GameState
 
