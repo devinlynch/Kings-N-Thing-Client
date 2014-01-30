@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ScaledGamePiece.h"
 
 @interface GamePiece : NSObject{
     NSString *_gamePieceID;
+    ScaledGamePiece *_image;
 }
 
 @property NSString *gamePieceID;
+
+-(GamePiece*) initWithImageFileName: (NSString*) img;
 
 @end

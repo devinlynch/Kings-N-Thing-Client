@@ -10,9 +10,8 @@
 
 @implementation BoardLocation
 
-@synthesize containerID       = _containerID;
-@synthesize containerLocation = _containerLocation;
-@synthesize containerName     = _containerName;
-@synthesize pieces            = _pieces;
+@synthesize locationID       = _locationID;
+@synthesize locationName     = _locationName;
+@synthesize pieces           = _pieces;
 
 @end

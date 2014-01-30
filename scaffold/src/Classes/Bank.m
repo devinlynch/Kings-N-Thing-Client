@@ -10,4 +10,11 @@
 
 @implementation Bank
 
+@synthesize currentTotal = _currentTotal;
+
+-(Bank*) initWithTotal:(int)total{
+    _currentTotal = total;
+    return [super init];
+}
+
 @end

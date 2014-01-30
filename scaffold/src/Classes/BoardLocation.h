@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface BoardLocation : NSObject{
-    NSString *_containerID;
-    NSString *_containerName;
-    NSString *_containerLocation;
+    NSString *_locationID;
+    NSString *_locationName;
     NSMutableDictionary *_pieces;
 
 }
 
-@property NSString *containerID, *containerName, *containerLocation;
+@property NSString *locationID, *locationName;
 @property NSMutableDictionary *pieces;
 
 @end

@@ -10,7 +10,10 @@
 
 @implementation Player
 
-@synthesize user=_user;
+@synthesize user = _user;
+@synthesize rack1 = _rack1;
+@synthesize rack2 = _rack2;
+@synthesize gold = _gold;
 
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{

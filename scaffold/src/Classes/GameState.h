@@ -9,14 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "JSONSerializable.h"
 
-@class Game;
+
+@class Game, PlayingCup, Bank, ScaledGamePiece, HexLocation;
 
 @interface GameState : NSObject<JSONSerializable>{
     NSMutableArray *_players;
+    PlayingCup *_playingCup;
+    NSMutableDictionary *_hexLocations;
+    Bank *_bank;
     Game *_game;
+    NSMutableDictionary *_gamePieceResource;
 }
 
 @property NSMutableArray *players;
 @property Game *game;
+@property Bank *bank;
+@property PlayingCup *playingCup;
+@property NSMutableDictionary *gamePieceResource;
+@property NSMutableDictionary *hexLocations;
+
+
+
+-(void) initGamePieces;
+-(ScaledGamePiece*) getGamePieceImageForPiece: (NSString*) piece;
+-(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
 
 @end

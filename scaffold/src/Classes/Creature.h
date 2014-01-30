@@ -7,11 +7,17 @@
 //
 
 #import "Thing.h"
+#import "CombatType.h"
+#import "Terrain.h"
 
 @interface Creature : Thing{
- NSInteger *_combatValue;
+    NSInteger *_combatValue;
+    CombatType *_combatType;
+    Terrain *_terrain;
 }
 
 @property NSInteger *combatValue;
+@property CombatType *combatType;
+@property Terrain *terrain;
 
 @end

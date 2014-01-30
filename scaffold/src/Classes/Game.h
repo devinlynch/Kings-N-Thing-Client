@@ -12,6 +12,8 @@
 #import "GameState.h"
 #import "HexLocation.h"
 #import "JSONSerializable.h"
+#import "ScaledGamePiece.h"
+
 
 @interface Game : NSObject <JSONSerializable>{
     NSString *_gameID;
@@ -24,7 +26,7 @@
 @property GameState *gameState;
 @property NSString  *gameID;
 
--(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
+
 
 
 

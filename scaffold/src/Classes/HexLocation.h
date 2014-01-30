@@ -7,17 +7,22 @@
 //
 
 #import "BoardLocation.h"
-#import "HexTile.h"
-#import "Stack.h"
+
+@class HexTile, Stack, Player;
 
 @interface HexLocation : BoardLocation{
+    Player  *_owner;
     HexTile *_tile;
     NSMutableDictionary *_neighbours;
-    NSMutableArray *_stacks;
+    NSMutableDictionary *_stacks;
 }
 
 @property HexTile *tile;
+@property Player  *owner;
 @property NSMutableDictionary *neighbours;
-@property NSMutableArray *stacks;
+@property NSMutableDictionary *stacks;
+
+-(void) addStack: (Stack*) stack;
+-(void) removeStack: (Stack*) stack;
 
 @end

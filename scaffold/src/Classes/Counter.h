@@ -2,17 +2,13 @@
 //  Counter.h
 //  3004iPhone
 //
-//  Created by John Marsh on 1/20/2014.
+//  Created by John Marsh on 1/15/2014.
 //
 //
 
 #import "GamePiece.h"
-#import "CounterType.h"
 
-@interface Counter : GamePiece{
-    CounterType *_counterType;
-}
+@interface Counter : GamePiece
 
-@property CounterType *counterType;
 
 @end

@@ -11,5 +11,7 @@
 @implementation Creature
 
 @synthesize combatValue = _combatValue;
+@synthesize combatType  = _combatType;
+@synthesize terrain = _terrain;
 
 @end

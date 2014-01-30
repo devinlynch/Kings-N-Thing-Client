@@ -8,6 +8,12 @@
 
 #import "BoardLocation.h"
 
-@interface Bank : BoardLocation
+@interface Bank : NSObject{
+    int _currentTotal;
+}
+
+@property int currentTotal;
+
+-(Bank*) initWithTotal: (int) total;
 
 @end

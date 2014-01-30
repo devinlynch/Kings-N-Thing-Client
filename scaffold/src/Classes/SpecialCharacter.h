@@ -6,10 +6,10 @@
 //
 //
 
-#import "CounterType.h"
+#import "Counter.h"
 #import "SpecialAbility.h"
 
-@interface SpecialCharacter : CounterType{
+@interface SpecialCharacter : Counter{
     SpecialAbility *_specialAbility;
 }
 
