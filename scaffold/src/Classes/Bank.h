@@ -16,4 +16,10 @@
 
 -(Bank*) initWithTotal: (int) total;
 
+-(void) decreaseByAmount: (int) amount;
+
+-(void) increaseByAmount: (int) amount;
+
+
+
 @end

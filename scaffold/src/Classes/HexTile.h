@@ -7,11 +7,13 @@
 //
 
 #import "GamePiece.h"
-#import "Terrain.h"
+
+@class Terrain;
 
 @interface HexTile : GamePiece{
     NSInteger _tileNumber;
     Terrain *_terrain;
+    SPImage *_tileImage;
     BOOL    _isHilighted;
 }
 

@@ -17,4 +17,5 @@
 
 @property HexLocation *location;
 
+
 @end

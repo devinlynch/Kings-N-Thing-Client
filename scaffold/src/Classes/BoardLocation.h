@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GamePiece;
+
 @interface BoardLocation : NSObject{
     NSString *_locationID;
     NSString *_locationName;
@@ -17,5 +19,13 @@
 
 @property NSString *locationID, *locationName;
 @property NSMutableDictionary *pieces;
+
+-(void) addGamePieceToLocation: (GamePiece*) piece;
+
+-(GamePiece*) removePieceWithIdFromLocation: (NSString*) gamePieceId;
+
+-(GamePiece*) getPieceWithIdFromLocation: (NSString*) gamePieceId;
+
+
 
 @end

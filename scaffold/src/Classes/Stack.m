@@ -8,9 +8,11 @@
 
 #import "Stack.h"
 #import "HexLocation.h"
+#import "GamePiece.h"
 
 @implementation Stack
 
 @synthesize location = _location;
+
 
 @end

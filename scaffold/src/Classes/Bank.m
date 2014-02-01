@@ -17,4 +17,14 @@
     return [super init];
 }
 
+
+-(void) decreaseByAmount: (int) amount{
+    _currentTotal -= amount;
+}
+
+-(void) increaseByAmount: (int) amount{
+    _currentTotal += amount;
+}
+
+
 @end
