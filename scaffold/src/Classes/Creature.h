@@ -7,17 +7,23 @@
 //
 
 #import "Thing.h"
-#import "CombatType.h"
-#import "Terrain.h"
+
+
+@class Terrain, CombatType;
 
 @interface Creature : Thing{
-    NSInteger *_combatValue;
+    int _combatValue;
     CombatType *_combatType;
     Terrain *_terrain;
 }
 
-@property NSInteger *combatValue;
+@property int combatValue;
 @property CombatType *combatType;
 @property Terrain *terrain;
+
+
+-(Creature*) initWithId:(NSString*) creatureId andCombatValue: (int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename;
+
++(NSMutableDictionary*) initializeAllCreatures;
 
 @end

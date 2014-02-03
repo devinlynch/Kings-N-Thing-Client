@@ -10,8 +10,12 @@
 
 @interface SpecialAbility : NSObject{
     NSString *_specialAbilityID;
+    NSString *_specialAbilityName;
+
 }
 
 @property NSString *specialAbilityID;
+
+-(SpecialAbility*) initWithId:(NSString*) abilityId andName:(NSString*) name;
 
 @end

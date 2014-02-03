@@ -26,6 +26,18 @@
     int _gameHeight;
 }
 
+
+static GoldCollection *instance = nil;
+
++(GoldCollection*) getInstance{
+    
+    if (instance == nil) {
+        instance = [[GoldCollection alloc] init];
+        
+    }
+    return instance;
+}
+
 -(id) init
 {
     if ((self = [super init]))
@@ -137,6 +149,8 @@
     
 }
 
--(void) collectIncome{};
+-(void) collectIncome{
+
+};
 
 @end

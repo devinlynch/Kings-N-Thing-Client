@@ -15,4 +15,14 @@
 
 @property NSString *combatTypeID, *combatTypeName;
 
+
++(CombatType*) getMagicInstance;
++(CombatType*) getRangeInstance;
++(CombatType*) getFlyingInstance;
++(CombatType*) getMeleeInstance;
++(CombatType*) getChargedInstance;
+
+
+-(CombatType*) initWithId: (NSString*) typeId andName: (NSString*) name;
+
 @end

@@ -15,6 +15,16 @@
 
 @property NSString *terrainID, *terrainName;
 
--(Terrain*) initWithTerrainName: (NSString*) name;
+-(Terrain*) initWithID: (NSString*) terrainID andTerrainName: (NSString*) name;
+
++(Terrain*) getJungleInstance;
++(Terrain*) getSeaInstance;
++(Terrain*) getFrozenInstance;
++(Terrain*) getPlainesInstance;
++(Terrain*) getSwampInstance;
++(Terrain*) getMountainInstance;
++(Terrain*) getDesertInstance;
++(Terrain*) getForestInstance;
+
 
 @end

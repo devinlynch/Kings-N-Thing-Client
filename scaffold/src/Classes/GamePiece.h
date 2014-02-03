@@ -11,11 +11,11 @@
 
 @interface GamePiece : NSObject{
     NSString *_gamePieceID;
-    ScaledGamePiece *_image;
+    ScaledGamePiece *_pieceImage;
 }
 
 @property NSString *gamePieceID;
+@property ScaledGamePiece *pieceImage;
 
--(GamePiece*) initWithImageFileName: (NSString*) img;
 
 @end

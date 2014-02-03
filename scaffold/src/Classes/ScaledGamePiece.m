@@ -7,14 +7,18 @@
 //
 
 #import "ScaledGamePiece.h"
+#import "GamePiece.h"
 
 @implementation ScaledGamePiece{
 
 
 }
 
-- (id) initWithContentsOfFile:(NSString *)path
+- (id) initWithContentsOfFile:(NSString *)path andOwner:(GamePiece *)piece
 {
+    
+    _owner = piece;
+    
     ScaledGamePiece *img = [super initWithContentsOfFile:path generateMipmaps:NO];
     
     img.scaleX = 0.75f;
@@ -32,6 +36,8 @@
     SPImage *img = (SPImage*)event.target;
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
+    
+    NSLog(@"Touching piece with ID of %@", [[self owner] gamePieceID]);
     
     if (touches.count == 1)
     {

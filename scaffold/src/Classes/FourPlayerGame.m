@@ -11,6 +11,8 @@
 #import "TouchSheet.h"
 #import "TileMenu.h"
 #import "Scene.h"
+#import "GameState.h"
+#import "Creature.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -29,6 +31,8 @@
     int _gameHeight;
     
     SPImage *_hexTile;
+    
+    GameState *_state;
 }
 
 -(id) init
@@ -42,6 +46,8 @@
 
 -(void) setup
 {
+    
+    _state = [[GameState alloc] initGame];
 
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
@@ -69,9 +75,15 @@
     
     //Draw tiles
     [self drawTiles];
+    [self drawCreatures];
+    
 }
 
-
+-(void) drawCreatures{
+    for (NSString *creature in [_state gamePieceResource]) {
+        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
+    }
+}
 
 -(void) drawTiles
 {

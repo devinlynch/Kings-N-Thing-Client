@@ -11,11 +11,9 @@
 @implementation GamePiece
 
 @synthesize gamePieceID = _gamePieceID;
+@synthesize pieceImage = _pieceImage;
 
 
--(GamePiece*) initWithImageFileName:(NSString*)name{
-    _image = [[ScaledGamePiece alloc]initWithContentsOfFile:name];
-    return [super init];
-}
+
 
 @end
