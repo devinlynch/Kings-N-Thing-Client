@@ -15,4 +15,6 @@
 
 @property NSString *terrainID, *terrainName;
 
+-(Terrain*) initWithTerrainName: (NSString*) name;
+
 @end

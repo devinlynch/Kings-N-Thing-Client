@@ -16,6 +16,14 @@
 @synthesize pieces           = _pieces;
 
 
+
+-(BoardLocation*) init{
+    _locationID = [[NSString alloc] init];
+    _locationName = [[NSString alloc] init];
+    _pieces = [[NSMutableDictionary alloc] init];
+    return [super init];
+}
+
 -(void) addGamePieceToLocation: (GamePiece*) piece{
     [_pieces setObject:piece forKey:[piece gamePieceID]];
 }

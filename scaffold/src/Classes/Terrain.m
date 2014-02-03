@@ -13,4 +13,10 @@
 @synthesize terrainID   = _terrainID;
 @synthesize terrainName = _terrainName;
 
+-(Terrain*) initWithTerrainName: (NSString*) name{
+    _terrainName = [[NSString alloc] initWithString:name];
+    return [super init];
+}
+
+
 @end

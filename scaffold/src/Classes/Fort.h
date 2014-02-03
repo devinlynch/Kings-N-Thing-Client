@@ -15,4 +15,6 @@
 
 @property NSInteger *combatValue;
 
+-(void) takeHit: (int) damage;
+
 @end

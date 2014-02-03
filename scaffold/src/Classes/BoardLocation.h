@@ -20,6 +20,9 @@
 @property NSString *locationID, *locationName;
 @property NSMutableDictionary *pieces;
 
+
+-(BoardLocation*) init;
+
 -(void) addGamePieceToLocation: (GamePiece*) piece;
 
 -(GamePiece*) removePieceWithIdFromLocation: (NSString*) gamePieceId;
