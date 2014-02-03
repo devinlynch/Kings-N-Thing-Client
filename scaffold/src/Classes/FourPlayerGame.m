@@ -28,7 +28,7 @@
     int _gameWidth;
     int _gameHeight;
     
-    SPImage *_backTile;
+    SPImage *_hexTile;
 }
 
 -(id) init
@@ -71,97 +71,318 @@
     [self drawTiles];
 }
 
+
+
 -(void) drawTiles
 {
-    //Hexagon
-    
-    //Drawing hexagons for middle (5)
-    for (int i = 0; i < 5; i++){
+    //Drawing hexagons for middle (7)
+    for (int i = 0; i < 7; i++){
+        
         bool drawNext = false;
-        _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-        _backTile.x = 133;
-        _backTile.y = 20 + ((i  * (_backTile.height + 4)));
+        
+        if (i == 0) {
+            drawNext = true;
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];;
+        }
+        
+        if (i == 4) {
+            drawNext = true;
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"sea-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];;
+        }
+        if (i == 5) {
+            drawNext = true;
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];;
+        }
+        if (i == 6) {
+            drawNext = true;
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];;
+        }
         
         //Draw missing tile
         if (i == 1){
             drawNext = true;
-            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-            _backTile.x = 133;
-            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-            [_sheet addChild: _backTile];
-            
-            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-            
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];
         }
         
+        
         if (drawNext) {
-            //Drawing hexagon for left side after first hexagon (4)
-            for (int j = 0; j < 4; j ++) {
-                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                _backTile.x = 133 - (_backTile.width - 10);
-                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
-                [_sheet addChild: _backTile];
+            //Drawing hexagon for left side after first hexagon (6)
+            for (int j = 0; j < 6; j ++) {
                 
-                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                
+                if (j == 0){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
+                    _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                
+                if (j == 1){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 2){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
+                    _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 3){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+                    _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 4){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 5){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                
+        }
+            
+            //Drawing hexagon for right side after first hexagon (6)
+            for (int j = 0; j < 6; j ++) {
+                
+                if (j == 0){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
+                    _hexTile.x = 133 + (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                
+                if (j == 1){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
+                    _hexTile.x = 133 + (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 2){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile.x = 133 + (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 3){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile.x = 133 + (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 4){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
+                    _hexTile.x = 133 + (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 5){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
+                    _hexTile.x = 133 + (_hexTile.width - 10);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
+                    [_sheet addChild: _hexTile];
+                }
+
+                
+                
                 
             }
             
-            //Drawing hexagon for right side after first hexagon (4)
-            for (int j = 0; j < 4; j ++) {
-                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                _backTile.x = 133 + (_backTile.width - 10);
-                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + _backTile.height /2 ;
-                [_sheet addChild: _backTile];
-                
-                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-                
-            }
             drawNext = false;
         }
         
         //Draw missing tile 2
         if (i == 2){
             drawNext = true;
-            _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-            _backTile.x = 133;
-            _backTile.y = 20 + ((i  * (_backTile.height + 4)));
-            [_sheet addChild: _backTile];
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];
             
-            [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
             
         }
+        
+      //Draw thrid row
+        
         if (drawNext) {
-            //Drawing hexagon for left side after first hexagon (3)
-            for (int j = 0; j < 3; j ++) {
-                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                _backTile.x = 133 - ((_backTile.width * 2) - 20);
-                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
-                [_sheet addChild: _backTile];
+            //Drawing hexagon for left side after first hexagon (5)
+            for (int j = 0; j < 5; j ++) {
+   
+                if (j == 0 ){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 1 ){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 2 ){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 3 ){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 4 ){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
                 
-                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                
             }
             
-            //Drawing hexagon for right side after first hexagon (3)
-            for (int j = 0; j < 3; j ++) {
-                _backTile = [[SPImage alloc]initWithContentsOfFile:@"back-tile.png"];
-                _backTile.x = 133 + ((_backTile.width * 2) - 20);
-                _backTile.y = 20 + ((j  * (_backTile.height + 4))) + (_backTile.height) ;
-                [_sheet addChild: _backTile];
+            //Drawing hexagon for right side after first hexagon (5)
+            for (int j = 0; j < 5; j ++) {
                 
-                [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                if (j == 0) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 1) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 2) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 3) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 4) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
+                    _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                
             }
             
             drawNext = false;
         }
         
-        [_sheet addChild: _backTile];
+        //Draw missing tile 3
+        if (i == 3){
+            drawNext = true;
+            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
+            _hexTile.x = 133;
+            _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
+            [_sheet addChild: _hexTile];
+        }
+            
         
-        
-        [_backTile addEventListener:@selector(onClickTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+        //Draw fourth row
+        if (drawNext) {
+            //Drawing hexagon for left side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+                
+                if (j == 0){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 1){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 2){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 3){
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
+                    _hexTile.x = 133 - ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                
+                
+            }
+            
+            //Drawing hexagon for right side after first hexagon (4)
+            for (int j = 0; j < 4; j ++) {
+                
+                if (j == 0) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 1) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 2) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                if (j == 3) {
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
+                    _hexTile.x = 133 + ((_hexTile.width * 3) - 30);
+                    _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
+                    [_sheet addChild: _hexTile];
+                }
+                
+                
+            }
+            
+            drawNext = false;
+        }
+        [_sheet addChild: _hexTile];
     }
-    
-
-
 }
 
 -(void) showScene:(SPSprite *)scene

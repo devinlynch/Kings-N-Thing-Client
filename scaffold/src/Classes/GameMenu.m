@@ -1,6 +1,8 @@
 #import "TwoThreePlayerGame.h"
 #import "GameMenu.h"
+#import "GoldCollection.h"
 #import "Scene.h"
+#import "FourPlayerGame.h"
 
 
 @implementation GameMenu
@@ -29,7 +31,12 @@
         [self addChild:_mainMenu];
         
         // choose which scenes will be accessible
-        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class]];
+        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class],
+                                    @"Gold Collection",[GoldCollection class],
+                                    @"t1", [TwoThreePlayerGame class],
+                                    @"t2",[GoldCollection class],
+                                    @"t3",[GoldCollection class],
+                                    @"4 Players", [FourPlayerGame class]];
         
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
         int count = 0;
@@ -42,8 +49,8 @@
             Class sceneClass = scenesToCreate[index++];
             
             SPButton *button = [SPButton buttonWithUpState:buttonTexture text:sceneTitle];
-           // button.x = count % 2 == 0 ? 28 : 167;
-            button.x = (Sparrow.stage.width / 2) - button.width /2;
+            button.x = count % 2 == 0 ? 28 : 167;
+          //  button.x = (Sparrow.stage.width / 2) - button.width /2;
             button.y = _offsetY + 170 + (count / 2) * 52;
             button.name = NSStringFromClass(sceneClass);
             
