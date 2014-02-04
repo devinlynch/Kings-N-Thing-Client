@@ -15,6 +15,7 @@
 @synthesize combatValue = _combatValue;
 @synthesize combatType  = _combatType;
 @synthesize terrain = _terrain;
+@synthesize fileName = _fileName;
 
 
 -(Creature*) initWithId:(NSString*) creatureId andCombatValue:(int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename{
@@ -23,7 +24,29 @@
     _combatType = type;
     _terrain = t;
     _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
+    _fileName = [[NSString alloc] initWithString:filename];
+    [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+    
     return [super init];
+}
+
+
+-(void) creatureDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:[self pieceImage] andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch *clicks = [touches objectAtIndex:0];
+        if (clicks.tapCount == 2){
+            NSLog(@"le double click");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:self];
+        }
+        
+    }
+    
 }
 
 

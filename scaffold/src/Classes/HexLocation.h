@@ -8,7 +8,7 @@
 
 #import "BoardLocation.h"
 
-@class HexTile, Stack, Player;
+@class HexTile, Stack, Player, Terrain;
 
 @interface HexLocation : BoardLocation{
     Player  *_owner;
@@ -21,6 +21,8 @@
 @property Player  *owner;
 @property NSMutableDictionary *neighbours;
 @property NSMutableDictionary *stacks;
+
+-(HexLocation*) initWithTerrain
 
 -(void) addStack: (Stack*) stack;
 -(void) removeStack: (Stack*) stack;

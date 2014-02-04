@@ -24,7 +24,7 @@
     img.scaleX = 0.75f;
     img.scaleY = 0.75f;
     
-    [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+   // [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
  
     return img;

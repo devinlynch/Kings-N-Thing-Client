@@ -52,6 +52,8 @@
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
 		41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C011898309A00CA876D /* GUIStateHandler.m */; };
 		41B01C051898321D00CA876D /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C041898321D00CA876D /* Move.m */; };
+		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
+		41D2CFDF18A13CFF0032CFB6 /* red-hilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D2CFDE18A13CFF0032CFB6 /* red-hilight.png */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
 		99098DA1188F554C00139EA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -384,6 +386,9 @@
 		41B01C011898309A00CA876D /* GUIStateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIStateHandler.m; sourceTree = "<group>"; };
 		41B01C031898321D00CA876D /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		41B01C041898321D00CA876D /* Move.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Move.m; sourceTree = "<group>"; };
+		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
+		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
+		41D2CFDE18A13CFF0032CFB6 /* red-hilight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-hilight.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		99098D98188F54C500139EA4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		99098D9E188F554C00139EA4 /* 3004iPhone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "3004iPhone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1035,6 +1040,8 @@
 				99A78F2318957DE4005D31E5 /* GameEventHandler.m */,
 				41B01C001898309A00CA876D /* GUIStateHandler.h */,
 				41B01C011898309A00CA876D /* GUIStateHandler.m */,
+				41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */,
+				41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -1325,6 +1332,7 @@
 		DE991FEB1884825B006C759F /* landtiles */ = {
 			isa = PBXGroup;
 			children = (
+				41D2CFDE18A13CFF0032CFB6 /* red-hilight.png */,
 				DE94539B1885074A00C4A71F /* back-tile.png */,
 				DE991FED1884825B006C759F /* desert-tile.png */,
 				DE991FEE1884825B006C759F /* forest-tile.png */,
@@ -1642,6 +1650,7 @@
 				DE951FC01891765600A5C77C /* T_Frozen_Waste_059.png in Resources */,
 				DE951FE31891765600A5C77C /* T_Mountains_050.png in Resources */,
 				DE951FA01891765600A5C77C /* T_Desert_118.png in Resources */,
+				41D2CFDF18A13CFF0032CFB6 /* red-hilight.png in Resources */,
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
 				DE951FF01891765600A5C77C /* T_Plains_025.png in Resources */,
 				DE951FEF1891765600A5C77C /* T_Plains_024.png in Resources */,
@@ -1671,6 +1680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */,
 				99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */,
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
 				99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */,
