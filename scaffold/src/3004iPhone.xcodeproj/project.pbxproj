@@ -260,6 +260,17 @@
 		DE99200C188487FD006C759F /* mainMenuBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99200B188487FD006C759F /* mainMenuBackground.png */; };
 		DE99200F18848836006C759F /* Rack.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99200E18848836006C759F /* Rack.png */; };
 		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
+		DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350918A097510031BF8C /* RecruitThings.m */; };
+		DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */; };
+		DEA6351118A0A0620031BF8C /* GameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6351018A0A0620031BF8C /* GameBoard.m */; };
+		DEA6351418A0A3910031BF8C /* Combat.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6351318A0A3910031BF8C /* Combat.m */; };
+		DEA6351618A0AC160031BF8C /* recruitThings.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351518A0AC160031BF8C /* recruitThings.png */; };
+		DEA6351818A0B00D0031BF8C /* buy.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351718A0B00D0031BF8C /* buy.png */; };
+		DEA6351A18A0B0190031BF8C /* free.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351918A0B0190031BF8C /* free.png */; };
+		DEA6351C18A0B0590031BF8C /* trade.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351B18A0B0590031BF8C /* trade.png */; };
+		DEA6351E18A0B16F0031BF8C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351D18A0B16F0031BF8C /* back.png */; };
+		DEA6352018A0B2FA0031BF8C /* rackbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351F18A0B2FA0031BF8C /* rackbtn.png */; };
+		DEA6352218A0B3080031BF8C /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6352118A0B3080031BF8C /* board.png */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		DEAD9A831885EF7B00196017 /* T_Swamp_065.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A7E1885EF7B00196017 /* T_Swamp_065.png */; };
 		DEAD9A841885EF7B00196017 /* T_Swamp_066.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A7F1885EF7B00196017 /* T_Swamp_066.png */; };
@@ -639,6 +650,21 @@
 		DE99200E18848836006C759F /* Rack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rack.png; sourceTree = "<group>"; };
 		DEA17CEC189801B200A743C6 /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
 		DEA17CED189801B200A743C6 /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
+		DEA6350818A097510031BF8C /* RecruitThings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThings.h; sourceTree = "<group>"; };
+		DEA6350918A097510031BF8C /* RecruitThings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitThings.m; sourceTree = "<group>"; };
+		DEA6350C18A09B470031BF8C /* RecruitOptionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitOptionMenu.h; sourceTree = "<group>"; };
+		DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitOptionMenu.m; sourceTree = "<group>"; };
+		DEA6350F18A0A0620031BF8C /* GameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBoard.h; sourceTree = "<group>"; };
+		DEA6351018A0A0620031BF8C /* GameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoard.m; sourceTree = "<group>"; };
+		DEA6351218A0A3910031BF8C /* Combat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combat.h; sourceTree = "<group>"; };
+		DEA6351318A0A3910031BF8C /* Combat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combat.m; sourceTree = "<group>"; };
+		DEA6351518A0AC160031BF8C /* recruitThings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recruitThings.png; sourceTree = "<group>"; };
+		DEA6351718A0B00D0031BF8C /* buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy.png; sourceTree = "<group>"; };
+		DEA6351918A0B0190031BF8C /* free.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = free.png; sourceTree = "<group>"; };
+		DEA6351B18A0B0590031BF8C /* trade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trade.png; sourceTree = "<group>"; };
+		DEA6351D18A0B16F0031BF8C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		DEA6351F18A0B2FA0031BF8C /* rackbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rackbtn.png; sourceTree = "<group>"; };
+		DEA6352118A0B3080031BF8C /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DEAD9A7E1885EF7B00196017 /* T_Swamp_065.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_065.png; sourceTree = "<group>"; };
 		DEAD9A7F1885EF7B00196017 /* T_Swamp_066.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_066.png; sourceTree = "<group>"; };
@@ -1160,6 +1186,7 @@
 			children = (
 				DE080C9A189F54DE006E9EDB /* goldCollection.png */,
 				DEAD9A881885F89500196017 /* SwampTileMenu.png */,
+				DEA6351518A0AC160031BF8C /* recruitThings.png */,
 				DE94539D1885122900C4A71F /* Button-Normal@2x.png */,
 				DE991FF51884825B006C759F /* masterGameBoard.png */,
 				DE991FF61884825B006C759F /* TwoThreeBoard.png */,
@@ -1171,7 +1198,13 @@
 		DE9453B51885CD3000C4A71F /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				DEA6351918A0B0190031BF8C /* free.png */,
+				DEA6351718A0B00D0031BF8C /* buy.png */,
 				DEC9AF24189F660B0074E3E0 /* booton.png */,
+				DEA6351F18A0B2FA0031BF8C /* rackbtn.png */,
+				DEA6352118A0B3080031BF8C /* board.png */,
+				DEA6351D18A0B16F0031BF8C /* back.png */,
+				DEA6351B18A0B0590031BF8C /* trade.png */,
 				DEC9AF26189F69050074E3E0 /* besbuton.png */,
 				DE991FE81884825B006C759F /* Bowl.png */,
 				DE991FE91884825B006C759F /* creature5.png */,
@@ -1321,12 +1354,20 @@
 				DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */,
 				DEA17CEC189801B200A743C6 /* FourPlayerGame.h */,
 				DEA17CED189801B200A743C6 /* FourPlayerGame.m */,
+				DEA6350F18A0A0620031BF8C /* GameBoard.h */,
+				DEA6351018A0A0620031BF8C /* GameBoard.m */,
+				DEA6351218A0A3910031BF8C /* Combat.h */,
+				DEA6351318A0A3910031BF8C /* Combat.m */,
 				DE9453B61885CE5B00C4A71F /* TileMenu.h */,
 				DE9453B71885CE5B00C4A71F /* TileMenu.m */,
 				4131C2FA188876AC009775EA /* LoginMenu.h */,
 				4131C2FB188876AC009775EA /* LoginMenu.m */,
 				DE126A271899CC2F0095DD6D /* GoldCollection.h */,
 				DE126A281899CC2F0095DD6D /* GoldCollection.m */,
+				DEA6350818A097510031BF8C /* RecruitThings.h */,
+				DEA6350918A097510031BF8C /* RecruitThings.m */,
+				DEA6350C18A09B470031BF8C /* RecruitOptionMenu.h */,
+				DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1538,6 +1579,7 @@
 				DE945396188501AC00C4A71F /* dice4.png in Resources */,
 				DE951FD01891765600A5C77C /* T_Jungle_010.png in Resources */,
 				DEAD9A831885EF7B00196017 /* T_Swamp_065.png in Resources */,
+				DEA6351C18A0B0590031BF8C /* trade.png in Resources */,
 				DE951F9C1891765600A5C77C /* T_Desert_114.png in Resources */,
 				DE951FC31891765600A5C77C /* T_Frozen_Waste_062.png in Resources */,
 				DE951FF21891765600A5C77C /* T_Plains_027.png in Resources */,
@@ -1572,6 +1614,7 @@
 				DE951FDE1891765600A5C77C /* T_Mountains_045.png in Resources */,
 				DE951FF51891765600A5C77C /* T_Plains_030.png in Resources */,
 				DE945395188501AC00C4A71F /* dice3.png in Resources */,
+				DEA6351E18A0B16F0031BF8C /* back.png in Resources */,
 				DE945398188501AC00C4A71F /* dice6.png in Resources */,
 				99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */,
 				9911516B1891AB16004E8FFB /* btn@2x.png in Resources */,
@@ -1607,6 +1650,7 @@
 				DE9520041891765600A5C77C /* T_Swamp_076.png in Resources */,
 				DE951FC91891765600A5C77C /* T_Jungle_003.png in Resources */,
 				DEB0F579189EEC0F00FDDB86 /* mountain-tile.png in Resources */,
+				DEA6352018A0B2FA0031BF8C /* rackbtn.png in Resources */,
 				DE951FD11891765600A5C77C /* T_Jungle_011.png in Resources */,
 				DE991FF71884825B006C759F /* Bowl.png in Resources */,
 				DE951FBF1891765600A5C77C /* T_Frozen_Waste_058.png in Resources */,
@@ -1620,6 +1664,7 @@
 				DE951FFC1891765600A5C77C /* T_Swamp_068.png in Resources */,
 				DE951FB61891765600A5C77C /* T_Forest_103.png in Resources */,
 				DE951FCC1891765600A5C77C /* T_Jungle_006.png in Resources */,
+				DEA6351818A0B00D0031BF8C /* buy.png in Resources */,
 				DEAD9A841885EF7B00196017 /* T_Swamp_066.png in Resources */,
 				DE0C710B162417A600357F6E /* Icon.png in Resources */,
 				DE951FC41891765600A5C77C /* T_Frozen_Waste_063.png in Resources */,
@@ -1631,7 +1676,9 @@
 				DE951FD81891765600A5C77C /* T_Mountains_039.png in Resources */,
 				DEAD9A891885F89500196017 /* SwampTileMenu.png in Resources */,
 				9911515C1891A82F004E8FFB /* login.png in Resources */,
+				DEA6351618A0AC160031BF8C /* recruitThings.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
+				DEA6352218A0B3080031BF8C /* board.png in Resources */,
 				991151611891A8D1004E8FFB /* field@2x.png in Resources */,
 				DE945393188501AC00C4A71F /* dice1.png in Resources */,
 				DE951F9E1891765600A5C77C /* T_Desert_116.png in Resources */,
@@ -1668,6 +1715,7 @@
 				DE991FFD1884825B006C759F /* frozen-tile.png in Resources */,
 				DE951FA21891765600A5C77C /* T_Desert_120.png in Resources */,
 				DE951FA61891765600A5C77C /* T_Forest_087.png in Resources */,
+				DEA6351A18A0B0190031BF8C /* free.png in Resources */,
 				DE951FF91891765600A5C77C /* T_Swamp_065.png in Resources */,
 				DE951FA91891765600A5C77C /* T_Forest_090.png in Resources */,
 			);
@@ -1711,6 +1759,7 @@
 				99098DBD188F5C3200139EA4 /* Utils.m in Sources */,
 				4131C2B018876C8D009775EA /* PlayingCup.m in Sources */,
 				99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */,
+				DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
 				4131C2E918877047009775EA /* CityVill.m in Sources */,
@@ -1721,6 +1770,7 @@
 				4131C2EC18877054009775EA /* NonCityVill.m in Sources */,
 				4131C2B618876CAE009775EA /* Player.m in Sources */,
 				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
+				DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
 				4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */,
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
@@ -1739,6 +1789,7 @@
 				DE9453B81885CE5B00C4A71F /* TileMenu.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */,
 				4131C2C418876DBF009775EA /* Fort.m in Sources */,
@@ -1747,6 +1798,7 @@
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				DEA6351118A0A0620031BF8C /* GameBoard.m in Sources */,
 				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,
 				4131C2F3188770B6009775EA /* FortLevel.m in Sources */,
 				DE4A3DE510FFB2AF00FDA492 /* GameMenu.m in Sources */,

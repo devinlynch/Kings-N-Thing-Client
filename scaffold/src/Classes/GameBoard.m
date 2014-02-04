@@ -1,23 +1,22 @@
 //
-//  FourPlayerGame.m
+//  PlaceOnBoard.m
 //  3004iPhone
 //
-//  Created by Richard Ison on 1/28/2014.
+//  Created by Richard Ison on 2/3/2014.
 //
 //
 
-#import "FourPlayerGame.h"
+#import "GameBoard.h"
+#import "TouchSheet.h"
+#import "RecruitThings.h"
 #import "ScaledGamePiece.h"
 #import "TouchSheet.h"
 #import "TileMenu.h"
 #import "Scene.h"
+#import "GameMenu.h"
+#import "RecruitOptionMenu.h"
 
-@interface FourPlayerGame ()
-- (void) setup;
-- (void) showScene:(SPSprite*)scene;
-@end
-
-@implementation FourPlayerGame{
+@implementation GameBoard{
     NSMutableArray *gamePieces;
     
     SPSprite *_currentScene;
@@ -39,6 +38,7 @@
     SPTextField *_bankText;
 }
 
+
 -(id) init
 {
     if ((self = [super init]))
@@ -50,7 +50,7 @@
 
 -(void) setup
 {
-
+    
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
@@ -66,33 +66,29 @@
     background.y = 0;
     
     // used to handle movement and zooming of board
-   // TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
+    // TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     _sheet = [[TouchSheet alloc] initWithQuad:background];
     
     //Add the sheet to the contents so that it appears
-  //  [_contents addChild:sheet];
+    //  [_contents addChild:sheet];
     //Add the sheet to the contents so that it appears
     [_contents addChild:_sheet];
     
     //Draw tiles
     [self drawTiles];
     
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"btn.png"];
+    SPButton * button3 = [SPButton buttonWithUpState:buttonTexture text:@"Back"];
+    
+    button3.x = 320 / 2 - button3.width /2;
+    button3.y = 450;
+    
+    [_contents addChild:button3];
+    
+    [button3 addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
-    _rack = [[SPImage alloc] initWithContentsOfFile:@"Rack.png"];
-    _rack.x = 5;
-    _rack.y = 350;
-    [_contents addChild:_rack];
-    [gamePieces addObject:_rack];
-    
-    
-    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
-    _bowl.x = 10;
-    _bowl.y = 310;
-    [_contents addChild:_bowl];
-    [gamePieces addObject:_bowl];
-
 }
 
 
@@ -187,7 +183,7 @@
                     [_sheet addChild: _hexTile];
                 }
                 
-        }
+            }
             
             //Drawing hexagon for right side after first hexagon (6)
             for (int j = 0; j < 6; j ++) {
@@ -229,7 +225,7 @@
                     _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
                     [_sheet addChild: _hexTile];
                 }
-
+                
                 
                 
                 
@@ -250,12 +246,12 @@
             
         }
         
-      //Draw thrid row
+        //Draw thrid row
         
         if (drawNext) {
             //Drawing hexagon for left side after first hexagon (5)
             for (int j = 0; j < 5; j ++) {
-   
+                
                 if (j == 0 ){
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
                     _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
@@ -337,7 +333,7 @@
             _hexTile.y = 20 + ((i  * (_hexTile.height + 4)));
             [_sheet addChild: _hexTile];
         }
-            
+        
         
         //Draw fourth row
         if (drawNext) {
@@ -413,7 +409,19 @@
 {
     [self addChild:scene];
     scene.visible = YES;
-
+    
 }
+
+-(void) onButtonTriggered: (SPEvent *) event
+{
+    NSLog(@"Back to recruit option menu");
+    //    GameMenu *gameMenu = [[GameMenu alloc] init];
+    //    [self showScene:gameMenu];
+    
+    
+    _contents.visible = NO;
+    
+}
+
 
 @end

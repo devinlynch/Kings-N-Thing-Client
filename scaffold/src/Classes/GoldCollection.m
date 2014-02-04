@@ -107,13 +107,13 @@
     [button addEventListener:@selector(collectIncome) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     //Button
-    SPTexture *buttonTexture2 = [SPTexture textureWithContentsOfFile:@"btn.png"];
+    SPTexture *buttonTexture2 = [SPTexture textureWithContentsOfFile:@"back.png"];
 
-    SPButton * button2 = [SPButton buttonWithUpState:buttonTexture2 text:@"back"];
+    SPButton * button2 = [SPButton buttonWithUpState:buttonTexture2];
  
     
     button2.x = 320 / 2 - button2.width /2;
-    button2.y = 450;
+    button2.y = 410;
     
     [_contents addChild:button2];
     
@@ -133,7 +133,7 @@
 -(void) onButtonTriggered: (SPEvent *) event
 {
     NSLog(@"Back to game board");
-    GameMenu *gameMenu = [[GameMenu alloc] init];
+   GameMenu *gameMenu = [[GameMenu alloc] init];
     [self showScene:gameMenu];
     _contents.visible = NO;
     
