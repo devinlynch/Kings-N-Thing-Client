@@ -91,6 +91,9 @@
 		99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E71894390A00E4A788 /* LobbyNotification.m */; };
 		99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6EA1894399300E4A788 /* GameLobby.m */; };
 		99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */; };
+		DE04789618A1EE3C00B4125D /* FourPlayerBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE04789518A1EE3C00B4125D /* FourPlayerBackground@2x.png */; };
+		DE04789918A1EE4500B4125D /* indiv.png in Resources */ = {isa = PBXBuildFile; fileRef = DE04789818A1EE4500B4125D /* indiv.png */; };
+		DE04789B18A1EE4E00B4125D /* stack.png in Resources */ = {isa = PBXBuildFile; fileRef = DE04789A18A1EE4E00B4125D /* stack.png */; };
 		DE080C9B189F54DE006E9EDB /* goldCollection.png in Resources */ = {isa = PBXBuildFile; fileRef = DE080C9A189F54DE006E9EDB /* goldCollection.png */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
@@ -271,6 +274,10 @@
 		DEA6351E18A0B16F0031BF8C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351D18A0B16F0031BF8C /* back.png */; };
 		DEA6352018A0B2FA0031BF8C /* rackbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6351F18A0B2FA0031BF8C /* rackbtn.png */; };
 		DEA6352218A0B3080031BF8C /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6352118A0B3080031BF8C /* board.png */; };
+		DEA6352418A16AB00031BF8C /* GoldCollectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6352318A16AB00031BF8C /* GoldCollectionBackground@2x.png */; };
+		DEA6352618A16D730031BF8C /* CollectCoinsBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6352518A16D730031BF8C /* CollectCoinsBtn.png */; };
+		DEA6352818A1725A0031BF8C /* RecruitThingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEA6352718A1725A0031BF8C /* RecruitThingsBackground@2x.png */; };
+		DEA6352B18A190380031BF8C /* Movement.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6352A18A190380031BF8C /* Movement.m */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		DEAD9A831885EF7B00196017 /* T_Swamp_065.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A7E1885EF7B00196017 /* T_Swamp_065.png */; };
 		DEAD9A841885EF7B00196017 /* T_Swamp_066.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A7F1885EF7B00196017 /* T_Swamp_066.png */; };
@@ -280,7 +287,6 @@
 		DEAD9A891885F89500196017 /* SwampTileMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DEAD9A881885F89500196017 /* SwampTileMenu.png */; };
 		DEB0F579189EEC0F00FDDB86 /* mountain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB0F578189EEC0F00FDDB86 /* mountain-tile.png */; };
 		DEB0F581189EF4DA00FDDB86 /* jungle-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB0F580189EF4DA00FDDB86 /* jungle-tile.png */; };
-		DEC9AF25189F660B0074E3E0 /* booton.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC9AF24189F660B0074E3E0 /* booton.png */; };
 		DEC9AF27189F69050074E3E0 /* besbuton.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC9AF26189F69050074E3E0 /* besbuton.png */; };
 /* End PBXBuildFile section */
 
@@ -472,6 +478,9 @@
 		99F9B6EA1894399300E4A788 /* GameLobby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLobby.m; sourceTree = "<group>"; };
 		99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindLobbyViewController.h; sourceTree = "<group>"; };
 		99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindLobbyViewController.m; sourceTree = "<group>"; };
+		DE04789518A1EE3C00B4125D /* FourPlayerBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FourPlayerBackground@2x.png"; sourceTree = "<group>"; };
+		DE04789818A1EE4500B4125D /* indiv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indiv.png; sourceTree = "<group>"; };
+		DE04789A18A1EE4E00B4125D /* stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stack.png; sourceTree = "<group>"; };
 		DE080C9A189F54DE006E9EDB /* goldCollection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldCollection.png; sourceTree = "<group>"; };
 		DE0C71001624177000357F6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE0C71021624177500357F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -665,6 +674,11 @@
 		DEA6351D18A0B16F0031BF8C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		DEA6351F18A0B2FA0031BF8C /* rackbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rackbtn.png; sourceTree = "<group>"; };
 		DEA6352118A0B3080031BF8C /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		DEA6352318A16AB00031BF8C /* GoldCollectionBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GoldCollectionBackground@2x.png"; sourceTree = "<group>"; };
+		DEA6352518A16D730031BF8C /* CollectCoinsBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CollectCoinsBtn.png; sourceTree = "<group>"; };
+		DEA6352718A1725A0031BF8C /* RecruitThingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecruitThingsBackground@2x.png"; sourceTree = "<group>"; };
+		DEA6352918A190380031BF8C /* Movement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movement.h; sourceTree = "<group>"; };
+		DEA6352A18A190380031BF8C /* Movement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movement.m; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DEAD9A7E1885EF7B00196017 /* T_Swamp_065.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_065.png; sourceTree = "<group>"; };
 		DEAD9A7F1885EF7B00196017 /* T_Swamp_066.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_066.png; sourceTree = "<group>"; };
@@ -674,7 +688,6 @@
 		DEAD9A881885F89500196017 /* SwampTileMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwampTileMenu.png; sourceTree = "<group>"; };
 		DEB0F578189EEC0F00FDDB86 /* mountain-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mountain-tile.png"; sourceTree = "<group>"; };
 		DEB0F580189EF4DA00FDDB86 /* jungle-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jungle-tile.png"; sourceTree = "<group>"; };
-		DEC9AF24189F660B0074E3E0 /* booton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = booton.png; sourceTree = "<group>"; };
 		DEC9AF26189F69050074E3E0 /* besbuton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = besbuton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1184,6 +1197,8 @@
 		DE9453B41885CD1B00C4A71F /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				DEA6352318A16AB00031BF8C /* GoldCollectionBackground@2x.png */,
+				DE04789518A1EE3C00B4125D /* FourPlayerBackground@2x.png */,
 				DE080C9A189F54DE006E9EDB /* goldCollection.png */,
 				DEAD9A881885F89500196017 /* SwampTileMenu.png */,
 				DEA6351518A0AC160031BF8C /* recruitThings.png */,
@@ -1200,10 +1215,13 @@
 			children = (
 				DEA6351918A0B0190031BF8C /* free.png */,
 				DEA6351718A0B00D0031BF8C /* buy.png */,
-				DEC9AF24189F660B0074E3E0 /* booton.png */,
+				DEA6352518A16D730031BF8C /* CollectCoinsBtn.png */,
+				DEA6352718A1725A0031BF8C /* RecruitThingsBackground@2x.png */,
 				DEA6351F18A0B2FA0031BF8C /* rackbtn.png */,
 				DEA6352118A0B3080031BF8C /* board.png */,
+				DE04789A18A1EE4E00B4125D /* stack.png */,
 				DEA6351D18A0B16F0031BF8C /* back.png */,
+				DE04789818A1EE4500B4125D /* indiv.png */,
 				DEA6351B18A0B0590031BF8C /* trade.png */,
 				DEC9AF26189F69050074E3E0 /* besbuton.png */,
 				DE991FE81884825B006C759F /* Bowl.png */,
@@ -1356,6 +1374,8 @@
 				DEA17CED189801B200A743C6 /* FourPlayerGame.m */,
 				DEA6350F18A0A0620031BF8C /* GameBoard.h */,
 				DEA6351018A0A0620031BF8C /* GameBoard.m */,
+				DEA6352918A190380031BF8C /* Movement.h */,
+				DEA6352A18A190380031BF8C /* Movement.m */,
 				DEA6351218A0A3910031BF8C /* Combat.h */,
 				DEA6351318A0A3910031BF8C /* Combat.m */,
 				DE9453B61885CE5B00C4A71F /* TileMenu.h */,
@@ -1556,6 +1576,7 @@
 				DE951FCB1891765600A5C77C /* T_Jungle_005.png in Resources */,
 				DE951F951891765600A5C77C /* T_Desert_107.png in Resources */,
 				DE951FDF1891765600A5C77C /* T_Mountains_046.png in Resources */,
+				DEA6352618A16D730031BF8C /* CollectCoinsBtn.png in Resources */,
 				DE115963162320F800A25086 /* background@2x.jpg in Resources */,
 				DE951FC81891765600A5C77C /* T_Jungle_002.png in Resources */,
 				DE951FBE1891765600A5C77C /* T_Frozen_Waste_057.png in Resources */,
@@ -1565,11 +1586,11 @@
 				DE951FAF1891765600A5C77C /* T_Forest_096.png in Resources */,
 				DE951F981891765600A5C77C /* T_Desert_110.png in Resources */,
 				DE94539E1885122900C4A71F /* Button-Normal@2x.png in Resources */,
-				DEC9AF25189F660B0074E3E0 /* booton.png in Resources */,
 				DE951FFA1891765600A5C77C /* T_Swamp_066.png in Resources */,
 				DE94539C1885074A00C4A71F /* back-tile.png in Resources */,
 				DE951FEA1891765600A5C77C /* T_Plains_019.png in Resources */,
 				DE99200F18848836006C759F /* Rack.png in Resources */,
+				DE04789918A1EE4500B4125D /* indiv.png in Resources */,
 				DE951FB51891765600A5C77C /* T_Forest_102.png in Resources */,
 				DE945397188501AC00C4A71F /* dice5.png in Resources */,
 				DE951FE11891765600A5C77C /* T_Mountains_048.png in Resources */,
@@ -1620,6 +1641,7 @@
 				9911516B1891AB16004E8FFB /* btn@2x.png in Resources */,
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
 				99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */,
+				DEA6352818A1725A0031BF8C /* RecruitThingsBackground@2x.png in Resources */,
 				DE9920031884825B006C759F /* masterGameBoard.png in Resources */,
 				DE951FAE1891765600A5C77C /* T_Forest_095.png in Resources */,
 				DE951FB91891765600A5C77C /* T_Frozen_Waste_052.png in Resources */,
@@ -1685,6 +1707,7 @@
 				DE951F9D1891765600A5C77C /* T_Desert_115.png in Resources */,
 				DE951FBC1891765600A5C77C /* T_Frozen_Waste_055.png in Resources */,
 				DE951FBB1891765600A5C77C /* T_Frozen_Waste_054.png in Resources */,
+				DE04789618A1EE3C00B4125D /* FourPlayerBackground@2x.png in Resources */,
 				DE951FD21891765600A5C77C /* T_Jungle_012.png in Resources */,
 				DE951FD71891765600A5C77C /* T_Mountains_038.png in Resources */,
 				DE991FF81884825B006C759F /* creature5.png in Resources */,
@@ -1717,6 +1740,8 @@
 				DE951FA61891765600A5C77C /* T_Forest_087.png in Resources */,
 				DEA6351A18A0B0190031BF8C /* free.png in Resources */,
 				DE951FF91891765600A5C77C /* T_Swamp_065.png in Resources */,
+				DEA6352418A16AB00031BF8C /* GoldCollectionBackground@2x.png in Resources */,
+				DE04789B18A1EE4E00B4125D /* stack.png in Resources */,
 				DE951FA91891765600A5C77C /* T_Forest_090.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1760,6 +1785,7 @@
 				4131C2B018876C8D009775EA /* PlayingCup.m in Sources */,
 				99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */,
 				DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */,
+				DEA6352B18A190380031BF8C /* Movement.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
 				4131C2E918877047009775EA /* CityVill.m in Sources */,

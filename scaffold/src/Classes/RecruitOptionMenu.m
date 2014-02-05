@@ -42,11 +42,11 @@
     int offset = 10;
     
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"recruitThings.png"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"RecruitThingsBackground@2x.png"];
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = 0;
+    background.y = -60;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];

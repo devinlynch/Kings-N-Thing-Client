@@ -24,6 +24,8 @@
     
     int _gameWidth;
     int _gameHeight;
+    
+    
 }
 
 -(id) init
@@ -45,79 +47,63 @@
     [self addChild:_contents];
     
     int offset = 10;
-    
-    
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"goldCollection.png"];
+
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"GoldCollectionBackground@2x.png"];
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = 0;
+    background.y = -45;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];
     
     
-//    SPImage *logo = [[SPImage alloc] initWithContentsOfFile:@"logo.png"];
-//    logo.x = 31;
-//    logo.y=  5;
-//    logo.scaleX = 0.5;
-//    logo.scaleY = 0.5;
-//    
-//    [_contents addChild:logo];
-    
-    //Text
+    //Username text
     SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
         text:@"Username"];
-    welcomeTF.x = welcomeTF.y = offset;
+    welcomeTF.x = _gameWidth / 2 - welcomeTF.width / 2;
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;
     welcomeTF.color = 0xffffff;
     [_contents addChild:welcomeTF];
     
     
-    //Text
+    //GoldPiece text
     SPTextField *goldTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Gold pieces: 9999"];
-    goldTF.x = offset + 10;
-    goldTF.y = 315;
+                                                     text:@"Gold pieces: 9999"];
+    goldTF.x = _gameWidth / 2 - goldTF.width / 2;
+    goldTF.y = _gameHeight - goldTF.height * 2;
     goldTF.fontName = @"ArialMT";
     goldTF.fontSize = 25;
     goldTF.color = SP_YELLOW;
     [_contents addChild:goldTF];
     
-    //Text
+    //Income text
     SPTextField *incomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                     text:@"Income: 9999"];
-    incomeTF.x = offset +10;
-    incomeTF.y = 345;
+                                                       text:@"Income: 9999"];
+    incomeTF.x = _gameWidth / 2 - incomeTF.width / 2;
+    incomeTF.y = _gameHeight - incomeTF.height * 2 + offset * 2.2;
     incomeTF.fontName = @"ArialMT";
     incomeTF.fontSize = 25;
     incomeTF.color = SP_YELLOW;
     [_contents addChild:incomeTF];
     
-    //Button
-    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"booton.png"];
-    SPButton * button = [SPButton buttonWithUpState:buttonTexture];
+    //Collect coins button
+    SPTexture *collectButtonTexture = [SPTexture textureWithContentsOfFile:@"CollectCoinsBtn.png"];
+    SPButton * collectButton = [SPButton buttonWithUpState:collectButtonTexture];
+    collectButton.x = _gameWidth / 2 - collectButton.width / 2;
+    collectButton.y = _gameHeight - collectButton.height * 2.3;
+    [_contents addChild:collectButton];
     
-    button.x = 320 / 2 - button.width /2;
-    button.y = 75;
+    [collectButton addEventListener:@selector(collectIncome) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
-    [_contents addChild:button];
-    
-    [button addEventListener:@selector(collectIncome) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    
-    //Button
-    SPTexture *buttonTexture2 = [SPTexture textureWithContentsOfFile:@"back.png"];
-
-    SPButton * button2 = [SPButton buttonWithUpState:buttonTexture2];
- 
-    
-    button2.x = 320 / 2 - button2.width /2;
-    button2.y = 410;
-    
-    [_contents addChild:button2];
-    
-    [button2 addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    //Back button
+    SPTexture *backButtonTexture = [SPTexture textureWithContentsOfFile:@"back.png"];
+    SPButton * backButton = [SPButton buttonWithUpState:backButtonTexture];
+    backButton.x = _gameWidth / 2 - collectButton.width / 2;
+    backButton.y = 420;
+    [_contents addChild:backButton];
+    [backButton addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
 
 }
 
