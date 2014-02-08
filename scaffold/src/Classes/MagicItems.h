@@ -8,6 +8,22 @@
 
 #import "Thing.h"
 
-@interface MagicItems : Thing
+
+//Soooooo I just copied what Gabe initialized on the server
+
+@interface MagicItems : Thing{
+    NSString *_magicId;
+    NSString *_fileName;
+    NSString *_magicType;
+}
+
+@property NSString *magicId, *fileName, *magicType;
+
+-(MagicItems*) initWithId:(NSString*) magicId andMagicType:(NSString*) type andFilename: (NSString*) filename;
+
++(NSMutableDictionary*) initializeAllMagicItems;
+
+
+
 
 @end

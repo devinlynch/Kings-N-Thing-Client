@@ -3,7 +3,9 @@
 #import "GoldCollection.h"
 #import "Scene.h"
 #import "FourPlayerGame.h"
-
+#import "RecruitThings.h"
+#import "Combat.h"
+#import "Movement.h"
 
 @implementation GameMenu
 {
@@ -33,9 +35,9 @@
         // choose which scenes will be accessible
         NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class],
                                     @"Gold Collection",[GoldCollection class],
-                                    @"t1", [TwoThreePlayerGame class],
-                                    @"t2",[GoldCollection class],
-                                    @"t3",[GoldCollection class],
+                                    @"Recruit Things", [RecruitThings class],
+                                    @"Combat",[Combat class],
+                                    @"Movement",[Movement class],
                                     @"4 Players", [FourPlayerGame class]];
         
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
@@ -81,7 +83,7 @@
     // create an instance of that class and add it to the display tree.
     _currentScene = [[sceneClass alloc] init];
     _currentScene.y = _offsetY;
-    _mainMenu.visible = NO;
+  //  _mainMenu.visible = NO;
     [self addChild:_currentScene];
 }
 
