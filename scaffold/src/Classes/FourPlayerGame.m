@@ -11,6 +11,8 @@
 #import "TouchSheet.h"
 #import "TileMenu.h"
 #import "Scene.h"
+#import "GameState.h"
+#import "Creature.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -24,6 +26,8 @@
     SPSprite *_contents;
     
     TouchSheet *_sheet;
+    SPTextField *_bankText;
+    
     
     int _gameWidth;
     int _gameHeight;
@@ -50,6 +54,8 @@
 
 -(void) setup
 {
+    
+    _state = [[GameState alloc] initGame];
 
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
@@ -75,6 +81,18 @@
     //Add the sheet to the contents so that it appears
     [_contents addChild:_sheet];
     
+    _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Selected:"];
+    _bankText.x = 150;
+    _bankText.y = 445;
+    _bankText.color = SP_YELLOW;
+    [_contents addChild:_bankText];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pieceSelected:)
+                                                 name:@"pieceSelected"
+                                               object:nil];
+    
     //Draw tiles
     [self drawTiles];
     
@@ -96,6 +114,21 @@
 }
 
 
+-(void) pieceSelected: (NSNotification*) notif{
+    Creature *selected = notif.object;
+    
+    _selectedPiece = [[SPImage alloc] initWithContentsOfFile:[selected fileName]];
+    _selectedPiece.x = 250;
+    _selectedPiece.y = 400;
+    [_contents addChild:_selectedPiece];
+}
+
+
+-(void) drawCreatures{
+    for (NSString *creature in [_state gamePieceResource]) {
+        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
+    }
+}
 
 -(void) drawTiles
 {
@@ -155,6 +188,7 @@
                     _hexTile.x = 133 - (_hexTile.width - 10);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 - yOffset;
                     [_sheet addChild: _hexTile];
+                    [_sheet addChild: _hilight];
                 }
                 
                 if (j == 1){

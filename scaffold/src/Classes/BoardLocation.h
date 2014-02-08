@@ -1,0 +1,36 @@
+//
+//  BoardLocation.h
+//  3004iPhone
+//
+//  Created by John Marsh on 1/15/2014.
+//
+//
+
+#import <Foundation/Foundation.h>
+#import "JSONSerializable.h"
+
+@class GamePiece, Player;
+
+@interface BoardLocation : NSObject<JSONSerializable>{
+    NSString *_locationID;
+    NSString *_locationName;
+    NSMutableDictionary *_pieces;
+    NSString *_ownerId;
+}
+
+@property NSString *locationID, *locationName;
+@property NSMutableDictionary *pieces;
+@property NSString *ownerId;
+
+
+-(BoardLocation*) init;
+
+-(void) addGamePieceToLocation: (GamePiece*) piece;
+
+-(GamePiece*) removePieceWithIdFromLocation: (NSString*) gamePieceId;
+
+-(GamePiece*) getPieceWithIdFromLocation: (NSString*) gamePieceId;
+
+
+
+@end

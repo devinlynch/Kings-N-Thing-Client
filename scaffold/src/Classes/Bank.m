@@ -10,4 +10,21 @@
 
 @implementation Bank
 
+@synthesize currentTotal = _currentTotal;
+
+-(Bank*) initWithTotal:(int)total{
+    _currentTotal = total;
+    return [super init];
+}
+
+
+-(void) decreaseByAmount: (int) amount{
+    _currentTotal -= amount;
+}
+
+-(void) increaseByAmount: (int) amount{
+    _currentTotal += amount;
+}
+
+
 @end
