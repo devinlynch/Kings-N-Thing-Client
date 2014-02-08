@@ -9,23 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "Player.h"
 #import "HexTile.h"
-#import "Bank.h"
-#import "Rack.h"
+#import "GameState.h"
 #import "HexLocation.h"
 #import "JSONSerializable.h"
+#import "ScaledGamePiece.h"
+
 
 @interface Game : NSObject <JSONSerializable>{
-    Bank *_bank;
-    Rack *_rack;
-    NSMutableDictionary *_hexLocations;
+    NSString *_gameID;
+    GameState *_gameState;
     NSMutableArray *_users;
 }
 
-@property Bank *bank;
-@property Rack *rack;
-@property NSMutableDictionary *hexLocations;
-@property NSMutableArray *users;
 
--(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
+@property NSMutableArray *users;
+@property GameState *gameState;
+@property NSString  *gameID;
+
+
+
+
 
 @end

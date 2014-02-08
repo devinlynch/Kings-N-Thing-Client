@@ -6,8 +6,8 @@
 //
 //
 
-#import "CounterType.h"
+#import "Counter.h"
 
-@interface Thing : CounterType
+@interface Thing : Counter
 
 @end

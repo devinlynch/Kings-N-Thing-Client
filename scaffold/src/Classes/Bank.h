@@ -6,8 +6,20 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
 
-@interface Bank : BoardContainer
+@interface Bank : NSObject{
+    int _currentTotal;
+}
+
+@property int currentTotal;
+
+-(Bank*) initWithTotal: (int) total;
+
+-(void) decreaseByAmount: (int) amount;
+
+-(void) increaseByAmount: (int) amount;
+
+
 
 @end

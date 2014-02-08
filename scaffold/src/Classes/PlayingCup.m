@@ -10,4 +10,15 @@
 
 @implementation PlayingCup
 
+-(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
+    self = [super init];
+    if(self && json != nil) {
+        NSArray *piecesArray = [json objectForKey:@"gamePieces"];
+        for(GamePiece *piece in piecesArray){
+            
+        }
+    }
+    return self;
+}
+
 @end

@@ -8,11 +8,20 @@
 
 #import "GameState.h"
 #import "Player.h"
+#import "Game.h"
+#import "PlayingCup.h"
+#import "Bank.h"
+#import "HexLocation.h"
+#import "Creature.h"
+
 
 @implementation GameState
 
+@synthesize players = _players;
+@synthesize game = _game;
+
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
-    self=[super init];
+    self = [self initGame];
     if(self && json != nil) {
         NSArray *playersJsonArr = [json objectForKey:@"players"];
         if(playersJsonArr != nil){
@@ -25,9 +34,34 @@
                 }
             }
         }
+        _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
     }
     return self;
 }
+
+
+-(void)findPathFromLocation:(HexLocation *)location withMoves:(int)moves{
+    
+    if(location.tile.isHilighted){
+        return;
+    }
+    
+    if (moves == 0) {
+        [[location tile] hilight];
+        return;
+    }
+    else{
+        [[location tile] hilight];
+    }
+    
+    for (HexLocation *tileLocation in [location neighbours]){
+        [self findPathFromLocation:tileLocation withMoves:--moves];
+    }
+    
+    
+    
+}
+
 
 
 @end
