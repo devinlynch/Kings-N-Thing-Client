@@ -11,6 +11,7 @@
 @implementation SpecialAbility
 
 @synthesize specialAbilityID = _specialAbilityID;
+@synthesize specialAbilityName = _specialAbilityName;
 
 
 static SpecialAbility *eliminatecounterNocombat = nil;

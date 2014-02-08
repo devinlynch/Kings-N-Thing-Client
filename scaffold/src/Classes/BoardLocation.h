@@ -12,13 +12,13 @@
 @class GamePiece, Player;
 
 @interface BoardLocation : NSObject<JSONSerializable>{
-    NSString *_locationID;
+    NSString *_locationId;
     NSString *_locationName;
     NSMutableDictionary *_pieces;
     NSString *_ownerId;
 }
 
-@property NSString *locationID, *locationName;
+@property NSString *locationId, *locationName;
 @property NSMutableDictionary *pieces;
 @property NSString *ownerId;
 

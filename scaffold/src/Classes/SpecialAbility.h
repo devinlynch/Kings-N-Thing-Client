@@ -15,6 +15,7 @@
 }
 
 @property NSString *specialAbilityID;
+@property NSString *specialAbilityName;
 
 -(SpecialAbility*) initWithId:(NSString*) abilityId andName:(NSString*) name;
 

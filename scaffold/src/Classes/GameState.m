@@ -21,7 +21,7 @@
 @synthesize game = _game;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
-    self = [self initGame];
+    self = [super init];
     if(self && json != nil) {
         NSArray *playersJsonArr = [json objectForKey:@"players"];
         if(playersJsonArr != nil){
@@ -35,6 +35,16 @@
             }
         }
         _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
+        NSArray *hexLocationJsonArr = [json objectForKey:@"hexLocations"];
+        NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
+        if(hexLocationJsonArr != nil){
+            for(id o in hexLocationJsonArr) {
+                if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
+                    [locationDic setObject:[[HexLocation alloc] initFromJSON:o] forKey:[o objectForKey:@"locationId"]];
+                }
+            }
+            _hexLocations = locationDic;
+        }
     }
     return self;
 }

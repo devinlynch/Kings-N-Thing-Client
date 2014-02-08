@@ -25,7 +25,7 @@
 
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId: (NSString*) tileId;
 
--(NSMutableDictionary*) initializeTiles;
++(NSMutableDictionary*) initializeTiles;
 
 -(void) unhilight;
 -(void)  hilight;
