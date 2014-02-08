@@ -34,13 +34,9 @@
     
     SPImage *_hexTile;
     
+    SPImage *_selectedPiece;
     
-    //Other images
-    SPImage *_rack;
-    SPImage *_bowl;
-    SPImage *_dice;
-    SPImage *_creatureDice;
-    SPTextField *_bankText;
+    GameState *_state;
 }
 
 -(id) init
@@ -55,7 +51,7 @@
 -(void) setup
 {
     
-    _state = [[GameState alloc] initGame];
+   // _state = [[GameState alloc] initGame];
 
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
@@ -95,21 +91,22 @@
     
     //Draw tiles
     [self drawTiles];
+    [self drawCreatures];
     
     
     
-    _rack = [[SPImage alloc] initWithContentsOfFile:@"Rack.png"];
-    _rack.x = _gameWidth /2 - _rack.width/2;
-    _rack.y = _gameHeight - _rack.height * 1.4;
-    [_contents addChild:_rack];
-    [gamePieces addObject:_rack];
-    
-    
-    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
-    _bowl.x = 10;
-    _bowl.y = 310;
-    [_contents addChild:_bowl];
-    [gamePieces addObject:_bowl];
+//    _rack = [[SPImage alloc] initWithContentsOfFile:@"Rack.png"];
+//    _rack.x = _gameWidth /2 - _rack.width/2;
+//    _rack.y = _gameHeight - _rack.height * 1.4;
+//    [_contents addChild:_rack];
+//    [gamePieces addObject:_rack];
+//    
+//    
+//    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
+//    _bowl.x = 10;
+//    _bowl.y = 310;
+//    [_contents addChild:_bowl];
+//    [gamePieces addObject:_bowl];
 
 }
 
@@ -185,8 +182,9 @@
                 
                 if (j == 0){
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
-                    _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 - yOffset;
+                    SPImage *_hilight = [[SPImage alloc]initWithContentsOfFile:@"red-hilight.png"];
+                    _hilight.x = _hexTile.x = 133 - (_hexTile.width - 10);
+                    _hilight.y = _hexTile.y = 10 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 - yOffset ;
                     [_sheet addChild: _hexTile];
                     [_sheet addChild: _hilight];
                 }

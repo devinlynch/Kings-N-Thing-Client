@@ -11,8 +11,18 @@
 
 @interface NonCityVill : SpecialIncomeCounters{
     Terrain *_terrain;
+    NSString *_fileName;
 }
 
 @property Terrain *terrain;
+@property NSString *fileName;
+
+-(NonCityVill*) initWithId:(NSString*) nonCityVillId
+               terrainType:(Terrain*) type
+                 goldValue:(int) value
+                  fileName:(NSString*) name;
+
+
++(NSMutableDictionary*) initializeAllNonCityVill;
 
 @end

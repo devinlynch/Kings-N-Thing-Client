@@ -11,5 +11,33 @@
 @implementation CityVill
 
 @synthesize combatValue = _combatValue;
+@synthesize fileName = _fileName;
+
+
+
+
+-(CityVill*) initWithId:(NSString*) cityVillId
+           andGoldValue:(int) value
+         andCombatValue:(int) cValue
+            andFilename:(NSString*) filename{
+
+    
+    _gamePieceID = [[NSString alloc] initWithString:cityVillId];
+    _goldValue = &value;
+    _combatValue = &cValue;
+    _fileName = [[NSString alloc] initWithString:filename];
+
+    return [super init];
+}
+
++(NSMutableDictionary*) initializeAllCityVill{
+
+    NSMutableDictionary *cityVill = [[NSMutableDictionary alloc]init];
+    
+    
+    return cityVill;
+
+
+};
 
 @end
