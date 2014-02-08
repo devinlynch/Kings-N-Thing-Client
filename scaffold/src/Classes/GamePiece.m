@@ -11,7 +11,8 @@
 @implementation GamePiece
 
 @synthesize gamePieceID = _gamePieceID;
-@synthesize pieceImage = _pieceImage;
+@synthesize pieceImage  = _pieceImage;
+@synthesize location    = _location;
 
 
 

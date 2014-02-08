@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ScaledGamePiece.h"
+
+@class ScaledGamePiece, BoardLocation;
 
 @interface GamePiece : NSObject{
     NSString *_gamePieceID;
+    BoardLocation *_location;
     ScaledGamePiece *_pieceImage;
 }
 
 @property NSString *gamePieceID;
+@property BoardLocation *location;
 @property ScaledGamePiece *pieceImage;
 
 

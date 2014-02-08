@@ -12,10 +12,16 @@
 
 @implementation HexLocation
 
-@synthesize owner = _owner;
+
 @synthesize tile = _tile;
 @synthesize neighbours = _neighbours;
 @synthesize stacks = _stacks;
+
+
+-(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
+    self = [super initFromJSON:json];
+    
+}
 
 -(void) addStack:(Stack *)stack{
     [_stacks setObject:stack forKey:[stack locationID]];

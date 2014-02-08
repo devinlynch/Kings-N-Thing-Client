@@ -52,6 +52,7 @@
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
 		41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C011898309A00CA876D /* GUIStateHandler.m */; };
 		41B01C051898321D00CA876D /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C041898321D00CA876D /* Move.m */; };
+		41BD129F18A45209008C6E96 /* GameResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD129E18A45209008C6E96 /* GameResource.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
 		41D2CFDF18A13CFF0032CFB6 /* red-hilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D2CFDE18A13CFF0032CFB6 /* red-hilight.png */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
@@ -386,6 +387,8 @@
 		41B01C011898309A00CA876D /* GUIStateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIStateHandler.m; sourceTree = "<group>"; };
 		41B01C031898321D00CA876D /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Move.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		41B01C041898321D00CA876D /* Move.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Move.m; sourceTree = "<group>"; };
+		41BD129D18A45209008C6E96 /* GameResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
+		41BD129E18A45209008C6E96 /* GameResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResource.m; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		41D2CFDE18A13CFF0032CFB6 /* red-hilight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-hilight.png"; sourceTree = "<group>"; };
@@ -781,6 +784,8 @@
 				99A78F1F18957B1E005D31E5 /* GameState.m */,
 				41B01C031898321D00CA876D /* Move.h */,
 				41B01C041898321D00CA876D /* Move.m */,
+				41BD129D18A45209008C6E96 /* GameResource.h */,
+				41BD129E18A45209008C6E96 /* GameResource.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1747,6 +1752,7 @@
 				DE4A3DE510FFB2AF00FDA492 /* GameMenu.m in Sources */,
 				4131C2AD18876C81009775EA /* Rack.m in Sources */,
 				4131C2BE18876D93009775EA /* HexTile.m in Sources */,
+				41BD129F18A45209008C6E96 /* GameResource.m in Sources */,
 				4131C2C118876DB7009775EA /* Counter.m in Sources */,
 				DE4F80D614E153E600655D44 /* Media.m in Sources */,
 			);

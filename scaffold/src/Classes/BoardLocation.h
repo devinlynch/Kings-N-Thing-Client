@@ -7,19 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSONSerializable.h"
 
 @class GamePiece, Player;
 
-@interface BoardLocation : NSObject{
+@interface BoardLocation : NSObject<JSONSerializable>{
     NSString *_locationID;
     NSString *_locationName;
     NSMutableDictionary *_pieces;
-    Player *_owner;
+    NSString *_ownerId;
 }
 
 @property NSString *locationID, *locationName;
 @property NSMutableDictionary *pieces;
-@property Player *owner;
+@property NSString *ownerId;
 
 
 -(BoardLocation*) init;

@@ -29,9 +29,6 @@
 @property NSMutableDictionary *hexLocations;
 
 
-
--(GameState*) initGame;
-
 -(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
 
 @end

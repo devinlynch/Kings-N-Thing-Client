@@ -21,7 +21,7 @@
 @synthesize game = _game;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
-    self=[super init];
+    self = [self initGame];
     if(self && json != nil) {
         NSArray *playersJsonArr = [json objectForKey:@"players"];
         if(playersJsonArr != nil){
@@ -34,15 +34,11 @@
                 }
             }
         }
+        _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
     }
     return self;
 }
 
--(GameState*) initGame{
-    _gamePieceResource = [Creature initializeAllCreatures];
-    
-    return [super init];
-}
 
 -(void)findPathFromLocation:(HexLocation *)location withMoves:(int)moves{
     

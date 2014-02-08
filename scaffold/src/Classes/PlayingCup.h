@@ -7,7 +7,10 @@
 //
 
 #import "BoardLocation.h"
+#import "JSONSerializable.h"
 
-@interface PlayingCup : BoardLocation
+@interface PlayingCup : BoardLocation<JSONSerializable>
+
+
 
 @end

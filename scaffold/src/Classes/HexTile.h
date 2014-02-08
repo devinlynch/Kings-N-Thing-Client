@@ -11,7 +11,8 @@
 @class Terrain;
 
 @interface HexTile : GamePiece{
-    NSInteger _tileNumber;
+    int _tileNumber;
+    NSString    *_tileId;
     Terrain *_terrain;
     SPImage *_tileImage;
     BOOL    _isHilighted;
@@ -19,9 +20,12 @@
 
 @property Terrain *terrain;
 @property BOOL isHilighted;
-@property NSInteger tileNumber;
+@property int tileNumber;
+@property NSString *tileId;
 
--(HexTile*) initWithTerrain: (Terrain *) terrain andTileNumber:(int) number;
+-(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId: (NSString*) tileId;
+
+-(NSMutableDictionary*) initializeTiles;
 
 -(void) unhilight;
 -(void)  hilight;

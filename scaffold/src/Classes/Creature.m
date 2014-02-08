@@ -9,6 +9,7 @@
 #import "Creature.h"
 #import "CombatType.h"
 #import "Terrain.h"
+#import "ScaledGamePiece.h"
 
 @implementation Creature
 

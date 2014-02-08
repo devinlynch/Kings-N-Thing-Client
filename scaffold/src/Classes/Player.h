@@ -13,6 +13,8 @@
 @interface Player : NSObject <JSONSerializable>
 {
     User *_user;
+    NSString *_playerId;
+    NSMutableDictionary *_gamePieces;
     Rack *_rack1;
     Rack *_rack2;
     int   _gold;
@@ -26,5 +28,12 @@
 @property Rack *rack2;
 
 @property int gold;
+
+@property NSString *username;
+
+@property NSString *playerId;
+
+@property NSMutableDictionary *gamePieces;
+
 
 @end
