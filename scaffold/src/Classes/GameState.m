@@ -25,9 +25,9 @@
     self = [super init];
     NSDictionary *_gameStateDic = [json objectForKey:@"gameState"];
     if(self && json != nil) {
-        NSArray *playersJsonArr = [json objectForKey:@"players"];
+        NSArray *playersJsonArr = [_gameStateDic objectForKey:@"players"];
         if(playersJsonArr != nil){
-            [self setPlayers:[[NSMutableArray alloc] init]];
+            _players = [[NSMutableArray alloc] init];
             for(id o in playersJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                     NSDictionary *playerDic = (NSDictionary*) o;
@@ -38,6 +38,8 @@
         }
         
         _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
+        
+        
         
         NSLog(@"init playing cup with data:%@", [_gameStateDic objectForKey:@"playingCup"]);
         
@@ -58,7 +60,7 @@
 }
 
 -(NSString*) description{
-    return [NSString stringWithFormat:@"GameState with HexLocations:\n %@ and playing cup:\n %@", _hexLocations, _playingCup];
+    return [NSString stringWithFormat:@"GameState with player ID: %@ \nHexLocations:\n %@ and playing cup:\n %@", _myPlayerId , _hexLocations, _playingCup];
 }
 
 

@@ -15,6 +15,7 @@
     User *_user;
     NSString *_playerId;
     NSMutableDictionary *_gamePieces;
+    NSString *_username;
     Rack *_rack1;
     Rack *_rack2;
     int   _gold;
@@ -34,6 +35,9 @@
 @property NSString *playerId;
 
 @property NSMutableDictionary *gamePieces;
+
+
+-(void) addGold: (int) g;
 
 
 @end
