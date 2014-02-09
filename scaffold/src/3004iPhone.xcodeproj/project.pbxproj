@@ -249,6 +249,7 @@
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
+		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
@@ -710,6 +711,8 @@
 		990BEFC1188F291C00D7CA03 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 		991151801891B03C004E8FFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
 		991151811891B03C004E8FFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		997B0E0118A7E7FE009404DE /* InGameServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameServerAccess.h; sourceTree = "<group>"; };
+		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		99A78F1E18957B1E005D31E5 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
@@ -1416,6 +1419,8 @@
 				99DF9C7A189167C700746646 /* Protocols */,
 				990BEFB1188F1EF500D7CA03 /* ServerAccess.h */,
 				990BEFB2188F1EF500D7CA03 /* ServerAccess.m */,
+				997B0E0118A7E7FE009404DE /* InGameServerAccess.h */,
+				997B0E0218A7E7FE009404DE /* InGameServerAccess.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -2007,6 +2012,7 @@
 				4131C2F0188770A6009775EA /* Terrain.m in Sources */,
 				DE9453B81885CE5B00C4A71F /* TileMenu.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
+				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,

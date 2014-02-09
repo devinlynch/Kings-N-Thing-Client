@@ -10,7 +10,7 @@
 #import "Event.h"
 #import "GameState.h"
 #import "GameMessage.h"
-
+#import "Game.h"
 
 @implementation SetupEventHandler
 
@@ -35,6 +35,7 @@
     
     @try{
         gameState = [[GameState alloc] initFromJSON:setupDic];
+        [[Game currentGame] setGameState:gameState];
     } @catch (NSException *e) {
         NSLog(@"%@",e);
     }
