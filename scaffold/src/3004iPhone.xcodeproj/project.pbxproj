@@ -344,7 +344,6 @@
 		DEF9FF5618A81E5C0057FAEB /* red-frozen-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3718A81E5C0057FAEB /* red-frozen-tile.png */; };
 		DEF9FF5718A81E5C0057FAEB /* red-jungle-tile .png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3818A81E5C0057FAEB /* red-jungle-tile .png */; };
 		DEF9FF5818A81E5C0057FAEB /* red-mountain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3918A81E5C0057FAEB /* red-mountain-tile.png */; };
-		DEF9FF5918A81E5C0057FAEB /* red-plaines-tile.pxr in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3A18A81E5C0057FAEB /* red-plaines-tile.pxr */; };
 		DEF9FF5A18A81E5C0057FAEB /* red-swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3B18A81E5C0057FAEB /* red-swamp-tile.png */; };
 		DEF9FF5B18A81E5C0057FAEB /* yellow-desert-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3D18A81E5C0057FAEB /* yellow-desert-tile.png */; };
 		DEF9FF5C18A81E5C0057FAEB /* yellow-forest-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF3E18A81E5C0057FAEB /* yellow-forest-tile.png */; };
@@ -367,6 +366,7 @@
 		DEF9FF6D18A81E5C0057FAEB /* blue-mountain-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF5118A81E5C0057FAEB /* blue-mountain-tile.png */; };
 		DEF9FF6E18A81E5C0057FAEB /* blue-plaines-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF5218A81E5C0057FAEB /* blue-plaines-tile.png */; };
 		DEF9FF6F18A81E5C0057FAEB /* blue-swamp-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF5318A81E5C0057FAEB /* blue-swamp-tile.png */; };
+		DEF9FF7218A81F310057FAEB /* red-plaines-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF7118A81F310057FAEB /* red-plaines-tile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -856,7 +856,6 @@
 		DEF9FF3718A81E5C0057FAEB /* red-frozen-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-frozen-tile.png"; sourceTree = "<group>"; };
 		DEF9FF3818A81E5C0057FAEB /* red-jungle-tile .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-jungle-tile .png"; sourceTree = "<group>"; };
 		DEF9FF3918A81E5C0057FAEB /* red-mountain-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-mountain-tile.png"; sourceTree = "<group>"; };
-		DEF9FF3A18A81E5C0057FAEB /* red-plaines-tile.pxr */ = {isa = PBXFileReference; lastKnownFileType = file; path = "red-plaines-tile.pxr"; sourceTree = "<group>"; };
 		DEF9FF3B18A81E5C0057FAEB /* red-swamp-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-swamp-tile.png"; sourceTree = "<group>"; };
 		DEF9FF3D18A81E5C0057FAEB /* yellow-desert-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-desert-tile.png"; sourceTree = "<group>"; };
 		DEF9FF3E18A81E5C0057FAEB /* yellow-forest-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-forest-tile.png"; sourceTree = "<group>"; };
@@ -879,6 +878,7 @@
 		DEF9FF5118A81E5C0057FAEB /* blue-mountain-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-mountain-tile.png"; sourceTree = "<group>"; };
 		DEF9FF5218A81E5C0057FAEB /* blue-plaines-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-plaines-tile.png"; sourceTree = "<group>"; };
 		DEF9FF5318A81E5C0057FAEB /* blue-swamp-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-swamp-tile.png"; sourceTree = "<group>"; };
+		DEF9FF7118A81F310057FAEB /* red-plaines-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-plaines-tile.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1776,9 +1776,9 @@
 				DEF9FF3518A81E5C0057FAEB /* red-desert-tile.png */,
 				DEF9FF3618A81E5C0057FAEB /* red-forest-tile.png */,
 				DEF9FF3718A81E5C0057FAEB /* red-frozen-tile.png */,
+				DEF9FF7118A81F310057FAEB /* red-plaines-tile.png */,
 				DEF9FF3818A81E5C0057FAEB /* red-jungle-tile .png */,
 				DEF9FF3918A81E5C0057FAEB /* red-mountain-tile.png */,
-				DEF9FF3A18A81E5C0057FAEB /* red-plaines-tile.pxr */,
 				DEF9FF3B18A81E5C0057FAEB /* red-swamp-tile.png */,
 			);
 			path = Player1;
@@ -2090,6 +2090,7 @@
 				DEF9FF6C18A81E5C0057FAEB /* blue-jungle-tile.png in Resources */,
 				DEF9FE9E18A7DAAA0057FAEB /* T_Forest_089.png in Resources */,
 				DEF9FEF318A7DAAA0057FAEB /* T_Swamp_069.png in Resources */,
+				DEF9FF7218A81F310057FAEB /* red-plaines-tile.png in Resources */,
 				DEF9FEF518A7DAAA0057FAEB /* T_Swamp_071.png in Resources */,
 				DEF9FEDE18A7DAAA0057FAEB /* T_Plains_017.png in Resources */,
 				DEF9FEFB18A7DAAA0057FAEB /* T_Swamp_077.png in Resources */,
@@ -2165,7 +2166,6 @@
 				DEF9FEC818A7DAAA0057FAEB /* T_Jungle_012.png in Resources */,
 				DEF9FEDF18A7DAAA0057FAEB /* T_Plains_018.png in Resources */,
 				41BD13D018A75244008C6E96 /* C_Fort_375.png in Resources */,
-				DEF9FF5918A81E5C0057FAEB /* red-plaines-tile.pxr in Resources */,
 				DEF9FEBC18A7DAAA0057FAEB /* T_Jungle_000.png in Resources */,
 				41BD13EF18A75244008C6E96 /* SC_385.png in Resources */,
 				41BD13FA18A75244008C6E96 /* SC_396.png in Resources */,
