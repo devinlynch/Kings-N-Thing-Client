@@ -24,13 +24,13 @@
         
         
         
-        NSArray *sidePiecesJsonArr = [json objectForKey:@"sideLocation"];
+        NSArray *sidePiecesJsonArr = [json objectForKey:@"gamePieces"];
         if (sidePiecesJsonArr != nil){
             for(id o in sidePiecesJsonArr){
                 if (o != nil && ([o isKindOfClass:[NSDictionary class]])) {
                     NSDictionary *sideGamePieceDic = (NSDictionary*) o;
                     GamePiece *piece = [[GameResource getInstance] getPieceForId:[sideGamePieceDic objectForKey:@"id"]];
-                    [_pieces setValue:piece forKey:[piece gamePieceID]];
+                    [_sidePieces setValue:piece forKey:[piece gamePieceID]];
                 }
             }
         }
