@@ -26,7 +26,8 @@
         _username = [[NSString alloc] initWithString:[json objectForKey:@"username"]];
         _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
         _gold =  [[json objectForKey:@"gold"] integerValue];
-        _rack1 = [Rack alloc] ;
+        _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"]];
+        _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"]];
     }
     return self;
 }
