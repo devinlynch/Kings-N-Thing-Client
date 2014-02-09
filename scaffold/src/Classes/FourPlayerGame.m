@@ -209,7 +209,38 @@
                                              selector:@selector(goldCollection:)
                                                  name:@"goldCollection"
                                                object:nil];
+
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(placementOver:)
+                                                 name:@"placementOver"
+                                               object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerPlacedFort:)
+                                                 name:@"playerPlacedFort"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerPlacedCM:)
+                                                 name:@"playerPlacedCM"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(timeToPlaceFort:)
+                                                 name:@"timeToPlaceFort"
+                                               object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(yourTurnCM:)
+                                                 name:@"yourTurnCM"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(yourTurnFort:)
+                                                 name:@"yourTurnFort"
+                                               object:nil];
     
     
     [_contents addChild:[GoldCollection getInstance]];
@@ -225,6 +256,33 @@
     [_contents addChild:_bowl];
     [gamePieces addObject:_bowl];
 
+}
+
+-(void) placementOver: (NSNotification*) notif{
+    
+}
+
+-(void) playerPlacedFort: (NSNotification*) notif{
+    NSMutableDictionary *dic = notif.object;
+
+    
+}
+
+-(void) playerPlacedCM: (NSNotification*) notif{
+    NSMutableDictionary *dic = notif.object;
+
+}
+
+-(void) yourTurnFort: (NSNotification*) notif{
+    
+}
+
+-(void) yourTurnCM: (NSNotification*) notif{
+    
+}
+
+-(void) timeToPlaceFort: (NSNotification*) notif{
+    
 }
 
 -(void) goldCollection: (NSNotification*) notif{
