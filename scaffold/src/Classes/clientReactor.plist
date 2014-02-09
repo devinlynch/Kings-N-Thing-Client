@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.16.METHOD</key>
+	<string>handleDidStartRecruitThingsPhase:</string>
+	<key>EVENT.16.TYPE</key>
+	<string>didStartRecruitThingsPhase</string>
+	<key>EVENT.16.CLASS</key>
+	<string>RecruitThingsHandler</string>
 	<key>EVENT.15.CLASS</key>
 	<string>PlacementHandler</string>
 	<key>EVENT.15.METHOD</key>
@@ -29,7 +35,7 @@
 	<key>EVENT.11.TYPE</key>
 	<string>yourTurnToPlaceControlMarker</string>
 	<key>EVENT.11.METHOD</key>
-	<string>handleYourTurnToPlacrControlMarker:</string>
+	<string>handleYourTurnToPlaceControlMarker:</string>
 	<key>EVENT.11.CLASS</key>
 	<string>PlacementHandler</string>
 	<key>EVENT.10.TYPE</key>
