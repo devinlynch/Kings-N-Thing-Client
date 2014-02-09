@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class ServerResponseMessage;
 @class GameMessage;
+@class Event;
 
 @interface Utils : NSObject
 
@@ -19,4 +20,6 @@
 +(void) showAlertWithTitle: (NSString* ) title message: (NSString*) message delegate: (id) delegate cancelButtonTitle: (NSString*) cancelButtonTitle;
 +(void) showLoaderOnView: (UIView*) view animated: (BOOL) animated;
 +(void) removeLoaderOnView: (UIView*) view animated: (BOOL) animated;
++(NSDictionary*) getDataDictionaryFromGameMessageEvent: (Event*) event;
+
 @end
