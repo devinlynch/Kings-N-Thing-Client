@@ -13,4 +13,6 @@
 
 -(void) handleGameSetup: (Event*) event;
 
+-(void) handleSetupOver:(Event *)event;
+
 @end

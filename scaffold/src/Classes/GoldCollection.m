@@ -12,6 +12,7 @@
 #import "TileMenu.h"
 #import "Scene.h"
 #import "GameMenu.h"
+#import "ServerAccess.h"
 
 @interface GoldCollection()
 - (void)setup;
@@ -27,7 +28,7 @@
     
     SPTextField *_incomeTF;
     SPTextField *_goldTF;
-    
+    SPTextField *_usernameTF;
     
 }
 
@@ -74,13 +75,13 @@ static GoldCollection *instance = nil;
     
     
     //Username text
-    SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
+    _usernameTF = [SPTextField textFieldWithWidth:300 height:120
         text:@"Username"];
-    welcomeTF.x = _gameWidth / 2 - welcomeTF.width / 2;
-    welcomeTF.fontName = @"ArialMT";
-    welcomeTF.fontSize = 25;
-    welcomeTF.color = 0xffffff;
-    [_contents addChild:welcomeTF];
+    _usernameTF.x = _gameWidth / 2 - _usernameTF.width / 2;
+    _usernameTF.fontName = @"ArialMT";
+    _usernameTF.fontSize = 25;
+    _usernameTF.color = 0xffffff;
+    [_contents addChild:_usernameTF];
     
     
     //GoldPiece text
@@ -138,6 +139,9 @@ static GoldCollection *instance = nil;
     [_goldTF setText:total];
 }
 
+-(void) setUsername:(NSString *)username{
+    [_usernameTF setText:username];
+}
 
 
 - (void)showScene:(SPSprite *)scene {
@@ -148,10 +152,9 @@ static GoldCollection *instance = nil;
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
+
     NSLog(@"Back to game board");
-   GameMenu *gameMenu = [[GameMenu alloc] init];
-    [self showScene:gameMenu];
-    _contents.visible = NO;
+    [self setVisible:NO];
     
 }
 

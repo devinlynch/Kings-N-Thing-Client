@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.9.TYPE</key>
+	<string>setupPhaseOver</string>
+	<key>EVENT.9.CLASS</key>
+	<string>SetupEventHandler</string>
+	<key>EVENT.9.METHOD</key>
+	<string>handleSetupOver:</string>
 	<key>EVENT.8.METHOD</key>
 	<string>handleGoldCollection:</string>
 	<key>EVENT.8.CLASS</key>

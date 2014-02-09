@@ -16,6 +16,7 @@
 @synthesize gold = _gold;
 @synthesize playerId = _playerId;
 @synthesize gamePieces = _gamePieces;
+@synthesize username = _username;
 
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
@@ -24,10 +25,16 @@
          _user = [[User alloc] initFromJSON:json];
         _username = [[NSString alloc] initWithString:[json objectForKey:@"username"]];
         _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
-        _gold = (int)[json objectForKey:@"gold"];
+        _gold =  [[json objectForKey:@"gold"] integerValue];
         _rack1 = [Rack alloc] ;
     }
     return self;
+}
+
+-(void) addGold: (int) g{
+    NSLog(@"%@ had %d gold", _username, _gold);
+    _gold += g;
+    NSLog(@"%@ now has %d gold", _username, _gold);
 }
 
 @end

@@ -17,5 +17,6 @@
 
 -(void) setTotal: (NSString*) total;
 
+-(void) setUsername: (NSString*) username;
 
 @end

@@ -18,6 +18,12 @@
     
 }
 
+-(void) handleSetupOver:(Event *)event;{
+    NSLog(@"Got Setup Over message");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setupOver" object:nil];
+}
+
+
 -(void) handleGameSetup:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
     
@@ -45,6 +51,7 @@
     }
     
     NSLog(@"Successfully parsed game from gameSetup message, now sending notification");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSetup" object:gameState];}
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSetup" object:gameState];
+}
 
 @end
