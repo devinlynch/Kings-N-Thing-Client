@@ -7,6 +7,9 @@
 //
 
 #import "PlayerRecruitment.h"
+#import "Game.h"
+#import "GameState.h"
+#import "GameResource.h"
 
 @implementation PlayerRecruitment
 @synthesize location,player,recruitmentType,thing;
@@ -14,10 +17,9 @@
 +(PlayerRecruitment*) fromDictionary: (NSDictionary*) dic{
     PlayerRecruitment* pr = [[PlayerRecruitment alloc] init];
     
-    
-    /*[pr setLocationId:[dic objectForKey:@"locationId"]];
-    [pr setThingId:[dic objectForKey:@"thingId"]];
-    [pr setPlayerId:[dic objectForKey:@"playerId"]];
+    pr.thing = (Thing*)[[GameResource getInstance] getPieceForId:[dic objectForKey:@"playerId"]];
+    pr.location = [[[Game currentGame] gameState] getBoardLocationById:[dic objectForKey:@"locationId"]];
+    pr.player = [[[Game currentGame] gameState] getPlayerById:[dic objectForKey:@"playerId"]];
     
     NSString *rt = [dic objectForKey:@"recruitmentType"];
     if(rt != nil) {
@@ -29,7 +31,7 @@
             [pr setRecruitmentType:RT_TRADE];
         }
     }
-    */
+    
     return pr;
 }
 

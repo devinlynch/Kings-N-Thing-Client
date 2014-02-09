@@ -7,7 +7,7 @@
 //
 
 #import "Player.h"
-
+#import "GamePiece.h"
 @implementation Player
 
 @synthesize user = _user;
@@ -36,6 +36,10 @@
     NSLog(@"%@ had %d gold", _username, _gold);
     _gold += g;
     NSLog(@"%@ now has %d gold", _username, _gold);
+}
+
+-(void) assignPiece: (GamePiece*) gamePiece{
+    //TODO
 }
 
 @end

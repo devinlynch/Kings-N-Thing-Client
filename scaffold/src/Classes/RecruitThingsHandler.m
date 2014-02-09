@@ -12,6 +12,8 @@
 #import "GameMessage.h"
 #import "Utils.h"
 #import "PlayerRecruitment.h"
+#import "Thing.h"
+#import "BoardLocation.h"
 
 @implementation RecruitThingsHandler
 
@@ -35,6 +37,19 @@
     }
     
     PlayerRecruitment *pRecruitment = [PlayerRecruitment fromDictionary:dataDic];
+    Thing *thing = pRecruitment.thing;
+    BoardLocation *location = pRecruitment.location;
+    Player *player = pRecruitment.player;
+    
+    if(thing == nil || location == nil || player==nil) {
+        NSLog(@"Either a thing, location or player was nil when initializing a player recruitment inside of handlePlayerRecruitedAndPlacedThing");
+        return;
+    }
+    
+    
+    [location addGamePieceToLocation:thing];
+    
+    
     
     NSLog(@"Succesfully parsed PlayerRecruitedAndPlacedThing");
     
