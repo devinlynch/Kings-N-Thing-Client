@@ -9,6 +9,15 @@
 #import "BoardLocation.h"
 #import "JSONSerializable.h"
 
-@interface Rack : BoardLocation<JSONSerializable>
+
+
+@interface Rack : BoardLocation<JSONSerializable>{
+    Player *_owner;
+}
+
+@property Player *owner;
+
+-(id<JSONSerializable>) initFromJSON:(NSDictionary *)json withOwner:(Player*) player;
+
 
 @end
