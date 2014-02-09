@@ -13,6 +13,7 @@
 #import "Scene.h"
 #import "GameState.h"
 #import "Creature.h"
+#import "GameResource.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -42,6 +43,7 @@
     SPImage *_selectedPiece;
     
     GameState *_state;
+  
 }
 
 -(id) init
@@ -55,6 +57,8 @@
 
 -(void) setup
 {
+    
+    [GameResource getInstance];
     
    // _state = [[GameState alloc] initGame];
 
@@ -125,6 +129,11 @@
                                                  name:@"pieceSelected"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameSetup:)
+                                                 name:@"gameSetup"
+                                               object:nil];
+    
     //Draw tiles
     [self drawTiles];
   //  [self drawCreatures];
@@ -145,6 +154,13 @@
 //    [gamePieces addObject:_bowl];
 
 }
+
+
+-(void) gameSetup: (NSNotification*) notif{
+    _state = (GameState*) notif.object;
+    NSLog(@"%@", _state);
+}
+
 
 
 -(void) pieceSelected: (NSNotification*) notif{

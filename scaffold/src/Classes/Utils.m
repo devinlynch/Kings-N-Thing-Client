@@ -9,20 +9,33 @@
 #import "Utils.h"
 #import "ServerResponseMessage.h"
 #import "MBProgressHUD.h"
+#import "GameMessage.h"
 @implementation Utils
 
 +(NSDictionary*) dictionaryFromJSONData: (NSData* ) data{
     NSError *error;
     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil) {
+        NSLog(@"HAAAAAAANNNDDSSSSS");
+    }
     return json;
 }
 
-+(ServerResponseMessage*) responseMessageFromJSONData: (NSData* ) data{
++(ServerResponseMessage*) serverResponseMessageFromJSONData: (NSData* ) data{
     NSDictionary *json = [self dictionaryFromJSONData:data];
     NSLog(@"Got json: %@", json);
     ServerResponseMessage *msg = nil;
     if(json != nil)
         msg = [[ServerResponseMessage alloc] initFromJSON:json];
+    return msg;
+}
+
++(GameMessage*) gameResponseMessageFromJSONData: (NSData* ) data{
+    NSDictionary *json = [self dictionaryFromJSONData:data];
+    NSLog(@"Got json: %@", json);
+    GameMessage *msg = nil;
+    if(json != nil)
+        msg = [[GameMessage alloc] initFromJSON:json];
     return msg;
 }
 

@@ -7,8 +7,9 @@
 //
 
 #import "BoardLocation.h"
+#import "JSONSerializable.h"
 
-@interface Bank : NSObject{
+@interface Bank : NSObject<JSONSerializable>{
     int _currentTotal;
 }
 

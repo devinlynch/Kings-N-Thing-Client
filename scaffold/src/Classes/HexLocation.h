@@ -12,17 +12,22 @@
 
 @interface HexLocation : BoardLocation{
     HexTile *_tile;
-    NSMutableDictionary *_neighbours;
-    NSMutableDictionary *_stacks;
+    int _tileNumber;
+        NSMutableDictionary *_stacks;
+    NSMutableArray *_neighbourIds;
+
 }
 
 @property HexTile *tile;
-@property Player  *owner;
-@property NSMutableDictionary *neighbours;
+@property int tileNumber;
+@property NSMutableArray *neighbourIds;
 @property NSMutableDictionary *stacks;
 
 
 -(void) addStack: (Stack*) stack;
 -(void) removeStack: (Stack*) stack;
+
+
+
 
 @end

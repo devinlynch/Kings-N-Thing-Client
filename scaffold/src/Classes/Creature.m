@@ -20,7 +20,7 @@
 
 
 -(Creature*) initWithId:(NSString*) creatureId andCombatValue:(int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename{
-    _gamePieceID = [[NSString alloc] initWithString:creatureId];
+    _gamePieceId = [[NSString alloc] initWithString:creatureId];
     _combatValue = value;
     _combatType = type;
     _terrain = t;

@@ -17,6 +17,11 @@
     return [super init];
 }
 
+-(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
+    _currentTotal = (int) [json objectForKey:@"currentTotal"];
+    return [super init];
+}
+
 
 -(void) decreaseByAmount: (int) amount{
     _currentTotal -= amount;
