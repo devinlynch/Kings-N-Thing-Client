@@ -11,7 +11,7 @@
 
 @interface SpecialCharacter : Counter{
     SpecialAbility *_specialAbility;
-    NSString * characterId;
+    NSString *_characterId;
     NSString *fileName;
 }
 

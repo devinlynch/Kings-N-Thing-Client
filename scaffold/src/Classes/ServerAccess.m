@@ -73,7 +73,7 @@ typedef enum HttpRequestMethods {
          ServerResponseMessage *responseMessage;
          if(data != nil && responseStatusCode == 200 && error == nil){
              @try{
-                  responseMessage = [Utils responseMessageFromJSONData:data];
+                  responseMessage = [Utils serverResponseMessageFromJSONData:data];
              } @catch (NSException *e) {
                  NSLog(@"Error parsing response message: %@", e);
              }

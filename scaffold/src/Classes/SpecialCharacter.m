@@ -17,7 +17,7 @@
 
 -(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename{
 
-    _gamePieceID = [[NSString alloc] initWithString:characterId];
+    _gamePieceId = [[NSString alloc] initWithString:characterId];
     _specialAbility = ability;
     _fileName = fileName;
 

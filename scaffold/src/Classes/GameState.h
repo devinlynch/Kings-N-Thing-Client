@@ -18,14 +18,12 @@
     NSMutableDictionary *_hexLocations;
     Bank *_bank;
     Game *_game;
-    NSMutableDictionary *_gamePieceResource;
 }
 
 @property NSMutableArray *players;
 @property Game *game;
 @property Bank *bank;
 @property PlayingCup *playingCup;
-@property NSMutableDictionary *gamePieceResource;
 @property NSMutableDictionary *hexLocations;
 
 

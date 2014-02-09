@@ -14,6 +14,8 @@
     self = [super init];
     if(self) {
         udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+        [udpSocket setMaxReceiveIPv4BufferSize:65535];
+        [udpSocket setMaxReceiveIPv4BufferSize:65535];
         [udpSocket setDelegate:self];
     }
     return self;
@@ -54,6 +56,10 @@
         fromAddress:(NSData *)address
         withFilterContext:(id)filterContext
 {
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Data recieved: %@", dataString);
+    
 	if (!isRunning) return;
     	
 	[MessageHandler handleUDPReceivedJSONData:data];

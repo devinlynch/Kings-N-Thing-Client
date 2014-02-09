@@ -10,9 +10,9 @@
 
 @implementation GamePiece
 
-@synthesize gamePieceID = _gamePieceID;
+@synthesize gamePieceId = _gamePieceID;
 @synthesize pieceImage  = _pieceImage;
-@synthesize location    = _location;
+@synthesize locationId    = _locationId;
 
 
 

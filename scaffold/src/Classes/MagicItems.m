@@ -16,7 +16,7 @@
 
 -(MagicItems*) initWithId:(NSString *)magicId andMagicType:(NSString*)type andFilename:(NSString *)filename {
     
-    _gamePieceID = [[NSString alloc] initWithString:magicId];
+    _gamePieceId = [[NSString alloc] initWithString:magicId];
     _magicType = [[NSString alloc] initWithString:type];
     _fileName = [[NSString alloc] initWithString:filename];
     
