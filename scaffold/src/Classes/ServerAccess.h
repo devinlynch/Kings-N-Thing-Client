@@ -17,7 +17,14 @@ typedef void (^block_t)();
 {
     ClientReactor *reactor;
 }
+
+typedef enum HttpRequestMethods {
+    POSTREQUEST,
+    GETREQUEST
+} HttpRequestMethods;
+
 +(ServerAccess*) instance;
+-(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSMutableDictionary*) params  andDelegateListener: (id) delegateListener andErrorCall:(block_t) errorCall andSuccessCall: (block_t) successCall;
 
 -(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
 -(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
