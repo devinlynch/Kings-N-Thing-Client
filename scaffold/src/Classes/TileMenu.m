@@ -52,7 +52,7 @@
     int offset = 10;
     
     SPImage *background = [[SPImage alloc]
-                           initWithContentsOfFile:@"SwampTileMenu.png"];
+                           initWithContentsOfFile:@"jungle-tile-menu.png"];
     
     [_contents addChild:background];
 
