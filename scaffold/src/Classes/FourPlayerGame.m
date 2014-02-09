@@ -16,6 +16,8 @@
 #import "GameResource.h"
 #import "GoldCollection.h"
 #import "Player.h"
+#import "HexLocation.h"
+#import "Fort.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -265,7 +267,16 @@
 
 -(void) playerPlacedFort: (NSNotification*) notif{
     NSMutableDictionary *dic = notif.object;
-
+    
+    HexLocation *hex = [_state.hexLocations objectForKey:[dic objectForKey:@"hexLocationId"]];
+    NSString *playerId = [dic objectForKey:@"playerId"];
+    Fort *fort = [[GameResource getInstance] getFortForId:[dic objectForKey:@"fortId"]];
+    Player *player;
+                        
+    for(Player *p in _state.players){
+        player = p;
+    }
+                        
     
 }
 
@@ -324,6 +335,8 @@
     [_stateText setText:@"State: Setup"];
 
     _state = (GameState*) notif.object;
+    
+    
     NSLog(@"%@", _state);
 }
 
