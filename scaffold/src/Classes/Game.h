@@ -26,7 +26,8 @@
 @property GameState *gameState;
 @property NSString  *gameID;
 
-
++(id) currentGame;
++(void) setInstance: (Game*) game;
 
 
 
