@@ -106,11 +106,12 @@
     [_contents addChild:_sheet];
     
     
-    _stateText = [SPTextField textFieldWithWidth:300 height:30 text:@"State:"];
+    _stateText = [SPTextField textFieldWithWidth:70 height:30 text:@"State:"];
     _stateText.x = 0;
-    _stateText.y = 5;
+    _stateText.y = 2;
     _stateText.color = SP_YELLOW;
     [_contents addChild:_stateText];
+    
     //Income labels
     _Player1LabelText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
     _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2 - 15);
@@ -413,7 +414,7 @@
                 
                 if (j == 0){
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
-                    SPImage *_hilight = [[SPImage alloc]initWithContentsOfFile:@"red-hilight.png"];
+                    SPImage *_hilight = [[SPImage alloc]initWithContentsOfFile:@"red-jungle-tile.png"];
                     _hilight.x = _hexTile.x = 133 - (_hexTile.width - 10);
                     _hilight.y = _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset ;
                     [_sheet addChild: _hexTile];
@@ -467,7 +468,7 @@
                 }
                 
                 if (j == 1){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"yellow-mountain-tile.png"];
                     _hexTile.x = 133 + (_hexTile.width - 10);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
                     [_sheet addChild: _hexTile];
@@ -521,13 +522,13 @@
             for (int j = 0; j < 5; j ++) {
    
                 if (j == 0 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"red-swamp-tile.png"];
                     _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 1 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"red-jungle-tile.png"];
                     _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
@@ -539,13 +540,13 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 3 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"green-plaines-tile.png"];
                     _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 4 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"green-jungle-tile.png"];
                     _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
@@ -558,7 +559,7 @@
             for (int j = 0; j < 5; j ++) {
                 
                 if (j == 0) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"yellow-desert-tile.png"];
                     _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
@@ -584,7 +585,7 @@
                     [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 4) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-jungle-tile.png"];
                     _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
@@ -654,7 +655,7 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 2) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-forest-tile.png"];
                     _hexTile.x = 132 + ((_hexTile.width * 3) - 30);
                     _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
                     [_sheet addChild: _hexTile];
