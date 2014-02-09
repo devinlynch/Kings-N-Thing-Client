@@ -37,7 +37,7 @@
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
     
-    NSLog(@"Touching piece with ID of %@", [[self owner] gamePieceID]);
+    NSLog(@"Touching piece with ID of %@", [[self owner] gamePieceId]);
     
     if (touches.count == 1)
     {

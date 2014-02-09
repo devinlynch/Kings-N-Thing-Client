@@ -9,6 +9,7 @@
 #import "GameResource.h"
 #import "Creature.h"
 #import "HexTile.h"
+#import "Fort.h"
 
 @implementation GameResource
 
@@ -28,6 +29,8 @@ static GameResource *instance;
     [_allPieces addEntriesFromDictionary:_creaturePieces];
     _tilePieces = [HexTile initializeTiles];
     [_allPieces addEntriesFromDictionary:_creaturePieces];
+    _fortPieces = [Fort initializeAllForts];
+    [_allPieces addEntriesFromDictionary:_fortPieces];
     return [super init];
 }
 
@@ -43,6 +46,11 @@ static GameResource *instance;
 -(HexTile*) getTileForId:(NSString *)pieceId{
     return [_tilePieces objectForKey:pieceId];
 }
+
+-(Fort*) getFortForId: (NSString*) pieceId{
+    return [_fortPieces objectForKey:pieceId];
+}
+
 
 
 @end

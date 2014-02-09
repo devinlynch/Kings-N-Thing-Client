@@ -16,7 +16,7 @@
 
 -(Treasure*) initWithId:(NSString *)treasureId andGoldValue:(int)value andFilename:(NSString *)filename{
 
-    _gamePieceID = [[NSString alloc] initWithString:treasureId];
+    _gamePieceId = [[NSString alloc] initWithString:treasureId];
     _goldValue = &value;
     _fileName = [[NSString alloc] initWithString:filename];
 

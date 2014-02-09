@@ -13,8 +13,9 @@
 @interface HexLocation : BoardLocation{
     HexTile *_tile;
     int _tileNumber;
-    NSMutableArray *_neighbourIds
-    NSMutableDictionary *_stacks;
+        NSMutableDictionary *_stacks;
+    NSMutableArray *_neighbourIds;
+
 }
 
 @property HexTile *tile;

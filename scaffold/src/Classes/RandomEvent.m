@@ -17,7 +17,7 @@
 
 -(RandomEvent*) initWithId:(NSString *)randomId andRandomType:(NSString*)type andFilename:(NSString *)filename {
     
-    _gamePieceID = [[NSString alloc] initWithString:randomId];
+    _gamePieceId = [[NSString alloc] initWithString:randomId];
     _randomType = [[NSString alloc] initWithString:type];
     _fileName = [[NSString alloc] initWithString:filename];
     
