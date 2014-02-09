@@ -90,7 +90,7 @@
 - (void)onButtonTriggered:(SPEvent *)event
 {
     
-    NSLog(@"Back to twoThreeBoard");
+    NSLog(@"Back to FourPlayerBoard");
     _contents.visible = NO;
 }
 
