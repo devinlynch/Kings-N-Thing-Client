@@ -142,6 +142,7 @@
 		41BD143618A75244008C6E96 /* rackbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132C18A75243008C6E96 /* rackbtn.png */; };
 		41BD143718A75244008C6E96 /* recruitThings.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132D18A75243008C6E96 /* recruitThings.png */; };
 		41BD14BB18A75244008C6E96 /* trade.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B318A75244008C6E96 /* trade.png */; };
+		41BD14C518A81977008C6E96 /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14C418A81977008C6E96 /* PlacementHandler.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
@@ -159,6 +160,7 @@
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
+		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
@@ -623,7 +625,7 @@
 		99098DAB188F554C00139EA4 /* 3004iPhone Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3004iPhone Tests-Prefix.pch"; sourceTree = "<group>"; };
 		99098DB1188F567400139EA4 /* ServerResponseMessageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseMessageTest.m; sourceTree = "<group>"; };
 		99098DBB188F5C3200139EA4 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		99098DBC188F5C3200139EA4 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		99098DBC188F5C3200139EA4 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Utils.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		990BEFB1188F1EF500D7CA03 /* ServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAccess.h; sourceTree = "<group>"; };
 		990BEFB2188F1EF500D7CA03 /* ServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAccess.m; sourceTree = "<group>"; };
 		990BEFB5188F223700D7CA03 /* ServerResponseMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseMessage.h; sourceTree = "<group>"; };
@@ -635,6 +637,8 @@
 		990BEFC1188F291C00D7CA03 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 		991151801891B03C004E8FFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
 		991151811891B03C004E8FFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		997B0E0118A7E7FE009404DE /* InGameServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameServerAccess.h; sourceTree = "<group>"; };
+		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		99A78F1E18957B1E005D31E5 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
@@ -1251,6 +1255,8 @@
 				99DF9C7A189167C700746646 /* Protocols */,
 				990BEFB1188F1EF500D7CA03 /* ServerAccess.h */,
 				990BEFB2188F1EF500D7CA03 /* ServerAccess.m */,
+				997B0E0118A7E7FE009404DE /* InGameServerAccess.h */,
+				997B0E0218A7E7FE009404DE /* InGameServerAccess.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -1344,6 +1350,8 @@
 				41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */,
 				DEF9FC1418A7243D0057FAEB /* GoldCollectionHandler.h */,
 				DEF9FC1518A7243D0057FAEB /* GoldCollectionHandler.m */,
+				41BD14C318A81977008C6E96 /* PlacementHandler.h */,
+				41BD14C418A81977008C6E96 /* PlacementHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -2226,6 +2234,7 @@
 				99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */,
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
 				99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */,
+				41BD14C518A81977008C6E96 /* PlacementHandler.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
 				99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */,
 				990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */,
@@ -2279,6 +2288,7 @@
 				4131C2C718876DF3009775EA /* Thing.m in Sources */,
 				4131C2F0188770A6009775EA /* Terrain.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
+				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,

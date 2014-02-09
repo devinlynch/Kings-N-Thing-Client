@@ -10,13 +10,19 @@
 #import "Event.h"
 #import "GameState.h"
 #import "GameMessage.h"
-
+#import "Game.h"
 
 @implementation SetupEventHandler
 
 -(void) handleEvent:(Event *)event{
     
 }
+
+-(void) handleSetupOver:(Event *)event;{
+    NSLog(@"Got Setup Over message");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setupOver" object:nil];
+}
+
 
 -(void) handleGameSetup:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
@@ -35,6 +41,7 @@
     
     @try{
         gameState = [[GameState alloc] initFromJSON:setupDic];
+        [[Game currentGame] setGameState:gameState];
     } @catch (NSException *e) {
         NSLog(@"%@",e);
     }
@@ -45,6 +52,7 @@
     }
     
     NSLog(@"Successfully parsed game from gameSetup message, now sending notification");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSetup" object:gameState];}
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSetup" object:gameState];
+}
 
 @end
