@@ -136,7 +136,7 @@
     
     //Draw tiles
     [self drawTiles];
-  //  [self drawCreatures];
+   // [self drawCreatures];
     
     
     
@@ -172,6 +172,12 @@
     [_contents addChild:_selectedPiece];
 }
 
+//
+//-(void) drawCreatures{
+//    for (NSString *creature in [_state gamePieceResource]) {
+//        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
+//    }
+//}
 
 //-(void) drawCreatures{
 //    for (NSString *creature in [_state gamePieceResource]) {
