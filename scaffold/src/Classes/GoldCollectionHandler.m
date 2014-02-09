@@ -25,30 +25,24 @@
     Message *message = event.msg;
     NSLog(@"Got handle game message");
     
-    if (message == nil || message.data == nil || message.data.map == nil){
+    if (message == nil || message.data == nil){
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY????? idk devin");
         
         return;
     }
     
     
-    GameState *gameState;
+
     
     NSDictionary* goldCollectionDic = [message.data.map objectForKey:@"data"];
+
     
-    @try {
-        gameState = [[GameState alloc] initFromJSON:goldCollectionDic];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"%@",exception);
-    }
-    
-    if(gameState == nil){
+    if(goldCollectionDic == nil){
         NSLog(@"Got goldCollection message but for some reason it goofed");
     }
     
     NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"goldCollection" object:gameState];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"goldCollection" object:goldCollectionDic];
     
   
     

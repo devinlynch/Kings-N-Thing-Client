@@ -14,6 +14,7 @@
 #import "GameState.h"
 #import "Creature.h"
 #import "GameResource.h"
+#import "GoldCollection.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -193,6 +194,17 @@
                                                  name:@"gameSetup"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(goldCollection:)
+                                                 name:@"goldCollection"
+                                               object:nil];
+    
+    
+    
+    [_contents addChild:[GoldCollection getInstance]];
+    
+    [[GoldCollection getInstance] setVisible:NO];
+    
     //Draw tiles
     [self drawTiles];
     
@@ -202,6 +214,21 @@
     [_contents addChild:_bowl];
     [gamePieces addObject:_bowl];
 
+}
+
+-(void) goldCollection: (NSNotification*) notif{
+    
+    NSLog(@"Gold should appear");
+    
+    NSMutableDictionary *dic = notif.object;
+    
+    NSMutableDictionary *goldDic = [dic objectForKey:[_state myPlayerId]];
+    
+    [[GoldCollection getInstance] setIncome:[NSString stringWithFormat:@"%@", [goldDic objectForKey:@"income"]]];
+    [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"%@", [goldDic objectForKey:@"totalGold"]]];
+
+    [[GoldCollection getInstance] setVisible:YES];
+    
 }
 
 
