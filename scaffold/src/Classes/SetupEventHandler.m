@@ -9,6 +9,8 @@
 #import "SetupEventHandler.h"
 #import "Event.h"
 #import "GameState.h"
+#import "GameMessage.h"
+
 
 @implementation SetupEventHandler
 
@@ -17,9 +19,11 @@
 }
 
 -(void) handleGameSetup:(Event *)event{
-    Message *message = event.msg;
+    GameMessage *message = (GameMessage*) event.msg;
+    
     NSLog(@"Got game started message");
-    if(message == nil || message.data == nil || message.data.map == nil){
+    
+    if(message == nil){
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY?????");
         return;
     }
@@ -27,7 +31,7 @@
     
     GameState *gameState;
 
-    NSDictionary* setupDic= [message.data.map objectForKey:@"data"];
+    NSDictionary* setupDic= [[message jsonDictionnary]  objectForKey:@"data"];
     
     @try{
         gameState = [[GameState alloc] initFromJSON:setupDic];

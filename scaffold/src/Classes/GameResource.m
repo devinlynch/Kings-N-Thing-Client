@@ -10,6 +10,8 @@
 #import "Creature.h"
 #import "HexTile.h"
 #import "Fort.h"
+#import "CityVill.h"
+#import "NonCityVill.h"
 
 @implementation GameResource
 
@@ -17,21 +19,40 @@ static GameResource *instance;
 
 +(GameResource*) getInstance{
     if (instance == nil) {
-        instance = [self init];
+        instance = [[GameResource alloc] init];
     }
     return  instance;
 }
 
 
 -(GameResource*) init{
+    
     _allPieces = [[NSMutableDictionary alloc] init];
     _creaturePieces = [Creature initializeAllCreatures];
+    
     [_allPieces addEntriesFromDictionary:_creaturePieces];
+    
     _tilePieces = [HexTile initializeTiles];
     [_allPieces addEntriesFromDictionary:_creaturePieces];
+    
     _fortPieces = [Fort initializeAllForts];
     [_allPieces addEntriesFromDictionary:_fortPieces];
+    
+    _cityVillPieces = [CityVill initializeAllCityVill];
+    [_allPieces addEntriesFromDictionary: _cityVillPieces];
+    
+    _nonCityVillPieces = [NonCityVill initializeAllNonCityVill];
+    [_allPieces addEntriesFromDictionary: _nonCityVillPieces];
+    
     return [super init];
+}
+
+-(CityVill*) getCityVillForId: (NSString*) pieceId{
+    return [_cityVillPieces objectForKey:pieceId];
+}
+
+-(NonCityVill*) getNonCityVillForId: (NSString*) pieceId{
+    return [_nonCityVillPieces objectForKey:pieceId];
 }
 
 -(GamePiece*) getPieceForId: (NSString*) pieceId{

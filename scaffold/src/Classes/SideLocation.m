@@ -19,7 +19,7 @@
 -(id <JSONSerializable>) initFromJSON:(NSDictionary *)json{
     self = [super init];
     if (self && json != nil){
-        _locationID = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
+        _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
         _ownerId = [[NSString alloc] initWithString:[json objectForKey:@"ownerId"]];
         
         
@@ -30,7 +30,7 @@
                 if (o != nil && ([o isKindOfClass:[NSDictionary class]])) {
                     NSDictionary *sideGamePieceDic = (NSDictionary*) o;
                     GamePiece *piece = [[GameResource getInstance] getPieceForId:[sideGamePieceDic objectForKey:@"id"]];
-                    [_pieces setValue:piece forKey:[piece gamePieceID]];
+                    [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
         }
@@ -41,7 +41,7 @@
 
 
 -(SideLocation*) init{
-    _locationID = [[NSString alloc] init];
+    _locationId = [[NSString alloc] init];
     _locationName = [[NSString alloc] init];
     _sidePieces = [[NSMutableDictionary alloc]init];
     

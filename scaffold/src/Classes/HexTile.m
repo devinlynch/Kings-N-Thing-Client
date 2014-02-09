@@ -234,9 +234,9 @@
     } else if ([terrainName isEqualToString:@"Jungle"]) {
         _tileImage = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     } else if ([terrainName isEqualToString:@"Plaines"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"[plaines-tile.png"];
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"plaines-tile.png"];
     } else{
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"[back-tile.png"];
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"back-tile.png"];
     }
     
     return [super init];

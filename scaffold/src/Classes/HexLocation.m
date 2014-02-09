@@ -155,5 +155,9 @@
     [_stacks removeObjectForKey:[stack locationId]];
 }
 
+-(NSString*) description{
+    return [NSString stringWithFormat:@"Tile with number %@", _tileNumber];
+}
+
 
 @end

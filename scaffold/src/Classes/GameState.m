@@ -22,6 +22,7 @@
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
+    NSDictionary *_gameStateDic = [json objectForKey:@"gameState"];
     if(self && json != nil) {
         NSArray *playersJsonArr = [json objectForKey:@"players"];
         if(playersJsonArr != nil){
@@ -34,8 +35,12 @@
                 }
             }
         }
+        
+        NSLog(@"init playing cup with data:%@", [_gameStateDic objectForKey:@"playingCup"]);
+        
         _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
-        NSArray *hexLocationJsonArr = [json objectForKey:@"hexLocations"];
+        _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
+        NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];
         NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
         if(hexLocationJsonArr != nil){
             for(id o in hexLocationJsonArr) {
@@ -43,10 +48,14 @@
                     [locationDic setObject:[[HexLocation alloc] initFromJSON:o] forKey:[o objectForKey:@"locationId"]];
                 }
             }
-            _hexLocations = locationDic;
+            _hexLocations = (NSMutableDictionary*)[[NSDictionary alloc] initWithDictionary:locationDic];
         }
     }
     return self;
+}
+
+-(NSString*) description{
+    return [NSString stringWithFormat:@"GameState with HexLocations:\n %@ and playing cup:\n %@", _hexLocations, _playingCup];
 }
 
 

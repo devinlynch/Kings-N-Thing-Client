@@ -8,6 +8,7 @@
 
 #import "BoardLocation.h"
 #import "GamePiece.h"
+#import "Creature.h"
 #import "GameResource.h"
 
 @implementation BoardLocation
@@ -22,14 +23,14 @@
     self = [super init];
         if(self && json != nil) {
             _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
-            _ownerId = [[NSString alloc] initWithString:[json objectForKey:@"ownerId"]];
+          //  _ownerId = [[NSString alloc] initWithString:[json objectForKey:@"ownerId"]];
             
             NSArray *piecesJsonArr = [json objectForKey:@"gamePieces"];
             if(piecesJsonArr != nil){
                 for(id o in piecesJsonArr) {
                     if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
-                        GamePiece *piece = [[GameResource getInstance] getCreatureForId:[gamePieceDic objectForKey:@"id"]];
+                        Creature *piece = [[GameResource getInstance] getCreatureForId:[gamePieceDic objectForKey:@"id"]];
                         [_pieces setValue:piece forKey:[piece gamePieceId]];
                     }
                 }
