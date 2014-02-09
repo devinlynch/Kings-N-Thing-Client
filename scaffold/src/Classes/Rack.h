@@ -7,7 +7,8 @@
 //
 
 #import "BoardLocation.h"
+#import "JSONSerializable.h"
 
-@interface Rack : BoardLocation
+@interface Rack : BoardLocation<JSONSerializable>
 
 @end

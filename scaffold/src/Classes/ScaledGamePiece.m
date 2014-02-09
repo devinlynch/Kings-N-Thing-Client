@@ -31,6 +31,22 @@
 }
 
 
+- (id) initWithContentsOfFile:(NSString *)path
+{
+    
+   // _owner = piece;
+    
+    ScaledGamePiece *img = [super initWithContentsOfFile:path generateMipmaps:NO];
+    
+    img.scaleX = 0.75f;
+    img.scaleY = 0.75f;
+    
+    // [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+    
+    return img;
+}
+
 - (void)onMoveTile:(SPTouchEvent*)event {
     
     SPImage *img = (SPImage*)event.target;

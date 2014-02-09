@@ -30,7 +30,8 @@
                 for(id o in piecesJsonArr) {
                     if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
-                        Creature *piece = [[GameResource getInstance] getCreatureForId:[gamePieceDic objectForKey:@"id"]];
+                        GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
+                        piece.location = self;
                         [_pieces setValue:piece forKey:[piece gamePieceId]];
                     }
                 }
@@ -49,6 +50,11 @@
 }
 
 -(void) addGamePieceToLocation: (GamePiece*) piece{
+    
+    [piece.location removePieceWithIdFromLocation:piece.gamePieceId];
+    
+    piece.location = self;
+    
     [_pieces setObject:piece forKey:[piece gamePieceId]];
 }
 

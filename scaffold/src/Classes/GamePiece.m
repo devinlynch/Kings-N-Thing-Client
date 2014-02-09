@@ -12,7 +12,7 @@
 
 @synthesize gamePieceId = _gamePieceID;
 @synthesize pieceImage  = _pieceImage;
-@synthesize locationId    = _locationId;
+@synthesize location    = _location;
 
 
 

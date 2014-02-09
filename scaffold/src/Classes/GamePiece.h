@@ -12,12 +12,12 @@
 
 @interface GamePiece : NSObject{
     NSString *_gamePieceId;
-    NSString *_locationId;
+    BoardLocation *_location;
     ScaledGamePiece *_pieceImage;
 }
 
 @property NSString *gamePieceId;
-@property NSString *locationId;
+@property BoardLocation *location;
 @property ScaledGamePiece *pieceImage;
 
 
