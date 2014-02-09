@@ -14,16 +14,32 @@
 @synthesize gameState = _gameState;
 @synthesize users = _users;
 
+static Game *instance;
+
++(id) currentGame{
+    @synchronized(self){
+        return instance;
+    }
+}
+
++(void) setInstance: (Game*) game {
+    @synchronized(self){
+        instance = game;
+    }
+}
+
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {
-        NSArray *playersJsonArr = [json objectForKey:@"players"];
-        if(playersJsonArr != nil){
+        [self setGameID:[json objectForKey:@"gameId"]];
+        
+        NSArray *usersJsonArr = [json objectForKey:@"users"];
+        if(usersJsonArr != nil){
             [self setUsers:[[NSMutableArray alloc] init]];
-            for(id o in playersJsonArr) {
+            for(id o in usersJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                    NSDictionary *playerDic = (NSDictionary*) o;
-                    User *u = [[User alloc] initFromJSON:playerDic];
+                    NSDictionary *userDic = (NSDictionary*) o;
+                    User *u = [[User alloc] initFromJSON:userDic];
                     [self.users addObject:u];
                 }
             }
