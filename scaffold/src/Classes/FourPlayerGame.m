@@ -30,7 +30,7 @@
     
     TouchSheet *_sheet;
     SPTextField *_bankText;
-    
+    SPTextField *_stateText;
     SPTextField *_Player2LabelText;
     SPTextField *_Player3LabelText;
     SPTextField *_Player4LabelText;
@@ -106,6 +106,11 @@
     [_contents addChild:_sheet];
     
     
+    _stateText = [SPTextField textFieldWithWidth:300 height:30 text:@"State:"];
+    _stateText.x = 0;
+    _stateText.y = 5;
+    _stateText.color = SP_YELLOW;
+    [_contents addChild:_stateText];
     //Income labels
     _Player1LabelText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
     _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2 - 15);
