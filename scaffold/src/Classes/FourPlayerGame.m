@@ -30,25 +30,37 @@
     
     TouchSheet *_sheet;
     SPTextField *_bankText;
-    
     SPTextField *_stateText;
-
+    SPTextField *_Player2LabelText;
+    SPTextField *_Player3LabelText;
+    SPTextField *_Player4LabelText;
+    SPTextField *_Player1LabelText;
     
-    SPTextField *_Player2BankText;
-    SPTextField *_Player3BankText;
-    SPTextField *_Player4BankText;
-    SPTextField *_Player1BankText;
+    
+    SPTextField *_Player2IncomeText;
+    SPTextField *_Player3IncomeText;
+    SPTextField *_Player4IncomeText;
+    SPTextField *_Player1IncomeText;
+    
+    
     
     
     int _gameWidth;
     int _gameHeight;
     
     SPImage *_hexTile;
-    
     SPImage *_selectedPiece;
-    
+    SPImage *_bowl;
     GameState *_state;
-  
+    SPImage *_rackZone;
+    
+    
+    ScaledGamePiece *_test1;
+    ScaledGamePiece *_test2;
+    ScaledGamePiece *_test3;
+    
+    //bool didPutTower;
+    
 }
 
 -(id) init
@@ -69,6 +81,8 @@
 
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
+    
+   // didPutTower = false;
     
     gamePieces = [[NSMutableArray alloc]init];
     
@@ -91,46 +105,88 @@
     //Add the sheet to the contents so that it appears
     [_contents addChild:_sheet];
     
-//    _bankText = [SPTextField textFieldWithWidth:75 height:30 text:@"Selected:"];
-//    _bankText.x = 150;
-//    _bankText.y = 445;
-//    _bankText.color = SP_YELLOW;
-//    [_contents addChild:_bankText];
     
     _stateText = [SPTextField textFieldWithWidth:300 height:30 text:@"State:"];
     _stateText.x = 0;
     _stateText.y = 5;
     _stateText.color = SP_YELLOW;
     [_contents addChild:_stateText];
+    //Income labels
+    _Player1LabelText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
+    _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2 - 15);
+    _Player1LabelText.y = 335;
+    _Player1LabelText.color = SP_YELLOW;
+    [_contents addChild:_Player1LabelText];
     
-    _Player1BankText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
-    _Player1BankText.x = _gameWidth - _Player1BankText.width - (_Player1BankText.width/2 - 15);
-    _Player1BankText.y = 340;
-    _Player1BankText.color = SP_YELLOW;
-    [_contents addChild:_Player1BankText];
+    _Player2LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Income:"];
+    _Player2LabelText.x = _gameWidth - _Player2LabelText.width - (_Player2LabelText.width/2) + 25;
+    _Player2LabelText.y = 335 + _Player1LabelText.height / 2;
+    _Player2LabelText.color = SP_YELLOW;
+    [_contents addChild:_Player2LabelText];
     
-    _Player2BankText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Income:"];
-    _Player2BankText.x = _gameWidth - _Player2BankText.width - (_Player2BankText.width/2) + 25;
-    _Player2BankText.y = 340 + _Player1BankText.height / 2;
-    _Player2BankText.color = SP_YELLOW;
-    [_contents addChild:_Player2BankText];
+    _Player3LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Income:"];
+    _Player3LabelText.x = _gameWidth - _Player3LabelText.width - (_Player3LabelText.width/2)+ 25;
+    _Player3LabelText.y = 335 + _Player3LabelText.height;
+    _Player3LabelText.color = SP_YELLOW;
+    [_contents addChild:_Player3LabelText];
     
-    _Player3BankText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Income:"];
-    _Player3BankText.x = _gameWidth - _Player3BankText.width - (_Player3BankText.width/2)+ 25;
-    _Player3BankText.y = 340 + _Player3BankText.height;
-    _Player3BankText.color = SP_YELLOW;
-    [_contents addChild:_Player3BankText];
-    
-    _Player4BankText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Income:"];
-    _Player4BankText.x = _gameWidth - _Player4BankText.width - (_Player4BankText.width/2)+ 25;
-    _Player4BankText.y = 340 + _Player4BankText.height*1.5;
-    _Player4BankText.color = SP_YELLOW;
-    [_contents addChild:_Player4BankText];
-    
-    
+    _Player4LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Income:"];
+    _Player4LabelText.x = _gameWidth - _Player4LabelText.width - (_Player4LabelText.width/2)+ 25;
+    _Player4LabelText.y = 335 + _Player4LabelText.height*1.5;
+    _Player4LabelText.color = SP_YELLOW;
+    [_contents addChild:_Player4LabelText];
     
     
+    //Income Text
+    _Player1IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player1IncomeText.x = _gameWidth - _Player1IncomeText.width + 25 ;
+    _Player1IncomeText.y = 335;
+    _Player1IncomeText.color = SP_YELLOW;
+    [_contents addChild:_Player1IncomeText];
     
+    _Player2IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player2IncomeText.x = _gameWidth - _Player2IncomeText.width + 25 ;
+    _Player2IncomeText.y = 335+ _Player1LabelText.height / 2;
+    _Player2IncomeText.color = SP_YELLOW;
+    [_contents addChild:_Player2IncomeText];
+    
+    _Player3IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player3IncomeText.x = _gameWidth - _Player3IncomeText.width + 25 ;
+    _Player3IncomeText.y = 335 + _Player3LabelText.height;
+    _Player3IncomeText.color = SP_YELLOW;
+    [_contents addChild:_Player3IncomeText];
+    
+    _Player4IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player4IncomeText.x = _gameWidth - _Player4IncomeText.width + 25 ;
+    _Player4IncomeText.y = 335+ _Player4LabelText.height*1.5;
+    _Player4IncomeText.color = SP_YELLOW;
+    [_contents addChild:_Player4IncomeText];
+    
+    
+    _rackZone = [[SPImage alloc] initWithContentsOfFile:@"DarkZone2.png"];
+    _rackZone.x = 15;
+    _rackZone.y = _gameHeight - _rackZone.height - _rackZone.height/4 + 15;
+    
+    [_contents addChild:_rackZone];
+    
+    
+    _test1 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_105.png"];
+    _test1.x = 20;
+    _test1.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+    [_contents addChild:_test1];
+    
+    _test2 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_106.png"];
+    _test2.x = _test1.width*1.4;
+    _test2.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+    [_contents addChild:_test2];
+    
+    _test3 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_107.png"];
+    _test3.x = (_test2.width*1.4) *1.7;
+    _test3.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+
+    [_contents addChild:_test3];
+    
+
     
     
     
@@ -162,22 +218,12 @@
     
     //Draw tiles
     [self drawTiles];
-   // [self drawCreatures];
     
-    
-    
-//    _rack = [[SPImage alloc] initWithContentsOfFile:@"Rack.png"];
-//    _rack.x = _gameWidth /2 - _rack.width/2;
-//    _rack.y = _gameHeight - _rack.height * 1.4;
-//    [_contents addChild:_rack];
-//    [gamePieces addObject:_rack];
-//    
-//    
-//    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
-//    _bowl.x = 10;
-//    _bowl.y = 310;
-//    [_contents addChild:_bowl];
-//    [gamePieces addObject:_bowl];
+    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
+    _bowl.x = _gameWidth - _bowl.width;
+    _bowl.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+    [_contents addChild:_bowl];
+    [gamePieces addObject:_bowl];
 
 }
 
@@ -237,7 +283,7 @@
     [_contents addChild:_selectedPiece];
 }
 
-//
+
 //-(void) drawCreatures{
 //    for (NSString *creature in [_state gamePieceResource]) {
 //        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
@@ -264,7 +310,10 @@
             _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
             _hexTile.x = 133;
             _hexTile.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
-            [_sheet addChild: _hexTile];;
+            [_sheet addChild: _hexTile];
+            [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+            
         }
         
         if (i == 4) {
@@ -311,6 +360,8 @@
                     _hilight.y = _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset ;
                     [_sheet addChild: _hexTile];
                     [_sheet addChild: _hilight];
+                    [_hilight addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    [_hilight addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 
                 if (j == 1){
@@ -332,10 +383,11 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 4){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"green-desert-tile.png"];
                     _hexTile.x = 133 - (_hexTile.width - 10);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
                     [_sheet addChild: _hexTile];
+                    [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 5){
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
@@ -363,10 +415,11 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 2){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"yellow-jungle-tile.png"];
                     _hexTile.x = 133 + (_hexTile.width - 10);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
                     [_sheet addChild: _hexTile];
+                    [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 3){
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
@@ -386,10 +439,6 @@
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
                     [_sheet addChild: _hexTile];
                 }
-
-                
-                
-                
             }
             
             drawNext = false;
@@ -469,10 +518,12 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 3) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-desert-tile.png"];
+
                     _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
                     _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
                     [_sheet addChild: _hexTile];
+                    [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 4) {
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
@@ -564,6 +615,63 @@
         }
         [_sheet addChild: _hexTile];
     }
+}
+
+
+
+
+-(void) putTower:(SPTouchEvent*) event
+{
+    SPImage *img = (SPImage*)event.target;
+    SPImage *newimg;
+    bool didPutTower = true;
+    
+     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1 && didPutTower)
+    {
+        NSLog(@"le tile click");
+        
+        newimg = [[SPImage alloc] initWithContentsOfFile:@"C_Fort_375.png"];
+        newimg.scaleX = 0.3;
+        newimg.scaleY = 0.3;
+        
+        
+        //Place tower on a random spot
+        newimg.x = fmod(arc4random(), (img.x - (img.x + 10))) + (img.x + 10);
+        newimg.y = fmod(arc4random(), (img.y - (img.y + 15))) + (img.y + 15);
+        NSLog(@"placed dat tower bb");
+        
+        [_sheet addChild:newimg];
+        
+        didPutTower = !didPutTower;
+    }
+}
+
+-(void) tileDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch * clickTileMenu = [touches objectAtIndex:0];
+        if (clickTileMenu.tapCount == 2){
+            NSLog(@"le double click");
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+         //  [self showTileMenu];
+            
+            TileMenu *tile = [[TileMenu alloc]init];
+            [self showScene:tile];
+        }
+        
+    }
+    
+}
+
+
+- (void)showTileMenu {
+    TileMenu *tileScene = [[TileMenu alloc] init];
+    [self showScene:tileScene];
 }
 
 -(void) showScene:(SPSprite *)scene
