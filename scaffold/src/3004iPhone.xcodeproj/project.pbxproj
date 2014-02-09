@@ -318,6 +318,7 @@
 		41BD14BA18A75244008C6E96 /* T_Swamp_085.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B218A75244008C6E96 /* T_Swamp_085.png */; };
 		41BD14BB18A75244008C6E96 /* trade.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B318A75244008C6E96 /* trade.png */; };
 		41BD14BC18A75244008C6E96 /* TwoThreeBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B418A75244008C6E96 /* TwoThreeBoard.png */; };
+		41BD14BF18A7D9E8008C6E96 /* GoldEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14BE18A7D9E8008C6E96 /* GoldEventHandler.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
@@ -772,6 +773,8 @@
 		41BD13B218A75244008C6E96 /* T_Swamp_085.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_085.png; sourceTree = "<group>"; };
 		41BD13B318A75244008C6E96 /* trade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trade.png; sourceTree = "<group>"; };
 		41BD13B418A75244008C6E96 /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
+		41BD14BD18A7D9E8008C6E96 /* GoldEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoldEventHandler.h; sourceTree = "<group>"; };
+		41BD14BE18A7D9E8008C6E96 /* GoldEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoldEventHandler.m; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1590,6 +1593,8 @@
 				41B01C011898309A00CA876D /* GUIStateHandler.m */,
 				41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */,
 				41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */,
+				41BD14BD18A7D9E8008C6E96 /* GoldEventHandler.h */,
+				41BD14BE18A7D9E8008C6E96 /* GoldEventHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -2134,6 +2139,7 @@
 				990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
+				41BD14BF18A7D9E8008C6E96 /* GoldEventHandler.m in Sources */,
 				99DFAD961894B4A40092CF1A /* IPManager.m in Sources */,
 				4144CB71188EFAF3003A29E4 /* Message.m in Sources */,
 				4131C2F9188770D1009775EA /* SpecialAbility.m in Sources */,

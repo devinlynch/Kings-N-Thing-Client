@@ -11,5 +11,11 @@
 
 @interface GoldCollection : SPSprite
 
++(GoldCollection*) getInstance;
+
+-(void) setIncome: (NSString*) income;
+
+-(void) setTotal: (NSString*) total;
+
 
 @end

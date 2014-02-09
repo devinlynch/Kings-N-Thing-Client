@@ -19,6 +19,7 @@
 
 @synthesize players = _players;
 @synthesize game = _game;
+@synthesize myPlayerId = _myPlayerId;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
@@ -35,6 +36,8 @@
                 }
             }
         }
+        
+        _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
         
         NSLog(@"init playing cup with data:%@", [_gameStateDic objectForKey:@"playingCup"]);
         

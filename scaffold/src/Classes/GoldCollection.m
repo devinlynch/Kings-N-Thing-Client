@@ -25,6 +25,9 @@
     int _gameWidth;
     int _gameHeight;
     
+    SPTextField *_incomeTF;
+    SPTextField *_goldTF;
+    
     
 }
 
@@ -81,24 +84,30 @@ static GoldCollection *instance = nil;
     
     
     //GoldPiece text
-    SPTextField *goldTF = [SPTextField textFieldWithWidth:300 height:120
+    _goldTF
+    
+    
+    
+    
+    
+    = [SPTextField textFieldWithWidth:300 height:120
                                                      text:@"Gold pieces: 9999"];
-    goldTF.x = _gameWidth / 2 - goldTF.width / 2;
-    goldTF.y = _gameHeight - goldTF.height * 2;
-    goldTF.fontName = @"ArialMT";
-    goldTF.fontSize = 25;
-    goldTF.color = SP_YELLOW;
-    [_contents addChild:goldTF];
+    _goldTF.x = _gameWidth / 2 - _goldTF.width / 2;
+    _goldTF.y = _gameHeight - _goldTF.height * 2;
+    _goldTF.fontName = @"ArialMT";
+    _goldTF.fontSize = 25;
+    _goldTF.color = SP_YELLOW;
+    [_contents addChild:_goldTF];
     
     //Income text
-    SPTextField *incomeTF = [SPTextField textFieldWithWidth:300 height:120
+    _incomeTF = [SPTextField textFieldWithWidth:300 height:120
                                                        text:@"Income: 9999"];
-    incomeTF.x = _gameWidth / 2 - incomeTF.width / 2;
-    incomeTF.y = _gameHeight - incomeTF.height * 2 + offset * 2.2;
-    incomeTF.fontName = @"ArialMT";
-    incomeTF.fontSize = 25;
-    incomeTF.color = SP_YELLOW;
-    [_contents addChild:incomeTF];
+    _incomeTF.x = _gameWidth / 2 - _incomeTF.width / 2;
+    _incomeTF.y = _gameHeight - _incomeTF.height * 2 + offset * 2.2;
+    _incomeTF.fontName = @"ArialMT";
+    _incomeTF.fontSize = 25;
+    _incomeTF.color = SP_YELLOW;
+    [_contents addChild:_incomeTF];
     
     //Collect coins button
     SPTexture *collectButtonTexture = [SPTexture textureWithContentsOfFile:@"CollectCoinsBtn.png"];
@@ -119,6 +128,15 @@ static GoldCollection *instance = nil;
 
 }
 
+
+-(void) setIncome: (NSString*) income{
+    [_incomeTF setText:income];
+
+}
+
+-(void) setTotal: (NSString*) total{
+    [_goldTF setText:total];
+}
 
 
 

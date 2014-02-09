@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.8.METHOD</key>
+	<string>handleGoldCollection: </string>
+	<key>EVENT.8.CLASS</key>
+	<string>GoldEventHandler</string>
+	<key>EVENT.8.TYPE</key>
+	<string>goldCollection</string>
 	<key>EVENT.7.METHOD</key>
 	<string>handleGameSetup:</string>
 	<key>EVENT.7.CLASS</key>

@@ -48,11 +48,11 @@
     
     Message *responseMessage;
     
-    if ([type isEqualToString:@"setupGame"]) {
         responseMessage = [[GameMessage alloc] initFromJSON:json];
-    }    if(responseMessage == nil) {
+    if(responseMessage == nil) {
         // TODO: How do we want to handle a bad reponse?
     }
+    
     Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
     [e setReceivedMessageType:UDP_MESSAGE_TYPE];
     [[ClientReactor instance] dispatch:e];
