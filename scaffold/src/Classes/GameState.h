@@ -14,12 +14,16 @@
 
 @interface GameState : NSObject<JSONSerializable>{
     NSMutableArray *_players;
+    NSString *_myPlayerId;
     PlayingCup *_playingCup;
     NSMutableDictionary *_hexLocations;
     Bank *_bank;
     Game *_game;
+    NSMutableDictionary *_gamePieceResource;
+    
 }
 
+@property NSString *myPlayerId;
 @property NSMutableArray *players;
 @property Game *game;
 @property Bank *bank;

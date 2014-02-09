@@ -12,6 +12,8 @@
 #import "Game.h"
 #import "TwoThreePlayerGame.h"
 #import "GameMenu.h"
+#import "FourPlayerGame.h"
+#import "Movement.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -43,7 +45,7 @@ void onUncaughtException(NSException *exception)
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[GameMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
