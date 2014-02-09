@@ -698,7 +698,7 @@
 		99098DAB188F554C00139EA4 /* 3004iPhone Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3004iPhone Tests-Prefix.pch"; sourceTree = "<group>"; };
 		99098DB1188F567400139EA4 /* ServerResponseMessageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseMessageTest.m; sourceTree = "<group>"; };
 		99098DBB188F5C3200139EA4 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		99098DBC188F5C3200139EA4 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		99098DBC188F5C3200139EA4 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Utils.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		990BEFB1188F1EF500D7CA03 /* ServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAccess.h; sourceTree = "<group>"; };
 		990BEFB2188F1EF500D7CA03 /* ServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAccess.m; sourceTree = "<group>"; };
 		990BEFB5188F223700D7CA03 /* ServerResponseMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseMessage.h; sourceTree = "<group>"; };

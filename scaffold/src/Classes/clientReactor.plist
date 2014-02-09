@@ -2,6 +2,48 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.15.CLASS</key>
+	<string>PlacementHandler</string>
+	<key>EVENT.15.METHOD</key>
+	<string>handlePlacementPhaseOver:</string>
+	<key>EVENT.15.TYPE</key>
+	<string>placementPhaseOver</string>
+	<key>EVENT.14.CLASS</key>
+	<string>PlacementHandler</string>
+	<key>EVENT.14.METHOD</key>
+	<string>handlePlayerDidPlaceFort:</string>
+	<key>EVENT.14.TYPE</key>
+	<string>playerDidPlaceFort</string>
+	<key>EVENT.13.TYPE</key>
+	<string>playerPlacedControlMarker</string>
+	<key>EVENT.13.METHOD</key>
+	<string>handlePlayerPlaceControlMark:</string>
+	<key>EVENT.13.CLASS</key>
+	<string>PlacementHandler</string>
+	<key>EVENT.12.TYPE</key>
+	<string>timeToPlaceFort</string>
+	<key>EVENT.12.METHOD</key>
+	<string>handleTimeToPlaceFort:</string>
+	<key>EVENT.12.CLASS</key>
+	<string>PlacementHandler</string>
+	<key>EVENT.11.TYPE</key>
+	<string>yourTurnToPlaceControlMarker</string>
+	<key>EVENT.11.METHOD</key>
+	<string>handleYourTurnToPlacrControlMarker:</string>
+	<key>EVENT.11.CLASS</key>
+	<string>PlacementHandler</string>
+	<key>EVENT.10.TYPE</key>
+	<string>yourTurnToPlaceFort</string>
+	<key>EVENT.10.METHOD</key>
+	<string>handleYourTurnToPlaceFort:</string>
+	<key>EVENT.10.CLASS</key>
+	<string>PlacementHandler</string>
+	<key>EVENT.9.TYPE</key>
+	<string>setupPhaseOver</string>
+	<key>EVENT.9.CLASS</key>
+	<string>SetupEventHandler</string>
+	<key>EVENT.9.METHOD</key>
+	<string>handleSetupOver:</string>
 	<key>EVENT.8.METHOD</key>
 	<string>handleGoldCollection:</string>
 	<key>EVENT.8.CLASS</key>

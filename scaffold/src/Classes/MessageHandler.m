@@ -44,12 +44,11 @@
 +(void) handleUDPReceivedJSONData: (NSData*) data{
     NSDictionary *json = [Utils dictionaryFromJSONData:data];
     
-    NSString *type = [[NSString alloc] initWithString:[json objectForKey:@"type"]];
-    NSString *responseStatus = [[NSString alloc] initWithString:[json objectForKey:@"responseStatus"]];
+
     Message *responseMessage;
     
     
-    if(responseStatus == nil){
+    if([json objectForKey:@"responseStatus"] == nil){
         responseMessage = [[GameMessage alloc] initFromJSON:json];
     } else{
         responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];

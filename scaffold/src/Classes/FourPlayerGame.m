@@ -15,6 +15,7 @@
 #import "Creature.h"
 #import "GameResource.h"
 #import "GoldCollection.h"
+#import "Player.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -29,6 +30,9 @@
     
     TouchSheet *_sheet;
     SPTextField *_bankText;
+    
+    SPTextField *_stateText;
+
     
     SPTextField *_Player2BankText;
     SPTextField *_Player3BankText;
@@ -93,6 +97,11 @@
 //    _bankText.color = SP_YELLOW;
 //    [_contents addChild:_bankText];
     
+    _stateText = [SPTextField textFieldWithWidth:300 height:30 text:@"State:"];
+    _stateText.x = 0;
+    _stateText.y = 5;
+    _stateText.color = SP_YELLOW;
+    [_contents addChild:_stateText];
     
     _Player1BankText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
     _Player1BankText.x = _gameWidth - _Player1BankText.width - (_Player1BankText.width/2 - 15);
@@ -136,6 +145,11 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setupOver:)
+                                                 name:@"setupOver"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(goldCollection:)
                                                  name:@"goldCollection"
                                                object:nil];
@@ -169,23 +183,47 @@
 
 -(void) goldCollection: (NSNotification*) notif{
     
+    [_stateText setText:@"State: Gold Collection"];
+    
     NSLog(@"Gold should appear");
     
     NSMutableDictionary *dic = notif.object;
     
-    NSMutableDictionary *goldDic = [dic objectForKey:[_state myPlayerId]];
+    NSMutableDictionary *goldDic = [dic objectForKey:_state.myPlayerId];
     
-    [[GoldCollection getInstance] setIncome:[NSString stringWithFormat:@"%@", [goldDic objectForKey:@"income"]]];
-    [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"%@", [goldDic objectForKey:@"totalGold"]]];
-
+    NSLog(@"%@", goldDic);
+    
+    NSString *total = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[goldDic objectForKey:@"totalGold"]]];
+    NSString *income = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[goldDic objectForKey:@"income"]]];
+    
+    
+    NSString *username;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:_state.myPlayerId]) {
+            username = [[NSString alloc] initWithString:p.username];
+        }
+        [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
+    }
+    
+    [[GoldCollection getInstance] setIncome:[NSString stringWithFormat:@"Income: %@", income]];
+    [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"Total Gold: %@", total]];
+    [[GoldCollection getInstance] setUsername:username];
+    
     [[GoldCollection getInstance] setVisible:YES];
     
 }
 
 
 -(void) gameSetup: (NSNotification*) notif{
+    [_stateText setText:@"State: Setup"];
+
     _state = (GameState*) notif.object;
     NSLog(@"%@", _state);
+}
+
+-(void) setupOver: (NSNotification*) notif{
+    [_stateText setText:@"State: SetupOver"];
 }
 
 

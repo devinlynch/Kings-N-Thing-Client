@@ -9,6 +9,7 @@
 #import "GoldCollectionHandler.h"
 #import "Event.h"
 #import "GameState.h"
+#import "GameMessage.h"
 
 @implementation GoldCollectionHandler
 
@@ -22,10 +23,10 @@
 }
 
 -(void) handleGoldCollection:(Event *)event{
-    Message *message = event.msg;
-    NSLog(@"Got handle game message");
+    GameMessage *message = (GameMessage*) event.msg;
+    NSLog(@"Got gold collection message");
     
-    if (message == nil || message.data == nil){
+    if (message == nil || message.jsonDictionnary == nil){
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY????? idk devin");
         
         return;
@@ -34,7 +35,7 @@
     
 
     
-    NSDictionary* goldCollectionDic = [message.data.map objectForKey:@"data"];
+    NSDictionary* goldCollectionDic = [message.jsonDictionnary objectForKey:@"data"];
 
     
     if(goldCollectionDic == nil){
