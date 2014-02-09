@@ -623,7 +623,10 @@
         if (clickTileMenu.tapCount == 2){
             NSLog(@"le double click");
             [NSObject cancelPreviousPerformRequestsWithTarget:self];
-           [self showTileMenu];
+         //  [self showTileMenu];
+            
+            TileMenu *tile = [[TileMenu alloc]init];
+            [self showScene:tile];
         }
         
     }
