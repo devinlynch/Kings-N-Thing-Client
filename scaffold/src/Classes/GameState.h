@@ -19,6 +19,8 @@
     NSMutableDictionary *_hexLocations;
     Bank *_bank;
     Game *_game;
+    NSMutableDictionary *_gamePieceResource;
+    
 }
 
 @property NSString *myPlayerId;

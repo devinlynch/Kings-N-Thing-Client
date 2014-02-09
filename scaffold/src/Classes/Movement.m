@@ -53,7 +53,7 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"masterGameBoard.png"];
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"FourPlayerBackground@2x.png"];
     
     //necessary or else it gets placed off screen
     background.x = 0;

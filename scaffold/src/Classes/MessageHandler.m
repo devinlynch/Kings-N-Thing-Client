@@ -45,7 +45,7 @@
     NSDictionary *json = [Utils dictionaryFromJSONData:data];
     
     NSString *type = [[NSString alloc] initWithString:[json objectForKey:@"type"]];
-    
+    NSString *responseStatus = [[NSString alloc] initWithString:[json objectForKey:@"responseStatus"]];
     Message *responseMessage;
     
         responseMessage = [[GameMessage alloc] initFromJSON:json];
