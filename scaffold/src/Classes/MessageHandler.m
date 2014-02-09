@@ -48,11 +48,13 @@
     NSString *responseStatus = [[NSString alloc] initWithString:[json objectForKey:@"responseStatus"]];
     Message *responseMessage;
     
-        responseMessage = [[GameMessage alloc] initFromJSON:json];
-    if(responseMessage == nil) {
-        // TODO: How do we want to handle a bad reponse?
-    }
     
+    if(responseStatus == nil){
+        responseMessage = [[GameMessage alloc] initFromJSON:json];
+    } else{
+        responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
+    }
+
     Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
     [e setReceivedMessageType:UDP_MESSAGE_TYPE];
     [[ClientReactor instance] dispatch:e];

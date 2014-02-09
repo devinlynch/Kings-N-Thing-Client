@@ -30,7 +30,7 @@
                 if (o != nil && ([o isKindOfClass:[NSDictionary class]])) {
                     NSDictionary *sideGamePieceDic = (NSDictionary*) o;
                     GamePiece *piece = [[GameResource getInstance] getPieceForId:[sideGamePieceDic objectForKey:@"id"]];
-                    [_sidePieces setValue:piece forKey:[piece gamePieceID]];
+                    [_sidePieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
         }

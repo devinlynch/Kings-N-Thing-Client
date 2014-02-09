@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>EVENT.8.METHOD</key>
-	<string>handleGoldCollection: </string>
+	<string>handleGoldCollection:</string>
 	<key>EVENT.8.CLASS</key>
-	<string>GoldEventHandler</string>
+	<string>GoldCollectionHandler</string>
 	<key>EVENT.8.TYPE</key>
 	<string>goldCollection</string>
 	<key>EVENT.7.METHOD</key>

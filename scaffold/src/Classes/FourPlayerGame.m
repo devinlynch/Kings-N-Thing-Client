@@ -168,6 +168,9 @@
 }
 
 -(void) goldCollection: (NSNotification*) notif{
+    
+    NSLog(@"Gold should appear");
+    
     NSMutableDictionary *dic = notif.object;
     
     NSMutableDictionary *goldDic = [dic objectForKey:[_state myPlayerId]];
