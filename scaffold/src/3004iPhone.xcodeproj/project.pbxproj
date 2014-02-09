@@ -232,6 +232,7 @@
 		41BD14B918A75244008C6E96 /* T_Swamp_084.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B118A75244008C6E96 /* T_Swamp_084.png */; };
 		41BD14BA18A75244008C6E96 /* T_Swamp_085.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B218A75244008C6E96 /* T_Swamp_085.png */; };
 		41BD14BB18A75244008C6E96 /* trade.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B318A75244008C6E96 /* trade.png */; };
+		41BD14C518A81977008C6E96 /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14C418A81977008C6E96 /* PlacementHandler.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
@@ -688,6 +689,8 @@
 		41BD13B218A75244008C6E96 /* T_Swamp_085.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = T_Swamp_085.png; sourceTree = "<group>"; };
 		41BD13B318A75244008C6E96 /* trade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trade.png; sourceTree = "<group>"; };
 		41BD13B418A75244008C6E96 /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
+		41BD14C318A81977008C6E96 /* PlacementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacementHandler.h; sourceTree = "<group>"; };
+		41BD14C418A81977008C6E96 /* PlacementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacementHandler.m; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1514,6 +1517,8 @@
 				41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */,
 				DEF9FC1418A7243D0057FAEB /* GoldCollectionHandler.h */,
 				DEF9FC1518A7243D0057FAEB /* GoldCollectionHandler.m */,
+				41BD14C318A81977008C6E96 /* PlacementHandler.h */,
+				41BD14C418A81977008C6E96 /* PlacementHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -1959,6 +1964,7 @@
 				99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */,
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
 				99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */,
+				41BD14C518A81977008C6E96 /* PlacementHandler.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
 				99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */,
 				990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */,

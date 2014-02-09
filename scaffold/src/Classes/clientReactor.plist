@@ -17,7 +17,7 @@
 	<key>EVENT.13.TYPE</key>
 	<string>playerPlacedControlMarker</string>
 	<key>EVENT.13.METHOD</key>
-	<string>handlePlayerPlaceControlMark:</string>
+	<string>handlePlayerPlacedControlMarker:</string>
 	<key>EVENT.13.CLASS</key>
 	<string>PlacementHandler</string>
 	<key>EVENT.12.TYPE</key>
@@ -29,7 +29,7 @@
 	<key>EVENT.11.TYPE</key>
 	<string>yourTurnToPlaceControlMarker</string>
 	<key>EVENT.11.METHOD</key>
-	<string>handleYourTurnToPlacrControlMarker:</string>
+	<string>handleYourTurnToPlaceControlMarker:</string>
 	<key>EVENT.11.CLASS</key>
 	<string>PlacementHandler</string>
 	<key>EVENT.10.TYPE</key>
