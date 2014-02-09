@@ -34,7 +34,7 @@ typedef enum InGameRequestTypes {
 
 @end
 
-@interface InGameServerAccess : NSObject<InGameServerProtocol>
+@interface InGameServerAccess : NSObject
 
 @property id<InGameServerProtocol> delegateListener;
 

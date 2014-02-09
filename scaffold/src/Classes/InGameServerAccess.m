@@ -143,33 +143,58 @@ static InGameServerAccess *instance;
 
 // Movement
 -(enum InGameRequestTypes) movementPhaseMoveStack: (NSString*) stackId toHex: (NSString*) hexLocationId{
-    /*NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setObject:thingId forKey:@"thingId"];
-    [params setObject:locationId forKey:@"locationId"];
-    [params setObject:wasBought == true ? @"true" : @"false" forKey:@"wasBought"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexLocationId forKey:@"hexLocationId"];
+    [params setObject:stackId forKey:@"stackId"];
     
     [self phasePost:@"movement" type:@"moveStack" params:params requestType:MOVEMENTPHASE_moveStack];
     
-    return MOVEMENTPHASE_moveStack;*/
+    return MOVEMENTPHASE_moveStack;
 }
 
 -(enum InGameRequestTypes) movementPhaseMoveGamePiece: (NSString*) gamePieceId toLocation: (NSString*) locationId{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:locationId forKey:@"locationId"];
+    [params setObject:gamePieceId forKey:@"gamePieceId"];
+    
+    [self phasePost:@"movement" type:@"moveGamePiece" params:params requestType:MOVEMENTPHASE_moveGamePiece];
     
     return MOVEMENTPHASE_moveGamePiece;
 }
 
 -(enum InGameRequestTypes) movementPhaseCreateStack: (NSString*) hexLocationId withPieces: (NSArray*) gamePieceIds{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexLocationId forKey:@"hexLocationId"];
+    
+    int i = 1;
+    for(NSString *gamePieceId in gamePieceIds) {
+        [params setObject:gamePieceId forKey:[NSString stringWithFormat:@"gamePiece_%d", i]];
+        i++;
+    }
+    
+    [self phasePost:@"movement" type:@"createStack" params:params requestType:MOVEMENTPHASE_createStack];
     
     return MOVEMENTPHASE_createStack;
 }
 
 -(enum InGameRequestTypes) movementPhaseAddPiecesToStack: (NSString*) stackId pieces: (NSArray*) gamePieceIds{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:stackId forKey:@"stackId"];
+    
+    int i = 1;
+    for(NSString *gamePieceId in gamePieceIds) {
+        [params setObject:gamePieceId forKey:[NSString stringWithFormat:@"gamePiece_%d", i]];
+        i++;
+    }
+    
+    [self phasePost:@"movement" type:@"addPiecesToStack" params:params requestType:MOVEMENTPHASE_addPiecesToStack];
     
     return MOVEMENTPHASE_addPiecesToStack;
 }
 
 -(enum InGameRequestTypes) movementPhaseDoneMakingMoves{
-    
+    [self phasePost:@"movement" type:@"playerIsDoneMakingMoves" params:nil requestType:MOVEMENTPHASE_playerIsDoneMakingMoves];
+
     return MOVEMENTPHASE_playerIsDoneMakingMoves;
 }
 
