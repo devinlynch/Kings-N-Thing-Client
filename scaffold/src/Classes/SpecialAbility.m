@@ -96,9 +96,10 @@ static SpecialAbility *warlordJoinMySide = nil;
 }
 
 -(SpecialAbility*) initWithId:(NSString *)abilityId andName:(NSString *)name{
+    self=[super init];
     _specialAbilityID = [[NSString alloc] initWithString:abilityId];
     _specialAbilityName = [[NSString alloc] initWithString:name];
-    return [super init];
+    return self;
 }
 
 @end

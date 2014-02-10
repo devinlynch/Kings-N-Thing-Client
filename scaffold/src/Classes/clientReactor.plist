@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>EVENT.18.METHOD</key>
+	<string>handleRecruitThingsPhaseOver:</string>
+	<key>EVENT.18.TYPE</key>
+	<string>recruitThingsPhaseOver</string>
+	<key>EVENT.18.CLASS</key>
+    <string>RecruitThingsHandler</string>
     <key>EVENT.17.METHOD</key>
 	<string>handlePlayerRecruitedAndPlacedThing:</string>
 	<key>EVENT.17.TYPE</key>

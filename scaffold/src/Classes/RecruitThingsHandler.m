@@ -48,12 +48,22 @@
     
     
     [location addGamePieceToLocation:thing];
-    
-    
+    [player assignPiece:thing];
     
     NSLog(@"Succesfully parsed PlayerRecruitedAndPlacedThing");
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRecruitedAndPlacedThing" object:pRecruitment];
+}
+
+-(void) handlerRecruitThingsPhaseOver:(Event *)event{
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    if(dataDic == nil){
+        return;
+    }
+    
+    NSLog(@"Succesfully parsed recruitThingsPhaseOver message");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitThingsPhaseOver" object:nil];
 }
 
 @end

@@ -17,9 +17,11 @@
 +(PlayerRecruitment*) fromDictionary: (NSDictionary*) dic{
     PlayerRecruitment* pr = [[PlayerRecruitment alloc] init];
     
-    pr.thing = (Thing*)[[GameResource getInstance] getPieceForId:[dic objectForKey:@"playerId"]];
-    pr.location = [[[Game currentGame] gameState] getBoardLocationById:[dic objectForKey:@"locationId"]];
-    pr.player = [[[Game currentGame] gameState] getPlayerById:[dic objectForKey:@"playerId"]];
+    pr.thing = (Thing*)[[GameResource getInstance] getPieceForId:[dic objectForKey:@"thingId"]];
+    
+    GameState *currentGameState = [[Game currentGame] gameState];
+    pr.location = [currentGameState getBoardLocationById:[dic objectForKey:@"locationId"]];
+    pr.player = [currentGameState getPlayerById:[dic objectForKey:@"playerId"]];
     
     NSString *rt = [dic objectForKey:@"recruitmentType"];
     if(rt != nil) {

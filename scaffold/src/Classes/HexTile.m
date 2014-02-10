@@ -215,7 +215,7 @@
 }
         
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId:(NSString *)tileId{
-
+    self = [super init];
     
     NSString *terrainName = [t terrainName];
     
@@ -239,7 +239,7 @@
         _tileImage = [[SPImage alloc] initWithContentsOfFile:@"back-tile.png"];
     }
     
-    return [super init];
+    return self;
 }
 
 - (void)unhilight{

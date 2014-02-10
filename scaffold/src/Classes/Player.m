@@ -28,6 +28,7 @@
         _gold =  [[json objectForKey:@"gold"] integerValue];
         _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
         _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"] withOwner:self];
+        _gamePieces = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -39,7 +40,11 @@
 }
 
 -(void) assignPiece: (GamePiece*) gamePiece{
-    //TODO
+    Player *previousOwner = gamePiece.owner;
+    if(previousOwner != nil && ![previousOwner isKindOfClass:[NSNull class]]) {
+        [previousOwner.gamePieces removeObjectForKey:gamePiece.gamePieceId];
+    }
+    [self.gamePieces setObject:gamePiece forKey:gamePiece.gamePieceId];
 }
 
 @end

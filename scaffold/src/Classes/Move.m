@@ -16,11 +16,12 @@
 @synthesize originID = _originID;
 
 -(Move*) initWithMoveMadeBy:(NSString *)moveMadeBy movingPiece:(NSString *)gamePiece toDestination:(NSString *)destination fromOrigin:(NSString *)origin{
+    self=[super init];
     _moveMadeByID = moveMadeBy;
     _pieceID = gamePiece;
     _destinationID = destination;
     _originID = origin;
-    return [super init];
+    return self;
 }
 
 @end

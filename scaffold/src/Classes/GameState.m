@@ -46,7 +46,7 @@
         
         NSLog(@"init playing cup with data:%@", [_gameStateDic objectForKey:@"playingCup"]);
         
-        _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
+        _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
         _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
         _sideLocation = [[SideLocation alloc] initFromJSON:[_gameStateDic objectForKey:@"sideLocation"]];
         NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];

@@ -163,6 +163,7 @@
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
 		997B0E1018A81E7C009404DE /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0F18A81E7C009404DE /* PlacementHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
+		997B0E1C18A84688009404DE /* RecruitThingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1B18A84688009404DE /* RecruitThingsTest.m */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
@@ -616,7 +617,6 @@
 		41BD132E18A75243008C6E96 /* RecruitThingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecruitThingsBackground@2x.png"; sourceTree = "<group>"; };
 		41BD132F18A75243008C6E96 /* stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stack.png; sourceTree = "<group>"; };
 		41BD13B318A75244008C6E96 /* trade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trade.png; sourceTree = "<group>"; };
-		41BD13B418A75244008C6E96 /* TwoThreeBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThreeBoard.png; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -648,6 +648,7 @@
 		997B0E0F18A81E7C009404DE /* PlacementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacementHandler.m; sourceTree = "<group>"; };
 		997B0E1318A82061009404DE /* PlayerRecruitment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRecruitment.h; sourceTree = "<group>"; };
 		997B0E1418A82061009404DE /* PlayerRecruitment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRecruitment.m; sourceTree = "<group>"; };
+		997B0E1B18A84688009404DE /* RecruitThingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitThingsTest.m; sourceTree = "<group>"; };
 		99A78F1E18957B1E005D31E5 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
@@ -1234,6 +1235,7 @@
 			children = (
 				99098DA4188F554C00139EA4 /* Supporting Files */,
 				99098DB1188F567400139EA4 /* ServerResponseMessageTest.m */,
+				997B0E1B18A84688009404DE /* RecruitThingsTest.m */,
 			);
 			path = "3004iPhone Tests";
 			sourceTree = "<group>";
@@ -2341,6 +2343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99098DB4188F56EB00139EA4 /* ServerMessageError.m in Sources */,
+				997B0E1C18A84688009404DE /* RecruitThingsTest.m in Sources */,
 				99098DB2188F567400139EA4 /* ServerResponseMessageTest.m in Sources */,
 				99098DBE188F60C800139EA4 /* Message.m in Sources */,
 				99098DB3188F56E800139EA4 /* ServerResponseMessage.m in Sources */,

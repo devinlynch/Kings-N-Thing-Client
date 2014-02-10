@@ -14,15 +14,10 @@
 
 @synthesize sidePieces = _sidePieces;
 
-
-
 -(id <JSONSerializable>) initFromJSON:(NSDictionary *)json{
     self = [super init];
     if (self && json != nil){
         _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
-        _ownerId = [[NSString alloc] initWithString:[json objectForKey:@"ownerId"]];
-        
-        
         
         NSArray *sidePiecesJsonArr = [json objectForKey:@"gamePieces"];
         if (sidePiecesJsonArr != nil){
@@ -35,22 +30,16 @@
             }
         }
     }
-
     return self;
 }
 
-
 -(SideLocation*) init{
+    self=[super init];
     _locationId = [[NSString alloc] init];
     _locationName = [[NSString alloc] init];
     _sidePieces = [[NSMutableDictionary alloc]init];
     
-    return [super init];
+    return self;
 }
-
-
-
-
-
 
 @end
