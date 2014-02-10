@@ -14,8 +14,39 @@
 @synthesize terrain = _terrain;
 @synthesize isHilighted = _isHilighted;
 @synthesize tileNumber = _tileNumber;
-@synthesize tileId;
+@synthesize tileId = _tileId;
 @synthesize image = _tileImage;
+
+-(void) changeOwnerTo: (NSString*) playerId{
+    
+    SPDisplayObjectContainer *container = _tileImage.parent;
+    [_tileImage removeFromParent];
+    
+    float x = _tileImage.x;
+    float y = _tileImage.y;
+    
+    if ([playerId isEqualToString:@"player1"]) {
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"red-%@.png",_fileName]];
+        _tileImage.x = x;
+        _tileImage.y = y;
+        [container addChild:_tileImage];
+    } else if ([playerId isEqualToString:@"player2"]) {
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"yellow-%@.png",_fileName]];
+        _tileImage.x = x;
+        _tileImage.y = y;
+        [container addChild:_tileImage];
+    } else if ([playerId isEqualToString:@"player3"]) {
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"green-%@.png",_fileName]];
+        _tileImage.x = x;
+        _tileImage.y = y;
+        [container addChild:_tileImage];
+    } else if ([playerId isEqualToString:@"player4"]) {
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"blue-%@.png",_fileName]];
+        _tileImage.x = x;
+        _tileImage.y = y;
+        [container addChild:_tileImage];
+    }
+}
 
 
 +(NSMutableDictionary*) initializeTiles{
@@ -216,7 +247,8 @@
 }
         
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId:(NSString *)tileId{
-    self = [super init];
+
+    _fileName = [[NSString alloc] initWithString:file];
     
     NSString *terrainName = [t terrainName];
     
@@ -235,7 +267,7 @@
     } else if ([terrainName isEqualToString:@"Jungle"]) {
         _tileImage = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
     } else if ([terrainName isEqualToString:@"Plaines"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"plaines-tile.png"];
+        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"plains-tile.png"];
     } else{
         _tileImage = [[SPImage alloc] initWithContentsOfFile:@"back-tile.png"];
     }
