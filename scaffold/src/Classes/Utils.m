@@ -9,20 +9,35 @@
 #import "Utils.h"
 #import "ServerResponseMessage.h"
 #import "MBProgressHUD.h"
+#import "GameMessage.h"
+#import "Event.h"
+
 @implementation Utils
 
 +(NSDictionary*) dictionaryFromJSONData: (NSData* ) data{
     NSError *error;
     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error != nil) {
+        NSLog(@"HAAAAAAANNNDDSSSSS");
+    }
     return json;
 }
 
-+(ServerResponseMessage*) responseMessageFromJSONData: (NSData* ) data{
++(ServerResponseMessage*) serverResponseMessageFromJSONData: (NSData* ) data{
     NSDictionary *json = [self dictionaryFromJSONData:data];
     NSLog(@"Got json: %@", json);
     ServerResponseMessage *msg = nil;
     if(json != nil)
         msg = [[ServerResponseMessage alloc] initFromJSON:json];
+    return msg;
+}
+
++(GameMessage*) gameResponseMessageFromJSONData: (NSData* ) data{
+    NSDictionary *json = [self dictionaryFromJSONData:data];
+    NSLog(@"Got json: %@", json);
+    GameMessage *msg = nil;
+    if(json != nil)
+        msg = [[GameMessage alloc] initFromJSON:json];
     return msg;
 }
 
@@ -69,4 +84,14 @@
     });
 }
 
+
++(NSDictionary*) getDataDictionaryFromGameMessageEvent: (Event*) event{
+    GameMessage *message = (GameMessage*) event.msg;
+    if (message == nil || message.jsonDictionnary == nil){
+        NSLog(@"Message is nil or json dic is nil while getting data dic for type [%@]", event.type);
+        return nil;
+    }
+    NSDictionary* dataDic = [message.jsonDictionnary objectForKey:@"data"];
+    return dataDic;
+}
 @end

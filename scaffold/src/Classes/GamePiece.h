@@ -8,10 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@class ScaledGamePiece, BoardLocation, Player;
+
 @interface GamePiece : NSObject{
-    NSString *_gamePieceID;
+    NSString *_gamePieceId;
+    BoardLocation *_location;
+    Player *_owner;
+    ScaledGamePiece *_pieceImage;
 }
 
-@property NSString *gamePieceID;
+@property NSString *gamePieceId;
+@property Player *owner;
+@property BoardLocation *location;
+@property ScaledGamePiece *pieceImage;
+
 
 @end

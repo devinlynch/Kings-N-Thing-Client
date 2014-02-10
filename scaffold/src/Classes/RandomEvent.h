@@ -8,6 +8,17 @@
 
 #import "Thing.h"
 
-@interface RandomEvent : Thing
+@interface RandomEvent : Thing{
+    NSString *_randomId;
+    NSString *_fileName;
+    NSString *_randomType;
+}
+
+@property NSString *randomId, *fileName, *randomType;
+
+-(RandomEvent*) initWithId:(NSString*) randomId andRandomType:(NSString*) type andFilename: (NSString*) filename;
+
++(NSMutableDictionary*) initializeAllRandomEvent;
+
 
 @end

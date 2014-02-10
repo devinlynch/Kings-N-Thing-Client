@@ -1,7 +1,11 @@
 #import "TwoThreePlayerGame.h"
 #import "GameMenu.h"
+#import "GoldCollection.h"
 #import "Scene.h"
-
+#import "FourPlayerGame.h"
+#import "RecruitThings.h"
+#import "Combat.h"
+#import "Movement.h"
 
 @implementation GameMenu
 {
@@ -29,7 +33,12 @@
         [self addChild:_mainMenu];
         
         // choose which scenes will be accessible
-        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class]];
+        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class],
+                                    @"Gold Collection",[GoldCollection class],
+                                    @"Recruit Things", [RecruitThings class],
+                                    @"Combat",[Combat class],
+                                    @"Movement",[Movement class],
+                                    @"4 Players", [FourPlayerGame class]];
         
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
         int count = 0;
@@ -42,8 +51,8 @@
             Class sceneClass = scenesToCreate[index++];
             
             SPButton *button = [SPButton buttonWithUpState:buttonTexture text:sceneTitle];
-           // button.x = count % 2 == 0 ? 28 : 167;
-            button.x = (Sparrow.stage.width / 2) - button.width /2;
+            button.x = count % 2 == 0 ? 28 : 167;
+          //  button.x = (Sparrow.stage.width / 2) - button.width /2;
             button.y = _offsetY + 170 + (count / 2) * 52;
             button.name = NSStringFromClass(sceneClass);
             
@@ -74,7 +83,7 @@
     // create an instance of that class and add it to the display tree.
     _currentScene = [[sceneClass alloc] init];
     _currentScene.y = _offsetY;
-    _mainMenu.visible = NO;
+  //  _mainMenu.visible = NO;
     [self addChild:_currentScene];
 }
 

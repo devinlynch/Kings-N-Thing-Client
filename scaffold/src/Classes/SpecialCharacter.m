@@ -11,5 +11,34 @@
 @implementation SpecialCharacter
 
 @synthesize specialAbility = _specialAbility;
+@synthesize characterId = _characterId;
+@synthesize fileName = _fileName;
+
+
+-(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename{
+    self = [super init];
+    _gamePieceId = [[NSString alloc] initWithString:characterId];
+    _specialAbility = ability;
+    _fileName = fileName;
+
+
+    return self;
+}
+
+
++(NSMutableDictionary*) initializeAllSpecialCharacters{
+    NSMutableDictionary * specialCharacters = [[NSMutableDictionary alloc] init];
+    
+    
+    
+    
+    
+    return specialCharacters;
+
+
+
+
+}
+
 
 @end

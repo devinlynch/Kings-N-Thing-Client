@@ -54,9 +54,12 @@
     NSString *username = [wrapper objectForKey:(__bridge id)(kSecAttrAccount)];
     NSString *password = [wrapper objectForKey:(__bridge id)(kSecValueData)];
     
+    didAutoLogin = NO;
+    
     
     // if not empty then attempt login
     if (![username isEqualToString:@""] ) {
+        didAutoLogin = YES;
         [[ServerAccess instance] loginWithUsername:username andPassword:password andDelegateListener:self];
     }
     
@@ -139,6 +142,7 @@
         
         [self handleSuccessfulLogin];
     } else{
+        didAutoLogin = NO;
         [self displayMessageFromError:error isRegister:NO];
     }
 }
@@ -158,6 +162,7 @@
         NSLog(@"Success registering and logging in in controller");
         [self handleSuccessfulLogin];
     } else{
+        didAutoLogin = NO;
         [self displayMessageFromError:error isRegister:YES];
     }
 }
@@ -165,7 +170,7 @@
 -(void) handleSuccessfulLogin{
     
     
-    if (saveLogin) {
+    if (saveLogin && !didAutoLogin) {
         KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"3004Login" accessGroup:nil];
         
         [wrapper setObject:[self.usernameField text] forKey:(__bridge id)kSecAttrAccount];

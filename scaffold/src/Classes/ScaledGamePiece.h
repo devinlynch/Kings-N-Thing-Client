@@ -7,10 +7,15 @@
 //
 
 #import "SPImage.h"
-
-@interface ScaledGamePiece : SPImage
-
+@class  GamePiece;
 
 
+@interface ScaledGamePiece : SPImage{
+    GamePiece *_owner;
+}
+
+@property GamePiece *owner;
+
+- (id) initWithContentsOfFile:(NSString *)path andOwner: (GamePiece*) piece;
 
 @end

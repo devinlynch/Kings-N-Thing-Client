@@ -8,15 +8,29 @@
 
 #import "GameState.h"
 #import "Player.h"
+#import "Game.h"
+#import "PlayingCup.h"
+#import "Bank.h"
+#import "HexLocation.h"
+#import "Creature.h"
+#import "SideLocation.h"
 
 @implementation GameState
 
+@synthesize players = _players;
+@synthesize game = _game;
+@synthesize myPlayerId = _myPlayerId;
+@synthesize sideLocation = _sideLocation;
+@synthesize playingCup = _playingCup;
+@synthesize bank = _bank;
+
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
-    self=[super init];
+    self = [super init];
+    NSDictionary *_gameStateDic = [json objectForKey:@"gameState"];
     if(self && json != nil) {
-        NSArray *playersJsonArr = [json objectForKey:@"players"];
+        NSArray *playersJsonArr = [_gameStateDic objectForKey:@"players"];
         if(playersJsonArr != nil){
-            [self setPlayers:[[NSMutableArray alloc] init]];
+            _players = [[NSMutableArray alloc] init];
             for(id o in playersJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                     NSDictionary *playerDic = (NSDictionary*) o;
@@ -25,9 +39,86 @@
                 }
             }
         }
+        
+        _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
+        
+        
+        
+        
+        _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
+        
+        _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
+        
+        NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];
+        NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
+        if(hexLocationJsonArr != nil){
+            for(id o in hexLocationJsonArr) {
+                if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
+                    [locationDic setObject:[[HexLocation alloc] initFromJSON:o] forKey:[o objectForKey:@"locationId"]];
+                }
+            }
+            _hexLocations = (NSMutableDictionary*)[[NSDictionary alloc] initWithDictionary:locationDic];
+        }
     }
     return self;
 }
 
+-(NSString*) description{
+    return [NSString stringWithFormat:@"GameState with player ID: %@ \nHexLocations:\n %@ and playing cup:\n %@", _myPlayerId , _hexLocations, _playingCup];
+}
+
+
+-(void)findPathFromLocation:(HexLocation *)location withMoves:(int)moves{
+    
+//    if(location.tile.isHilighted){
+//        return;
+//    }
+//    
+//    if (moves == 0) {
+//        [[location tile] hilight];
+//        return;
+//    }
+//    else{
+//        [[location tile] hilight];
+//    }
+//    
+//    for (HexLocation *tileLocation in [location neighbours]){
+//        [self findPathFromLocation:tileLocation withMoves:--moves];
+//    }
+//    
+    
+    
+}
+
+
+-(Player*) getPlayerById: (NSString*) ID{
+    for(Player *p in self.players) {
+        if(p != nil && [p.playerId isEqualToString:ID])
+            return p;
+    }
+    return nil;
+}
+
+-(BoardLocation*) getBoardLocationById: (NSString*) ID{
+    if([ID isEqualToString: self.playingCup.locationId])
+        return self.playingCup;
+    
+    if([ID isEqualToString: self.sideLocation.locationId])
+        return self.sideLocation;
+    
+    for(Player *p in self.players) {
+        if(p != nil && [p.rack1.locationId isEqualToString:ID])
+            return p.rack1;
+        if(p != nil && [p.rack2.locationId isEqualToString:ID])
+            return p.rack2;
+    }
+    
+    HexLocation *hexLocation = [self.hexLocations objectForKey:ID];
+    if(hexLocation != nil) {
+        return hexLocation;
+    }
+    
+    return nil;
+}
 
 @end

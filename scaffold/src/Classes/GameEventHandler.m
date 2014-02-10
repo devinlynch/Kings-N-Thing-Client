@@ -33,6 +33,7 @@
     NSDictionary* gameDic= [message.data.map objectForKey:@"game"];
     @try{
         game = [[Game alloc] initFromJSON:gameDic];
+        [Game setInstance:game];
     } @catch (NSException *e) {
         NSLog(@"%@",e);
     }

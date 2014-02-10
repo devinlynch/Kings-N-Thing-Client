@@ -15,6 +15,7 @@
     CGFloat loginY;
     CGFloat registerY;
     BOOL saveLogin;
+    BOOL didAutoLogin;
 }
 @property IBOutlet UITextField *usernameField;
 @property IBOutlet UITextField *passwordField;

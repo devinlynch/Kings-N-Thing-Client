@@ -10,6 +10,8 @@
 #import "TouchSheet.h"
 #import "Scene.h"
 #import "TileMenu.h"
+#import "Game.h"
+#import "ScaledGamePiece.h"
 
 
 // --- private interface ---------------------------------------------------------------------------
@@ -36,7 +38,6 @@
     int _gameWidth;
     int _gameHeight;
     
-    
     //Tiles
     SPImage *_backTile;
     SPImage *_seaTile;
@@ -58,6 +59,9 @@
     //TouchSheet
     TouchSheet *_sheet;
 
+    
+    
+
 }
 
 - (id)init
@@ -68,6 +72,11 @@
     }
     return self;
 }
+
+
+
+
+
 
 - (void)dealloc
 {
@@ -105,7 +114,7 @@
     
     _contents = [SPSprite sprite];
     [self addChild:_contents];
-    
+   
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"TwoThreeBoard.png"];
     //[_contents addChild:background];
     
@@ -226,7 +235,6 @@
     //
     // Sparrow's minimum deployment target is iOS 5.
 }
-
 
 - (void)onMoveTile:(SPTouchEvent*)event {
     

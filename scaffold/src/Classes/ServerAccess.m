@@ -35,11 +35,6 @@ static ServerAccess *instance;
 }
 
 
-typedef enum HttpRequestMethods {
-    POSTREQUEST,
-    GETREQUEST
-} HttpRequestMethods;
-
 -(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSMutableDictionary*) params  andDelegateListener: (id) delegateListener andErrorCall:(block_t) errorCall andSuccessCall: (block_t) successCall{
     
     // Always send hostname and port number that we are listneing on
@@ -73,7 +68,7 @@ typedef enum HttpRequestMethods {
          ServerResponseMessage *responseMessage;
          if(data != nil && responseStatusCode == 200 && error == nil){
              @try{
-                  responseMessage = [Utils responseMessageFromJSONData:data];
+                  responseMessage = [Utils serverResponseMessageFromJSONData:data];
              } @catch (NSException *e) {
                  NSLog(@"Error parsing response message: %@", e);
              }
@@ -156,5 +151,12 @@ typedef enum HttpRequestMethods {
         NSLog(@"Error getting lobby state");
     } andSuccessCall:nil];
 }
+
+
+/**
+ Phases
+ */
+
+
 
 @end

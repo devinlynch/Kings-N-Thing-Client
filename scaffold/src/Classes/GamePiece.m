@@ -10,6 +10,22 @@
 
 @implementation GamePiece
 
-@synthesize gamePieceID = _gamePieceID;
+@synthesize gamePieceId = _gamePieceId;
+@synthesize pieceImage  = _pieceImage;
+@synthesize location    = _location;
+@synthesize owner     = _owner;
+
+
+-(id) init{
+    self = [super init];
+    if(self) {
+        _owner = nil;
+        _location=nil;
+        _pieceImage=nil;
+        _gamePieceId=nil;
+    }
+    return self;
+}
+
 
 @end

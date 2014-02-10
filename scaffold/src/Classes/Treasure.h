@@ -10,8 +10,17 @@
 
 @interface Treasure : Thing{
     NSInteger *_goldValue;
+    NSString *_treasureId;
+    NSString *_fileName;
+    
+    
 }
 
 @property NSInteger *goldValue;
+@property NSString *treasureId, *fileName;
+
+-(Treasure*) initWithId:(NSString*) treasureId andGoldValue: (int) value andFilename: (NSString*) filename;
+
++(NSMutableDictionary*) initializeAllTreasures;
 
 @end

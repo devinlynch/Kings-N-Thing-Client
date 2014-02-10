@@ -6,8 +6,21 @@
 //
 //
 
-#import "BoardContainer.h"
+#import "BoardLocation.h"
+#import "JSONSerializable.h"
 
-@interface Bank : BoardContainer
+@interface Bank : NSObject<JSONSerializable>{
+    int _currentTotal;
+}
+
+@property int currentTotal;
+
+-(Bank*) initWithTotal: (int) total;
+
+-(void) decreaseByAmount: (int) amount;
+
+-(void) increaseByAmount: (int) amount;
+
+
 
 @end

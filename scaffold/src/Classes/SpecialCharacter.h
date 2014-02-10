@@ -6,13 +6,22 @@
 //
 //
 
-#import "CounterType.h"
+#import "Counter.h"
 #import "SpecialAbility.h"
 
-@interface SpecialCharacter : CounterType{
+@interface SpecialCharacter : Counter{
     SpecialAbility *_specialAbility;
+    NSString *_characterId;
+    NSString *fileName;
 }
 
 @property SpecialAbility *specialAbility;
+@property NSString *characterId, *fileName;
+
+
+-(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename;
+
+
++(NSMutableDictionary*) initializeAllSpecialCharacters;
 
 @end

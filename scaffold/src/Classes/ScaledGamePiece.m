@@ -7,19 +7,43 @@
 //
 
 #import "ScaledGamePiece.h"
+#import "GamePiece.h"
 
-@implementation ScaledGamePiece
+@implementation ScaledGamePiece{
 
-- (id) initWithContentsOfFile:(NSString *)path
+
+}
+
+- (id) initWithContentsOfFile:(NSString *)path andOwner:(GamePiece *)piece
 {
+    
+    _owner = piece;
+    
     ScaledGamePiece *img = [super initWithContentsOfFile:path generateMipmaps:NO];
     
     img.scaleX = 0.75f;
     img.scaleY = 0.75f;
     
-    [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+   // [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
  
+    return img;
+}
+
+
+- (id) initWithContentsOfFile:(NSString *)path
+{
+    
+   // _owner = piece;
+    
+    ScaledGamePiece *img = [super initWithContentsOfFile:path generateMipmaps:NO];
+    
+    img.scaleX = 0.75f;
+    img.scaleY = 0.75f;
+    
+    // [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+    
     return img;
 }
 
@@ -29,6 +53,8 @@
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
     
+    NSLog(@"Touching piece with ID of %@", [[self owner] gamePieceId]);
+    
     if (touches.count == 1)
     {
         // one finger touching -> move
@@ -37,11 +63,7 @@
         
         img.x += movement.x;
         img.y += movement.y;
-        
-        
-        
     }
-    
 }
 
 @end

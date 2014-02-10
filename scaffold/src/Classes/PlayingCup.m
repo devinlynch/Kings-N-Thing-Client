@@ -10,4 +10,10 @@
 
 @implementation PlayingCup
 
+-(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
+    self = [super initFromJSON:json];
+    
+    return self;
+}
+
 @end
