@@ -10,7 +10,7 @@
 #import "JSONSerializable.h"
 
 
-@class Game, PlayingCup, Bank, ScaledGamePiece, HexLocation,Player,BoardLocation,SideLocation;
+@class Game, PlayingCup, Bank, ScaledGamePiece, HexLocation,Player,BoardLocation,SideLocation,Stack;
 
 @interface GameState : NSObject<JSONSerializable>{
     NSMutableArray *_players;
@@ -35,7 +35,7 @@
 -(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
 -(Player*) getPlayerById: (NSString*) ID;
 -(BoardLocation*) getBoardLocationById: (NSString*) ID;
-
+-(Stack*) getStackById:(NSString*) stackId;
 
 
 @end
