@@ -16,29 +16,9 @@
 @synthesize locationId   = _locationId;
 @synthesize locationName = _locationName;
 @synthesize pieces       = _pieces;
-@synthesize ownerId      = _ownerId;
 
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
-    self = [super init];
-        if(self && json != nil) {
-            _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
-          //  _ownerId = [[NSString alloc] initWithString:[json objectForKey:@"ownerId"]];
-            
-            NSArray *piecesJsonArr = [json objectForKey:@"gamePieces"];
-            if(piecesJsonArr != nil){
-                for(id o in piecesJsonArr) {
-                    if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                        NSDictionary *gamePieceDic = (NSDictionary*) o;
-                        Creature *piece = [[GameResource getInstance] getCreatureForId:[gamePieceDic objectForKey:@"id"]];
-                        [_pieces setValue:piece forKey:[piece gamePieceId]];
-                    }
-                }
-            }
 
-        }
-    return self;
-}
 
 
 -(BoardLocation*) init{
@@ -49,6 +29,11 @@
 }
 
 -(void) addGamePieceToLocation: (GamePiece*) piece{
+    
+    [piece.location removePieceWithIdFromLocation:piece.gamePieceId];
+    
+    piece.location = self;
+    
     [_pieces setObject:piece forKey:[piece gamePieceId]];
 }
 

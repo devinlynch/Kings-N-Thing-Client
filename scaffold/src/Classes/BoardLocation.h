@@ -15,12 +15,10 @@
     NSString *_locationId;
     NSString *_locationName;
     NSMutableDictionary *_pieces;
-    NSString *_ownerId;
 }
 
 @property NSString *locationId, *locationName;
 @property NSMutableDictionary *pieces;
-@property NSString *ownerId;
 
 
 -(BoardLocation*) init;
