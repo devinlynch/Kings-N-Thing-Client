@@ -40,7 +40,6 @@
 		4131C2FC188876AC009775EA /* LoginMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2FB188876AC009775EA /* LoginMenu.m */; };
 		4144CB4D188DDBFB003A29E4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB4C188DDBFB003A29E4 /* User.m */; };
 		4144CB51188EEF87003A29E4 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB50188EEF87003A29E4 /* Game.m */; };
-		4144CB54188EEFBB003A29E4 /* Phase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB53188EEFBB003A29E4 /* Phase.m */; };
 		4144CB57188EF0F7003A29E4 /* Bank.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB56188EF0F7003A29E4 /* Bank.m */; };
 		4144CB65188EFACC003A29E4 /* TestEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB64188EFACC003A29E4 /* TestEventHandler.m */; };
 		4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB67188EFAE9003A29E4 /* ClientReactor.m */; };
@@ -146,6 +145,7 @@
 		41BD14D418A85BAC008C6E96 /* green-plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D318A85BAC008C6E96 /* green-plains-tile.png */; };
 		41BD14D618A85BB7008C6E96 /* yellow-plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D518A85BB7008C6E96 /* yellow-plains-tile.png */; };
 		41BD14D818A85BC4008C6E96 /* plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D718A85BC4008C6E96 /* plains-tile.png */; };
+		41BD14E818A95E9C008C6E96 /* TileImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14E718A95E9C008C6E96 /* TileImage.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
@@ -475,8 +475,6 @@
 		4144CB4C188DDBFB003A29E4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		4144CB4F188EEF87003A29E4 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		4144CB50188EEF87003A29E4 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		4144CB52188EEFBB003A29E4 /* Phase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phase.h; sourceTree = "<group>"; };
-		4144CB53188EEFBB003A29E4 /* Phase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phase.m; sourceTree = "<group>"; };
 		4144CB55188EF0F7003A29E4 /* Bank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bank.h; sourceTree = "<group>"; };
 		4144CB56188EF0F7003A29E4 /* Bank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bank.m; sourceTree = "<group>"; };
 		4144CB62188EFACC003A29E4 /* EventHandlerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandlerProtocol.h; sourceTree = "<group>"; };
@@ -629,6 +627,8 @@
 		41BD14D318A85BAC008C6E96 /* green-plains-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-plains-tile.png"; sourceTree = "<group>"; };
 		41BD14D518A85BB7008C6E96 /* yellow-plains-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-plains-tile.png"; sourceTree = "<group>"; };
 		41BD14D718A85BC4008C6E96 /* plains-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plains-tile.png"; sourceTree = "<group>"; };
+		41BD14E618A95E9C008C6E96 /* TileImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileImage.h; sourceTree = "<group>"; };
+		41BD14E718A95E9C008C6E96 /* TileImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileImage.m; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1036,8 +1036,6 @@
 				4144CB4C188DDBFB003A29E4 /* User.m */,
 				4144CB4F188EEF87003A29E4 /* Game.h */,
 				4144CB50188EEF87003A29E4 /* Game.m */,
-				4144CB52188EEFBB003A29E4 /* Phase.h */,
-				4144CB53188EEFBB003A29E4 /* Phase.m */,
 				99F9B6E91894399300E4A788 /* GameLobby.h */,
 				99F9B6EA1894399300E4A788 /* GameLobby.m */,
 				99A78F1E18957B1E005D31E5 /* GameState.h */,
@@ -2318,6 +2316,7 @@
 				4131C2981885EB1F009775EA /* GCDAsyncUdpSocket.m in Sources */,
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
 				41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */,
+				41BD14E818A95E9C008C6E96 /* TileImage.m in Sources */,
 				4144CB51188EEF87003A29E4 /* Game.m in Sources */,
 				997B0E2218A85D8B009404DE /* MovementPhaseHandler.m in Sources */,
 				4131C2EC18877054009775EA /* NonCityVill.m in Sources */,
@@ -2332,7 +2331,6 @@
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
 				997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */,
 				99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */,
-				4144CB54188EEFBB003A29E4 /* Phase.m in Sources */,
 				990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */,
 				991151821891B03C004E8FFB /* LoginViewController.m in Sources */,
 				99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */,

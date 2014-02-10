@@ -1,16 +1,16 @@
 //
-//  ScaleImage.h
+//  TileImage.h
 //  3004iPhone
 //
-//  Created by Richard Ison on 1/16/2014.
+//  Created by John Marsh on 2/10/2014.
 //
 //
 
 #import "SPImage.h"
+
 @class  GamePiece;
 
-
-@interface ScaledGamePiece : SPImage{
+@interface TileImage :SPImage{
     GamePiece *_owner;
 }
 

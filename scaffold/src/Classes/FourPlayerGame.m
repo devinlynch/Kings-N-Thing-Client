@@ -31,6 +31,17 @@
 @implementation FourPlayerGame{
     NSMutableArray *gamePieces;
     
+    
+    NSInteger _phase;
+    NSInteger _placementStep;
+    
+    Player *_player1;
+    Player *_player2;
+    Player *_player3;
+    Player *_player4;
+
+
+    
     SPSprite *_currentScene;
     SPSprite *_contents;
     
@@ -54,8 +65,11 @@
     int _gameWidth;
     int _gameHeight;
     
+    SPTextField *_selectedText;
+    SPImage *_selectedPieceImage;
     
-    SPImage *_selectedPiece;
+    GamePiece *_selectedPiece;
+    
     SPImage *_bowl;
     GameState *_state;
     SPImage *_rackZone;
@@ -118,6 +132,8 @@
     _stateText.color = SP_YELLOW;
     [_contents addChild:_stateText];
     
+
+    
     //Income labels
     _Player1LabelText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
     _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2 - 15);
@@ -174,24 +190,32 @@
     _rackZone.x = 15;
     _rackZone.y = _gameHeight - _rackZone.height - _rackZone.height/4 + 15;
     
+    
+    _selectedText = [SPTextField textFieldWithWidth:200 height:30 text:@"Selected:"];
+    _selectedText.x = _rackZone.x - _rackZone.width/2 + 50;
+    _selectedText.y = _rackZone.y - 30;
+    _selectedText.color = SP_YELLOW;
+    [_contents addChild:_selectedText];
+    
+    
     [_contents addChild:_rackZone];
     
     
-    _test1 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_105.png"];
-    _test1.x = 20;
-    _test1.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-    [_contents addChild:_test1];
-    
-    _test2 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_106.png"];
-    _test2.x = _test1.width*1.4;
-    _test2.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-    [_contents addChild:_test2];
-    
-    _test3 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_107.png"];
-    _test3.x = (_test2.width*1.4) *1.7;
-    _test3.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-
-    [_contents addChild:_test3];
+//    _test1 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_105.png"];
+//    _test1.x = 20;
+//    _test1.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+//    [_contents addChild:_test1];
+//    
+//    _test2 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_106.png"];
+//    _test2.x = _test1.width*1.4;
+//    _test2.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+//    [_contents addChild:_test2];
+//    
+//    _test3 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_107.png"];
+//    _test3.x = (_test2.width*1.4) *1.7;
+//    _test3.y = _gameHeight - _rackZone.height - _rackZone.height/6;
+//
+//    [_contents addChild:_test3];
     
 
     
@@ -346,11 +370,14 @@
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
-    
+    _placementStep = PLACE_FORT;
+    [_stateText setText:@"State: Place fort"];
 }
 
 -(void) yourTurnCM: (NSNotification*) notif{
-    
+    _placementStep = PLACE_CM;
+    [_stateText setText:@"State: Place control marker"];
+
 }
 
 -(void) timeToPlaceFort: (NSNotification*) notif{
@@ -358,6 +385,8 @@
 }
 
 -(void) goldCollection: (NSNotification*) notif{
+    
+    _phase = GOLD;
     
     [_stateText setText:@"State: Gold Collection"];
     
@@ -392,6 +421,9 @@
 
 
 -(void) gameSetup: (NSNotification*) notif{
+    
+    _phase = SETUP;
+    
     [_stateText setText:@"State: Setup"];
 
     _state = (GameState*) notif.object;
@@ -399,26 +431,84 @@
     NSLog(@"%@", _state);
     
     
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:@"player1"]) {
+            _player1 = p;
+        } else         if ([p.playerId isEqualToString:@"player2"]) {
+            _player2 = p;
+        } else         if ([p.playerId isEqualToString:@"player3"]) {
+            _player3 = p;
+        } else         if ([p.playerId isEqualToString:@"player4"]) {
+            _player4 = p;
+        }
+    }
+    
+    
     [self drawTiles];
+    
+    [self drawRack];
     
 }
 
 -(void) setupOver: (NSNotification*) notif{
-    [_stateText setText:@"State: SetupOver"];
+    
+    _phase = PLACEMENT;
+    
+    [_stateText setText:@"State: Placement"];
 }
 
 
 
 -(void) pieceSelected: (NSNotification*) notif{
-    GamePiece *selected = notif.object;
     
-    _selectedPiece = [[SPImage alloc] initWithContentsOfFile:[selected fileName]];
-    _selectedPiece.x = 250;
-    _selectedPiece.y = 400;
-    [_contents addChild:_selectedPiece];
+    _selectedPiece = (GamePiece*) notif.object;
+    
+    NSLog(@"Selected Piece");
+    
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+    _selectedPieceImage.x = 90;
+    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+    [_contents addChild:_selectedPieceImage];
+    
+    
 }
 
 -(void) drawRack{
+    Player *player;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:[_state myPlayerId]]) {
+            player = p;
+        }
+    }
+    
+    Rack *rack1 = [player rack1];
+    Rack *rack2 = [player rack2];
+    
+    float rackX = _rackZone.x;
+    float rackY = _rackZone.y;
+    
+    float prevX = 0;
+    
+    for (NSString *key in rack1.pieces) {
+        ScaledGamePiece *img = [[rack1.pieces objectForKey:key] pieceImage];
+        img.x = rackX + prevX;
+        img.y = rackY;
+        prevX += img.width + 5;
+        [_contents addChild:img];
+    }
+    
+    rackY = _rackZone.y + 50;
+    prevX = 0;
+    
+    for (NSString *key in rack2.pieces) {
+        ScaledGamePiece *img = [[rack2.pieces objectForKey:key] pieceImage];
+        img.x = rackX + prevX;
+        img.y = rackY;
+        prevX += img.width + 5;
+        [_contents addChild:img];
+    }
+    
     
 }
 
@@ -445,8 +535,9 @@
            
             
             [_sheet addChild: tile.image];
-            [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
             
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
             
         }
         
@@ -457,7 +548,8 @@
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
-            
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
             [_sheet addChild: tile.image];;
         }
         if (i == 5) {
@@ -466,6 +558,7 @@
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             [_sheet addChild: tile.image];;
         }
@@ -475,6 +568,7 @@
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             [_sheet addChild: tile.image];;
         }
@@ -486,6 +580,7 @@
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             [_sheet addChild: tile.image];
         }
@@ -503,11 +598,11 @@
                     tile.image.x = 133- (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                    
-                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-                    [tile.image addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                  
                 }
                 
                 if (j == 1){
@@ -515,6 +610,7 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                     [_sheet addChild: tile.image];
                 }
@@ -524,7 +620,8 @@
                     tile.image.x = 133  - (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     
                     [_sheet addChild: tile.image];
                 }
@@ -534,6 +631,7 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                     [_sheet addChild: tile.image];
                 }
@@ -542,6 +640,7 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                     
                     [_sheet addChild: tile.image];
@@ -552,6 +651,7 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                     
                     [_sheet addChild: tile.image];
@@ -569,7 +669,8 @@
                     tile.image.x = 133  + (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 
@@ -579,7 +680,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2){
@@ -587,14 +689,17 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
-                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 3){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_3"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 4){
@@ -602,6 +707,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 5){
@@ -609,6 +716,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (tile.image.width - 10);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
             }
@@ -623,6 +732,7 @@
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             [_sheet addChild: tile.image];
             
@@ -641,16 +751,20 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     
                    [_sheet addChild: tile.image];
+                    
+                   [location changeOwnerToPlayer:_player4];
                 }
                 if (j == 1 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_18"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2 ){
@@ -658,6 +772,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 3 ){
@@ -665,6 +781,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 4 ){
@@ -672,7 +790,10 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                    [_sheet addChild: tile.image];
+                    [location changeOwnerToPlayer:_player3];
                 }
                 
                 
@@ -686,15 +807,19 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     
                     [_sheet addChild: tile.image];
+                    
+                    [location changeOwnerToPlayer:_player1];
                 }
                 if (j == 1) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_10"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                     
                     [_sheet addChild: tile.image];
@@ -704,6 +829,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
 
                     [_sheet addChild: tile.image];                }
                 if (j == 3) {
@@ -712,19 +839,22 @@
                     tile.image.x = 133  + ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
 
-                    //tile.image = [[SPImage alloc]initWithContentsOfFile:@"blue-desert-tile.png"];
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                    
                     [_sheet addChild: tile.image];
-                    //[tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 4) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_28"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
 
                     [_sheet addChild: tile.image];
+                    
+                    [location changeOwnerToPlayer:_player2];
                 }
                 
             }
@@ -739,6 +869,7 @@
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
+            [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
             [_sheet addChild: tile.image];
         }
@@ -755,7 +886,8 @@
                     tile.image.x = 134  - ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
 
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];                }
                 if (j == 1){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_35"];
@@ -763,7 +895,8 @@
                     tile.image.x = 134  - ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2){
@@ -771,7 +904,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 134  - ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 3){
@@ -779,6 +913,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 134  - ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 
@@ -794,7 +930,8 @@
                     tile.image.x = 134  + ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                    [_sheet addChild: tile.image];
                 }
                 if (j == 1) {
@@ -803,15 +940,18 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 134  + ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     
-                    
-                    [_sheet addChild: tile.image];                }
+                    [_sheet addChild: tile.image];
+                }
                 if (j == 2) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_26"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 134  + ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 if (j == 3) {
@@ -819,7 +959,8 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 134  + ((tile.image.width * 3) - 30);
                     tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
-                    
+                    [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
                     [_sheet addChild: tile.image];
                 }
                 
@@ -828,7 +969,6 @@
             
             drawNext = false;
         }
-        //[_sheet addChild: tile.image];
     }
 }
 
@@ -863,23 +1003,72 @@
     }
 }
 
--(void) tileDoubleClick: (SPTouchEvent*) event
+-(void) onTileClick: (SPTouchEvent*) event
 {
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    if (touches.count == 1)
-    {
-        //Double Click
-        SPTouch * clickTileMenu = [touches objectAtIndex:0];
-        if (clickTileMenu.tapCount == 2){
-            NSLog(@"le double click");
-            [NSObject cancelPreviousPerformRequestsWithTarget:self];
-         //  [self showTileMenu];
+    //Double Click
+    
+    TileImage *img = (TileImage*) event.target;
+    HexTile  *tile = (HexTile*) img.owner;
+    HexLocation *location = (HexLocation*) tile.location;
+    
+    switch (_phase) {
+        case SETUP:
             
-            TileMenu *tile = [[TileMenu alloc]init];
-            [self showScene:tile];
-        }
-        
+            break;
+        case PLACEMENT:
+            switch (_placementStep) {
+                case PLACE_CM:
+                    if (touches.count == 1)
+                    {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
+                            
+                            SPTouch *clicks = [touches objectAtIndex:0];
+
+                            if (clicks.tapCount == 2){
+                                NSLog(@"le double click");
+                                [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                                [tile changeOwnerTo:_state.myPlayerId];
+                                
+                            }
+                        }
+                        
+                    }
+                    break;
+                case PLACE_FORT:
+                    if (touches.count == 1)
+                    {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                            
+                            SPTouch *clicks = [touches objectAtIndex:0];
+                            
+                            if (clicks.tapCount == 2){
+                                NSLog(@"le double click");
+                                [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                                [location addGamePieceToLocation:_selectedPiece];                                
+                            }
+                        }
+                        
+                    }
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+        case GOLD:
+            
+            break;
+        case MOVEMENT:
+            
+            break;
+            
+        default:
+            break;
     }
+    
+    
+
     
 }
 
