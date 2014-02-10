@@ -16,12 +16,12 @@
 @synthesize randomType = _randomType;
 
 -(RandomEvent*) initWithId:(NSString *)randomId andRandomType:(NSString*)type andFilename:(NSString *)filename {
-    
+    self=[super init];
     _gamePieceId = [[NSString alloc] initWithString:randomId];
     _randomType = [[NSString alloc] initWithString:type];
     _fileName = [[NSString alloc] initWithString:filename];
     
-    return [super init];
+    return self;
 }
 
 

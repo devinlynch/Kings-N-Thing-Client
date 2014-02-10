@@ -18,14 +18,14 @@
 
 - (Fort *) initWithId:(NSString *)fortId andCombatValue:(int)value
         andCombatType:(CombatType*) type andFortLevel:(FortLevel *)level andFileName:(NSString *)fileName{
-
+    self=[super init];
     _gamePieceId = [[NSString alloc] initWithString:fortId];
     _combatValue = &value;
     _fortLevel = level;
     _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:fileName andOwner:self];
     _fileName = [[NSString alloc] initWithString:fileName];
     
-    return  [super init];
+    return self;
 }
 
 

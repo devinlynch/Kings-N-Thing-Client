@@ -20,14 +20,14 @@
            andGoldValue:(int) value
          andCombatValue:(int) cValue
             andFilename:(NSString*) filename{
-
+    self=[super init];
     
     _gamePieceId = [[NSString alloc] initWithString:cityVillId];
     _goldValue = &value;
     _combatValue = &cValue;
     _fileName = [[NSString alloc] initWithString:filename];
 
-    return [super init];
+    return self;
 }
 
 +(NSMutableDictionary*) initializeAllCityVill{

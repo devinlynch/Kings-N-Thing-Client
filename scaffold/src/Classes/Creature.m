@@ -20,6 +20,8 @@
 
 
 -(Creature*) initWithId:(NSString*) creatureId andCombatValue:(int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename{
+    self = [super init];
+    
     _gamePieceId = [[NSString alloc] initWithString:creatureId];
     _combatValue = value;
     _combatType = type;
@@ -29,7 +31,7 @@
     [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
     
-    return [super init];
+    return self;
 }
 
 
@@ -160,6 +162,8 @@
     [creatures setObject:[[Creature alloc] initWithId:@"T_Mountains_048-01" andCombatValue:3 andCombatType:[CombatType getRangeInstance] andTerrain:[Terrain getMountainInstance] andFilename:@"T_Mountains_048.png"] forKey:@"T_Mountains_048-01"];
     [creatures setObject:[[Creature alloc] initWithId:@"T_Mountains_049-01" andCombatValue:3 andCombatType:[CombatType getMeleeInstance] andTerrain:[Terrain getMountainInstance] andFilename:@"T_Mountains_049.png"] forKey:@"T_Mountains_049-01"];
     [creatures setObject:[[Creature alloc] initWithId:@"T_Mountains_048-01" andCombatValue:5 andCombatType:[CombatType getMeleeInstance] andTerrain:[Terrain getMountainInstance] andFilename:@"T_Mountains_048.png"] forKey:@"T_Mountains_048-01"];
+    [creatures setObject:[[Creature alloc] initWithId:@"T_Mountains_049-01" andCombatValue:3 andCombatType:[CombatType getMeleeInstance] andTerrain:[Terrain getMountainInstance] andFilename:@"T_Mountains_049.png"] forKey:@"T_Mountains_049-01"];
+    [creatures setObject:[[Creature alloc] initWithId:@"T_Mountains_050-01" andCombatValue:5 andCombatType:[CombatType getMeleeInstance] andTerrain:[Terrain getMountainInstance] andFilename:@"T_Mountains_050.png"] forKey:@"T_Mountains_050-01"];
     
     //Plains
     [creatures setObject:[[Creature alloc] initWithId:@"T_Plains_013-01" andCombatValue:2 andCombatType:[CombatType getMeleeInstance] andTerrain:[Terrain getPlainesInstance] andFilename:@"T_Plains_013.png"] forKey:@"T_Plains_013-01"];

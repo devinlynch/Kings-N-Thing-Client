@@ -16,13 +16,13 @@
 
 
 -(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename{
-
+    self = [super init];
     _gamePieceId = [[NSString alloc] initWithString:characterId];
     _specialAbility = ability;
     _fileName = fileName;
 
 
-    return [super init];
+    return self;
 }
 
 

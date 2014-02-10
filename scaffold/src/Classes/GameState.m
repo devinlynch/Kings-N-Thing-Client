@@ -13,13 +13,16 @@
 #import "Bank.h"
 #import "HexLocation.h"
 #import "Creature.h"
-
+#import "SideLocation.h"
 
 @implementation GameState
 
 @synthesize players = _players;
 @synthesize game = _game;
 @synthesize myPlayerId = _myPlayerId;
+@synthesize sideLocation = _sideLocation;
+@synthesize playingCup = _playingCup;
+@synthesize bank = _bank;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
@@ -43,10 +46,9 @@
         
         NSLog(@"init playing cup with data:%@", [_gameStateDic objectForKey:@"playingCup"]);
         
-        _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
+        _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
         _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
-      
-        
+        _sideLocation = [[SideLocation alloc] initFromJSON:[_gameStateDic objectForKey:@"sideLocation"]];
         NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];
         NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
         if(hexLocationJsonArr != nil){
@@ -89,5 +91,34 @@
 }
 
 
+-(Player*) getPlayerById: (NSString*) ID{
+    for(Player *p in self.players) {
+        if(p != nil && [p.playerId isEqualToString:ID])
+            return p;
+    }
+    return nil;
+}
+
+-(BoardLocation*) getBoardLocationById: (NSString*) ID{
+    if([ID isEqualToString: self.playingCup.locationId])
+        return self.playingCup;
+    
+    if([ID isEqualToString: self.sideLocation.locationId])
+        return self.sideLocation;
+    
+    for(Player *p in self.players) {
+        if(p != nil && [p.rack1.locationId isEqualToString:ID])
+            return p.rack1;
+        if(p != nil && [p.rack2.locationId isEqualToString:ID])
+            return p.rack2;
+    }
+    
+    HexLocation *hexLocation = [self.hexLocations objectForKey:ID];
+    if(hexLocation != nil) {
+        return hexLocation;
+    }
+    
+    return nil;
+}
 
 @end

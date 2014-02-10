@@ -15,12 +15,12 @@
 @synthesize fileName = _fileName;
 
 -(MagicItems*) initWithId:(NSString *)magicId andMagicType:(NSString*)type andFilename:(NSString *)filename {
-    
+    self=[super init];
     _gamePieceId = [[NSString alloc] initWithString:magicId];
     _magicType = [[NSString alloc] initWithString:type];
     _fileName = [[NSString alloc] initWithString:filename];
     
-    return [super init];
+    return self;
 }
 
 
