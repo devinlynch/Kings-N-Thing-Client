@@ -17,6 +17,8 @@
 #import "GoldCollection.h"
 #import "Player.h"
 #import "HexLocation.h"
+#import "HexTile.h"
+#import "Terrain.h"
 #import "Fort.h"
 
 @interface FourPlayerGame ()
@@ -251,7 +253,7 @@
     [[GoldCollection getInstance] setVisible:NO];
     
     //Draw tiles
-    [self drawTiles];
+   // [self drawTiles];
     
     _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
     _bowl.x = _gameWidth - _bowl.width;
@@ -336,8 +338,15 @@
 
     _state = (GameState*) notif.object;
     
+    [self drawTiles];
+
+    
+    
+    
     
     NSLog(@"%@", _state);
+    
+    
 }
 
 -(void) setupOver: (NSNotification*) notif{
@@ -379,44 +388,58 @@
         
         if (i == 0) {
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"jungle-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
-            [_sheet addChild: _hexTile];
-            [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+            
+            
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_21"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+           
+            
+            [_sheet addChild: tile.image];
+            [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
             
             
         }
         
         if (i == 4) {
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"sea-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1)))- yOffset;
-            [_sheet addChild: _hexTile];;
+            
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_04"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            
+            [_sheet addChild: tile.image];;
         }
         if (i == 5) {
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1)))- yOffset;
-            [_sheet addChild: _hexTile];;
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_14"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+
+            [_sheet addChild: tile.image];;
         }
         if (i == 6) {
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1)))- yOffset;
-            [_sheet addChild: _hexTile];;
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_30"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+
+            [_sheet addChild: tile.image];;
         }
         
         //Draw missing tile
         if (i == 1){
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1)))- yOffset;
-            [_sheet addChild: _hexTile];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_08"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+
+            [_sheet addChild: tile.image];
         }
         
         
@@ -426,46 +449,64 @@
                 
                 
                 if (j == 0){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
-                    SPImage *_hilight = [[SPImage alloc]initWithContentsOfFile:@"red-jungle-tile.png"];
-                    _hilight.x = _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hilight.y = _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset ;
-                    [_sheet addChild: _hexTile];
-                    [_sheet addChild: _hilight];
-                    [_hilight addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-                    [_hilight addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_20"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133- (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    
+                    [_sheet addChild: tile.image];
+                   
+                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    //[_hilight addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 
                 if (j == 1){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
-                    _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_07"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 2){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
-                    _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_06"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 3){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
-                    _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_05"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 4){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"green-desert-tile.png"];
-                    _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
-                    [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_15"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    
+                    [_sheet addChild: tile.image];
+                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 5){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
-                    _hexTile.x = 133 - (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_31"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    
+                    [_sheet addChild: tile.image];
                 }
                 
         }
@@ -474,42 +515,53 @@
             for (int j = 0; j < 6; j ++) {
                 
                 if (j == 0){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
-                    _hexTile.x = 133 + (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_22"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+
+                    
+                    [_sheet addChild: tile.image];
                 }
                 
                 if (j == 1){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"yellow-mountain-tile.png"];
-                    _hexTile.x = 133 + (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_09"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 2){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"yellow-jungle-tile.png"];
-                    _hexTile.x = 133 + (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
-                    [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_02"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    [_sheet addChild: tile.image];
+                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 3){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
-                    _hexTile.x = 133 + (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_03"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 4){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
-                    _hexTile.x = 133 + (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_13"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 5){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
-                    _hexTile.x = 133 + (_hexTile.width - 10);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_29"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + (_hexTile.width - 10);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    [_sheet addChild: tile.image];
                 }
             }
             
@@ -519,10 +571,12 @@
         //Draw missing tile 2
         if (i == 2){
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1)))- yOffset;
-            [_sheet addChild: _hexTile];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_01"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+
+            [_sheet addChild: tile.image];
             
             
             
@@ -535,34 +589,42 @@
             for (int j = 0; j < 5; j ++) {
    
                 if (j == 0 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"red-swamp-tile.png"];
-                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_19"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    
+                    
+                   [_sheet addChild: tile.image];
                 }
                 if (j == 1 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"red-jungle-tile.png"];
-                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_18"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 2 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
-                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_17"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 3 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"green-plaines-tile.png"];
-                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_16"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 4 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"green-jungle-tile.png"];
-                    _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_32"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                   [_sheet addChild: tile.image];
                 }
                 
                 
@@ -572,36 +634,48 @@
             for (int j = 0; j < 5; j ++) {
                 
                 if (j == 0) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"yellow-desert-tile.png"];
-                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_23"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 1) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
-                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_10"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 2) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"swamp-tile.png"];
-                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
-                }
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_11"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+
+                    [_sheet addChild: tile.image];                }
                 if (j == 3) {
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_12"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+
                     _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-desert-tile.png"];
 
-                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
-                    [_hexTile addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    [_sheet addChild: tile.image];
+                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 4) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-jungle-tile.png"];
-                    _hexTile.x = 133 + ((_hexTile.width * 2) - 20);
-                    _hexTile.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_28"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+
+                    [_sheet addChild: tile.image];
                 }
                 
             }
@@ -612,10 +686,12 @@
         //Draw missing tile 3
         if (i == 3){
             drawNext = true;
-            _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
-            _hexTile.x = 133;
-            _hexTile.y = 10 + ((i  * (_hexTile.height + 1)))- yOffset;
-            [_sheet addChild: _hexTile];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_00"];
+            HexTile   *tile = location.tile;
+            tile.image.x = 133;
+            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+
+            [_sheet addChild: tile.image];
         }
             
         
@@ -625,28 +701,36 @@
             for (int j = 0; j < 4; j ++) {
                 
                 if (j == 0){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"desert-tile.png"];
-                    _hexTile.x = 134 - ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
-                    [_sheet addChild: _hexTile];
-                }
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_36"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+
+                    
+                    [_sheet addChild: tile.image];                }
                 if (j == 1){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
-                    _hexTile.x = 134 - ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_35"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 2){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
-                    _hexTile.x = 134 - ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_34"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 3){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"mountain-tile.png"];
-                    _hexTile.x = 134 - ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_33"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    [_sheet addChild: tile.image];
                 }
                 
                 
@@ -656,28 +740,38 @@
             for (int j = 0; j < 4; j ++) {
                 
                 if (j == 0) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"forest-tile.png"];
-                    _hexTile.x = 132 + ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_24"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    
+                    
+                   [_sheet addChild: tile.image];
                 }
                 if (j == 1) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
-                    _hexTile.x = 132 + ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
-                }
+                    
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_25"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    
+                    
+                    [_sheet addChild: tile.image];                }
                 if (j == 2) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-forest-tile.png"];
-                    _hexTile.x = 132 + ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_26"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    
+                    [_sheet addChild: tile.image];
                 }
                 if (j == 3) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"frozen-tile.png"];
-                    _hexTile.x = 132 + ((_hexTile.width * 3) - 30);
-                    _hexTile.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2* 1.3;
-                    [_sheet addChild: _hexTile];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_27"];
+                    HexTile   *tile = location.tile;
+                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    
+                    [_sheet addChild: tile.image];
                 }
                 
                 
