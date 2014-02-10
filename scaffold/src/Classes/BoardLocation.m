@@ -34,7 +34,6 @@
                         piece.location = self;
                         [_pieces setValue:piece forKey:[piece gamePieceId]];
                     }
-                    [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
         }
@@ -57,6 +56,7 @@
     piece.location = self;
     
     [_pieces setObject:piece forKey:[piece gamePieceId]];
+
 }
 
 -(GamePiece*) removePieceWithIdFromLocation: (NSString*) gamePieceId{

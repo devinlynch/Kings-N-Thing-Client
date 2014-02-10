@@ -11,6 +11,7 @@
 #import "Stack.h"
 #import "GameResource.h"
 #import "Player.h"
+#import "ScaledGamePiece.h"
 
 @implementation HexLocation
 
@@ -28,13 +29,24 @@
     _tile = [[GameResource getInstance] getTileForId:[[json objectForKey:@"hexTile"] objectForKey:@"id"]];
     _tileNumber = [[json objectForKey:@"hexNumber"] integerValue];
     
+    _tile.location = self;
 
     return self;
+}
+
+-(void) addGamePieceToLocation: (GamePiece*) piece{
+    [super addGamePieceToLocation:piece];
+    piece.pieceImage.x = _tile.image.x + 10;
+    piece.pieceImage.y = _tile.image.y + 10;
+    piece.pieceImage.scaleX = 0.25f;
+    piece.pieceImage.scaleY = 0.25f;
+    [[_tile.image parent] addChild:piece.pieceImage];
 }
 
 
 -(void) changeOwnerToPlayer: (Player*) player{
     _owner = player;
+    _tile.owner = player;
     [_tile changeOwnerTo: player.playerId];
 }
 
