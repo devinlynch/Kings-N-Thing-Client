@@ -47,9 +47,8 @@
                     [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
+
         }
-        
-    }
     return self;
 }
 

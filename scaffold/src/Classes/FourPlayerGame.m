@@ -20,6 +20,7 @@
 #import "HexTile.h"
 #import "Terrain.h"
 #import "Fort.h"
+#import "HexTile.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -276,15 +277,39 @@
     Player *player;
                         
     for(Player *p in _state.players){
-        player = p;
+        if ([p.playerId isEqualToString:playerId]) {
+            player = p;
+        }
     }
-                        
+    
+    fort.owner = player;
+    [hex addGamePieceToLocation:fort];
+    
+    NSLog(@"Moved fort to location %@", fort.location.locationId);
     
 }
 
 -(void) playerPlacedCM: (NSNotification*) notif{
     NSMutableDictionary *dic = notif.object;
-
+    
+    NSArray *hexes = [dic objectForKey:@"playerHexes"];
+    
+    Player *player;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:[dic objectForKey:@"playerId"]]) {
+            player = p;
+        }
+    }
+    
+    if(hexes != nil){
+        for(NSString *hex in hexes) {
+            HexLocation *location = [_state.hexLocations objectForKey:hex];
+            [location changeOwnerToPlayer:player];
+            NSLog(@"Changed %@ owner to %@", location.locationId, location.owner.playerId);
+        }
+    }
+    
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
@@ -370,7 +395,6 @@
 //        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
 //    }
 //}
-
 //-(void) drawCreatures{
 //    for (NSString *creature in [_state gamePieceResource]) {
 //        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
@@ -405,7 +429,7 @@
         if (i == 4) {
             drawNext = true;
             
-            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_04"];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_4"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
@@ -434,7 +458,7 @@
         //Draw missing tile
         if (i == 1){
             drawNext = true;
-            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_08"];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_8"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
@@ -463,7 +487,7 @@
                 }
                 
                 if (j == 1){
-                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_07"];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_7"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (_hexTile.width - 10);
                     tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
@@ -471,7 +495,7 @@
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2){
-                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_06"];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_6"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (_hexTile.width - 10);
                     tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
@@ -482,7 +506,7 @@
                 }
                 if (j == 3){
                     
-                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_05"];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_5"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - (_hexTile.width - 10);
                     tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
@@ -527,7 +551,7 @@
                 
                 if (j == 1){
                     
-                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_09"];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_9"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (_hexTile.width - 10);
                     tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
@@ -535,7 +559,7 @@
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2){
-                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_02"];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_2"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (_hexTile.width - 10);
                     tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
@@ -543,7 +567,7 @@
                     [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 3){
-                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_03"];
+                    HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_3"];
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  + (_hexTile.width - 10);
                     tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
@@ -571,7 +595,7 @@
         //Draw missing tile 2
         if (i == 2){
             drawNext = true;
-            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_01"];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_1"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
@@ -686,7 +710,7 @@
         //Draw missing tile 3
         if (i == 3){
             drawNext = true;
-            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_00"];
+            HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_0"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
             tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
@@ -779,7 +803,7 @@
             
             drawNext = false;
         }
-        [_sheet addChild: _hexTile];
+        //[_sheet addChild: _hexTile];
     }
 }
 

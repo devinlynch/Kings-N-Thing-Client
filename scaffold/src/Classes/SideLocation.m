@@ -19,6 +19,8 @@
     if (self && json != nil){
         _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
         
+        
+        
         NSArray *sidePiecesJsonArr = [json objectForKey:@"gamePieces"];
         if (sidePiecesJsonArr != nil){
             for(id o in sidePiecesJsonArr){

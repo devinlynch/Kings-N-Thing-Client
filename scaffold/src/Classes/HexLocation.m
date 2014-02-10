@@ -10,6 +10,7 @@
 #import "HexTile.h"
 #import "Stack.h"
 #import "GameResource.h"
+#import "Player.h"
 
 @implementation HexLocation
 
@@ -31,6 +32,11 @@
     return self;
 }
 
+
+-(void) changeOwnerToPlayer: (Player*) player{
+    _owner = player;
+    [_tile changeOwnerTo: player.playerId];
+}
 
 -(void) addStack:(Stack *)stack{
     [_stacks setObject:stack forKey:[stack locationId]];
