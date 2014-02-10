@@ -143,6 +143,7 @@
 		41BD143718A75244008C6E96 /* recruitThings.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132D18A75243008C6E96 /* recruitThings.png */; };
 		41BD14BB18A75244008C6E96 /* trade.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B318A75244008C6E96 /* trade.png */; };
 		41BD14C518A81977008C6E96 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		41BD14CF18A83C42008C6E96 /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14CE18A83C42008C6E96 /* PlacementHandler.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
@@ -614,6 +615,8 @@
 		41BD132E18A75243008C6E96 /* RecruitThingsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecruitThingsBackground@2x.png"; sourceTree = "<group>"; };
 		41BD132F18A75243008C6E96 /* stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stack.png; sourceTree = "<group>"; };
 		41BD13B318A75244008C6E96 /* trade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trade.png; sourceTree = "<group>"; };
+		41BD14CD18A83C42008C6E96 /* PlacementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacementHandler.h; sourceTree = "<group>"; };
+		41BD14CE18A83C42008C6E96 /* PlacementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacementHandler.m; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -1340,6 +1343,8 @@
 		99F9B6DE18941E0B00E4A788 /* UDP */ = {
 			isa = PBXGroup;
 			children = (
+				41BD14CD18A83C42008C6E96 /* PlacementHandler.h */,
+				41BD14CE18A83C42008C6E96 /* PlacementHandler.m */,
 				99F9B6E018941F5100E4A788 /* LobbyEventHandler.h */,
 				99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */,
 				99A78F2218957DE4005D31E5 /* GameEventHandler.h */,
@@ -2285,6 +2290,7 @@
 				4131C2D618876FB8009775EA /* RandomEvent.m in Sources */,
 				4131C2C718876DF3009775EA /* Thing.m in Sources */,
 				4131C2F0188770A6009775EA /* Terrain.m in Sources */,
+				41BD14CF18A83C42008C6E96 /* PlacementHandler.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
 				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,

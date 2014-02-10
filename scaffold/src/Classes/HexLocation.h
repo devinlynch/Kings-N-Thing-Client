@@ -24,6 +24,7 @@
 @property NSMutableArray *neighbourIds;
 @property NSMutableDictionary *stacks;
 
+-(void) changeOwnerToPlayer: (Player*) player;
 
 -(void) addStack: (Stack*) stack;
 -(void) removeStack: (Stack*) stack;

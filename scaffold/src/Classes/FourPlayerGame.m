@@ -18,6 +18,7 @@
 #import "Player.h"
 #import "HexLocation.h"
 #import "Fort.h"
+#import "HexTile.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -274,15 +275,39 @@
     Player *player;
                         
     for(Player *p in _state.players){
-        player = p;
+        if ([p.playerId isEqualToString:playerId]) {
+            player = p;
+        }
     }
-                        
+    
+    fort.owner = player;
+    [hex addGamePieceToLocation:fort];
+    
+    NSLog(@"Moved fort to location %@", fort.location.locationId);
     
 }
 
 -(void) playerPlacedCM: (NSNotification*) notif{
     NSMutableDictionary *dic = notif.object;
-
+    
+    NSArray *hexes = [dic objectForKey:@"playerHexes"];
+    
+    Player *player;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:[dic objectForKey:@"playerId"]]) {
+            player = p;
+        }
+    }
+    
+    if(hexes != nil){
+        for(NSString *hex in hexes) {
+            HexLocation *location = [_state.hexLocations objectForKey:hex];
+            [location changeOwnerToPlayer:player];
+            NSLog(@"Changed %@ owner to %@", location.locationId, location.owner.playerId);
+        }
+    }
+    
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
