@@ -34,8 +34,7 @@
                         piece.location = self;
                         [_pieces setValue:piece forKey:[piece gamePieceId]];
                     }
-                    [_pieces setValue:piece forKey:[piece gamePieceId]];
-                }
+                                    }
             }
         }
         

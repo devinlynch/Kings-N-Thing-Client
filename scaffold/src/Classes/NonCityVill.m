@@ -11,7 +11,7 @@
 @implementation NonCityVill
 
 @synthesize terrain = _terrain;
-@synthesize fileName = _fileName;
+//@synthesize fileName = _fileName;
 
 
 -(NonCityVill*) initWithId:(NSString*) nonCityVillId

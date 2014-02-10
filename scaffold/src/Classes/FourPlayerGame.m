@@ -194,6 +194,20 @@
     
 
     
+    //Log button
+//    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
+//    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
+//    logButton.x = _gameWidth - logButton.width * 1.5;
+//    logButton.y = _gameHeight - logButton.height * 2.3;
+//    [_contents addChild:logButton];
+    
+    SPTexture *logButtonTexture = [SPTexture textureWithContentsOfFile:@"InfoButton@2x.png"];
+    SPButton * infoButton = [SPButton buttonWithUpState:logButtonTexture];
+    infoButton.x = _gameWidth - infoButton.width * 1.5;
+    infoButton.y = _gameHeight - infoButton.height * 2.3;
+    [_contents addChild:infoButton];
+
+    
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self

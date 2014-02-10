@@ -10,7 +10,7 @@
 
 @interface CityVill : SpecialIncomeCounters{
     int *_combatValue;
-    NSString *_fileName;
+    //NSString *_fileName;
 }
 
 @property NSInteger *combatValue;

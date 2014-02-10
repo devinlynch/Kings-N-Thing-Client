@@ -11,7 +11,7 @@
 @implementation CityVill
 
 @synthesize combatValue = _combatValue;
-@synthesize fileName = _fileName;
+//@synthesize fileName = _fileName;
 
 
 

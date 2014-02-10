@@ -46,7 +46,7 @@ void onUncaughtException(NSException *exception)
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[Combat class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];
