@@ -19,6 +19,7 @@
 #import "HexLocation.h"
 #import "HexTile.h"
 #import "Terrain.h"
+#import "Fort.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
