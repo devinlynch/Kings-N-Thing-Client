@@ -22,6 +22,7 @@
 @property BOOL isHilighted;
 @property int tileNumber;
 @property NSString *tileId;
+@property SPImage *image;
 
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId: (NSString*) tileId;
 

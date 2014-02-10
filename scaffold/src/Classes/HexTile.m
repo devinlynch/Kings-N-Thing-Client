@@ -15,6 +15,7 @@
 @synthesize isHilighted = _isHilighted;
 @synthesize tileNumber = _tileNumber;
 @synthesize tileId;
+@synthesize image = _tileImage;
 
 
 +(NSMutableDictionary*) initializeTiles{
