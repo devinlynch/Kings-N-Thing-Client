@@ -27,7 +27,7 @@
 -(void) handleGameSetup:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
     
-    NSLog(@"Got game started message");
+    NSLog(@"Got gameSetup message");
     
     if(message == nil){
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY?????");

@@ -272,7 +272,7 @@
         _tileImage = [[SPImage alloc] initWithContentsOfFile:@"back-tile.png"];
     }
     
-    return [super init];
+    return self;
 }
 
 - (void)unhilight{

@@ -10,6 +10,8 @@
 #import "ServerResponseMessage.h"
 #import "MBProgressHUD.h"
 #import "GameMessage.h"
+#import "Event.h"
+
 @implementation Utils
 
 +(NSDictionary*) dictionaryFromJSONData: (NSData* ) data{
@@ -82,4 +84,14 @@
     });
 }
 
+
++(NSDictionary*) getDataDictionaryFromGameMessageEvent: (Event*) event{
+    GameMessage *message = (GameMessage*) event.msg;
+    if (message == nil || message.jsonDictionnary == nil){
+        NSLog(@"Message is nil or json dic is nil while getting data dic for type [%@]", event.type);
+        return nil;
+    }
+    NSDictionary* dataDic = [message.jsonDictionnary objectForKey:@"data"];
+    return dataDic;
+}
 @end

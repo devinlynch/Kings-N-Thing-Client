@@ -42,10 +42,11 @@
 
 
 -(BoardLocation*) init{
+    self=[super init];
     _locationId = [[NSString alloc] init];
     _locationName = [[NSString alloc] init];
     _pieces = [[NSMutableDictionary alloc] init];
-    return [super init];
+    return self;
 }
 
 -(void) addGamePieceToLocation: (GamePiece*) piece{

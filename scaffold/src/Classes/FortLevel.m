@@ -53,13 +53,12 @@ static FortLevel * citadel = nil;
 -(FortLevel*) initWithid:(NSString *)typeId
                 withName:(NSString*) levelName
                withLevel:(int)level andCost:(int)cost{
-
+    self=[super init];
     _fortLevelID = [[NSString alloc] initWithString:typeId];
     _fortLevelName = [[NSString alloc] initWithString:levelName];
     _levelNum = level;
     _cost = cost;
-    
-    return [super init];
+    return self;
 
 }
 

@@ -13,8 +13,9 @@
 @synthesize currentTotal = _currentTotal;
 
 -(Bank*) initWithTotal:(int)total{
+    self=[super init];
     _currentTotal = total;
-    return [super init];
+    return self;
 }
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{

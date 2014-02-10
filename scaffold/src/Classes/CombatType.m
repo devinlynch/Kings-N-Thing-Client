@@ -59,9 +59,10 @@ static CombatType *charged = nil;
 
 
 -(CombatType*) initWithId: (NSString*) typeId andName: (NSString*) name{
+    self=[super init];
     _combatTypeID = [[NSString alloc] initWithString:typeId];
     _combatTypeName = [[NSString alloc] initWithString:name];
-    return [super init];
+    return self;
 }
 
 

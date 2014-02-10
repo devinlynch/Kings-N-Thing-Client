@@ -14,9 +14,10 @@
 
 
 -(GameMessage*) initWithType: (NSString*) t andDictionnary:(NSDictionary*) dic{
+    self=[super init];
     _jsonDictionnary = dic;
     _type = [[NSString alloc] initWithString:t];
-    return [super init];
+    return self;
 }
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{

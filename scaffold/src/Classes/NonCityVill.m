@@ -18,14 +18,14 @@
                terrainType:(Terrain*) type
                  goldValue:(int) value
                   fileName:(NSString*) name{
-
+    self=[super init];
     
     _gamePieceId = [[NSString alloc] initWithString:nonCityVillId];
     _terrain = type;
     _goldValue = &value;
     _fileName = [[NSString alloc] initWithString:name];
     
-    return [super init];
+    return self;
 }
 
 

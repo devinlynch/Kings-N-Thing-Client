@@ -86,9 +86,10 @@ static Terrain *forest = nil;
 
 
 -(Terrain*) initWithID: (NSString*) terrainID andTerrainName: (NSString*) name{
+    self=[super init];
     _terrainID = [[NSString alloc] initWithString:terrainID];
     _terrainName = [[NSString alloc] initWithString:name];
-    return [super init];
+    return self;
 }
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "Player.h"
-
+#import "GamePiece.h"
 @implementation Player
 
 @synthesize user = _user;
@@ -28,6 +28,7 @@
         _gold =  [[json objectForKey:@"gold"] integerValue];
         _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
         _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"] withOwner:self];
+        _gamePieces = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -36,6 +37,14 @@
     NSLog(@"%@ had %d gold", _username, _gold);
     _gold += g;
     NSLog(@"%@ now has %d gold", _username, _gold);
+}
+
+-(void) assignPiece: (GamePiece*) gamePiece{
+    Player *previousOwner = gamePiece.owner;
+    if(previousOwner != nil && ![previousOwner isKindOfClass:[NSNull class]]) {
+        [previousOwner.gamePieces removeObjectForKey:gamePiece.gamePieceId];
+    }
+    [self.gamePieces setObject:gamePiece forKey:gamePiece.gamePieceId];
 }
 
 @end

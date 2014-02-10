@@ -39,5 +39,7 @@
 
 -(void) addGold: (int) g;
 
+-(void) assignPiece: (GamePiece*) gamePiece;
+
 
 @end

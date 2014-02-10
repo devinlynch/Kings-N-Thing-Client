@@ -26,7 +26,7 @@ static GameResource *instance;
 
 
 -(GameResource*) init{
-    
+    self=[super init];
     _allPieces = [[NSMutableDictionary alloc] init];
     _creaturePieces = [Creature initializeAllCreatures];
     
@@ -44,7 +44,7 @@ static GameResource *instance;
     _nonCityVillPieces = [NonCityVill initializeAllNonCityVill];
     [_allPieces addEntriesFromDictionary: _nonCityVillPieces];
     
-    return [super init];
+    return self;
 }
 
 -(CityVill*) getCityVillForId: (NSString*) pieceId{
