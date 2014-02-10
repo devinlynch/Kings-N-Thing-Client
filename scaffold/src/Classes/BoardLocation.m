@@ -10,6 +10,8 @@
 #import "GamePiece.h"
 #import "Creature.h"
 #import "GameResource.h"
+#import "Game.h"
+#import "GameState.h"
 
 @implementation BoardLocation
 
@@ -32,6 +34,7 @@
                         piece.location = self;
                         [_pieces setValue:piece forKey:[piece gamePieceId]];
                     }
+                    [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
         }

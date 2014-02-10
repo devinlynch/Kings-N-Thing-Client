@@ -53,6 +53,7 @@
     int _gameWidth;
     int _gameHeight;
     
+    
     SPImage *_selectedPiece;
     SPImage *_bowl;
     GameState *_state;
@@ -110,7 +111,7 @@
     [_contents addChild:_sheet];
     
     
-    _stateText = [SPTextField textFieldWithWidth:70 height:30 text:@"State:"];
+    _stateText = [SPTextField textFieldWithWidth:200 height:30 text:@"State:"];
     _stateText.x = 0;
     _stateText.y = 2;
     _stateText.color = SP_YELLOW;
@@ -414,7 +415,7 @@
         }
         
         if (i == 4) {
-            drawNext = true;
+           // drawNext = true;
             
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_4"];
             HexTile   *tile = location.tile;
@@ -424,7 +425,7 @@
             [_sheet addChild: tile.image];;
         }
         if (i == 5) {
-            drawNext = true;
+           // drawNext = true;
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_14"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
@@ -433,7 +434,7 @@
             [_sheet addChild: tile.image];;
         }
         if (i == 6) {
-            drawNext = true;
+          //  drawNext = true;
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_30"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
@@ -444,7 +445,7 @@
         
         //Draw missing tile
         if (i == 1){
-            drawNext = true;
+          //  drawNext = true;
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_8"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
@@ -470,7 +471,7 @@
                     [_sheet addChild: tile.image];
                    
                     [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-                    //[_hilight addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    [tile.image addEventListener:@selector(tileDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 
                 if (j == 1){
@@ -635,7 +636,7 @@
                     HexTile   *tile = location.tile;
                     tile.image.x = 133  - ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
-                    [_sheet addChild: tile.image];
+                   [_sheet addChild: tile.image];
                 }
                 
                 
@@ -675,9 +676,11 @@
                     tile.image.x = 133  + ((tile.image.width * 2) - 20);
                     tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
 
+                    //tile.image = [[SPImage alloc]initWithContentsOfFile:@"blue-desert-tile.png"];
+
                    
                     [_sheet addChild: tile.image];
-                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+                    //[tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 4) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_28"];
