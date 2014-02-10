@@ -11,9 +11,6 @@
 @interface Treasure : Thing{
     NSInteger *_goldValue;
     NSString *_treasureId;
-    NSString *_fileName;
-    
-    
 }
 
 @property NSInteger *goldValue;

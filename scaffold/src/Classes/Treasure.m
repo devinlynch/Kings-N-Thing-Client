@@ -12,7 +12,6 @@
 
 @synthesize goldValue = _goldValue;
 @synthesize treasureId = _treasureId;
-@synthesize fileName = _fileName;
 
 -(Treasure*) initWithId:(NSString *)treasureId andGoldValue:(int)value andFilename:(NSString *)filename{
     self=[super init];

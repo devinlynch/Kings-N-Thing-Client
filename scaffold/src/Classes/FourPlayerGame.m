@@ -253,9 +253,6 @@
     
     [[GoldCollection getInstance] setVisible:NO];
     
-    //Draw tiles
-   // [self drawTiles];
-    
     _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
     _bowl.x = _gameWidth - _bowl.width;
     _bowl.y = _gameHeight - _rackZone.height - _rackZone.height/6;
@@ -363,14 +360,10 @@
 
     _state = (GameState*) notif.object;
     
-    [self drawTiles];
-
-    
-    
-    
-    
     NSLog(@"%@", _state);
     
+    
+    [self drawTiles];
     
 }
 
@@ -381,7 +374,7 @@
 
 
 -(void) pieceSelected: (NSNotification*) notif{
-    Creature *selected = notif.object;
+    GamePiece *selected = notif.object;
     
     _selectedPiece = [[SPImage alloc] initWithContentsOfFile:[selected fileName]];
     _selectedPiece.x = 250;
@@ -389,17 +382,12 @@
     [_contents addChild:_selectedPiece];
 }
 
+-(void) drawRack{
+    
+}
 
-//-(void) drawCreatures{
-//    for (NSString *creature in [_state gamePieceResource]) {
-//        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
-//    }
-//}
-//-(void) drawCreatures{
-//    for (NSString *creature in [_state gamePieceResource]) {
-//        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
-//    }
-//}
+
+
 
 -(void) drawTiles
 {
@@ -690,6 +678,7 @@
 
                     //tile.image = [[SPImage alloc]initWithContentsOfFile:@"blue-desert-tile.png"];
 
+                   
                     [_sheet addChild: tile.image];
                     //[tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }

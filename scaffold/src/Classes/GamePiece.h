@@ -15,12 +15,13 @@
     BoardLocation *_location;
     Player *_owner;
     ScaledGamePiece *_pieceImage;
+    NSString *_fileName;
 }
 
 @property NSString *gamePieceId;
 @property Player *owner;
 @property BoardLocation *location;
 @property ScaledGamePiece *pieceImage;
-
+@property NSString *fileName;
 
 @end

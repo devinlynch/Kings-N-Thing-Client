@@ -15,13 +15,11 @@
     int _combatValue;
     CombatType *_combatType;
     Terrain *_terrain;
-    NSString *_fileName;
 }
 
 @property int combatValue;
 @property CombatType *combatType;
 @property Terrain *terrain;
-@property NSString *fileName;
 
 -(Creature*) initWithId:(NSString*) creatureId andCombatValue: (int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename;
 

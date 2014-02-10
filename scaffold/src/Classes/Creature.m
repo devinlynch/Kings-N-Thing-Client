@@ -16,7 +16,6 @@
 @synthesize combatValue = _combatValue;
 @synthesize combatType  = _combatType;
 @synthesize terrain = _terrain;
-@synthesize fileName = _fileName;
 
 
 -(Creature*) initWithId:(NSString*) creatureId andCombatValue:(int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename{

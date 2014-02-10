@@ -12,11 +12,10 @@
 @interface SpecialCharacter : Counter{
     SpecialAbility *_specialAbility;
     NSString *_characterId;
-    NSString *fileName;
 }
 
 @property SpecialAbility *specialAbility;
-@property NSString *characterId, *fileName;
+@property NSString *characterId;
 
 
 -(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename;
