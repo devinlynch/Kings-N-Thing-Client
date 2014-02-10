@@ -121,4 +121,18 @@
     return nil;
 }
 
+-(Stack*) getStackById:(NSString*) stackId {
+    NSEnumerator *enumerator = [self.hexLocations keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        HexLocation *hl = [self.hexLocations objectForKey:key];
+        if(hl != nil) {
+            Stack *stack = [hl.stacks objectForKey:stackId];
+            if(stack != nil)
+                return stack;
+        }
+    }
+    return nil;
+}
+
 @end
