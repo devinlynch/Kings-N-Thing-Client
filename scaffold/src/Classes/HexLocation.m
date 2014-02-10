@@ -27,7 +27,7 @@
     
     _tile = [[GameResource getInstance] getTileForId:[[json objectForKey:@"hexTile"] objectForKey:@"id"]];
     _tileNumber = [[json objectForKey:@"hexNumber"] integerValue];
-    
+    _stacks = [[NSMutableDictionary alloc] init];
 
     return self;
 }
@@ -39,6 +39,11 @@
 }
 
 -(void) addStack:(Stack *)stack{
+    if(stack.location != nil && ! [stack.location isKindOfClass:[NSNull class]]) {
+        [stack.location removeStack:stack];
+    }
+    
+    stack.location = self;
     [_stacks setObject:stack forKey:[stack locationId]];
 }
 

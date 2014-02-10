@@ -49,10 +49,9 @@
             }
 
         }
-    return self;
     }
+    return self;
 }
-
 
 -(BoardLocation*) init{
     self=[super init];

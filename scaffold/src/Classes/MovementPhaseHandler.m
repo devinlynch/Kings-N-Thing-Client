@@ -97,7 +97,7 @@
     }
     
     HexLocation *hexLocation = (HexLocation*)[gameState getBoardLocationById:hexLocationId];
-    [stack setLocation:hexLocation];
+    [hexLocation addStack:stack];
     
     
     NSLog(@"Succesfully parsed updated stack message with stackID: %@", stack.locationId);
@@ -148,6 +148,71 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedPieceToNewLocation" object:gamePiece];
 }
+
+/*
+ Type: movementPhaseOver
+ Data: {
+ hexLocations: array of serialized hex locations
+ }
+ Sending Type: UDP from server to client
+ Description:  Tells all players that the movement phase is over.  Hex locations are sent to make sure all data is synced
+*/
+-(void) handleMovementPhaseOver: (Event*) event {
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    if(dataDic == nil){
+        return;
+    }
+ 
+    NSArray *hexLocations = [dataDic objectForKey:@"hexLocations"];
+    GameState *gameState = [[Game currentGame] gameState];
+    
+    for(id object in hexLocations) {
+        NSDictionary *hexDic = (NSDictionary*)object;
+        HexLocation *hexInGameState = (HexLocation*)[gameState getBoardLocationById: [hexDic objectForKey:@"locationId"]];
+        
+        // Check all the game pieces given to make sure they are assigned to the hex location
+        NSArray *piecesJsonArr = [hexDic objectForKey:@"gamePieces"];
+        if(piecesJsonArr != nil){
+            for(id o in piecesJsonArr) {
+                if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
+                    NSDictionary *gamePieceDic = (NSDictionary*) o;
+                    GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
+                    
+                    if( piece.location != hexInGameState){
+                        [hexInGameState addGamePieceToLocation:piece];
+                    }
+                    
+                }
+            }
+        }
+        
+        // Now check to make sure stacks are all good
+        NSArray *stacksJsonArr = [hexDic objectForKey:@"stacks"];
+        if(stacksJsonArr != nil) {
+            for(id o in stacksJsonArr) {
+                NSDictionary *stackDic = (NSDictionary*) o;
+                NSString *stackId = [stackDic objectForKey:@"locationId"];
+                NSString *ownerId = [stackDic objectForKey:@"ownerId"];
+
+                Stack *stack = [gameState getStackById: stackId];
+                if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
+                    stack = [[Stack alloc] initFromJSON:stackDic];
+                    Player *p = [gameState getPlayerById:ownerId];
+                    [stack setOwner:p];
+                }
+                
+                if([hexInGameState.stacks objectForKey:stack.locationId] == nil) {
+                    [hexInGameState addStack:stack];
+                }
+            }
+        }
+    }
+    
+    NSLog(@"Succesfully parsed movementPhaseOver");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"movementPhaseOver" object:nil];
+}
+
 
 
 @end
