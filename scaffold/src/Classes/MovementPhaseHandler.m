@@ -27,6 +27,7 @@
     }
     
     NSString *playerId = [dataDic objectForKey:@"playerId"];
+    NSString *hexLocationId = [dataDic objectForKey:@"hexLocationId"];
     NSDictionary *stackDic = [dataDic objectForKey:@"stack"];
     NSString *stackId = [stackDic objectForKey:@"locationId"];
     
@@ -35,16 +36,17 @@
     Stack *stack = [gameState getStackById: stackId];
     if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
         stack = [[Stack alloc] initFromJSON:stackDic];
-        Player *p = [gameState getPlayerById:@"playerId"];
+        Player *p = [gameState getPlayerById:playerId];
         [stack setOwner:p];
     }
     
-    //[stack setLocation:@""];
+    HexLocation *hexLocation = (HexLocation*)[gameState getBoardLocationById:hexLocationId];
+    [stack setLocation:hexLocation];
     
 
-   // NSLog(@"Succesfully parsed DidStartRecruitThingsPhase message with possible recruits: %@", possibleRecruitments);
+    NSLog(@"Succesfully parsed playerMovedStackToNewLocation message with stackID: %@", stack.locationId);
     
-   // [[NSNotificationCenter defaultCenter] postNotificationName:@"startedRecruitThingsPhase" object:possibleRecruitments];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedStackToNewLocation" object:hexLocation];
 }
 
 @end

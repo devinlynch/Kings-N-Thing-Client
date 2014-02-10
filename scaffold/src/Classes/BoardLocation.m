@@ -10,6 +10,8 @@
 #import "GamePiece.h"
 #import "Creature.h"
 #import "GameResource.h"
+#import "Game.h"
+#import "GameState.h"
 
 @implementation BoardLocation
 
@@ -30,7 +32,18 @@
                     NSDictionary *gamePieceDic = (NSDictionary*) o;
                     GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
                     piece.location = self;
-                    piece.owner  = [gamePieceDic objectForKey:@"ownerId"];
+                    
+                    NSString *ownerId = [gamePieceDic objectForKey:@"ownerId"];
+                    if(ownerId != nil && ![ownerId isKindOfClass:[NSNull class]]){
+                        Game *currentGame = [Game currentGame];
+                        if(currentGame != nil) {
+                            GameState *gameState = [currentGame gameState];
+                            if(gameState != nil) {
+                                Player *p = [gameState getPlayerById:ownerId];
+                                piece.owner=p;
+                            }
+                        }
+                    }
                     [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
