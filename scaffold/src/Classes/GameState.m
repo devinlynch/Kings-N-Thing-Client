@@ -45,6 +45,8 @@
         
         _playingCup = [[PlayingCup alloc] initFromJSON:[json objectForKey:@"playingCup"]];
         _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
+      
+        
         NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];
         NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
         if(hexLocationJsonArr != nil){
