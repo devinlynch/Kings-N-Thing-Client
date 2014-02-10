@@ -10,6 +10,8 @@
 #import "GamePiece.h"
 #import "Creature.h"
 #import "GameResource.h"
+#import "Game.h"
+#import "GameState.h"
 
 @implementation BoardLocation
 
@@ -20,19 +22,29 @@
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
     self = [super init];
-        if(self && json != nil) {
-            _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
-            
-            NSArray *piecesJsonArr = [json objectForKey:@"gamePieces"];
-            if(piecesJsonArr != nil){
-                for(id o in piecesJsonArr) {
-                    if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                        NSDictionary *gamePieceDic = (NSDictionary*) o;
-                        GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
-                        piece.location = self;
-                        piece.owner  = [gamePieceDic objectForKey:@"ownerId"];
-                        [_pieces setValue:piece forKey:[piece gamePieceId]];
+    if(self && json != nil) {
+        _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
+        
+        NSArray *piecesJsonArr = [json objectForKey:@"gamePieces"];
+        if(piecesJsonArr != nil){
+            for(id o in piecesJsonArr) {
+                if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
+                    NSDictionary *gamePieceDic = (NSDictionary*) o;
+                    GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
+                    piece.location = self;
+                    
+                    NSString *ownerId = [gamePieceDic objectForKey:@"ownerId"];
+                    if(ownerId != nil && ![ownerId isKindOfClass:[NSNull class]]){
+                        Game *currentGame = [Game currentGame];
+                        if(currentGame != nil) {
+                            GameState *gameState = [currentGame gameState];
+                            if(gameState != nil) {
+                                Player *p = [gameState getPlayerById:ownerId];
+                                piece.owner=p;
+                            }
+                        }
                     }
+                    [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }
 

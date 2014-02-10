@@ -13,9 +13,10 @@
 
 @interface Stack : BoardLocation{
     HexLocation *_location;
+    Player *_owner;
 }
 
 @property HexLocation *location;
-
+@property Player *owner;
 
 @end
