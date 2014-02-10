@@ -99,6 +99,8 @@
     
     
     
+    
+    
     [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getFrozenInstance]  andFileName:@"frozen-tile" andId:@"frozen-tile-01"] forKey:@"frozen-tile-01"];
     
     

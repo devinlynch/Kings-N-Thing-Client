@@ -13,6 +13,6 @@
 @implementation Stack
 
 @synthesize location = _location;
-
+@synthesize owner = _owner;
 
 @end
