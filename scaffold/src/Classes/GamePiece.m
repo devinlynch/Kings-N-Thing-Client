@@ -14,7 +14,7 @@
 @synthesize pieceImage  = _pieceImage;
 @synthesize location    = _location;
 @synthesize owner     = _owner;
-
+@synthesize fileName  = _fileName;
 
 -(id) init{
     self = [super init];

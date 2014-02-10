@@ -14,11 +14,9 @@
 @interface Fort : Counter{
     NSInteger *_combatValue;
     FortLevel *_fortLevel;
-    NSString *_fileName;
 }
 
 @property NSInteger *combatValue;
-@property NSString *fileName;
 @property FortLevel *fortLevel;
 
 

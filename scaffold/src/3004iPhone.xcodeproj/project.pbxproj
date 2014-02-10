@@ -141,7 +141,6 @@
 		41BD143618A75244008C6E96 /* rackbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132C18A75243008C6E96 /* rackbtn.png */; };
 		41BD143718A75244008C6E96 /* recruitThings.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132D18A75243008C6E96 /* recruitThings.png */; };
 		41BD14BB18A75244008C6E96 /* trade.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD13B318A75244008C6E96 /* trade.png */; };
-		41BD14C518A81977008C6E96 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		41BD14CF18A83C42008C6E96 /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14CE18A83C42008C6E96 /* PlacementHandler.m */; };
 		41BD14D218A85BA5008C6E96 /* blue-plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D118A85BA5008C6E96 /* blue-plains-tile.png */; };
 		41BD14D418A85BAC008C6E96 /* green-plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D318A85BAC008C6E96 /* green-plains-tile.png */; };
@@ -166,7 +165,6 @@
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
-		997B0E1018A81E7C009404DE /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0F18A81E7C009404DE /* PlacementHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
 		997B0E1C18A84688009404DE /* RecruitThingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1B18A84688009404DE /* RecruitThingsTest.m */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
@@ -651,8 +649,6 @@
 		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		997B0E0818A81985009404DE /* RecruitThingsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThingsHandler.h; sourceTree = "<group>"; };
 		997B0E0918A81985009404DE /* RecruitThingsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitThingsHandler.m; sourceTree = "<group>"; };
-		997B0E0E18A81E7C009404DE /* PlacementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacementHandler.h; sourceTree = "<group>"; };
-		997B0E0F18A81E7C009404DE /* PlacementHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacementHandler.m; sourceTree = "<group>"; };
 		997B0E1318A82061009404DE /* PlayerRecruitment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRecruitment.h; sourceTree = "<group>"; };
 		997B0E1418A82061009404DE /* PlayerRecruitment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRecruitment.m; sourceTree = "<group>"; };
 		997B0E1B18A84688009404DE /* RecruitThingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitThingsTest.m; sourceTree = "<group>"; };
@@ -2316,7 +2312,6 @@
 				4131C2F0188770A6009775EA /* Terrain.m in Sources */,
 				41BD14CF18A83C42008C6E96 /* PlacementHandler.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
-				997B0E1018A81E7C009404DE /* PlacementHandler.m in Sources */,
 				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,

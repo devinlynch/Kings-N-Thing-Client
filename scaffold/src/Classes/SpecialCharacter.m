@@ -12,7 +12,6 @@
 
 @synthesize specialAbility = _specialAbility;
 @synthesize characterId = _characterId;
-@synthesize fileName = _fileName;
 
 
 -(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename{

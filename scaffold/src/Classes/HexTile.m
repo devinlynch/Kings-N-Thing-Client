@@ -247,6 +247,9 @@
 }
         
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId:(NSString *)tileId{
+    self = [super init];
+    
+    _tileId = [[NSString alloc] initWithString:tileId];
 
     _fileName = [[NSString alloc] initWithString:file];
     

@@ -53,7 +53,6 @@
     int _gameWidth;
     int _gameHeight;
     
-    SPImage *_hexTile;
     SPImage *_selectedPiece;
     SPImage *_bowl;
     GameState *_state;
@@ -253,9 +252,6 @@
     
     [[GoldCollection getInstance] setVisible:NO];
     
-    //Draw tiles
-   // [self drawTiles];
-    
     _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
     _bowl.x = _gameWidth - _bowl.width;
     _bowl.y = _gameHeight - _rackZone.height - _rackZone.height/6;
@@ -363,14 +359,10 @@
 
     _state = (GameState*) notif.object;
     
-    [self drawTiles];
-
-    
-    
-    
-    
     NSLog(@"%@", _state);
     
+    
+    [self drawTiles];
     
 }
 
@@ -381,7 +373,7 @@
 
 
 -(void) pieceSelected: (NSNotification*) notif{
-    Creature *selected = notif.object;
+    GamePiece *selected = notif.object;
     
     _selectedPiece = [[SPImage alloc] initWithContentsOfFile:[selected fileName]];
     _selectedPiece.x = 250;
@@ -389,17 +381,12 @@
     [_contents addChild:_selectedPiece];
 }
 
+-(void) drawRack{
+    
+}
 
-//-(void) drawCreatures{
-//    for (NSString *creature in [_state gamePieceResource]) {
-//        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
-//    }
-//}
-//-(void) drawCreatures{
-//    for (NSString *creature in [_state gamePieceResource]) {
-//        [_sheet addChild:[[[_state gamePieceResource] objectForKey:creature] pieceImage]];
-//    }
-//}
+
+
 
 -(void) drawTiles
 {
@@ -417,7 +404,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_21"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
            
             
             [_sheet addChild: tile.image];
@@ -432,7 +419,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_4"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
             
             [_sheet addChild: tile.image];;
         }
@@ -441,7 +428,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_14"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
 
             [_sheet addChild: tile.image];;
         }
@@ -450,7 +437,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_30"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
 
             [_sheet addChild: tile.image];;
         }
@@ -461,7 +448,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_8"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
 
             [_sheet addChild: tile.image];
         }
@@ -476,8 +463,8 @@
                     
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_20"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133- (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133- (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     
                     [_sheet addChild: tile.image];
@@ -489,16 +476,16 @@
                 if (j == 1){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_7"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  - (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_6"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  - (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     
                     
@@ -508,16 +495,16 @@
                     
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_5"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  - (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     [_sheet addChild: tile.image];
                 }
                 if (j == 4){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_15"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  - (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     
                     [_sheet addChild: tile.image];
@@ -526,8 +513,8 @@
                 if (j == 5){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_31"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  - (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     
                     [_sheet addChild: tile.image];
@@ -542,8 +529,8 @@
                     
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_22"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  + (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
 
                     
                     [_sheet addChild: tile.image];
@@ -553,38 +540,38 @@
                     
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_9"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  + (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
                     
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_2"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  + (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
                     [_sheet addChild: tile.image];
                     [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 3){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_3"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  + (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
                     [_sheet addChild: tile.image];
                 }
                 if (j == 4){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_13"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  + (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
                     [_sheet addChild: tile.image];
                 }
                 if (j == 5){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_29"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + (_hexTile.width - 10);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + _hexTile.height /2 - yOffset;
+                    tile.image.x = 133  + (tile.image.width - 10);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + tile.image.height /2 - yOffset;
                     [_sheet addChild: tile.image];
                 }
             }
@@ -598,7 +585,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_1"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
 
             [_sheet addChild: tile.image];
             
@@ -615,8 +602,8 @@
                 if (j == 0 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_19"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  - ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
                     
                     
                    [_sheet addChild: tile.image];
@@ -624,31 +611,31 @@
                 if (j == 1 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_18"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  - ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
                     
                     [_sheet addChild: tile.image];
                 }
                 if (j == 2 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_17"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  - ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
                     [_sheet addChild: tile.image];
                 }
                 if (j == 3 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_16"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  - ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
                     [_sheet addChild: tile.image];
                 }
                 if (j == 4 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_32"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  - ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
-                   [_sheet addChild: tile.image];
+                    tile.image.x = 133  - ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
+                    [_sheet addChild: tile.image];
                 }
                 
                 
@@ -660,8 +647,8 @@
                 if (j == 0) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_23"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  + ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
                     
                     
                     [_sheet addChild: tile.image];
@@ -669,8 +656,8 @@
                 if (j == 1) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_10"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  + ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
 
                     
                     [_sheet addChild: tile.image];
@@ -678,26 +665,25 @@
                 if (j == 2) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_11"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  + ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
 
                     [_sheet addChild: tile.image];                }
                 if (j == 3) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_12"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  + ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
 
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"blue-desert-tile.png"];
-
+                   
                     [_sheet addChild: tile.image];
                     [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 4) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_28"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 133  + ((_hexTile.width * 2) - 20);
-                    tile.image.y = 10 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset;
+                    tile.image.x = 133  + ((tile.image.width * 2) - 20);
+                    tile.image.y = 10 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset;
 
                     [_sheet addChild: tile.image];
                 }
@@ -713,7 +699,7 @@
             HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_0"];
             HexTile   *tile = location.tile;
             tile.image.x = 133;
-            tile.image.y = 10 + ((i  * (_hexTile.height + 1))) - yOffset;
+            tile.image.y = 10 + ((i  * (tile.image.height + 1))) - yOffset;
 
             [_sheet addChild: tile.image];
         }
@@ -727,16 +713,16 @@
                 if (j == 0){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_36"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  - ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
 
                     
                     [_sheet addChild: tile.image];                }
                 if (j == 1){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_35"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  - ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
                     
                     [_sheet addChild: tile.image];
@@ -744,16 +730,16 @@
                 if (j == 2){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_34"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  - ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
                     [_sheet addChild: tile.image];
                 }
                 if (j == 3){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_33"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  - ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  - ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     [_sheet addChild: tile.image];
                 }
                 
@@ -766,8 +752,8 @@
                 if (j == 0) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_24"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  + ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
                     
                    [_sheet addChild: tile.image];
@@ -776,24 +762,24 @@
                     
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_25"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  + ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
                     
                     [_sheet addChild: tile.image];                }
                 if (j == 2) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_26"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  + ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
                     [_sheet addChild: tile.image];
                 }
                 if (j == 3) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_27"];
                     HexTile   *tile = location.tile;
-                    tile.image.x = 134  + ((_hexTile.width * 3) - 30);
-                    tile.image.y = 43 + ((j  * (_hexTile.height + 1))) + (_hexTile.height) - yOffset2 * 1.3;
+                    tile.image.x = 134  + ((tile.image.width * 3) - 30);
+                    tile.image.y = 43 + ((j  * (tile.image.height + 1))) + (tile.image.height) - yOffset2 * 1.3;
                     
                     [_sheet addChild: tile.image];
                 }
@@ -803,7 +789,7 @@
             
             drawNext = false;
         }
-        //[_sheet addChild: _hexTile];
+        //[_sheet addChild: tile.image];
     }
 }
 

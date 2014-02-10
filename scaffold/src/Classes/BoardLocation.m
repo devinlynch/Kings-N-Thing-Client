@@ -30,16 +30,14 @@
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
                         GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
                         piece.location = self;
-                        piece.owner  = [gamePieceDic objectForKey:@"ownerId"];
                         [_pieces setValue:piece forKey:[piece gamePieceId]];
                     }
                 }
             }
-
         }
+        
     return self;
 }
-
 
 -(BoardLocation*) init{
     self=[super init];

@@ -12,7 +12,6 @@
 
 
 @synthesize  randomId = _randomId;
-@synthesize fileName = _fileName;
 @synthesize randomType = _randomType;
 
 -(RandomEvent*) initWithId:(NSString *)randomId andRandomType:(NSString*)type andFilename:(NSString *)filename {

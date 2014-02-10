@@ -13,11 +13,10 @@
 
 @interface MagicItems : Thing{
     NSString *_magicId;
-    NSString *_fileName;
     NSString *_magicType;
 }
 
-@property NSString *magicId, *fileName, *magicType;
+@property NSString *magicId, *magicType;
 
 -(MagicItems*) initWithId:(NSString*) magicId andMagicType:(NSString*) type andFilename: (NSString*) filename;
 
