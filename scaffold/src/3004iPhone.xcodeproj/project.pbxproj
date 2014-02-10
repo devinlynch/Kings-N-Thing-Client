@@ -200,6 +200,10 @@
 		DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
 		DE48620B18A97A3A00272B79 /* InfoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48620918A97A3A00272B79 /* InfoButton@2x.png */; };
 		DE48620C18A97A3A00272B79 /* SmallButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48620A18A97A3A00272B79 /* SmallButton@2x.png */; };
+		DE48620F18A981D900272B79 /* SmallButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48620E18A981D900272B79 /* SmallButton@2x.png */; };
+		DE48621418A9868B00272B79 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = DE48621318A9868B00272B79 /* Log.m */; };
+		DE48621618A989A100272B79 /* infoBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48621518A989A100272B79 /* infoBackground@2x.png */; };
+		DE48621918A9902C00272B79 /* Transparency.m in Sources */ = {isa = PBXBuildFile; fileRef = DE48621818A9902C00272B79 /* Transparency.m */; };
 		DE4A3D7A10FFB08200FDA492 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */; };
 		DE4A3D7F10FFB08B00FDA492 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */; };
 		DE4A3DB910FFB0FE00FDA492 /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3DB010FFB0DB00FDA492 /* libSparrow.a */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -711,6 +715,12 @@
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DE48620918A97A3A00272B79 /* InfoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoButton@2x.png"; sourceTree = "<group>"; };
 		DE48620A18A97A3A00272B79 /* SmallButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SmallButton@2x.png"; sourceTree = "<group>"; };
+		DE48620E18A981D900272B79 /* SmallButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SmallButton@2x.png"; sourceTree = "<group>"; };
+		DE48621218A9868B00272B79 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		DE48621318A9868B00272B79 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		DE48621518A989A100272B79 /* infoBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoBackground@2x.png"; sourceTree = "<group>"; };
+		DE48621718A9902C00272B79 /* Transparency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transparency.h; sourceTree = "<group>"; };
+		DE48621818A9902C00272B79 /* Transparency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transparency.m; sourceTree = "<group>"; };
 		DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Sparrow.xcodeproj; sourceTree = SPARROW_SRC; };
@@ -1498,6 +1508,8 @@
 				DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */,
 				DEF9FF0C18A7F5EF0057FAEB /* TileMenu.h */,
 				DEF9FF0D18A7F5EF0057FAEB /* TileMenu.m */,
+				DE48621218A9868B00272B79 /* Log.h */,
+				DE48621318A9868B00272B79 /* Log.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1509,6 +1521,8 @@
 				4131C2951885EA99009775EA /* TouchSheet.m */,
 				DE1807871888699100B03892 /* ScaledGamePiece.h */,
 				DE1807881888699200B03892 /* ScaledGamePiece.m */,
+				DE48621718A9902C00272B79 /* Transparency.h */,
+				DE48621818A9902C00272B79 /* Transparency.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1790,6 +1804,7 @@
 				41BD12AB18A75243008C6E96 /* besbuton.png */,
 				41BD12BB18A75243008C6E96 /* free.png */,
 				41BD132C18A75243008C6E96 /* rackbtn.png */,
+				DE48620E18A981D900272B79 /* SmallButton@2x.png */,
 				41BD13B318A75244008C6E96 /* trade.png */,
 				41BD12AE18A75243008C6E96 /* Button-Normal@2x.png */,
 				41BD12B118A75243008C6E96 /* CollectCoinsBtn.png */,
@@ -1806,6 +1821,7 @@
 				41BD132D18A75243008C6E96 /* recruitThings.png */,
 				41BD12BD18A75243008C6E96 /* GoldCollectionBackground@2x.png */,
 				41BD12BC18A75243008C6E96 /* goldCollection.png */,
+				DE48621518A989A100272B79 /* infoBackground@2x.png */,
 				41BD12BA18A75243008C6E96 /* FourPlayerBackground@2x.png */,
 				41BD132E18A75243008C6E96 /* RecruitThingsBackground@2x.png */,
 			);
@@ -2137,6 +2153,7 @@
 				DEF9FEAB18A7DAAA0057FAEB /* T_Forest_102.png in Resources */,
 				DEF9FEE618A7DAAA0057FAEB /* T_Plains_025.png in Resources */,
 				DEF9FF0018A7DAAA0057FAEB /* T_Swamp_082.png in Resources */,
+				DE48621618A989A100272B79 /* infoBackground@2x.png in Resources */,
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
 				41BD142D18A75244008C6E96 /* jungle-tile.png in Resources */,
 				DEF9FF3318A8072C0057FAEB /* swamp-tile-menu@2x.png in Resources */,
@@ -2245,6 +2262,7 @@
 				DEF9FE9C18A7DAAA0057FAEB /* T_Forest_087.png in Resources */,
 				DEF9FEC218A7DAAA0057FAEB /* T_Jungle_006.png in Resources */,
 				41BD141518A75244008C6E96 /* T_Event_351.png in Resources */,
+				DE48620F18A981D900272B79 /* SmallButton@2x.png in Resources */,
 				DEF9FEF918A7DAAA0057FAEB /* T_Swamp_075.png in Resources */,
 				DEF9FE8A18A7DAAA0057FAEB /* T_Desert_106.png in Resources */,
 				DEF9FE9D18A7DAAA0057FAEB /* T_Forest_088.png in Resources */,
@@ -2308,6 +2326,7 @@
 				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
 				DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */,
 				DE991F8118846CFD006C759F /* Scene.m in Sources */,
+				DE48621418A9868B00272B79 /* Log.m in Sources */,
 				41BD12A518A722D7008C6E96 /* GameMessage.m in Sources */,
 				4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */,
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
@@ -2345,6 +2364,7 @@
 				DE4A3DE510FFB2AF00FDA492 /* GameMenu.m in Sources */,
 				997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */,
 				4131C2AD18876C81009775EA /* Rack.m in Sources */,
+				DE48621918A9902C00272B79 /* Transparency.m in Sources */,
 				4131C2BE18876D93009775EA /* HexTile.m in Sources */,
 				41BD129F18A45209008C6E96 /* GameResource.m in Sources */,
 				4131C2C118876DB7009775EA /* Counter.m in Sources */,
