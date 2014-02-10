@@ -19,15 +19,15 @@
     
     _owner = piece;
     
-    ScaledGamePiece *img = [super initWithContentsOfFile:path generateMipmaps:NO];
+    self = [super initWithContentsOfFile:path generateMipmaps:NO];
     
-    img.scaleX = 0.75f;
-    img.scaleY = 0.75f;
+    self.scaleX = 0.75f;
+    self.scaleY = 0.75f;
     
-   // [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [self addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
- 
-    return img;
+    
+    return self;
 }
 
 
@@ -36,33 +36,32 @@
     
    // _owner = piece;
     
-    ScaledGamePiece *img = [super initWithContentsOfFile:path generateMipmaps:NO];
+    self = [super initWithContentsOfFile:path generateMipmaps:NO];
     
-    img.scaleX = 0.75f;
-    img.scaleY = 0.75f;
+    self.scaleX = 0.75f;
+    self.scaleY = 0.75f;
     
-    // [img addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [self addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
-    return img;
+    return self;
 }
 
 - (void)onMoveTile:(SPTouchEvent*)event {
     
     SPImage *img = (SPImage*)event.target;
     
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseMoved] allObjects];
-    
-    NSLog(@"Touching piece with ID of %@", [[self owner] gamePieceId]);
-    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     if (touches.count == 1)
     {
-        // one finger touching -> move
-        SPTouch *touch = touches[0];
-        SPPoint *movement = [touch movementInSpace:self.parent];
+        //Double Click
+        SPTouch * clickTileMenu = [touches objectAtIndex:0];
+        if (clickTileMenu.tapCount == 2){
+            NSLog(@"le double click");
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:[self owner]];
+        }
         
-        img.x += movement.x;
-        img.y += movement.y;
     }
 }
 

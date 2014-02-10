@@ -6,6 +6,7 @@
 //
 //
 
+#import "TileImage.h"
 #import "HexTile.h"
 #import "Terrain.h"
 
@@ -26,24 +27,32 @@
     float y = _tileImage.y;
     
     if ([playerId isEqualToString:@"player1"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"red-%@.png",_fileName]];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"red-%@.png",_fileName]];
         _tileImage.x = x;
         _tileImage.y = y;
+        _tileImage.owner = self;
+        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
         [container addChild:_tileImage];
     } else if ([playerId isEqualToString:@"player2"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"yellow-%@.png",_fileName]];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"yellow-%@.png",_fileName]];
         _tileImage.x = x;
         _tileImage.y = y;
+        _tileImage.owner = self;
+        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
         [container addChild:_tileImage];
     } else if ([playerId isEqualToString:@"player3"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"green-%@.png",_fileName]];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"green-%@.png",_fileName]];
         _tileImage.x = x;
         _tileImage.y = y;
+        _tileImage.owner = self;
+        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
         [container addChild:_tileImage];
     } else if ([playerId isEqualToString:@"player4"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"blue-%@.png",_fileName]];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"blue-%@.png",_fileName]];
         _tileImage.x = x;
         _tileImage.y = y;
+        _tileImage.owner = self;
+        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
         [container addChild:_tileImage];
     }
 }
@@ -53,7 +62,7 @@
     
     NSMutableDictionary *tiles = [[NSMutableDictionary alloc] init];
     
-    [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getDesertInstance] andFileName:@"desert-tile-01" andId:@"desert-tile-01"]forKey:@"desert-tile-01"];
+    [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getDesertInstance] andFileName:@"desert-tile" andId:@"desert-tile-01"]forKey:@"desert-tile-01"];
     
     [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getDesertInstance] andFileName:@"desert-tile" andId:@"desert-tile-02"] forKey:@"desert-tile-02"];
     
@@ -251,6 +260,8 @@
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId:(NSString *)tileId{
     self = [super init];
     
+    _terrain = t;
+    
     _tileId = [[NSString alloc] initWithString:tileId];
 
     _fileName = [[NSString alloc] initWithString:file];
@@ -258,23 +269,41 @@
     NSString *terrainName = [t terrainName];
     
     if ([terrainName isEqualToString:@"Sea"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"sea-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"sea-tile.png"];
+        _tileImage.owner = self;
+        
     } else if ([terrainName isEqualToString:@"Desert"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"desert-tile.png"];
+        _tileImage.owner = self;
+
     } else if ([terrainName isEqualToString:@"Forest"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"forest-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"forest-tile.png"];
+        _tileImage.owner = self;
+
     } else if ([terrainName isEqualToString:@"Mountain"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"mountain-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"mountain-tile.png"];
+        _tileImage.owner = self;
+
     } else if ([terrainName isEqualToString:@"Swamp"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"swamp-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"swamp-tile.png"];
+        _tileImage.owner = self;
+
     } else if ([terrainName isEqualToString:@"Frozen"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"frozen-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"frozen-tile.png"];
+        _tileImage.owner = self;
+
     } else if ([terrainName isEqualToString:@"Jungle"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"jungle-tile.png"];
+        _tileImage.owner = self;
+
     } else if ([terrainName isEqualToString:@"Plaines"]) {
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"plains-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"plains-tile.png"];
+        _tileImage.owner = self;
+
     } else{
-        _tileImage = [[SPImage alloc] initWithContentsOfFile:@"back-tile.png"];
+        _tileImage = [[TileImage alloc] initWithContentsOfFile:@"back-tile.png"];
+        _tileImage.owner = self;
+
     }
     
     return self;

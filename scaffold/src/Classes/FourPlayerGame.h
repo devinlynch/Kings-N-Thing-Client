@@ -9,6 +9,23 @@
 #import "SPImage.h"
 #import <UIKit/UIDevice.h>
 
+typedef NS_ENUM(NSInteger, GamePhase) {
+    SETUP,
+    PLACEMENT,
+    RECRUITMENT,
+    GOLD,
+    MOVEMENT,
+    COMBAT
+} ;
+
+typedef NS_ENUM(NSInteger, PlacementStep) {
+    PLACE_CM,
+    PLACE_FORT
+} ;
+
 @interface FourPlayerGame : SPSprite
+
+
+
 
 @end
