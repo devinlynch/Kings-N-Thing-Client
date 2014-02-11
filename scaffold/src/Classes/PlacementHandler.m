@@ -55,7 +55,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
+        NSLog(@"Successfully parsed your turn to place fort, now sending notificaion");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playerPlacedCM" object:placedCMDic];
     });
     
