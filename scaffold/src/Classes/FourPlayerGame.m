@@ -1036,6 +1036,7 @@
                                 [location changeOwnerToPlayer:player];
 
                                 placeHex2 = location.locationId;
+                                
                                 _placementStep = PLACE_CM_3;
                                 }
                             }
@@ -1056,6 +1057,7 @@
                                 [location changeOwnerToPlayer:player];
                              
                                 placeHex3 = location.locationId;
+                                
                                 [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
                         
                                 }

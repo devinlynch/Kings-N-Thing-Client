@@ -97,7 +97,7 @@ static InGameServerAccess *instance;
 -(enum InGameRequestTypes) placementPhasePlaceControlMarkersFirst: (NSString*) hexLocation1Id second: (NSString*) hexLocation2Id third: (NSString*) hexLocation3Id{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:hexLocation1Id forKey:@"hexLocation1"];
-    [params setObject:hexLocation3Id forKey:@"hexLocation2"];
+    [params setObject:hexLocation2Id forKey:@"hexLocation2"];
     [params setObject:hexLocation3Id forKey:@"hexLocation3"];
     
     [self phasePost:@"placement" type:@"placeControlMarker" params:params requestType:SETUPPHASE_readyForPlacement];
