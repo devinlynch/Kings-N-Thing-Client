@@ -15,6 +15,7 @@
 #import "FourPlayerGame.h"
 #import "Movement.h"
 #import "Combat.h"
+#import "RecruitThings.h"
 
 void onUncaughtException(NSException *exception)
 {

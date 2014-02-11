@@ -16,6 +16,7 @@
     Terrain *_terrain;
     TileImage *_tileImage;
     BOOL    _isHilighted;
+    //NSString *_fileName;
 }
 
 @property Terrain *terrain;

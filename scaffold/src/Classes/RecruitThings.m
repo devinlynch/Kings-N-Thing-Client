@@ -103,7 +103,7 @@ static RecruitThings *instance;
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = -60;
+    background.y = 0;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];
@@ -205,6 +205,27 @@ static RecruitThings *instance;
 {
     NSLog(@"Back");
     _contents.visible = NO;
+}
+
+-(void) initThingsToRecruit{
+    GameState *gameState = [[Game currentGame] gameState];
+    Player *me = [gameState getPlayerById:[gameState myPlayerId]];
+    
+    int myGold = me.gold;
+    int maxNumBuys = myGold / 5;
+    int maxNumFree = 2;
+    int maxNumTrades = 5;
+    
+    // TODO HANDLE TRADES
+    
+    freeThings = [[NSMutableArray alloc] init];
+    paidThings = [[NSMutableArray alloc] init];
+    tradeThings = [[NSMutableArray alloc] init];
+    
+    for(id o in thingsToRecruit) {
+        NSString *gpId = (NSString*) o;
+        
+    }
 }
 
 
