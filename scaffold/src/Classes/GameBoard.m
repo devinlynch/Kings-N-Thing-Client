@@ -78,7 +78,7 @@
     //Draw tiles
     [self drawTiles];
     
-    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"btn.png"];
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"back.png"];
     SPButton * button3 = [SPButton buttonWithUpState:buttonTexture text:@"Back"];
     
     button3.x = 320 / 2 - button3.width /2;
