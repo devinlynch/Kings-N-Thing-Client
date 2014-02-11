@@ -35,27 +35,31 @@ void onUncaughtException(NSException *exception)
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
-//    
-//    _viewController = [[SPViewController alloc] init];
-//    
-//    _viewController.multitouchEnabled = YES;
-//    
-//    // Enable some common settings here:
-//    //
-//    _viewController.showStats = YES;
-//    _viewController.multitouchEnabled = YES;
-//    // _viewController.preferredFramesPerSecond = 60;
-//    
-//    [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
-//    
-//    [_window setRootViewController:_viewController];
-//    [_window makeKeyAndVisible];
-//    
-//    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-//    [udpMessageReceiver startListeningOnPort:3004];
+    
+    
+    /// START GO RIGHT TO GAME ///
+    
+    _viewController = [[SPViewController alloc] init];
+    
+    _viewController.multitouchEnabled = YES;
+    
+    // Enable some common settings here:
+    //
+    _viewController.showStats = YES;
+    _viewController.multitouchEnabled = YES;
+    // _viewController.preferredFramesPerSecond = 60;
+    
+    [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
+    
+    [_window setRootViewController:_viewController];
+    [_window makeKeyAndVisible];
+    
+    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
+    [udpMessageReceiver startListeningOnPort:3004];
+    /// END GO RIGHT TO GAME ///
 
-
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
+    
+    /*UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
@@ -69,7 +73,7 @@ void onUncaughtException(NSException *exception)
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleGameStarted:)
                                                  name:@"gameStarted"
-                                               object:nil];
+                                               object:nil];*/
     
     return YES;
 }

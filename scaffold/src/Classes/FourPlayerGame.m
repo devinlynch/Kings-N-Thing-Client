@@ -24,7 +24,7 @@
 #import "TileImage.h"
 #import "Terrain.h"
 #import "InGameServerAccess.h"
-
+#import "RecruitThings.h"
 
 
 @interface FourPlayerGame ()
@@ -288,6 +288,21 @@
                                                  name:@"yourTurnFort"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startedRecruitThingsPhase:)
+                                                 name:@"startedRecruitThingsPhase"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitToBoard:)
+                                                 name:@"recruitToBoard"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addToRack:)
+                                                 name:@"addToRack"
+                                               object:nil];
+    
     
     [_contents addChild:[GoldCollection getInstance]];
     
@@ -299,6 +314,19 @@
     [_contents addChild:_bowl];
     [gamePieces addObject:_bowl];
 
+}
+
+-(void) recruitToBoard: (NSNotification*) notif{
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    _selectedPiece = piece;
+    
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+    _selectedPieceImage.x = 90;
+    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+    [_contents addChild:_selectedPieceImage];
+    
+    
 }
 
 -(void) placementOver: (NSNotification*) notif{
@@ -446,6 +474,8 @@
 
 -(void) pieceSelected: (NSNotification*) notif{
     
+    [_selectedPieceImage removeFromParent];
+    
     _selectedPiece = (GamePiece*) notif.object;
     
     NSLog(@"Selected Piece");
@@ -456,6 +486,20 @@
     [_contents addChild:_selectedPieceImage];
     
     
+}
+
+-(void) startedRecruitThingsPhase: (NSNotification*) notif{
+    
+    _phase = RECRUITMENT;
+    
+    NSArray *objectsToRecruit = notif.object;
+    
+    RecruitThings *rt = [RecruitThings getInstance];
+    
+    [rt initWithObjectsToRecruit: objectsToRecruit];
+    
+    [_contents addChild:rt];
+    [rt setVisible:YES];
 }
 
 -(void) drawRack{
@@ -495,6 +539,10 @@
     }
     
     
+}
+
+-(void) addToRack: (NSNotification*) notif{
+    [self drawRack];
 }
 
 
@@ -1063,6 +1111,27 @@
                 default:
                     break;
             }
+            break;
+        case RECRUITMENT:
+            if (touches.count == 1)
+            {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                    
+                    SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    if (clicks.tapCount == 2){
+                        NSLog(@"le double click");
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        [location addGamePieceToLocation:_selectedPiece];
+                        //TO DO: HANDLE WAS BOUGHT
+                        [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
+                        [_selectedPieceImage removeFromParent];
+                        [[RecruitThings getInstance] setVisible:YES];
+                    }
+                }
+                
+            }
+
             break;
         case GOLD:
             
