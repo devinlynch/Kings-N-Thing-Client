@@ -9,6 +9,7 @@
 #import "Rack.h"
 #import "GameResource.h"
 #import "GamePiece.h"
+#import "ScaledGamePiece.h"
 
 @implementation Rack
 
@@ -35,4 +36,8 @@
     }
     return self;
 }
+
+
+
+
 @end

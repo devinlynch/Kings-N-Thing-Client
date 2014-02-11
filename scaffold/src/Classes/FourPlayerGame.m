@@ -24,7 +24,7 @@
 #import "TileImage.h"
 #import "Terrain.h"
 #import "InGameServerAccess.h"
-
+#import "RecruitThings.h"
 
 
 @interface FourPlayerGame ()
@@ -305,6 +305,21 @@
                                                  name:@"yourTurnFort"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startedRecruitThingsPhase:)
+                                                 name:@"startedRecruitThingsPhase"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitToBoard:)
+                                                 name:@"recruitToBoard"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addToRack:)
+                                                 name:@"addToRack"
+                                               object:nil];
+    
     
     [_contents addChild:[GoldCollection getInstance]];
     
@@ -497,6 +512,8 @@
 
 -(void) pieceSelected: (NSNotification*) notif{
     
+    [_selectedPieceImage removeFromParent];
+    
     _selectedPiece = (GamePiece*) notif.object;
     
     NSLog(@"Selected Piece");
@@ -507,6 +524,20 @@
     [_contents addChild:_selectedPieceImage];
     
     
+}
+
+-(void) startedRecruitThingsPhase: (NSNotification*) notif{
+    
+    _phase = RECRUITMENT;
+    
+    NSArray *objectsToRecruit = notif.object;
+    
+    RecruitThings *rt = [RecruitThings getInstance];
+    
+    [rt initWithObjectsToRecruit: objectsToRecruit];
+    
+    [_contents addChild:rt];
+    [rt setVisible:YES];
 }
 
 -(void) drawRack{
@@ -559,6 +590,10 @@
     }
     
     
+}
+
+-(void) addToRack: (NSNotification*) notif{
+    [self drawRack];
 }
 
 

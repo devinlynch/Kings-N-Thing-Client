@@ -13,7 +13,9 @@
 #import "Scene.h"
 #import "GameMenu.h"
 #import "RecruitOptionMenu.h"
-
+#import "Game.h"
+#import "GameState.h"
+#import "GameResource.h"
 
 @interface RecruitThings()
 - (void)setup;
@@ -26,6 +28,10 @@
     
     int _gameWidth;
     int _gameHeight;
+    
+    NSMutableArray *freeRecruits;
+    NSMutableArray *paidRecruits;
+    NSMutableArray *tradeRecruits;
 }
 
 
@@ -34,8 +40,51 @@
     if ((self = [super init]))
     {
         [self setup];
+        freeRecruits = [[NSMutableArray alloc] init];
+        paidRecruits = [[NSMutableArray alloc] init];
+        tradeRecruits = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit{
+    GameState *gs = [[Game currentGame] gameState];
+    Player *me = [gs getPlayerById:[gs myPlayerId]];
+    
+    int maxPaid = me.gold / 5;
+    int maxFree = 2;
+    
+    [freeRecruits removeAllObjects];
+    [paidRecruits removeAllObjects];
+    [tradeRecruits removeAllObjects];
+    for(id o in objectsToRecruit) {
+        NSString *gpId = (NSString*) o;
+        GamePiece *gp = [[GameResource getInstance] getPieceForId:gpId];
+        if(gp != nil) {
+            if(maxFree > 0) {
+                [freeRecruits addObject:gp];
+                maxFree--;
+            } else if(maxPaid > 0) {
+                [paidRecruits addObject:gp];
+                maxPaid--;
+            } else {
+                [tradeRecruits addObject:gp];
+            }
+            
+        }
+    }
+    
+}
+
+
+static RecruitThings *instance;
++(RecruitThings*) getInstance{
+    
+    if (instance == nil) {
+        instance = [[RecruitThings alloc] init];
+        
+    }
+    return instance;
 }
 
 
@@ -75,7 +124,7 @@
     freeButton.x = _gameWidth /2 - freeButton.width /2;
     freeButton.y = 55 + 90 - 30;
     [_contents addChild:freeButton];
-    [freeButton addEventListener:@selector(showOptions:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [freeButton addEventListener:@selector(didClickOnFreeRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     //Button
 
@@ -88,7 +137,7 @@
     
     [_contents addChild:buyButton];
     
-    [buyButton addEventListener:@selector(showOptions:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [buyButton addEventListener:@selector(didClickOnPaidRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     SPTexture *tradeButtonTexture = [SPTexture textureWithContentsOfFile:@"trade.png"];
@@ -115,9 +164,33 @@
 }
 
 
-- (void) showOptions:(SPEvent *) event{
+- (void) didClickOnFreeRecruit:(SPEvent *) event{
+    NSLog(@"Clicked free recruit");
+    if([freeRecruits count] == 0) {
+        NSLog(@"Clicked free recruit but there's no more free recruits left");
+        return;
+    }
+    
+    GamePiece *gp = [freeRecruits objectAtIndex:0];
+    [freeRecruits removeObjectAtIndex:0];
     
     RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
+    [recruitMenu setGamePiece:gp];
+    [self showScene:recruitMenu];
+}
+
+- (void) didClickOnPaidRecruit:(SPEvent *) event{
+    NSLog(@"Clicked paid recruit");
+    if([paidRecruits count] == 0) {
+        NSLog(@"Clicked paid recruit but there's no more paid recruits left");
+        return;
+    }
+    
+    GamePiece *gp = [paidRecruits objectAtIndex:0];
+    [paidRecruits removeObjectAtIndex:0];
+    
+    RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
+    [recruitMenu setGamePiece:gp];
     [self showScene:recruitMenu];
 }
 
@@ -130,11 +203,8 @@
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
-    NSLog(@"Back to game board");
-    GameMenu *gameMenu = [[GameMenu alloc] init];
-    [self showScene:gameMenu];
+    NSLog(@"Back");
     _contents.visible = NO;
-    
 }
 
 
