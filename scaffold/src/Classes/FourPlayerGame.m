@@ -352,11 +352,13 @@
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
+    _phase = PLACEMENT;
     _placementStep = PLACE_FORT;
     [_stateText setText:@"State: Place fort"];
 }
 
 -(void) yourTurnCM: (NSNotification*) notif{
+    _phase = PLACEMENT;
     _placementStep = PLACE_CM_2;
     [_stateText setText:@"State: Place control marker"];
 
@@ -1019,7 +1021,6 @@
     
     switch (_phase) {
         case SETUP:
-            
             break;
         case PLACEMENT:
             switch (_placementStep) {
@@ -1038,11 +1039,10 @@
                                 placeHex2 = location.locationId;
                                 
                                 _placementStep = PLACE_CM_3;
-                                }
                             }
-                        
-                        
+                        }
                     }
+                    
                     break;
                 case PLACE_CM_3:
                     if (touches.count == 1)
@@ -1060,11 +1060,10 @@
                                 
                                 [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
                         
-                                }
                             }
                         }
-                        
                     }
+                    
                     break;
                 case PLACE_FORT:
                     if (touches.count == 1)
@@ -1082,22 +1081,15 @@
                         }
                         
                     }
-            break;
-        case GOLD:
-            
-            break;
-        case MOVEMENT:
-            
-            break;
+
+            }
             
         default:
             break;
     }
-    
+}
     
 
-    
-}
 
 
 - (void)showTileMenu {
