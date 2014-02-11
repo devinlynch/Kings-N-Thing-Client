@@ -160,6 +160,6 @@ static GoldCollection *instance = nil;
 
 -(void) collectIncome{
 
-};
+}
 
 @end

@@ -22,6 +22,10 @@
 #import "Fort.h"
 #import "HexTile.h"
 #import "Log.h"
+#import "TileImage.h"
+#import "Terrain.h"
+
+
 
 @interface FourPlayerGame ()
 - (void) setup;

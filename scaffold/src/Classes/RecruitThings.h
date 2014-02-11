@@ -11,4 +11,6 @@
 
 @interface RecruitThings : SPSprite
 
++(RecruitThings*) getInstance;
+
 @end

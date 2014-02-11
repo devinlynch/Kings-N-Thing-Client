@@ -18,7 +18,7 @@
     self = [super init];
     _gamePieceId = [[NSString alloc] initWithString:characterId];
     _specialAbility = ability;
-   // _fileName = fileName;
+    _fileName = filename;
 
 
     return self;

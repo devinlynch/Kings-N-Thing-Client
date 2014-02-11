@@ -13,6 +13,7 @@
 #import "Scene.h"
 #import "GameMenu.h"
 #import "RecruitOptionMenu.h"
+#import "ServerAccess.h"
 
 
 @interface RecruitThings()
@@ -26,6 +27,15 @@
     
     int _gameWidth;
     int _gameHeight;
+}
+
+static RecruitThings *instance = nil;
+
++(RecruitThings*) getInstance{
+    if (instance == nil){
+        instance = [[RecruitThings alloc]init];
+    }
+    return instance;
 }
 
 
