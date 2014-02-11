@@ -1009,6 +1009,14 @@
     HexTile  *tile = (HexTile*) img.owner;
     HexLocation *location = (HexLocation*) tile.location;
     
+    Player *player;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:[_state myPlayerId]]) {
+            player = p;
+        }
+    }
+    
     switch (_phase) {
         case SETUP:
             
@@ -1025,7 +1033,7 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [tile changeOwnerTo:_state.myPlayerId];
+                                [location changeOwnerToPlayer:player];
 
                                 placeHex2 = location.locationId;
                                 _placementStep = PLACE_CM_3;
@@ -1045,7 +1053,7 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [tile changeOwnerTo:_state.myPlayerId];
+                                [location changeOwnerToPlayer:player];
                              
                                 placeHex3 = location.locationId;
                                 [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
