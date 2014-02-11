@@ -2,6 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>EVENT.24.METHOD</key>
+	<string>handleMovementPhaseOver:</string>
+	<key>EVENT.24.TYPE</key>
+	<string>movementPhaseOver</string>
+	<key>EVENT.24.CLASS</key>
+    <string>MovementPhaseHandler</string>
+	<key>EVENT.23.METHOD</key>
+	<string>handlePlayerMovedPieceToNewLocation:</string>
+	<key>EVENT.23.TYPE</key>
+	<string>playerMovedPieceToNewLocation</string>
+	<key>EVENT.23.CLASS</key>
+    <string>MovementPhaseHandler</string>
+	<key>EVENT.22.METHOD</key>
+	<string>handlePlayerAddedPiecesToStack:</string>
+	<key>EVENT.22.TYPE</key>
+	<string>playerAddedPiecesToStack</string>
+	<key>EVENT.22.CLASS</key>
+    <string>MovementPhaseHandler</string>
+ 	<key>EVENT.21.METHOD</key>
+	<string>handlePlayerCreatedStack:</string>
+	<key>EVENT.21.TYPE</key>
+	<string>playerCreatedStack</string>
+	<key>EVENT.21.CLASS</key>
+    <string>MovementPhaseHandler</string>
+    <key>EVENT.20.METHOD</key>
+	<string>handlePlayerMovedStackToNewLocation:</string>
+	<key>EVENT.20.TYPE</key>
+	<string>playerMovedStackToNewLocation</string>
+	<key>EVENT.20.CLASS</key>
+    <string>MovementPhaseHandler</string>
+    <key>EVENT.19.METHOD</key>
+	<string>handleYourTurnToMoveInMovement:</string>
+	<key>EVENT.19.TYPE</key>
+	<string>yourTurnToMoveInMovement</string>
+	<key>EVENT.19.CLASS</key>
+    <string>MovementPhaseHandler</string>
     <key>EVENT.18.METHOD</key>
 	<string>handleRecruitThingsPhaseOver:</string>
 	<key>EVENT.18.TYPE</key>
