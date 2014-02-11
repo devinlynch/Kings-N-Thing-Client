@@ -71,7 +71,7 @@ void onUncaughtException(NSException *exception)
 //                                             selector:@selector(handleGameStarted:)
 //                                                 name:@"gameStarted"
 //                                               object:nil];
-    
+//    
     return YES;
 }
 
@@ -93,7 +93,7 @@ void onUncaughtException(NSException *exception)
         _viewController.multitouchEnabled = YES;
         // _viewController.preferredFramesPerSecond = 60;
         
-        [_viewController startWithRoot:[TwoThreePlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
+        [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
         
         [_window setRootViewController:_viewController];
         [_window makeKeyAndVisible];

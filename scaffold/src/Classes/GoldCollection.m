@@ -124,8 +124,8 @@ static GoldCollection *instance = nil;
     SPButton * backButton = [SPButton buttonWithUpState:backButtonTexture];
     backButton.x = _gameWidth / 2 - collectButton.width / 2;
     backButton.y = 420;
-    [_contents addChild:backButton];
-    [backButton addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+   // [_contents addChild:backButton];
+   // [backButton addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
 
 }
 

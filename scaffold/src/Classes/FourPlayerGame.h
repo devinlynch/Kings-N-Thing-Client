@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, GamePhase) {
 } ;
 
 typedef NS_ENUM(NSInteger, PlacementStep) {
-    PLACE_CM,
+    PLACE_CM_2,
+    PLACE_CM_3,
     PLACE_FORT
 } ;
 

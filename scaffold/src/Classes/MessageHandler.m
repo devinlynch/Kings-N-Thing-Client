@@ -27,8 +27,11 @@
     
     Message *responseMessage;
     
-    if ([type isEqualToString:@"setupGame"]) {
+    
+    if([json objectForKey:@"responseStatus"] == nil){
         responseMessage = [[GameMessage alloc] initFromJSON:json];
+    } else{
+        responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
     }
     
     if(responseMessage == nil) {

@@ -70,6 +70,7 @@
 
 -(void) handleGameStarted: (NSNotification*) notif{
     Game* game = notif.object;
+    [self stopLobbyStateChecker];
     NSLog(@"In GameLobbyViewController and got game started message for game %@", game);
 }
 
