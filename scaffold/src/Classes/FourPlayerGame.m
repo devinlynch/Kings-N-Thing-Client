@@ -363,7 +363,8 @@
 }
 
 -(void) timeToPlaceFort: (NSNotification*) notif{
-    
+    [_stateText setText:@"State: wait to place fort"];
+
 }
 
 -(void) goldCollection: (NSNotification*) notif{
