@@ -179,6 +179,7 @@
 		99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2918932E130048CEA0 /* MainMenuViewController.m */; };
 		99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B8301891E47500CAAD3B /* Storyboard.storyboard */; };
 		99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83618923F3100CAAD3B /* Default-568h@2x.png */; };
+		99F02F6318A9B63A00ED81CD /* C_Fort_377.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12C718A75243008C6E96 /* C_Fort_377.png */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
 		99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */; };
@@ -1925,6 +1926,9 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 3HCQ3S2YN9;
+					};
 					99098D9D188F554C00139EA4 = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
@@ -1979,6 +1983,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F02F6318A9B63A00ED81CD /* C_Fort_377.png in Resources */,
 				DEF9FEC018A7DAAA0057FAEB /* T_Jungle_004.png in Resources */,
 				41BD141218A75244008C6E96 /* T_Event_348.png in Resources */,
 				DEF9FECE18A7DAAA0057FAEB /* T_Mountains_039.png in Resources */,
@@ -2387,6 +2392,8 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -2394,6 +2401,7 @@
 				INFOPLIST_FILE = "App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = 3004iPhone;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2401,6 +2409,8 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -2408,6 +2418,7 @@
 				INFOPLIST_FILE = "App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = 3004iPhone;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
