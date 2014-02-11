@@ -28,6 +28,8 @@
     
     _tile = [[GameResource getInstance] getTileForId:[[json objectForKey:@"hexTile"] objectForKey:@"id"]];
     _tileNumber = [[json objectForKey:@"hexNumber"] integerValue];
+    
+    _tile.location = self;
     _stacks = [[NSMutableDictionary alloc] init];
 
     return self;
