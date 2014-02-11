@@ -21,6 +21,7 @@
 #import "Terrain.h"
 #import "Fort.h"
 #import "HexTile.h"
+#import "Log.h"
 #import "TileImage.h"
 #import "Terrain.h"
 
@@ -222,6 +223,14 @@
     
 
     
+    //Log button
+    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
+    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
+    logButton.x = _gameWidth - logButton.width * 1.5;
+    logButton.y = _gameHeight - logButton.height * 2.3;
+    [_contents addChild:logButton];
+    
+    [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -288,6 +297,33 @@
     [gamePieces addObject:_bowl];
 
 }
+
+
+-(void) onLogTriggered:(SPTouchEvent*)event{
+    SPImage *img = (SPImage*)event.target;
+    
+    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        
+        NSLog(@"TO LOOOOOOOGS");
+        [self showLogMenu];
+        
+    }
+
+
+}
+
+
+-(void)showLogMenu{
+    Log *log = [[Log alloc]init];
+    [self showScene:log];
+}
+
+
+
 
 -(void) placementOver: (NSNotification*) notif{
     
