@@ -23,6 +23,7 @@
 #import "HexTile.h"
 #import "TileImage.h"
 #import "Terrain.h"
+#import "InGameServerAccess.h"
 
 
 
@@ -34,6 +35,9 @@
 @implementation FourPlayerGame{
     NSMutableArray *gamePieces;
     
+    
+    int markerCount;
+    NSString *placeHex1, *placeHex2, *placeHex3;
     
     NSInteger _phase;
     NSInteger _placementStep;
@@ -104,6 +108,14 @@
 
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
+    
+    
+     placeHex1 = [[NSString alloc] init];
+     placeHex2 = [[NSString alloc] init];
+     placeHex3 = [[NSString alloc] init];
+
+
+
     
    // didPutTower = false;
     
@@ -345,6 +357,7 @@
 -(void) yourTurnCM: (NSNotification*) notif{
     _placementStep = PLACE_CM;
     [_stateText setText:@"State: Place control marker"];
+    markerCount = 2;
 
 }
 
@@ -416,6 +429,8 @@
     
     [self drawRack];
     
+    [[InGameServerAccess instance] setupPhaseReadyForPlacement];
+    
 }
 
 -(void) setupOver: (NSNotification*) notif{
@@ -423,6 +438,8 @@
     _phase = PLACEMENT;
     
     [_stateText setText:@"State: Placement"];
+    
+    
 }
 
 
@@ -612,7 +629,6 @@
 
                     
                     [_sheet addChild: tile.image];
-                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 5){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_31"];
@@ -725,6 +741,9 @@
                    [_sheet addChild: tile.image];
                     
                    [location changeOwnerToPlayer:_player4];
+                    if ([_state.myPlayerId isEqualToString:@"player4"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 if (j == 1 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_18"];
@@ -762,6 +781,9 @@
 
                    [_sheet addChild: tile.image];
                     [location changeOwnerToPlayer:_player3];
+                    if ([_state.myPlayerId isEqualToString:@"player3"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 
                 
@@ -781,6 +803,9 @@
                     [_sheet addChild: tile.image];
                     
                     [location changeOwnerToPlayer:_player1];
+                    if ([_state.myPlayerId isEqualToString:@"player1"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 if (j == 1) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_10"];
@@ -823,6 +848,9 @@
                     [_sheet addChild: tile.image];
                     
                     [location changeOwnerToPlayer:_player2];
+                    if ([_state.myPlayerId isEqualToString:@"player2"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 
             }
@@ -942,39 +970,38 @@
 
 
 
-
--(void) putTower:(SPTouchEvent*) event
-{
-    SPImage *img = (SPImage*)event.target;
-    SPImage *newimg;
-    bool didPutTower = true;
-    
-     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    
-    if (touches.count == 1 && didPutTower)
-    {
-        NSLog(@"le tile click");
-        
-        newimg = [[SPImage alloc] initWithContentsOfFile:@"C_Fort_375.png"];
-        newimg.scaleX = 0.3;
-        newimg.scaleY = 0.3;
-        
-        
-        //Place tower on a random spot
-        newimg.x = fmod(arc4random(), (img.x - (img.x + 10))) + (img.x + 10);
-        newimg.y = fmod(arc4random(), (img.y - (img.y + 15))) + (img.y + 15);
-        NSLog(@"placed dat tower bb");
-        
-        [_sheet addChild:newimg];
-        
-        didPutTower = !didPutTower;
-    }
-}
+//
+//-(void) putTower:(SPTouchEvent*) event
+//{
+//    SPImage *img = (SPImage*)event.target;
+//    SPImage *newimg;
+//    bool didPutTower = true;
+//    
+//     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+//    
+//    if (touches.count == 1 && didPutTower)
+//    {
+//        NSLog(@"le tile click");
+//        
+//        newimg = [[SPImage alloc] initWithContentsOfFile:@"C_Fort_375.png"];
+//        newimg.scaleX = 0.3;
+//        newimg.scaleY = 0.3;
+//        
+//        
+//        //Place tower on a random spot
+//        newimg.x = fmod(arc4random(), (img.x - (img.x + 10))) + (img.x + 10);
+//        newimg.y = fmod(arc4random(), (img.y - (img.y + 15))) + (img.y + 15);
+//        NSLog(@"placed dat tower bb");
+//        
+//        [_sheet addChild:newimg];
+//        
+//        didPutTower = !didPutTower;
+//    }
+//}
 
 -(void) onTileClick: (SPTouchEvent*) event
 {
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    //Double Click
     
     TileImage *img = (TileImage*) event.target;
     HexTile  *tile = (HexTile*) img.owner;
@@ -997,7 +1024,19 @@
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
                                 [tile changeOwnerTo:_state.myPlayerId];
-                                
+                                switch (markerCount) {
+                                    case 2:
+                                        placeHex2 = location.locationId;
+                                        markerCount--;
+                                        break;
+                                    case 1:
+                                        placeHex3 = location.locationId;
+                                        [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
+                                        markerCount--;
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
                         }
                         
@@ -1013,7 +1052,8 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [location addGamePieceToLocation:_selectedPiece];                                
+                                [location addGamePieceToLocation:_selectedPiece];
+                                [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId];
                             }
                         }
                         
