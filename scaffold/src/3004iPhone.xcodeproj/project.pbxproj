@@ -163,6 +163,7 @@
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
+		99468B0118A9BB6800205C14 /* C_Fort_379.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12C918A75243008C6E96 /* C_Fort_379.png */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
@@ -1983,6 +1984,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99468B0118A9BB6800205C14 /* C_Fort_379.png in Resources */,
 				99F02F6318A9B63A00ED81CD /* C_Fort_377.png in Resources */,
 				DEF9FEC018A7DAAA0057FAEB /* T_Jungle_004.png in Resources */,
 				41BD141218A75244008C6E96 /* T_Event_348.png in Resources */,
