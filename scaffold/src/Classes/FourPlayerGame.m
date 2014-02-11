@@ -333,6 +333,17 @@
 
 }
 
+-(void) recruitToBoard: (NSNotification*) notif{
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    _selectedPiece = piece;
+    
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+    _selectedPieceImage.x = 90;
+    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+    [_contents addChild:_selectedPieceImage];
+    
+}
 
 -(void) yourTurnToMoveInMovement: (NSNotification*) notif{
     _phase = MOVEMENT;
@@ -1196,6 +1207,31 @@
             }
 
             break;
+        case RECRUITMENT:
+            if (touches.count == 1)
+            {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                    
+                    SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    if (clicks.tapCount == 2){
+                        NSLog(@"le double click");
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        [location addGamePieceToLocation:_selectedPiece];
+                        //TO DO: HANDLE WAS BOUGHT
+                        [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
+                        [_selectedPieceImage removeFromParent];
+                        [[RecruitThings getInstance] setVisible:YES];
+                    }
+                }
+                
+            }
+
+            break;
+        case GOLD:
+            
+            break;
+            
         default:
             break;
     }
