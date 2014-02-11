@@ -11,7 +11,7 @@
 
 @interface NonCityVill : SpecialIncomeCounters{
     Terrain *_terrain;
-    NSString *_fileName;
+   // NSString *_fileName;
 }
 
 @property Terrain *terrain;

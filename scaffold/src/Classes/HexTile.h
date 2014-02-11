@@ -8,15 +8,15 @@
 
 #import "GamePiece.h"
 
-@class Terrain;
+@class Terrain, TileImage;
 
 @interface HexTile : GamePiece{
     int _tileNumber;
     NSString    *_tileId;
     Terrain *_terrain;
-    SPImage *_tileImage;
+    TileImage *_tileImage;
     BOOL    _isHilighted;
-    NSString *_fileName;
+    //NSString *_fileName;
 }
 
 @property Terrain *terrain;

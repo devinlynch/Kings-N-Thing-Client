@@ -14,6 +14,8 @@
 #import "GameMenu.h"
 #import "FourPlayerGame.h"
 #import "Movement.h"
+#import "Combat.h"
+#import "RecruitThings.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -34,7 +36,7 @@ void onUncaughtException(NSException *exception)
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
-    
+
     _viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
@@ -45,7 +47,7 @@ void onUncaughtException(NSException *exception)
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[RecruitThings class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];

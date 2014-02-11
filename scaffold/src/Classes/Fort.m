@@ -13,7 +13,6 @@
 
 @synthesize combatValue = _combatValue;
 @synthesize fortLevel = _fortLevel;
-@synthesize fileName = _fileName;
 
 
 - (Fort *) initWithId:(NSString *)fortId andCombatValue:(int)value

@@ -12,7 +12,6 @@
 
 @synthesize magicId = _magicId;
 @synthesize magicType = _magicType;
-@synthesize fileName = _fileName;
 
 -(MagicItems*) initWithId:(NSString *)magicId andMagicType:(NSString*)type andFilename:(NSString *)filename {
     self=[super init];

@@ -10,7 +10,6 @@
 
 @interface RandomEvent : Thing{
     NSString *_randomId;
-    NSString *_fileName;
     NSString *_randomType;
 }
 

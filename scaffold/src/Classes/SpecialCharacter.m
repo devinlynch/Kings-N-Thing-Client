@@ -12,14 +12,13 @@
 
 @synthesize specialAbility = _specialAbility;
 @synthesize characterId = _characterId;
-@synthesize fileName = _fileName;
 
 
 -(SpecialCharacter*) initWithId:(NSString*) characterId andSpecialAbility:(SpecialAbility*) ability andFilename: (NSString*) filename{
     self = [super init];
     _gamePieceId = [[NSString alloc] initWithString:characterId];
     _specialAbility = ability;
-    _fileName = fileName;
+    _fileName = filename;
 
 
     return self;
