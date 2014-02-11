@@ -159,7 +159,7 @@ static GoldCollection *instance = nil;
 }
 
 -(void) collectIncome{
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"collectedGold" object:nil];
 }
 
 @end

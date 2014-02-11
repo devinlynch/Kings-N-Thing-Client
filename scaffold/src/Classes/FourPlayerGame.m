@@ -25,7 +25,7 @@
 #import "TileImage.h"
 #import "Terrain.h"
 #import "RecruitThings.h"
-
+#import "InGameServerAccess.h"
 
 
 @interface FourPlayerGame ()
@@ -255,6 +255,16 @@
     [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
+    //Movement done button
+    SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
+    SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
+    moveDoneButton.x = _gameWidth - logButton.width * 1.5;
+    moveDoneButton.y = 0 + logButton.height;
+    [_contents addChild:moveDoneButton];
+    
+    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pieceSelected:)
                                                  name:@"pieceSelected"
@@ -316,10 +326,20 @@
                                                  name:@"startedRecruitThingsPhase"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerMovedPieceToNewLocation:)
+                                                 name:@"playerMovedPieceToNewLocation"
+                                               object:nil];
     
-    [_contents addChild:[GoldCollection getInstance]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(yourTurnToMoveInMovement:)
+                                                 name:@"yourTurnToMoveInMovement"
+                                               object:nil];
     
-    [[GoldCollection getInstance] setVisible:NO];
+    
+    
+    
+  
     
     _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
     _bowl.x = _gameWidth - _bowl.width;
@@ -357,7 +377,8 @@
 
 
 -(void) placementOver: (NSNotification*) notif{
-    [_stateText setText:@"State: Collect Gold"];
+    [_stateText setText:@"State: Place Creatures"];
+    _phase = MOVEMENT;
 
 }
 
@@ -450,16 +471,16 @@
         }
         [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
         if ([p.playerId isEqualToString:@"player1"]) {
-            _Player1IncomeText = [[dic objectForKey:@"player1"] objectForKey:@"totalGold"];
+           [ _Player1IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
             
-        } else         if ([p.playerId isEqualToString:@"player2"]) {
-            _Player2IncomeText = [[dic objectForKey:@"player2"] objectForKey:@"totalGold"];
+        } else  if ([p.playerId isEqualToString:@"player2"]) {
+            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player2"] objectForKey:@"totalGold"] integerValue]]];
             
-        } else         if ([p.playerId isEqualToString:@"player3"]) {
-            _Player3IncomeText = [[dic objectForKey:@"player3"] objectForKey:@"totalGold"];
+        } else  if ([p.playerId isEqualToString:@"player3"]) {
+            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player3"] objectForKey:@"totalGold"] integerValue]]];
             
-        } else         if ([p.playerId isEqualToString:@"player4"]) {
-            _Player4IncomeText = [[dic objectForKey:@"player4"] objectForKey:@"totalGold"];
+        } else  if ([p.playerId isEqualToString:@"player4"]) {
+            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player4"] objectForKey:@"totalGold"] integerValue]]];
 
         }
     }
@@ -468,12 +489,14 @@
     [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"Total Gold: %@", total]];
     [[GoldCollection getInstance] setUsername:username];
     
-    [[GoldCollection getInstance] setVisible:YES];
+    [_contents addChild:[GoldCollection getInstance]];
     
 }
 
 -(void) collectedGold: (NSNotification*) notif{
-    
+    [[GoldCollection getInstance] setVisible:NO];
+    [_stateText setText:@"State: Collected Gold"];
+    [[InGameServerAccess instance] goldCollectionPhaseDidCollectGold];
 }
 
 -(void) gameSetup: (NSNotification*) notif{
@@ -486,21 +509,30 @@
     
     NSLog(@"%@", _state);
     
+    NSString *myId = [_state myPlayerId];
+    
+    
+    if ([myId isEqualToString:@"player1"]) {
+        [_playerIdText setColor:SP_RED];
+    } else if ([myId isEqualToString:@"player2"]) {
+        [_playerIdText setColor:SP_YELLOW];
+    } else if ([myId isEqualToString:@"player3"]) {
+        [_playerIdText setColor:SP_GREEN];
+    } else if ([myId isEqualToString:@"player4"]) {
+        [_playerIdText setColor:SP_BLUE];
+    }
     
     for(Player *p in _state.players){
         if ([p.playerId isEqualToString:@"player1"]) {
             _player1 = p;
-            [_playerIdText setColor:SP_RED];
-        } else         if ([p.playerId isEqualToString:@"player2"]) {
+        } else if ([p.playerId isEqualToString:@"player2"]) {
             _player2 = p;
-            [_playerIdText setColor:SP_YELLOW];
-        } else         if ([p.playerId isEqualToString:@"player3"]) {
+        } else if ([p.playerId isEqualToString:@"player3"]) {
             _player3 = p;
-            [_playerIdText setColor:SP_GREEN];
-        } else         if ([p.playerId isEqualToString:@"player4"]) {
+        } else if ([p.playerId isEqualToString:@"player4"]) {
             _player4 = p;
-            [_playerIdText setColor:SP_BLUE];
         }
+
     }
     
     [_playerIdText setText:_state.myPlayerId];
@@ -548,8 +580,7 @@
 
     RecruitThings *recruitThings = [RecruitThings getInstance];
     recruitThings.thingsToRecruit = thingsToRecruit;
-    [recruitThings initThingsToRecruit];
-    [recruitThings setVisible:YES];
+    [_contents addChild:recruitThings];
 }
 
 -(void) drawRack{
@@ -1186,6 +1217,7 @@
                     }
                     break;
             }
+            break;
         case MOVEMENT:
             if (touches.count == 1)
             {
@@ -1222,6 +1254,19 @@
     [self addChild:scene];
     scene.visible = YES;
 
+}
+
+-(void) playerMovedPieceToNewLocation: (NSNotification*) notif{
+    GamePiece* piece = (GamePiece*) notif.object;
+    NSLog(@"Got notif for gamepiece moved with id %@", piece.gamePieceId);
+}
+
+-(void) moveDone:(SPTouchEvent*)event {
+    [[InGameServerAccess instance] movementPhaseDoneMakingMoves];
+}
+
+-(void) yourTurnToMoveInMovement : (NSNotification*) notif{
+    [_stateText setText:@"State:  Your turn"];
 }
 
 @end

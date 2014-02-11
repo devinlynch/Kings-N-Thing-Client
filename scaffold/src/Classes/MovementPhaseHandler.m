@@ -130,7 +130,7 @@
     GameState *gameState = [[Game currentGame] gameState];
     
     Player *player = [gameState getPlayerById:playerId];
-    BoardLocation *boardLocation = [gameState getBoardLocationById:boardLocationId];
+    HexLocation *boardLocation = [gameState.hexLocations objectForKey:boardLocationId];
     GamePiece *gamePiece = [[GameResource getInstance] getPieceForId:gamePieceId];
     
     

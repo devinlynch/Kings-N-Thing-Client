@@ -84,7 +84,7 @@ static RecruitThings *instance = nil;
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;
     welcomeTF.color = 0xffffff;
-    [_contents addChild:welcomeTF];
+    //[_contents addChild:welcomeTF];
     
     
     //Free button
