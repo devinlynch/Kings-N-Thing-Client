@@ -109,6 +109,7 @@
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
+    markerCount = 2;
     
      placeHex1 = [[NSString alloc] init];
      placeHex2 = [[NSString alloc] init];
@@ -358,7 +359,6 @@
 -(void) yourTurnCM: (NSNotification*) notif{
     _placementStep = PLACE_CM;
     [_stateText setText:@"State: Place control marker"];
-    markerCount = 2;
 
 }
 
