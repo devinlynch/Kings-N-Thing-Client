@@ -1468,6 +1468,7 @@
 		DE991F8418846D09006C759F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DEA6350F18A0A0620031BF8C /* GameBoard.h */,
 				DE4A3DE310FFB2AF00FDA492 /* GameMenu.h */,
 				DE4A3DE410FFB2AF00FDA492 /* GameMenu.m */,
 				DE991F7C18846CFD006C759F /* Scene.h */,
@@ -1476,7 +1477,6 @@
 				DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */,
 				DEA17CEC189801B200A743C6 /* FourPlayerGame.h */,
 				DEA17CED189801B200A743C6 /* FourPlayerGame.m */,
-				DEA6350F18A0A0620031BF8C /* GameBoard.h */,
 				DEA6351018A0A0620031BF8C /* GameBoard.m */,
 				DEA6352918A190380031BF8C /* Movement.h */,
 				DEA6352A18A190380031BF8C /* Movement.m */,
