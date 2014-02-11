@@ -206,6 +206,9 @@
 		DE48622118A9A60E00272B79 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48621E18A9A60E00272B79 /* bg_1.png */; };
 		DE48622218A9A60E00272B79 /* bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48621F18A9A60E00272B79 /* bg_1@2x.png */; };
 		DE48622318A9A60E00272B79 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48622018A9A60E00272B79 /* Default-568h@2x.png */; };
+		DE48623118A9D01000272B79 /* SPScrollSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = DE48623018A9D01000272B79 /* SPScrollSprite.m */; };
+		DE48623318A9D54100272B79 /* RecruitThingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132E18A75243008C6E96 /* RecruitThingsBackground@2x.png */; };
+		DE48623418A9D57500272B79 /* buy.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12AF18A75243008C6E96 /* buy.png */; };
 		DE4A3D7A10FFB08200FDA492 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */; };
 		DE4A3D7F10FFB08B00FDA492 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */; };
 		DE4A3DB910FFB0FE00FDA492 /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3DB010FFB0DB00FDA492 /* libSparrow.a */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -724,6 +727,8 @@
 		DE48621E18A9A60E00272B79 /* bg_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_1.png; sourceTree = "<group>"; };
 		DE48621F18A9A60E00272B79 /* bg_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_1@2x.png"; sourceTree = "<group>"; };
 		DE48622018A9A60E00272B79 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DE48622F18A9D01000272B79 /* SPScrollSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPScrollSprite.h; sourceTree = "<group>"; };
+		DE48623018A9D01000272B79 /* SPScrollSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPScrollSprite.m; sourceTree = "<group>"; };
 		DE4A3D7910FFB08200FDA492 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Sparrow.xcodeproj; sourceTree = SPARROW_SRC; };
@@ -1521,6 +1526,8 @@
 		DE99201A1884BFBE006C759F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DE48622F18A9D01000272B79 /* SPScrollSprite.h */,
+				DE48623018A9D01000272B79 /* SPScrollSprite.m */,
 				4131C2941885EA99009775EA /* TouchSheet.h */,
 				4131C2951885EA99009775EA /* TouchSheet.m */,
 				DE1807871888699100B03892 /* ScaledGamePiece.h */,
@@ -2005,6 +2012,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE48623418A9D57500272B79 /* buy.png in Resources */,
+				DE48623318A9D54100272B79 /* RecruitThingsBackground@2x.png in Resources */,
 				DEF9FEC018A7DAAA0057FAEB /* T_Jungle_004.png in Resources */,
 				41BD141218A75244008C6E96 /* T_Event_348.png in Resources */,
 				DEF9FECE18A7DAAA0057FAEB /* T_Mountains_039.png in Resources */,
@@ -2355,6 +2364,7 @@
 				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,
+				DE48623118A9D01000272B79 /* SPScrollSprite.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
 				DEF9FB5518A6F8A40057FAEB /* SideLocation.m in Sources */,
 				99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */,

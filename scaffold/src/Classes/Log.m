@@ -8,6 +8,7 @@
 
 #import "Log.h"
 #import "Transparency.h"
+#import "SPScrollSprite.h"
 
 @implementation Log
 {
@@ -53,7 +54,10 @@
     background.x = 30;
     background.y = 50;
     
-    
+    SPScrollSprite * canvas = [SPScrollSprite sprite];
+	[_contents addChild:canvas];
+	canvas.scrollRect = [SPRectangle rectangleWithX:5 y:5 width:10 height:10];
+    //[_contents addChild:canvas];
     
     
     [_contents addChild:background];

@@ -14,6 +14,8 @@
 #import "GameMenu.h"
 #import "RecruitOptionMenu.h"
 #import "ServerAccess.h"
+#import "GameState.h"
+#import "Game.h"
 
 
 @interface RecruitThings()
@@ -27,7 +29,13 @@
     
     int _gameWidth;
     int _gameHeight;
+    
+    
+    NSMutableArray *freeThings;
+    NSMutableArray *paidThings;
+    NSMutableArray *tradeThings;
 }
+@synthesize thingsToRecruit;
 
 static RecruitThings *instance = nil;
 
@@ -64,7 +72,7 @@ static RecruitThings *instance = nil;
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = -60;
+    background.y = 0;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];
@@ -145,6 +153,27 @@ static RecruitThings *instance = nil;
     [self showScene:gameMenu];
     _contents.visible = NO;
     
+}
+
+-(void) initThingsToRecruit{
+    GameState *gameState = [[Game currentGame] gameState];
+    Player *me = [gameState getPlayerById:[gameState myPlayerId]];
+    
+    int myGold = me.gold;
+    int maxNumBuys = myGold / 5;
+    int maxNumFree = 2;
+    int maxNumTrades = 5;
+    
+    // TODO HANDLE TRADES
+    
+    freeThings = [[NSMutableArray alloc] init];
+    paidThings = [[NSMutableArray alloc] init];
+    tradeThings = [[NSMutableArray alloc] init];
+    
+    for(id o in thingsToRecruit) {
+        NSString *gpId = (NSString*) o;
+        
+    }
 }
 
 

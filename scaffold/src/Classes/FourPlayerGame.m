@@ -24,6 +24,7 @@
 #import "Log.h"
 #import "TileImage.h"
 #import "Terrain.h"
+#import "RecruitThings.h"
 
 
 
@@ -285,6 +286,11 @@
                                                  name:@"yourTurnFort"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startedRecruitThingsPhase:)
+                                                 name:@"startedRecruitThingsPhase"
+                                               object:nil];
+    
     
     [_contents addChild:[GoldCollection getInstance]];
     
@@ -475,6 +481,17 @@
     [_contents addChild:_selectedPieceImage];
     
     
+}
+
+
+
+-(void) startedRecruitThingsPhase: (NSNotification*)notif{
+    NSArray *thingsToRecruit = notif.object;
+
+    RecruitThings *recruitThings = [RecruitThings getInstance];
+    recruitThings.thingsToRecruit = thingsToRecruit;
+    [recruitThings initThingsToRecruit];
+    [recruitThings setVisible:YES];
 }
 
 -(void) drawRack{
