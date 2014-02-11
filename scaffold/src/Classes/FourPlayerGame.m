@@ -357,7 +357,7 @@
 }
 
 -(void) yourTurnCM: (NSNotification*) notif{
-    _placementStep = PLACE_CM;
+    _placementStep = PLACE_CM_2;
     [_stateText setText:@"State: Place control marker"];
 
 }
@@ -1015,7 +1015,7 @@
             break;
         case PLACEMENT:
             switch (_placementStep) {
-                case PLACE_CM:
+                case PLACE_CM_2:
                     if (touches.count == 1)
                     {
                         if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
@@ -1026,18 +1026,30 @@
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
                                 [tile changeOwnerTo:_state.myPlayerId];
-                                switch (markerCount) {
-                                    case 2:
-                                        placeHex2 = location.locationId;
-                                        markerCount--;
-                                        break;
-                                    case 1:
-                                        placeHex3 = location.locationId;
-                                        [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
-                                        markerCount--;
-                                        break;
-                                    default:
-                                        break;
+
+                                placeHex2 = location.locationId;
+                                _placementStep = PLACE_CM_3;
+                                }
+                            }
+                        
+                        
+                    }
+                    break;
+                case PLACE_CM_3:
+                    if (touches.count == 1)
+                    {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
+                            
+                            SPTouch *clicks = [touches objectAtIndex:0];
+                            
+                            if (clicks.tapCount == 2){
+                                NSLog(@"le double click");
+                                [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                                [tile changeOwnerTo:_state.myPlayerId];
+                             
+                                placeHex3 = location.locationId;
+                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
+                        
                                 }
                             }
                         }

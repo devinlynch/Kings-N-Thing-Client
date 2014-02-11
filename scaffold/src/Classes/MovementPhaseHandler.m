@@ -45,8 +45,9 @@
     
 
     NSLog(@"Succesfully parsed playerMovedStackToNewLocation message with stackID: %@", stack.locationId);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedStackToNewLocation" object:hexLocation];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedStackToNewLocation" object:hexLocation];
+    });
 }
 
 @end

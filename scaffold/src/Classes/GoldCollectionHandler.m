@@ -42,9 +42,10 @@
         NSLog(@"Got goldCollection message but for some reason it goofed");
     }
     
-    NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"goldCollection" object:goldCollectionDic];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"goldCollection" object:goldCollectionDic];
+    });
   
     
 }

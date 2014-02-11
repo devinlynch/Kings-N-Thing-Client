@@ -36,7 +36,7 @@
 
     NSDictionary* setupDic= [[message jsonDictionnary]  objectForKey:@"data"];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{  
         GameState *gameState;
         @try{
             gameState = [[GameState alloc] initFromJSON:setupDic];

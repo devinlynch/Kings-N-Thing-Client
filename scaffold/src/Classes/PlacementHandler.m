@@ -54,9 +54,10 @@
         NSLog(@"Got placed control marker message but for some reason it goofed");
     }
     
-    NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerPlacedCM" object:placedCMDic];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerPlacedCM" object:placedCMDic];
+    });
     
 }
 
@@ -70,9 +71,6 @@
         return;
     }
     
-    
-    
-    
     NSDictionary* placedFortDic = [message.jsonDictionnary objectForKey:@"data"];
     
     
@@ -80,10 +78,10 @@
         NSLog(@"Got placed fort message but for some reason it goofed");
     }
     
-    NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerPlacedFort" object:placedFortDic];
-    
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Successfully parsed parsed from goldCollection message, now sending notificaion");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerPlacedFort" object:placedFortDic];
+    });
     
 }
 
