@@ -302,7 +302,8 @@
 }
 
 -(void) placementOver: (NSNotification*) notif{
-    
+    [_stateText setText:@"State: Collect Gold"];
+
 }
 
 -(void) playerPlacedFort: (NSNotification*) notif{

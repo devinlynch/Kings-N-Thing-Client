@@ -34,7 +34,7 @@ static InGameServerAccess *instance;
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://172.20.10.6:8080/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://172.20.10.12:8080/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
