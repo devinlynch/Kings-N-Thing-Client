@@ -245,10 +245,19 @@
 
 
     
+    //Log button
+    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
+    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
+    logButton.x = _gameWidth - logButton.width * 1.5;
+    logButton.y = _gameHeight - logButton.height * 2.3;
+    [_contents addChild:logButton];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(yourTurnToMoveInMovement:)
                                                  name:@"yourTurnToMoveInMovement"
                                                object:nil];
+    
+    [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pieceSelected:)
@@ -340,8 +349,7 @@
     _selectedPiece = piece;
     
     _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
-    _selectedPieceImage.x = 90;
-    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+
     [_contents addChild:_selectedPieceImage];
     
 }
@@ -544,18 +552,23 @@
     
     NSArray *objectsToRecruit = notif.object;
     
+    _phase = RECRUITMENT;
+    
     RecruitThings *rt = [RecruitThings getInstance];
     
     [rt initWithObjectsToRecruit: objectsToRecruit];
     
     [_contents addChild:rt];
-    [rt setVisible:YES];
-}
-
--(void) drawRack{
-    Player *player;
     
-    for(Player *p in _state.players){
+
+    [rt setVisible:YES];
+    
+}
+    
+-(void) drawRack{
+
+    Player *player;
+    for (Player *p in _state.players) {
         if ([p.playerId isEqualToString:[_state myPlayerId]]) {
             player = p;
         }

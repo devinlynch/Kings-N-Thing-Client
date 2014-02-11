@@ -2018,6 +2018,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE48623418A9D57500272B79 /* buy.png in Resources */,
+				DE48623318A9D54100272B79 /* RecruitThingsBackground@2x.png in Resources */,
 				99468B0118A9BB6800205C14 /* C_Fort_379.png in Resources */,
 				99F02F6318A9B63A00ED81CD /* C_Fort_377.png in Resources */,
 				DEF9FEC018A7DAAA0057FAEB /* T_Jungle_004.png in Resources */,

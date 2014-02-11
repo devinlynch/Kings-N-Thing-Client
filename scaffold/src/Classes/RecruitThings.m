@@ -207,26 +207,5 @@ static RecruitThings *instance;
     _contents.visible = NO;
 }
 
--(void) initThingsToRecruit{
-    GameState *gameState = [[Game currentGame] gameState];
-    Player *me = [gameState getPlayerById:[gameState myPlayerId]];
-    
-    int myGold = me.gold;
-    int maxNumBuys = myGold / 5;
-    int maxNumFree = 2;
-    int maxNumTrades = 5;
-    
-    // TODO HANDLE TRADES
-    
-    freeThings = [[NSMutableArray alloc] init];
-    paidThings = [[NSMutableArray alloc] init];
-    tradeThings = [[NSMutableArray alloc] init];
-    
-    for(id o in thingsToRecruit) {
-        NSString *gpId = (NSString*) o;
-        
-    }
-}
-
 
 @end

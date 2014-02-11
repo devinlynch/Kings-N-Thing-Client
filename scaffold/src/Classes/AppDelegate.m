@@ -36,6 +36,8 @@ void onUncaughtException(NSException *exception)
     
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
+
+    _viewController = [[SPViewController alloc] init];
     
 //    _viewController = [[SPViewController alloc] init];
 //    

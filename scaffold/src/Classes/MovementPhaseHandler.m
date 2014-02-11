@@ -105,10 +105,48 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerUpdatedStack" object:stack];
 }
 
-    NSLog(@"Succesfully parsed playerMovedStackToNewLocation message with stackID: %@", stack.locationId);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedStackToNewLocation" object:hexLocation];
-    });
+
+/*
+ Type: playerMovedPieceToNewLocation
+ Data: {
+ playerId: id of player who moved the piece
+ boardLocationId: id of the board location that the piece is being moved to
+ gamePieceId: if of the game piece being moved
+ }
+ Sending Type: UDP from server to client
+ Description: Tells all players that a player moved a game piece
+ */
+
+-(void) handlePlayerMovedPieceToNewLocation: (Event*) event {
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    if(dataDic == nil){
+        return;
+    }
+    
+    NSString *playerId = [dataDic objectForKey:@"playerId"];
+    NSString *boardLocationId = [dataDic objectForKey:@"boardLocationId"];
+    NSString *gamePieceId = [dataDic objectForKey:@"gamePieceId"];
+    
+    GameState *gameState = [[Game currentGame] gameState];
+    
+    Player *player = [gameState getPlayerById:playerId];
+    BoardLocation *boardLocation = [gameState getBoardLocationById:boardLocationId];
+    GamePiece *gamePiece = [[GameResource getInstance] getPieceForId:gamePieceId];
+    
+    
+    if(player == nil || [player isKindOfClass:[NSNull class]]
+       || boardLocation == nil || [boardLocation isKindOfClass:[NSNull class]]
+       || gamePiece == nil || [gamePiece isKindOfClass:[NSNull class]]) {
+        NSLog(@"Could not find player or boardlocation or gamepiece in handlePlayerMovedPieceToNewLocation.  The params where: %@", dataDic);
+        return;
+    }
+    
+    [boardLocation addGamePieceToLocation:gamePiece];
+
+    
+    NSLog(@"Succesfully parsed playerMovedPieceToNewLocation with gamepieceid: %@ and locationid: %@", gamePiece.gamePieceId, gamePiece.location.locationId);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedPieceToNewLocation" object:gamePiece];
 }
 
 /*
