@@ -1072,11 +1072,6 @@
                         }
                         
                     }
-                    break;
-                    
-                default:
-                    break;
-            }
             break;
         case GOLD:
             
