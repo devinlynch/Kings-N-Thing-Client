@@ -23,6 +23,8 @@
 @synthesize sideLocation = _sideLocation;
 @synthesize playingCup = _playingCup;
 @synthesize bank = _bank;
+@synthesize logMessages = _logMessages;
+
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
@@ -59,6 +61,8 @@
             }
             _hexLocations = (NSMutableDictionary*)[[NSDictionary alloc] initWithDictionary:locationDic];
         }
+        
+        _logMessages = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -133,6 +137,10 @@
         }
     }
     return nil;
+}
+
+-(void) addLogMessage: (NSString*) message{
+    [_logMessages addObject:message];
 }
 
 @end

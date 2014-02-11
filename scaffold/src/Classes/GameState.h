@@ -21,6 +21,7 @@
     Game *_game;
     NSMutableDictionary *_gamePieceResource;
     SideLocation *_sideLocation;
+    NSMutableArray *_logMessages;
 }
 
 @property NSString *myPlayerId;
@@ -30,6 +31,7 @@
 @property PlayingCup *playingCup;
 @property NSMutableDictionary *hexLocations;
 @property SideLocation *sideLocation;
+@property NSMutableArray *logMessages;
 
 
 -(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
