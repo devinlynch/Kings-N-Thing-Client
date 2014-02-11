@@ -38,6 +38,8 @@ typedef enum InGameRequestTypes {
 
 @property id<InGameServerProtocol> delegateListener;
 
++(InGameServerAccess*) instance;
+
 // Setup
 -(enum InGameRequestTypes) setupPhaseReadyForPlacement;
 

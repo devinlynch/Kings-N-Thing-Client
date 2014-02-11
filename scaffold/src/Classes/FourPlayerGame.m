@@ -24,8 +24,8 @@
 #import "Log.h"
 #import "TileImage.h"
 #import "Terrain.h"
+#import "InGameServerAccess.h"
 #import "RecruitThings.h"
-
 
 
 @interface FourPlayerGame ()
@@ -36,6 +36,9 @@
 @implementation FourPlayerGame{
     NSMutableArray *gamePieces;
     
+    
+    int markerCount;
+    NSString *placeHex1, *placeHex2, *placeHex3;
     
     NSInteger _phase;
     NSInteger _placementStep;
@@ -70,7 +73,11 @@
     int _gameWidth;
     int _gameHeight;
     
+    
     SPTextField *_selectedText;
+    
+    SPTextField *_playerIdText;
+    
     SPImage *_selectedPieceImage;
     
     GamePiece *_selectedPiece;
@@ -107,6 +114,15 @@
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
+    markerCount = 2;
+    
+     placeHex1 = [[NSString alloc] init];
+     placeHex2 = [[NSString alloc] init];
+     placeHex3 = [[NSString alloc] init];
+
+
+
+    
    // didPutTower = false;
     
     gamePieces = [[NSMutableArray alloc]init];
@@ -131,6 +147,10 @@
     [_contents addChild:_sheet];
     
     
+    _playerIdText = [SPTextField textFieldWithWidth:200 height:30 text:@""];
+    _playerIdText.x = _gameWidth - _playerIdText.width;
+    _playerIdText.y = 2;
+    
     _stateText = [SPTextField textFieldWithWidth:200 height:30 text:@"State:"];
     _stateText.x = 0;
     _stateText.y = 2;
@@ -140,10 +160,10 @@
 
     
     //Income labels
-    _Player1LabelText = [SPTextField textFieldWithWidth:90 height:30 text:@"Your Income:"];
-    _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2 - 15);
+    _Player1LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player1 Income:"];
+    _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2) + 25;
     _Player1LabelText.y = 335;
-    _Player1LabelText.color = SP_YELLOW;
+    _Player1LabelText.color = SP_RED;
     [_contents addChild:_Player1LabelText];
     
     _Player2LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Income:"];
@@ -155,39 +175,39 @@
     _Player3LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Income:"];
     _Player3LabelText.x = _gameWidth - _Player3LabelText.width - (_Player3LabelText.width/2)+ 25;
     _Player3LabelText.y = 335 + _Player3LabelText.height;
-    _Player3LabelText.color = SP_YELLOW;
+    _Player3LabelText.color = SP_GREEN;
     [_contents addChild:_Player3LabelText];
     
     _Player4LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Income:"];
     _Player4LabelText.x = _gameWidth - _Player4LabelText.width - (_Player4LabelText.width/2)+ 25;
     _Player4LabelText.y = 335 + _Player4LabelText.height*1.5;
-    _Player4LabelText.color = SP_YELLOW;
+    _Player4LabelText.color = SP_BLUE;
     [_contents addChild:_Player4LabelText];
     
     
     //Income Text
-    _Player1IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player1IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"10"];
     _Player1IncomeText.x = _gameWidth - _Player1IncomeText.width + 25 ;
     _Player1IncomeText.y = 335;
-    _Player1IncomeText.color = SP_YELLOW;
+    _Player1IncomeText.color = SP_RED;
     [_contents addChild:_Player1IncomeText];
     
-    _Player2IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player2IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"10"];
     _Player2IncomeText.x = _gameWidth - _Player2IncomeText.width + 25 ;
     _Player2IncomeText.y = 335+ _Player1LabelText.height / 2;
     _Player2IncomeText.color = SP_YELLOW;
     [_contents addChild:_Player2IncomeText];
     
-    _Player3IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player3IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"10"];
     _Player3IncomeText.x = _gameWidth - _Player3IncomeText.width + 25 ;
     _Player3IncomeText.y = 335 + _Player3LabelText.height;
-    _Player3IncomeText.color = SP_YELLOW;
+    _Player3IncomeText.color = SP_GREEN;
     [_contents addChild:_Player3IncomeText];
     
-    _Player4IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"999"];
+    _Player4IncomeText = [SPTextField textFieldWithWidth:90 height:30 text:@"10"];
     _Player4IncomeText.x = _gameWidth - _Player4IncomeText.width + 25 ;
     _Player4IncomeText.y = 335+ _Player4LabelText.height*1.5;
-    _Player4IncomeText.color = SP_YELLOW;
+    _Player4IncomeText.color = SP_BLUE;
     [_contents addChild:_Player4IncomeText];
     
     
@@ -223,6 +243,7 @@
 //    [_contents addChild:_test3];
     
 
+
     
     //Log button
     SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
@@ -230,6 +251,10 @@
     logButton.x = _gameWidth - logButton.width * 1.5;
     logButton.y = _gameHeight - logButton.height * 2.3;
     [_contents addChild:logButton];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(yourTurnToMoveInMovement:)
+                                                 name:@"yourTurnToMoveInMovement"
+                                               object:nil];
     
     [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
@@ -253,7 +278,11 @@
                                              selector:@selector(goldCollection:)
                                                  name:@"goldCollection"
                                                object:nil];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(collectedGold:)
+                                                 name:@"collectedGold"
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(placementOver:)
@@ -291,6 +320,16 @@
                                                  name:@"startedRecruitThingsPhase"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitToBoard:)
+                                                 name:@"recruitToBoard"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addToRack:)
+                                                 name:@"addToRack"
+                                               object:nil];
+    
     
     [_contents addChild:[GoldCollection getInstance]];
     
@@ -304,35 +343,25 @@
 
 }
 
-
--(void) onLogTriggered:(SPTouchEvent*)event{
-    SPImage *img = (SPImage*)event.target;
+-(void) recruitToBoard: (NSNotification*) notif{
+    GamePiece *piece = (GamePiece*) notif.object;
     
+    _selectedPiece = piece;
     
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+
+    [_contents addChild:_selectedPieceImage];
     
-    if (touches.count == 1)
-    {
-        
-        NSLog(@"TO LOOOOOOOGS");
-        [self showLogMenu];
-        
-    }
-
-
 }
 
-
--(void)showLogMenu{
-    Log *log = [[Log alloc]init];
-    [self showScene:log];
+-(void) yourTurnToMoveInMovement: (NSNotification*) notif{
+    _phase = MOVEMENT;
+    [_stateText setText:@"State: Place thingsss"];
 }
-
-
-
 
 -(void) placementOver: (NSNotification*) notif{
-    
+    [_stateText setText:@"State: Collect Gold"];
+
 }
 
 -(void) playerPlacedFort: (NSNotification*) notif{
@@ -380,18 +409,21 @@
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
+    _phase = PLACEMENT;
     _placementStep = PLACE_FORT;
     [_stateText setText:@"State: Place fort"];
 }
 
 -(void) yourTurnCM: (NSNotification*) notif{
-    _placementStep = PLACE_CM;
+    _phase = PLACEMENT;
+    _placementStep = PLACE_CM_2;
     [_stateText setText:@"State: Place control marker"];
 
 }
 
 -(void) timeToPlaceFort: (NSNotification*) notif{
-    
+    [_stateText setText:@"State: wait to place fort"];
+
 }
 
 -(void) goldCollection: (NSNotification*) notif{
@@ -404,12 +436,13 @@
     
     NSMutableDictionary *dic = notif.object;
     
-    NSMutableDictionary *goldDic = [dic objectForKey:_state.myPlayerId];
     
-    NSLog(@"%@", goldDic);
     
-    NSString *total = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[goldDic objectForKey:@"totalGold"]]];
-    NSString *income = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[goldDic objectForKey:@"income"]]];
+    NSMutableDictionary *myGoldDic = [dic objectForKey:_state.myPlayerId];
+    
+    
+    NSString *total = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[myGoldDic objectForKey:@"totalGold"]]];
+    NSString *income = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[myGoldDic objectForKey:@"income"]]];
     
     
     NSString *username;
@@ -419,6 +452,19 @@
             username = [[NSString alloc] initWithString:p.username];
         }
         [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
+        if ([p.playerId isEqualToString:@"player1"]) {
+            _Player1IncomeText = [[dic objectForKey:@"player1"] objectForKey:@"totalGold"];
+            
+        } else         if ([p.playerId isEqualToString:@"player2"]) {
+            _Player2IncomeText = [[dic objectForKey:@"player2"] objectForKey:@"totalGold"];
+            
+        } else         if ([p.playerId isEqualToString:@"player3"]) {
+            _Player3IncomeText = [[dic objectForKey:@"player3"] objectForKey:@"totalGold"];
+            
+        } else         if ([p.playerId isEqualToString:@"player4"]) {
+            _Player4IncomeText = [[dic objectForKey:@"player4"] objectForKey:@"totalGold"];
+
+        }
     }
     
     [[GoldCollection getInstance] setIncome:[NSString stringWithFormat:@"Income: %@", income]];
@@ -429,6 +475,9 @@
     
 }
 
+-(void) collectedGold: (NSNotification*) notif{
+    
+}
 
 -(void) gameSetup: (NSNotification*) notif{
     
@@ -444,19 +493,29 @@
     for(Player *p in _state.players){
         if ([p.playerId isEqualToString:@"player1"]) {
             _player1 = p;
+            [_playerIdText setColor:SP_RED];
         } else         if ([p.playerId isEqualToString:@"player2"]) {
             _player2 = p;
+            [_playerIdText setColor:SP_YELLOW];
         } else         if ([p.playerId isEqualToString:@"player3"]) {
             _player3 = p;
+            [_playerIdText setColor:SP_GREEN];
         } else         if ([p.playerId isEqualToString:@"player4"]) {
             _player4 = p;
+            [_playerIdText setColor:SP_BLUE];
         }
     }
     
+    [_playerIdText setText:_state.myPlayerId];
+    
+    [_contents addChild:_playerIdText];
+
     
     [self drawTiles];
     
     [self drawRack];
+    
+    [[InGameServerAccess instance] setupPhaseReadyForPlacement];
     
 }
 
@@ -465,11 +524,15 @@
     _phase = PLACEMENT;
     
     [_stateText setText:@"State: Placement"];
+    
+    
 }
 
 
 
 -(void) pieceSelected: (NSNotification*) notif{
+    
+    [_selectedPieceImage removeFromParent];
     
     _selectedPiece = (GamePiece*) notif.object;
     
@@ -483,21 +546,29 @@
     
 }
 
-
-
--(void) startedRecruitThingsPhase: (NSNotification*)notif{
-    NSArray *thingsToRecruit = notif.object;
-
-    RecruitThings *recruitThings = [RecruitThings getInstance];
-    recruitThings.thingsToRecruit = thingsToRecruit;
-    [recruitThings initThingsToRecruit];
-    [recruitThings setVisible:YES];
-}
-
--(void) drawRack{
-    Player *player;
+-(void) startedRecruitThingsPhase: (NSNotification*) notif{
     
-    for(Player *p in _state.players){
+    _phase = RECRUITMENT;
+    
+    NSArray *objectsToRecruit = notif.object;
+    
+    _phase = RECRUITMENT;
+    
+    RecruitThings *rt = [RecruitThings getInstance];
+    
+    [rt initWithObjectsToRecruit: objectsToRecruit];
+    
+    [_contents addChild:rt];
+    
+
+    [rt setVisible:YES];
+    
+}
+    
+-(void) drawRack{
+
+    Player *player;
+    for (Player *p in _state.players) {
         if ([p.playerId isEqualToString:[_state myPlayerId]]) {
             player = p;
         }
@@ -511,26 +582,43 @@
     
     float prevX = 0;
     
+    int i = 1;
+    
     for (NSString *key in rack1.pieces) {
+        if (i % 6 == 0) {
+            rackY = rackY + 40;
+            prevX = 0;
+        }
         ScaledGamePiece *img = [[rack1.pieces objectForKey:key] pieceImage];
+        img.scaleX = .5f;
+        img.scaleY = .5f;
         img.x = rackX + prevX;
         img.y = rackY;
         prevX += img.width + 5;
         [_contents addChild:img];
+        i++;
     }
-    
-    rackY = _rackZone.y + 50;
-    prevX = 0;
     
     for (NSString *key in rack2.pieces) {
+        if (i % 6 == 0) {
+            rackY = rackY + 40;
+            prevX = 0;
+        }
         ScaledGamePiece *img = [[rack2.pieces objectForKey:key] pieceImage];
+        img.scaleX = .6;
+        img.scaleY = .6f;
         img.x = rackX + prevX;
         img.y = rackY;
         prevX += img.width + 5;
         [_contents addChild:img];
+        i++;
     }
     
     
+}
+
+-(void) addToRack: (NSNotification*) notif{
+    [self drawRack];
 }
 
 
@@ -665,7 +753,6 @@
 
                     
                     [_sheet addChild: tile.image];
-                    [tile.image addEventListener:@selector(putTower:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
                 }
                 if (j == 5){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_31"];
@@ -778,6 +865,9 @@
                    [_sheet addChild: tile.image];
                     
                    [location changeOwnerToPlayer:_player4];
+                    if ([_state.myPlayerId isEqualToString:@"player4"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 if (j == 1 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_18"];
@@ -815,6 +905,9 @@
 
                    [_sheet addChild: tile.image];
                     [location changeOwnerToPlayer:_player3];
+                    if ([_state.myPlayerId isEqualToString:@"player3"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 
                 
@@ -834,6 +927,9 @@
                     [_sheet addChild: tile.image];
                     
                     [location changeOwnerToPlayer:_player1];
+                    if ([_state.myPlayerId isEqualToString:@"player1"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 if (j == 1) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_10"];
@@ -876,6 +972,9 @@
                     [_sheet addChild: tile.image];
                     
                     [location changeOwnerToPlayer:_player2];
+                    if ([_state.myPlayerId isEqualToString:@"player2"]) {
+                        placeHex1 = location.locationId;
+                    }
                 }
                 
             }
@@ -995,51 +1094,57 @@
 
 
 
-
--(void) putTower:(SPTouchEvent*) event
-{
-    SPImage *img = (SPImage*)event.target;
-    SPImage *newimg;
-    bool didPutTower = true;
-    
-     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    
-    if (touches.count == 1 && didPutTower)
-    {
-        NSLog(@"le tile click");
-        
-        newimg = [[SPImage alloc] initWithContentsOfFile:@"C_Fort_375.png"];
-        newimg.scaleX = 0.3;
-        newimg.scaleY = 0.3;
-        
-        
-        //Place tower on a random spot
-        newimg.x = fmod(arc4random(), (img.x - (img.x + 10))) + (img.x + 10);
-        newimg.y = fmod(arc4random(), (img.y - (img.y + 15))) + (img.y + 15);
-        NSLog(@"placed dat tower bb");
-        
-        [_sheet addChild:newimg];
-        
-        didPutTower = !didPutTower;
-    }
-}
+//
+//-(void) putTower:(SPTouchEvent*) event
+//{
+//    SPImage *img = (SPImage*)event.target;
+//    SPImage *newimg;
+//    bool didPutTower = true;
+//    
+//     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+//    
+//    if (touches.count == 1 && didPutTower)
+//    {
+//        NSLog(@"le tile click");
+//        
+//        newimg = [[SPImage alloc] initWithContentsOfFile:@"C_Fort_375.png"];
+//        newimg.scaleX = 0.3;
+//        newimg.scaleY = 0.3;
+//        
+//        
+//        //Place tower on a random spot
+//        newimg.x = fmod(arc4random(), (img.x - (img.x + 10))) + (img.x + 10);
+//        newimg.y = fmod(arc4random(), (img.y - (img.y + 15))) + (img.y + 15);
+//        NSLog(@"placed dat tower bb");
+//        
+//        [_sheet addChild:newimg];
+//        
+//        didPutTower = !didPutTower;
+//    }
+//}
 
 -(void) onTileClick: (SPTouchEvent*) event
 {
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    //Double Click
     
     TileImage *img = (TileImage*) event.target;
     HexTile  *tile = (HexTile*) img.owner;
     HexLocation *location = (HexLocation*) tile.location;
     
+    Player *player;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:[_state myPlayerId]]) {
+            player = p;
+        }
+    }
+    
     switch (_phase) {
         case SETUP:
-            
             break;
         case PLACEMENT:
             switch (_placementStep) {
-                case PLACE_CM:
+                case PLACE_CM_2:
                     if (touches.count == 1)
                     {
                         if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
@@ -1049,12 +1154,36 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [tile changeOwnerTo:_state.myPlayerId];
+                                [location changeOwnerToPlayer:player];
+
+                                placeHex2 = location.locationId;
                                 
+                                _placementStep = PLACE_CM_3;
                             }
                         }
-                        
                     }
+                    
+                    break;
+                case PLACE_CM_3:
+                    if (touches.count == 1)
+                    {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
+                            
+                            SPTouch *clicks = [touches objectAtIndex:0];
+                            
+                            if (clicks.tapCount == 2){
+                                NSLog(@"le double click");
+                                [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                                [location changeOwnerToPlayer:player];
+                             
+                                placeHex3 = location.locationId;
+                                
+                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
+                        
+                            }
+                        }
+                    }
+                    
                     break;
                 case PLACE_FORT:
                     if (touches.count == 1)
@@ -1066,32 +1195,63 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [location addGamePieceToLocation:_selectedPiece];                                
+                                [location addGamePieceToLocation:_selectedPiece];
+                                [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId];
                             }
                         }
                         
                     }
                     break;
-                    
-                default:
-                    break;
             }
+        case MOVEMENT:
+            if (touches.count == 1)
+            {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                    
+                    SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    if (clicks.tapCount == 2){
+                        NSLog(@"le double click");
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        [location addGamePieceToLocation:_selectedPiece];
+                        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId];
+                    }
+                }
+                
+            }
+
+            break;
+        case RECRUITMENT:
+            if (touches.count == 1)
+            {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                    
+                    SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    if (clicks.tapCount == 2){
+                        NSLog(@"le double click");
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        [location addGamePieceToLocation:_selectedPiece];
+                        //TO DO: HANDLE WAS BOUGHT
+                        [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
+                        [_selectedPieceImage removeFromParent];
+                        [[RecruitThings getInstance] setVisible:YES];
+                    }
+                }
+                
+            }
+
             break;
         case GOLD:
-            
-            break;
-        case MOVEMENT:
             
             break;
             
         default:
             break;
     }
-    
-    
-
-    
 }
+
+
 
 
 - (void)showTileMenu {

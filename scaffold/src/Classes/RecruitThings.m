@@ -13,10 +13,9 @@
 #import "Scene.h"
 #import "GameMenu.h"
 #import "RecruitOptionMenu.h"
-#import "ServerAccess.h"
-#import "GameState.h"
 #import "Game.h"
-
+#import "GameState.h"
+#import "GameResource.h"
 
 @interface RecruitThings()
 - (void)setup;
@@ -30,20 +29,9 @@
     int _gameWidth;
     int _gameHeight;
     
-    
-    NSMutableArray *freeThings;
-    NSMutableArray *paidThings;
-    NSMutableArray *tradeThings;
-}
-@synthesize thingsToRecruit;
-
-static RecruitThings *instance = nil;
-
-+(RecruitThings*) getInstance{
-    if (instance == nil){
-        instance = [[RecruitThings alloc]init];
-    }
-    return instance;
+    NSMutableArray *freeRecruits;
+    NSMutableArray *paidRecruits;
+    NSMutableArray *tradeRecruits;
 }
 
 
@@ -52,8 +40,51 @@ static RecruitThings *instance = nil;
     if ((self = [super init]))
     {
         [self setup];
+        freeRecruits = [[NSMutableArray alloc] init];
+        paidRecruits = [[NSMutableArray alloc] init];
+        tradeRecruits = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+-(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit{
+    GameState *gs = [[Game currentGame] gameState];
+    Player *me = [gs getPlayerById:[gs myPlayerId]];
+    
+    int maxPaid = me.gold / 5;
+    int maxFree = 2;
+    
+    [freeRecruits removeAllObjects];
+    [paidRecruits removeAllObjects];
+    [tradeRecruits removeAllObjects];
+    for(id o in objectsToRecruit) {
+        NSString *gpId = (NSString*) o;
+        GamePiece *gp = [[GameResource getInstance] getPieceForId:gpId];
+        if(gp != nil) {
+            if(maxFree > 0) {
+                [freeRecruits addObject:gp];
+                maxFree--;
+            } else if(maxPaid > 0) {
+                [paidRecruits addObject:gp];
+                maxPaid--;
+            } else {
+                [tradeRecruits addObject:gp];
+            }
+            
+        }
+    }
+    
+}
+
+
+static RecruitThings *instance;
++(RecruitThings*) getInstance{
+    
+    if (instance == nil) {
+        instance = [[RecruitThings alloc] init];
+        
+    }
+    return instance;
 }
 
 
@@ -93,7 +124,7 @@ static RecruitThings *instance = nil;
     freeButton.x = _gameWidth /2 - freeButton.width /2;
     freeButton.y = 55 + 90 - 30;
     [_contents addChild:freeButton];
-    [freeButton addEventListener:@selector(showOptions:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [freeButton addEventListener:@selector(didClickOnFreeRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     //Button
 
@@ -106,7 +137,7 @@ static RecruitThings *instance = nil;
     
     [_contents addChild:buyButton];
     
-    [buyButton addEventListener:@selector(showOptions:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [buyButton addEventListener:@selector(didClickOnPaidRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     SPTexture *tradeButtonTexture = [SPTexture textureWithContentsOfFile:@"trade.png"];
@@ -133,9 +164,33 @@ static RecruitThings *instance = nil;
 }
 
 
-- (void) showOptions:(SPEvent *) event{
+- (void) didClickOnFreeRecruit:(SPEvent *) event{
+    NSLog(@"Clicked free recruit");
+    if([freeRecruits count] == 0) {
+        NSLog(@"Clicked free recruit but there's no more free recruits left");
+        return;
+    }
+    
+    GamePiece *gp = [freeRecruits objectAtIndex:0];
+    [freeRecruits removeObjectAtIndex:0];
     
     RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
+    [recruitMenu setGamePiece:gp];
+    [self showScene:recruitMenu];
+}
+
+- (void) didClickOnPaidRecruit:(SPEvent *) event{
+    NSLog(@"Clicked paid recruit");
+    if([paidRecruits count] == 0) {
+        NSLog(@"Clicked paid recruit but there's no more paid recruits left");
+        return;
+    }
+    
+    GamePiece *gp = [paidRecruits objectAtIndex:0];
+    [paidRecruits removeObjectAtIndex:0];
+    
+    RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
+    [recruitMenu setGamePiece:gp];
     [self showScene:recruitMenu];
 }
 
@@ -148,32 +203,8 @@ static RecruitThings *instance = nil;
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
-    NSLog(@"Back to game board");
-    GameMenu *gameMenu = [[GameMenu alloc] init];
-    [self showScene:gameMenu];
+    NSLog(@"Back");
     _contents.visible = NO;
-    
-}
-
--(void) initThingsToRecruit{
-    GameState *gameState = [[Game currentGame] gameState];
-    Player *me = [gameState getPlayerById:[gameState myPlayerId]];
-    
-    int myGold = me.gold;
-    int maxNumBuys = myGold / 5;
-    int maxNumFree = 2;
-    int maxNumTrades = 5;
-    
-    // TODO HANDLE TRADES
-    
-    freeThings = [[NSMutableArray alloc] init];
-    paidThings = [[NSMutableArray alloc] init];
-    tradeThings = [[NSMutableArray alloc] init];
-    
-    for(id o in thingsToRecruit) {
-        NSString *gpId = (NSString*) o;
-        
-    }
 }
 
 

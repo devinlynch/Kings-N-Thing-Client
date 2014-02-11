@@ -87,9 +87,9 @@
     NSString *message;
     if(type == HOST_A_GAME || type == QUICK_MATCH) {
         NSUInteger numPlayers = [detailstextField.text integerValue];
-        if(numPlayers <= 1 || numPlayers > 4) {
-            isOK = NO;
-        }
+     //   if(numPlayers <= 1 || numPlayers > 4) {
+       //     isOK = NO;
+        //}
         message = @"You must enter a number between 2 and 4.";
     } else{
         message = @"Please enter a username.";
