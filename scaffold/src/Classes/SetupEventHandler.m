@@ -33,26 +33,27 @@
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY?????");
         return;
     }
-    
-    
-    GameState *gameState;
 
     NSDictionary* setupDic= [[message jsonDictionnary]  objectForKey:@"data"];
     
-    @try{
-        gameState = [[GameState alloc] initFromJSON:setupDic];
-        [[Game currentGame] setGameState:gameState];
-    } @catch (NSException *e) {
-        NSLog(@"%@",e);
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GameState *gameState;
+        @try{
+            gameState = [[GameState alloc] initFromJSON:setupDic];
+            [[Game currentGame] setGameState:gameState];
+        } @catch (NSException *e) {
+            NSLog(@"%@",e);
+        }
+        
+        if(gameState == nil) {
+            NSLog(@"Got gameSetup message but for some reason game could not be parsed");
+            return;
+        }
+        
+        NSLog(@"Successfully parsed game from gameSetup message, now sending notification");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSetup" object:gameState];
+    });
     
-    if(gameState == nil) {
-        NSLog(@"Got gameSetup message but for some reason game could not be parsed");
-        return;
-    }
-    
-    NSLog(@"Successfully parsed game from gameSetup message, now sending notification");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSetup" object:gameState];
 }
 
 @end
