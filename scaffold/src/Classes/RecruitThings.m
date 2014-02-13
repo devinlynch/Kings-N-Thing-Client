@@ -149,8 +149,7 @@ static RecruitThings *instance = nil;
 -(void) onButtonTriggered: (SPEvent *) event
 {
     NSLog(@"Back to game board");
-    GameMenu *gameMenu = [[GameMenu alloc] init];
-    [self showScene:gameMenu];
+
     _contents.visible = NO;
     
 }
