@@ -152,6 +152,14 @@ static ServerAccess *instance;
     } andSuccessCall:nil];
 }
 
+-(void) leaveGame{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"game/leaveGame" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error leaving game");
+    } andSuccessCall:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+    }];
+}
+
 
 /**
  Phases

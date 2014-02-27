@@ -19,15 +19,19 @@
     
 }
 
+static NSMutableSet* receivedMessageIds;
+
++(NSMutableSet*) receivedMessageIdsInstance{
+    if(receivedMessageIds == nil)
+        receivedMessageIds = [[NSMutableSet alloc] init];
+    return receivedMessageIds;
+}
+
 +(void) handleHttpResponseJSONData: (NSData*) data delegate: (id) delegate requestParams: (NSDictionary*) params{
     
     NSDictionary *json = [Utils dictionaryFromJSONData:data];
     
-    NSString *type = [[NSString alloc] initWithString:[json objectForKey:@"type"]];
-    
     Message *responseMessage;
-    
-    
     if([json objectForKey:@"responseStatus"] == nil){
         responseMessage = [[GameMessage alloc] initFromJSON:json];
     } else{
@@ -37,6 +41,12 @@
     if(responseMessage == nil) {
         // TODO: How do we want to handle a bad reponse?
     }
+    
+    if([[MessageHandler receivedMessageIdsInstance] containsObject:responseMessage.messageId]) {
+        NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
+        return;
+    }
+    
     Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
     [e setRequestParams:params];
     [e setDelegateListener:delegate];
@@ -55,6 +65,11 @@
         responseMessage = [[GameMessage alloc] initFromJSON:json];
     } else{
         responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
+    }
+    
+    if([[MessageHandler receivedMessageIdsInstance] containsObject:responseMessage.messageId]) {
+        NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
+        return;
     }
 
     Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];

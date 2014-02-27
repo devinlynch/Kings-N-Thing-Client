@@ -72,6 +72,11 @@ void onUncaughtException(NSException *exception)
                                                  name:@"gameStarted"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleGameOver:)
+                                                 name:@"gameOver"
+                                               object:nil];
+    
     return YES;
 }
 
@@ -97,6 +102,21 @@ void onUncaughtException(NSException *exception)
         
         [_window setRootViewController:_viewController];
         [_window makeKeyAndVisible];
+    });
+}
+
+-(void) handleGameOver: (NSNotification*) notif{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Got game over message, going back to lobby");
+        
+        [Game setInstance: nil];
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
+        UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
+        
+        [_window setRootViewController:yourController];
+        [_window makeKeyAndVisible];
+        
     });
 }
 

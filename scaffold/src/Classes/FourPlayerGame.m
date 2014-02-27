@@ -251,7 +251,6 @@
     logButton.x = _gameWidth - logButton.width * 1.5;
     logButton.y = _gameHeight - logButton.height * 2.3;
     [_contents addChild:logButton];
-    
     [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
