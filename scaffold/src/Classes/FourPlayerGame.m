@@ -351,8 +351,6 @@
 
 
 -(void) onLogTriggered:(SPTouchEvent*)event{
-    SPImage *img = (SPImage*)event.target;
-    
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     

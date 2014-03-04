@@ -26,6 +26,7 @@ void onUncaughtException(NSException *exception)
 {
     SPViewController *_viewController;
     UIWindow *_window;
+    UIView *view;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -37,7 +38,7 @@ void onUncaughtException(NSException *exception)
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
 
-    /*_viewController = [[SPViewController alloc] init];
+    _viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
     
@@ -53,24 +54,24 @@ void onUncaughtException(NSException *exception)
     [_window makeKeyAndVisible];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];*/
-
-
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
-    UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
-    
-    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
     [udpMessageReceiver startListeningOnPort:3004];
-    
-    NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
-    
-    [_window setRootViewController:yourController];
-    [_window makeKeyAndVisible];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleGameStarted:)
-                                                 name:@"gameStarted"
-                                               object:nil];
+
+
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
+//    UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
+//    
+//    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
+//    [udpMessageReceiver startListeningOnPort:3004];
+//    
+//    NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
+//    
+//    [_window setRootViewController:yourController];
+//    [_window makeKeyAndVisible];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(handleGameStarted:)
+//                                                 name:@"gameStarted"
+//                                               object:nil];
     
     return YES;
 }
