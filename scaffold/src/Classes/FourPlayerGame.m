@@ -336,6 +336,15 @@
                                                  name:@"yourTurnToMoveInMovement"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitToBoard:)
+                                                 name:@"recruitToBoard"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addToRack:)
+                                                 name:@"addToRack"
+                                               object:nil];
     
     
     
@@ -351,8 +360,6 @@
 
 
 -(void) onLogTriggered:(SPTouchEvent*)event{
-    SPImage *img = (SPImage*)event.target;
-    
     
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
@@ -374,7 +381,25 @@
 }
 
 
+-(void) recruitToBoard: (NSNotification*) notif{
+    
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    _selectedPiece = piece;
+    
+    [_selectedPieceImage removeFromParent];
+    
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+    _selectedPieceImage.x = 90;
+    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+    [_contents addChild:_selectedPieceImage];
+    
+    
+}
 
+-(void) addToRack: (NSNotification*) notif{
+    
+}
 
 -(void) placementOver: (NSNotification*) notif{
     [_stateText setText:@"State: Place Creatures"];
@@ -575,12 +600,21 @@
 
 
 
--(void) startedRecruitThingsPhase: (NSNotification*)notif{
-    NSArray *thingsToRecruit = notif.object;
-
-    RecruitThings *recruitThings = [RecruitThings getInstance];
-    recruitThings.thingsToRecruit = thingsToRecruit;
-    [_contents addChild:recruitThings];
+-(void) startedRecruitThingsPhase: (NSNotification*) notif{
+    
+    _phase = RECRUITMENT;
+    
+    NSArray *objectsToRecruit = notif.object;
+    
+    RecruitThings *rt = [RecruitThings getInstance];
+    
+    [rt initWithObjectsToRecruit: objectsToRecruit];
+    
+    [_contents addChild:rt];
+    
+    
+    [rt setVisible:YES];
+    
 }
 
 -(void) drawRack{
@@ -1235,6 +1269,27 @@
                 
             }
 
+            break;
+        case RECRUITMENT:
+            if (touches.count == 1)
+            {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                    
+                    SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    if (clicks.tapCount == 2){
+                        NSLog(@"le double click");
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        [location addGamePieceToLocation:_selectedPiece];
+                        //TO DO: HANDLE WAS BOUGHT
+                        [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
+                        [_selectedPieceImage removeFromParent];
+                        [[RecruitThings getInstance] setVisible:YES];
+                    }
+                }
+                
+            }
+            
             break;
         default:
             break;

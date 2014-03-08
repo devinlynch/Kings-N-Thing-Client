@@ -9,6 +9,11 @@
 #import "RecruitOptionMenu.h"
 #import "RecruitThings.h"
 #import "GameBoard.h"
+#import "GamePiece.h"
+#import "Game.h"
+#import "GameState.h"
+#import "InGameServerAccess.h"
+#import "Rack.h"
 
 @implementation RecruitOptionMenu{
     
@@ -17,9 +22,10 @@
     
     int _gameWidth;
     int _gameHeight;
+    
+    
 }
-
-
+@synthesize gamePiece, isBuy;
 
 -(id) init
 {
@@ -83,6 +89,9 @@
     
     [_contents addChild:button2];
     
+    [button2 addEventListener:@selector(placeOnRack:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+    
     
     
     SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"back.png"];
@@ -109,17 +118,36 @@
 -(void) placeOnBoard: (SPEvent *) event
 {
     NSLog(@"Go to board");
-        GameBoard *placeOnBoard = [[GameBoard alloc] init];
-        [self showScene:placeOnBoard];
-    //_contents.visible = NO;
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitToBoard" object:gamePiece];
+    
+    [[RecruitThings getInstance] setVisible:NO];
+    _contents.visible = NO;
+    
+}
+
+-(void) placeOnRack: (SPEvent *) event
+{
+    NSLog(@"Placed gamePieceId %@ in the rack", gamePiece.gamePieceId);
+    GameState *gs = [[Game currentGame] gameState];
+    Player *me = [gs getPlayerById:[gs myPlayerId]];
+    [[me rack2] addGamePieceToLocation:gamePiece];
+   // [gs addLogMessage: @"You added the game piece to your rack."];
+    
+    NSString *rackId = [[me rack2] locationId];
+    
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
+    
+    _contents.visible = NO;
 }
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
     NSLog(@"Back to recruit things");
-//    GameMenu *gameMenu = [[GameMenu alloc] init];
-//    [self showScene:gameMenu];
+    //    GameMenu *gameMenu = [[GameMenu alloc] init];
+    //    [self showScene:gameMenu];
     _contents.visible = NO;
     
 }
