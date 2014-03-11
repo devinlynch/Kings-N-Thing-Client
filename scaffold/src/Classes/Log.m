@@ -47,6 +47,8 @@
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     _contents = [SPSprite sprite];
+    
+    //To add UIKit stuffs to sparrow
     UIView *view = Sparrow.currentController.view;
 
     [self addChild:_contents];
@@ -58,12 +60,6 @@
     background.scaleY = 0.8;
     background.x = 30;
     background.y = 50;
-    
-//    SPScrollSprite * canvas = [SPScrollSprite sprite];
-//	[_contents addChild:canvas];
-//	canvas.scrollRect = [SPRectangle rectangleWithX:5 y:5 width:10 height:10];
-    //[_contents addChild:canvas];
-    
     
     [_contents addChild:background];
     
@@ -89,6 +85,47 @@
                                            @"test3: 3d 3d 3d 3d 3d 3d 3d 3d 3d 3d", nil];
     
     //Adding to the log
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
     [log addObject:@"dis is objectiv-c"];
     
     

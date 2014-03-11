@@ -16,6 +16,8 @@
 #import "Movement.h"
 #import "Combat.h"
 #import "RecruitThings.h"
+#import "TileMenu.h"
+#import "SideMenu.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -44,7 +46,7 @@ void onUncaughtException(NSException *exception)
     
     // Enable some common settings here:
     //
-    _viewController.showStats = YES;
+   // _viewController.showStats = YES;
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     

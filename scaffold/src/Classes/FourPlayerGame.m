@@ -26,6 +26,7 @@
 #import "Terrain.h"
 #import "RecruitThings.h"
 #import "InGameServerAccess.h"
+#import "SideMenu.h"
 
 
 @interface FourPlayerGame ()
@@ -61,38 +62,38 @@
     SPTextField *_Player4LabelText;
     SPTextField *_Player1LabelText;
     
-    
     SPTextField *_Player2IncomeText;
     SPTextField *_Player3IncomeText;
     SPTextField *_Player4IncomeText;
     SPTextField *_Player1IncomeText;
     
-    
-    
-    
     int _gameWidth;
     int _gameHeight;
     
+    int panWidth;
+    
     
     SPTextField *_selectedText;
-    
     SPTextField *_playerIdText;
     
     SPImage *_selectedPieceImage;
     
     GamePiece *_selectedPiece;
     
-    SPImage *_bowl;
+    SPImage *_doneBtn;
     GameState *_state;
     SPImage *_rackZone;
     
+    UIAlertView *_movementAlert;
     
-    ScaledGamePiece *_test1;
-    ScaledGamePiece *_test2;
-    ScaledGamePiece *_test3;
+    //Background of current scene
+    SPImage *_background;
     
-    //bool didPutTower;
     
+    //Side menu
+    BOOL isSideMenu;
+    
+    SPButton *menuButton;
 }
 
 -(id) init
@@ -114,35 +115,45 @@
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
+    panWidth = 200;
+    
     markerCount = 2;
+    
+    isSideMenu = YES;
     
      placeHex1 = [[NSString alloc] init];
      placeHex2 = [[NSString alloc] init];
      placeHex3 = [[NSString alloc] init];
-
-
+    
+    //For adding UIKit stuff ontop of Sparrow
+    UIView *view = Sparrow.currentController.view;
 
     
-   // didPutTower = false;
+    
+
+
     
     gamePieces = [[NSMutableArray alloc]init];
     
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"FourPlayerBackground@2x.png"];
+    
+   
+
+    
+     _background = [[SPImage alloc] initWithContentsOfFile:@"FourPlayerBackground@2x.png"];
     
     //necessary or else it gets placed off screen
-    background.x = 0;
-    background.y = 0;
+    _background.x = 0;
+    _background.y = 0;
     
     // used to handle movement and zooming of board
    // TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
-    _sheet = [[TouchSheet alloc] initWithQuad:background];
     
-    //Add the sheet to the contents so that it appears
-  //  [_contents addChild:sheet];
+    _sheet = [[TouchSheet alloc] initWithQuad:_background];
+    
     //Add the sheet to the contents so that it appears
     [_contents addChild:_sheet];
     
@@ -225,30 +236,10 @@
     
     [_contents addChild:_rackZone];
     
-    
-//    _test1 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_105.png"];
-//    _test1.x = 20;
-//    _test1.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-//    [_contents addChild:_test1];
-//    
-//    _test2 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_106.png"];
-//    _test2.x = _test1.width*1.4;
-//    _test2.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-//    [_contents addChild:_test2];
-//    
-//    _test3 = [[ScaledGamePiece alloc]initWithContentsOfFile:@"T_Desert_107.png"];
-//    _test3.x = (_test2.width*1.4) *1.7;
-//    _test3.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-//
-//    [_contents addChild:_test3];
-    
-
-
-    
     //Log button
     SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
     SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
-    logButton.x = _gameWidth - logButton.width * 1.5;
+    logButton.x = _gameWidth - logButton.width * 1.7;
     logButton.y = _gameHeight - logButton.height * 2.3;
     [_contents addChild:logButton];
     
@@ -256,13 +247,34 @@
     
     
     //Movement done button
-    SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
+    SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"done-button.png"];
     SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
-    moveDoneButton.x = _gameWidth - logButton.width * 1.5;
-    moveDoneButton.y = 0 + logButton.height;
+    moveDoneButton.x = _gameWidth - logButton.width * 2.3;
+    moveDoneButton.y = _gameHeight - _rackZone.height;
     [_contents addChild:moveDoneButton];
     
-    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+    SPTexture *menuTexture = [SPTexture textureWithContentsOfFile:@"menu.png"];
+    menuButton = [SPButton buttonWithUpState:menuTexture];
+    
+    menuButton.x = 10;
+    menuButton.y = 7;
+    
+    //When the menuButton is clicked move the current scene some number
+    //to the right to show the other scene. Clicking the button again will
+    //reset the location back to the starting point.
+    
+    
+    [menuButton addEventListener:@selector(moveRight:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
+    
+    [_contents addChild:menuButton];
+    
+    
+
+
+    
+    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -336,17 +348,33 @@
                                                  name:@"yourTurnToMoveInMovement"
                                                object:nil];
     
-    
-    
-    
-  
-    
-    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
-    _bowl.x = _gameWidth - _bowl.width;
-    _bowl.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-    [_contents addChild:_bowl];
-    [gamePieces addObject:_bowl];
+}
 
+
+-(void) moveRight:(SPTouchEvent*) event{
+    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    
+    
+    if (touches.count == 1) {
+        
+        if(isSideMenu){
+            
+            [_contents setX:panWidth];
+            //Display sideMenu and bring FourPlayerGame to front
+            [self addChild:[SideMenu getInstance]];
+        
+        } else {
+            
+            [_contents setX:0];
+            [self addChild:_contents];
+            
+        }
+
+        isSideMenu = !isSideMenu;
+    }
+   
+    
 }
 
 
@@ -551,7 +579,6 @@
     _phase = PLACEMENT;
     
     [_stateText setText:@"State: Placement"];
-    
     
 }
 
@@ -1105,38 +1132,9 @@
 }
 
 
-
-//
-//-(void) putTower:(SPTouchEvent*) event
-//{
-//    SPImage *img = (SPImage*)event.target;
-//    SPImage *newimg;
-//    bool didPutTower = true;
-//    
-//     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-//    
-//    if (touches.count == 1 && didPutTower)
-//    {
-//        NSLog(@"le tile click");
-//        
-//        newimg = [[SPImage alloc] initWithContentsOfFile:@"C_Fort_375.png"];
-//        newimg.scaleX = 0.3;
-//        newimg.scaleY = 0.3;
-//        
-//        
-//        //Place tower on a random spot
-//        newimg.x = fmod(arc4random(), (img.x - (img.x + 10))) + (img.x + 10);
-//        newimg.y = fmod(arc4random(), (img.y - (img.y + 15))) + (img.y + 15);
-//        NSLog(@"placed dat tower bb");
-//        
-//        [_sheet addChild:newimg];
-//        
-//        didPutTower = !didPutTower;
-//    }
-//}
-
 -(void) onTileClick: (SPTouchEvent*) event
 {
+   
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
     TileImage *img = (TileImage*) event.target;
@@ -1222,6 +1220,8 @@
                 if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
                     
                     SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    //Make a UIAlert asking user if they want to move a stack or an individual creature
                     
                     if (clicks.tapCount == 2){
                         NSLog(@"le double click");

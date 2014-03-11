@@ -147,7 +147,7 @@
                 }
                 
                 if (j == 1){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plains-tile.png"];
                     _hexTile.x = 133 - (_hexTile.width - 10);
                     _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
                     [_sheet addChild: _hexTile];
@@ -171,7 +171,7 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 5){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plains-tile.png"];
                     _hexTile.x = 133 - (_hexTile.width - 10);
                     _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
                     [_sheet addChild: _hexTile];
@@ -202,7 +202,7 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 3){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plains-tile.png"];
                     _hexTile.x = 133 + (_hexTile.width - 10);
                     _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + _hexTile.height /2 ;
                     [_sheet addChild: _hexTile];
@@ -265,7 +265,7 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 3 ){
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plains-tile.png"];
                     _hexTile.x = 133 - ((_hexTile.width * 2) - 20);
                     _hexTile.y = 20 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
                     [_sheet addChild: _hexTile];
@@ -372,7 +372,7 @@
                     [_sheet addChild: _hexTile];
                 }
                 if (j == 1) {
-                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plaines-tile.png"];
+                    _hexTile = [[SPImage alloc]initWithContentsOfFile:@"plains-tile.png"];
                     _hexTile.x = 133 + ((_hexTile.width * 3) - 30);
                     _hexTile.y = 45 + ((j  * (_hexTile.height + 4))) + (_hexTile.height) ;
                     [_sheet addChild: _hexTile];
