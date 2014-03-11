@@ -55,7 +55,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRecruitedAndPlacedThing" object:pRecruitment];
 }
 
--(void) handlerRecruitThingsPhaseOver:(Event *)event{
+-(void) handleRecruitThingsPhaseOver:(Event *)event{
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
     if(dataDic == nil){
         return;

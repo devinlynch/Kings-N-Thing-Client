@@ -16,6 +16,7 @@
 #import "Game.h"
 #import "GameState.h"
 #import "GameResource.h"
+#import "InGameServerAccess.h"
 
 @interface RecruitThings()
 - (void)setup;
@@ -191,6 +192,7 @@ static RecruitThings *instance;
     
     RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
     [recruitMenu setGamePiece:gp];
+    recruitMenu.isBuy = YES;
     [self showScene:recruitMenu];
 }
 
@@ -203,6 +205,7 @@ static RecruitThings *instance;
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
+    [[InGameServerAccess instance] recruitThingsPhaseReadyForNextPhase];
     NSLog(@"Back");
     _contents.visible = NO;
 }

@@ -119,7 +119,12 @@
 {
     NSLog(@"Go to board");
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitToBoard" object:gamePiece];
+    if (isBuy) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitToBoardBought" object:gamePiece];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitToBoardFree" object:gamePiece];
+    }
+    
     
     [[RecruitThings getInstance] setVisible:NO];
     _contents.visible = NO;
