@@ -16,6 +16,7 @@
 #import "Movement.h"
 #import "Combat.h"
 #import "RecruitThings.h"
+#import "MessageHandler.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -37,7 +38,7 @@ void onUncaughtException(NSException *exception)
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
 
-    /*_viewController = [[SPViewController alloc] init];
+   /* _viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
     
@@ -118,6 +119,25 @@ void onUncaughtException(NSException *exception)
         [_window makeKeyAndVisible];
         
     });
+}
+
+- (void) startNewMessageTimer
+{
+    newMessageTimer = [NSTimer scheduledTimerWithTimeInterval:5
+                                                         target:self
+                                                       selector:@selector(getNewMessages:)
+                                                       userInfo:nil
+                                                        repeats:YES];
+}
+
+- (void)stopNewMessageTimer
+{
+    if(newMessageTimer != nil)
+        [newMessageTimer invalidate];
+}
+
+-(void) getNewMessages{
+    [MessageHandler handleGetNewMessage];
 }
 
 @end

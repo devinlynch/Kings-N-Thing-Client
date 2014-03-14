@@ -12,6 +12,7 @@
 #import "ServerResponseMessage.h"
 #import "GameMessage.h"
 #import "ClientReactor.h"
+#import "Game.h"
 
 @implementation MessageHandler
 
@@ -20,7 +21,6 @@
 }
 
 static NSMutableSet* receivedMessageIds;
-
 +(NSMutableSet*) receivedMessageIdsInstance{
     if(receivedMessageIds == nil)
         receivedMessageIds = [[NSMutableSet alloc] init];
@@ -40,12 +40,14 @@ static NSMutableSet* receivedMessageIds;
     
     if(responseMessage == nil) {
         // TODO: How do we want to handle a bad reponse?
-    }
-    
-    if([[MessageHandler receivedMessageIdsInstance] containsObject:responseMessage.messageId]) {
-        NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
         return;
     }
+    
+    /*NSMutableSet *receivedMessageIds =[MessageHandler receivedMessageIdsInstance];
+    if([receivedMessageIds containsObject:responseMessage.messageId]) {
+        NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
+        return;
+    }*/
     
     Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
     [e setRequestParams:params];
@@ -67,14 +69,25 @@ static NSMutableSet* receivedMessageIds;
         responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
     }
     
-    if([[MessageHandler receivedMessageIdsInstance] containsObject:responseMessage.messageId]) {
+    /*NSMutableSet *receivedMessageIds =[MessageHandler receivedMessageIdsInstance];
+    if([receivedMessageIds containsObject:responseMessage.messageId]) {
         NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
         return;
-    }
+    }*/
 
     Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
     [e setReceivedMessageType:UDP_MESSAGE_TYPE];
     [[ClientReactor instance] dispatch:e];
+}
+
++(void) handleGetNewMessage {
+    if([Game currentGame] != nil) {
+        [self getNewInGameMessages];
+    }
+}
+
++(void) getNewInGameMessages{
+    
 }
 
 

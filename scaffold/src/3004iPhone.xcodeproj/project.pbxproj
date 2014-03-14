@@ -180,6 +180,7 @@
 		99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2918932E130048CEA0 /* MainMenuViewController.m */; };
 		99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B8301891E47500CAAD3B /* Storyboard.storyboard */; };
 		99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83618923F3100CAAD3B /* Default-568h@2x.png */; };
+		99ED9D7718D39DE500CB4A37 /* GameChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
 		99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */; };
@@ -690,6 +691,8 @@
 		99E74F2918932E130048CEA0 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		99E8B8301891E47500CAAD3B /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		99E8B83618923F3100CAAD3B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		99ED9D7518D39DE500CB4A37 /* GameChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameChatMessage.h; sourceTree = "<group>"; };
+		99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameChatMessage.m; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		99F14FB918838ADF00872890 /* UDPMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPMessageReceiver.h; sourceTree = "<group>"; };
@@ -1055,6 +1058,8 @@
 				41B01C041898321D00CA876D /* Move.m */,
 				41BD129D18A45209008C6E96 /* GameResource.h */,
 				41BD129E18A45209008C6E96 /* GameResource.m */,
+				99ED9D7518D39DE500CB4A37 /* GameChatMessage.h */,
+				99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2384,6 +2389,7 @@
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				99ED9D7718D39DE500CB4A37 /* GameChatMessage.m in Sources */,
 				DEA6351118A0A0620031BF8C /* GameBoard.m in Sources */,
 				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,
 				4131C2F3188770B6009775EA /* FortLevel.m in Sources */,

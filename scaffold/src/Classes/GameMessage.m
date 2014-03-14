@@ -22,7 +22,8 @@
 }
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
-    GameMessage *msg = [[GameMessage alloc] initWithType:[json objectForKey:@"type"] andDictionnary:json];
+    self = [self initWithType:[json objectForKey:@"type"] andDictionnary:json];
+    return self;
 }
 
 @end

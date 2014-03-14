@@ -46,7 +46,7 @@ static ServerAccess *instance;
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.43.251:8080/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.0.19:8080/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
@@ -160,10 +160,14 @@ static ServerAccess *instance;
     }];
 }
 
+-(void) getNewMessages{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/newMessages" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error leaving game");
+    } andSuccessCall:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+    }];
+}
 
-/**
- Phases
- */
 
 
 

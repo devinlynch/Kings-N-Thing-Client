@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.27.TYPE</key>
+	<string>batchOfChatMessages</string>
+	<key>EVENT.27.METHOD</key>
+	<string>handleBatchChatMessages:</string>
+	<key>EVENT.27.CLASS</key>
+	<string>GeneralGameEventHandler</string>
+	<key>EVENT.26.TYPE</key>
+	<string>chatMessage</string>
+	<key>EVENT.26.CLASS</key>
+	<string>GeneralGameEventHandler</string>
+	<key>EVENT.26.METHOD</key>
+	<string>handleChatMessage:</string>
 	<key>EVENT.25.METHOD</key>
 	<string>handleGameOver:</string>
 	<key>EVENT.25.TYPE</key>

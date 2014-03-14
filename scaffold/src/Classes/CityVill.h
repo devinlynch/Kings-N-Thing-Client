@@ -9,7 +9,7 @@
 #import "SpecialIncomeCounters.h"
 
 @interface CityVill : SpecialIncomeCounters{
-    int *_combatValue;
+    NSInteger *_combatValue;
     //NSString *_fileName;
 }
 

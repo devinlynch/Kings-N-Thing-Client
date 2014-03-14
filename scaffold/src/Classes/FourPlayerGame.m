@@ -26,6 +26,7 @@
 #import "Terrain.h"
 #import "RecruitThings.h"
 #import "InGameServerAccess.h"
+#import "ServerAccess.h"
 
 
 @interface FourPlayerGame ()
@@ -260,7 +261,6 @@
     moveDoneButton.x = _gameWidth - logButton.width * 1.5;
     moveDoneButton.y = 0 + logButton.height;
     [_contents addChild:moveDoneButton];
-    
     [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
