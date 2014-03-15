@@ -34,4 +34,8 @@ typedef enum HttpRequestMethods {
 -(void) unregisterFromLobby;
 -(void) getLobbyState: (NSString*) gameLobbyId;
 -(void) leaveGame;
+-(void) getNewMessagesFrom: (NSDate*) date;
+-(void) getQueuedMessage;
+-(void) tellServerWeGotMessage: (NSString*) messageId;
+
 @end

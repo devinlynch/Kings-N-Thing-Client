@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.28.CLASS</key>
+	<string>MessagesEventHandler</string>
+	<key>EVENT.28.METHOD</key>
+	<string>handleNewMessages:</string>
+	<key>EVENT.28.TYPE</key>
+	<string>newMessages</string>
 	<key>EVENT.27.TYPE</key>
 	<string>batchOfChatMessages</string>
 	<key>EVENT.27.METHOD</key>

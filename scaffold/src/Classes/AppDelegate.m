@@ -61,7 +61,10 @@ void onUncaughtException(NSException *exception)
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];
+   // [udpMessageReceiver startListeningOnPort:3004];
+    
+    [MessageHandler startMessageHandlerQueue];
+    [self startNewMessageTimer];
     
     NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
     
@@ -136,8 +139,10 @@ void onUncaughtException(NSException *exception)
         [newMessageTimer invalidate];
 }
 
--(void) getNewMessages{
+-(void) getNewMessages:(NSTimer*)timer{
     [MessageHandler handleGetNewMessage];
 }
+     
+
 
 @end

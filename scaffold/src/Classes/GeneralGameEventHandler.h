@@ -11,5 +11,7 @@
 @interface GeneralGameEventHandler : NSObject
 
 -(void) handleGameOver:(Event*) event;
+-(void) handleBatchChatMessages: (Event*) event;
+-(void) handleChatMessage: (Event*) event;
 
 @end

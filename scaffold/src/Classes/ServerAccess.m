@@ -160,11 +160,29 @@ static ServerAccess *instance;
     }];
 }
 
--(void) getNewMessages{
-    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/newMessages" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
-        NSLog(@"Error leaving game");
+-(void) getNewMessagesFrom: (NSDate*) date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss.SSS"];
+    
+    NSString *lastDate = [dateFormatter stringFromDate:date];
+    NSLog(@"Getting messages since  %@", lastDate);
+    
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/newMessages" withParams:[[NSMutableDictionary alloc] initWithObjectsAndKeys:lastDate, @"lastMessageDate", nil] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error getting new messages");
+    } andSuccessCall:nil];
+}
+
+-(void) getQueuedMessage{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/queuedMessages" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error getting new messages");
+    } andSuccessCall:nil];
+}
+
+-(void) tellServerWeGotMessage: (NSString*) messageId {
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/gotMessage" withParams:[[NSMutableDictionary alloc] initWithObjectsAndKeys: messageId, @"messageId", nil] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error telling server we got new message");
     } andSuccessCall:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+        NSLog(@"Told server that we got message with id [%@]", messageId);
     }];
 }
 
