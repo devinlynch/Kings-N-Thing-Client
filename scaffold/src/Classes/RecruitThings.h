@@ -12,5 +12,6 @@
 @interface RecruitThings : SPSprite
 
 +(RecruitThings*) getInstance;
-@property NSArray *thingsToRecruit;
+-(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit;
+
 @end
