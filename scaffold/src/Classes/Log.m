@@ -56,7 +56,7 @@
     
     
     SPImage *background = [[SPImage alloc]
-                           initWithContentsOfFile:@"infoBackground-trans@2x.png"];
+                           initWithContentsOfFile:@"infoBackground@2x.png"];
     background.scaleX = 0.8;
     background.scaleY = 0.8;
     background.x = 30;
@@ -65,13 +65,13 @@
     [_contents addChild:background];
     
     
-    SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"back.png"];
+    SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"close-button-log.png"];
     SPButton * button3 = [SPButton buttonWithUpState:buttonTexture3];
     
-    button3.scaleY = 0.8;
-    button3.scaleX = 0.8;
-    button3.x = 320 / 2 - button3.width /2.5;
-    button3.y = 410;
+    button3.scaleY = 0.3;
+    button3.scaleX = 0.3;
+    button3.x = _gameWidth - button3.width /1.5;
+    button3.y = 55;
     
     [_contents addChild:button3];
     
@@ -132,17 +132,17 @@
     
     
     //Make text field to add in scrollView
-    UITextView *_textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 15, 230, 250)];
+    UITextView *_textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 10, 230, 380)];
     _textView.backgroundColor= [UIColor clearColor];
     _textView.editable = NO;
-    _textView.textColor = [UIColor blackColor];
+    _textView.textColor = [UIColor whiteColor];
     
     //Seperate each line
     _textView.text = [log componentsJoinedByString:@"\n"];
    
     
     //Add scroll to scene
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(60, 100, 300, 250)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(60, 80, 300, 480)];
     _scrollView.pagingEnabled = NO;
     _scrollView.showsVerticalScrollIndicator = YES;
     _scrollView.hidden = NO;

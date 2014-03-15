@@ -191,6 +191,7 @@
 		DE07B81818D4156E00A19DCB /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81718D4156E00A19DCB /* title@2x.png */; };
 		DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81918D41B5100A19DCB /* gamelog@2x.png */; };
 		DE07B81C18D4BD8C00A19DCB /* team@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81B18D4BD8C00A19DCB /* team@2x.png */; };
+		DE07B81E18D4D33D00A19DCB /* close-button-log.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81D18D4D33D00A19DCB /* close-button-log.png */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
 		DE0C71071624178400357F6E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71061624178400357F6E /* Default-Portrait~ipad.png */; };
@@ -741,6 +742,7 @@
 		DE07B81718D4156E00A19DCB /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
 		DE07B81918D41B5100A19DCB /* gamelog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelog@2x.png"; sourceTree = "<group>"; };
 		DE07B81B18D4BD8C00A19DCB /* team@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "team@2x.png"; sourceTree = "<group>"; };
+		DE07B81D18D4D33D00A19DCB /* close-button-log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button-log.png"; sourceTree = "<group>"; };
 		DE0C71001624177000357F6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE0C71021624177500357F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE0C71061624178400357F6E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -1903,6 +1905,7 @@
 		DEF9FF2418A8033C0057FAEB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				DE07B81D18D4D33D00A19DCB /* close-button-log.png */,
 				DEC099AC18CE403900487534 /* retreat.png */,
 				DEC099AD18CE403900487534 /* rolldice.png */,
 				DE48620918A97A3A00272B79 /* InfoButton@2x.png */,
@@ -2231,6 +2234,7 @@
 				DE115963162320F800A25086 /* background@2x.jpg in Resources */,
 				DEF9FEA018A7DAAA0057FAEB /* T_Forest_091.png in Resources */,
 				DEF9FF7F18A824E20057FAEB /* red-forest-tile.png in Resources */,
+				DE07B81E18D4D33D00A19DCB /* close-button-log.png in Resources */,
 				DE0C71011624177000357F6E /* Default.png in Resources */,
 				DEF9FEBD18A7DAAA0057FAEB /* T_Jungle_001.png in Resources */,
 				41BD140418A75244008C6E96 /* T_Back.png in Resources */,
