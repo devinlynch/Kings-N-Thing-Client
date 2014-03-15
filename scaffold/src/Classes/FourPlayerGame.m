@@ -126,8 +126,7 @@
      placeHex3 = [[NSString alloc] init];
     
     //For adding UIKit stuff ontop of Sparrow
-    UIView *view = Sparrow.currentController.view;
-
+   
     
     
 
@@ -237,19 +236,19 @@
     [_contents addChild:_rackZone];
     
     //Log button
-    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
-    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
-    logButton.x = _gameWidth - logButton.width * 1.7;
-    logButton.y = _gameHeight - logButton.height * 2.3;
-    [_contents addChild:logButton];
-    
-    [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    
+//    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
+//    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
+//    logButton.x = _gameWidth - logButton.width * 1.7;
+//    logButton.y = _gameHeight - logButton.height * 2.3;
+//    [_contents addChild:logButton];
+//    
+//    [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+//    
     
     //Movement done button
     SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"done-button.png"];
     SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
-    moveDoneButton.x = _gameWidth - logButton.width * 2.3;
+    moveDoneButton.x = _gameWidth - 32 * 2.3;
     moveDoneButton.y = _gameHeight - _rackZone.height;
     [_contents addChild:moveDoneButton];
     
@@ -274,7 +273,7 @@
 
 
     
-    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -360,8 +359,9 @@
         
         if(isSideMenu){
             
+            //Display sideMenu and move fourPlayerGame
+
             [_contents setX:panWidth];
-            //Display sideMenu and bring FourPlayerGame to front
             [self addChild:[SideMenu getInstance]];
         
         } else {
@@ -376,29 +376,6 @@
    
     
 }
-
-
--(void) onLogTriggered:(SPTouchEvent*)event{
-    
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    
-    if (touches.count == 1)
-    {
-        
-        NSLog(@"TO LOOOOOOOGS");
-        [self showLogMenu];
-        
-    }
-
-
-}
-
-
--(void)showLogMenu{
-    Log *log = [[Log alloc]init];
-    [self showScene:log];
-}
-
 
 
 

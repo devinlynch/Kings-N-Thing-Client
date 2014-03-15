@@ -18,6 +18,8 @@
 #import "RecruitThings.h"
 #import "TileMenu.h"
 #import "SideMenu.h"
+#import "GoldCollection.h"
+
 
 void onUncaughtException(NSException *exception)
 {
@@ -33,6 +35,7 @@ void onUncaughtException(NSException *exception)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
    NSSetUncaughtExceptionHandler(&onUncaughtException);
    
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

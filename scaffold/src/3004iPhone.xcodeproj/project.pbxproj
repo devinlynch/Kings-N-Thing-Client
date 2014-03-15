@@ -186,6 +186,11 @@
 		99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6EA1894399300E4A788 /* GameLobby.m */; };
 		99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */; };
 		DE0031EB18C678A5008E2CBA /* infoBackground-trans@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0031EA18C678A5008E2CBA /* infoBackground-trans@2x.png */; };
+		DE07B81218D4030700A19DCB /* done-button.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81118D4030700A19DCB /* done-button.png */; };
+		DE07B81618D40FF000A19DCB /* chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81518D40FF000A19DCB /* chat@2x.png */; };
+		DE07B81818D4156E00A19DCB /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81718D4156E00A19DCB /* title@2x.png */; };
+		DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81918D41B5100A19DCB /* gamelog@2x.png */; };
+		DE07B81C18D4BD8C00A19DCB /* team@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81B18D4BD8C00A19DCB /* team@2x.png */; };
 		DE0C71011624177000357F6E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71001624177000357F6E /* Default.png */; };
 		DE0C71031624177500357F6E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71021624177500357F6E /* Default@2x.png */; };
 		DE0C71071624178400357F6E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0C71061624178400357F6E /* Default-Portrait~ipad.png */; };
@@ -235,7 +240,6 @@
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		DEB4C79718C7F4AA00AA8DAF /* gameMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4C79618C7F4AA00AA8DAF /* gameMenu.png */; };
 		DEB4C79A18C7F74E00AA8DAF /* gameMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4C79918C7F74E00AA8DAF /* gameMenu@2x.png */; };
-		DEC099AA18CE29F500487534 /* done-button.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC099A918CE29F500487534 /* done-button.png */; };
 		DEC099AE18CE403900487534 /* retreat.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC099AC18CE403900487534 /* retreat.png */; };
 		DEC099AF18CE403900487534 /* rolldice.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC099AD18CE403900487534 /* rolldice.png */; };
 		DEC099B418CE74B100487534 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC099B318CE74B100487534 /* menu.png */; };
@@ -732,6 +736,11 @@
 		99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindLobbyViewController.h; sourceTree = "<group>"; };
 		99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindLobbyViewController.m; sourceTree = "<group>"; };
 		DE0031EA18C678A5008E2CBA /* infoBackground-trans@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoBackground-trans@2x.png"; sourceTree = "<group>"; };
+		DE07B81118D4030700A19DCB /* done-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done-button.png"; sourceTree = "<group>"; };
+		DE07B81518D40FF000A19DCB /* chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat@2x.png"; sourceTree = "<group>"; };
+		DE07B81718D4156E00A19DCB /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
+		DE07B81918D41B5100A19DCB /* gamelog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelog@2x.png"; sourceTree = "<group>"; };
+		DE07B81B18D4BD8C00A19DCB /* team@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "team@2x.png"; sourceTree = "<group>"; };
 		DE0C71001624177000357F6E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE0C71021624177500357F6E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE0C71061624178400357F6E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -788,7 +797,6 @@
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DEB4C79618C7F4AA00AA8DAF /* gameMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameMenu.png; sourceTree = "<group>"; };
 		DEB4C79918C7F74E00AA8DAF /* gameMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameMenu@2x.png"; sourceTree = "<group>"; };
-		DEC099A918CE29F500487534 /* done-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done-button.png"; path = "../../../../done-button.png"; sourceTree = "<group>"; };
 		DEC099AC18CE403900487534 /* retreat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retreat.png; sourceTree = "<group>"; };
 		DEC099AD18CE403900487534 /* rolldice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rolldice.png; sourceTree = "<group>"; };
 		DEC099B318CE74B100487534 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
@@ -1263,6 +1271,7 @@
 				41BD131E18A75243008C6E96 /* landtiles */,
 				DEF9FF0F18A802300057FAEB /* TileMenus */,
 				41BD132A18A75243008C6E96 /* masterGameBoard.png */,
+				DE07B81418D40FF000A19DCB /* Side menu images */,
 				41BD132918A75243008C6E96 /* mainMenuBackground.png */,
 				41BD132B18A75243008C6E96 /* Rack.png */,
 				41BD12A818A75243008C6E96 /* atlas.png */,
@@ -1477,6 +1486,18 @@
 			name = "NSNotification Objects";
 			sourceTree = "<group>";
 		};
+		DE07B81418D40FF000A19DCB /* Side menu images */ = {
+			isa = PBXGroup;
+			children = (
+				DE07B81B18D4BD8C00A19DCB /* team@2x.png */,
+				DE07B81718D4156E00A19DCB /* title@2x.png */,
+				DE07B81918D41B5100A19DCB /* gamelog@2x.png */,
+				DE07B81518D40FF000A19DCB /* chat@2x.png */,
+			);
+			name = "Side menu images";
+			path = "../Side menu images";
+			sourceTree = "<group>";
+		};
 		DE0C71121624180300357F6E /* system */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,7 +1563,7 @@
 				DE48621E18A9A60E00272B79 /* bg_1.png */,
 				DE48621F18A9A60E00272B79 /* bg_1@2x.png */,
 				DE48622018A9A60E00272B79 /* Default-568h@2x.png */,
-				DEC099A918CE29F500487534 /* done-button.png */,
+				DE07B81118D4030700A19DCB /* done-button.png */,
 				41BD12A718A75243008C6E96 /* 1x */,
 				DE4F80E214E1541400655D44 /* 2x */,
 			);
@@ -2163,6 +2184,7 @@
 				DEF9FF0318A7DAAA0057FAEB /* T_Swamp_085.png in Resources */,
 				41BD142518A75244008C6E96 /* T_Income_367.png in Resources */,
 				DEF9FE8D18A7DAAA0057FAEB /* T_Desert_109.png in Resources */,
+				DE07B81218D4030700A19DCB /* done-button.png in Resources */,
 				41BD13E718A75244008C6E96 /* G_20.png in Resources */,
 				DEF9FEC918A7DAAA0057FAEB /* T_Mountains_034.png in Resources */,
 				DEF9FEDD18A7DAAA0057FAEB /* T_Plains_016.png in Resources */,
@@ -2235,6 +2257,7 @@
 				41BD142718A75244008C6E96 /* T_Income_369.png in Resources */,
 				DEF9FEA418A7DAAA0057FAEB /* T_Forest_095.png in Resources */,
 				DEF9FC1F18A767590057FAEB /* DarkZone2.png in Resources */,
+				DE07B81618D40FF000A19DCB /* chat@2x.png in Resources */,
 				DEF9FEE818A7DAAA0057FAEB /* T_Plains_027.png in Resources */,
 				41BD143318A75244008C6E96 /* mainMenuBackground.png in Resources */,
 				41BD141918A75244008C6E96 /* T_Event_355.png in Resources */,
@@ -2250,6 +2273,7 @@
 				DEF9FEB418A7DAAA0057FAEB /* T_Frozen_Waste_057.png in Resources */,
 				DEF9FEE918A7DAAA0057FAEB /* T_Plains_028.png in Resources */,
 				41BD13B818A75244008C6E96 /* besbuton.png in Resources */,
+				DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */,
 				99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */,
 				41BD13C818A75244008C6E96 /* goldCollection.png in Resources */,
 				DEF9FEF018A7DAAA0057FAEB /* T_Swamp_066.png in Resources */,
@@ -2267,6 +2291,7 @@
 				DEF9FEFB18A7DAAA0057FAEB /* T_Swamp_077.png in Resources */,
 				DEF9FEEA18A7DAAA0057FAEB /* T_Plains_029.png in Resources */,
 				DEF9FEBB18A7DAAA0057FAEB /* T_Frozen_Waste_064.png in Resources */,
+				DE07B81818D4156E00A19DCB /* title@2x.png in Resources */,
 				DEF9FEAB18A7DAAA0057FAEB /* T_Forest_102.png in Resources */,
 				DEF9FEE618A7DAAA0057FAEB /* T_Plains_025.png in Resources */,
 				DEF9FF0018A7DAAA0057FAEB /* T_Swamp_082.png in Resources */,
@@ -2285,7 +2310,6 @@
 				DE0C71071624178400357F6E /* Default-Portrait~ipad.png in Resources */,
 				DEF9FF8418A824E20057FAEB /* red-swamp-tile.png in Resources */,
 				DE0C71091624179300357F6E /* Default-Landscape~ipad.png in Resources */,
-				DEC099AA18CE29F500487534 /* done-button.png in Resources */,
 				DE0C710B162417A600357F6E /* Icon.png in Resources */,
 				DEF9FEED18A7DAAA0057FAEB /* T_Plains_032.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
@@ -2386,6 +2410,7 @@
 				41BD141518A75244008C6E96 /* T_Event_351.png in Resources */,
 				DE48620F18A981D900272B79 /* SmallButton@2x.png in Resources */,
 				DEF9FEF918A7DAAA0057FAEB /* T_Swamp_075.png in Resources */,
+				DE07B81C18D4BD8C00A19DCB /* team@2x.png in Resources */,
 				DEF9FE8A18A7DAAA0057FAEB /* T_Desert_106.png in Resources */,
 				DEF9FE9D18A7DAAA0057FAEB /* T_Forest_088.png in Resources */,
 			);

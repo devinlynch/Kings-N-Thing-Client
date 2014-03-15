@@ -9,7 +9,10 @@
 #import "SPSprite.h"
 #import <UIKit/UIKit.h>
 
-@interface SideMenu : SPSprite
+@interface SideMenu : SPSprite{
+ 
+
+}
 
 +(SideMenu*) getInstance;
 

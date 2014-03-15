@@ -25,6 +25,7 @@
     
     //Scrollingzzszsszsz
     UIScrollView *_scrollView;
+    UIView *view;
     
 }
 
@@ -49,7 +50,7 @@
     _contents = [SPSprite sprite];
     
     //To add UIKit stuffs to sparrow
-    UIView *view = Sparrow.currentController.view;
+    view = Sparrow.currentController.view;
 
     [self addChild:_contents];
     
@@ -161,7 +162,7 @@
     _contents.visible = NO;
     
     //Hide scrollView
-    _scrollView.hidden = YES;
+    _scrollView.hidden = YES; //[view removeFromSuperview];
     
 }
 @end

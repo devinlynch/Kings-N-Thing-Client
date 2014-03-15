@@ -49,12 +49,12 @@
     if (touches.count == 1)
     {                
         // one finger touching -> move
-        SPTouch *touch = touches[0];
-        SPPoint *movement = [touch movementInSpace:self.parent];
+      //  SPTouch *touch = touches[0];
+      //  SPPoint *movement = [touch movementInSpace:self.parent];
 
        
-        self.x += movement.x;
-        self.y += movement.y;
+        //self.x += movement.x;
+        //self.y += movement.y;
         
         
 
