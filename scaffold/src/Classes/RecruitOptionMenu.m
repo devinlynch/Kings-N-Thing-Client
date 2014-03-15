@@ -8,7 +8,6 @@
 
 #import "RecruitOptionMenu.h"
 #import "RecruitThings.h"
-#import "GameBoard.h"
 #import "GamePiece.h"
 #import "Game.h"
 #import "GameState.h"

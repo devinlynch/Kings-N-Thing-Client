@@ -85,15 +85,23 @@
         
     }
     
-    SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"back.png"];
-    SPButton * button3 = [SPButton buttonWithUpState:buttonTexture3];
+    SPTexture *backButtonTexture= [SPTexture textureWithContentsOfFile:@"back.png"];
+    SPButton *backButton = [SPButton buttonWithUpState:backButtonTexture];
     
-    button3.x = 320 / 2 - button3.width /2;
-    button3.y = 410;
+    backButton.x = 320 / 2 - backButton.width /2;
+    backButton.y = 410;
     
-    [_contents addChild:button3];
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
+    SPButton *createStackButton = [SPButton buttonWithUpState:buttonTexture text:@"Create Stack"];
     
-    [button3 addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    createStackButton.x = 320 / 2 - createStackButton.width /2;
+    createStackButton.y = 410 - createStackButton.height + 5;
+    
+    [_contents addChild:createStackButton];
+    [_contents addChild:backButton];
+
+    
+    [backButton addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
 
 
 

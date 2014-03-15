@@ -559,7 +559,7 @@
     [[GoldCollection getInstance] setUsername:username];
     
     [_contents addChild:[GoldCollection getInstance]];
-    
+    [[GoldCollection getInstance] setVisible:YES];
 }
 
 -(void) collectedGold: (NSNotification*) notif{
