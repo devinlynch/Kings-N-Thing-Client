@@ -7,30 +7,31 @@
 //
 
 #import "GameChatMessage.h"
+#import "Game.h"
 
 @implementation GameChatMessage
 
 @synthesize gameChatMessageId = _gameChatMessageId;
 @synthesize createdDate = _createdDate;
 @synthesize message = _message;
+@synthesize user = _user;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {
         [self setGameChatMessageId:[json objectForKey:@"gameChatMessageId"]];
-        [self setMessage:@"message"];
+        [self setMessage:[json objectForKey:@"message"]];
         
-        if([json objectForKey:@"createdDate"] != nil) {
-            
-            NSString *ts = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
-            NSInteger i = ts.integerValue;
-            
-            NSTimeInterval timestamp = i;
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
-            
-            [self setCreatedDate:date];
+        NSNumber* ts = [json objectForKey:@"createdDate"];
+        if(ts != nil){
+            double seconds = ts.integerValue/1000.0;
+            [self setCreatedDate:[NSDate dateWithTimeIntervalSince1970:seconds]];
         }
+        
+        User *u = [[Game currentGame] getUserByUserId:[json objectForKey:@"userId"]];
+        [self setUser: u];
     }
+    
     return self;
 }
 

@@ -30,32 +30,36 @@ static NSMutableSet* receivedMessageIds;
 }
 
 +(void) handleHttpResponseJSONData: (NSData*) data delegate: (id) delegate requestParams: (NSDictionary*) params{
-    
-    NSDictionary *json = [Utils dictionaryFromJSONData:data];
-    
-    Message *responseMessage;
-    if([json objectForKey:@"responseStatus"] == nil){
-        responseMessage = [[GameMessage alloc] initFromJSON:json];
-    } else{
-        responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
-    }
-    
-    if(responseMessage == nil) {
-        // TODO: How do we want to handle a bad reponse?
-        return;
-    }
-    
-    NSMutableSet *receivedMessageIds =[MessageHandler receivedMessageIdsInstance];
-    if([receivedMessageIds containsObject:responseMessage.messageId]) {
-        NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
-        return;
-    }
+    @try {
+        NSDictionary *json = [Utils dictionaryFromJSONData:data];
         
-    Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
-    [e setRequestParams:params];
-    [e setDelegateListener:delegate];
-    [e setReceivedMessageType:HTTP_MESSAGE_TYPE];
-    [[ClientReactor instance] dispatch:e];
+        Message *responseMessage;
+        if([json objectForKey:@"responseStatus"] == nil){
+            responseMessage = [[GameMessage alloc] initFromJSON:json];
+        } else{
+            responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
+        }
+        
+        if(responseMessage == nil) {
+            // TODO: How do we want to handle a bad reponse?
+            return;
+        }
+        
+        NSMutableSet *receivedMessageIds =[MessageHandler receivedMessageIdsInstance];
+        if([receivedMessageIds containsObject:responseMessage.messageId]) {
+            NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
+            return;
+        }
+            
+        Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
+        [e setRequestParams:params];
+        [e setDelegateListener:delegate];
+        [e setReceivedMessageType:HTTP_MESSAGE_TYPE];
+        [[ClientReactor instance] dispatch:e];
+        
+    } @catch (NSException *exception) {
+        NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
+    }
 }
 
 +(void) handleUDPReceivedJSONData: (NSData*) data{
@@ -65,30 +69,35 @@ static NSMutableSet* receivedMessageIds;
 
 +(void) handleMessageFromMap: (NSDictionary*) json{
     Message *responseMessage;
-    
-    if([json objectForKey:@"responseStatus"] == nil){
-        responseMessage = [[GameMessage alloc] initFromJSON:json];
-    } else{
-        responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
+    @try {
+        if([json objectForKey:@"responseStatus"] == nil){
+            responseMessage = [[GameMessage alloc] initFromJSON:json];
+        } else{
+            responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
+        }
+        
+        NSMutableSet *receivedMessageIds =[MessageHandler receivedMessageIdsInstance];
+        if([receivedMessageIds containsObject:responseMessage.messageId]) {
+            NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
+            return;
+        }
+        
+        [self didHandleMessage:responseMessage];
+        
+        Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
+        [e setReceivedMessageType:UDP_MESSAGE_TYPE];
+        [[ClientReactor instance] dispatch:e];
     }
-    
-    NSMutableSet *receivedMessageIds =[MessageHandler receivedMessageIdsInstance];
-    if([receivedMessageIds containsObject:responseMessage.messageId]) {
-        NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
-        return;
+    @catch (NSException *exception) {
+        NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
     }
-    
-    [self didHandleMessage:responseMessage];
-    
-    Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
-    [e setReceivedMessageType:UDP_MESSAGE_TYPE];
-    [[ClientReactor instance] dispatch:e];
-
 }
 
 +(void) didHandleMessage: (Message*) message{
-    [[MessageHandler receivedMessageIdsInstance] addObject:message.messageId];
-    [[ServerAccess instance] tellServerWeGotMessage:message.messageId];
+    if(message.messageId){
+        [[MessageHandler receivedMessageIdsInstance] addObject:message.messageId];
+        [[ServerAccess instance] tellServerWeGotMessage:message.messageId];
+    }
     
 }
 

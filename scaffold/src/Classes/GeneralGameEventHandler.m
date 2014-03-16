@@ -25,8 +25,10 @@
         NSLog(@"Handling chat message");
         ServerMessageData *data = event.msg.data;
         
-        GameChatMessage * chatMsg = [[GameChatMessage alloc] initFromJSON:data.map];
-        NSLog(@"Got a chat msg with with id [%@] from date [%@] and message is [%@]", chatMsg.gameChatMessageId, chatMsg.createdDate, chatMsg.message);
+        if([data.map valueForKey:@"message"] != nil){
+            NSDictionary *dic = [data.map valueForKey:@"message"];
+            [self addChatMessageFromDictionary:dic];
+        }
     }
 }
 
@@ -38,10 +40,15 @@
         NSArray *messages = [data.map objectForKey:@"messages"];
         
         for(NSDictionary *dic in messages) {
-            GameChatMessage * chatMsg = [[GameChatMessage alloc] initFromJSON:dic];
-            NSLog(@"Got a chat msg with with id [%@] from date [%@] and message is [%@]", chatMsg.gameChatMessageId, chatMsg.createdDate, chatMsg.message);
+            [self addChatMessageFromDictionary:dic];
         }
     }
+}
+
+-(void) addChatMessageFromDictionary: (NSDictionary*) dic{
+    GameChatMessage * chatMsg = [[GameChatMessage alloc] initFromJSON:dic];
+    [[Game currentGame] addChatMessage:chatMsg];
+    NSLog(@"Got a chat msg with with id [%@] from date [%@] and message is [%@]", chatMsg.gameChatMessageId, chatMsg.createdDate, chatMsg.message);
 }
 
 @end
