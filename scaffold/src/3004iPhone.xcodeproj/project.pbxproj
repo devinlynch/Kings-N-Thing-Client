@@ -174,11 +174,9 @@
 		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
 		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
 		99E74F1C1892D3FB0048CEA0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */; };
-		99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E74F2218931A640048CEA0 /* bg_1@2x.png */; };
 		99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2618931B130048CEA0 /* NavigationViewController.m */; };
 		99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2918932E130048CEA0 /* MainMenuViewController.m */; };
 		99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B8301891E47500CAAD3B /* Storyboard.storyboard */; };
-		99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83618923F3100CAAD3B /* Default-568h@2x.png */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
 		99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */; };
@@ -209,7 +207,6 @@
 		DE3F097811B7BABD009D4DB0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
 		DE48620B18A97A3A00272B79 /* InfoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48620918A97A3A00272B79 /* InfoButton@2x.png */; };
 		DE48620C18A97A3A00272B79 /* SmallButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48620A18A97A3A00272B79 /* SmallButton@2x.png */; };
-		DE48620F18A981D900272B79 /* SmallButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48620E18A981D900272B79 /* SmallButton@2x.png */; };
 		DE48621418A9868B00272B79 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = DE48621318A9868B00272B79 /* Log.m */; };
 		DE48621618A989A100272B79 /* infoBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48621518A989A100272B79 /* infoBackground@2x.png */; };
 		DE48622118A9A60E00272B79 /* bg_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48621E18A9A60E00272B79 /* bg_1.png */; };
@@ -248,7 +245,6 @@
 		DEC099B418CE74B100487534 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC099B318CE74B100487534 /* menu.png */; };
 		DEC099B718CE783900487534 /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC099B618CE783900487534 /* SideMenu.m */; };
 		DEC099B918CE790300487534 /* sideMenuBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC099B818CE790300487534 /* sideMenuBackground@2x.png */; };
-		DEDC4BC818C556F600CCBE78 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BC718C556F500CCBE78 /* bg.png */; };
 		DEDC4BD618C5575800CCBE78 /* btn_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BCA18C5575800CCBE78 /* btn_sel.png */; };
 		DEDC4BD718C5575800CCBE78 /* btn_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BCB18C5575800CCBE78 /* btn_sel@2x.png */; };
 		DEDC4BD818C5575800CCBE78 /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BCC18C5575800CCBE78 /* btn.png */; };
@@ -2065,7 +2061,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 3HCQ3S2YN9;
@@ -2141,7 +2137,6 @@
 				DEDC4BDF18C5575800CCBE78 /* login@2x.png in Resources */,
 				DEDC4BE018C5575800CCBE78 /* logo.png in Resources */,
 				DEDC4BE118C5575800CCBE78 /* logo@2x.png in Resources */,
-				DEDC4BC818C556F600CCBE78 /* bg.png in Resources */,
 				DE494E6418BF71EB0042312D /* C_Fort_377.png in Resources */,
 				DE494E6518BF71EB0042312D /* C_Fort_379.png in Resources */,
 				DE494E6618BF71EB0042312D /* C_Fort_380.png in Resources */,
@@ -2287,7 +2282,6 @@
 				DEF9FEE918A7DAAA0057FAEB /* T_Plains_028.png in Resources */,
 				41BD13B818A75244008C6E96 /* besbuton.png in Resources */,
 				DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */,
-				99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */,
 				41BD13C818A75244008C6E96 /* goldCollection.png in Resources */,
 				DEF9FEF018A7DAAA0057FAEB /* T_Swamp_066.png in Resources */,
 				41BD140F18A75244008C6E96 /* T_Event_345.png in Resources */,
@@ -2415,7 +2409,6 @@
 				DEF9FEB518A7DAAA0057FAEB /* T_Frozen_Waste_058.png in Resources */,
 				DEF9FEC518A7DAAA0057FAEB /* T_Jungle_009.png in Resources */,
 				41BD13E018A75244008C6E96 /* D_Dice.png in Resources */,
-				99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */,
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
 				41BD143618A75244008C6E96 /* rackbtn.png in Resources */,
 				DEF9FE9C18A7DAAA0057FAEB /* T_Forest_087.png in Resources */,
@@ -2423,7 +2416,6 @@
 				DEF9FEC218A7DAAA0057FAEB /* T_Jungle_006.png in Resources */,
 				DEC099B918CE790300487534 /* sideMenuBackground@2x.png in Resources */,
 				41BD141518A75244008C6E96 /* T_Event_351.png in Resources */,
-				DE48620F18A981D900272B79 /* SmallButton@2x.png in Resources */,
 				DEF9FEF918A7DAAA0057FAEB /* T_Swamp_075.png in Resources */,
 				DE07B81C18D4BD8C00A19DCB /* team@2x.png in Resources */,
 				DEF9FE8A18A7DAAA0057FAEB /* T_Desert_106.png in Resources */,
@@ -2614,7 +2606,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/3004iPhone.app/3004iPhone";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -2651,7 +2642,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/3004iPhone.app/3004iPhone";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
