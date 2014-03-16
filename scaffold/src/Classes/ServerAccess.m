@@ -46,7 +46,7 @@ static ServerAccess *instance;
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://172.17.155.55:8080/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.0.19:8080/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
@@ -152,10 +152,40 @@ static ServerAccess *instance;
     } andSuccessCall:nil];
 }
 
+-(void) leaveGame{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"game/leaveGame" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error leaving game");
+    } andSuccessCall:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+    }];
+}
 
-/**
- Phases
- */
+-(void) getNewMessagesFrom: (NSDate*) date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss.SSS"];
+    
+    NSString *lastDate = [dateFormatter stringFromDate:date];
+    NSLog(@"Getting messages since  %@", lastDate);
+    
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/newMessages" withParams:[[NSMutableDictionary alloc] initWithObjectsAndKeys:lastDate, @"lastMessageDate", nil] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error getting new messages");
+    } andSuccessCall:nil];
+}
+
+-(void) getQueuedMessage{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/queuedMessages" withParams:[[NSMutableDictionary alloc] init] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error getting new messages");
+    } andSuccessCall:nil];
+}
+
+-(void) tellServerWeGotMessage: (NSString*) messageId {
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"messages/gotMessage" withParams:[[NSMutableDictionary alloc] initWithObjectsAndKeys: messageId, @"messageId", nil] andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error telling server we got new message");
+    } andSuccessCall:^{
+        NSLog(@"Told server that we got message with id [%@]", messageId);
+    }];
+}
+
 
 
 

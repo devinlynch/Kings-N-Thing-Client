@@ -18,19 +18,28 @@
 -(void) handleYourTurnToPlaceFort:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got place fort  message");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnFort" object:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnFort" object:nil];
+    });
 }
 
 -(void) handleYourTurnToPlaceControlMarker:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got place marker message");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnCM" object:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnCM" object:nil];
+    });
 }
 
 -(void) handleTimeToPlaceFort:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got time to place fort message");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"timeToPlaceFort" object:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"timeToPlaceFort" object:nil];
+    });
 }
 
 -(void) handlePlayerPlacedControlMarker:(Event *)event{
@@ -88,7 +97,10 @@
 -(void) handlePlacementPhaseOver:(Event *)event{
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got player placementphase over message");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"placementOver" object:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"placementOver" object:nil];
+    });
 }
 
 @end
