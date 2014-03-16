@@ -16,6 +16,10 @@
 #import "Combat.h"
 #import "RecruitThings.h"
 #import "MessageHandler.h"
+#import "TileMenu.h"
+#import "SideMenu.h"
+#import "GoldCollection.h"
+
 
 void onUncaughtException(NSException *exception)
 {
@@ -26,10 +30,12 @@ void onUncaughtException(NSException *exception)
 {
     SPViewController *_viewController;
     UIWindow *_window;
+    UIView *view;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
    NSSetUncaughtExceptionHandler(&onUncaughtException);
    
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -43,21 +49,34 @@ void onUncaughtException(NSException *exception)
     
     // Enable some common settings here:
     //
-    _viewController.showStats = YES;
+   // _viewController.showStats = YES;
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
     [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
-    [_window makeKeyAndVisible];
+    [_window makeKeyAndVisible];*/
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];*/
+    [udpMessageReceiver startListeningOnPort:3004];
 
 
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
+    
+    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
+    [udpMessageReceiver startListeningOnPort:3004];
+    
+    NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
+    
+    [_window setRootViewController:yourController];
+    [_window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleGameStarted:)
+                                                 name:@"gameStarted"
+                                               object:nil];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
     [udpMessageReceiver startListeningOnPort:3004];
