@@ -2,73 +2,49 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>EVENT.28.CLASS</key>
-	<string>MessagesEventHandler</string>
-	<key>EVENT.28.METHOD</key>
-	<string>handleNewMessages:</string>
-	<key>EVENT.28.TYPE</key>
-	<string>newMessages</string>
-	<key>EVENT.27.TYPE</key>
-	<string>batchOfChatMessages</string>
-	<key>EVENT.27.METHOD</key>
-	<string>handleBatchChatMessages:</string>
-	<key>EVENT.27.CLASS</key>
-	<string>GeneralGameEventHandler</string>
-	<key>EVENT.26.TYPE</key>
-	<string>chatMessage</string>
-	<key>EVENT.26.CLASS</key>
-	<string>GeneralGameEventHandler</string>
-	<key>EVENT.26.METHOD</key>
-	<string>handleChatMessage:</string>
-	<key>EVENT.25.METHOD</key>
-	<string>handleGameOver:</string>
-	<key>EVENT.25.TYPE</key>
-	<string>gameOver</string>
-	<key>EVENT.25.CLASS</key>
-	<string>GeneralGameEventHandler</string>
-	<key>EVENT.24.METHOD</key>
+    <key>EVENT.24.METHOD</key>
 	<string>handleMovementPhaseOver:</string>
 	<key>EVENT.24.TYPE</key>
 	<string>movementPhaseOver</string>
 	<key>EVENT.24.CLASS</key>
-	<string>MovementPhaseHandler</string>
+    <string>MovementPhaseHandler</string>
 	<key>EVENT.23.METHOD</key>
 	<string>handlePlayerMovedPieceToNewLocation:</string>
 	<key>EVENT.23.TYPE</key>
 	<string>playerMovedPieceToNewLocation</string>
 	<key>EVENT.23.CLASS</key>
-	<string>MovementPhaseHandler</string>
+    <string>MovementPhaseHandler</string>
 	<key>EVENT.22.METHOD</key>
 	<string>handlePlayerAddedPiecesToStack:</string>
 	<key>EVENT.22.TYPE</key>
 	<string>playerAddedPiecesToStack</string>
 	<key>EVENT.22.CLASS</key>
-	<string>MovementPhaseHandler</string>
-	<key>EVENT.21.METHOD</key>
+    <string>MovementPhaseHandler</string>
+ 	<key>EVENT.21.METHOD</key>
 	<string>handlePlayerCreatedStack:</string>
 	<key>EVENT.21.TYPE</key>
 	<string>playerCreatedStack</string>
 	<key>EVENT.21.CLASS</key>
-	<string>MovementPhaseHandler</string>
-	<key>EVENT.20.METHOD</key>
+    <string>MovementPhaseHandler</string>
+    <key>EVENT.20.METHOD</key>
 	<string>handlePlayerMovedStackToNewLocation:</string>
 	<key>EVENT.20.TYPE</key>
 	<string>playerMovedStackToNewLocation</string>
 	<key>EVENT.20.CLASS</key>
-	<string>MovementPhaseHandler</string>
-	<key>EVENT.19.METHOD</key>
+    <string>MovementPhaseHandler</string>
+    <key>EVENT.19.METHOD</key>
 	<string>handleYourTurnToMoveInMovement:</string>
 	<key>EVENT.19.TYPE</key>
 	<string>yourTurnToMoveInMovement</string>
 	<key>EVENT.19.CLASS</key>
-	<string>MovementPhaseHandler</string>
-	<key>EVENT.18.METHOD</key>
+    <string>MovementPhaseHandler</string>
+    <key>EVENT.18.METHOD</key>
 	<string>handleRecruitThingsPhaseOver:</string>
 	<key>EVENT.18.TYPE</key>
 	<string>recruitThingsPhaseOver</string>
 	<key>EVENT.18.CLASS</key>
-	<string>RecruitThingsHandler</string>
-	<key>EVENT.17.METHOD</key>
+    <string>RecruitThingsHandler</string>
+    <key>EVENT.17.METHOD</key>
 	<string>handlePlayerRecruitedAndPlacedThing:</string>
 	<key>EVENT.17.TYPE</key>
 	<string>playerRecruitedAndPlacedThing</string>

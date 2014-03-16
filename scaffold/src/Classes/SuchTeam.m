@@ -78,8 +78,7 @@
     
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    log = [NSMutableArray arrayWithObjects:@"Richard",
-           @"Devin", @"John", @"Gabe", nil];
+    log = [NSMutableArray arrayWithObjects:@"higgy higgy higgy higgy", nil];
     
     
     

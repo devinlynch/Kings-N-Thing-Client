@@ -44,10 +44,7 @@
     }
     
     NSLog(@"Successfully parsed game from gameStarted message, now sending notification");
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameStarted" object:game];
-    });
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameStarted" object:game];
 }
 
 @end

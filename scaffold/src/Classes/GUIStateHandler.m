@@ -18,9 +18,7 @@
     
     
     if(type != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:type object:event.msg];
-        });
+        [[NSNotificationCenter defaultCenter] postNotificationName:type object:event.msg];
     }
 
 }

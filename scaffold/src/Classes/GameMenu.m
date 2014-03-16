@@ -5,6 +5,7 @@
 #import "FourPlayerGame.h"
 #import "RecruitThings.h"
 #import "Combat.h"
+#import "Movement.h"
 
 @implementation GameMenu
 {

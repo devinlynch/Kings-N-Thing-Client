@@ -110,29 +110,28 @@
 }
 
 -(void) handleJoinLobby: (NSNotification*) notif {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [Utils removeLoaderOnView:self.view animated:YES];
-        NSLog(@"Handling notif!");
-        LobbyNotification *notification = notif.object;
+    [Utils removeLoaderOnView:self.view animated:YES];
+    NSLog(@"Handling notif!");
+    LobbyNotification *notification = notif.object;
+    
+    if(notification.error != nil || notification.gameLobby == nil) {
+        NSLog(@"Error joining game lobby: %@", notification.error);
         
-        if(notification.error != nil || notification.gameLobby == nil) {
-            NSLog(@"Error joining game lobby: %@", notification.error);
-            
-            NSString *message;
-            if(type == HOST_A_GAME) {
-                message = @"We were unable to create a game lobby.  Please try again";
-            } else if(type == QUICK_MATCH) {
-                message = @"No game lobby could be found.  Please try again";
-            } else{
-                message = [NSString stringWithFormat: @"The user '%@' is not currently hosting a game", detailstextField.text];
-            }
-            [Utils showAlertWithTitle:@"Error" message:message delegate:self cancelButtonTitle:@"Ok"];
+        NSString *message;
+        if(type == HOST_A_GAME) {
+            message = @"We were unable to create a game lobby.  Please try again";
+        } else if(type == QUICK_MATCH) {
+            message = @"No game lobby could be found.  Please try again";
         } else{
-            NSLog(@"Did join game lobby: %@", notification.gameLobby);
-            gameLobby = notification.gameLobby;
-            [self performSegueWithIdentifier:@"joinedLobby" sender:self];
+            message = [NSString stringWithFormat: @"The user '%@' is not currently hosting a game", detailstextField.text];
         }
-    });
+        [Utils showAlertWithTitle:@"Error" message:message delegate:self cancelButtonTitle:@"Ok"];
+    } else{
+        NSLog(@"Did join game lobby: %@", notification.gameLobby);
+        gameLobby = notification.gameLobby;
+        [self performSegueWithIdentifier:@"joinedLobby" sender:self];
+    }
+    
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -26,9 +26,8 @@
     NSArray *possibleRecruitments = [dataDic objectForKey:@"possibleRecruitments"];
 
     NSLog(@"Succesfully parsed DidStartRecruitThingsPhase message with possible recruits: %@", possibleRecruitments);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"startedRecruitThingsPhase" object:possibleRecruitments];
-    });
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"startedRecruitThingsPhase" object:possibleRecruitments];
 }
 
 -(void) handlePlayerRecruitedAndPlacedThing: (Event*) event {
@@ -53,24 +52,18 @@
     
     NSLog(@"Succesfully parsed PlayerRecruitedAndPlacedThing");
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRecruitedAndPlacedThing" object:pRecruitment];
-    });
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRecruitedAndPlacedThing" object:pRecruitment];
 }
 
--(void) handleRecruitThingsPhaseOver:(Event *)event{
+-(void) handlerRecruitThingsPhaseOver:(Event *)event{
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
     if(dataDic == nil){
         return;
     }
     
-    
-    
     NSLog(@"Succesfully parsed recruitThingsPhaseOver message");
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitThingsPhaseOver" object:nil];
-    });
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"recruitThingsPhaseOver" object:nil];
 }
 
 @end

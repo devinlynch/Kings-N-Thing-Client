@@ -20,10 +20,7 @@
 
 -(void) handleSetupOver:(Event *)event;{
     NSLog(@"Got Setup Over message");
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"setupOver" object:nil];
-    });
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setupOver" object:nil];
 }
 
 

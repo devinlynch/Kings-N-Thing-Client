@@ -15,6 +15,5 @@
 @synthesize error=_error;
 @synthesize data=_data;
 @synthesize createdDate=_createdDate;
-@synthesize messageId=_messageId;
 
 @end

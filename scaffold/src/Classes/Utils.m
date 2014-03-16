@@ -18,7 +18,7 @@
     NSError *error;
     NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (error != nil) {
-        NSLog(@"Error parsing JSON: %@", error);
+        NSLog(@"HAAAAAAANNNDDSSSSS");
     }
     return json;
 }
