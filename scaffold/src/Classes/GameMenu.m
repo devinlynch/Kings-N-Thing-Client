@@ -5,7 +5,6 @@
 #import "FourPlayerGame.h"
 #import "RecruitThings.h"
 #import "Combat.h"
-#import "Movement.h"
 
 @implementation GameMenu
 {
@@ -37,7 +36,6 @@
                                     @"Gold Collection",[GoldCollection class],
                                     @"Recruit Things", [RecruitThings class],
                                     @"Combat",[Combat class],
-                                    @"Movement",[Movement class],
                                     @"4 Players", [FourPlayerGame class]];
         
         SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];

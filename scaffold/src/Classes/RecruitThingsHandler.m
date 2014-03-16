@@ -58,11 +58,13 @@
     });
 }
 
--(void) handlerRecruitThingsPhaseOver:(Event *)event{
+-(void) handleRecruitThingsPhaseOver:(Event *)event{
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
     if(dataDic == nil){
         return;
     }
+    
+    
     
     NSLog(@"Succesfully parsed recruitThingsPhaseOver message");
     
