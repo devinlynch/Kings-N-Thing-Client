@@ -26,6 +26,7 @@
 #import "Terrain.h"
 #import "RecruitThings.h"
 #import "InGameServerAccess.h"
+#import "ServerAccess.h"
 #import "SideMenu.h"
 
 
@@ -43,6 +44,7 @@
     
     NSInteger _phase;
     NSInteger _placementStep;
+    NSInteger _wasBought;
     
     Player *_player1;
     Player *_player2;
@@ -251,14 +253,15 @@
     moveDoneButton.x = _gameWidth - 32 * 2.3;
     moveDoneButton.y = _gameHeight - _rackZone.height;
     [_contents addChild:moveDoneButton];
+    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
     SPTexture *menuTexture = [SPTexture textureWithContentsOfFile:@"menu.png"];
     menuButton = [SPButton buttonWithUpState:menuTexture];
-    
     menuButton.x = 10;
     menuButton.y = 7;
     
+    //When the menuButton is clicked move the current scene some number
     //When the menuButton is clicked move the current scene some number
     //to the right to show the other scene. Clicking the button again will
     //reset the location back to the starting point.
@@ -273,7 +276,6 @@
 
 
     
-    [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -347,11 +349,30 @@
                                                  name:@"yourTurnToMoveInMovement"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitToBoardBought:)
+                                                 name:@"recruitToBoardBought"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitToBoardFree:)
+                                                 name:@"recruitToBoardFree"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(addToRack:)
+                                                 name:@"addToRack"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recruitThingsPhaseOver:)
+                                                 name:@"recruitThingsPhaseOver"
+                                               object:nil];
+
 }
 
 
 -(void) moveRight:(SPTouchEvent*) event{
-    
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
     
@@ -379,10 +400,63 @@
 
 
 
+
+-(void) recruitToBoardBought: (NSNotification*) notif{
+    
+    _wasBought = WAS_BOUGHT;
+    
+    
+    
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    _selectedPiece = piece;
+    
+    [_selectedPieceImage removeFromParent];
+    
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+    _selectedPieceImage.x = 90;
+    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+    [_contents addChild:_selectedPieceImage];
+    
+    
+}
+
+
+-(void) recruitToBoardFree: (NSNotification*) notif{
+    
+    _wasBought = WAS_NOT_BOUGHT;
+    
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    _selectedPiece = piece;
+    
+    [_selectedPieceImage removeFromParent];
+    
+    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+    _selectedPieceImage.x = 90;
+    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+    [_contents addChild:_selectedPieceImage];
+    
+    
+}
+
+-(void) recruitThingsPhaseOver: (NSNotification*) notif{
+    _phase = MOVEMENT;
+    [_stateText setText:@"Wait for your movement turn"];
+}
+
+-(void) addToRack: (NSNotification*) notif{
+    
+}
+
+-(void) yourTurnInMovement:(NSNotification*) notif{
+    _phase = MOVEMENT;
+    [_stateText setText:@"Your turn to move"];
+}
+
 -(void) placementOver: (NSNotification*) notif{
     [_stateText setText:@"State: Place Creatures"];
     _phase = MOVEMENT;
-
 }
 
 -(void) playerPlacedFort: (NSNotification*) notif{
@@ -493,7 +567,7 @@
     [[GoldCollection getInstance] setUsername:username];
     
     [_contents addChild:[GoldCollection getInstance]];
-    
+    [[GoldCollection getInstance] setVisible:YES];
 }
 
 -(void) collectedGold: (NSNotification*) notif{
@@ -577,12 +651,21 @@
 
 
 
--(void) startedRecruitThingsPhase: (NSNotification*)notif{
-    NSArray *thingsToRecruit = notif.object;
-
-    RecruitThings *recruitThings = [RecruitThings getInstance];
-    recruitThings.thingsToRecruit = thingsToRecruit;
-    [_contents addChild:recruitThings];
+-(void) startedRecruitThingsPhase: (NSNotification*) notif{
+    
+    _phase = RECRUITMENT;
+    
+    NSArray *objectsToRecruit = notif.object;
+    
+    RecruitThings *rt = [RecruitThings getInstance];
+    
+    [rt initWithObjectsToRecruit: objectsToRecruit];
+    
+    [_contents addChild:rt];
+    
+    
+    [rt setVisible:YES];
+    
 }
 
 -(void) drawRack{
@@ -1199,17 +1282,43 @@
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
-                    
-                    if (clicks.tapCount == 2){
-                        NSLog(@"le double click");
+                    if (clicks.tapCount == 1){
+                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.35f];
+                       
+                    } else if(clicks.tapCount == 2){
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                        [location addGamePieceToLocation:_selectedPiece];
-                        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId];
+                        [self tileDoubleTap:location];
                     }
                 }
                 
             }
 
+            break;
+        case RECRUITMENT:
+            if (touches.count == 1)
+            {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                    //Make a UIAlert asking user if they want to move a stack or an individual creature
+                    SPTouch *clicks = [touches objectAtIndex:0];
+                    
+                    if (clicks.tapCount == 2){
+                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                        [location addGamePieceToLocation:_selectedPiece];
+                        switch (_wasBought) {
+                            case WAS_BOUGHT:
+                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES];
+                                break;
+                                
+                            case WAS_NOT_BOUGHT:
+                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
+                                break;
+                        }
+                        [_selectedPieceImage removeFromParent];
+                        [[RecruitThings getInstance] setVisible:YES];
+                    }
+                }
+                
+            }
             break;
         default:
             break;
@@ -1217,12 +1326,18 @@
 }
 
 
-
-
-- (void)showTileMenu {
-    TileMenu *tileScene = [[TileMenu alloc] init];
-    [self showScene:tileScene];
+-(void) tileSingleTap: (HexLocation*) location{
+    [location addGamePieceToLocation:_selectedPiece];
+    [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId];
 }
+
+-(void) tileDoubleTap: (HexLocation*) location{
+    TileMenu *tileMenu = [[TileMenu alloc] initWithHexLocation:location];
+    [self showScene:tileMenu];
+    tileMenu.visible = YES;
+}
+
+
 
 -(void) showScene:(SPSprite *)scene
 {

@@ -8,6 +8,10 @@
 
 #import "SPSprite.h"
 #import <UIKit/UIDevice.h>
+@class GamePiece;
 @interface RecruitOptionMenu : SPSprite
+
+@property GamePiece *gamePiece;
+@property BOOL isBuy;
 
 @end

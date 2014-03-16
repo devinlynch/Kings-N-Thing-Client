@@ -24,6 +24,11 @@ typedef NS_ENUM(NSInteger, PlacementStep) {
     PLACE_FORT
 } ;
 
+typedef NS_ENUM(NSInteger, WasBought) {
+    WAS_BOUGHT,
+    WAS_NOT_BOUGHT
+} ;
+
 @interface FourPlayerGame : SPSprite
 
 

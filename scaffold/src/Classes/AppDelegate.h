@@ -8,5 +8,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     UDPMessageReceiver *udpMessageReceiver;
+    NSTimer *newMessageTimer;
 }
 @end
