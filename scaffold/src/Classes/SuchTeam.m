@@ -1,18 +1,15 @@
 //
-//  Log.m
+//  SuchTeam.m
 //  3004iPhone
 //
-//  Created by Richard Ison on 2/10/2014.
+//  Created by Richard Ison on 2014-03-15.
 //
 //
 
-#import "Log.h"
-//#import "Transparency.h"
-//#import "SPScrollSprite.h"
-//#import "Sparrow.h"
+#import "SuchTeam.h"
+#import <UIKit/UIKit.h>
 
-@implementation Log
-{
+@implementation SuchTeam{
     SPSprite *_contents;
     //SPSprite *_currentScene;
     
@@ -34,7 +31,7 @@
     if ((self = [super init]))
     {
         
-
+        
         [self setup];
         
         
@@ -51,12 +48,12 @@
     
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
-
+    
     [self addChild:_contents];
     
     
     SPImage *background = [[SPImage alloc]
-                           initWithContentsOfFile:@"infoBackground@2x.png"];
+                           initWithContentsOfFile:@"suchTeamBackground@2x.png"];
     background.scaleX = 0.8;
     background.scaleY = 0.8;
     background.x = 30;
@@ -77,57 +74,12 @@
     
     [button3 addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
-  
-   
+    
+    
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    log = [NSMutableArray arrayWithObjects:@"test1: Dis is naht Java.",
-                                           @"test2: Java java java java java java.",
-                                           @"test3: 3d 3d 3d 3d 3d 3d 3d 3d 3d 3d", nil];
+    log = [NSMutableArray arrayWithObjects:@"higgy higgy higgy higgy", nil];
     
-    //Adding to the log
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
     
     
     
@@ -139,7 +91,7 @@
     
     //Seperate each line
     _textView.text = [log componentsJoinedByString:@"\n"];
-   
+    
     
     //Add scroll to scene
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(30, 80, 300, 480)];
@@ -147,9 +99,9 @@
     _scrollView.showsVerticalScrollIndicator = YES;
     _scrollView.hidden = NO;
     
-
+    
     [view addSubview:_scrollView];
-
+    
     //Add textfield in scrollView
     [_scrollView addSubview:_textView];
     [_scrollView setContentSize:CGSizeMake(300, 480)];
@@ -165,4 +117,6 @@
     _scrollView.hidden = YES; //[view removeFromSuperview];
     
 }
+
+
 @end

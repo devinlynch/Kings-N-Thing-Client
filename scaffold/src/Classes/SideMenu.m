@@ -8,6 +8,7 @@
 
 #import "SideMenu.h"
 #import "Log.h"
+#import "SuchTeam.h"
 
 @implementation SideMenu{
     SPSprite *_contents;
@@ -130,6 +131,7 @@ static SideMenu *instance = nil;
 -(void) onTeamInfoButtonTriggered: (SPEvent *) event
 {
     NSLog(@"User clicked team info cell");
+    [self showSuchTeamMenu];
     
     
 }
@@ -140,6 +142,10 @@ static SideMenu *instance = nil;
     [self showScene:log];
 }
 
+- (void)showSuchTeamMenu{
+    SuchTeam *suchTeam = [[SuchTeam alloc]init];
+    [self showScene:suchTeam];
+}
 -(void) showScene:(SPSprite *)scene
 {
     [self addChild:scene];
