@@ -61,7 +61,7 @@ void onUncaughtException(NSException *exception)
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-   // [udpMessageReceiver startListeningOnPort:3004];
+    [udpMessageReceiver startListeningOnPort:3004];
     
     [MessageHandler startMessageHandlerQueue];
     [self startNewMessageTimer];

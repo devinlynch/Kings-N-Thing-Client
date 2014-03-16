@@ -107,19 +107,7 @@ static NSMutableArray *queuedMessages;
 }
 
 +(void) queueMessageToBeHandled: (SentMessage*) newMessage {
-    BOOL didAdd = NO;
-    for(int i=0; i<[[self getQueuedMessages] count]; i++) {
-        SentMessage *msg = [[self getQueuedMessages] objectAtIndex:i];
-        if([newMessage.date compare:msg.date] == NSOrderedAscending) {
-            [queuedMessages insertObject:newMessage atIndex:i];
-            didAdd = YES;
-            break;
-        }
-    }
-    if(!didAdd) {
-        [queuedMessages addObject:newMessage];
-    }
-
+    [SentMessage addMessage:newMessage toArrayInOrderByDate:[self getQueuedMessages]];
 }
 
 +(void) handleMessageFromQueue{

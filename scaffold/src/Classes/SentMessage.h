@@ -19,4 +19,6 @@
 @property NSDate *date;
 @property NSDictionary *content;
 
++(void) addMessage: (SentMessage*) newMessage toArrayInOrderByDate: (NSMutableArray*) arr;
+
 @end
