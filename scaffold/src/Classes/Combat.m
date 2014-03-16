@@ -32,9 +32,11 @@
     SPTextField *_hitValuePlayer1;
     SPTextField *_hitValuePlayer2;
     
+    NSString *changeBackground;
+    
 }
 
-
+@synthesize typeOfBackground;
 
 - (id)init
 {
@@ -52,7 +54,43 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"swamp-tile-menu@2x.png"];
+    //Change depending on what tile was clicked before combat phase
+    
+    typeOfBackground = @"swamp";
+    
+    
+    if ([typeOfBackground isEqualToString:@"swamp"]){
+        
+        changeBackground = @"swamp-tile-menu@2x.png";
+        
+    } else if ([typeOfBackground isEqualToString:@"jungle"]){
+        
+        changeBackground = @"jungle-tile-menu@2x.png";
+    
+    } else if ([typeOfBackground isEqualToString:@"desert"]){
+        
+        changeBackground = @"desert-tile-menu@2x.png";
+
+    } else if ([typeOfBackground isEqualToString:@"frozen"]){
+        
+        changeBackground = @"frozen-tile-menu@2x.png";
+        
+    } else if ([typeOfBackground isEqualToString:@"mountain"]){
+        
+        changeBackground = @"mountain-tile-menu@2x.png";
+
+    } else if ([typeOfBackground isEqualToString:@"plain"]){
+        
+        changeBackground = @"plain-tile-menu@2x.png";
+        
+    } else if ([typeOfBackground isEqualToString:@"forest"]){
+        
+        changeBackground = @"forest-tile-menu@2x.png";
+    }
+        
+    
+    
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:changeBackground];
     
     [_contents addChild:background];
     
@@ -87,17 +125,17 @@
    
     
     //Rolllll
-    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
-    SPButton * button = [SPButton buttonWithUpState:buttonTexture text:@"Roll"];
+    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"rolldice.png"];
+    SPButton * button = [SPButton buttonWithUpState:buttonTexture];
     button.x = 320 / 2 - button.width /2;
-    button.y = 370;
+    button.y = 320;
     [_contents addChild:button];
     [button addEventListener:@selector(onRollDice:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     //Retread
-    SPTexture *retreatTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
-    SPButton * retreatButton = [SPButton buttonWithUpState:retreatTexture text:@"Retreat"];
+    SPTexture *retreatTexture = [SPTexture textureWithContentsOfFile:@"retreat.png"];
+    SPButton * retreatButton = [SPButton buttonWithUpState:retreatTexture];
     retreatButton.x = 320 / 2 - retreatButton.width /2;
     retreatButton.y = 410;
     [_contents addChild:retreatButton];
@@ -109,6 +147,7 @@
     _player1.x = -10;
     _player1.y = 30;
     _player1.fontSize = 20;
+    _player1.color = SP_RED;
     [_contents addChild:_player1];
     
     //Player2 text
@@ -116,6 +155,7 @@
     _player2.x = 240;
     _player2.y = 30;
     _player2.fontSize = 20;
+    _player2.color = SP_YELLOW;
     [_contents addChild:_player2];
     
     
@@ -124,6 +164,7 @@
     _hitValuePlayer1.x = -10;
     _hitValuePlayer1.y = 10;
     _hitValuePlayer1.fontSize = 20;
+    _hitValuePlayer1.color = SP_RED;
     [_contents addChild:_hitValuePlayer1];
     
     //Player2 hit text
@@ -131,6 +172,7 @@
     _hitValuePlayer2.x = 240;
     _hitValuePlayer2.y = 10;
      _hitValuePlayer2.fontSize = 20;
+    _hitValuePlayer2.color = SP_YELLOW;
     [_contents addChild:_hitValuePlayer2];
     
     
@@ -153,7 +195,7 @@
 
 - (void)onRollDice:(SPEvent *)event
 {
-        //Roll dice
+    //Roll dice
    
 }
 

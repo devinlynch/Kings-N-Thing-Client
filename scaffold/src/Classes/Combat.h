@@ -10,4 +10,7 @@
 #import <UIKit/UIDevice.h>
 @interface Combat : SPSprite
 
+
+@property (nonatomic) NSString *typeOfBackground;
+
 @end
