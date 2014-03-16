@@ -18,10 +18,10 @@
     if ((self = [super init]))
     {
         // make simple adjustments for iPhone 5+ screens:
-        _offsetY = (Sparrow.stage.height - 480) / 2;
+        _offsetY = (Sparrow.stage.height - 480) / 4;
         
         // add background image
-        SPImage *background = [SPImage imageWithContentsOfFile:@"mainMenuBackground.png"];
+        SPImage *background = [SPImage imageWithContentsOfFile:@"gameMenu@2x.png"];
        // background.y = _offsetY > 0.0f ? 0.0 : -44;
         background.blendMode = SP_BLEND_MODE_NONE;
         [self addChild:background];
@@ -32,13 +32,11 @@
         [self addChild:_mainMenu];
         
         // choose which scenes will be accessible
-        NSArray *scenesToCreate = @[@"2-3 Players",[TwoThreePlayerGame class],
-                                    @"Gold Collection",[GoldCollection class],
-                                    @"Recruit Things", [RecruitThings class],
-                                    @"Combat",[Combat class],
-                                    @"4 Players", [FourPlayerGame class]];
+        NSArray *scenesToCreate = @[@"Start",[FourPlayerGame class],
+                                    @"Instructions",[GoldCollection class],
+                                    @"Team", [RecruitThings class]];
         
-        SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
+        SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"btn@2x.png"];
         int count = 0;
         int index = 0;
         
@@ -49,13 +47,13 @@
             Class sceneClass = scenesToCreate[index++];
             
             SPButton *button = [SPButton buttonWithUpState:buttonTexture text:sceneTitle];
-            button.x = count % 2 == 0 ? 28 : 167;
-          //  button.x = (Sparrow.stage.width / 2) - button.width /2;
-            button.y = _offsetY + 170 + (count / 2) * 52;
+           // button.x = count % 2 == 0 ? 28 : 167;
+            button.x = (Sparrow.stage.width / 2) - button.width /2;
+            button.y = _offsetY + 170 + (count * 2) * 25;
             button.name = NSStringFromClass(sceneClass);
             
-            if (scenesToCreate.count % 2 != 0 && count % 2 == 1)
-                button.y += 26;
+           // if (scenesToCreate.count % 2 != 0 && count % 2 == 1)
+            //    button.y += 100;
             
             [button addEventListener:@selector(onButtonTriggered:) atObject:self
                              forType:SP_EVENT_TYPE_TRIGGERED];

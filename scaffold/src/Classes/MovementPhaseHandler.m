@@ -27,7 +27,10 @@
  */
 -(void) handleYourTurnToMoveInMovement: (Event*) event{
     NSLog(@"Succesfully handled yourTurnToMoveInMovement message");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnToMoveInMovement" object:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnToMoveInMovement" object:nil];
+    });
 }
 
 
@@ -102,7 +105,9 @@
     
     NSLog(@"Succesfully parsed updated stack message with stackID: %@", stack.locationId);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerUpdatedStack" object:stack];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerUpdatedStack" object:stack];
+    });
 }
 
 
@@ -146,7 +151,9 @@
     
     NSLog(@"Succesfully parsed playerMovedPieceToNewLocation with gamepieceid: %@ and locationid: %@", gamePiece.gamePieceId, gamePiece.location.locationId);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedPieceToNewLocation" object:gamePiece];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedPieceToNewLocation" object:gamePiece];
+    });
 }
 
 /*
@@ -210,7 +217,9 @@
     
     NSLog(@"Succesfully parsed movementPhaseOver");
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"movementPhaseOver" object:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"movementPhaseOver" object:nil];
+    });
 }
 
 

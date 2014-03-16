@@ -7,19 +7,25 @@
 //
 
 #import "Log.h"
-#import "Transparency.h"
-#import "SPScrollSprite.h"
+//#import "Transparency.h"
+//#import "SPScrollSprite.h"
+//#import "Sparrow.h"
 
 @implementation Log
 {
-    SPStage *_contents;
-    SPSprite *_currentScene;
+    SPSprite *_contents;
+    //SPSprite *_currentScene;
     
     int _gameWidth;
     int _gameHeight;
     
     
     SPTextField *_logText;
+    
+    
+    //Scrollingzzszsszsz
+    UIScrollView *_scrollView;
+    UIView *view;
     
 }
 
@@ -41,11 +47,13 @@
 {
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
-    [_contents setTransperent:YES];
     _contents = [SPSprite sprite];
+    
+    //To add UIKit stuffs to sparrow
+    view = Sparrow.currentController.view;
+
     [self addChild:_contents];
     
-    int offset = 10;
     
     SPImage *background = [[SPImage alloc]
                            initWithContentsOfFile:@"infoBackground@2x.png"];
@@ -54,43 +62,107 @@
     background.x = 30;
     background.y = 50;
     
-    SPScrollSprite * canvas = [SPScrollSprite sprite];
-	[_contents addChild:canvas];
-	canvas.scrollRect = [SPRectangle rectangleWithX:5 y:5 width:10 height:10];
-    //[_contents addChild:canvas];
-    
-    
     [_contents addChild:background];
     
     
-    SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"back.png"];
+    SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"close-button-log.png"];
     SPButton * button3 = [SPButton buttonWithUpState:buttonTexture3];
     
-    button3.scaleY = 0.8;
-    button3.scaleX = 0.8;
-    button3.x = 320 / 2 - button3.width /2.5;
-    button3.y = 410;
+    button3.scaleY = 0.3;
+    button3.scaleX = 0.3;
+    button3.x = _gameWidth - button3.width /1.5;
+    button3.y = 55;
     
     [_contents addChild:button3];
     
     [button3 addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
+  
+   
+    NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    _logText = [SPTextField textFieldWithWidth:300 height:400 text:@"log log log log lolol"];
-    _logText.x = 5;
-    _logText.y = 5;
-    [_contents addChild:_logText];
+    log = [NSMutableArray arrayWithObjects:@"test1: Dis is naht Java.",
+                                           @"test2: Java java java java java java.",
+                                           @"test3: 3d 3d 3d 3d 3d 3d 3d 3d 3d 3d", nil];
+    
+    //Adding to the log
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    [log addObject:@"dis is objectiv-c"];
+    
+    
+    
+    //Make text field to add in scrollView
+    UITextView *_textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 10, 230, 380)];
+    _textView.backgroundColor= [UIColor clearColor];
+    _textView.editable = NO;
+    _textView.textColor = [UIColor whiteColor];
+    
+    //Seperate each line
+    _textView.text = [log componentsJoinedByString:@"\n"];
+   
+    
+    //Add scroll to scene
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(30, 80, 300, 480)];
+    _scrollView.pagingEnabled = NO;
+    _scrollView.showsVerticalScrollIndicator = YES;
+    _scrollView.hidden = NO;
     
 
+    [view addSubview:_scrollView];
+
+    //Add textfield in scrollView
+    [_scrollView addSubview:_textView];
+    [_scrollView setContentSize:CGSizeMake(300, 480)];
 }
 
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
     NSLog(@"Back to board things");
-    //    GameMenu *gameMenu = [[GameMenu alloc] init];
-    //    [self showScene:gameMenu];
     _contents.visible = NO;
+    
+    //Hide scrollView
+    _scrollView.hidden = YES; //[view removeFromSuperview];
     
 }
 @end

@@ -20,6 +20,7 @@
     
     self.name = [json objectForKey:@"name"];
     self.type = [json objectForKey:@"type"];
+    self.messageId = [json objectForKey:@"messageId"];
     NSString *responseStatusNumberAsString = [json objectForKey:@"responseStatus"];
     self.responseStatus = [responseStatusNumberAsString integerValue];
     

@@ -7,7 +7,7 @@
 //
 
 #import "SPSprite.h"
-
+#import <UIKit/UIDevice.h>
 
 @interface Log : SPSprite
 
