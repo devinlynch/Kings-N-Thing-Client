@@ -43,7 +43,7 @@ void onUncaughtException(NSException *exception)
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
 
-   /* _viewController = [[SPViewController alloc] init];
+    _viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
     
@@ -56,12 +56,12 @@ void onUncaughtException(NSException *exception)
     [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
     
     [_window setRootViewController:_viewController];
-    [_window makeKeyAndVisible];*/
+    [_window makeKeyAndVisible];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
     [udpMessageReceiver startListeningOnPort:3004];
 
-
+/*
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
@@ -97,7 +97,7 @@ void onUncaughtException(NSException *exception)
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleGameOver:)
                                                  name:@"gameOver"
-                                               object:nil];
+                                               object:nil];*/
     
     return YES;
 }
