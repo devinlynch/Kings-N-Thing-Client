@@ -1304,7 +1304,7 @@
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     if (clicks.tapCount == 1){
-                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.35f];
+                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
                        
                     } else if(clicks.tapCount == 2){
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
