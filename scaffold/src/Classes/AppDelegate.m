@@ -56,7 +56,7 @@ void onUncaughtException(NSException *exception)
     [_window makeKeyAndVisible];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];
+    [udpMessageReceiver startListeningOnPort:3004];*/
 
 
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
@@ -74,6 +74,8 @@ void onUncaughtException(NSException *exception)
 //                                             selector:@selector(handleGameStarted:)
 //                                                 name:@"gameStarted"
 //                                               object:nil];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
+    UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
     [udpMessageReceiver startListeningOnPort:3004];

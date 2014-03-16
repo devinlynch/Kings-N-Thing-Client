@@ -371,14 +371,6 @@
     
     
     
-    
-  
-    
-    _bowl = [[SPImage alloc] initWithContentsOfFile:@"Bowl.png"];
-    _bowl.x = _gameWidth - _bowl.width;
-    _bowl.y = _gameHeight - _rackZone.height - _rackZone.height/6;
-    [_contents addChild:_bowl];
-    [gamePieces addObject:_bowl];
 
 }
 
