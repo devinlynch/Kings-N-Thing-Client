@@ -8,6 +8,10 @@
 
 #import "SPSprite.h"
 
+@class HexLocation;
+
 @interface TileMenu : SPSprite
+
+-(TileMenu*) initWithHexLocation: (HexLocation*) location;
 
 @end

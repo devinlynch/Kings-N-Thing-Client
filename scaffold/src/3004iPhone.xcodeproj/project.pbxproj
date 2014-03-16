@@ -147,6 +147,7 @@
 		41BD14D818A85BC4008C6E96 /* plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D718A85BC4008C6E96 /* plains-tile.png */; };
 		41BD14E818A95E9C008C6E96 /* TileImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14E718A95E9C008C6E96 /* TileImage.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
+		990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 990951EE18D4A3D7002737B2 /* MessagesEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
 		99098DA1188F554C00139EA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -234,9 +235,7 @@
 		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
 		DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350918A097510031BF8C /* RecruitThings.m */; };
 		DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */; };
-		DEA6351118A0A0620031BF8C /* GameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6351018A0A0620031BF8C /* GameBoard.m */; };
 		DEA6351418A0A3910031BF8C /* Combat.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6351318A0A3910031BF8C /* Combat.m */; };
-		DEA6352B18A190380031BF8C /* Movement.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6352A18A190380031BF8C /* Movement.m */; };
 		DEAAF3DF16BC114D004EB9D5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
 		DEB4C79718C7F4AA00AA8DAF /* gameMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4C79618C7F4AA00AA8DAF /* gameMenu.png */; };
 		DEB4C79A18C7F74E00AA8DAF /* gameMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB4C79918C7F74E00AA8DAF /* gameMenu@2x.png */; };
@@ -669,6 +668,8 @@
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		990951ED18D4A3D7002737B2 /* MessagesEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesEventHandler.h; sourceTree = "<group>"; };
+		990951EE18D4A3D7002737B2 /* MessagesEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesEventHandler.m; sourceTree = "<group>"; };
 		99098D98188F54C500139EA4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		99098D9E188F554C00139EA4 /* 3004iPhone Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "3004iPhone Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99098D9F188F554C00139EA4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = ../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/Library/Frameworks/XCTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -689,6 +690,10 @@
 		990BEFC1188F291C00D7CA03 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 		991151801891B03C004E8FFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
 		991151811891B03C004E8FFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		9933E85018BFCC630010C910 /* GeneralGameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralGameEventHandler.h; sourceTree = "<group>"; };
+		9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralGameEventHandler.m; sourceTree = "<group>"; };
+		993B1CD018D4F00A0055056F /* SentMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentMessage.h; sourceTree = "<group>"; };
+		993B1CD118D4F00A0055056F /* SentMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentMessage.m; sourceTree = "<group>"; };
 		997B0E0118A7E7FE009404DE /* InGameServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameServerAccess.h; sourceTree = "<group>"; };
 		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		997B0E0818A81985009404DE /* RecruitThingsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThingsHandler.h; sourceTree = "<group>"; };
@@ -719,6 +724,8 @@
 		99E74F2918932E130048CEA0 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		99E8B8301891E47500CAAD3B /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		99E8B83618923F3100CAAD3B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		99ED9D7518D39DE500CB4A37 /* GameChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameChatMessage.h; sourceTree = "<group>"; };
+		99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameChatMessage.m; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		99F14FB918838ADF00872890 /* UDPMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPMessageReceiver.h; sourceTree = "<group>"; };
@@ -792,12 +799,8 @@
 		DEA6350918A097510031BF8C /* RecruitThings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitThings.m; sourceTree = "<group>"; };
 		DEA6350C18A09B470031BF8C /* RecruitOptionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitOptionMenu.h; sourceTree = "<group>"; };
 		DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitOptionMenu.m; sourceTree = "<group>"; };
-		DEA6350F18A0A0620031BF8C /* GameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBoard.h; sourceTree = "<group>"; };
-		DEA6351018A0A0620031BF8C /* GameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoard.m; sourceTree = "<group>"; };
 		DEA6351218A0A3910031BF8C /* Combat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combat.h; sourceTree = "<group>"; };
 		DEA6351318A0A3910031BF8C /* Combat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combat.m; sourceTree = "<group>"; };
-		DEA6352918A190380031BF8C /* Movement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movement.h; sourceTree = "<group>"; };
-		DEA6352A18A190380031BF8C /* Movement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movement.m; sourceTree = "<group>"; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DEB4C79618C7F4AA00AA8DAF /* gameMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gameMenu.png; path = ../../src/gameMenu.png; sourceTree = "<group>"; };
 		DEB4C79918C7F74E00AA8DAF /* gameMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gameMenu@2x.png"; path = "../../src/gameMenu@2x.png"; sourceTree = "<group>"; };
@@ -1116,6 +1119,10 @@
 				41B01C041898321D00CA876D /* Move.m */,
 				41BD129D18A45209008C6E96 /* GameResource.h */,
 				41BD129E18A45209008C6E96 /* GameResource.m */,
+				99ED9D7518D39DE500CB4A37 /* GameChatMessage.h */,
+				99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */,
+				993B1CD018D4F00A0055056F /* SentMessage.h */,
+				993B1CD118D4F00A0055056F /* SentMessage.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1251,6 +1258,10 @@
 				4144CB62188EFACC003A29E4 /* EventHandlerProtocol.h */,
 				4144CB63188EFACC003A29E4 /* TestEventHandler.h */,
 				4144CB64188EFACC003A29E4 /* TestEventHandler.m */,
+				9933E85018BFCC630010C910 /* GeneralGameEventHandler.h */,
+				9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */,
+				990951ED18D4A3D7002737B2 /* MessagesEventHandler.h */,
+				990951EE18D4A3D7002737B2 /* MessagesEventHandler.m */,
 			);
 			name = "Event Handlers";
 			sourceTree = "<group>";
@@ -1588,7 +1599,6 @@
 		DE991F8418846D09006C759F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				DEA6350F18A0A0620031BF8C /* GameBoard.h */,
 				DE4A3DE310FFB2AF00FDA492 /* GameMenu.h */,
 				DE4A3DE410FFB2AF00FDA492 /* GameMenu.m */,
 				DE991F7C18846CFD006C759F /* Scene.h */,
@@ -1597,9 +1607,6 @@
 				DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */,
 				DEA17CEC189801B200A743C6 /* FourPlayerGame.h */,
 				DEA17CED189801B200A743C6 /* FourPlayerGame.m */,
-				DEA6351018A0A0620031BF8C /* GameBoard.m */,
-				DEA6352918A190380031BF8C /* Movement.h */,
-				DEA6352A18A190380031BF8C /* Movement.m */,
 				DEA6351218A0A3910031BF8C /* Combat.h */,
 				DEA6351318A0A3910031BF8C /* Combat.m */,
 				4131C2FA188876AC009775EA /* LoginMenu.h */,
@@ -2064,7 +2071,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 3HCQ3S2YN9;
+						DevelopmentTeam = SYB85L3A7X;
 					};
 					99098D9D188F554C00139EA4 = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
@@ -2463,13 +2470,13 @@
 				4131C2B018876C8D009775EA /* PlayingCup.m in Sources */,
 				99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */,
 				DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */,
-				DEA6352B18A190380031BF8C /* Movement.m in Sources */,
 				DEF9FF0E18A7F5EF0057FAEB /* TileMenu.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
 				4131C2E918877047009775EA /* CityVill.m in Sources */,
 				99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */,
 				4131C2981885EB1F009775EA /* GCDAsyncUdpSocket.m in Sources */,
+				993B1CD218D4F00A0055056F /* SentMessage.m in Sources */,
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
 				41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */,
 				41BD14E818A95E9C008C6E96 /* TileImage.m in Sources */,
@@ -2491,6 +2498,7 @@
 				990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */,
 				991151821891B03C004E8FFB /* LoginViewController.m in Sources */,
 				99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */,
+				9933E85218BFCC630010C910 /* GeneralGameEventHandler.m in Sources */,
 				99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */,
 				41B01BFC1898126400CA876D /* Stack.m in Sources */,
 				4131C2D918876FCA009775EA /* SpecialIncomeCounters.m in Sources */,
@@ -2512,9 +2520,11 @@
 				DEF9FC1618A7243D0057FAEB /* GoldCollectionHandler.m in Sources */,
 				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
+				990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				99ED9D7718D39DE500CB4A37 /* GameChatMessage.m in Sources */,
 				DEA6351118A0A0620031BF8C /* GameBoard.m in Sources */,
 				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,
 				4131C2F3188770B6009775EA /* FortLevel.m in Sources */,

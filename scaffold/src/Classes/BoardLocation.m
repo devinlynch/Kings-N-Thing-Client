@@ -26,13 +26,18 @@
             _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
             
             NSArray *piecesJsonArr = [json objectForKey:@"gamePieces"];
+            
+            _pieces = [[NSMutableDictionary alloc] init];
+
             if(piecesJsonArr != nil){
                 for(id o in piecesJsonArr) {
                     if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
                         GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
-                        piece.location = self;
-                        [_pieces setValue:piece forKey:[piece gamePieceId]];
+                        if (piece != nil) {
+                            piece.location = self;
+                            [_pieces setValue:piece forKey:[piece gamePieceId]];
+                        }
                     }
                 }
             }
