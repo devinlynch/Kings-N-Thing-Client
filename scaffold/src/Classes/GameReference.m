@@ -1,15 +1,15 @@
 //
-//  SuchTeam.m
+//  GameReference.m
 //  3004iPhone
 //
-//  Created by Richard Ison on 2014-03-15.
+//  Created by Richard Ison on 2014-03-17.
 //
 //
 
-#import "SuchTeam.h"
+#import "GameReference.h"
 #import <UIKit/UIKit.h>
 
-@implementation SuchTeam{
+@implementation GameReference{
     SPSprite *_contents;
     //SPSprite *_currentScene;
     
@@ -53,7 +53,7 @@
     
     
     SPImage *background = [[SPImage alloc]
-                           initWithContentsOfFile:@"suchTeamBackground@2x.png"];
+                           initWithContentsOfFile:@"referencesBackground@2x.png"];
     background.scaleX = 0.8;
     background.scaleY = 0.8;
     background.x = 30;
@@ -78,8 +78,8 @@
     
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    log = [NSMutableArray arrayWithObjects:@"richard", @"devin", @"john", @"gabe", nil];
-    
+    log = [NSMutableArray arrayWithObjects:@"game reference stuffs", nil];
+
     
     
     

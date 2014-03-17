@@ -19,7 +19,8 @@
 #import "TileMenu.h"
 #import "SideMenu.h"
 #import "GoldCollection.h"
-
+#import "RecruitCharacter.h"
+#import "RandomEventsMenu.h"
 
 void onUncaughtException(NSException *exception)
 {
