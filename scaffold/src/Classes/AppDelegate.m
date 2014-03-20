@@ -21,6 +21,7 @@
 #import "GoldCollection.h"
 #import "RecruitCharacter.h"
 #import "RandomEventsMenu.h"
+#import "ConstructionMenu.h"
 
 void onUncaughtException(NSException *exception)
 {

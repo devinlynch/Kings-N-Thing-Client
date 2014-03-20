@@ -198,7 +198,6 @@
 		DE04CA4C18D68AB8006F5271 /* discharge.png in Resources */ = {isa = PBXBuildFile; fileRef = DE04CA4B18D68AB8006F5271 /* discharge.png */; };
 		DE04CA4E18D68BCD006F5271 /* modify.png in Resources */ = {isa = PBXBuildFile; fileRef = DE04CA4D18D68BCD006F5271 /* modify.png */; };
 		DE04CA5118D691B9006F5271 /* DischargeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04CA5018D691B9006F5271 /* DischargeMenu.m */; };
-		DE07B81218D4030700A19DCB /* done-button.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81118D4030700A19DCB /* done-button.png */; };
 		DE07B81618D40FF000A19DCB /* chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81518D40FF000A19DCB /* chat@2x.png */; };
 		DE07B81818D4156E00A19DCB /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81718D4156E00A19DCB /* title@2x.png */; };
 		DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE07B81918D41B5100A19DCB /* gamelog@2x.png */; };
@@ -244,6 +243,8 @@
 		DE4F80D614E153E600655D44 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4F80D514E153E600655D44 /* Media.m */; };
 		DE4F80E814E1541400655D44 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80DB14E1541400655D44 /* sound.caf */; };
 		DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E314E1541400655D44 /* atlas@2x.png */; };
+		DE937C7918DB30F10012F30D /* build.png in Resources */ = {isa = PBXBuildFile; fileRef = DE937C7818DB30F10012F30D /* build.png */; };
+		DE937C7C18DB34FF0012F30D /* dischargehero.png in Resources */ = {isa = PBXBuildFile; fileRef = DE937C7B18DB34FF0012F30D /* dischargehero.png */; };
 		DE991F8118846CFD006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7D18846CFD006C759F /* Scene.m */; };
 		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
 		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
@@ -264,6 +265,9 @@
 		DEC0AA6A18D7994A0089EF72 /* referencesBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC0AA6918D7994A0089EF72 /* referencesBackground@2x.png */; };
 		DEC0AA6D18D799660089EF72 /* GameReference.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC0AA6C18D799660089EF72 /* GameReference.m */; };
 		DEC0AA7018D79C2D0089EF72 /* randomEventsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC0AA6F18D79C2D0089EF72 /* randomEventsBackground@2x.png */; };
+		DEC0AA7218D8BD610089EF72 /* done-button.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC0AA7118D8BD610089EF72 /* done-button.png */; };
+		DEC0AA7518D8C2340089EF72 /* ConstructionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC0AA7418D8C2340089EF72 /* ConstructionMenu.m */; };
+		DEC0AA7718D8C9750089EF72 /* upgrade.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC0AA7618D8C9750089EF72 /* upgrade.png */; };
 		DEDC4BC818C556F600CCBE78 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BC718C556F500CCBE78 /* bg.png */; };
 		DEDC4BD618C5575800CCBE78 /* btn_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BCA18C5575800CCBE78 /* btn_sel.png */; };
 		DEDC4BD718C5575800CCBE78 /* btn_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC4BCB18C5575800CCBE78 /* btn_sel@2x.png */; };
@@ -774,7 +778,6 @@
 		DE04CA4D18D68BCD006F5271 /* modify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modify.png; sourceTree = "<group>"; };
 		DE04CA4F18D691B9006F5271 /* DischargeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DischargeMenu.h; sourceTree = "<group>"; };
 		DE04CA5018D691B9006F5271 /* DischargeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DischargeMenu.m; sourceTree = "<group>"; };
-		DE07B81118D4030700A19DCB /* done-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done-button.png"; sourceTree = "<group>"; };
 		DE07B81518D40FF000A19DCB /* chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat@2x.png"; sourceTree = "<group>"; };
 		DE07B81718D4156E00A19DCB /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
 		DE07B81918D41B5100A19DCB /* gamelog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelog@2x.png"; sourceTree = "<group>"; };
@@ -821,6 +824,8 @@
 		DE4F80DB14E1541400655D44 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
 		DE4F80E314E1541400655D44 /* atlas@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atlas@2x.png"; sourceTree = "<group>"; };
 		DE4F80E414E1541400655D44 /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "atlas@2x.xml"; sourceTree = "<group>"; };
+		DE937C7818DB30F10012F30D /* build.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = build.png; sourceTree = "<group>"; };
+		DE937C7B18DB34FF0012F30D /* dischargehero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dischargehero.png; sourceTree = "<group>"; };
 		DE991F7C18846CFD006C759F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DE991F7D18846CFD006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
@@ -850,6 +855,10 @@
 		DEC0AA6B18D799660089EF72 /* GameReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameReference.h; sourceTree = "<group>"; };
 		DEC0AA6C18D799660089EF72 /* GameReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameReference.m; sourceTree = "<group>"; };
 		DEC0AA6F18D79C2D0089EF72 /* randomEventsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "randomEventsBackground@2x.png"; sourceTree = "<group>"; };
+		DEC0AA7118D8BD610089EF72 /* done-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done-button.png"; sourceTree = "<group>"; };
+		DEC0AA7318D8C2340089EF72 /* ConstructionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstructionMenu.h; sourceTree = "<group>"; };
+		DEC0AA7418D8C2340089EF72 /* ConstructionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstructionMenu.m; sourceTree = "<group>"; };
+		DEC0AA7618D8C9750089EF72 /* upgrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upgrade.png; sourceTree = "<group>"; };
 		DEDC4BC718C556F500CCBE78 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg.png; path = ../../src/bg.png; sourceTree = "<group>"; };
 		DEDC4BCA18C5575800CCBE78 /* btn_sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_sel.png; path = ../../src/btn_sel.png; sourceTree = "<group>"; };
 		DEDC4BCB18C5575800CCBE78 /* btn_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_sel@2x.png"; path = "../../src/btn_sel@2x.png"; sourceTree = "<group>"; };
@@ -1619,7 +1628,6 @@
 				DE48621E18A9A60E00272B79 /* bg_1.png */,
 				DE48621F18A9A60E00272B79 /* bg_1@2x.png */,
 				DE48622018A9A60E00272B79 /* Default-568h@2x.png */,
-				DE07B81118D4030700A19DCB /* done-button.png */,
 				41BD12A718A75243008C6E96 /* 1x */,
 				DE4F80E214E1541400655D44 /* 2x */,
 			);
@@ -1669,6 +1677,8 @@
 				DE04CA5018D691B9006F5271 /* DischargeMenu.m */,
 				DEC0AA6118D77F410089EF72 /* RandomEventsMenu.h */,
 				DEC0AA6218D77F410089EF72 /* RandomEventsMenu.m */,
+				DEC0AA7318D8C2340089EF72 /* ConstructionMenu.h */,
+				DEC0AA7418D8C2340089EF72 /* ConstructionMenu.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1984,11 +1994,15 @@
 				DE48620918A97A3A00272B79 /* InfoButton@2x.png */,
 				DE48620A18A97A3A00272B79 /* SmallButton@2x.png */,
 				41BD12AB18A75243008C6E96 /* besbuton.png */,
+				DE937C7B18DB34FF0012F30D /* dischargehero.png */,
 				DE3104ED18D5428D001EE806 /* close-button-log.png */,
+				DEC0AA7118D8BD610089EF72 /* done-button.png */,
 				DE04CA3F18D671C9006F5271 /* hero.png */,
+				DE937C7818DB30F10012F30D /* build.png */,
 				DE04CA4118D67365006F5271 /* skip.png */,
 				41BD12BB18A75243008C6E96 /* free.png */,
 				41BD132C18A75243008C6E96 /* rackbtn.png */,
+				DEC0AA7618D8C9750089EF72 /* upgrade.png */,
 				DE48620E18A981D900272B79 /* SmallButton@2x.png */,
 				41BD13B318A75244008C6E96 /* trade.png */,
 				41BD12AE18A75243008C6E96 /* Button-Normal@2x.png */,
@@ -2270,7 +2284,6 @@
 				DEF9FF0318A7DAAA0057FAEB /* T_Swamp_085.png in Resources */,
 				41BD142518A75244008C6E96 /* T_Income_367.png in Resources */,
 				DEF9FE8D18A7DAAA0057FAEB /* T_Desert_109.png in Resources */,
-				DE07B81218D4030700A19DCB /* done-button.png in Resources */,
 				41BD13E718A75244008C6E96 /* G_20.png in Resources */,
 				DEF9FEC918A7DAAA0057FAEB /* T_Mountains_034.png in Resources */,
 				DEF9FEDD18A7DAAA0057FAEB /* T_Plains_016.png in Resources */,
@@ -2283,6 +2296,7 @@
 				DE04CA4E18D68BCD006F5271 /* modify.png in Resources */,
 				DEF9FED818A7DAAA0057FAEB /* T_Mountains_049.png in Resources */,
 				DEC0AA6818D793720089EF72 /* play.png in Resources */,
+				DE937C7C18DB34FF0012F30D /* dischargehero.png in Resources */,
 				41BD13D318A75244008C6E96 /* C_Fort_378.png in Resources */,
 				DEF9FE9318A7DAAA0057FAEB /* T_Desert_115.png in Resources */,
 				41BD13EE18A75244008C6E96 /* SC_384.png in Resources */,
@@ -2323,6 +2337,7 @@
 				DEF9FEBD18A7DAAA0057FAEB /* T_Jungle_001.png in Resources */,
 				41BD140418A75244008C6E96 /* T_Back.png in Resources */,
 				DEF9FEAA18A7DAAA0057FAEB /* T_Forest_101.png in Resources */,
+				DE937C7918DB30F10012F30D /* build.png in Resources */,
 				41BD13C918A75244008C6E96 /* GoldCollectionBackground@2x.png in Resources */,
 				41BD13DE18A75244008C6E96 /* D_Creature.png in Resources */,
 				41BD13BB18A75244008C6E96 /* Button-Normal@2x.png in Resources */,
@@ -2416,6 +2431,7 @@
 				41BD13D718A75244008C6E96 /* C_Fort_382.png in Resources */,
 				41BD13F018A75244008C6E96 /* SC_386.png in Resources */,
 				41BD140118A75244008C6E96 /* SC_403.png in Resources */,
+				DEC0AA7218D8BD610089EF72 /* done-button.png in Resources */,
 				DE3104EE18D5428D001EE806 /* close-button-log.png in Resources */,
 				DEF9FF9C18A825120057FAEB /* green-frozen-tile.png in Resources */,
 				41BD141118A75244008C6E96 /* T_Event_347.png in Resources */,
@@ -2430,6 +2446,7 @@
 				DEF9FF9A18A825120057FAEB /* green-desert-tile.png in Resources */,
 				DEF9FFAC18A825210057FAEB /* blue-mountain-tile.png in Resources */,
 				DEF9FEA518A7DAAA0057FAEB /* T_Forest_096.png in Resources */,
+				DEC0AA7718D8C9750089EF72 /* upgrade.png in Resources */,
 				DEF9FEE118A7DAAA0057FAEB /* T_Plains_020.png in Resources */,
 				DEF9FEB018A7DAAA0057FAEB /* T_Frozen_Waste_053.png in Resources */,
 				DEF9FEDA18A7DAAA0057FAEB /* T_Plains_013.png in Resources */,
@@ -2603,6 +2620,7 @@
 				99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */,
 				4131C2C418876DBF009775EA /* Fort.m in Sources */,
 				DEF9FC1618A7243D0057FAEB /* GoldCollectionHandler.m in Sources */,
+				DEC0AA7518D8C2340089EF72 /* ConstructionMenu.m in Sources */,
 				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */,

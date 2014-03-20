@@ -68,7 +68,7 @@
     [heroButton addEventListener:@selector(didClickOnHeroRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     //Discharge Hero Button
-    SPTexture *dischargeButtonTexture = [SPTexture textureWithContentsOfFile:@"discharge.png"];
+    SPTexture *dischargeButtonTexture = [SPTexture textureWithContentsOfFile:@"dischargehero.png"];
     SPButton *dischargeButton = [SPButton buttonWithUpState:dischargeButtonTexture];
     dischargeButton.x = _gameWidth /2 - heroButton.width /2;
     dischargeButton.y = 135 + 90 - 30;
