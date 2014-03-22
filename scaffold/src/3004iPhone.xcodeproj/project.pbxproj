@@ -245,6 +245,8 @@
 		DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE4F80E314E1541400655D44 /* atlas@2x.png */; };
 		DE937C7918DB30F10012F30D /* build.png in Resources */ = {isa = PBXBuildFile; fileRef = DE937C7818DB30F10012F30D /* build.png */; };
 		DE937C7C18DB34FF0012F30D /* dischargehero.png in Resources */ = {isa = PBXBuildFile; fileRef = DE937C7B18DB34FF0012F30D /* dischargehero.png */; };
+		DE937C8018DB6E340012F30D /* ChatScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE937C7F18DB6E340012F30D /* ChatScene.m */; };
+		DE937C8318DB6F2E0012F30D /* chatBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE937C8218DB6F2E0012F30D /* chatBackground@2x.png */; };
 		DE991F8118846CFD006C759F /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7D18846CFD006C759F /* Scene.m */; };
 		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
 		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
@@ -826,6 +828,9 @@
 		DE4F80E414E1541400655D44 /* atlas@2x.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "atlas@2x.xml"; sourceTree = "<group>"; };
 		DE937C7818DB30F10012F30D /* build.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = build.png; sourceTree = "<group>"; };
 		DE937C7B18DB34FF0012F30D /* dischargehero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dischargehero.png; sourceTree = "<group>"; };
+		DE937C7E18DB6E340012F30D /* ChatScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatScene.h; sourceTree = "<group>"; };
+		DE937C7F18DB6E340012F30D /* ChatScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatScene.m; sourceTree = "<group>"; };
+		DE937C8218DB6F2E0012F30D /* chatBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBackground@2x.png"; sourceTree = "<group>"; };
 		DE991F7C18846CFD006C759F /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DE991F7D18846CFD006C759F /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
@@ -1709,6 +1714,8 @@
 				DE3104F218D54446001EE806 /* SuchTeam.m */,
 				DEC0AA6B18D799660089EF72 /* GameReference.h */,
 				DEC0AA6C18D799660089EF72 /* GameReference.m */,
+				DE937C7E18DB6E340012F30D /* ChatScene.h */,
+				DE937C7F18DB6E340012F30D /* ChatScene.m */,
 			);
 			name = "Side Menu";
 			sourceTree = "<group>";
@@ -2018,6 +2025,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3104EF18D542A1001EE806 /* suchTeamBackground@2x.png */,
+				DE937C8218DB6F2E0012F30D /* chatBackground@2x.png */,
 				DEC099B818CE790300487534 /* sideMenuBackground@2x.png */,
 				DEC0AA6918D7994A0089EF72 /* referencesBackground@2x.png */,
 				DE04CA4918D676B8006F5271 /* heroBackground@2x.png */,
@@ -2320,6 +2328,7 @@
 				DEF9FEE518A7DAAA0057FAEB /* T_Plains_024.png in Resources */,
 				DEF9FE9818A7DAAA0057FAEB /* T_Desert_120.png in Resources */,
 				DEF9FEE418A7DAAA0057FAEB /* T_Plains_023.png in Resources */,
+				DE937C8318DB6F2E0012F30D /* chatBackground@2x.png in Resources */,
 				DEF9FEF818A7DAAA0057FAEB /* T_Swamp_074.png in Resources */,
 				41BD13BE18A75244008C6E96 /* CollectCoinsBtn.png in Resources */,
 				41BD13BA18A75244008C6E96 /* Bowl.png in Resources */,
@@ -2626,6 +2635,7 @@
 				990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
+				DE937C8018DB6E340012F30D /* ChatScene.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				99ED9D7718D39DE500CB4A37 /* GameChatMessage.m in Sources */,
 				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,

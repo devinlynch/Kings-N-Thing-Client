@@ -10,6 +10,7 @@
 #import "Log.h"
 #import "SuchTeam.h"
 #import "GameReference.h"
+#import "ChatScene.h"
 
 @implementation SideMenu{
     SPSprite *_contents;
@@ -129,7 +130,7 @@ static SideMenu *instance = nil;
 -(void) onChatButtonTriggered: (SPEvent *) event
 {
     NSLog(@"User clicked chat cell");
-    
+    [self showChat];
    
     
 }
@@ -163,6 +164,12 @@ static SideMenu *instance = nil;
 -(void)showLogMenu{
     Log *log = [[Log alloc]init];
     [self showScene:log];
+}
+
+
+- (void)showChat{
+    ChatScene *chat = [[ChatScene alloc]init];
+    [self showScene:chat];
 }
 
 - (void)showSuchTeamMenu{
