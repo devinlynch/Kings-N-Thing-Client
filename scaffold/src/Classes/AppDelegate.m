@@ -43,14 +43,14 @@ void onUncaughtException(NSException *exception)
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
 
-   /* _viewController = [[SPViewController alloc] init];
+    _viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
     
     // Enable some common settings here:
     //
    // _viewController.showStats = YES;
-    _viewController.multitouchEnabled = YES;
+   /* _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
     [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];

@@ -9,14 +9,16 @@
 #import "BoardLocation.h"
 
 
-@class HexLocation;
+@class HexLocation, ScaledGamePiece;
 
 @interface Stack : BoardLocation{
     HexLocation *_location;
     Player *_owner;
+    ScaledGamePiece *_stackImage;
 }
 
 @property HexLocation *location;
 @property Player *owner;
+@property ScaledGamePiece *stackImage;
 
 @end

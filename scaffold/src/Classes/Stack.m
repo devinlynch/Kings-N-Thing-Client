@@ -14,5 +14,6 @@
 
 @synthesize location = _location;
 @synthesize owner = _owner;
+@synthesize stackImage = _stackImage;
 
 @end

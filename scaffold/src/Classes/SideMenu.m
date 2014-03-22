@@ -148,7 +148,7 @@ static SideMenu *instance = nil;
 }
 -(void) showScene:(SPSprite *)scene
 {
-    [self addChild:scene];
+    [self.parent addChild:scene];
     scene.visible = YES;
     
 }

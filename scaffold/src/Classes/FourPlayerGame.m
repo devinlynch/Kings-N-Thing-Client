@@ -109,8 +109,10 @@
 
 -(void) setup
 {
-    
+    [self addChild:[SideMenu getInstance]];
     [GameResource getInstance];
+    
+    [self.stage addChild:self];
     
    // _state = [[GameState alloc] initGame];
 
@@ -381,14 +383,35 @@
         if(isSideMenu){
             
             //Display sideMenu and move fourPlayerGame
+            
+            
+            
+            SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
+                                           transition:SP_TRANSITION_LINEAR];
+            
+          
+            
+            //Tell the tween that it should transition the x value
+            [tween animateProperty:@"x" targetValue:panWidth];
+            
+            [Sparrow.juggler addObject:tween];
 
-            [_contents setX:panWidth];
-            [self addChild:[SideMenu getInstance]];
+            //[_contents setX:panWidth];
+           // tween.onComplete = ^{[self addChild:[SideMenu getInstance]];};
         
         } else {
             
-            [_contents setX:0];
-            [self addChild:_contents];
+            SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
+                                           transition:SP_TRANSITION_LINEAR];
+            
+            //Tell the tween that it should transition the x value
+            [tween animateProperty:@"x" targetValue:0];
+            
+            [Sparrow.juggler addObject:tween];
+            
+            //[_contents setX:panWidth];
+          //  tween.onComplete = ^{[self addChild:_contents];};
+
             
         }
 
@@ -1244,11 +1267,14 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [location changeOwnerToPlayer:player];
-                             
+                                
                                 placeHex3 = location.locationId;
                                 
-                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
+                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3 withSuccess:^{
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [location changeOwnerToPlayer:player];
+                                    });
+                                }];
                         
                             }
                         }
@@ -1265,8 +1291,12 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [location addGamePieceToLocation:_selectedPiece];
-                                [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId];
+                            
+                                [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^{
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [location addGamePieceToLocation:_selectedPiece];
+                                    });
+                                }];
                             }
                         }
                         
@@ -1302,16 +1332,14 @@
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     if (clicks.tapCount == 2){
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                        [location addGamePieceToLocation:_selectedPiece];
                         switch (_wasBought) {
                             case WAS_BOUGHT:
-                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES];
+                                [self recruitWasBought:location];
                                 break;
-                                
                             case WAS_NOT_BOUGHT:
-                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
-                                break;
+                                [self recruitWasFree:location];
+                            break;
+
                         }
                         [_selectedPieceImage removeFromParent];
                         [[RecruitThings getInstance] setVisible:YES];
@@ -1325,10 +1353,31 @@
     }
 }
 
+-(void) recruitWasFree:(HexLocation*) location{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:_selectedPiece];
+        });
+    }];
+    
+}
+
+-(void) recruitWasBought:(HexLocation*) location{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:_selectedPiece];
+        });
+    }];
+    
+}
 
 -(void) tileSingleTap: (HexLocation*) location{
-    [location addGamePieceToLocation:_selectedPiece];
-    [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId];
+   // [location addGamePieceToLocation:_selectedPiece];
+    [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:_selectedPiece];
+        });
+    }];
 }
 
 -(void) tileDoubleTap: (HexLocation*) location{

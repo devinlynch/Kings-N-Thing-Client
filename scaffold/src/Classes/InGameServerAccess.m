@@ -34,7 +34,7 @@ static InGameServerAccess *instance;
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.1.200:8080/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://192.168.2.19:8080/KingsNThings/%@", req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
@@ -64,6 +64,9 @@ static InGameServerAccess *instance;
          
          if( responseMessage != nil ){
              [delegateListener didGetIngameResponseFromServerForRequest:requestType andResponse:responseMessage];
+             if (successCall != nil) {
+                successCall();
+             }
          } else{
              NSLog(@"could not connect to server, doing call, got response code: %d and error: %@", responseStatusCode, error);
              if(errorCall != nil)
@@ -80,36 +83,36 @@ static InGameServerAccess *instance;
     }
 }
 
--(void) phasePost: (NSString*) phase type: (NSString*) type params: (NSMutableDictionary*) params requestType: (InGameRequestTypes) requestType {
+-(void) phasePost: (NSString*) phase type: (NSString*) type params: (NSMutableDictionary*) params requestType: (InGameRequestTypes) requestType withSuccess:( void (^)())success{
     [self asynchronousRequestOfType:POSTREQUEST toUrl:[NSString stringWithFormat:@"phase/%@/%@", phase, type] withParams:params andDelegateListener:delegateListener andErrorCall:^{
         [delegateListener didGetIngameResponseFromServerForRequest:requestType andResponse:nil];
-    }andSuccessCall:nil andRequestType:requestType];
+    }andSuccessCall:success andRequestType:requestType];
 }
 
 // Setup
 -(enum InGameRequestTypes) setupPhaseReadyForPlacement{
-    [self phasePost:@"setup" type:@"readyForPlacement" params:nil requestType:SETUPPHASE_readyForPlacement];
+    [self phasePost:@"setup" type:@"readyForPlacement" params:nil requestType:SETUPPHASE_readyForPlacement withSuccess:nil];
     
     return SETUPPHASE_readyForPlacement;
 }
 
 // Placement
--(enum InGameRequestTypes) placementPhasePlaceControlMarkersFirst: (NSString*) hexLocation1Id second: (NSString*) hexLocation2Id third: (NSString*) hexLocation3Id{
+-(enum InGameRequestTypes) placementPhasePlaceControlMarkersFirst: (NSString*) hexLocation1Id second: (NSString*) hexLocation2Id third: (NSString*) hexLocation3Id withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:hexLocation1Id forKey:@"hexLocation1"];
     [params setObject:hexLocation2Id forKey:@"hexLocation2"];
     [params setObject:hexLocation3Id forKey:@"hexLocation3"];
     
-    [self phasePost:@"placement" type:@"placeControlMarker" params:params requestType:SETUPPHASE_readyForPlacement];
+    [self phasePost:@"placement" type:@"placeControlMarker" params:params requestType:SETUPPHASE_readyForPlacement withSuccess:success];
 
     return PLACEMENTPHASE_placeControlMarker;
 }
 
--(enum InGameRequestTypes) placementPhasePlaceFort: (NSString*) hexLocationId{
+-(enum InGameRequestTypes) placementPhasePlaceFort: (NSString*) hexLocationId withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:hexLocationId forKey:@"hexLocation"];
     
-    [self phasePost:@"placement" type:@"placeFort" params:params requestType:PLACEMENTPHASE_placeFort];
+    [self phasePost:@"placement" type:@"placeFort" params:params requestType:PLACEMENTPHASE_placeFort withSuccess:success];
     
     return PLACEMENTPHASE_placeFort;
 }
@@ -117,52 +120,52 @@ static InGameServerAccess *instance;
 
 // Gold Collection
 -(enum InGameRequestTypes) goldCollectionPhaseDidCollectGold{
-    [self phasePost:@"gold" type:@"didCollectGold" params:nil requestType:GOLDCOLLECTIONPHASE_didCollectGold];
+    [self phasePost:@"gold" type:@"didCollectGold" params:nil requestType:GOLDCOLLECTIONPHASE_didCollectGold withSuccess:nil];
 
     return GOLDCOLLECTIONPHASE_didCollectGold;
 }
 
 
 // Recruit Things
--(enum InGameRequestTypes) recruitThingsPhaseRecruited: (NSString*) thingId palcedOnLocation: (NSString*) locationId wasBought:(BOOL) wasBought{
+-(enum InGameRequestTypes) recruitThingsPhaseRecruited: (NSString*) thingId palcedOnLocation: (NSString*) locationId wasBought:(BOOL) wasBought withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:thingId forKey:@"thingId"];
     [params setObject:locationId forKey:@"locationId"];
     [params setObject:wasBought == true ? @"true" : @"false" forKey:@"wasBought"];
     
-    [self phasePost:@"recruitThings" type:@"recruitedAndPlacedThing" params:params requestType:RECRUITTHINGSPHASE_recruitedAndPlacedThing];
+    [self phasePost:@"recruitThings" type:@"recruitedAndPlacedThing" params:params requestType:RECRUITTHINGSPHASE_recruitedAndPlacedThing withSuccess:success];
     
     return RECRUITTHINGSPHASE_recruitedAndPlacedThing;
 }
 
 -(enum InGameRequestTypes) recruitThingsPhaseReadyForNextPhase{
-    [self phasePost:@"recruitThings" type:@"readyForNextPhase" params:nil requestType:RECRUITTHINGSPHASE_readyForNextPhase];
+    [self phasePost:@"recruitThings" type:@"readyForNextPhase" params:nil requestType:RECRUITTHINGSPHASE_readyForNextPhase withSuccess:nil];
 
     return RECRUITTHINGSPHASE_readyForNextPhase;
 }
 
 // Movement
--(enum InGameRequestTypes) movementPhaseMoveStack: (NSString*) stackId toHex: (NSString*) hexLocationId{
+-(enum InGameRequestTypes) movementPhaseMoveStack: (NSString*) stackId toHex: (NSString*) hexLocationId withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:hexLocationId forKey:@"hexLocationId"];
     [params setObject:stackId forKey:@"stackId"];
     
-    [self phasePost:@"movement" type:@"moveStack" params:params requestType:MOVEMENTPHASE_moveStack];
+    [self phasePost:@"movement" type:@"moveStack" params:params requestType:MOVEMENTPHASE_moveStack withSuccess:success];
     
     return MOVEMENTPHASE_moveStack;
 }
 
--(enum InGameRequestTypes) movementPhaseMoveGamePiece: (NSString*) gamePieceId toLocation: (NSString*) locationId{
+-(enum InGameRequestTypes) movementPhaseMoveGamePiece: (NSString*) gamePieceId toLocation: (NSString*) locationId withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:locationId forKey:@"locationId"];
     [params setObject:gamePieceId forKey:@"gamePieceId"];
     
-    [self phasePost:@"movement" type:@"moveGamePiece" params:params requestType:MOVEMENTPHASE_moveGamePiece];
+    [self phasePost:@"movement" type:@"moveGamePiece" params:params requestType:MOVEMENTPHASE_moveGamePiece withSuccess:success];
     
     return MOVEMENTPHASE_moveGamePiece;
 }
 
--(enum InGameRequestTypes) movementPhaseCreateStack: (NSString*) hexLocationId withPieces: (NSArray*) gamePieceIds{
+-(enum InGameRequestTypes) movementPhaseCreateStack: (NSString*) hexLocationId withPieces: (NSArray*) gamePieceIds withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:hexLocationId forKey:@"hexLocationId"];
     
@@ -172,12 +175,12 @@ static InGameServerAccess *instance;
         i++;
     }
     
-    [self phasePost:@"movement" type:@"createStack" params:params requestType:MOVEMENTPHASE_createStack];
+    [self phasePost:@"movement" type:@"createStack" params:params requestType:MOVEMENTPHASE_createStack withSuccess:success];
     
     return MOVEMENTPHASE_createStack;
 }
 
--(enum InGameRequestTypes) movementPhaseAddPiecesToStack: (NSString*) stackId pieces: (NSArray*) gamePieceIds{
+-(enum InGameRequestTypes) movementPhaseAddPiecesToStack: (NSString*) stackId pieces: (NSArray*) gamePieceIds withSuccess:( void (^)())success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:stackId forKey:@"stackId"];
     
@@ -187,14 +190,15 @@ static InGameServerAccess *instance;
         i++;
     }
     
-    [self phasePost:@"movement" type:@"addPiecesToStack" params:params requestType:MOVEMENTPHASE_addPiecesToStack];
+    [self phasePost:@"movement" type:@"addPiecesToStack" params:params requestType:MOVEMENTPHASE_addPiecesToStack withSuccess:success];
     
     return MOVEMENTPHASE_addPiecesToStack;
 }
 
--(enum InGameRequestTypes) movementPhaseDoneMakingMoves{
-    [self phasePost:@"movement" type:@"playerIsDoneMakingMoves" params:nil requestType:MOVEMENTPHASE_playerIsDoneMakingMoves];
 
+-(enum InGameRequestTypes) movementPhaseDoneMakingMoves{
+    [self phasePost:@"movement" type:@"playerIsDoneMakingMoves" params:nil requestType:MOVEMENTPHASE_playerIsDoneMakingMoves withSuccess:nil];
+    
     return MOVEMENTPHASE_playerIsDoneMakingMoves;
 }
 

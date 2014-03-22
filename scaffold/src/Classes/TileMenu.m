@@ -212,14 +212,23 @@
         
         GamePiece *piece = [[GameResource getInstance] getPieceForId:img.name];
         
+        
         NSArray *pieces = [[NSArray alloc] initWithObjects:piece.gamePieceId, _selectedPiece.gamePieceId,nil];
         
-        [[InGameServerAccess instance] movementPhaseCreateStack:[_location locationId] withPieces:pieces];
+        Stack *newStack = [[Stack alloc] init];
+    
+        [[InGameServerAccess instance] movementPhaseCreateStack:[_location locationId] withPieces:pieces withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+    
+                [newStack addGamePieceToLocation:piece];
+                [newStack addGamePieceToLocation:_selectedPiece];
+                [_location addStack:newStack];
+                [_contents removeAllChildren];
+                [self setupWithLocation:_location];
+            });
+        }];
         
         
-        [_contents removeAllChildren];
-        
-        [self setupWithLocation:_location];
     }
 }
 
