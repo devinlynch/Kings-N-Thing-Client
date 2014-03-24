@@ -40,10 +40,10 @@
             }
         }
         
+        
+        _game = 
+        
         _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
-        
-        
-        
         
         _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
         

@@ -28,6 +28,7 @@
 #import "InGameServerAccess.h"
 #import "ServerAccess.h"
 #import "SideMenu.h"
+#import "Stack.h"
 
 
 @interface FourPlayerGame ()
@@ -81,6 +82,7 @@
     SPImage *_selectedPieceImage;
     
     GamePiece *_selectedPiece;
+    Stack  *_selectedStack;
     
     SPImage *_doneBtn;
     GameState *_state;
@@ -283,6 +285,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pieceSelected:)
                                                  name:@"pieceSelected"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearSelectedPiece:)
+                                                 name:@"clearSelectedPiece"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -660,16 +667,35 @@
 
 -(void) pieceSelected: (NSNotification*) notif{
     
-    _selectedPiece = (GamePiece*) notif.object;
+    if([notif.object isKindOfClass: [GamePiece class]]){
+        _selectedPiece = (GamePiece*) notif.object;
+        _selectedStack = nil;
+        if(_selectedPieceImage != nil){
+            [_selectedPieceImage removeFromParent];
+        }
+        _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+        _selectedPieceImage.x = 90;
+        _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+        [_contents addChild:_selectedPieceImage];
+        
+    } else{
+        Stack *stack = (Stack*)notif.object;
+        _selectedPiece = nil;
+        _selectedStack = stack;
+        if(_selectedPieceImage != nil){
+            [_selectedPieceImage removeFromParent];
+        }
+        _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
+                               @"T_Back.png"];
+        _selectedPieceImage.x = 90;
+        _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+        [_contents addChild:_selectedPieceImage];
+    }
+    
     
     NSLog(@"Selected Piece");
     
-    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
-    _selectedPieceImage.x = 90;
-    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
-    [_contents addChild:_selectedPieceImage];
-    
-    
+   
 }
 
 
@@ -1288,16 +1314,13 @@
                             
                             SPTouch *clicks = [touches objectAtIndex:0];
                             
-                            if (clicks.tapCount == 2){
-                                NSLog(@"le double click");
+                            if (clicks.tapCount == 1){
+                                [self performSelector:@selector(tileSingleTapFort:) withObject:location afterDelay:0.15f];
+                            } else if(clicks.tapCount == 2){
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                            
-                                [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^{
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        [location addGamePieceToLocation:_selectedPiece];
-                                    });
-                                }];
+                                [self tileDoubleTap:location];
                             }
+                            
                         }
                         
                     }
@@ -1357,6 +1380,8 @@
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
+            [self clearSelectedPiece:nil];
+
         });
     }];
     
@@ -1366,18 +1391,40 @@
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
+            [self clearSelectedPiece:nil];
+
         });
     }];
     
 }
 
 -(void) tileSingleTap: (HexLocation*) location{
-   // [location addGamePieceToLocation:_selectedPiece];
-    [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:_selectedPiece];
-        });
-    }];
+    if (_selectedPiece != nil) {
+        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:_selectedPiece];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    } else if (_selectedStack != nil) {
+        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addStack:_selectedStack];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    }
+}
+
+-(void) tileSingleTapFort: (HexLocation*) location{
+    if(_selectedPiece != nil){
+        [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:_selectedPiece];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    }
 }
 
 -(void) tileDoubleTap: (HexLocation*) location{
@@ -1406,6 +1453,13 @@
 
 -(void) yourTurnToMoveInMovement : (NSNotification*) notif{
     [_stateText setText:@"State:  Your turn"];
+}
+
+-(void) clearSelectedPiece:(NSNotification*) notif{
+    [_selectedPieceImage setVisible:NO];
+    [_contents removeChild:_selectedPieceImage];
+    _selectedPiece = nil;
+    _selectedStack = nil;
 }
 
 @end

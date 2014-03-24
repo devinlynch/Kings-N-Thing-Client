@@ -156,13 +156,39 @@
     
     Stack *stack = [[_location stacks] objectForKey:img.name];
     
-    SPTouch *clicks = [touches objectAtIndex:0];
     
-    if (clicks.tapCount == 1){
+    if (touches.count == 1)
+    {
+        SPTouch *clicks = [touches objectAtIndex:0];
         
-    } else if(clicks.tapCount == 2){
-        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        if (clicks.tapCount == 1){
+            [self performSelector:@selector(stackSingleTap:) withObject:stack afterDelay:0.35f];
+            
+        } else if(clicks.tapCount == 2){
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+            [self stackDoubleTap:stack];
+        }
     }
+    
+}
+
+-(void) stackSingleTap: (Stack*) stack{
+    
+    NSArray *pieces = [[NSArray alloc] initWithObjects:_selectedPiece.gamePieceId,nil];
+
+    
+    if (_selectedPiece != nil) {
+        [[InGameServerAccess instance] movementPhaseAddPiecesToStack:stack.locationId pieces:pieces withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [stack addGamePieceToLocation:_selectedPiece];
+                [_contents removeAllChildren];
+                [self setupWithLocation:_location];
+            });
+        }];
+    }
+}
+
+-(void) stackDoubleTap: (Stack*) stack{
     
 }
 
@@ -212,19 +238,18 @@
         
         GamePiece *piece = [[GameResource getInstance] getPieceForId:img.name];
         
-        
         NSArray *pieces = [[NSArray alloc] initWithObjects:piece.gamePieceId, _selectedPiece.gamePieceId,nil];
         
         Stack *newStack = [[Stack alloc] init];
     
         [[InGameServerAccess instance] movementPhaseCreateStack:[_location locationId] withPieces:pieces withSuccess:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-    
                 [newStack addGamePieceToLocation:piece];
                 [newStack addGamePieceToLocation:_selectedPiece];
                 [_location addStack:newStack];
                 [_contents removeAllChildren];
                 [self setupWithLocation:_location];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"clearSelectedPiece" object:nil];
             });
         }];
         
