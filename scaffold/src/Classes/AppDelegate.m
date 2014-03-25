@@ -53,7 +53,7 @@ void onUncaughtException(NSException *exception)
     // Enable some common settings here:
     //
    // _viewController.showStats = YES;
-    _viewController.multitouchEnabled = YES;
+   /* _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
     [_viewController startWithRoot:[ChatScene class] supportHighResolutions:YES doubleOnPad:YES];

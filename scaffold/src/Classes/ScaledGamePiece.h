@@ -11,12 +11,10 @@
 
 
 @interface ScaledGamePiece : SPImage{
-    GamePiece *_owner;
+    id<NSCopying> _owner;
 }
-
-@property GamePiece *owner;
 
 
 - (id) initWithContentsOfFile:(NSString *)path andOwner: (GamePiece*) piece;
-
+-(void) setOwner:(id<NSCopying>) owner;
 @end

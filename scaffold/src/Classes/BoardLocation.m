@@ -55,13 +55,10 @@
 }
 
 -(void) addGamePieceToLocation: (GamePiece*) piece{
-    
+    [piece.pieceImage removeFromParent];
     [piece.location removePieceWithIdFromLocation:piece.gamePieceId];
-    
     piece.location = self;
-    
     [_pieces setObject:piece forKey:[piece gamePieceId]];
-
 }
 
 -(GamePiece*) removePieceWithIdFromLocation: (NSString*) gamePieceId{

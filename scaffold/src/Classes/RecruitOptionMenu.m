@@ -135,16 +135,20 @@
     NSLog(@"Placed gamePieceId %@ in the rack", gamePiece.gamePieceId);
     GameState *gs = [[Game currentGame] gameState];
     Player *me = [gs getPlayerById:[gs myPlayerId]];
-    [[me rack2] addGamePieceToLocation:gamePiece];
-   // [gs addLogMessage: @"You added the game piece to your rack."];
+      // [gs addLogMessage: @"You added the game piece to your rack."];
     
     NSString *rackId = [[me rack2] locationId];
     
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy];
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^{
+        [[me rack2] addGamePieceToLocation:gamePiece];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
+        
+        _contents.visible = NO;
+
+    }];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
-    
-    _contents.visible = NO;
+
 }
 
 -(void) onButtonTriggered: (SPEvent *) event

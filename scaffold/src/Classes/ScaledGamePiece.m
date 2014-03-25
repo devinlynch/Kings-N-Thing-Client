@@ -17,14 +17,14 @@
 - (id) initWithContentsOfFile:(NSString *)path andOwner:(GamePiece *)piece
 {
     
-    _owner = piece;
+    _owner = (id<NSCopying>) piece;
     
     self = [super initWithContentsOfFile:path generateMipmaps:NO];
     
     self.scaleX = 0.75f;
     self.scaleY = 0.75f;
     
-    [self addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [self addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
     
     return self;
@@ -41,13 +41,13 @@
     self.scaleX = 0.75f;
     self.scaleY = 0.75f;
     
-    [self addEventListener:@selector(onMoveTile:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    [self addEventListener:@selector(onImageTouched:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
     
     return self;
 }
 
-- (void)onMoveTile:(SPTouchEvent*)event {
+- (void)onImageTouched:(SPTouchEvent*)event {
     
     SPImage *img = (SPImage*)event.target;
     
@@ -59,10 +59,14 @@
         if (clickTileMenu.tapCount == 2){
             NSLog(@"le double click");
             [NSObject cancelPreviousPerformRequestsWithTarget:self];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:[self owner]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:_owner];
         }
         
     }
+}
+
+-(void) setOwner:(id<NSCopying>) owner{
+    _owner = owner;
 }
 
 @end

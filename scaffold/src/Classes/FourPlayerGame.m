@@ -28,6 +28,7 @@
 #import "InGameServerAccess.h"
 #import "ServerAccess.h"
 #import "SideMenu.h"
+#import "Stack.h"
 
 
 @interface FourPlayerGame ()
@@ -81,6 +82,7 @@
     SPImage *_selectedPieceImage;
     
     GamePiece *_selectedPiece;
+    Stack  *_selectedStack;
     
     SPImage *_doneBtn;
     GameState *_state;
@@ -109,8 +111,10 @@
 
 -(void) setup
 {
-    
+    [self addChild:[SideMenu getInstance]];
     [GameResource getInstance];
+    
+    [self.stage addChild:self];
     
    // _state = [[GameState alloc] initGame];
 
@@ -285,6 +289,11 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearSelectedPiece:)
+                                                 name:@"clearSelectedPiece"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(gameSetup:)
                                                  name:@"gameSetup"
                                                object:nil];
@@ -382,14 +391,35 @@
         if(isSideMenu){
             
             //Display sideMenu and move fourPlayerGame
+            
+            
+            
+            SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
+                                           transition:SP_TRANSITION_LINEAR];
+            
+          
+            
+            //Tell the tween that it should transition the x value
+            [tween animateProperty:@"x" targetValue:panWidth];
+            
+            [Sparrow.juggler addObject:tween];
 
-            [_contents setX:panWidth];
-            [self addChild:[SideMenu getInstance]];
+            //[_contents setX:panWidth];
+           // tween.onComplete = ^{[self addChild:[SideMenu getInstance]];};
         
         } else {
             
-            [_contents setX:0];
-            [self addChild:_contents];
+            SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
+                                           transition:SP_TRANSITION_LINEAR];
+            
+            //Tell the tween that it should transition the x value
+            [tween animateProperty:@"x" targetValue:0];
+            
+            [Sparrow.juggler addObject:tween];
+            
+            //[_contents setX:panWidth];
+          //  tween.onComplete = ^{[self addChild:_contents];};
+
             
         }
 
@@ -638,16 +668,35 @@
 
 -(void) pieceSelected: (NSNotification*) notif{
     
-    _selectedPiece = (GamePiece*) notif.object;
+    if([notif.object isKindOfClass: [GamePiece class]]){
+        _selectedPiece = (GamePiece*) notif.object;
+        _selectedStack = nil;
+        if(_selectedPieceImage != nil){
+            [_selectedPieceImage removeFromParent];
+        }
+        _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+        _selectedPieceImage.x = 90;
+        _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+        [_contents addChild:_selectedPieceImage];
+        
+    } else{
+        Stack *stack = (Stack*)notif.object;
+        _selectedPiece = nil;
+        _selectedStack = stack;
+        if(_selectedPieceImage != nil){
+            [_selectedPieceImage removeFromParent];
+        }
+        _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
+                               @"T_Back.png"];
+        _selectedPieceImage.x = 90;
+        _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+        [_contents addChild:_selectedPieceImage];
+    }
+    
     
     NSLog(@"Selected Piece");
     
-    _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
-    _selectedPieceImage.x = 90;
-    _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
-    [_contents addChild:_selectedPieceImage];
-    
-    
+   
 }
 
 
@@ -1245,11 +1294,14 @@
                             if (clicks.tapCount == 2){
                                 NSLog(@"le double click");
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [location changeOwnerToPlayer:player];
-                             
+                                
                                 placeHex3 = location.locationId;
                                 
-                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3];
+                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3 withSuccess:^{
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [location changeOwnerToPlayer:player];
+                                    });
+                                }];
                         
                             }
                         }
@@ -1263,12 +1315,13 @@
                             
                             SPTouch *clicks = [touches objectAtIndex:0];
                             
-                            if (clicks.tapCount == 2){
-                                NSLog(@"le double click");
+                            if (clicks.tapCount == 1){
+                                [self performSelector:@selector(tileSingleTapFort:) withObject:location afterDelay:0.15f];
+                            } else if(clicks.tapCount == 2){
                                 [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                                [location addGamePieceToLocation:_selectedPiece];
-                                [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId];
+                                [self tileDoubleTap:location];
                             }
+                            
                         }
                         
                     }
@@ -1284,7 +1337,7 @@
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     if (clicks.tapCount == 1){
-                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.35f];
+                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
                        
                     } else if(clicks.tapCount == 2){
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -1303,16 +1356,14 @@
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     if (clicks.tapCount == 2){
-                        [NSObject cancelPreviousPerformRequestsWithTarget:self];
-                        [location addGamePieceToLocation:_selectedPiece];
                         switch (_wasBought) {
                             case WAS_BOUGHT:
-                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES];
+                                [self recruitWasBought:location];
                                 break;
-                                
                             case WAS_NOT_BOUGHT:
-                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO];
-                                break;
+                                [self recruitWasFree:location];
+                            break;
+
                         }
                         [_selectedPieceImage removeFromParent];
                         [[RecruitThings getInstance] setVisible:YES];
@@ -1326,10 +1377,55 @@
     }
 }
 
+-(void) recruitWasFree:(HexLocation*) location{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:_selectedPiece];
+            [self clearSelectedPiece:nil];
+
+        });
+    }];
+    
+}
+
+-(void) recruitWasBought:(HexLocation*) location{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:_selectedPiece];
+            [self clearSelectedPiece:nil];
+
+        });
+    }];
+    
+}
 
 -(void) tileSingleTap: (HexLocation*) location{
-    [location addGamePieceToLocation:_selectedPiece];
-    [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId];
+    if (_selectedPiece != nil) {
+        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:_selectedPiece];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    } else if (_selectedStack != nil) {
+        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addStack:_selectedStack];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    }
+}
+
+-(void) tileSingleTapFort: (HexLocation*) location{
+    if(_selectedPiece != nil){
+        [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:_selectedPiece];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    }
 }
 
 -(void) tileDoubleTap: (HexLocation*) location{
@@ -1358,6 +1454,13 @@
 
 -(void) yourTurnToMoveInMovement : (NSNotification*) notif{
     [_stateText setText:@"State:  Your turn"];
+}
+
+-(void) clearSelectedPiece:(NSNotification*) notif{
+    [_selectedPieceImage setVisible:NO];
+    [_contents removeChild:_selectedPieceImage];
+    _selectedPiece = nil;
+    _selectedStack = nil;
 }
 
 @end

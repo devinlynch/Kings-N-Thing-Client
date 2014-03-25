@@ -37,10 +37,18 @@
 
 -(void) addGamePieceToLocation: (GamePiece*) piece{
     [super addGamePieceToLocation:piece];
-    piece.pieceImage.x = _tile.image.x + 10;
-    piece.pieceImage.y = _tile.image.y + 10;
-    piece.pieceImage.scaleX = 0.25f;
-    piece.pieceImage.scaleY = 0.25f;
+    
+    SPTween *tween = [SPTween tweenWithTarget:piece.pieceImage time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    
+
+    [tween animateProperty:@"x" targetValue:_tile.image.x + 10];
+    [tween animateProperty:@"y" targetValue:_tile.image.y + 10];
+    [tween animateProperty:@"scaleX" targetValue:0.25f];
+    [tween animateProperty:@"scaleY" targetValue:0.25f];
+    
+    [Sparrow.juggler addObject:tween];
+
     [[_tile.image parent] addChild:piece.pieceImage];
 }
 
@@ -55,6 +63,24 @@
     if(stack.location != nil && ! [stack.location isKindOfClass:[NSNull class]]) {
         [stack.location removeStack:stack];
     }
+    
+    if (stack.stackImage == nil) {
+        stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Back.png"];
+        [stack.stackImage setOwner:(id<NSCopying>)stack];
+    }
+    
+    SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    
+    
+    [tween animateProperty:@"x" targetValue:_tile.image.x + 10];
+    [tween animateProperty:@"y" targetValue:_tile.image.y + 10];
+    [tween animateProperty:@"scaleX" targetValue:0.25f];
+    [tween animateProperty:@"scaleY" targetValue:0.25f];
+    
+    [Sparrow.juggler addObject:tween];
+
+    [[_tile.image parent] addChild:stack.stackImage];
     
     stack.location = self;
     [_stacks setObject:stack forKey:[stack locationId]];

@@ -42,9 +42,6 @@
         
         _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
         
-        
-        
-        
         _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
         
         _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
