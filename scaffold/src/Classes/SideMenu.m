@@ -9,6 +9,8 @@
 #import "SideMenu.h"
 #import "Log.h"
 #import "SuchTeam.h"
+#import "GameReference.h"
+#import "ChatScene.h"
 
 @implementation SideMenu{
     SPSprite *_contents;
@@ -97,16 +99,30 @@ static SideMenu *instance = nil;
     [gameLogButton addEventListener:@selector(onGameLogButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
+    //Random Events Reference cell
+    SPTexture *referenceTexture = [SPTexture textureWithContentsOfFile:@"reference@2x.png"];
+    SPButton *referenceButton = [SPButton buttonWithUpState:referenceTexture];
+    
+    
+    referenceButton.y = (titleButton.height * 3) + (_offset * 3);
+    
+    [_contents addChild:referenceButton];
+    
+    [referenceButton addEventListener:@selector(onGameReferenceButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+
+    
     //Such team cell
     SPTexture *suchTeamTexture = [SPTexture textureWithContentsOfFile:@"team@2x.png"];
     SPButton *suchTeamButton = [SPButton buttonWithUpState:suchTeamTexture];
     
     
-    suchTeamButton.y = (titleButton.height * 3) + (_offset * 3);
+    suchTeamButton.y = (titleButton.height * 4) + (_offset * 4);
     
     [_contents addChild:suchTeamButton];
     
     [suchTeamButton addEventListener:@selector(onTeamInfoButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+    
     
 
 }
@@ -114,7 +130,7 @@ static SideMenu *instance = nil;
 -(void) onChatButtonTriggered: (SPEvent *) event
 {
     NSLog(@"User clicked chat cell");
-    
+    [self showChat];
    
     
 }
@@ -136,15 +152,34 @@ static SideMenu *instance = nil;
     
 }
 
+-(void) onGameReferenceButtonTriggered: (SPEvent *) event
+{
+    NSLog(@"User clicked game reference cell");
+    [self showGameReferencesMenu];
+    
+    
+}
+
 
 -(void)showLogMenu{
     Log *log = [[Log alloc]init];
     [self showScene:log];
 }
 
+
+- (void)showChat{
+    ChatScene *chat = [[ChatScene alloc]init];
+    [self showScene:chat];
+}
+
 - (void)showSuchTeamMenu{
     SuchTeam *suchTeam = [[SuchTeam alloc]init];
     [self showScene:suchTeam];
+}
+
+- (void)showGameReferencesMenu{
+    GameReference *gameReference = [[GameReference alloc]init];
+    [self showScene:gameReference];
 }
 -(void) showScene:(SPSprite *)scene
 {

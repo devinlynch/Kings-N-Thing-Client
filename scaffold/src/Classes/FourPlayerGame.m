@@ -252,6 +252,7 @@
     SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
     moveDoneButton.x = _gameWidth - 32 * 2.3;
     moveDoneButton.y = _gameHeight - _rackZone.height;
+    moveDoneButton.scaleX = moveDoneButton.scaleY = 0.41;
     [_contents addChild:moveDoneButton];
     [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
