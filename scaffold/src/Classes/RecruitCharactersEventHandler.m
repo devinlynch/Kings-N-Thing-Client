@@ -132,5 +132,50 @@
  A summary of what happened int he phase is given.
  */
 
+-(void) handleRoundOfRecruitCharactersOver:(Event *)event{
+    NSLog(@"Handling roundOfRecruitCharactersOver message");
+    
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    if(dataDic == nil){
+        return;
+    }
+    
+    NSString *specialCharacterId = [[dataDic objectForKey:@"specialCharacter"] objectForKey:@"id"];
+    NSString *playerId = [dataDic objectForKey:@"playerId"];
+    BOOL didRecruit = [[dataDic objectForKey:@"didRecruit"] boolValue];
+    int numPostRolls = [[dataDic objectForKey:@"numPostRolls"] intValue];
+    
+    Game *game = [Game currentGame];
+    GameState* gameState = game.gameState;
+    Player * player = [gameState getPlayerById:playerId];
+    GamePiece *piece = [[GameResource getInstance] getPieceForId:specialCharacterId];
+    
+    if(! game && !player && !piece) {
+        NSLog(@"Something wrong with roundOfRecruitCharactersOver message");
+        return;
+    }
+    
+    NSString *didHeRecruit;
+    if(didRecruit) {
+        didHeRecruit = @"They recruited it";
+    } else{
+        didHeRecruit = @"They did not recruit it";
+    }
+    
+    NSString *logMessage = [NSString stringWithFormat: @"%@ finished their turn of trying to recruit a %@.  %@.  They bought %d post rolls.", player.username, piece.gamePieceId, didHeRecruit, numPostRolls];
+    [game addLogMessage:logMessage];
+    
+    BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
+    if(!isMe) {
+        NSLog(@"Got roundOfRecruitCharactersOver message but its not me");
+        return;
+    }
+    
+    NSLog(@"Succesfully handled roundOfRecruitCharactersOver message");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"roundOfRecruitCharactersOver" object:[NSNumber numberWithBool:didRecruit]];
+    });
+}
+
 
 @end

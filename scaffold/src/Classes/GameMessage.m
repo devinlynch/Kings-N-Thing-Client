@@ -11,13 +11,14 @@
 @implementation GameMessage
 
 @synthesize jsonDictionnary = _jsonDictionnary;
-
+@synthesize gameId = _gameId;
 
 -(GameMessage*) initWithType: (NSString*) t andDictionnary:(NSDictionary*) dic{
     self=[super init];
     _jsonDictionnary = dic;
     _type = [[NSString alloc] initWithString:t];
     _messageId = [dic objectForKey:@"messageId"];
+    _gameId = [dic objectForKey:@"gameId"];
     return self;
 }
 

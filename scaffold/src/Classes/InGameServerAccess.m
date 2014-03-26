@@ -15,6 +15,15 @@
 @synthesize delegateListener;
 
 static InGameServerAccess *instance;
+
+
+-(id) init{
+    self= [super init];
+    NSDictionary *mainDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server_config" ofType:@"plist"]];
+    ipAddress = [mainDictionary objectForKey:@"ip_address"];
+    return self;
+}
+
 +(InGameServerAccess*) instance{
     @synchronized(self){
         if(!instance)
@@ -34,7 +43,7 @@ static InGameServerAccess *instance;
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://localhost:8080/KingsNThings/%@", req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://%@:8080/KingsNThings/%@", ipAddress,req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
@@ -63,6 +72,17 @@ static InGameServerAccess *instance;
          }
          
          if( responseMessage != nil ){
+             if(responseMessage.error != nil && [responseMessage.error.responseError isEqualToString:@"NOT_LOGGED_IN"]){
+                 @try{
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+                     });
+                 } @catch (NSException *e) {
+                     NSLog(@"Error sending game over notification because user is not logged in: %@", e);
+                 }
+                 return;
+             }
+             
              [delegateListener didGetIngameResponseFromServerForRequest:requestType andResponse:responseMessage];
              if (successCall != nil) {
                 successCall(responseMessage);
@@ -230,7 +250,7 @@ static InGameServerAccess *instance;
 -(enum InGameRequestTypes) sendChatMessage: (NSString*) message withSuccess:( void (^)(ServerResponseMessage * message))success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:message forKey:@"message"];
-        
+    
     [self asynchronousRequestOfType:POSTREQUEST toUrl:@"game/sendChat" withParams:params andDelegateListener:delegateListener andErrorCall:^{
         [delegateListener didGetIngameResponseFromServerForRequest:CHAT_SENDMESSAGE andResponse:nil];
     }andSuccessCall:success andRequestType:CHAT_SENDMESSAGE];

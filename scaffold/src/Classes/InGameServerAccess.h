@@ -41,6 +41,10 @@ typedef enum InGameRequestTypes {
 void (^successBlock)(ServerResponseMessage*);
 
 @interface InGameServerAccess : NSObject
+{
+    NSString *ipAddress;
+}
+
 
 @property id<InGameServerProtocol> delegateListener;
 

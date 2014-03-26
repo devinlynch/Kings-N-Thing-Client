@@ -64,7 +64,10 @@
     
     
     NSDictionary* placedCMDic = [message.jsonDictionnary objectForKey:@"data"];
-    Player *p = [[Game currentGame] getPlayerById:[placedCMDic objectForKey:@"playerId"]];
+    
+    Game *game = [Game currentGame];
+    NSString * playerId = [placedCMDic objectForKey:@"playerId"];
+    Player *p = [game.gameState getPlayerById: playerId];
     
     if(p != nil) {
         [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ placed their control markers", p.username]];
@@ -98,7 +101,9 @@
         NSLog(@"Got placed fort message but for some reason it goofed");
     }
     
-    Player *p = [[Game currentGame] getPlayerById:[placedFortDic objectForKey:@"playerId"]];
+    Game *game = [Game currentGame];
+    NSString * playerId = [placedFortDic objectForKey:@"playerId"];
+    Player *p = [game.gameState getPlayerById: playerId];
     if(p != nil) {
         [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ placed their fort", p.username]];
     }

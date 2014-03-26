@@ -74,12 +74,6 @@ void onUncaughtException(NSException *exception)
 
 -(void) handleGameStarted: (NSNotification*) notif{
     dispatch_async(dispatch_get_main_queue(), ^{
-
-        Game *game = notif.object;
-        // John/Richard, here is the game object in its initial state.  Do as you need with it
-        
-        CGRect screenBounds = [UIScreen mainScreen].bounds;
-        _window = [[UIWindow alloc] initWithFrame:screenBounds];
         
         _viewController = [[SPViewController alloc] init];
         
@@ -100,6 +94,8 @@ void onUncaughtException(NSException *exception)
 
 -(void) handleGameOver: (NSNotification*) notif{
     dispatch_async(dispatch_get_main_queue(), ^{
+        _viewController=nil;
+        
         NSLog(@"Got game over message, going back to lobby");
         
         [Game setInstance: nil];
@@ -109,7 +105,7 @@ void onUncaughtException(NSException *exception)
         
         [_window setRootViewController:yourController];
         [_window makeKeyAndVisible];
-        
+                
     });
 }
 

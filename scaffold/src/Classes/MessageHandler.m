@@ -36,6 +36,11 @@ static NSMutableSet* receivedMessageIds;
         Message *responseMessage;
         if([json objectForKey:@"responseStatus"] == nil){
             responseMessage = [[GameMessage alloc] initFromJSON:json];
+            NSString *gameId = [json objectForKey:@"gameId"];
+            if( ! [[[Game currentGame] gameID] isEqualToString:gameId] ){
+                NSLog(@"We got a message with game id [%@] but our current game id is [%@] so we're ignoring it", gameId, [[Game currentGame] gameID]);
+                return;
+            }
         } else{
             responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
         }
@@ -72,6 +77,11 @@ static NSMutableSet* receivedMessageIds;
     @try {
         if([json objectForKey:@"responseStatus"] == nil){
             responseMessage = [[GameMessage alloc] initFromJSON:json];
+            NSString *gameId = [json objectForKey:@"gameId"];
+            if( ! [[[Game currentGame] gameID] isEqualToString:gameId] ){
+                NSLog(@"We got a message with game id [%@] but our current game id is [%@] so we're ignoring it", gameId, [[Game currentGame] gameID]);
+                return;
+            }
         } else{
             responseMessage = [[ServerResponseMessage alloc] initFromJSON:json];
         }

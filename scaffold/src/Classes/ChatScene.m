@@ -118,7 +118,7 @@
     [_scrollView setContentSize:CGSizeMake(300, 460)];
     
     
-    _chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 500, 200, 30)];
+    _chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(5, 300, 300, 30)];
     _chatTextField.borderStyle = UITextBorderStyleRoundedRect;
     _chatTextField.textColor = [UIColor blackColor];
     _chatTextField.font = [UIFont systemFontOfSize:17.0];
@@ -128,6 +128,7 @@
     _chatTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _chatTextField.delegate = self;
     [view addSubview:_chatTextField];
+    _chatTextField.selected=true;
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
