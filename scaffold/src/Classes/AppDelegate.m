@@ -42,29 +42,7 @@ void onUncaughtException(NSException *exception)
    NSSetUncaughtExceptionHandler(&onUncaughtException);
    
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
-    _window = [[UIWindow alloc] initWithFrame:screenBounds];
 
-    _viewController = [[SPViewController alloc] init];
-    
-    _viewController.multitouchEnabled = YES;
-    
-    // Enable some common settings here:
-    //
-   // _viewController.showStats = YES;
-   /* _viewController.multitouchEnabled = YES;
-    // _viewController.preferredFramesPerSecond = 60;
-    
-    [_viewController startWithRoot:[ChatScene class] supportHighResolutions:YES doubleOnPad:YES];
-    
-    [_window setRootViewController:_viewController];
-    [_window makeKeyAndVisible];
-    
-    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];
-
-/*
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
     
@@ -76,21 +54,10 @@ void onUncaughtException(NSException *exception)
     [_window setRootViewController:yourController];
     [_window makeKeyAndVisible];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleGameStarted:)
-                                                 name:@"gameStarted"
-                                               object:nil];
-    
-    udpMessageReceiver = [[UDPMessageReceiver alloc] init];
-    [udpMessageReceiver startListeningOnPort:3004];
     
     [MessageHandler startMessageHandlerQueue];
     [self startNewMessageTimer];
     
-    NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
-    
-    [_window setRootViewController:yourController];
-    [_window makeKeyAndVisible];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleGameStarted:)
@@ -100,7 +67,7 @@ void onUncaughtException(NSException *exception)
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleGameOver:)
                                                  name:@"gameOver"
-                                               object:nil];*/
+                                               object:nil];
     
     return YES;
 }
@@ -122,6 +89,7 @@ void onUncaughtException(NSException *exception)
         _viewController.showStats = YES;
         _viewController.multitouchEnabled = YES;
         // _viewController.preferredFramesPerSecond = 60;
+        _viewController.showStats=NO;
         
         [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
         

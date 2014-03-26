@@ -67,7 +67,7 @@
                                     <action selector="didPressLogin:" destination="YUX-yO-aDV" eventType="touchUpInside" id="xhL-u4-OtR"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="john" borderStyle="roundedRect" placeholder="  username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ukd-Wz-Gdl">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="devin" borderStyle="roundedRect" placeholder="  username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ukd-Wz-Gdl">
                                 <rect key="frame" x="52" y="183" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -76,7 +76,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" borderStyle="roundedRect" placeholder="  password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hdv-9A-oNY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="  password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hdv-9A-oNY">
                                 <rect key="frame" x="52" y="215" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -188,7 +188,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressMatchButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="3y7-i6-CYY"/>
+                                    <action selector="didPressMatchButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="jYg-U9-fo9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPd-Rf-bQd">
@@ -204,7 +204,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressMatchButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="EUW-hj-dls"/>
+                                    <action selector="didPressMatchButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="Phh-jB-e9f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EjP-mc-jlr">
@@ -220,7 +220,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="didPressLogoutButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="5IJ-u7-SPn"/>
+                                    <action selector="didPressLogoutButton:" destination="QJt-Cv-cOH" eventType="touchUpInside" id="Nx6-k1-G92"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,10 +230,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="findGameButton" destination="WN4-Ya-zft" id="Hsf-ZY-qFe"/>
+                        <outlet property="hostGameButton" destination="SPd-Rf-bQd" id="in5-5J-blE"/>
                         <outlet property="logoutButton" destination="EjP-mc-jlr" id="rMN-hi-M2I"/>
                         <outlet property="quickMatchButton" destination="FHO-hY-AKp" id="cWv-0u-X9B"/>
                         <outlet property="welcomeText" destination="d3S-MA-OtK" id="R5Q-FG-PQ8"/>
                         <segue destination="l1y-t8-S7Y" kind="modal" identifier="joinGameSpecifics" modalTransitionStyle="crossDissolve" id="fes-AO-n8V"/>
+                        <segue destination="YUX-yO-aDV" kind="modal" identifier="logout" id="xcQ-f2-taX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZG-L8-PEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -442,5 +444,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="C17-gt-wKg"/>
+        <segue reference="xcQ-f2-taX"/>
     </inferredMetricsTieBreakers>
 </document>

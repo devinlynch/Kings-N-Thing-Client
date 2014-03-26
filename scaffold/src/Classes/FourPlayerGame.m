@@ -1297,7 +1297,7 @@
                                 
                                 placeHex3 = location.locationId;
                                 
-                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3 withSuccess:^{
+                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3 withSuccess:^(ServerResponseMessage *message){
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         [location changeOwnerToPlayer:player];
                                     });
@@ -1378,7 +1378,7 @@
 }
 
 -(void) recruitWasFree:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
             [self clearSelectedPiece:nil];
@@ -1389,7 +1389,7 @@
 }
 
 -(void) recruitWasBought:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
             [self clearSelectedPiece:nil];
@@ -1401,14 +1401,14 @@
 
 -(void) tileSingleTap: (HexLocation*) location{
     if (_selectedPiece != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^{
+        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addGamePieceToLocation:_selectedPiece];
                 [self clearSelectedPiece:nil];
             });
         }];
     } else if (_selectedStack != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^{
+        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addStack:_selectedStack];
                 [self clearSelectedPiece:nil];
@@ -1419,7 +1419,7 @@
 
 -(void) tileSingleTapFort: (HexLocation*) location{
     if(_selectedPiece != nil){
-        [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^{
+        [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addGamePieceToLocation:_selectedPiece];
                 [self clearSelectedPiece:nil];

@@ -12,7 +12,6 @@
 
 
 
-
 typedef enum InGameRequestTypes {
     SETUPPHASE_readyForPlacement,
     PLACEMENTPHASE_placeControlMarker,
@@ -24,7 +23,10 @@ typedef enum InGameRequestTypes {
     MOVEMENTPHASE_moveGamePiece,
     MOVEMENTPHASE_createStack,
     MOVEMENTPHASE_addPiecesToStack,
-    MOVEMENTPHASE_playerIsDoneMakingMoves
+    MOVEMENTPHASE_playerIsDoneMakingMoves,
+    RECRUITCHARS_MAKEROLLFORPLAYER,
+    RECRUITCHARS_POSTROLL,
+    CHAT_SENDMESSAGE
 } InGameRequestTypes;
 
 
@@ -33,6 +35,10 @@ typedef enum InGameRequestTypes {
 -(void) didGetIngameResponseFromServerForRequest: (InGameRequestTypes) requestType andResponse: (ServerResponseMessage*) responseMessage;
 
 @end
+
+@class ServerResponseMessage;
+
+void (^successBlock)(ServerResponseMessage*);
 
 @interface InGameServerAccess : NSObject
 
@@ -44,23 +50,29 @@ typedef enum InGameRequestTypes {
 -(enum InGameRequestTypes) setupPhaseReadyForPlacement;
 
 // Placement
--(enum InGameRequestTypes) placementPhasePlaceControlMarkersFirst: (NSString*) hexLocation1Id second: (NSString*) hexLocation2Id third: (NSString*) hexLocation3Id withSuccess:( void (^)())success;
--(enum InGameRequestTypes) placementPhasePlaceFort: (NSString*) hexLocationId withSuccess:( void (^)())success;
+-(enum InGameRequestTypes) placementPhasePlaceControlMarkersFirst: (NSString*) hexLocation1Id second: (NSString*) hexLocation2Id third: (NSString*) hexLocation3Id withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) placementPhasePlaceFort: (NSString*) hexLocationId withSuccess:( void (^)(ServerResponseMessage * message))success;
 
 // Gold Collection
 -(enum InGameRequestTypes) goldCollectionPhaseDidCollectGold;
 
 // Recruit Things
--(enum InGameRequestTypes) recruitThingsPhaseRecruited: (NSString*) thingId palcedOnLocation: (NSString*) locationId wasBought:(BOOL) wasBought withSuccess:( void (^)())success;
+-(enum InGameRequestTypes) recruitThingsPhaseRecruited: (NSString*) thingId palcedOnLocation: (NSString*) locationId wasBought:(BOOL) wasBought withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) recruitThingsPhaseReadyForNextPhase;
 
 // Movement
--(enum InGameRequestTypes) movementPhaseMoveStack: (NSString*) stackId toHex: (NSString*) hexLocationId withSuccess:( void (^)())success;
--(enum InGameRequestTypes) movementPhaseMoveGamePiece: (NSString*) gamePieceId toLocation: (NSString*) locationId withSuccess:( void (^)())success;
--(enum InGameRequestTypes) movementPhaseCreateStack: (NSString*) hexLocationId withPieces: (NSArray*) gamePieceIds withSuccess:( void (^)())success;
--(enum InGameRequestTypes) movementPhaseAddPiecesToStack: (NSString*) stackId pieces: (NSArray*) gamePieceIds withSuccess:( void (^)())success;
+-(enum InGameRequestTypes) movementPhaseMoveStack: (NSString*) stackId toHex: (NSString*) hexLocationId withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) movementPhaseMoveGamePiece: (NSString*) gamePieceId toLocation: (NSString*) locationId withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) movementPhaseCreateStack: (NSString*) hexLocationId withPieces: (NSArray*) gamePieceIds withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) movementPhaseAddPiecesToStack: (NSString*) stackId pieces: (NSArray*) gamePieceIds withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) movementPhaseDoneMakingMoves;
 
+// Recruit Characters
+-(enum InGameRequestTypes) recruitCharactersMakeRoll: (NSString*) recruitingCharacterId andNumPreRolls: (int) numPreRolls withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) recruitCharactersPostRollWithNumPostRolls: (int) numPostRolls withSuccess:( void (^)(ServerResponseMessage * message))success;
 
+
+// Chat
+-(enum InGameRequestTypes) sendChatMessage: (NSString*) message withSuccess:( void (^)(ServerResponseMessage * message))success;
 
 @end

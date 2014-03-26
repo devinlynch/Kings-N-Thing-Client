@@ -7,7 +7,9 @@
 //
 
 #import "ChatScene.h"
-
+#import "Game.h"
+#import "InGameServerAccess.h"
+#import "GameChatMessage.h"
 
 @implementation ChatScene
 {
@@ -27,6 +29,8 @@
     
     //Textfield
     UITextField *_chatTextField;
+    
+    UITextView *_textView;
     
 }
 
@@ -82,9 +86,16 @@
     
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    log = [NSMutableArray arrayWithObjects:@"chat testing",nil];
+    log = [[NSMutableArray alloc] init];
+    
+    if([Game currentGame] != nil){
+        for(GameChatMessage *msg in [[Game currentGame] chatMessages]) {
+            [log addObject:[NSString stringWithFormat:@"%@: %@", msg.user.username, msg.message]];
+        }
+    }
+    
     //Make text field to add in scrollView
-    UITextView *_textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 300, 260)];
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 300, 260)];
     _textView.backgroundColor= [UIColor clearColor];
     _textView.editable = NO;
     _textView.textColor = [UIColor blackColor];
@@ -117,6 +128,12 @@
     _chatTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _chatTextField.delegate = self;
     [view addSubview:_chatTextField];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(newChatMessage:)
+                                                 name:@"newChatMessage"
+                                               object:nil];
    
 }
 
@@ -135,24 +152,38 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (([[_chatTextField text] length] > 1))
+    if (([[_chatTextField text] length] < 1))
     {
         
     }
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"doge"
-                                                        message:@"doge"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sent"
+                                                        message:@"Your chat message was sent"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
         
+        [[InGameServerAccess instance] sendChatMessage:[_chatTextField text] withSuccess:nil];
+        [_chatTextField setText:@""];
     }
     
     
     [textField resignFirstResponder];
     
     return YES;
+}
+
+-(void) newChatMessage: (NSNotification*) notif{
+    NSMutableArray *log = [[NSMutableArray alloc] init];
+    
+    if([Game currentGame] != nil){
+        for(GameChatMessage *msg in [[Game currentGame] chatMessages]) {
+            [log addObject:[NSString stringWithFormat:@"%@: %@", msg.user.username, msg.message]];
+        }
+    }
+    
+    _textView.text = [log componentsJoinedByString:@"\n"];
 }
 
 

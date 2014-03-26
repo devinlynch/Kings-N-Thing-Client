@@ -21,7 +21,6 @@
 #import "Stack.h"
 #import "InGameServerAccess.h"
 
-
 @interface TileMenu ()
 - (void) setup;
 - (void) showScene:(SPSprite*)scene;
@@ -178,7 +177,7 @@
 
     
     if (_selectedPiece != nil) {
-        [[InGameServerAccess instance] movementPhaseAddPiecesToStack:stack.locationId pieces:pieces withSuccess:^{
+        [[InGameServerAccess instance] movementPhaseAddPiecesToStack:stack.locationId pieces:pieces withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [stack addGamePieceToLocation:_selectedPiece];
                 [_contents removeAllChildren];
@@ -242,14 +241,17 @@
         
         Stack *newStack = [[Stack alloc] init];
     
-        [[InGameServerAccess instance] movementPhaseCreateStack:[_location locationId] withPieces:pieces withSuccess:^{
+        [[InGameServerAccess instance] movementPhaseCreateStack:[_location locationId] withPieces:pieces withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
-                [newStack addGamePieceToLocation:piece];
-                [newStack addGamePieceToLocation:_selectedPiece];
-                [_location addStack:newStack];
-                [_contents removeAllChildren];
-                [self setupWithLocation:_location];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"clearSelectedPiece" object:nil];
+                if(message.data != nil && message.data.map != nil && [message.data.map objectForKey:@"createdStackId"] != nil) {
+                    [newStack setLocationId:[message.data.map objectForKey:@"createdStackId"]];
+                    [newStack addGamePieceToLocation:piece];
+                    [newStack addGamePieceToLocation:_selectedPiece];
+                    [_location addStack:newStack];
+                    [_contents removeAllChildren];
+                    [self setupWithLocation:_location];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearSelectedPiece" object:nil];
+                }
             });
         }];
         

@@ -9,6 +9,7 @@
 #import "PlacementHandler.h"
 #import "GameMessage.h"
 #import "Event.h"
+#import "Game.h"
 
 @implementation PlacementHandler
 -(void) handleEvent:(Event *)event{
@@ -16,6 +17,8 @@
 }
 
 -(void) handleYourTurnToPlaceFort:(Event *)event{
+    [Game addLogMessageToCurrentGame:@"It is your turn to place your fort."];
+    
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got place fort  message");
     
@@ -25,6 +28,8 @@
 }
 
 -(void) handleYourTurnToPlaceControlMarker:(Event *)event{
+    [Game addLogMessageToCurrentGame:@"It is your turn to place your control markers"];
+    
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got place marker message");
     
@@ -34,6 +39,8 @@
 }
 
 -(void) handleTimeToPlaceFort:(Event *)event{
+    [Game addLogMessageToCurrentGame:@"It's time to place forts.  Please wait your turn."];
+    
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got time to place fort message");
     
@@ -47,7 +54,7 @@
     NSLog(@"Got player placed control marked message");
 
     
-    if (message == nil || message.jsonDictionnary == nil){
+    if (message == nil || message.jsonDictionnary == nil || [Game currentGame] == nil){
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY????? idk devin");
         
         return;
@@ -57,7 +64,11 @@
     
     
     NSDictionary* placedCMDic = [message.jsonDictionnary objectForKey:@"data"];
+    Player *p = [[Game currentGame] getPlayerById:[placedCMDic objectForKey:@"playerId"]];
     
+    if(p != nil) {
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ placed their control markers", p.username]];
+    }
     
     if(placedCMDic == nil){
         NSLog(@"Got placed control marker message but for some reason it goofed");
@@ -74,7 +85,7 @@
     GameMessage *message = (GameMessage*) event.msg;
     NSLog(@"Got player placed fort message");
     
-    if (message == nil || message.jsonDictionnary == nil){
+    if (message == nil || message.jsonDictionnary == nil || [Game currentGame] == nil){
         NSLog(@"For some reason the game was not provided in the data for a GameStarted message.  WHY????? idk devin");
         
         return;
@@ -85,6 +96,11 @@
     
     if(placedFortDic == nil){
         NSLog(@"Got placed fort message but for some reason it goofed");
+    }
+    
+    Player *p = [[Game currentGame] getPlayerById:[placedFortDic objectForKey:@"playerId"]];
+    if(p != nil) {
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ placed their fort", p.username]];
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
