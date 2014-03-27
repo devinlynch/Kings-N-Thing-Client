@@ -58,7 +58,7 @@
     
     //Text
     SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Username"];
+                                                        text:@"Recruit Things"];
     welcomeTF.x = welcomeTF.y = offset;
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;
@@ -139,7 +139,7 @@
     
     NSString *rackId = [[me rack2] locationId];
     
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^(ServerResponseMessage *message){
         [[me rack2] addGamePieceToLocation:gamePiece];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];

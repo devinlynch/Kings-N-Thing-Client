@@ -21,17 +21,20 @@
     GameState *_gameState;
     NSMutableArray *_users;
     NSMutableArray *_chatMessages;
+    NSMutableArray *_logMessages;
 }
 
 
 @property NSMutableArray *users;
 @property GameState *gameState;
 @property NSString  *gameID;
-@property NSMutableArray *chatMessages;
+@property NSMutableArray *chatMessages, *logMessages;
 
 +(id) currentGame;
 +(void) setInstance: (Game*) game;
 -(User*) getUserByUserId:(NSString*) userId;
 -(void) addChatMessage: (GameChatMessage*) message;
+-(void) addLogMessage: (NSString*) message;
++(void) addLogMessageToCurrentGame: (NSString*) message;
 
 @end

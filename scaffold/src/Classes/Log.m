@@ -7,6 +7,7 @@
 //
 
 #import "Log.h"
+#import "Game.h"
 //#import "Transparency.h"
 //#import "SPScrollSprite.h"
 //#import "Sparrow.h"
@@ -81,54 +82,12 @@
    
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    log = [NSMutableArray arrayWithObjects:@"test1: Dis is naht Java.",
-                                           @"test2: Java java java java java java.",
-                                           @"test3: 3d 3d 3d 3d 3d 3d 3d 3d 3d 3d", nil];
+    if([Game currentGame] != nil) {
+        log = [NSMutableArray arrayWithArray:[[Game currentGame] logMessages]];
+    } else
+        log = [[NSMutableArray alloc] init];
     
-    //Adding to the log
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    [log addObject:@"dis is objectiv-c"];
-    
+
     
     
     //Make text field to add in scrollView

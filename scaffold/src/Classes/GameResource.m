@@ -12,6 +12,7 @@
 #import "Fort.h"
 #import "CityVill.h"
 #import "NonCityVill.h"
+#import "SpecialCharacter.h"
 
 @implementation GameResource
 
@@ -44,6 +45,10 @@ static GameResource *instance;
     _nonCityVillPieces = [NonCityVill initializeAllNonCityVill];
     [_allPieces addEntriesFromDictionary: _nonCityVillPieces];
     
+    _specialCharacterPieces = [SpecialCharacter initializeAllSpecialCharacters];
+    [_allPieces addEntriesFromDictionary: _specialCharacterPieces];
+    
+    
     return self;
 }
 
@@ -71,7 +76,9 @@ static GameResource *instance;
 -(Fort*) getFortForId: (NSString*) pieceId{
     return [_fortPieces objectForKey:pieceId];
 }
-
+-(SpecialCharacter*) getSpecialCharacterForId: (NSString*) pieceId{
+    return [_specialCharacterPieces objectForKeyedSubscript:pieceId];
+}
 
 
 @end

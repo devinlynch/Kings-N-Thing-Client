@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class GamePiece, Creature, HexTile, Fort, CityVill, NonCityVill;
+@class GamePiece, Creature, HexTile, Fort, CityVill, NonCityVill, SpecialCharacter;
 
 @interface GameResource : NSObject{
     NSMutableDictionary *_allPieces;
@@ -20,6 +20,8 @@
 //    NSMutableDictionary *_randomPieces;
     NSMutableDictionary *_cityVillPieces;
     NSMutableDictionary *_nonCityVillPieces;
+    NSMutableDictionary *_specialCharacterPieces;
+
 }
 
 
@@ -35,5 +37,7 @@
 -(Fort*) getFortForId: (NSString*) pieceId;
 -(CityVill*) getCityVillForId: (NSString*) pieceId;
 -(NonCityVill*) getNonCityVillForId: (NSString*) pieceId;
+-(SpecialCharacter*) getSpecialCharacterForId: (NSString*) pieceId;
+
 
 @end

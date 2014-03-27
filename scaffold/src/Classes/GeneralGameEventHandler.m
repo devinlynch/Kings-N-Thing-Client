@@ -16,7 +16,10 @@
 -(void) handleGameOver:(Event*) event{
     if([Game currentGame] != nil) {
         NSLog(@"Handling game over message");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+        });
     }
 }
 
@@ -28,6 +31,13 @@
         if([data.map valueForKey:@"message"] != nil){
             NSDictionary *dic = [data.map valueForKey:@"message"];
             [self addChatMessageFromDictionary:dic];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @try{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"newChatMessage" object:nil];
+                } @catch(NSException *e) {
+                }
+            });
         }
     }
 }

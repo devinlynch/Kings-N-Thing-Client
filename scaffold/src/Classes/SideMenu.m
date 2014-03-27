@@ -11,6 +11,7 @@
 #import "SuchTeam.h"
 #import "GameReference.h"
 #import "ChatScene.h"
+#import "ServerAccess.h"
 
 @implementation SideMenu{
     SPSprite *_contents;
@@ -123,6 +124,16 @@ static SideMenu *instance = nil;
     [suchTeamButton addEventListener:@selector(onTeamInfoButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
+    //Leave game
+    SPTexture *leaveGameTexture = [SPTexture textureWithContentsOfFile:@"leavegame@2x.png"];
+    SPButton *leaveGameButton = [SPButton buttonWithUpState:leaveGameTexture];
+    
+    
+    leaveGameButton.y = (suchTeamButton.height * 5) + (_offset * 5);
+    
+    [_contents addChild:leaveGameButton];
+    
+    [leaveGameButton addEventListener:@selector(onLeaveGameButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
 
 }
@@ -158,6 +169,12 @@ static SideMenu *instance = nil;
     [self showGameReferencesMenu];
     
     
+}
+
+-(void) onLeaveGameButtonTriggered: (SPEvent *) event
+{
+    NSLog(@"User clicked leave game");
+    [[ServerAccess instance] leaveGame];
 }
 
 

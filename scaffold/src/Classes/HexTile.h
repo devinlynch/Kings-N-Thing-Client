@@ -8,7 +8,7 @@
 
 #import "GamePiece.h"
 
-@class Terrain, TileImage;
+@class Terrain, TileImage, SPImage;
 
 @interface HexTile : GamePiece{
     int _tileNumber;

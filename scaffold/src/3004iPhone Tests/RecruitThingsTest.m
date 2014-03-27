@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Utils.h"
+#import "Event.h"
+#import "RecruitCharactersEventHandler.h"
 
 @interface RecruitThingsTest : XCTestCase
 
@@ -28,7 +31,15 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString *didRollMsg = @"{ \"data\":{ \"didRecruit\":false, \"specialCharacter\":{ \"id\":\"specialcharacter_04\", \"ownerId\":null, \"locationId\":\"side\", \"neutralized\":false }, \"playerId\":\"player4\", \"numPreRolls\":0, \"theRoll\":9, \"isMe\":true }, \"messageId\":\"gamemessage1395501091155r7wi0tk0pyoaglsh\", \"type\":\"didRollInRecruitCharactrs\", \"createdDate\":1395501091155 }";
+    
+    
+    GameMessage *message = [Utils gameResponseMessageFromJSONData:[didRollMsg dataUsingEncoding:NSUTF8StringEncoding]];
+    Event *e = [[Event alloc] initForType:@"" withMessage:message];
+    
+    RecruitCharactersEventHandler *handler = [[RecruitCharactersEventHandler alloc] init];
+    [handler handleDidRollInRecruitCharactrs:e];
+    
 }
 
 @end

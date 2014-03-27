@@ -23,6 +23,7 @@
 #import "RandomEventsMenu.h"
 #import "ConstructionMenu.h"
 #import "ChatScene.h"
+#import "TestScreen.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -38,6 +39,7 @@ void onUncaughtException(NSException *exception)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&onUncaughtException);
     
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -64,12 +66,6 @@ void onUncaughtException(NSException *exception)
 
 -(void) handleGameStarted: (NSNotification*) notif{
     dispatch_async(dispatch_get_main_queue(), ^{
-
-        Game *game = notif.object;
-        // John/Richard, here is the game object in its initial state.  Do as you need with it
-        
-        CGRect screenBounds = [UIScreen mainScreen].bounds;
-        _window = [[UIWindow alloc] initWithFrame:screenBounds];
         
         _viewController = [[SPViewController alloc] init];
         
@@ -79,6 +75,7 @@ void onUncaughtException(NSException *exception)
         _viewController.showStats = YES;
         _viewController.multitouchEnabled = YES;
         // _viewController.preferredFramesPerSecond = 60;
+        _viewController.showStats=NO;
         
         [_viewController startWithRoot:[FourPlayerGame class] supportHighResolutions:YES doubleOnPad:YES];
         
@@ -89,6 +86,8 @@ void onUncaughtException(NSException *exception)
 
 -(void) handleGameOver: (NSNotification*) notif{
     dispatch_async(dispatch_get_main_queue(), ^{
+        _viewController=nil;
+        
         NSLog(@"Got game over message, going back to lobby");
         
         [Game setInstance: nil];
@@ -98,7 +97,7 @@ void onUncaughtException(NSException *exception)
         
         [_window setRootViewController:yourController];
         [_window makeKeyAndVisible];
-        
+                
     });
 }
 

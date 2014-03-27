@@ -43,6 +43,8 @@
         return;
     }
     
+    [Game addLogMessageToCurrentGame:@"Welcome!  The game has started."];
+    
     NSLog(@"Successfully parsed game from gameStarted message, now sending notification");
     
     dispatch_async(dispatch_get_main_queue(), ^{

@@ -29,7 +29,7 @@
 #import "ServerAccess.h"
 #import "SideMenu.h"
 #import "Stack.h"
-
+#import "RecruitCharacter.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -284,7 +284,7 @@
     [menuButton addEventListener:@selector(moveRight:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
     
-    [_contents addChild:menuButton];
+    [self addChild:menuButton];
     
     
 
@@ -387,7 +387,11 @@
                                              selector:@selector(recruitThingsPhaseOver:)
                                                  name:@"recruitThingsPhaseOver"
                                                object:nil];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didStartRecruitCharactersPhase:)
+                                                 name:@"didStartRecruitCharactersPhase"
+                                               object:nil];
 }
 
 
@@ -400,18 +404,25 @@
         if(isSideMenu){
             
             //Display sideMenu and move fourPlayerGame
-            
+
             
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
                                            transition:SP_TRANSITION_LINEAR];
+            SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
+                                            transition:SP_TRANSITION_LINEAR];
             
           
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:panWidth];
-            
+            [tween2 animateProperty:@"x" targetValue:panWidth+20];
+
             [Sparrow.juggler addObject:tween];
+            [Sparrow.juggler addObject:tween2];
+
+            
+
 
             //[_contents setX:panWidth];
            // tween.onComplete = ^{[self addChild:[SideMenu getInstance]];};
@@ -420,12 +431,16 @@
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
                                            transition:SP_TRANSITION_LINEAR];
+            SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
+                                            transition:SP_TRANSITION_LINEAR];
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:0];
-            
+            [tween2 animateProperty:@"x" targetValue:10];
+
             [Sparrow.juggler addObject:tween];
-            
+            [Sparrow.juggler addObject:tween2];
+
             //[_contents setX:panWidth];
           //  tween.onComplete = ^{[self addChild:_contents];};
 
@@ -1325,7 +1340,7 @@
                                 
                                 placeHex3 = location.locationId;
                                 
-                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3 withSuccess:^{
+                                [[InGameServerAccess instance] placementPhasePlaceControlMarkersFirst:placeHex1 second:placeHex2 third:placeHex3 withSuccess:^(ServerResponseMessage *message){
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         [location changeOwnerToPlayer:player];
                                     });
@@ -1406,7 +1421,7 @@
 }
 
 -(void) recruitWasFree:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
             [self clearSelectedPiece:nil];
@@ -1417,7 +1432,7 @@
 }
 
 -(void) recruitWasBought:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^{
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
             [self clearSelectedPiece:nil];
@@ -1429,14 +1444,14 @@
 
 -(void) tileSingleTap: (HexLocation*) location{
     if (_selectedPiece != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^{
+        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addGamePieceToLocation:_selectedPiece];
                 [self clearSelectedPiece:nil];
             });
         }];
     } else if (_selectedStack != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^{
+        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addStack:_selectedStack];
                 [self clearSelectedPiece:nil];
@@ -1447,7 +1462,7 @@
 
 -(void) tileSingleTapFort: (HexLocation*) location{
     if(_selectedPiece != nil){
-        [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^{
+        [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addGamePieceToLocation:_selectedPiece];
                 [self clearSelectedPiece:nil];
@@ -1490,5 +1505,23 @@
     _selectedPiece = nil;
     _selectedStack = nil;
 }
+
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) didStartRecruitCharactersPhase: (NSNotification*) notif{
+    
+    _phase = SC_RECRUITMENT;
+    
+    RecruitCharacter *rt = [RecruitCharacter getInstance];
+    
+    [_contents addChild:rt];
+    
+    [rt setVisible:YES];
+    
+    
+}
+
 
 @end

@@ -8,7 +8,7 @@
 
 #import "BoardLocation.h"
 
-@class HexTile, Stack, Player, Terrain;
+@class HexTile, Stack, Player, Terrain, SPTween;
 
 @interface HexLocation : BoardLocation{
     HexTile *_tile;

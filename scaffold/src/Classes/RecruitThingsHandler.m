@@ -14,6 +14,7 @@
 #import "PlayerRecruitment.h"
 #import "Thing.h"
 #import "BoardLocation.h"
+#import "Game.h"
 
 @implementation RecruitThingsHandler
 
@@ -25,6 +26,9 @@
     
     NSArray *possibleRecruitments = [dataDic objectForKey:@"possibleRecruitments"];
 
+
+    [Game addLogMessageToCurrentGame:@"The Recruit Characters phase has started!"];
+    
     NSLog(@"Succesfully parsed DidStartRecruitThingsPhase message with possible recruits: %@", possibleRecruitments);
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"startedRecruitThingsPhase" object:possibleRecruitments];
@@ -47,6 +51,7 @@
         return;
     }
     
+    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ recruited a %@ and placed it on %@", player.username, thing.gamePieceId,location.locationName]];
     
     [location addGamePieceToLocation:thing];
     [player assignPiece:thing];

@@ -25,6 +25,10 @@
         if(self && json != nil) {
             _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
             
+            if([json objectForKey:@"name"] != nil && ! [[json objectForKey:@"name"] isKindOfClass:[NSNull class]])
+                _locationName = [[NSString alloc] initWithString:[json objectForKey:@"name"]];
+
+            
             NSArray *piecesJsonArr = [json objectForKey:@"gamePieces"];
             
             _pieces = [[NSMutableDictionary alloc] init];
