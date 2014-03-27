@@ -207,7 +207,7 @@ static RecruitThings *instance;
 {
     [[InGameServerAccess instance] recruitThingsPhaseReadyForNextPhase];
     NSLog(@"Back");
-    _contents.visible = NO;
+    self.visible = NO;
 }
 
 

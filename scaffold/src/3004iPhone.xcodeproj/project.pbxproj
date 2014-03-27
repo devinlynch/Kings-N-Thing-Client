@@ -46,6 +46,9 @@
 		4144CB6D188EFAE9003A29E4 /* clientReactor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4144CB68188EFAE9003A29E4 /* clientReactor.plist */; };
 		4144CB6E188EFAE9003A29E4 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB6A188EFAE9003A29E4 /* Event.m */; };
 		4144CB71188EFAF3003A29E4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB70188EFAF3003A29E4 /* Message.m */; };
+		417313F718E25B21009D27F9 /* 8bit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 417313F618E25B21009D27F9 /* 8bit.caf */; };
+		417313F918E25BBB009D27F9 /* music.caf in Resources */ = {isa = PBXBuildFile; fileRef = 417313F818E25BBB009D27F9 /* music.caf */; };
+		417313FD18E25FED009D27F9 /* music.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 417313FC18E25FED009D27F9 /* music.aifc */; };
 		41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41852B941893458600BFD1B0 /* KeychainItemWrapper.m */; };
 		41852B981893490600BFD1B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41852B971893490600BFD1B0 /* Security.framework */; };
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
@@ -655,6 +658,9 @@
 		4144CB6B188EFAE9003A29E4 /* ReactorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactorProtocol.h; sourceTree = "<group>"; };
 		4144CB6F188EFAF3003A29E4 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		4144CB70188EFAF3003A29E4 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		417313F618E25B21009D27F9 /* 8bit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 8bit.caf; sourceTree = "<group>"; };
+		417313F818E25BBB009D27F9 /* music.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.caf; sourceTree = "<group>"; };
+		417313FC18E25FED009D27F9 /* music.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.aifc; sourceTree = "<group>"; };
 		41852B931893458600BFD1B0 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		41852B941893458600BFD1B0 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		41852B971893490600BFD1B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1731,6 +1737,9 @@
 		DE4F80D914E1541400655D44 /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				417313FC18E25FED009D27F9 /* music.aifc */,
+				417313F818E25BBB009D27F9 /* music.caf */,
+				417313F618E25B21009D27F9 /* 8bit.caf */,
 				DE4F80DB14E1541400655D44 /* sound.caf */,
 			);
 			name = audio;
@@ -2420,6 +2429,7 @@
 				DEF9FF0218A7DAAA0057FAEB /* T_Swamp_084.png in Resources */,
 				DEF9FE9618A7DAAA0057FAEB /* T_Desert_118.png in Resources */,
 				DEF9FF0318A7DAAA0057FAEB /* T_Swamp_085.png in Resources */,
+				417313F718E25B21009D27F9 /* 8bit.caf in Resources */,
 				41BD142518A75244008C6E96 /* T_Income_367.png in Resources */,
 				DEF9FE8D18A7DAAA0057FAEB /* T_Desert_109.png in Resources */,
 				41BD13E718A75244008C6E96 /* G_20.png in Resources */,
@@ -2454,6 +2464,7 @@
 				41BD141418A75244008C6E96 /* T_Event_350.png in Resources */,
 				992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */,
 				DEF9FF3118A8072C0057FAEB /* mountain-tile-menu@2x.png in Resources */,
+				417313FD18E25FED009D27F9 /* music.aifc in Resources */,
 				41BD13C518A75244008C6E96 /* dice6.png in Resources */,
 				41BD13F718A75244008C6E96 /* SC_393.png in Resources */,
 				DEF9FEE518A7DAAA0057FAEB /* T_Plains_024.png in Resources */,
@@ -2549,6 +2560,7 @@
 				DEF9FF3318A8072C0057FAEB /* swamp-tile-menu@2x.png in Resources */,
 				41BD13D818A75244008C6E96 /* C_Village.png in Resources */,
 				DEF9FEA718A7DAAA0057FAEB /* T_Forest_098.png in Resources */,
+				417313F918E25BBB009D27F9 /* music.caf in Resources */,
 				99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */,
 				41BD142818A75244008C6E96 /* T_Income_370.png in Resources */,
 				DEF9FED618A7DAAA0057FAEB /* T_Mountains_047.png in Resources */,

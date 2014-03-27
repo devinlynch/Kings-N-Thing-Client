@@ -41,48 +41,51 @@ void onUncaughtException(NSException *exception)
 {
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     
+    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
+    
+
+   
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
     NSString *isTestScreenMode = [config objectForKey:@"test_screen_mode"];
+    
     if(isTestScreenMode != nil && [isTestScreenMode isEqualToString:@"yes"]) {
+        
         NSString *testScreenMethodName = [config objectForKey:@"test_screen_method"];
+        
         TestScreen *testScreen = [[TestScreen alloc] init];
+        
         SEL selector = NSSelectorFromString(testScreenMethodName);
+        
         _viewController = [testScreen performSelector:selector withObject:_window];
+        
         [_window setRootViewController:_viewController];
+        
         [_window makeKeyAndVisible];
         
+        
+        
         return YES;
+        
     }
-
-
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];
-    
     udpMessageReceiver = [[UDPMessageReceiver alloc] init];
     [udpMessageReceiver startListeningOnPort:3004];
-    
     NSLog(@"My IP is: %@", [IPManager getIPAddress:YES]);
-    
     [_window setRootViewController:yourController];
     [_window makeKeyAndVisible];
-    
-    
     [MessageHandler startMessageHandlerQueue];
     [self startNewMessageTimer];
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleGameStarted:)
                                                  name:@"gameStarted"
                                                object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleGameOver:)
                                                  name:@"gameOver"
                                                object:nil];
-    
     return YES;
 }
 

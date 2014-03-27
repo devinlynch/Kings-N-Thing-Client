@@ -122,19 +122,11 @@
     backButton.x = 320 / 2 - backButton.width /2;
     backButton.y = 410;
     
-    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"Button-Normal@2x.png"];
-    SPButton *createStackButton = [SPButton buttonWithUpState:buttonTexture text:@"Create Stack"];
-    
-    createStackButton.x = 320 / 2 - createStackButton.width /2;
-    createStackButton.y = 410 - createStackButton.height + 5;
-    
     _selectedText = [SPTextField textFieldWithWidth:200 height:30 text:@"Selected:"];
     _selectedText.x = 320 / 2 - _selectedText.width /2;
-    _selectedText.y = createStackButton.y - 35;
+    _selectedText.y = backButton.y - 35;
     _selectedText.color = SP_YELLOW;
     [_contents addChild:_selectedText];
-    
-    [_contents addChild:createStackButton];
     [_contents addChild:backButton];
 
     
