@@ -33,7 +33,7 @@ static GameResource *instance;
     [_allPieces addEntriesFromDictionary:_creaturePieces];
     
     _tilePieces = [HexTile initializeTiles];
-    [_allPieces addEntriesFromDictionary:_creaturePieces];
+    [_allPieces addEntriesFromDictionary:_tilePieces];
     
     _fortPieces = [Fort initializeAllForts];
     [_allPieces addEntriesFromDictionary:_fortPieces];

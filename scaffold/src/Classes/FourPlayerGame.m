@@ -135,7 +135,17 @@
    
     
     
+    [SPAudioEngine start];
+    
+   // [[SPSound soundWithContentsOfFile:@"tumblr_lmux2wMBf61qa0efjo1.mp3"] play];
 
+    SPSound *gameOfThrones = [SPSound soundWithContentsOfFile:@"music.aifc"];
+    SPSoundChannel *channel = [gameOfThrones createChannel];
+    
+    
+    [channel setLoop:YES];
+    [channel play];
+    
 
     
     gamePieces = [[NSMutableArray alloc]init];
@@ -542,7 +552,7 @@
 
 -(void) yourTurnCM: (NSNotification*) notif{
     _phase = PLACEMENT;
-    _placementStep = PLACE_CM_2;
+    _placementStep = PLACE_CM_1;
     [_stateText setText:@"State: Place control marker"];
 
 }
@@ -709,13 +719,13 @@
     
     RecruitThings *rt = [RecruitThings getInstance];
     
+    [rt removeFromParent];
+    
     [rt initWithObjectsToRecruit: objectsToRecruit];
     
     [_contents addChild:rt];
-    
-    
-    [rt setVisible:YES];
-    
+
+    rt.visible = YES;
 }
 
 -(void) drawRack{
@@ -1013,10 +1023,10 @@
                     
                    [_sheet addChild: tile.image];
                     
-                   [location changeOwnerToPlayer:_player4];
-                    if ([_state.myPlayerId isEqualToString:@"player4"]) {
-                        placeHex1 = location.locationId;
-                    }
+//                   [location changeOwnerToPlayer:_player4];
+//                    if ([_state.myPlayerId isEqualToString:@"player4"]) {
+//                        placeHex1 = location.locationId;
+//                    }
                 }
                 if (j == 1 ){
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_18"];
@@ -1053,10 +1063,10 @@
                     [tile.image addEventListener:@selector(onTileClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
                    [_sheet addChild: tile.image];
-                    [location changeOwnerToPlayer:_player3];
-                    if ([_state.myPlayerId isEqualToString:@"player3"]) {
-                        placeHex1 = location.locationId;
-                    }
+//                    [location changeOwnerToPlayer:_player3];
+//                    if ([_state.myPlayerId isEqualToString:@"player3"]) {
+//                        placeHex1 = location.locationId;
+//                    }
                 }
                 
                 
@@ -1075,10 +1085,10 @@
                     
                     [_sheet addChild: tile.image];
                     
-                    [location changeOwnerToPlayer:_player1];
-                    if ([_state.myPlayerId isEqualToString:@"player1"]) {
-                        placeHex1 = location.locationId;
-                    }
+//                    [location changeOwnerToPlayer:_player1];
+//                    if ([_state.myPlayerId isEqualToString:@"player1"]) {
+//                        placeHex1 = location.locationId;
+//                    }
                 }
                 if (j == 1) {
                     HexLocation *location = [_state.hexLocations objectForKey:@"hexLocation_10"];
@@ -1120,10 +1130,10 @@
 
                     [_sheet addChild: tile.image];
                     
-                    [location changeOwnerToPlayer:_player2];
-                    if ([_state.myPlayerId isEqualToString:@"player2"]) {
-                        placeHex1 = location.locationId;
-                    }
+//                    [location changeOwnerToPlayer:_player2];
+//                    if ([_state.myPlayerId isEqualToString:@"player2"]) {
+//                        placeHex1 = location.locationId;
+//                    }
                 }
                 
             }
@@ -1264,10 +1274,29 @@
             break;
         case PLACEMENT:
             switch (_placementStep) {
+                case PLACE_CM_1:
+                    if (touches.count == 1)
+                    {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] && location.owner == nil && location.isStartingPoint) {
+                            
+                            SPTouch *clicks = [touches objectAtIndex:0];
+                            
+                            if (clicks.tapCount == 2){
+                                NSLog(@"le double click");
+                                [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                                [location changeOwnerToPlayer:player];
+                                
+                                placeHex1 = location.locationId;
+                                
+                                _placementStep = PLACE_CM_2;
+                            }
+                        }
+                    }
+                break;
                 case PLACE_CM_2:
                     if (touches.count == 1)
                     {
-                        if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] && location.owner == nil && [location hasNeighbourOwnedByPlayer:player] ) {
                             
                             SPTouch *clicks = [touches objectAtIndex:0];
 
@@ -1287,7 +1316,7 @@
                 case PLACE_CM_3:
                     if (touches.count == 1)
                     {
-                        if (![tile.terrain.terrainName isEqualToString:@"Sea"]) {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] && location.owner == nil && [location hasNeighbourOwnedByPlayer:player] ) {
                             
                             SPTouch *clicks = [touches objectAtIndex:0];
                             

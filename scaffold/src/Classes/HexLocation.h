@@ -14,21 +14,24 @@
     HexTile *_tile;
     int _tileNumber;
     NSMutableDictionary *_stacks;
-    NSMutableArray *_neighbourIds;
+    NSArray *_neighbourIds;
     Player *_owner;
+    BOOL _isStartingPoint;
 }
 
 @property HexTile *tile;
 @property Player  *owner;
 @property int tileNumber;
-@property NSMutableArray *neighbourIds;
+@property NSArray *neighbourIds;
 @property NSMutableDictionary *stacks;
+@property BOOL isStartingPoint;
 
 -(void) changeOwnerToPlayer: (Player*) player;
 
 -(void) addStack: (Stack*) stack;
 -(void) removeStack: (Stack*) stack;
 
+-(BOOL) hasNeighbourOwnedByPlayer: (Player*) player;
 
 
 
