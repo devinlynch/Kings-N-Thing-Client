@@ -29,7 +29,7 @@
 #import "ServerAccess.h"
 #import "SideMenu.h"
 #import "Stack.h"
-
+#import "RecruitCharacter.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -275,7 +275,7 @@
     [menuButton addEventListener:@selector(moveRight:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
     
-    [_contents addChild:menuButton];
+    [self addChild:menuButton];
     
     
 
@@ -378,7 +378,11 @@
                                              selector:@selector(recruitThingsPhaseOver:)
                                                  name:@"recruitThingsPhaseOver"
                                                object:nil];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didStartRecruitCharactersPhase:)
+                                                 name:@"didStartRecruitCharactersPhase"
+                                               object:nil];
 }
 
 
@@ -391,18 +395,25 @@
         if(isSideMenu){
             
             //Display sideMenu and move fourPlayerGame
-            
+
             
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
                                            transition:SP_TRANSITION_LINEAR];
+            SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
+                                            transition:SP_TRANSITION_LINEAR];
             
           
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:panWidth];
-            
+            [tween2 animateProperty:@"x" targetValue:panWidth+20];
+
             [Sparrow.juggler addObject:tween];
+            [Sparrow.juggler addObject:tween2];
+
+            
+
 
             //[_contents setX:panWidth];
            // tween.onComplete = ^{[self addChild:[SideMenu getInstance]];};
@@ -411,12 +422,16 @@
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
                                            transition:SP_TRANSITION_LINEAR];
+            SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
+                                            transition:SP_TRANSITION_LINEAR];
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:0];
-            
+            [tween2 animateProperty:@"x" targetValue:10];
+
             [Sparrow.juggler addObject:tween];
-            
+            [Sparrow.juggler addObject:tween2];
+
             //[_contents setX:panWidth];
           //  tween.onComplete = ^{[self addChild:_contents];};
 
@@ -1466,5 +1481,19 @@
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+-(void) didStartRecruitCharactersPhase: (NSNotification*) notif{
+    
+    _phase = SC_RECRUITMENT;
+    
+    RecruitCharacter *rt = [RecruitCharacter getInstance];
+    
+    [_contents addChild:rt];
+    
+    [rt setVisible:YES];
+    
+    
+}
+
 
 @end

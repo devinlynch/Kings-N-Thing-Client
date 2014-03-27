@@ -23,6 +23,7 @@
 #import "RandomEventsMenu.h"
 #import "ConstructionMenu.h"
 #import "ChatScene.h"
+#import "TestScreen.h"
 
 void onUncaughtException(NSException *exception)
 {
@@ -38,10 +39,23 @@ void onUncaughtException(NSException *exception)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&onUncaughtException);
     
-   NSSetUncaughtExceptionHandler(&onUncaughtException);
-   
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
+    NSString *isTestScreenMode = [config objectForKey:@"test_screen_mode"];
+    if(isTestScreenMode != nil && [isTestScreenMode isEqualToString:@"yes"]) {
+        NSString *testScreenMethodName = [config objectForKey:@"test_screen_method"];
+        TestScreen *testScreen = [[TestScreen alloc] init];
+        SEL selector = NSSelectorFromString(testScreenMethodName);
+        _viewController = [testScreen performSelector:selector withObject:_window];
+        [_window setRootViewController:_viewController];
+        [_window makeKeyAndVisible];
+        
+        return YES;
+    }
+
 
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];

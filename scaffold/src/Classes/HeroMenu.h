@@ -8,6 +8,6 @@
 
 #import "SPSprite.h"
 
-@interface HeroMenu : SPSprite
-
+@interface HeroMenu : SPSprite<UITextFieldDelegate>
+-(id) initWithPossibleRecruits: (NSArray*) recruits;
 @end

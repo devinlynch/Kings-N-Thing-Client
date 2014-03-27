@@ -111,7 +111,7 @@ static RecruitThings *instance;
     
     //Username text
     SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Username"];
+                                                        text:@"Recruit Things"];
     welcomeTF.x = welcomeTF.y = offset;
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;

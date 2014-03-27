@@ -161,6 +161,9 @@
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
 		992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613E018E3496F0036CA53 /* leavegame@2x.png */; };
+		992613E518E38FC30036CA53 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992613E418E38FC30036CA53 /* config.plist */; };
+		992613E918E390710036CA53 /* TestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 992613E818E390710036CA53 /* TestScreen.m */; };
+		992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613EA18E3B0CF0036CA53 /* borderTile.png */; };
 		9933E85218BFCC630010C910 /* GeneralGameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */; };
 		993B1CD218D4F00A0055056F /* SentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B1CD118D4F00A0055056F /* SentMessage.m */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
@@ -818,6 +821,10 @@
 		991151801891B03C004E8FFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
 		991151811891B03C004E8FFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
 		992613E018E3496F0036CA53 /* leavegame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leavegame@2x.png"; sourceTree = "<group>"; };
+		992613E418E38FC30036CA53 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		992613E718E390710036CA53 /* TestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScreen.h; sourceTree = "<group>"; };
+		992613E818E390710036CA53 /* TestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestScreen.m; sourceTree = "<group>"; };
+		992613EA18E3B0CF0036CA53 /* borderTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderTile.png; sourceTree = "<group>"; };
 		9933E85018BFCC630010C910 /* GeneralGameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralGameEventHandler.h; sourceTree = "<group>"; };
 		9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralGameEventHandler.m; sourceTree = "<group>"; };
 		993B1CD018D4F00A0055056F /* SentMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentMessage.h; sourceTree = "<group>"; };
@@ -1198,6 +1205,9 @@
 				DE4F80D714E153EA00655D44 /* Game */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				992613E718E390710036CA53 /* TestScreen.h */,
+				992613E818E390710036CA53 /* TestScreen.m */,
+				992613E418E38FC30036CA53 /* config.plist */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1434,6 +1444,7 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				992613EA18E3B0CF0036CA53 /* borderTile.png */,
 				DEF9FF2518A803490057FAEB /* Backgrounds */,
 				DEF9FF2418A8033C0057FAEB /* Buttons */,
 				DEF9FF2318A802FC0057FAEB /* Special Income Counter */,
@@ -2439,6 +2450,7 @@
 				DEF9FEF718A7DAAA0057FAEB /* T_Swamp_073.png in Resources */,
 				41BD13C418A75244008C6E96 /* dice5.png in Resources */,
 				41BD141418A75244008C6E96 /* T_Event_350.png in Resources */,
+				992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */,
 				DEF9FF3118A8072C0057FAEB /* mountain-tile-menu@2x.png in Resources */,
 				41BD13C518A75244008C6E96 /* dice6.png in Resources */,
 				41BD13F718A75244008C6E96 /* SC_393.png in Resources */,
@@ -2616,6 +2628,7 @@
 				DEF9FECC18A7DAAA0057FAEB /* T_Mountains_037.png in Resources */,
 				41BD141718A75244008C6E96 /* T_Event_353.png in Resources */,
 				DEF9FFB018A825780057FAEB /* red-jungle-tile.png in Resources */,
+				992613E518E38FC30036CA53 /* config.plist in Resources */,
 				41BD141F18A75244008C6E96 /* T_Event_361.png in Resources */,
 				DEF9FEFA18A7DAAA0057FAEB /* T_Swamp_076.png in Resources */,
 				DEF9FED518A7DAAA0057FAEB /* T_Mountains_046.png in Resources */,
@@ -2752,6 +2765,7 @@
 				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */,
+				992613E918E390710036CA53 /* TestScreen.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				DE937C8018DB6E340012F30D /* ChatScene.m in Sources */,
