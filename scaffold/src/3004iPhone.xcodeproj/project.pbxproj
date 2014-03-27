@@ -166,6 +166,7 @@
 		992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613EA18E3B0CF0036CA53 /* borderTile.png */; };
 		9933E85218BFCC630010C910 /* GeneralGameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */; };
 		993B1CD218D4F00A0055056F /* SentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B1CD118D4F00A0055056F /* SentMessage.m */; };
+		994CF99718E47419008FF16A /* SC_395.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12EE18A75243008C6E96 /* SC_395.png */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
@@ -2343,6 +2344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994CF99718E47419008FF16A /* SC_395.png in Resources */,
 				DEC099AE18CE403900487534 /* retreat.png in Resources */,
 				DEB4C79A18C7F74E00AA8DAF /* gameMenu@2x.png in Resources */,
 				DEB4C79718C7F4AA00AA8DAF /* gameMenu.png in Resources */,

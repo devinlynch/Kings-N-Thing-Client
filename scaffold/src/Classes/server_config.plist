@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>ip_address</key>
-	<string>192.168.0.19</string>
+	<string>172.17.46.186</string>
 </dict>
 </plist>
