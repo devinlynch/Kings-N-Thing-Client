@@ -41,8 +41,33 @@ void onUncaughtException(NSException *exception)
 {
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     
-    NSSetUncaughtExceptionHandler(&onUncaughtException);
+    NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
+    
+
+   
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    NSString *isTestScreenMode = [config objectForKey:@"test_screen_mode"];
+    
+    if(isTestScreenMode != nil && [isTestScreenMode isEqualToString:@"yes"]) {
+        
+        NSString *testScreenMethodName = [config objectForKey:@"test_screen_method"];
+        
+        TestScreen *testScreen = [[TestScreen alloc] init];
+        
+        SEL selector = NSSelectorFromString(testScreenMethodName);
+        
+        _viewController = [testScreen performSelector:selector withObject:_window];
+        
+        [_window setRootViewController:_viewController];
+        
+        [_window makeKeyAndVisible];
+        
+        
+        
+        return YES;
+        
+    }
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle: nil];
     UIViewController *yourController = [mainStoryboard instantiateInitialViewController];

@@ -443,6 +443,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="nCp-Ls-e5G"/>
+        <segue reference="C17-gt-wKg"/>
+        <segue reference="xcQ-f2-taX"/>
     </inferredMetricsTieBreakers>
 </document>
