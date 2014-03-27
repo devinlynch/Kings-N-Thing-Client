@@ -87,7 +87,7 @@
     
     //dismiss view
     dispatch_async(dispatch_get_main_queue(), ^{
-           [self dismissViewControllerAnimated:YES completion:^{ }];
+        [self performSegueWithIdentifier:@"logout" sender:self];
     });
     
  

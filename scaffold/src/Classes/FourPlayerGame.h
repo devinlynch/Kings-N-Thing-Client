@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSInteger, GamePhase) {
     SETUP,
     PLACEMENT,
+    SC_RECRUITMENT,
     RECRUITMENT,
     GOLD,
     MOVEMENT,

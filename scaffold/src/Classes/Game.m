@@ -15,6 +15,7 @@
 @synthesize gameState = _gameState;
 @synthesize users = _users;
 @synthesize chatMessages = _chatMessages;
+@synthesize logMessages = _logMessages;
 
 static Game *instance;
 
@@ -34,6 +35,7 @@ static Game *instance;
     self = [super init];
     if(self) {
         [self setChatMessages:[[NSMutableArray alloc] init]];
+        [self setLogMessages:[[NSMutableArray alloc] init]];
     }
     return self;
 }
@@ -68,6 +70,17 @@ static Game *instance;
 
 -(void) addChatMessage: (GameChatMessage*) message{
     [self.chatMessages addObject:message];
+}
+
+-(void) addLogMessage: (NSString*) message{
+    NSLog(@"%@",message);
+    [self.logMessages addObject:message];
+}
+
++(void) addLogMessageToCurrentGame: (NSString*) message{
+    Game *g = [self currentGame];
+    if(g != nil)
+       [g addLogMessage:message];
 }
 
 

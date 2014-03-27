@@ -2,6 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.32.CLASS</key>
+	<string>RecruitCharactersEventHandler</string>
+	<key>EVENT.32.METHOD</key>
+	<string>handleRoundOfRecruitCharactersOver:</string>
+	<key>EVENT.32.TYPE</key>
+	<string>roundOfRecruitCharactersOver</string>
+	<key>EVENT.31.TYPE</key>
+	<string>didRollInRecruitCharactrs</string>
+	<key>EVENT.31.METHOD</key>
+	<string>handleDidRollInRecruitCharactrs:</string>
+	<key>EVENT.31.CLASS</key>
+	<string>RecruitCharactersEventHandler</string>
+	<key>EVENT.30.TYPE</key>
+	<string>yourTurnToRecruitSpecialCharacter</string>
+	<key>EVENT.30.CLASS</key>
+	<string>RecruitCharactersEventHandler</string>
+	<key>EVENT.30.METHOD</key>
+	<string>handleYourTurnInRecruitCharactersPhase:</string>
+	<key>EVENT.29.METHOD</key>
+	<string>handleDidStartRecruitCharactersPhase:</string>
+	<key>EVENT.29.TYPE</key>
+	<string>didStartRecruitCharactersPhase</string>
+	<key>EVENT.29.CLASS</key>
+	<string>RecruitCharactersEventHandler</string>
 	<key>EVENT.28.CLASS</key>
 	<string>MessagesEventHandler</string>
 	<key>EVENT.28.METHOD</key>

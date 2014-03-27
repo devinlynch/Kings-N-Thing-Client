@@ -91,17 +91,24 @@
     NSString *stackId = [stackDic objectForKey:@"locationId"];
     
     GameState *gameState = [[Game currentGame] gameState];
+    HexLocation *hexLocation = (HexLocation*)[gameState getBoardLocationById:hexLocationId];
+    Player *p = [gameState getPlayerById:playerId];
+    
+    if(hexLocation == nil || p == nil) {
+        NSLog(@"Hex locaiton was null in handleUpdatedStackFromEvent");
+        return;
+    }
     
     Stack *stack = [gameState getStackById: stackId];
     if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
         stack = [[Stack alloc] initFromJSON:stackDic];
-        Player *p = [gameState getPlayerById:playerId];
-        [stack setOwner:p];
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ created a stack and moved it to %@", p.username, hexLocation.locationName]];
+    } else {
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a stack to %@", p.username, hexLocation.locationName]];
     }
     
-    HexLocation *hexLocation = (HexLocation*)[gameState getBoardLocationById:hexLocationId];
+    [stack setOwner:p];
     [hexLocation addStack:stack];
-    
     
     NSLog(@"Succesfully parsed updated stack message with stackID: %@", stack.locationId);
     
@@ -145,6 +152,9 @@
         NSLog(@"Could not find player or boardlocation or gamepiece in handlePlayerMovedPieceToNewLocation.  The params where: %@", dataDic);
         return;
     }
+    
+    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a %@ to %@", player.username, gamePiece.gamePieceId,boardLocation.locationName]];
+
     
     [boardLocation addGamePieceToLocation:gamePiece];
 

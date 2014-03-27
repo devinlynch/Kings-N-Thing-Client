@@ -154,18 +154,19 @@
 		99098DA2188F554C00139EA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		99098DA8188F554C00139EA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99098DA6188F554C00139EA4 /* InfoPlist.strings */; };
 		99098DB2188F567400139EA4 /* ServerResponseMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DB1188F567400139EA4 /* ServerResponseMessageTest.m */; };
-		99098DB3188F56E800139EA4 /* ServerResponseMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB6188F223700D7CA03 /* ServerResponseMessage.m */; };
-		99098DB4188F56EB00139EA4 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
-		99098DB5188F56EE00139EA4 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		99098DBD188F5C3200139EA4 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DBC188F5C3200139EA4 /* Utils.m */; };
-		99098DBE188F60C800139EA4 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB70188EFAF3003A29E4 /* Message.m */; };
 		990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB2188F1EF500D7CA03 /* ServerAccess.m */; };
 		990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB6188F223700D7CA03 /* ServerResponseMessage.m */; };
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
+		992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613E018E3496F0036CA53 /* leavegame@2x.png */; };
+		992613E518E38FC30036CA53 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992613E418E38FC30036CA53 /* config.plist */; };
+		992613E918E390710036CA53 /* TestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 992613E818E390710036CA53 /* TestScreen.m */; };
+		992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613EA18E3B0CF0036CA53 /* borderTile.png */; };
 		9933E85218BFCC630010C910 /* GeneralGameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */; };
 		993B1CD218D4F00A0055056F /* SentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B1CD118D4F00A0055056F /* SentMessage.m */; };
+		994CF99718E47419008FF16A /* SC_395.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12EE18A75243008C6E96 /* SC_395.png */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
@@ -173,6 +174,101 @@
 		997B0E2218A85D8B009404DE /* MovementPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
+		99B3264E18E2613600336F3E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DBC188F5C3200139EA4 /* Utils.m */; };
+		99B3265118E261F800336F3E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F1B1892D3FB0048CEA0 /* MBProgressHUD.m */; };
+		99B3265518E271C100336F3E /* libSparrow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3DB010FFB0DB00FDA492 /* libSparrow.a */; };
+		99B3265618E2721200336F3E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */; };
+		99B3265718E2722400336F3E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */; };
+		99B3265818E2722C00336F3E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
+		99B3265918E2723200336F3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
+		99B3265A18E2723A00336F3E /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
+		99B3265B18E2724200336F3E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
+		99B3265C18E2728000336F3E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2B518876CAE009775EA /* Player.m */; };
+		99B3265D18E2728000336F3E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB4C188DDBFB003A29E4 /* User.m */; };
+		99B3265E18E2728000336F3E /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB50188EEF87003A29E4 /* Game.m */; };
+		99B3265F18E2728000336F3E /* GameLobby.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6EA1894399300E4A788 /* GameLobby.m */; };
+		99B3266018E2728000336F3E /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
+		99B3266118E2728000336F3E /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C041898321D00CA876D /* Move.m */; };
+		99B3266218E2728000336F3E /* GameResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD129E18A45209008C6E96 /* GameResource.m */; };
+		99B3266318E2728000336F3E /* GameChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */; };
+		99B3266418E2728000336F3E /* SentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B1CD118D4F00A0055056F /* SentMessage.m */; };
+		99B3266518E2729700336F3E /* Counter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2C018876DB7009775EA /* Counter.m */; };
+		99B3266618E2729700336F3E /* Fort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2C318876DBF009775EA /* Fort.m */; };
+		99B3266718E2729700336F3E /* ControlMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2CE18876EA9009775EA /* ControlMarker.m */; };
+		99B3266818E2729700336F3E /* SpecialCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2D118876F04009775EA /* SpecialCharacter.m */; };
+		99B3266918E2729700336F3E /* GamePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2BA18876D77009775EA /* GamePiece.m */; };
+		99B3266A18E2729700336F3E /* HexTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2BD18876D93009775EA /* HexTile.m */; };
+		99B3266B18E272A000336F3E /* BoardLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2A918876C70009775EA /* BoardLocation.m */; };
+		99B3266C18E272A000336F3E /* Rack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2AC18876C81009775EA /* Rack.m */; };
+		99B3266D18E272A000336F3E /* PlayingCup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2AF18876C8D009775EA /* PlayingCup.m */; };
+		99B3266E18E272A000336F3E /* HexLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2B218876C9B009775EA /* HexLocation.m */; };
+		99B3266F18E272A000336F3E /* Bank.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB56188EF0F7003A29E4 /* Bank.m */; };
+		99B3267018E272A000336F3E /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
+		99B3267118E272A000336F3E /* SideLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9FB5418A6F8A40057FAEB /* SideLocation.m */; };
+		99B3267218E272A600336F3E /* Terrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2EF188770A6009775EA /* Terrain.m */; };
+		99B3267318E272A600336F3E /* FortLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2F2188770B6009775EA /* FortLevel.m */; };
+		99B3267418E272A600336F3E /* CombatType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2F5188770C1009775EA /* CombatType.m */; };
+		99B3267518E272A600336F3E /* SpecialAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2F8188770D1009775EA /* SpecialAbility.m */; };
+		99B3267618E2738800336F3E /* SpecialIncomeCounters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2D818876FCA009775EA /* SpecialIncomeCounters.m */; };
+		99B3267718E2738800336F3E /* CityVill.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2E818877047009775EA /* CityVill.m */; };
+		99B3267818E2738800336F3E /* NonCityVill.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2EB18877054009775EA /* NonCityVill.m */; };
+		99B3267918E2738800336F3E /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2C618876DF3009775EA /* Thing.m */; };
+		99B3267A18E2738800336F3E /* RandomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2D518876FB8009775EA /* RandomEvent.m */; };
+		99B3267B18E2738800336F3E /* MagicItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2DF18876FF8009775EA /* MagicItems.m */; };
+		99B3267C18E2738800336F3E /* Treasure.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2E218877003009775EA /* Treasure.m */; };
+		99B3267D18E2738800336F3E /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2E518877011009775EA /* Creature.m */; };
+		99B3267E18E273AF00336F3E /* SPScrollSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = DE48623018A9D01000272B79 /* SPScrollSprite.m */; };
+		99B3267F18E273AF00336F3E /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2951885EA99009775EA /* TouchSheet.m */; };
+		99B3268018E273AF00336F3E /* ScaledGamePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1807881888699200B03892 /* ScaledGamePiece.m */; };
+		99B3268118E273AF00336F3E /* TileImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14E718A95E9C008C6E96 /* TileImage.m */; };
+		99B3268218E273CB00336F3E /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = DE48621318A9868B00272B79 /* Log.m */; };
+		99B3268318E273CB00336F3E /* SideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC099B618CE783900487534 /* SideMenu.m */; };
+		99B3268418E273CB00336F3E /* SuchTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3104F218D54446001EE806 /* SuchTeam.m */; };
+		99B3268518E273CB00336F3E /* GameReference.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC0AA6C18D799660089EF72 /* GameReference.m */; };
+		99B3268618E273CB00336F3E /* ChatScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE937C7F18DB6E340012F30D /* ChatScene.m */; };
+		99B3268718E273CB00336F3E /* GameMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DE4A3DE410FFB2AF00FDA492 /* GameMenu.m */; };
+		99B3268818E273CB00336F3E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7D18846CFD006C759F /* Scene.m */; };
+		99B3268A18E273CB00336F3E /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
+		99B3268B18E273CB00336F3E /* Combat.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6351318A0A3910031BF8C /* Combat.m */; };
+		99B3268C18E273CB00336F3E /* LoginMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2FB188876AC009775EA /* LoginMenu.m */; };
+		99B3268D18E273CB00336F3E /* GoldCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = DE126A281899CC2F0095DD6D /* GoldCollection.m */; };
+		99B3268E18E273CB00336F3E /* RecruitThings.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350918A097510031BF8C /* RecruitThings.m */; };
+		99B3268F18E273CB00336F3E /* RecruitOptionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */; };
+		99B3269018E273CB00336F3E /* TileMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9FF0D18A7F5EF0057FAEB /* TileMenu.m */; };
+		99B3269118E273CB00336F3E /* RecruitCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04CA3A18D66917006F5271 /* RecruitCharacter.m */; };
+		99B3269218E273CB00336F3E /* HeroMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04CA4718D67450006F5271 /* HeroMenu.m */; };
+		99B3269318E273CB00336F3E /* DischargeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04CA5018D691B9006F5271 /* DischargeMenu.m */; };
+		99B3269418E273CB00336F3E /* RandomEventsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC0AA6218D77F410089EF72 /* RandomEventsMenu.m */; };
+		99B3269518E273CB00336F3E /* ConstructionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC0AA7418D8C2340089EF72 /* ConstructionMenu.m */; };
+		99B326AB18E2741400336F3E /* LobbyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E71894390A00E4A788 /* LobbyNotification.m */; };
+		99B326AC18E2741400336F3E /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
+		99B326AD18E2741400336F3E /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
+		99B326AE18E2741400336F3E /* ServerResponseMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB6188F223700D7CA03 /* ServerResponseMessage.m */; };
+		99B326AF18E2741400336F3E /* ServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB2188F1EF500D7CA03 /* ServerAccess.m */; };
+		99B326B018E2741400336F3E /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
+		99B326B118E2741400336F3E /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
+		99B326B218E2741400336F3E /* ClientReactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB67188EFAE9003A29E4 /* ClientReactor.m */; };
+		99B326B318E2741400336F3E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB6A188EFAE9003A29E4 /* Event.m */; };
+		99B326B418E2741400336F3E /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
+		99B326B518E2741400336F3E /* PlacementHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14CE18A83C42008C6E96 /* PlacementHandler.m */; };
+		99B326B618E2741400336F3E /* LobbyEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E118941F5100E4A788 /* LobbyEventHandler.m */; };
+		99B326B718E2741400336F3E /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
+		99B326B818E2741400336F3E /* GUIStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C011898309A00CA876D /* GUIStateHandler.m */; };
+		99B326B918E2741400336F3E /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
+		99B326BA18E2741400336F3E /* GoldCollectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF9FC1518A7243D0057FAEB /* GoldCollectionHandler.m */; };
+		99B326BB18E2741400336F3E /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
+		99B326BC18E2741400336F3E /* MovementPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */; };
+		99B326BD18E2741400336F3E /* RecruitCharactersEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FD44BF18E20DF400EC0FB3 /* RecruitCharactersEventHandler.m */; };
+		99B326BE18E2741400336F3E /* TestEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB64188EFACC003A29E4 /* TestEventHandler.m */; };
+		99B326BF18E2741400336F3E /* GeneralGameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */; };
+		99B326C018E2741400336F3E /* MessagesEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 990951EE18D4A3D7002737B2 /* MessagesEventHandler.m */; };
+		99B326C118E2741400336F3E /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4144CB70188EFAF3003A29E4 /* Message.m */; };
+		99B326C218E2741400336F3E /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
+		99B326C318E2741400336F3E /* GameMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD12A418A722D7008C6E96 /* GameMessage.m */; };
+		99B326C418E2741400336F3E /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
+		99B326C518E2741400336F3E /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
+		99B326C618E2741400336F3E /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
+		99B326C818E29C0700336F3E /* server_config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99B326C718E29C0700336F3E /* server_config.plist */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
 		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
 		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
@@ -189,6 +285,7 @@
 		99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6E71894390A00E4A788 /* LobbyNotification.m */; };
 		99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6EA1894399300E4A788 /* GameLobby.m */; };
 		99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */; };
+		99FD44C018E20DF400EC0FB3 /* RecruitCharactersEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FD44BF18E20DF400EC0FB3 /* RecruitCharactersEventHandler.m */; };
 		DE0031EB18C678A5008E2CBA /* infoBackground-trans@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0031EA18C678A5008E2CBA /* infoBackground-trans@2x.png */; };
 		DE04CA3B18D66917006F5271 /* RecruitCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE04CA3A18D66917006F5271 /* RecruitCharacter.m */; };
 		DE04CA4018D671C9006F5271 /* hero.png in Resources */ = {isa = PBXBuildFile; fileRef = DE04CA3F18D671C9006F5271 /* hero.png */; };
@@ -451,6 +548,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = 3004iPhone;
+		};
+		99B3265318E2718900336F3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DEFE4BC1101B317600E22471;
+			remoteInfo = Sparrow;
 		};
 		DE4A3DAF10FFB0DB00FDA492 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -717,6 +821,11 @@
 		990BEFC1188F291C00D7CA03 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 		991151801891B03C004E8FFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
 		991151811891B03C004E8FFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		992613E018E3496F0036CA53 /* leavegame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leavegame@2x.png"; sourceTree = "<group>"; };
+		992613E418E38FC30036CA53 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		992613E718E390710036CA53 /* TestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScreen.h; sourceTree = "<group>"; };
+		992613E818E390710036CA53 /* TestScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestScreen.m; sourceTree = "<group>"; };
+		992613EA18E3B0CF0036CA53 /* borderTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderTile.png; sourceTree = "<group>"; };
 		9933E85018BFCC630010C910 /* GeneralGameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralGameEventHandler.h; sourceTree = "<group>"; };
 		9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralGameEventHandler.m; sourceTree = "<group>"; };
 		993B1CD018D4F00A0055056F /* SentMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentMessage.h; sourceTree = "<group>"; };
@@ -734,6 +843,7 @@
 		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
 		99A78F2318957DE4005D31E5 /* GameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventHandler.m; sourceTree = "<group>"; };
+		99B326C718E29C0700336F3E /* server_config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = server_config.plist; sourceTree = "<group>"; };
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
@@ -768,6 +878,8 @@
 		99F9B6EA1894399300E4A788 /* GameLobby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLobby.m; sourceTree = "<group>"; };
 		99F9B6EC189464D100E4A788 /* FindLobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindLobbyViewController.h; sourceTree = "<group>"; };
 		99F9B6ED189464D100E4A788 /* FindLobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindLobbyViewController.m; sourceTree = "<group>"; };
+		99FD44BE18E20DF400EC0FB3 /* RecruitCharactersEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitCharactersEventHandler.h; sourceTree = "<group>"; };
+		99FD44BF18E20DF400EC0FB3 /* RecruitCharactersEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitCharactersEventHandler.m; sourceTree = "<group>"; };
 		DE0031EA18C678A5008E2CBA /* infoBackground-trans@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoBackground-trans@2x.png"; path = "../../src/infoBackground-trans@2x.png"; sourceTree = "<group>"; };
 		DE04CA3918D66917006F5271 /* RecruitCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitCharacter.h; sourceTree = "<group>"; };
 		DE04CA3A18D66917006F5271 /* RecruitCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitCharacter.m; sourceTree = "<group>"; };
@@ -1065,8 +1177,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */,
+				99B3265B18E2724200336F3E /* libz.dylib in Frameworks */,
+				99B3265A18E2723A00336F3E /* OpenAL.framework in Frameworks */,
+				99B3265918E2723200336F3E /* AudioToolbox.framework in Frameworks */,
+				99B3265818E2722C00336F3E /* AVFoundation.framework in Frameworks */,
+				99B3265718E2722400336F3E /* QuartzCore.framework in Frameworks */,
 				99098DA2188F554C00139EA4 /* UIKit.framework in Frameworks */,
+				99B3265618E2721200336F3E /* GLKit.framework in Frameworks */,
+				99B3265518E271C100336F3E /* libSparrow.a in Frameworks */,
+				99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */,
 				99098DA1188F554C00139EA4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1087,6 +1206,9 @@
 				DE4F80D714E153EA00655D44 /* Game */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				992613E718E390710036CA53 /* TestScreen.h */,
+				992613E818E390710036CA53 /* TestScreen.m */,
+				992613E418E38FC30036CA53 /* config.plist */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1323,6 +1445,7 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				992613EA18E3B0CF0036CA53 /* borderTile.png */,
 				DEF9FF2518A803490057FAEB /* Backgrounds */,
 				DEF9FF2418A8033C0057FAEB /* Buttons */,
 				DEF9FF2318A802FC0057FAEB /* Special Income Counter */,
@@ -1422,6 +1545,7 @@
 				990BEFB2188F1EF500D7CA03 /* ServerAccess.m */,
 				997B0E0118A7E7FE009404DE /* InGameServerAccess.h */,
 				997B0E0218A7E7FE009404DE /* InGameServerAccess.m */,
+				99B326C718E29C0700336F3E /* server_config.plist */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -1530,6 +1654,8 @@
 				997B0E0918A81985009404DE /* RecruitThingsHandler.m */,
 				997B0E2018A85D8B009404DE /* MovementPhaseHandler.h */,
 				997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */,
+				99FD44BE18E20DF400EC0FB3 /* RecruitCharactersEventHandler.h */,
+				99FD44BF18E20DF400EC0FB3 /* RecruitCharactersEventHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -1555,6 +1681,7 @@
 		DE07B81418D40FF000A19DCB /* Side menu images */ = {
 			isa = PBXGroup;
 			children = (
+				992613E018E3496F0036CA53 /* leavegame@2x.png */,
 				DE07B81B18D4BD8C00A19DCB /* team@2x.png */,
 				DE07B81718D4156E00A19DCB /* title@2x.png */,
 				DEC0AA6518D7833A0089EF72 /* reference@2x.png */,
@@ -2144,6 +2271,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				99B3265418E2718900336F3E /* PBXTargetDependency */,
 				99098DAD188F554C00139EA4 /* PBXTargetDependency */,
 			);
 			name = "3004iPhone Tests";
@@ -2160,7 +2288,7 @@
 				LastUpgradeCheck = 0450;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = SYB85L3A7X;
+						DevelopmentTeam = 3HCQ3S2YN9;
 					};
 					99098D9D188F554C00139EA4 = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
@@ -2216,6 +2344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994CF99718E47419008FF16A /* SC_395.png in Resources */,
 				DEC099AE18CE403900487534 /* retreat.png in Resources */,
 				DEB4C79A18C7F74E00AA8DAF /* gameMenu@2x.png in Resources */,
 				DEB4C79718C7F4AA00AA8DAF /* gameMenu.png in Resources */,
@@ -2267,6 +2396,7 @@
 				DEF9FF3018A8072C0057FAEB /* jungle-tile-menu@2x.png in Resources */,
 				DEF9FE9518A7DAAA0057FAEB /* T_Desert_117.png in Resources */,
 				41BD13E518A75244008C6E96 /* G_10.png in Resources */,
+				99B326C818E29C0700336F3E /* server_config.plist in Resources */,
 				41BD13C718A75244008C6E96 /* free.png in Resources */,
 				DE04CA4018D671C9006F5271 /* hero.png in Resources */,
 				DEF9FF2D18A8072C0057FAEB /* desert-tile-menu@2x.png in Resources */,
@@ -2322,6 +2452,7 @@
 				DEF9FEF718A7DAAA0057FAEB /* T_Swamp_073.png in Resources */,
 				41BD13C418A75244008C6E96 /* dice5.png in Resources */,
 				41BD141418A75244008C6E96 /* T_Event_350.png in Resources */,
+				992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */,
 				DEF9FF3118A8072C0057FAEB /* mountain-tile-menu@2x.png in Resources */,
 				41BD13C518A75244008C6E96 /* dice6.png in Resources */,
 				41BD13F718A75244008C6E96 /* SC_393.png in Resources */,
@@ -2406,6 +2537,7 @@
 				DEF9FEEA18A7DAAA0057FAEB /* T_Plains_029.png in Resources */,
 				DEF9FEBB18A7DAAA0057FAEB /* T_Frozen_Waste_064.png in Resources */,
 				DE07B81818D4156E00A19DCB /* title@2x.png in Resources */,
+				992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */,
 				DE04CA4218D67365006F5271 /* skip.png in Resources */,
 				DEF9FEAB18A7DAAA0057FAEB /* T_Forest_102.png in Resources */,
 				DEF9FEE618A7DAAA0057FAEB /* T_Plains_025.png in Resources */,
@@ -2498,6 +2630,7 @@
 				DEF9FECC18A7DAAA0057FAEB /* T_Mountains_037.png in Resources */,
 				41BD141718A75244008C6E96 /* T_Event_353.png in Resources */,
 				DEF9FFB018A825780057FAEB /* red-jungle-tile.png in Resources */,
+				992613E518E38FC30036CA53 /* config.plist in Resources */,
 				41BD141F18A75244008C6E96 /* T_Event_361.png in Resources */,
 				DEF9FEFA18A7DAAA0057FAEB /* T_Swamp_076.png in Resources */,
 				DEF9FED518A7DAAA0057FAEB /* T_Mountains_046.png in Resources */,
@@ -2568,6 +2701,7 @@
 				4131C2CF18876EA9009775EA /* ControlMarker.m in Sources */,
 				4131C2B318876C9B009775EA /* HexLocation.m in Sources */,
 				990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */,
+				99FD44C018E20DF400EC0FB3 /* RecruitCharactersEventHandler.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				DEC0AA6318D77F410089EF72 /* RandomEventsMenu.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
@@ -2633,6 +2767,7 @@
 				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */,
+				992613E918E390710036CA53 /* TestScreen.m in Sources */,
 				4131C2E618877011009775EA /* Creature.m in Sources */,
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				DE937C8018DB6E340012F30D /* ChatScene.m in Sources */,
@@ -2654,12 +2789,95 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99098DB4188F56EB00139EA4 /* ServerMessageError.m in Sources */,
+				99B326B718E2741400336F3E /* GameEventHandler.m in Sources */,
+				99B326BE18E2741400336F3E /* TestEventHandler.m in Sources */,
+				99B3267C18E2738800336F3E /* Treasure.m in Sources */,
+				99B3265D18E2728000336F3E /* User.m in Sources */,
+				99B3268B18E273CB00336F3E /* Combat.m in Sources */,
+				99B3266018E2728000336F3E /* GameState.m in Sources */,
+				99B3266E18E272A000336F3E /* HexLocation.m in Sources */,
+				99B3266718E2729700336F3E /* ControlMarker.m in Sources */,
+				99B3268518E273CB00336F3E /* GameReference.m in Sources */,
+				99B326B818E2741400336F3E /* GUIStateHandler.m in Sources */,
+				99B326BB18E2741400336F3E /* RecruitThingsHandler.m in Sources */,
+				99B3268A18E273CB00336F3E /* FourPlayerGame.m in Sources */,
+				99B326C618E2741400336F3E /* IPManager.m in Sources */,
+				99B326C418E2741400336F3E /* GCDAsyncUdpSocket.m in Sources */,
+				99B326BD18E2741400336F3E /* RecruitCharactersEventHandler.m in Sources */,
+				99B3269018E273CB00336F3E /* TileMenu.m in Sources */,
+				99B3264E18E2613600336F3E /* Utils.m in Sources */,
+				99B3268118E273AF00336F3E /* TileImage.m in Sources */,
+				99B3266218E2728000336F3E /* GameResource.m in Sources */,
+				99B326C018E2741400336F3E /* MessagesEventHandler.m in Sources */,
+				99B3268018E273AF00336F3E /* ScaledGamePiece.m in Sources */,
+				99B3267E18E273AF00336F3E /* SPScrollSprite.m in Sources */,
+				99B3266C18E272A000336F3E /* Rack.m in Sources */,
+				99B3268D18E273CB00336F3E /* GoldCollection.m in Sources */,
+				99B3267918E2738800336F3E /* Thing.m in Sources */,
 				997B0E1C18A84688009404DE /* RecruitThingsTest.m in Sources */,
+				99B3266D18E272A000336F3E /* PlayingCup.m in Sources */,
+				99B326B218E2741400336F3E /* ClientReactor.m in Sources */,
+				99B3268218E273CB00336F3E /* Log.m in Sources */,
+				99B3265E18E2728000336F3E /* Game.m in Sources */,
+				99B3269118E273CB00336F3E /* RecruitCharacter.m in Sources */,
+				99B3265C18E2728000336F3E /* Player.m in Sources */,
+				99B3265118E261F800336F3E /* MBProgressHUD.m in Sources */,
+				99B3266818E2729700336F3E /* SpecialCharacter.m in Sources */,
+				99B3267618E2738800336F3E /* SpecialIncomeCounters.m in Sources */,
+				99B3267718E2738800336F3E /* CityVill.m in Sources */,
+				99B326AD18E2741400336F3E /* ServerMessageError.m in Sources */,
+				99B3268E18E273CB00336F3E /* RecruitThings.m in Sources */,
+				99B3268618E273CB00336F3E /* ChatScene.m in Sources */,
+				99B3267418E272A600336F3E /* CombatType.m in Sources */,
+				99B3267318E272A600336F3E /* FortLevel.m in Sources */,
+				99B3267818E2738800336F3E /* NonCityVill.m in Sources */,
 				99098DB2188F567400139EA4 /* ServerResponseMessageTest.m in Sources */,
-				99098DBE188F60C800139EA4 /* Message.m in Sources */,
-				99098DB3188F56E800139EA4 /* ServerResponseMessage.m in Sources */,
-				99098DB5188F56EE00139EA4 /* ServerMessageData.m in Sources */,
+				99B3268318E273CB00336F3E /* SideMenu.m in Sources */,
+				99B3268F18E273CB00336F3E /* RecruitOptionMenu.m in Sources */,
+				99B326B318E2741400336F3E /* Event.m in Sources */,
+				99B326AC18E2741400336F3E /* ServerMessageData.m in Sources */,
+				99B326BC18E2741400336F3E /* MovementPhaseHandler.m in Sources */,
+				99B326C518E2741400336F3E /* UDPMessageReceiver.m in Sources */,
+				99B326C118E2741400336F3E /* Message.m in Sources */,
+				99B3267A18E2738800336F3E /* RandomEvent.m in Sources */,
+				99B3269318E273CB00336F3E /* DischargeMenu.m in Sources */,
+				99B3265F18E2728000336F3E /* GameLobby.m in Sources */,
+				99B3268C18E273CB00336F3E /* LoginMenu.m in Sources */,
+				99B3267F18E273AF00336F3E /* TouchSheet.m in Sources */,
+				99B3266318E2728000336F3E /* GameChatMessage.m in Sources */,
+				99B3267218E272A600336F3E /* Terrain.m in Sources */,
+				99B326B918E2741400336F3E /* SetupEventHandler.m in Sources */,
+				99B326B418E2741400336F3E /* LoginEventHandler.m in Sources */,
+				99B326B118E2741400336F3E /* PlayerRecruitment.m in Sources */,
+				99B326B018E2741400336F3E /* InGameServerAccess.m in Sources */,
+				99B3267118E272A000336F3E /* SideLocation.m in Sources */,
+				99B3268418E273CB00336F3E /* SuchTeam.m in Sources */,
+				99B3266F18E272A000336F3E /* Bank.m in Sources */,
+				99B326BA18E2741400336F3E /* GoldCollectionHandler.m in Sources */,
+				99B3267B18E2738800336F3E /* MagicItems.m in Sources */,
+				99B3268818E273CB00336F3E /* Scene.m in Sources */,
+				99B3267518E272A600336F3E /* SpecialAbility.m in Sources */,
+				99B326C218E2741400336F3E /* MessageHandler.m in Sources */,
+				99B3268718E273CB00336F3E /* GameMenu.m in Sources */,
+				99B326BF18E2741400336F3E /* GeneralGameEventHandler.m in Sources */,
+				99B3269218E273CB00336F3E /* HeroMenu.m in Sources */,
+				99B3266618E2729700336F3E /* Fort.m in Sources */,
+				99B3266A18E2729700336F3E /* HexTile.m in Sources */,
+				99B3267018E272A000336F3E /* Stack.m in Sources */,
+				99B3266B18E272A000336F3E /* BoardLocation.m in Sources */,
+				99B326B518E2741400336F3E /* PlacementHandler.m in Sources */,
+				99B3269518E273CB00336F3E /* ConstructionMenu.m in Sources */,
+				99B3266918E2729700336F3E /* GamePiece.m in Sources */,
+				99B3266118E2728000336F3E /* Move.m in Sources */,
+				99B326AB18E2741400336F3E /* LobbyNotification.m in Sources */,
+				99B326C318E2741400336F3E /* GameMessage.m in Sources */,
+				99B3269418E273CB00336F3E /* RandomEventsMenu.m in Sources */,
+				99B3266518E2729700336F3E /* Counter.m in Sources */,
+				99B3266418E2728000336F3E /* SentMessage.m in Sources */,
+				99B326AF18E2741400336F3E /* ServerAccess.m in Sources */,
+				99B3267D18E2738800336F3E /* Creature.m in Sources */,
+				99B326B618E2741400336F3E /* LobbyEventHandler.m in Sources */,
+				99B326AE18E2741400336F3E /* ServerResponseMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2670,6 +2888,11 @@
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* 3004iPhone */;
 			targetProxy = 99098DAC188F554C00139EA4 /* PBXContainerItemProxy */;
+		};
+		99B3265418E2718900336F3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Sparrow;
+			targetProxy = 99B3265318E2718900336F3E /* PBXContainerItemProxy */;
 		};
 		DE4A3DB810FFB0F500FDA492 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

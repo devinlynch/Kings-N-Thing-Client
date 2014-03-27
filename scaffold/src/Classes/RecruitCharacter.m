@@ -22,6 +22,16 @@
     int _gameHeight;
 }
 
+static RecruitCharacter *instance;
++(RecruitCharacter*) getInstance{
+    
+    if (instance == nil) {
+        instance = [[RecruitCharacter alloc] init];
+        
+    }
+    return instance;
+}
+
 -(id) init
 {
     if ((self = [super init]))
@@ -52,41 +62,45 @@
 
     //Username text
     SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Username"];
+                                                        text:@"Recruit Characters"];
     welcomeTF.x = welcomeTF.y = 10;
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;
     welcomeTF.color = 0xffffff;
     [_contents addChild:welcomeTF];
     
-    //Recruit Hero Button
-    SPTexture *heroButtonTexture = [SPTexture textureWithContentsOfFile:@"hero.png"];
-    SPButton *heroButton = [SPButton buttonWithUpState:heroButtonTexture];
-    heroButton.x = _gameWidth /2 - heroButton.width /2;
-    heroButton.y = 55 + 90 - 30;
-    [_contents addChild:heroButton];
-    [heroButton addEventListener:@selector(didClickOnHeroRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
-    //Discharge Hero Button
-    SPTexture *dischargeButtonTexture = [SPTexture textureWithContentsOfFile:@"dischargehero.png"];
-    SPButton *dischargeButton = [SPButton buttonWithUpState:dischargeButtonTexture];
-    dischargeButton.x = _gameWidth /2 - heroButton.width /2;
-    dischargeButton.y = 135 + 90 - 30;
-    [_contents addChild:dischargeButton];
-    [dischargeButton addEventListener:@selector(didClickOnDischarge:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-
-    //Skip Button
-    SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"skip.png"];
-    SPButton *skipButton = [SPButton buttonWithUpState:skipButtonTexture];
-    skipButton.x = _gameWidth /2 - skipButton.width /2;
-    skipButton.y = 385;
-    [_contents addChild:skipButton];
-    [skipButton addEventListener:@selector(didClickOnSkip:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-
+    SPTextField *waitYourTurn = [SPTextField textFieldWithWidth:300 height:120
+                                                        text:@"Please wait your turn to recruit characters"];
+    
+    waitYourTurn.width = _gameWidth-20;
+    waitYourTurn.x = 10;
+    waitYourTurn.y = 300;
+    waitYourTurn.fontName = @"ArialMT";
+    waitYourTurn.fontSize = 25;
+    waitYourTurn.color = 0xffffff;
+    [_contents addChild:waitYourTurn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(yourTurnToRecruitSpecialCharacter:)
+                                                 name:@"yourTurnToRecruitSpecialCharacter"
+                                               object:nil];
+    
+    [self didClickOnHeroRecruit:nil];
+    
 }
+
+-(void) yourTurnToRecruitSpecialCharacter: (NSNotification*) notif{
+    HeroMenu *heroMenu = [[HeroMenu alloc]init];
+    [self showScene:heroMenu];
+}
+
 - (void) didClickOnHeroRecruit:(SPEvent *) event{
     NSLog(@"Clicked hero");
-    [self showHeroMenu];
+    
+    NSArray *recruits = [NSArray arrayWithObjects:@"specialcharacter_01",@"specialcharacter_02",@"specialcharacter_03",@"specialcharacter_04",@"specialcharacter_05",@"specialcharacter_06",@"specialcharacter_07",@"specialcharacter_08",@"specialcharacter_09",@"specialcharacter_10",@"specialcharacter_11", nil];
+    HeroMenu *heroMenu = [[HeroMenu alloc]initWithPossibleRecruits:recruits];
+    [self showScene:heroMenu];
 }
 - (void) didClickOnDischarge:(SPEvent *) event{
     NSLog(@"Clicked discharge");

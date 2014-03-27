@@ -10,9 +10,12 @@
 
 @interface GameMessage : Message<JSONSerializable>{
     NSDictionary *_jsonDictionnary;
+    NSString *_gameId;
 }
 
 @property NSDictionary *jsonDictionnary;
+@property NSString *gameId;
+
 
 -(GameMessage*) initWithType: (NSString*) t andDictionnary:(NSDictionary*) dic;
 

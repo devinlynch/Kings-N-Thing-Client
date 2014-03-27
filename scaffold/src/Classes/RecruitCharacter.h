@@ -11,7 +11,7 @@
 @interface RecruitCharacter : SPSprite
 
 +(RecruitCharacter*) getInstance;
--(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit;
+//-(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit;
 
 
 @end
