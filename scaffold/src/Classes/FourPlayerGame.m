@@ -135,16 +135,15 @@
    
     
     
-    [SPAudioEngine start];
-    
-   // [[SPSound soundWithContentsOfFile:@"tumblr_lmux2wMBf61qa0efjo1.mp3"] play];
-
-    SPSound *gameOfThrones = [SPSound soundWithContentsOfFile:@"music.aifc"];
-    SPSoundChannel *channel = [gameOfThrones createChannel];
-    
-    
-    [channel setLoop:YES];
-    [channel play];
+//    [SPAudioEngine start];
+//    
+//
+//    SPSound *gameOfThrones = [SPSound soundWithContentsOfFile:@"music.aifc"];
+//    SPSoundChannel *channel = [gameOfThrones createChannel];
+//    
+//    
+//    [channel setLoop:YES];
+//    [channel play];
     
 
     
