@@ -2539,6 +2539,8 @@
 				DE494E6218BF71880042312D /* sea-tile.png in Resources */,
 				4173890618E4927000934A1F /* referencesBackground@2x.png in Resources */,
 				DE494E6118BF71140042312D /* frozen-tile.png in Resources */,
+				417388E718E4925F00934A1F /* T_Event_338.png in Resources */,
+				417388B218E4924800934A1F /* C_Fort_376.png in Resources */,
 				DEB800C318E4C4160041A48E /* roll.png in Resources */,
 				DE494E5F18BF70F10042312D /* forest-tile.png in Resources */,
 				4173882818E4922B00934A1F /* T_Desert_115.png in Resources */,
