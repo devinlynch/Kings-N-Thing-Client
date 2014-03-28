@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>test_screen_mode</key>
-	<string>no</string>
+	<string>yes</string>
 	<key>test_screen_method</key>
 	<string>testRecruitCharacters:</string>
 </dict>
