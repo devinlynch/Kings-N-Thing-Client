@@ -8,7 +8,7 @@
 
 #import "Combat.h"
 #import "ScaledGamePiece.h"
-//#import "GameMenu.h"
+#import "GameMenu.h"
 
 @implementation Combat{
     SPSprite *_contents;

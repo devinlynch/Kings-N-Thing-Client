@@ -11,6 +11,7 @@
 #import "IPManager.h"
 #import "Game.h"
 #import "TwoThreePlayerGame.h"
+#import "GameMenu.h"
 #import "FourPlayerGame.h"
 #import "Combat.h"
 #import "RecruitThings.h"

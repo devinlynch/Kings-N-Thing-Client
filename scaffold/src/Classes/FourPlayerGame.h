@@ -33,6 +33,8 @@ typedef NS_ENUM(NSInteger, WasBought) {
 
 @interface FourPlayerGame : SPSprite
 
--(void) startedRecruitThingsPhase: (NSNotification*) notif;
+
+
+
 
 @end

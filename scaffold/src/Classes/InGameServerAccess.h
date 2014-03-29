@@ -43,7 +43,6 @@ void (^successBlock)(ServerResponseMessage*);
 @interface InGameServerAccess : NSObject
 {
     NSString *ipAddress;
-    NSString *port;
 }
 
 

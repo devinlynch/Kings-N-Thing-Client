@@ -17,7 +17,6 @@ typedef void (^block_t)();
 {
     ClientReactor *reactor;
     NSString *ipAddress;
-    NSString *port;
 }
 
 typedef enum HttpRequestMethods {

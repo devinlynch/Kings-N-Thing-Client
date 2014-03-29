@@ -11,6 +11,7 @@
 #import "TouchSheet.h"
 #import "TileMenu.h"
 #import "Scene.h"
+#import "GameMenu.h"
 #import "ServerAccess.h"
 
 @interface GoldCollection()

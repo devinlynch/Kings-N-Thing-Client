@@ -7,10 +7,7 @@
 //
 
 #import "SPSprite.h"
-#import "InGameServerAccess.h"
 
-@class FourPlayerGame;
-@interface HeroMenu : SPSprite<UITextFieldDelegate, InGameServerProtocol>
+@interface HeroMenu : SPSprite<UITextFieldDelegate>
 -(id) initWithPossibleRecruits: (NSArray*) recruits;
--(void) setFourPlayerGame :(FourPlayerGame*) game;
 @end

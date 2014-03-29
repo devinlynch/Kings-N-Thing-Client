@@ -21,7 +21,6 @@ static InGameServerAccess *instance;
     self= [super init];
     NSDictionary *mainDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server_config" ofType:@"plist"]];
     ipAddress = [mainDictionary objectForKey:@"ip_address"];
-    port=[mainDictionary objectForKey:@"port"];
     return self;
 }
 
@@ -44,7 +43,7 @@ static InGameServerAccess *instance;
     NSData *postData = [postBody dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
-    NSString *targetUrl = [NSString stringWithFormat:@"http://%@:%@/KingsNThings/%@", ipAddress,port,req];
+    NSString *targetUrl = [NSString stringWithFormat:@"http://%@:8080/KingsNThings/%@", ipAddress,req];
     NSURL *url = [NSURL URLWithString:targetUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod: [self httpethodToString:method]];
