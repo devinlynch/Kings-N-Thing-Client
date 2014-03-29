@@ -44,6 +44,12 @@
         return;
     }
     
+    int playerGold = [[dataDic objectForKey:@"playerGold"] intValue];
+    Player *me = [[[Game currentGame] gameState] getMe];
+    if(me != nil) {
+        [me setGold:playerGold];
+    }
+    
     NSArray *possibleRecruitments = [dataDic objectForKey:@"availableSpecialCharacters"];
     NSMutableArray *posibleRecruitmentIds = [[NSMutableArray alloc] init];
     for(NSDictionary *recruit in possibleRecruitments) {
@@ -111,9 +117,18 @@
         return;
     }
     
+    int playerGold = [[dataDic objectForKey:@"playerGold"] intValue];
+    Player *me = [[[Game currentGame] gameState] getMe];
+    if(me != nil) {
+        [me setGold:playerGold];
+    }
+    
     NSLog(@"Succesfully handled didRollInRecruitCharactrs message");
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"didRollInRecruitCharactrs" object:[NSNumber numberWithBool:didRecruit]];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:[NSNumber numberWithBool:didRecruit] forKey:@"didRecruit"];
+        [dic setObject:[NSNumber numberWithInt:theRoll] forKey:@"theRoll"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didRollInRecruitCharactrs" object:dic];
     });
 }
 
@@ -169,6 +184,12 @@
     if(!isMe) {
         NSLog(@"Got roundOfRecruitCharactersOver message but its not me");
         return;
+    }
+    
+    int playerGold = [[dataDic objectForKey:@"playerGold"] intValue];
+    Player *me = [[[Game currentGame] gameState] getMe];
+    if(me != nil) {
+        [me setGold:playerGold];
     }
     
     NSLog(@"Succesfully handled roundOfRecruitCharactersOver message");

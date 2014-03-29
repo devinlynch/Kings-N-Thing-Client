@@ -89,43 +89,8 @@
 		41BD13E518A75244008C6E96 /* G_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12DA18A75243008C6E96 /* G_10.png */; };
 		41BD13E618A75244008C6E96 /* G_15.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12DB18A75243008C6E96 /* G_15.png */; };
 		41BD13E718A75244008C6E96 /* G_20.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12DC18A75243008C6E96 /* G_20.png */; };
-		41BD13EE18A75244008C6E96 /* SC_384.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12E318A75243008C6E96 /* SC_384.png */; };
-		41BD13EF18A75244008C6E96 /* SC_385.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12E418A75243008C6E96 /* SC_385.png */; };
-		41BD13F018A75244008C6E96 /* SC_386.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12E518A75243008C6E96 /* SC_386.png */; };
-		41BD13F118A75244008C6E96 /* SC_387.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12E618A75243008C6E96 /* SC_387.png */; };
-		41BD13F218A75244008C6E96 /* SC_388.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12E718A75243008C6E96 /* SC_388.png */; };
-		41BD13F318A75244008C6E96 /* SC_389.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12E818A75243008C6E96 /* SC_389.png */; };
-		41BD13F518A75244008C6E96 /* SC_391.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12EA18A75243008C6E96 /* SC_391.png */; };
-		41BD13F718A75244008C6E96 /* SC_393.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12EC18A75243008C6E96 /* SC_393.png */; };
-		41BD13FA18A75244008C6E96 /* SC_396.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12EF18A75243008C6E96 /* SC_396.png */; };
-		41BD13FB18A75244008C6E96 /* SC_397.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F018A75243008C6E96 /* SC_397.png */; };
-		41BD13FD18A75244008C6E96 /* SC_399.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F218A75243008C6E96 /* SC_399.png */; };
-		41BD140018A75244008C6E96 /* SC_402.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F518A75243008C6E96 /* SC_402.png */; };
-		41BD140118A75244008C6E96 /* SC_403.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F618A75243008C6E96 /* SC_403.png */; };
-		41BD140218A75244008C6E96 /* SC_404.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F718A75243008C6E96 /* SC_404.png */; };
 		41BD140318A75244008C6E96 /* SP_Black_Cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F818A75243008C6E96 /* SP_Black_Cloud.png */; };
 		41BD140418A75244008C6E96 /* T_Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F918A75243008C6E96 /* T_Back.png */; };
-		41BD140518A75244008C6E96 /* T_Event_335.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12FA18A75243008C6E96 /* T_Event_335.png */; };
-		41BD140618A75244008C6E96 /* T_Event_336.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12FB18A75243008C6E96 /* T_Event_336.png */; };
-		41BD140818A75244008C6E96 /* T_Event_338.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12FD18A75243008C6E96 /* T_Event_338.png */; };
-		41BD140918A75244008C6E96 /* T_Event_339.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12FE18A75243008C6E96 /* T_Event_339.png */; };
-		41BD140B18A75244008C6E96 /* T_Event_341.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130018A75243008C6E96 /* T_Event_341.png */; };
-		41BD140C18A75244008C6E96 /* T_Event_342.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130118A75243008C6E96 /* T_Event_342.png */; };
-		41BD140D18A75244008C6E96 /* T_Event_343.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130218A75243008C6E96 /* T_Event_343.png */; };
-		41BD140F18A75244008C6E96 /* T_Event_345.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130418A75243008C6E96 /* T_Event_345.png */; };
-		41BD141018A75244008C6E96 /* T_Event_346.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130518A75243008C6E96 /* T_Event_346.png */; };
-		41BD141118A75244008C6E96 /* T_Event_347.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130618A75243008C6E96 /* T_Event_347.png */; };
-		41BD141218A75244008C6E96 /* T_Event_348.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130718A75243008C6E96 /* T_Event_348.png */; };
-		41BD141418A75244008C6E96 /* T_Event_350.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130918A75243008C6E96 /* T_Event_350.png */; };
-		41BD141518A75244008C6E96 /* T_Event_351.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130A18A75243008C6E96 /* T_Event_351.png */; };
-		41BD141618A75244008C6E96 /* T_Event_352.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130B18A75243008C6E96 /* T_Event_352.png */; };
-		41BD141718A75244008C6E96 /* T_Event_353.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130C18A75243008C6E96 /* T_Event_353.png */; };
-		41BD141818A75244008C6E96 /* T_Event_354.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130D18A75243008C6E96 /* T_Event_354.png */; };
-		41BD141918A75244008C6E96 /* T_Event_355.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD130E18A75243008C6E96 /* T_Event_355.png */; };
-		41BD141B18A75244008C6E96 /* T_Event_357.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131018A75243008C6E96 /* T_Event_357.png */; };
-		41BD141D18A75244008C6E96 /* T_Event_359.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131218A75243008C6E96 /* T_Event_359.png */; };
-		41BD141E18A75244008C6E96 /* T_Event_360.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131318A75243008C6E96 /* T_Event_360.png */; };
-		41BD141F18A75244008C6E96 /* T_Event_361.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131418A75243008C6E96 /* T_Event_361.png */; };
 		41BD142018A75244008C6E96 /* T_Income_362.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131518A75243008C6E96 /* T_Income_362.png */; };
 		41BD142218A75244008C6E96 /* T_Income_364.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131718A75243008C6E96 /* T_Income_364.png */; };
 		41BD142318A75244008C6E96 /* T_Income_365.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131818A75243008C6E96 /* T_Income_365.png */; };
@@ -239,6 +204,7 @@
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
 		997B0E1C18A84688009404DE /* RecruitThingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1B18A84688009404DE /* RecruitThingsTest.m */; };
 		997B0E2218A85D8B009404DE /* MovementPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */; };
+		99A51E9218E71376001E7511 /* continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A51E9118E71376001E7511 /* continue.png */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99B3264E18E2613600336F3E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DBC188F5C3200139EA4 /* Utils.m */; };
@@ -579,7 +545,6 @@
 		DEF9FF2F18A8072C0057FAEB /* frozen-tile-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF2818A8072C0057FAEB /* frozen-tile-menu@2x.png */; };
 		DEF9FF3018A8072C0057FAEB /* jungle-tile-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF2918A8072C0057FAEB /* jungle-tile-menu@2x.png */; };
 		DEF9FF3118A8072C0057FAEB /* mountain-tile-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF2A18A8072C0057FAEB /* mountain-tile-menu@2x.png */; };
-		DEF9FF3218A8072C0057FAEB /* plain-tile-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF2B18A8072C0057FAEB /* plain-tile-menu@2x.png */; };
 		DEF9FF3318A8072C0057FAEB /* swamp-tile-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF2C18A8072C0057FAEB /* swamp-tile-menu@2x.png */; };
 		DEF9FF7E18A824E20057FAEB /* red-desert-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF7718A824E20057FAEB /* red-desert-tile.png */; };
 		DEF9FF7F18A824E20057FAEB /* red-forest-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF9FF7818A824E20057FAEB /* red-forest-tile.png */; };
@@ -900,6 +865,12 @@
 		9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralGameEventHandler.m; sourceTree = "<group>"; };
 		993B1CD018D4F00A0055056F /* SentMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentMessage.h; sourceTree = "<group>"; };
 		993B1CD118D4F00A0055056F /* SentMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentMessage.m; sourceTree = "<group>"; };
+		994CF9E618E49571008FF16A /* plains-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plains-tile-menu@2x.png"; sourceTree = "<group>"; };
+		994CF9E918E4C3D2008FF16A /* upArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@2x.png"; sourceTree = "<group>"; };
+		994CF9EC18E4C3EB008FF16A /* downArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrow@2x.png"; sourceTree = "<group>"; };
+		994CF9EE18E4FEE8008FF16A /* RecruitingHeroMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitingHeroMenu.h; sourceTree = "<group>"; };
+		994CF9EF18E4FEE8008FF16A /* RecruitingHeroMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitingHeroMenu.m; sourceTree = "<group>"; };
+		994CF9F118E5117A008FF16A /* buy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy_1.png; sourceTree = "<group>"; };
 		997B0E0118A7E7FE009404DE /* InGameServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameServerAccess.h; sourceTree = "<group>"; };
 		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		997B0E0818A81985009404DE /* RecruitThingsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThingsHandler.h; sourceTree = "<group>"; };
@@ -909,6 +880,7 @@
 		997B0E1B18A84688009404DE /* RecruitThingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitThingsTest.m; sourceTree = "<group>"; };
 		997B0E2018A85D8B009404DE /* MovementPhaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementPhaseHandler.h; sourceTree = "<group>"; };
 		997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementPhaseHandler.m; sourceTree = "<group>"; };
+		99A51E9118E71376001E7511 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
 		99A78F1E18957B1E005D31E5 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
@@ -1194,7 +1166,6 @@
 		DEF9FF2818A8072C0057FAEB /* frozen-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frozen-tile-menu@2x.png"; sourceTree = "<group>"; };
 		DEF9FF2918A8072C0057FAEB /* jungle-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jungle-tile-menu@2x.png"; sourceTree = "<group>"; };
 		DEF9FF2A18A8072C0057FAEB /* mountain-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mountain-tile-menu@2x.png"; sourceTree = "<group>"; };
-		DEF9FF2B18A8072C0057FAEB /* plain-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plain-tile-menu@2x.png"; sourceTree = "<group>"; };
 		DEF9FF2C18A8072C0057FAEB /* swamp-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swamp-tile-menu@2x.png"; sourceTree = "<group>"; };
 		DEF9FF7718A824E20057FAEB /* red-desert-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-desert-tile.png"; sourceTree = "<group>"; };
 		DEF9FF7818A824E20057FAEB /* red-forest-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-forest-tile.png"; sourceTree = "<group>"; };
@@ -1515,6 +1486,8 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				994CF9EC18E4C3EB008FF16A /* downArrow@2x.png */,
+				994CF9E918E4C3D2008FF16A /* upArrow@2x.png */,
 				992613EA18E3B0CF0036CA53 /* borderTile.png */,
 				DEF9FF2518A803490057FAEB /* Backgrounds */,
 				DEF9FF2418A8033C0057FAEB /* Buttons */,
@@ -1884,6 +1857,8 @@
 				DEC0AA6218D77F410089EF72 /* RandomEventsMenu.m */,
 				DEC0AA7318D8C2340089EF72 /* ConstructionMenu.h */,
 				DEC0AA7418D8C2340089EF72 /* ConstructionMenu.m */,
+				994CF9EE18E4FEE8008FF16A /* RecruitingHeroMenu.h */,
+				994CF9EF18E4FEE8008FF16A /* RecruitingHeroMenu.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -2059,7 +2034,6 @@
 				DEF9FF2818A8072C0057FAEB /* frozen-tile-menu@2x.png */,
 				DEF9FF2918A8072C0057FAEB /* jungle-tile-menu@2x.png */,
 				DEF9FF2A18A8072C0057FAEB /* mountain-tile-menu@2x.png */,
-				DEF9FF2B18A8072C0057FAEB /* plain-tile-menu@2x.png */,
 				DEF9FF2C18A8072C0057FAEB /* swamp-tile-menu@2x.png */,
 			);
 			path = TileMenus;
@@ -2193,6 +2167,8 @@
 		DEF9FF2418A8033C0057FAEB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				99A51E9118E71376001E7511 /* continue.png */,
+				994CF9F118E5117A008FF16A /* buy_1.png */,
 				DE07B81D18D4D33D00A19DCB /* close-button-log.png */,
 				DE04CA4D18D68BCD006F5271 /* modify.png */,
 				DEC099AC18CE403900487534 /* retreat.png */,
@@ -2420,10 +2396,12 @@
 			files = (
 				DEC099AE18CE403900487534 /* retreat.png in Resources */,
 				DEB4C79A18C7F74E00AA8DAF /* gameMenu@2x.png in Resources */,
+				994CF9E318E49244008FF16A /* Bowl.png in Resources */,
 				DEB4C79718C7F4AA00AA8DAF /* gameMenu.png in Resources */,
 				DE0031EB18C678A5008E2CBA /* infoBackground-trans@2x.png in Resources */,
 				DEDC4BD618C5575800CCBE78 /* btn_sel.png in Resources */,
 				DEDC4BD718C5575800CCBE78 /* btn_sel@2x.png in Resources */,
+				994CF9B918E491B7008FF16A /* SC_404.png in Resources */,
 				DEDC4BD818C5575800CCBE78 /* btn.png in Resources */,
 				DEDC4BD918C5575800CCBE78 /* btn@2x.png in Resources */,
 				DEDC4BDA18C5575800CCBE78 /* field.png in Resources */,
@@ -2432,12 +2410,16 @@
 				DEDC4BDD18C5575800CCBE78 /* login_sel@2x.png in Resources */,
 				DEDC4BDE18C5575800CCBE78 /* login.png in Resources */,
 				DEC099AF18CE403900487534 /* rolldice.png in Resources */,
+				994CF9ED18E4C3EB008FF16A /* downArrow@2x.png in Resources */,
+				994CF9C218E49201008FF16A /* T_Event_337.png in Resources */,
 				DEDC4BDF18C5575800CCBE78 /* login@2x.png in Resources */,
+				994CF9A818E491B7008FF16A /* SC_387.png in Resources */,
 				DEDC4BE018C5575800CCBE78 /* logo.png in Resources */,
 				DEDC4BE118C5575800CCBE78 /* logo@2x.png in Resources */,
 				DEDC4BC818C556F600CCBE78 /* bg.png in Resources */,
 				DE494E6418BF71EB0042312D /* C_Fort_377.png in Resources */,
 				DE494E6518BF71EB0042312D /* C_Fort_379.png in Resources */,
+				994CF9A918E491B7008FF16A /* SC_388.png in Resources */,
 				DE494E6618BF71EB0042312D /* C_Fort_380.png in Resources */,
 				DE494E6318BF71CB0042312D /* swamp-tile.png in Resources */,
 				DE494E6218BF71880042312D /* sea-tile.png in Resources */,
@@ -2447,19 +2429,18 @@
 				DE48623418A9D57500272B79 /* buy.png in Resources */,
 				DE48623318A9D54100272B79 /* RecruitThingsBackground@2x.png in Resources */,
 				DEF9FEC018A7DAAA0057FAEB /* T_Jungle_004.png in Resources */,
-				41BD141218A75244008C6E96 /* T_Event_348.png in Resources */,
+				994CF9B818E491B7008FF16A /* SC_403.png in Resources */,
 				DEF9FECE18A7DAAA0057FAEB /* T_Mountains_039.png in Resources */,
-				41BD141618A75244008C6E96 /* T_Event_352.png in Resources */,
 				DEF9FE9018A7DAAA0057FAEB /* T_Desert_112.png in Resources */,
 				DEF9FEFC18A7DAAA0057FAEB /* T_Swamp_078.png in Resources */,
-				41BD13F218A75244008C6E96 /* SC_388.png in Resources */,
 				DEF9FEBE18A7DAAA0057FAEB /* T_Jungle_002.png in Resources */,
 				994CF9DA18E49201008FF16A /* T_Event_361.png in Resources */,
 				994CF9D718E49201008FF16A /* T_Event_358.png in Resources */,
 				DEF9FE8C18A7DAAA0057FAEB /* T_Desert_108.png in Resources */,
+				994CF9D318E49201008FF16A /* T_Event_354.png in Resources */,
 				DEF9FEB918A7DAAA0057FAEB /* T_Frozen_Waste_062.png in Resources */,
 				DEF9FEEB18A7DAAA0057FAEB /* T_Plains_030.png in Resources */,
-				41BD140018A75244008C6E96 /* SC_402.png in Resources */,
+				994CF9CB18E49201008FF16A /* T_Event_346.png in Resources */,
 				DE48622118A9A60E00272B79 /* bg_1.png in Resources */,
 				41BD143418A75244008C6E96 /* masterGameBoard.png in Resources */,
 				DEF9FF9D18A825120057FAEB /* green-jungle-tile.png in Resources */,
@@ -2481,6 +2462,7 @@
 				41BD13DF18A75244008C6E96 /* D_Damage.png in Resources */,
 				DEF9FE9418A7DAAA0057FAEB /* T_Desert_116.png in Resources */,
 				DEC0AA6A18D7994A0089EF72 /* referencesBackground@2x.png in Resources */,
+				994CF9D018E49201008FF16A /* T_Event_351.png in Resources */,
 				41BD13B518A75244008C6E96 /* atlas.png in Resources */,
 				994CF9B518E491B7008FF16A /* SC_400.png in Resources */,
 				DEF9FF8018A824E20057FAEB /* red-frozen-tile.png in Resources */,
@@ -2490,6 +2472,8 @@
 				DEF9FFAE18A825210057FAEB /* blue-swamp-tile.png in Resources */,
 				DEF9FECF18A7DAAA0057FAEB /* T_Mountains_040.png in Resources */,
 				DEF9FEEF18A7DAAA0057FAEB /* T_Swamp_065.png in Resources */,
+				994CF9CC18E49201008FF16A /* T_Event_347.png in Resources */,
+				994CF9E118E4923C008FF16A /* C_City.png in Resources */,
 				41BD13B718A75244008C6E96 /* back.png in Resources */,
 				DEF9FEF118A7DAAA0057FAEB /* T_Swamp_067.png in Resources */,
 				41BD142318A75244008C6E96 /* T_Income_365.png in Resources */,
@@ -2501,6 +2485,8 @@
 				DEF9FE8D18A7DAAA0057FAEB /* T_Desert_109.png in Resources */,
 				41BD13E718A75244008C6E96 /* G_20.png in Resources */,
 				DEF9FEC918A7DAAA0057FAEB /* T_Mountains_034.png in Resources */,
+				994CF9D818E49201008FF16A /* T_Event_359.png in Resources */,
+				994CF9AD18E491B7008FF16A /* SC_392.png in Resources */,
 				DEF9FEDD18A7DAAA0057FAEB /* T_Plains_016.png in Resources */,
 				DEF9FEF218A7DAAA0057FAEB /* T_Swamp_068.png in Resources */,
 				DEF9FEFE18A7DAAA0057FAEB /* T_Swamp_080.png in Resources */,
@@ -2514,12 +2500,12 @@
 				DE937C7C18DB34FF0012F30D /* dischargehero.png in Resources */,
 				41BD13D318A75244008C6E96 /* C_Fort_378.png in Resources */,
 				DEF9FE9318A7DAAA0057FAEB /* T_Desert_115.png in Resources */,
-				41BD13EE18A75244008C6E96 /* SC_384.png in Resources */,
 				DEF9FED718A7DAAA0057FAEB /* T_Mountains_048.png in Resources */,
 				DEF9FF9218A824FF0057FAEB /* yellow-swamp-tile.png in Resources */,
 				DEF9FE9F18A7DAAA0057FAEB /* T_Forest_090.png in Resources */,
 				DE4F80ED14E1541400655D44 /* atlas@2x.png in Resources */,
 				DEF9FEF618A7DAAA0057FAEB /* T_Swamp_072.png in Resources */,
+				994CF9A418E491B7008FF16A /* SC_383.png in Resources */,
 				41BD13C618A75244008C6E96 /* FourPlayerBackground@2x.png in Resources */,
 				DEF9FEBF18A7DAAA0057FAEB /* T_Jungle_003.png in Resources */,
 				994CF9D518E49201008FF16A /* T_Event_356.png in Resources */,
@@ -2528,24 +2514,26 @@
 				DEF9FED218A7DAAA0057FAEB /* T_Mountains_043.png in Resources */,
 				DEF9FEF718A7DAAA0057FAEB /* T_Swamp_073.png in Resources */,
 				41BD13C418A75244008C6E96 /* dice5.png in Resources */,
-				41BD141418A75244008C6E96 /* T_Event_350.png in Resources */,
+				994CF9EB18E4C3D2008FF16A /* upArrow@2x.png in Resources */,
 				992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */,
 				DEF9FF3118A8072C0057FAEB /* mountain-tile-menu@2x.png in Resources */,
 				417313FD18E25FED009D27F9 /* music.aifc in Resources */,
 				994CF9F218E5117A008FF16A /* buy_1.png in Resources */,
 				41BD13C518A75244008C6E96 /* dice6.png in Resources */,
-				41BD13F718A75244008C6E96 /* SC_393.png in Resources */,
 				DEF9FEE518A7DAAA0057FAEB /* T_Plains_024.png in Resources */,
 				DEF9FE9818A7DAAA0057FAEB /* T_Desert_120.png in Resources */,
 				DEF9FEE418A7DAAA0057FAEB /* T_Plains_023.png in Resources */,
 				DE937C8318DB6F2E0012F30D /* chatBackground@2x.png in Resources */,
 				DEF9FEF818A7DAAA0057FAEB /* T_Swamp_074.png in Resources */,
+				994CF9E018E49236008FF16A /* G_05.png in Resources */,
+				99A51E9218E71376001E7511 /* continue.png in Resources */,
 				41BD13BE18A75244008C6E96 /* CollectCoinsBtn.png in Resources */,
 				41BD13BA18A75244008C6E96 /* Bowl.png in Resources */,
 				994CF9DB18E49208008FF16A /* T_Income_363.png in Resources */,
 				41BD14D218A85BA5008C6E96 /* blue-plains-tile.png in Resources */,
 				DEF9FF2F18A8072C0057FAEB /* frozen-tile-menu@2x.png in Resources */,
 				DEF9FEB818A7DAAA0057FAEB /* T_Frozen_Waste_061.png in Resources */,
+				994CF9C118E49201008FF16A /* T_Event_336.png in Resources */,
 				DEF9FEA218A7DAAA0057FAEB /* T_Forest_093.png in Resources */,
 				DEF9FED018A7DAAA0057FAEB /* T_Mountains_041.png in Resources */,
 				DEF9FF8318A824E20057FAEB /* red-plains-tile.png in Resources */,
@@ -2573,24 +2561,30 @@
 				DEF9FEB318A7DAAA0057FAEB /* T_Frozen_Waste_056.png in Resources */,
 				41BD13E618A75244008C6E96 /* G_15.png in Resources */,
 				DEF9FF0118A7DAAA0057FAEB /* T_Swamp_083.png in Resources */,
+				994CF9E718E49571008FF16A /* plains-tile-menu@2x.png in Resources */,
 				41BD13C318A75244008C6E96 /* dice4.png in Resources */,
 				41BD14D618A85BB7008C6E96 /* yellow-plains-tile.png in Resources */,
+				994CF9A718E491B7008FF16A /* SC_386.png in Resources */,
 				41BD14D418A85BAC008C6E96 /* green-plains-tile.png in Resources */,
 				41BD142618A75244008C6E96 /* T_Income_368.png in Resources */,
 				DEF9FEA318A7DAAA0057FAEB /* T_Forest_094.png in Resources */,
-				41BD141818A75244008C6E96 /* T_Event_354.png in Resources */,
+				994CF9B218E491B7008FF16A /* SC_397.png in Resources */,
 				41BD142718A75244008C6E96 /* T_Income_369.png in Resources */,
 				994CF9E218E4923C008FF16A /* C_City_B.png in Resources */,
 				DEF9FEA418A7DAAA0057FAEB /* T_Forest_095.png in Resources */,
 				DEF9FC1F18A767590057FAEB /* DarkZone2.png in Resources */,
 				DE07B81618D40FF000A19DCB /* chat@2x.png in Resources */,
 				DEF9FEE818A7DAAA0057FAEB /* T_Plains_027.png in Resources */,
+				994CF9C318E49201008FF16A /* T_Event_338.png in Resources */,
+				994CF9E418E49244008FF16A /* stack.png in Resources */,
+				994CF9B018E491B7008FF16A /* SC_395.png in Resources */,
+				994CF9AF18E491B7008FF16A /* SC_394.png in Resources */,
 				41BD143318A75244008C6E96 /* mainMenuBackground.png in Resources */,
-				41BD141918A75244008C6E96 /* T_Event_355.png in Resources */,
 				DEF9FECB18A7DAAA0057FAEB /* T_Mountains_036.png in Resources */,
 				DEF9FFA818A825210057FAEB /* blue-desert-tile.png in Resources */,
 				41BD13D618A75244008C6E96 /* C_Fort_381.png in Resources */,
 				DEF9FE8918A7DAAA0057FAEB /* T_Desert_105.png in Resources */,
+				994CF9CF18E49201008FF16A /* T_Event_350.png in Resources */,
 				41BD143718A75244008C6E96 /* recruitThings.png in Resources */,
 				DEF9FEAC18A7DAAA0057FAEB /* T_Forest_103.png in Resources */,
 				DEF9FFAA18A825210057FAEB /* blue-frozen-tile.png in Resources */,
@@ -2598,29 +2592,34 @@
 				DEF9FEB418A7DAAA0057FAEB /* T_Frozen_Waste_057.png in Resources */,
 				DEF9FEE918A7DAAA0057FAEB /* T_Plains_028.png in Resources */,
 				41BD13B818A75244008C6E96 /* besbuton.png in Resources */,
+				994CF9D918E49201008FF16A /* T_Event_360.png in Resources */,
+				994CF9D618E49201008FF16A /* T_Event_357.png in Resources */,
 				DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */,
 				99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */,
 				994CF9B718E491B7008FF16A /* SC_402.png in Resources */,
 				41BD13C818A75244008C6E96 /* goldCollection.png in Resources */,
 				DEC0AA6618D7833A0089EF72 /* reference@2x.png in Resources */,
 				DEF9FEF018A7DAAA0057FAEB /* T_Swamp_066.png in Resources */,
-				41BD140F18A75244008C6E96 /* T_Event_345.png in Resources */,
+				994CF9B318E491B7008FF16A /* SC_398.png in Resources */,
+				994CF9A618E491B7008FF16A /* SC_385.png in Resources */,
 				41BD142018A75244008C6E96 /* T_Income_362.png in Resources */,
 				41BD142218A75244008C6E96 /* T_Income_364.png in Resources */,
-				41BD140C18A75244008C6E96 /* T_Event_342.png in Resources */,
 				DEF9FEC718A7DAAA0057FAEB /* T_Jungle_011.png in Resources */,
 				DEF9FE9E18A7DAAA0057FAEB /* T_Forest_089.png in Resources */,
+				994CF9AA18E491B7008FF16A /* SC_389.png in Resources */,
 				DE04CA4A18D676B8006F5271 /* heroBackground@2x.png in Resources */,
 				DEF9FF7E18A824E20057FAEB /* red-desert-tile.png in Resources */,
 				DEF9FEF318A7DAAA0057FAEB /* T_Swamp_069.png in Resources */,
 				DEF9FEF518A7DAAA0057FAEB /* T_Swamp_071.png in Resources */,
 				DEF9FFAB18A825210057FAEB /* blue-jungle-tile.png in Resources */,
 				DEF9FEDE18A7DAAA0057FAEB /* T_Plains_017.png in Resources */,
+				994CF9B418E491B7008FF16A /* SC_399.png in Resources */,
 				DEF9FEFB18A7DAAA0057FAEB /* T_Swamp_077.png in Resources */,
 				DEF9FEEA18A7DAAA0057FAEB /* T_Plains_029.png in Resources */,
 				DEF9FEBB18A7DAAA0057FAEB /* T_Frozen_Waste_064.png in Resources */,
 				DE07B81818D4156E00A19DCB /* title@2x.png in Resources */,
 				992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */,
+				994CF9CE18E49201008FF16A /* T_Event_349.png in Resources */,
 				DE04CA4218D67365006F5271 /* skip.png in Resources */,
 				994CF9C618E49201008FF16A /* T_Event_341.png in Resources */,
 				DEF9FEAB18A7DAAA0057FAEB /* T_Forest_102.png in Resources */,
@@ -2636,6 +2635,7 @@
 				DEF9FEA718A7DAAA0057FAEB /* T_Forest_098.png in Resources */,
 				994CF9DD18E4920E008FF16A /* close-button-log.png in Resources */,
 				417313F918E25BBB009D27F9 /* music.caf in Resources */,
+				994CF9CD18E49201008FF16A /* T_Event_348.png in Resources */,
 				99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */,
 				41BD142818A75244008C6E96 /* T_Income_370.png in Resources */,
 				DEF9FED618A7DAAA0057FAEB /* T_Mountains_047.png in Resources */,
@@ -2651,23 +2651,23 @@
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				DEF9FF9E18A825120057FAEB /* green-mountain-tile.png in Resources */,
 				DEF9FEE318A7DAAA0057FAEB /* T_Plains_022.png in Resources */,
+				994CF9AC18E491B7008FF16A /* SC_391.png in Resources */,
 				DEF9FEC118A7DAAA0057FAEB /* T_Jungle_005.png in Resources */,
 				DEF9FE9918A7DAAA0057FAEB /* T_Desert_121.png in Resources */,
 				41BD13D118A75244008C6E96 /* C_Fort_376.png in Resources */,
 				DEF9FE9118A7DAAA0057FAEB /* T_Desert_113.png in Resources */,
 				41BD13D718A75244008C6E96 /* C_Fort_382.png in Resources */,
-				41BD13F018A75244008C6E96 /* SC_386.png in Resources */,
-				41BD140118A75244008C6E96 /* SC_403.png in Resources */,
 				DEC0AA7218D8BD610089EF72 /* done-button.png in Resources */,
 				DE3104EE18D5428D001EE806 /* close-button-log.png in Resources */,
+				994CF9C818E49201008FF16A /* T_Event_343.png in Resources */,
+				994CF9D118E49201008FF16A /* T_Event_352.png in Resources */,
 				DEF9FF9C18A825120057FAEB /* green-frozen-tile.png in Resources */,
-				41BD141118A75244008C6E96 /* T_Event_347.png in Resources */,
 				DE48622218A9A60E00272B79 /* bg_1@2x.png in Resources */,
-				41BD141018A75244008C6E96 /* T_Event_346.png in Resources */,
+				994CF9DE18E4920E008FF16A /* indiv.png in Resources */,
+				994CF9C518E49201008FF16A /* T_Event_340.png in Resources */,
 				DEF9FE8F18A7DAAA0057FAEB /* T_Desert_111.png in Resources */,
 				DEF9FECA18A7DAAA0057FAEB /* T_Mountains_035.png in Resources */,
 				DEF9FEE718A7DAAA0057FAEB /* T_Plains_026.png in Resources */,
-				41BD13F118A75244008C6E96 /* SC_387.png in Resources */,
 				DEF9FEEC18A7DAAA0057FAEB /* T_Plains_031.png in Resources */,
 				DEF9FF9A18A825120057FAEB /* green-desert-tile.png in Resources */,
 				DEF9FFAC18A825210057FAEB /* blue-mountain-tile.png in Resources */,
@@ -2683,9 +2683,10 @@
 				DEF9FEC418A7DAAA0057FAEB /* T_Jungle_008.png in Resources */,
 				DEF9FED318A7DAAA0057FAEB /* T_Mountains_044.png in Resources */,
 				41BD14BB18A75244008C6E96 /* trade.png in Resources */,
-				41BD141D18A75244008C6E96 /* T_Event_359.png in Resources */,
 				DEF9FEAF18A7DAAA0057FAEB /* T_Frozen_Waste_052.png in Resources */,
 				DEF9FE9A18A7DAAA0057FAEB /* T_Desert_122.png in Resources */,
+				994CF9C918E49201008FF16A /* T_Event_344.png in Resources */,
+				994CF9D218E49201008FF16A /* T_Event_353.png in Resources */,
 				DEF9FEDC18A7DAAA0057FAEB /* T_Plains_015.png in Resources */,
 				DEF9FE9718A7DAAA0057FAEB /* T_Desert_119.png in Resources */,
 				DEF9FFA918A825210057FAEB /* blue-forest-tile.png in Resources */,
@@ -2696,40 +2697,39 @@
 				41BD143518A75244008C6E96 /* Rack.png in Resources */,
 				41BD13E218A75244008C6E96 /* G_01.png in Resources */,
 				4144CB6D188EFAE9003A29E4 /* clientReactor.plist in Resources */,
-				41BD140618A75244008C6E96 /* T_Event_336.png in Resources */,
 				41BD13BF18A75244008C6E96 /* creature5.png in Resources */,
 				DEF9FF2E18A8072C0057FAEB /* forest-tile-menu@2x.png in Resources */,
 				41BD142918A75244008C6E96 /* back-tile.png in Resources */,
 				DEF9FF8E18A824FF0057FAEB /* yellow-frozen-tile.png in Resources */,
 				DEF9FEC818A7DAAA0057FAEB /* T_Jungle_012.png in Resources */,
+				994CF9AB18E491B7008FF16A /* SC_390.png in Resources */,
 				DEF9FEDF18A7DAAA0057FAEB /* T_Plains_018.png in Resources */,
 				41BD13D018A75244008C6E96 /* C_Fort_375.png in Resources */,
 				DEF9FEBC18A7DAAA0057FAEB /* T_Jungle_000.png in Resources */,
 				DEF9FF9018A824FF0057FAEB /* yellow-mountain-tile.png in Resources */,
 				DEF9FEA818A7DAAA0057FAEB /* T_Forest_099.png in Resources */,
 				DEF9FEEE18A7DAAA0057FAEB /* T_Plains_033.png in Resources */,
-				41BD140918A75244008C6E96 /* T_Event_339.png in Resources */,
 				DEF9FECC18A7DAAA0057FAEB /* T_Mountains_037.png in Resources */,
-				41BD141718A75244008C6E96 /* T_Event_353.png in Resources */,
 				DEF9FFB018A825780057FAEB /* red-jungle-tile.png in Resources */,
 				992613E518E38FC30036CA53 /* config.plist in Resources */,
 				DEF9FEFA18A7DAAA0057FAEB /* T_Swamp_076.png in Resources */,
 				DEF9FED518A7DAAA0057FAEB /* T_Mountains_046.png in Resources */,
+				994CF9DF18E49236008FF16A /* G_02.png in Resources */,
 				DEF9FE9218A7DAAA0057FAEB /* T_Desert_114.png in Resources */,
+				994CF9D418E49201008FF16A /* T_Event_355.png in Resources */,
+				994CF9AE18E491B7008FF16A /* SC_393.png in Resources */,
 				DEF9FECD18A7DAAA0057FAEB /* T_Mountains_038.png in Resources */,
 				DEF9FEFD18A7DAAA0057FAEB /* T_Swamp_079.png in Resources */,
 				DEF9FE8B18A7DAAA0057FAEB /* T_Desert_107.png in Resources */,
+				994CF9E518E49249008FF16A /* dice2.png in Resources */,
 				41BD140318A75244008C6E96 /* SP_Black_Cloud.png in Resources */,
 				DEC099B418CE74B100487534 /* menu.png in Resources */,
 				41BD142A18A75244008C6E96 /* desert-tile.png in Resources */,
-				41BD13FB18A75244008C6E96 /* SC_397.png in Resources */,
 				DEF9FED418A7DAAA0057FAEB /* T_Mountains_045.png in Resources */,
 				DEF9FF8218A824E20057FAEB /* red-mountain-tile.png in Resources */,
 				DEF9FEFF18A7DAAA0057FAEB /* T_Swamp_081.png in Resources */,
 				DEF9FEB218A7DAAA0057FAEB /* T_Frozen_Waste_055.png in Resources */,
-				41BD141B18A75244008C6E96 /* T_Event_357.png in Resources */,
 				DEF9FEC318A7DAAA0057FAEB /* T_Jungle_007.png in Resources */,
-				41BD140518A75244008C6E96 /* T_Event_335.png in Resources */,
 				DEF9FEDB18A7DAAA0057FAEB /* T_Plains_014.png in Resources */,
 				DEF9FEB518A7DAAA0057FAEB /* T_Frozen_Waste_058.png in Resources */,
 				DEF9FEC518A7DAAA0057FAEB /* T_Jungle_009.png in Resources */,
@@ -2738,10 +2738,10 @@
 				DE0C710F162417B400357F6E /* Icon@2x.png in Resources */,
 				41BD143618A75244008C6E96 /* rackbtn.png in Resources */,
 				DEF9FE9C18A7DAAA0057FAEB /* T_Forest_087.png in Resources */,
+				994CF9DC18E49208008FF16A /* T_Income_366.png in Resources */,
 				DE48622318A9A60E00272B79 /* Default-568h@2x.png in Resources */,
 				DEF9FEC218A7DAAA0057FAEB /* T_Jungle_006.png in Resources */,
 				DEC099B918CE790300487534 /* sideMenuBackground@2x.png in Resources */,
-				41BD141518A75244008C6E96 /* T_Event_351.png in Resources */,
 				DE48620F18A981D900272B79 /* SmallButton@2x.png in Resources */,
 				DEF9FEF918A7DAAA0057FAEB /* T_Swamp_075.png in Resources */,
 				DE07B81C18D4BD8C00A19DCB /* team@2x.png in Resources */,
@@ -2771,6 +2771,7 @@
 				99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
 				99F9B6EB1894399300E4A788 /* GameLobby.m in Sources */,
+				994CF9F018E4FEE8008FF16A /* RecruitingHeroMenu.m in Sources */,
 				990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */,
 				4144CB65188EFACC003A29E4 /* TestEventHandler.m in Sources */,
 				4131C2E018876FF8009775EA /* MagicItems.m in Sources */,
