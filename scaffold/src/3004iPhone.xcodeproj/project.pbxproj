@@ -390,6 +390,7 @@
 		99B326C618E2741400336F3E /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
 		99B326C818E29C0700336F3E /* server_config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99B326C718E29C0700336F3E /* server_config.plist */; };
 		99C7604818E742C1004021A6 /* RecruitingHeroMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C7604718E742C1004021A6 /* RecruitingHeroMenu.m */; };
+		99C7604F18E745F6004021A6 /* CombatPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
 		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
 		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
@@ -848,6 +849,8 @@
 		99B326C718E29C0700336F3E /* server_config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = server_config.plist; sourceTree = "<group>"; };
 		99C7604618E742C1004021A6 /* RecruitingHeroMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitingHeroMenu.h; sourceTree = "<group>"; };
 		99C7604718E742C1004021A6 /* RecruitingHeroMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitingHeroMenu.m; sourceTree = "<group>"; };
+		99C7604D18E745F6004021A6 /* CombatPhaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatPhaseHandler.h; sourceTree = "<group>"; };
+		99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatPhaseHandler.m; sourceTree = "<group>"; };
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
@@ -1691,6 +1694,8 @@
 				997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */,
 				99FD44BE18E20DF400EC0FB3 /* RecruitCharactersEventHandler.h */,
 				99FD44BF18E20DF400EC0FB3 /* RecruitCharactersEventHandler.m */,
+				99C7604D18E745F6004021A6 /* CombatPhaseHandler.h */,
+				99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -2787,6 +2792,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C7604F18E745F6004021A6 /* CombatPhaseHandler.m in Sources */,
 				41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */,
 				99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */,
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
