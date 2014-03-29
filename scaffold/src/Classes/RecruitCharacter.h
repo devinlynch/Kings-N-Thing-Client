@@ -7,11 +7,11 @@
 //
 
 #import "SPSprite.h"
-@class FourPlayerGame;
+
 @interface RecruitCharacter : SPSprite
 
 +(RecruitCharacter*) getInstance;
 //-(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit;
--(void) setFourPlayerGame :(FourPlayerGame*) game;
+
 
 @end

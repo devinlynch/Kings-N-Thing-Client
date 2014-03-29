@@ -36,6 +36,6 @@
 -(Player*) getPlayerById: (NSString*) ID;
 -(BoardLocation*) getBoardLocationById: (NSString*) ID;
 -(Stack*) getStackById:(NSString*) stackId;
--(Player*) getMe;
+
 
 @end

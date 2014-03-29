@@ -354,6 +354,11 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startedRecruitThingsPhase:)
+                                                 name:@"startedRecruitThingsPhase"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(playerMovedPieceToNewLocation:)
                                                  name:@"playerMovedPieceToNewLocation"
                                                object:nil];
@@ -721,9 +726,6 @@
 
 
 -(void) startedRecruitThingsPhase: (NSNotification*) notif{
-    [[RecruitCharacter getInstance] setVisible:NO];
-    [[RecruitCharacter getInstance] removeAllChildren];
-    [[RecruitCharacter getInstance] removeFromParent];
     
     _phase = RECRUITMENT;
     
@@ -1513,7 +1515,6 @@
     _phase = SC_RECRUITMENT;
     
     RecruitCharacter *rt = [RecruitCharacter getInstance];
-    [rt setFourPlayerGame:self];
     
     [_contents addChild:rt];
     

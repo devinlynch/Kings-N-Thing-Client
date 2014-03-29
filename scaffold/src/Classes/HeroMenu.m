@@ -9,11 +9,9 @@
 #import "HeroMenu.h"
 #import "GameResource.h"
 #import "GamePiece.h"
+#import "InGameServerAccess.h"
 #import "SpecialCharacter.h"
 #import "Utils.h"
-#import "Game.h"
-#import "GameState.h"
-#import "RecruitingHeroMenu.h"
 
 @implementation HeroMenu{
     SPSprite *_contents;
@@ -29,11 +27,6 @@
     UITextField *_chatTextField;
     UIButton *doneButton;
     SPButton *rollButton;
-    InGameServerAccess *access;
-    int numRolls;
-    
-    RecruitingHeroMenu *nextMenu;
-    FourPlayerGame *_fourPlayerGame;
 }
 
 -(id) init
@@ -55,10 +48,6 @@
 
 
 -(void) setup{
-    access = [[InGameServerAccess alloc] init];
-    access.delegateListener = self;
-    
-    numRolls = 0;
     
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
@@ -126,7 +115,7 @@
 
     UIView *view = Sparrow.currentController.view;
     
-    _chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, _gameHeight - 70, 120, 30)];
+    _chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, _gameHeight - 70, 150, 30)];
     _chatTextField.borderStyle = UITextBorderStyleRoundedRect;
     _chatTextField.textColor = [UIColor blackColor];
     _chatTextField.font = [UIFont systemFontOfSize:17.0];
@@ -135,35 +124,8 @@
     _chatTextField.keyboardType = UIKeyboardTypeNumberPad;
     _chatTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _chatTextField.returnKeyType = UIReturnKeyDone;
-    _chatTextField.enabled = NO;
     [view addSubview:_chatTextField];
     _chatTextField.delegate = self;
-    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];
-    
-    
-    SPTexture *upButtonText = [SPTexture textureWithContentsOfFile:@"upArrow@2x.png"];
-    SPButton *upButton = [SPButton buttonWithUpState:upButtonText];
-    upButton.x = 140;
-    upButton.y = _gameHeight - 75;
-    upButton.scaleX = upButton.scaleY = 0.5;
-    [_contents addChild:upButton];
-    [upButton addEventListener:@selector(didClickUpBtn:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    
-    SPTexture *downButtonText = [SPTexture textureWithContentsOfFile:@"downArrow@2x.png"];
-    SPButton *downButton = [SPButton buttonWithUpState:downButtonText];
-    downButton.x = 140;
-    downButton.y = _gameHeight - 90 + upButton.height - 5;
-    downButton.scaleX = downButton.scaleY = 0.5;
-    [_contents addChild:downButton];
-    [downButton addEventListener:@selector(didClickDownBtn:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-    
-    SPTextField *preRollsText = [SPTextField textFieldWithText:@"Number of pre roll purchases (5 gold each)"];
-    preRollsText.x = 15;
-    preRollsText.y = _gameHeight - 90;
-    preRollsText.fontName = @"ArialMT";
-    preRollsText.fontSize = 10;
-    preRollsText.color = 0xffffff;
-    [_contents addChild:preRollsText];
     
 }
 
@@ -185,26 +147,21 @@
     [_contents addChild:borderImage];
 }
 
-
--(void) didClickUpBtn: (SPEvent*) event{
-    numRolls++;
-    
-    Game *game = [Game currentGame];
-    GameState *gs = [game gameState];
-    Player *me = [gs getPlayerById:[gs myPlayerId]];
-    int playerGold = me.gold;
-    
-    if((numRolls * 5) < playerGold) {
-        [Utils showAlertWithTitle:@"Whoops" message:@"You do not have enough gold to do that" delegate:nil cancelButtonTitle:@"Ok"];
-        return;
-    }
-    
-    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];
+-(void) textFieldDidBeginEditing:(UITextField *)textField {
+    [_chatTextField setFrame:CGRectMake(15, 300, 150, 30)];
+    rollButton.y=270;
 }
 
--(void) didClickDownBtn: (SPEvent*) event{
-    numRolls--;
-    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];
+-(void) textFieldDidEndEditing:(UITextField *)textField{
+    [_chatTextField setFrame:CGRectMake(15, _gameHeight - 100, 150, 30)];
+    rollButton.y=_gameHeight - 100;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+
+    return YES;
 }
 
 -(void) didClickOnRoll: (SPEvent*) event{
@@ -219,38 +176,9 @@
         return;
     }
     
-    nextMenu = [[RecruitingHeroMenu alloc] initWithRecruitingCharacter:selectedSpecialCharacter];
-    [nextMenu setFourPlayerGame:_fourPlayerGame];
-
-    [Utils showLoaderOnView:Sparrow.currentController.view animated:true];
-    [access recruitCharactersMakeRoll:selectedSpecialCharacter.gamePieceId andNumPreRolls:numPreRolls withSuccess:nil];
-}
-
--(void) didGetIngameResponseFromServerForRequest: (InGameRequestTypes) requestType andResponse: (ServerResponseMessage*) responseMessage{
-    [Utils removeLoaderOnView: Sparrow.currentController.view animated:true];
-    if(requestType == RECRUITCHARS_MAKEROLLFORPLAYER) {
-        if(responseMessage == nil) {
-            [Utils showAlertWithTitle:@"Whoops" message:@"There was a problem with that.  Please try again." delegate:nil cancelButtonTitle:@"Ok"];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_chatTextField setHidden:YES];
-                [self showScene:nextMenu];
-            });
-        }
-        
-    }
-}
-
--(void) showScene:(SPSprite *)scene
-{
-    [_contents removeFromParent];
-    [self addChild:scene];
-    scene.visible = YES;
     
+    [[InGameServerAccess instance] recruitCharactersMakeRoll:selectedSpecialCharacter.gamePieceId andNumPreRolls:numPreRolls withSuccess:nil];
 }
 
--(void) setFourPlayerGame :(FourPlayerGame*) game{
-    _fourPlayerGame = game;
-}
 
 @end
