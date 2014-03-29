@@ -17,6 +17,7 @@
     NSArray *_neighbourIds;
     Player *_owner;
     BOOL _isStartingPoint;
+    BOOL _visited;
 }
 
 @property HexTile *tile;
@@ -25,7 +26,7 @@
 @property NSArray *neighbourIds;
 @property NSMutableDictionary *stacks;
 @property BOOL isStartingPoint;
-
+@property BOOL visited;
 -(void) changeOwnerToPlayer: (Player*) player;
 
 -(void) addStack: (Stack*) stack;
@@ -34,5 +35,6 @@
 -(BOOL) hasNeighbourOwnedByPlayer: (Player*) player;
 
 
+-(void) hilightPossibleMoves;
 
 @end

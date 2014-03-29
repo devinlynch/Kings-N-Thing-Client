@@ -17,11 +17,14 @@
 @synthesize tileNumber = _tileNumber;
 @synthesize tileId = _tileId;
 @synthesize image = _tileImage;
+@synthesize hilightImage = _hilightImage;
 
 -(void) changeOwnerTo: (NSString*) playerId{
     
     SPDisplayObjectContainer *container = _tileImage.parent;
     [_tileImage removeFromParent];
+    
+    _isHilighted = NO;
     
     float x = _tileImage.x;
     float y = _tileImage.y;
@@ -55,6 +58,12 @@
         [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
         [container addChild:_tileImage];
     }
+    
+    _hilightImage = [[SPImage alloc] initWithContentsOfFile:@"hilight.png"];
+    _hilightImage.x = x;
+    _hilightImage.y = y;
+    [container addChild:_hilightImage];
+    [_hilightImage setVisible:NO];
 }
 
 
@@ -306,15 +315,20 @@
 
     }
     
+    _hilightImage = [[SPImage alloc] initWithContentsOfFile:@"hilight.png"];
+    [_hilightImage setVisible:NO];
+    
     return self;
 }
 
 - (void)unhilight{
     _isHilighted = NO;
+    [_hilightImage setVisible:NO];
 }
 
 - (void)hilight{
     _isHilighted = YES;
+    [_hilightImage setVisible:YES];
 }
 
 @end

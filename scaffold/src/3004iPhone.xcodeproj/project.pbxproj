@@ -291,6 +291,7 @@
 		4173890C18E4927000934A1F /* infoBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE48621518A989A100272B79 /* infoBackground@2x.png */; };
 		4173890D18E4927000934A1F /* FourPlayerBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12BA18A75243008C6E96 /* FourPlayerBackground@2x.png */; };
 		4173890E18E4927000934A1F /* RecruitThingsBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD132E18A75243008C6E96 /* RecruitThingsBackground@2x.png */; };
+		4173891018E4DA1100934A1F /* hilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4173890F18E4DA1100934A1F /* hilight.png */; };
 		41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41852B941893458600BFD1B0 /* KeychainItemWrapper.m */; };
 		41852B981893490600BFD1B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41852B971893490600BFD1B0 /* Security.framework */; };
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
@@ -686,6 +687,7 @@
 		417313F818E25BBB009D27F9 /* music.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.caf; sourceTree = "<group>"; };
 		417313FC18E25FED009D27F9 /* music.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.aifc; sourceTree = "<group>"; };
 		4173880818E4880F00934A1F /* plains-tile-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plains-tile-menu@2x.png"; sourceTree = "<group>"; };
+		4173890F18E4DA1100934A1F /* hilight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hilight.png; sourceTree = "<group>"; };
 		41852B931893458600BFD1B0 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		41852B941893458600BFD1B0 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		41852B971893490600BFD1B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1527,6 +1529,7 @@
 		41BD131E18A75243008C6E96 /* landtiles */ = {
 			isa = PBXGroup;
 			children = (
+				4173890F18E4DA1100934A1F /* hilight.png */,
 				DEF9FF7018A81E650057FAEB /* Default Tiles */,
 				DEF9FF3418A81E5C0057FAEB /* Player1 */,
 				DEF9FF3C18A81E5C0057FAEB /* Player2 */,
@@ -2642,6 +2645,7 @@
 				417388DA18E4925500934A1F /* SC_401.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				417388B418E4924800934A1F /* C_Fort_378.png in Resources */,
+				4173891018E4DA1100934A1F /* hilight.png in Resources */,
 				4173883B18E4922B00934A1F /* T_Forest_097.png in Resources */,
 				417388CD18E4925500934A1F /* SC_388.png in Resources */,
 				DEF9FF9E18A825120057FAEB /* green-mountain-tile.png in Resources */,

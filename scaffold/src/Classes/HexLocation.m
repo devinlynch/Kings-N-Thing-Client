@@ -14,6 +14,7 @@
 #import "ScaledGamePiece.h"
 #import "GameState.h"
 #import "Game.h"
+#import "Terrain.h"
 
 @implementation HexLocation
 
@@ -24,6 +25,7 @@
 @synthesize tileNumber = _tileNumber;
 @synthesize owner = _owner;
 @synthesize isStartingPoint = _isStartingPoint;
+@synthesize visited = _visited;
 
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
@@ -34,7 +36,7 @@
     
     _tile.location = self;
     _stacks = [[NSMutableDictionary alloc] init];
-    
+    _visited = NO;
     
     switch (_tileNumber) {
         case 19:
@@ -146,6 +148,7 @@
         case 22: {
             _neighbourIds = [[NSArray alloc] initWithObjects:@"hexLocation_21",@"hexLocation_8",@"hexLocation_9",@"hexLocation_23", nil];
         }
+            break;
         case 23: {
             _neighbourIds = [[NSArray alloc] initWithObjects:@"hexLocation_22",@"hexLocation_9",@"hexLocation_10",@"hexLocation_24", nil];
         }
@@ -274,6 +277,37 @@
 
 -(NSString*) description{
     return [NSString stringWithFormat:@"Tile with number %d", _tileNumber];
+}
+
+-(void) hilightPossibleMoves{
+    [self hilightPossibleMovesRecursive:5];
+}
+
+-(void) hilightPossibleMovesRecursive: (int) movesLeft{
+    
+    if(movesLeft <= 0){
+        return;
+    }
+    
+    [self setVisited:YES];
+    
+    [self.tile hilight];
+    
+    for (NSString *hexId in _neighbourIds) {
+        HexLocation *location = [[[[Game currentGame] gameState] hexLocations] objectForKey:hexId];
+        if(!location.visited){
+           // wamp, mountain, forest and jungle hex cost 2
+            if ([location.tile.terrain isEqual:[Terrain getSwampInstance]] ||
+                [location.tile.terrain isEqual:[Terrain getForestInstance]] ||
+                [location.tile.terrain isEqual:[Terrain getMountainInstance]] ||
+                [location.tile.terrain isEqual:[Terrain getJungleInstance]]) {
+                [location hilightPossibleMovesRecursive:movesLeft-2];
+            } else{
+                [location hilightPossibleMovesRecursive:movesLeft-1];
+            }
+        }
+    }
+    [self setVisited:NO];
 }
 
 
