@@ -9,6 +9,7 @@
 #import "RecruitCharacter.h"
 #import "HeroMenu.h"
 #import "DischargeMenu.h"
+#import "FourPlayerGame.h"
 
 @interface RecruitCharacter ()
 -(void)setup;
@@ -20,6 +21,8 @@
     
     int _gameWidth;
     int _gameHeight;
+    
+    FourPlayerGame *_fourPlayerGame;
 }
 
 static RecruitCharacter *instance;
@@ -41,6 +44,10 @@ static RecruitCharacter *instance;
     }
     
     return self;
+}
+
+-(void) setFourPlayerGame :(FourPlayerGame*) game{
+    _fourPlayerGame = game;
 }
 
 
@@ -85,13 +92,11 @@ static RecruitCharacter *instance;
                                              selector:@selector(yourTurnToRecruitSpecialCharacter:)
                                                  name:@"yourTurnToRecruitSpecialCharacter"
                                                object:nil];
-    
-    [self didClickOnHeroRecruit:nil];
-    
 }
 
 -(void) yourTurnToRecruitSpecialCharacter: (NSNotification*) notif{
-    HeroMenu *heroMenu = [[HeroMenu alloc]init];
+    HeroMenu *heroMenu = [[HeroMenu alloc]initWithPossibleRecruits:notif.object];
+    [heroMenu setFourPlayerGame: _fourPlayerGame];
     [self showScene:heroMenu];
 }
 
@@ -114,6 +119,7 @@ static RecruitCharacter *instance;
 
 - (void)showHeroMenu{
     HeroMenu *heroMenu = [[HeroMenu alloc]init];
+    [heroMenu setFourPlayerGame: _fourPlayerGame];
     [self showScene:heroMenu];
 }
 - (void)showDischargeMenu{
