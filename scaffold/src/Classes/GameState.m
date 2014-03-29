@@ -132,4 +132,8 @@
     return nil;
 }
 
+-(Player*) getMe{
+    return [self getPlayerById:_myPlayerId];
+}
+
 @end
