@@ -39,8 +39,7 @@
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
                         GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
                         if (piece != nil) {
-                            piece.location = self;
-                            [_pieces setValue:piece forKey:[piece gamePieceId]];
+                            [self addGamePieceToLocation:piece];
                         }
                     }
                 }

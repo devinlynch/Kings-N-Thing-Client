@@ -98,7 +98,7 @@
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 300, 260)];
     _textView.backgroundColor= [UIColor clearColor];
     _textView.editable = NO;
-    _textView.textColor = [UIColor blackColor];
+    _textView.textColor = [UIColor whiteColor];
     
     //Seperate each line
     _textView.text = [log componentsJoinedByString:@"\n"];

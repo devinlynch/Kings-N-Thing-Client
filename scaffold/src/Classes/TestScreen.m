@@ -10,6 +10,18 @@
 #import "RecruitCharacter.h"
 #import "RecruitThings.h"
 #import "FourPlayerGame.h"
+#import "WaitScreen.h"
+#import "MagicStepMenu.h"
+#import "RangeStepMenu.h"
+#import "MeleeStepMenu.h"
+
+#import "MagicResolutionMenu.h"
+#import "RangeResolutionMenu.h"
+#import "MeleeResolutionMenu.h"
+
+#import "YourPiecesMenu.h"
+#import "EnemyPiecesMenu.h"
+#import "BattleSummaryMenu.h"
 
 @implementation TestScreen
 
@@ -29,9 +41,11 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[RecruitCharacter class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[BattleSummaryMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }
+
+
 
 @end
