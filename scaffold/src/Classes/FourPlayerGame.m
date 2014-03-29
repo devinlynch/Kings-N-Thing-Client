@@ -598,16 +598,16 @@
         }
         [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
         if ([p.playerId isEqualToString:@"player1"]) {
-           [ _Player1IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
+           [ _Player1IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
             
         } else  if ([p.playerId isEqualToString:@"player2"]) {
-            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player2"] objectForKey:@"totalGold"] integerValue]]];
+            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player2"] objectForKey:@"totalGold"] integerValue]]];
             
         } else  if ([p.playerId isEqualToString:@"player3"]) {
-            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player3"] objectForKey:@"totalGold"] integerValue]]];
+            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player3"] objectForKey:@"totalGold"] integerValue]]];
             
         } else  if ([p.playerId isEqualToString:@"player4"]) {
-            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%d",[[[dic objectForKey:@"player4"] objectForKey:@"totalGold"] integerValue]]];
+            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player4"] objectForKey:@"totalGold"] integerValue]]];
 
         }
     }
@@ -687,32 +687,47 @@
 
 -(void) pieceSelected: (NSNotification*) notif{
     
-    if([notif.object isKindOfClass: [GamePiece class]]){
-        _selectedPiece = (GamePiece*) notif.object;
-        _selectedStack = nil;
-        if(_selectedPieceImage != nil){
-            [_selectedPieceImage removeFromParent];
+    Player *player;
+    
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:_state.myPlayerId]) {
+            player = p;
         }
-        _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
-        _selectedPieceImage.x = 90;
-        _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
-        [_contents addChild:_selectedPieceImage];
-        
-    } else{
-        Stack *stack = (Stack*)notif.object;
-        _selectedPiece = nil;
-        _selectedStack = stack;
-        if(_selectedPieceImage != nil){
-            [_selectedPieceImage removeFromParent];
-        }
-        _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
-                               @"T_Back.png"];
-        _selectedPieceImage.x = 90;
-        _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
-        [_contents addChild:_selectedPieceImage];
     }
     
+    if([notif.object isKindOfClass: [GamePiece class]]){
+        GamePiece *piece = (GamePiece*) notif.object;
+        if (piece != nil && [[piece owner] isEqual:player]) {
+            _selectedPiece = piece;
+            _selectedStack = nil;
+            if(_selectedPieceImage != nil){
+                [_selectedPieceImage removeFromParent];
+            }
+            _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
+            _selectedPieceImage.x = 90;
+            _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+            [_contents addChild:_selectedPieceImage];
+        }
+        
+    }else{
+        Stack *stack = (Stack*)notif.object;
+        if (stack != nil && [[stack owner] isEqual:player]) {
+            _selectedPiece = nil;
+            _selectedStack = stack;
+            if(_selectedPieceImage != nil){
+                [_selectedPieceImage removeFromParent];
+            }
+            _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
+                                   @"T_Back.png"];
+            _selectedPieceImage.x = 90;
+            _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
+            [_contents addChild:_selectedPieceImage];
+        }
+    }
     
+
+    
+        
     NSLog(@"Selected Piece");
     
    

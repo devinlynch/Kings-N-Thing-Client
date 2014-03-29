@@ -20,6 +20,8 @@
 #import "GameResource.h"
 #import "Stack.h"
 #import "InGameServerAccess.h"
+#import "Game.h"
+#import "GameState.h"
 
 @interface TileMenu ()
 - (void) setup;
@@ -239,6 +241,7 @@
                     [newStack setLocationId:[message.data.map objectForKey:@"createdStackId"]];
                     [newStack addGamePieceToLocation:piece];
                     [newStack addGamePieceToLocation:_selectedPiece];
+                    [newStack setOwner:[[[Game currentGame]gameState]getPlayerById:[[[Game currentGame] gameState]myPlayerId]]];
                     [_location addStack:newStack];
                     [_contents removeAllChildren];
                     [self setupWithLocation:_location];
