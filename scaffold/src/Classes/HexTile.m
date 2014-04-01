@@ -323,8 +323,10 @@
 }
 
 - (void)hilight{
-    _isHilighted = YES;
-    [_hilightImage setVisible:YES];
+    if(![self.terrain isEqual:[Terrain getSeaInstance]]){
+        _isHilighted = YES;
+        [_hilightImage setVisible:YES];
+    }
 }
 
 @end

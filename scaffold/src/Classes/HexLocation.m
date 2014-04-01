@@ -295,7 +295,7 @@
     
     for (NSString *hexId in _neighbourIds) {
         HexLocation *location = [[[[Game currentGame] gameState] hexLocations] objectForKey:hexId];
-        if(!location.visited){
+        if(!location.visited && ![location.tile.terrain isEqual:[Terrain getSeaInstance]]){
            // swamp, mountain, forest and jungle hex cost 2
             if ([location.tile.terrain isEqual:[Terrain getSwampInstance]] ||
                 [location.tile.terrain isEqual:[Terrain getForestInstance]] ||
