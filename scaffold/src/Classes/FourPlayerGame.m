@@ -1401,7 +1401,7 @@
         case MOVEMENT:
             if (touches.count == 1)
             {
-                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && [tile.owner.playerId isEqualToString:[_state myPlayerId]]) {
+                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && tile.isHilighted) {
                     
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
@@ -1552,8 +1552,8 @@
 }
 
 -(void) unHilightAllTiles{
-    for (HexLocation *location in _state.hexLocations) {
-        [location.tile unhilight];
+    for (NSString *location in _state.hexLocations) {
+        [[[_state.hexLocations objectForKey:location] tile] unhilight];
     }
 }
 

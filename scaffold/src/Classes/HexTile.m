@@ -59,11 +59,6 @@
         [container addChild:_tileImage];
     }
     
-    _hilightImage = [[SPImage alloc] initWithContentsOfFile:@"hilight.png"];
-    _hilightImage.x = x;
-    _hilightImage.y = y;
-    [container addChild:_hilightImage];
-    [_hilightImage setVisible:NO];
 }
 
 
@@ -316,6 +311,7 @@
     }
     
     _hilightImage = [[SPImage alloc] initWithContentsOfFile:@"hilight.png"];
+    [_hilightImage setTouchable:NO];
     [_hilightImage setVisible:NO];
     
     return self;
