@@ -16,10 +16,6 @@
 
 @implementation CombatPhaseHandler
 
--(void) handleBattleOver: (Event*) event{
-    
-}
-
 -(void) handleBattleStarted: (Event*) event{
     NSLog(@"Handling handleBattleStarted message");
 
@@ -63,10 +59,6 @@
      NSLog(@"Finished handling handleCombatRoundStarted message");
 }
 
--(void) handlePlayerRetreatedFromBattle: (Event*) event{
-    
-}
-
 -(void) handleCombatStepStarted: (Event*) event{
     NSLog(@"Handling handleCombatStepStarted message");
     
@@ -80,18 +72,40 @@
     if(round == nil)
         return;
     
-    // TODO
-    
+    [round newStepStarted:[dataDic objectForKey:@"stepName"] withJson:dataDic];
 }
 
 -(void) handlePlayerTookDamageInBattle: (Event*) event{
+    NSLog(@"Handling handlePlayerTookDamageInBattle message");
     
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    CombatBattleRound *round = [self getRoundOrRaiseExceptionFromJson:dataDic forBattle:battle];
+    if(round == nil)
+        return;
+    
+    NSString* stepName = [dataDic objectForKey:@"stepName"];
+    NSString* playerId = [dataDic objectForKey:@"playerId"];
+    NSArray * gamePiecesTakingHitsIds = [dataDic objectForKey:@"gamePiecesTakingHitsIds"];
+    
+    [round player:playerId tookDamageToPieces:gamePiecesTakingHitsIds forStep:stepName];
 }
 
 -(void) handleRetreatCouldNotTakePlace: (Event*) event{
     
 }
 
+-(void) handlePlayerRetreatedFromBattle: (Event*) event{
+    
+}
+
+-(void) handleBattleOver: (Event*) event{
+    
+}
 
 -(CombatBattleRound*) getRoundOrRaiseExceptionFromJson: (NSDictionary*) json forBattle: (CombatBattle*) battle{
     NSString *roundId = [json objectForKey:@"roundId"];

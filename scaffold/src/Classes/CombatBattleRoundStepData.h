@@ -19,6 +19,6 @@
 @property NSMutableDictionary *attackerDamageablePieces;
 @property NSMutableDictionary *defenderDamageablePieces;
 
-
+-(id) initFromJson: (NSDictionary*) json forGameState:(GameState*) gameState;
 
 @end

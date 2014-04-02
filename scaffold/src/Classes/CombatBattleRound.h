@@ -19,6 +19,8 @@ typedef enum CombatRoundState {
 } CombatRoundState;
 
 @class CombatBattle;
+
+
 @interface CombatBattleRound : NSObject
 
 @property CombatRoundState state;
@@ -30,10 +32,14 @@ typedef enum CombatRoundState {
 @property CombatBattleRoundStepData *rangeData;
 @property CombatBattleRoundStepData *meleeData;
 
-@property NSMutableDictionary *magicPiecesTakingHits;
-@property NSMutableDictionary *rangePiecesTakingHits;
-@property NSMutableDictionary *meleePiecesTakingHits;
+@property NSMutableDictionary *magicAttackerPiecesTakingHits;
+@property NSMutableDictionary *rangeAttackerPiecesTakingHits;
+@property NSMutableDictionary *meleeAttackerPiecesTakingHits;
 
+@property NSMutableDictionary *magicDefenderPiecesTakingHits;
+@property NSMutableDictionary *rangeDefenderPiecesTakingHits;
+@property NSMutableDictionary *meleeDefenderPiecesTakingHits;
 
-
+-(void) newStepStarted: (NSString*) stepName withJson: (NSDictionary*) json;
+-(void) player: (NSString*) playerid tookDamageToPieces: (NSArray*) piecesTakingHits forStep: (NSString*) stepName;
 @end
