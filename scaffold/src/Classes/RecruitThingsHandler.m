@@ -27,7 +27,7 @@
     NSArray *possibleRecruitments = [dataDic objectForKey:@"possibleRecruitments"];
 
 
-    [Game addLogMessageToCurrentGame:@"The Recruit Characters phase has started!"];
+    [Game addLogMessageToCurrentGame:@"The Recruit Things phase has started!"];
     
     NSLog(@"Succesfully parsed DidStartRecruitThingsPhase message with possible recruits: %@", possibleRecruitments);
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -51,7 +51,7 @@
         return;
     }
     
-    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ recruited a %@ and placed it on %@", player.username, thing.gamePieceId,location.locationName]];
+    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ recruited a %@ and placed it on %@", player.username, thing.name,location.locationName]];
     
     [location addGamePieceToLocation:thing];
     [player assignPiece:thing];

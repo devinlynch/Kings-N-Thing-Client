@@ -108,7 +108,7 @@
         didHeRecruit = @"They did not recruit it";
     }
     
-    NSString *logMessage = [NSString stringWithFormat: @"%@ rolled a %d and bought %d pre roll changes in while trying to recruit a %@.  %@.", player.username, theRoll, numPreRolls, piece.gamePieceId, didHeRecruit];
+    NSString *logMessage = [NSString stringWithFormat: @"%@ rolled a %d and bought %d pre roll changes in while trying to recruit a %@.  %@.", player.username, theRoll, numPreRolls, piece.name != nil ? piece.name : piece.gamePieceId, didHeRecruit];
     [game addLogMessage:logMessage];
     
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
@@ -177,7 +177,7 @@
         didHeRecruit = @"They did not recruit it";
     }
     
-    NSString *logMessage = [NSString stringWithFormat: @"%@ finished their turn of trying to recruit a %@.  %@.  They bought %d post rolls.", player.username, piece.gamePieceId, didHeRecruit, numPostRolls];
+    NSString *logMessage = [NSString stringWithFormat: @"%@ finished their turn of trying to recruit a %@.  %@.  They bought %d post rolls.", player.username, piece.name != nil ? piece.name : piece.gamePieceId, didHeRecruit, numPostRolls];
     [game addLogMessage:logMessage];
     
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];

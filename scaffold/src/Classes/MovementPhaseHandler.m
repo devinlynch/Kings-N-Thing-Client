@@ -29,6 +29,8 @@
     NSLog(@"Succesfully handled yourTurnToMoveInMovement message");
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"It's your turn in movement."]];
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"yourTurnToMoveInMovement" object:nil];
     });
 }
@@ -105,6 +107,7 @@
         [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ created a stack and moved it to %@", p.username, hexLocation.locationName]];
     } else {
         [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a stack to %@", p.username, hexLocation.locationName]];
+        [stack updateLocationFromSerializedJSONDictionary:stackDic];
     }
     
     [stack setOwner:p];
@@ -153,7 +156,7 @@
         return;
     }
     
-    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a %@ to %@", player.username, gamePiece.gamePieceId,boardLocation.locationName]];
+    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a %@ to %@", player.username, gamePiece.name != nil ? gamePiece.name : gamePiece.gamePieceId,boardLocation.locationName]];
 
     
     [boardLocation addGamePieceToLocation:gamePiece];
@@ -190,38 +193,13 @@
         // Check all the game pieces given to make sure they are assigned to the hex location
         NSArray *piecesJsonArr = [hexDic objectForKey:@"gamePieces"];
         if(piecesJsonArr != nil){
-            for(id o in piecesJsonArr) {
-                if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                    NSDictionary *gamePieceDic = (NSDictionary*) o;
-                    GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
-                    
-                    if( piece.location != hexInGameState){
-                        [hexInGameState addGamePieceToLocation:piece];
-                    }
-                    
-                }
-            }
+            [hexInGameState updateLocationWithPieces:piecesJsonArr];
         }
         
         // Now check to make sure stacks are all good
         NSArray *stacksJsonArr = [hexDic objectForKey:@"stacks"];
         if(stacksJsonArr != nil) {
-            for(id o in stacksJsonArr) {
-                NSDictionary *stackDic = (NSDictionary*) o;
-                NSString *stackId = [stackDic objectForKey:@"locationId"];
-                NSString *ownerId = [stackDic objectForKey:@"ownerId"];
-
-                Stack *stack = [gameState getStackById: stackId];
-                if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
-                    stack = [[Stack alloc] initFromJSON:stackDic];
-                    Player *p = [gameState getPlayerById:ownerId];
-                    [stack setOwner:p];
-                }
-                
-                if([hexInGameState.stacks objectForKey:stack.locationId] == nil) {
-                    [hexInGameState addStack:stack];
-                }
-            }
+            [hexInGameState updateLocationWithStacks:stacksJsonArr];
         }
     }
     

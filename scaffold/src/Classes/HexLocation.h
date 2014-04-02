@@ -33,6 +33,7 @@
 
 -(BOOL) hasNeighbourOwnedByPlayer: (Player*) player;
 
+-(void) updateLocationWithStacks: (NSArray*) array;
 
 
 @end

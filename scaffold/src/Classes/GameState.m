@@ -14,6 +14,7 @@
 #import "HexLocation.h"
 #import "Creature.h"
 #import "SideLocation.h"
+#import "CombatPhase.h"
 
 @implementation GameState
 
@@ -23,6 +24,7 @@
 @synthesize sideLocation = _sideLocation;
 @synthesize playingCup = _playingCup;
 @synthesize bank = _bank;
+@synthesize currentCombatPhase=_currentCombatPhase;
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
@@ -43,15 +45,22 @@
         _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
         
         _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
+        [_playingCup setGameState: self];
         
         _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
+        
         _sideLocation = [[SideLocation alloc] initFromJSON:[_gameStateDic objectForKey:@"sideLocation"]];
+        [_sideLocation setGameState: self];
+        
+        
         NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];
         NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
         if(hexLocationJsonArr != nil){
             for(id o in hexLocationJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                    [locationDic setObject:[[HexLocation alloc] initFromJSON:o] forKey:[o objectForKey:@"locationId"]];
+                    HexLocation *hexLocation =[[HexLocation alloc] initFromJSON:o];
+                    [hexLocation setGameState: self];
+                    [locationDic setObject:hexLocation forKey:[o objectForKey:@"locationId"]];
                 }
             }
             _hexLocations = (NSMutableDictionary*)[[NSDictionary alloc] initWithDictionary:locationDic];
@@ -136,4 +145,32 @@
     return [self getPlayerById:_myPlayerId];
 }
 
+-(void) startNewCombatPhase{
+    _currentCombatPhase = [[CombatPhase alloc] initWithGameState:self];
+}
+
+-(CombatPhase*) getOrCreateCombatPhase{
+    if(_currentCombatPhase == nil) {
+        [self startNewCombatPhase];
+    }
+    return _currentCombatPhase;
+}
+
+
+-(void) updateHexLocationsFromSerializedJSONArray: (NSArray*) jsonArray {
+    if(jsonArray != nil && ([jsonArray isKindOfClass:[NSArray class]])){
+        for(NSMutableDictionary *dic in jsonArray) {
+            if([dic isKindOfClass:[NSDictionary class]]){
+                NSString *hexId = [dic objectForKey:@"locationId"];
+                if(hexId != nil) {
+                    HexLocation *hl = [_hexLocations objectForKey:hexId];
+                    if(hl != nil)
+                        [hl updateLocationFromSerializedJSONDictionary: dic];
+                    else
+                        NSLog(@"For some reason the hex location from id %@ was nil when trying to update it", hexId);
+                }
+            }
+        }
+    }
+}
 @end

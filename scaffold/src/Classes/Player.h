@@ -41,5 +41,6 @@
 
 -(void) assignPiece: (GamePiece*) gamePiece;
 
+-(void) updateFromSerializedJson: (NSDictionary*) json;
 
 @end

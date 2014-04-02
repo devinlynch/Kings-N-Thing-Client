@@ -10,7 +10,7 @@
 #import "JSONSerializable.h"
 
 
-@class Game, PlayingCup, Bank, ScaledGamePiece, HexLocation,Player,BoardLocation,SideLocation,Stack;
+@class Game, PlayingCup, Bank, ScaledGamePiece, HexLocation,Player,BoardLocation,SideLocation,Stack,CombatPhase;
 
 @interface GameState : NSObject<JSONSerializable>{
     NSMutableArray *_players;
@@ -21,6 +21,7 @@
     Game *_game;
     NSMutableDictionary *_gamePieceResource;
     SideLocation *_sideLocation;
+    CombatPhase *_currentCombatPhase;
 }
 
 @property NSString *myPlayerId;
@@ -30,6 +31,8 @@
 @property PlayingCup *playingCup;
 @property NSMutableDictionary *hexLocations;
 @property SideLocation *sideLocation;
+@property CombatPhase *currentCombatPhase;
+
 
 
 -(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
@@ -37,5 +40,8 @@
 -(BoardLocation*) getBoardLocationById: (NSString*) ID;
 -(Stack*) getStackById:(NSString*) stackId;
 -(Player*) getMe;
+-(void) startNewCombatPhase;
+-(CombatPhase*) getOrCreateCombatPhase;
+-(void) updateHexLocationsFromSerializedJSONArray: (NSArray*) jsonArray;
 
 @end

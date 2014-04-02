@@ -21,7 +21,7 @@
 @property CombatType *combatType;
 @property Terrain *terrain;
 
--(Creature*) initWithId:(NSString*) creatureId andCombatValue: (int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename;
+-(Creature*) initWithId:(NSString*) creatureId andCombatValue: (int) value andCombatType: (CombatType*) type andTerrain: (Terrain*) t andFilename: (NSString*) filename andName: (NSString*) name;
 
 +(NSMutableDictionary*) initializeAllCreatures;
 

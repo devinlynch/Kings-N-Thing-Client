@@ -191,11 +191,12 @@
     
     Game *game = [Game currentGame];
     GameState *gs = [game gameState];
-    Player *me = [gs getPlayerById:[gs myPlayerId]];
+    Player *me = [gs getMe];
     int playerGold = me.gold;
     
-    if((numRolls * 5) < playerGold) {
+    if((numRolls * 5) > playerGold) {
         [Utils showAlertWithTitle:@"Whoops" message:@"You do not have enough gold to do that" delegate:nil cancelButtonTitle:@"Ok"];
+        numRolls--;
         return;
     }
     

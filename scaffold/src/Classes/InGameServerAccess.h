@@ -26,7 +26,9 @@ typedef enum InGameRequestTypes {
     MOVEMENTPHASE_playerIsDoneMakingMoves,
     RECRUITCHARS_MAKEROLLFORPLAYER,
     RECRUITCHARS_POSTROLL,
-    CHAT_SENDMESSAGE
+    CHAT_SENDMESSAGE,
+    COMBAT_lockedInRollAndDamage,
+    COMBAT_didRetreatOrContinue
 } InGameRequestTypes;
 
 
@@ -80,4 +82,8 @@ void (^successBlock)(ServerResponseMessage*);
 // Chat
 -(enum InGameRequestTypes) sendChatMessage: (NSString*) message withSuccess:( void (^)(ServerResponseMessage * message))success;
 
+
+// Combat
+-(enum InGameRequestTypes) combatDidRetreatOrContinue: (BOOL) isRetreating forBattle: (NSString*) battleId andRound: (NSString*) roundId withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) combatLockedInRollAndDamageWithPiecesTakingDamage: (NSArray*) pieceIds forBattle: (NSString*) battleId andRound: (NSString*) roundId andRoundState: (NSString*) state withSuccess:( void (^)(ServerResponseMessage * message))success;
 @end

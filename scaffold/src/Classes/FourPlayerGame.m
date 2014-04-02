@@ -596,7 +596,7 @@
         if ([p.playerId isEqualToString:_state.myPlayerId]) {
             username = [[NSString alloc] initWithString:p.username];
         }
-        [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
+        [p setGold:[[[dic objectForKey:p.playerId] objectForKey:@"totalGold"] intValue]];
         if ([p.playerId isEqualToString:@"player1"]) {
            [ _Player1IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
             

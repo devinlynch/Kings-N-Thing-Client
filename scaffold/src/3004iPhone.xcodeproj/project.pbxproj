@@ -278,6 +278,10 @@
 		99098DA8188F554C00139EA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99098DA6188F554C00139EA4 /* InfoPlist.strings */; };
 		99098DB2188F567400139EA4 /* ServerResponseMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DB1188F567400139EA4 /* ServerResponseMessageTest.m */; };
 		99098DBD188F5C3200139EA4 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DBC188F5C3200139EA4 /* Utils.m */; };
+		9909A67318EAE7560092B7B6 /* continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9909A67218EAE7560092B7B6 /* continue.png */; };
+		9909A67718EAEC650092B7B6 /* CombatPhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9909A67618EAEC650092B7B6 /* CombatPhase.m */; };
+		9909A67A18EB0F400092B7B6 /* LogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9909A67918EB0F400092B7B6 /* LogMessage.m */; };
+		9909A67D18EBA7110092B7B6 /* CombatBattleRoundStepData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9909A67C18EBA7110092B7B6 /* CombatBattleRoundStepData.m */; };
 		990BEFB3188F1EF500D7CA03 /* ServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB2188F1EF500D7CA03 /* ServerAccess.m */; };
 		990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB6188F223700D7CA03 /* ServerResponseMessage.m */; };
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
@@ -400,6 +404,8 @@
 		99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E74F2918932E130048CEA0 /* MainMenuViewController.m */; };
 		99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B8301891E47500CAAD3B /* Storyboard.storyboard */; };
 		99E8B83718923F3100CAAD3B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E8B83618923F3100CAAD3B /* Default-568h@2x.png */; };
+		99ECE8DD18EA4FF600AED748 /* CombatBattle.m in Sources */ = {isa = PBXBuildFile; fileRef = 99ECE8DC18EA4FF600AED748 /* CombatBattle.m */; };
+		99ECE8E118EA528700AED748 /* CombatBattleRound.m in Sources */ = {isa = PBXBuildFile; fileRef = 99ECE8E018EA528700AED748 /* CombatBattleRound.m */; };
 		99ED9D7718D39DE500CB4A37 /* GameChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */; };
 		99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F9B6DB1894176D00E4A788 /* MessageHandler.m */; };
@@ -813,6 +819,13 @@
 		99098DB1188F567400139EA4 /* ServerResponseMessageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseMessageTest.m; sourceTree = "<group>"; };
 		99098DBB188F5C3200139EA4 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		99098DBC188F5C3200139EA4 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Utils.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9909A67218EAE7560092B7B6 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
+		9909A67518EAEC650092B7B6 /* CombatPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatPhase.h; sourceTree = "<group>"; };
+		9909A67618EAEC650092B7B6 /* CombatPhase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatPhase.m; sourceTree = "<group>"; };
+		9909A67818EB0F400092B7B6 /* LogMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogMessage.h; sourceTree = "<group>"; };
+		9909A67918EB0F400092B7B6 /* LogMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogMessage.m; sourceTree = "<group>"; };
+		9909A67B18EBA7110092B7B6 /* CombatBattleRoundStepData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatBattleRoundStepData.h; sourceTree = "<group>"; };
+		9909A67C18EBA7110092B7B6 /* CombatBattleRoundStepData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatBattleRoundStepData.m; sourceTree = "<group>"; };
 		990BEFB1188F1EF500D7CA03 /* ServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAccess.h; sourceTree = "<group>"; };
 		990BEFB2188F1EF500D7CA03 /* ServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAccess.m; sourceTree = "<group>"; };
 		990BEFB5188F223700D7CA03 /* ServerResponseMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseMessage.h; sourceTree = "<group>"; };
@@ -868,6 +881,10 @@
 		99E74F2918932E130048CEA0 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		99E8B8301891E47500CAAD3B /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		99E8B83618923F3100CAAD3B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		99ECE8DB18EA4FF600AED748 /* CombatBattle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatBattle.h; sourceTree = "<group>"; };
+		99ECE8DC18EA4FF600AED748 /* CombatBattle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatBattle.m; sourceTree = "<group>"; };
+		99ECE8DF18EA528700AED748 /* CombatBattleRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatBattleRound.h; sourceTree = "<group>"; };
+		99ECE8E018EA528700AED748 /* CombatBattleRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatBattleRound.m; sourceTree = "<group>"; };
 		99ED9D7518D39DE500CB4A37 /* GameChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameChatMessage.h; sourceTree = "<group>"; };
 		99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameChatMessage.m; sourceTree = "<group>"; };
 		99F14FB618838AA300872890 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -1337,6 +1354,16 @@
 				99ED9D7618D39DE500CB4A37 /* GameChatMessage.m */,
 				993B1CD018D4F00A0055056F /* SentMessage.h */,
 				993B1CD118D4F00A0055056F /* SentMessage.m */,
+				99ECE8DB18EA4FF600AED748 /* CombatBattle.h */,
+				99ECE8DC18EA4FF600AED748 /* CombatBattle.m */,
+				99ECE8DF18EA528700AED748 /* CombatBattleRound.h */,
+				99ECE8E018EA528700AED748 /* CombatBattleRound.m */,
+				9909A67518EAEC650092B7B6 /* CombatPhase.h */,
+				9909A67618EAEC650092B7B6 /* CombatPhase.m */,
+				9909A67818EB0F400092B7B6 /* LogMessage.h */,
+				9909A67918EB0F400092B7B6 /* LogMessage.m */,
+				9909A67B18EBA7110092B7B6 /* CombatBattleRoundStepData.h */,
+				9909A67C18EBA7110092B7B6 /* CombatBattleRoundStepData.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1483,6 +1510,7 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				9909A67218EAE7560092B7B6 /* continue.png */,
 				992613EA18E3B0CF0036CA53 /* borderTile.png */,
 				DEF9FF2518A803490057FAEB /* Backgrounds */,
 				DEF9FF2418A8033C0057FAEB /* Buttons */,
@@ -2517,6 +2545,7 @@
 				4173887718E4922B00934A1F /* T_Plains_021.png in Resources */,
 				99B326C818E29C0700336F3E /* server_config.plist in Resources */,
 				41BD13C718A75244008C6E96 /* free.png in Resources */,
+				9909A67318EAE7560092B7B6 /* continue.png in Resources */,
 				DE04CA4018D671C9006F5271 /* hero.png in Resources */,
 				DEB800F218E5171B0041A48E /* YourPiecesBackground@2x.png in Resources */,
 				DEF9FF2D18A8072C0057FAEB /* desert-tile-menu@2x.png in Resources */,
@@ -2804,6 +2833,7 @@
 				4131C2E018876FF8009775EA /* MagicItems.m in Sources */,
 				DE04CA5118D691B9006F5271 /* DischargeMenu.m in Sources */,
 				DE126A291899CC2F0095DD6D /* GoldCollection.m in Sources */,
+				99ECE8E118EA528700AED748 /* CombatBattleRound.m in Sources */,
 				41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */,
 				4131C2FC188876AC009775EA /* LoginMenu.m in Sources */,
 				DE04CA4818D67450006F5271 /* HeroMenu.m in Sources */,
@@ -2860,6 +2890,7 @@
 				99F9B6DC1894176D00E4A788 /* MessageHandler.m in Sources */,
 				41B01BFC1898126400CA876D /* Stack.m in Sources */,
 				4131C2D918876FCA009775EA /* SpecialIncomeCounters.m in Sources */,
+				99ECE8DD18EA4FF600AED748 /* CombatBattle.m in Sources */,
 				DEC099B718CE783900487534 /* SideMenu.m in Sources */,
 				4131C2AA18876C70009775EA /* BoardLocation.m in Sources */,
 				4131C2D618876FB8009775EA /* RandomEvent.m in Sources */,
@@ -2868,11 +2899,13 @@
 				41BD14CF18A83C42008C6E96 /* PlacementHandler.m in Sources */,
 				4131C2961885EA99009775EA /* TouchSheet.m in Sources */,
 				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
+				9909A67A18EB0F400092B7B6 /* LogMessage.m in Sources */,
 				99C7604818E742C1004021A6 /* RecruitingHeroMenu.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,
 				DE48623118A9D01000272B79 /* SPScrollSprite.m in Sources */,
 				99F14FBB18838ADF00872890 /* UDPMessageReceiver.m in Sources */,
+				9909A67718EAEC650092B7B6 /* CombatPhase.m in Sources */,
 				DEF9FB5518A6F8A40057FAEB /* SideLocation.m in Sources */,
 				99E74F2718931B130048CEA0 /* NavigationViewController.m in Sources */,
 				4131C2C418876DBF009775EA /* Fort.m in Sources */,
@@ -2888,6 +2921,7 @@
 				DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */,
 				DE937C8018DB6E340012F30D /* ChatScene.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				9909A67D18EBA7110092B7B6 /* CombatBattleRoundStepData.m in Sources */,
 				99ED9D7718D39DE500CB4A37 /* GameChatMessage.m in Sources */,
 				99A78F2018957B1E005D31E5 /* GameState.m in Sources */,
 				DEB800F718E517660041A48E /* YourPiecesMenu.m in Sources */,

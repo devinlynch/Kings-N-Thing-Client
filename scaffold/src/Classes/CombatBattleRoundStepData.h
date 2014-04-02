@@ -1,0 +1,24 @@
+//
+//  CombatBattleRoundStepData.h
+//  3004iPhone
+//
+//  Created by Devin Lynch on 2014-04-01.
+//
+//
+
+#import <Foundation/Foundation.h>
+
+@interface CombatBattleRoundStepData : NSObject
+
+@property NSMutableDictionary *attackerGamePiecesToRolls;
+@property NSMutableDictionary *defenderGamePiecesToRolls;
+
+@property int attackerHitCount;
+@property int defenderHitCount;
+
+@property NSMutableDictionary *attackerDamageablePieces;
+@property NSMutableDictionary *defenderDamageablePieces;
+
+
+
+@end

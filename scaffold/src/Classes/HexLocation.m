@@ -29,11 +29,13 @@
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
     self = [super initFromJSON:json];
     
-    _tile = [[GameResource getInstance] getTileForId:[[json objectForKey:@"hexTile"] objectForKey:@"id"]];
-    _tileNumber = [[json objectForKey:@"hexNumber"] integerValue];
+    _tileNumber = [[json objectForKey:@"hexNumber"] intValue];
+    _locationName =[NSString stringWithFormat:@"%@", self];
     
     _tile.location = self;
     _stacks = [[NSMutableDictionary alloc] init];
+    
+    [self updateLocationFromSerializedJSONDictionary:json];
     
     
     switch (_tileNumber) {
@@ -273,7 +275,55 @@
 
 
 -(NSString*) description{
-    return [NSString stringWithFormat:@"Tile with number %d", _tileNumber];
+    return [NSString stringWithFormat:@"Hex location with number %d", _tileNumber];
+}
+
+-(void) updateLocationWithStacks: (NSArray*) array{
+    if(_stacks == nil)
+        _stacks = [[NSMutableDictionary alloc] init];
+    for(NSDictionary *stackMap in array) {
+        NSString *stackId = [stackMap objectForKey:@"locationId"];
+        NSString *ownerId = [stackMap objectForKey:@"ownerId"];
+        NSArray *piecesArr = [stackMap objectForKey:@"gamePieces"];
+        
+        Stack *stack = [self.gameState getStackById: stackId];
+        if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
+            stack = [[Stack alloc] initFromJSON:stackMap];
+            Player *p = [self.gameState getPlayerById:ownerId];
+            [stack setOwner:p];
+        }
+        
+        [stack updateLocationWithPieces:piecesArr];
+        
+        if([_stacks objectForKey:stackId] == nil) {
+            [self addStack:stack];
+        }
+    }
+}
+
+
+-(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic{
+    [super updateLocationFromSerializedJSONDictionary:dic];
+    
+    if(_stacks == nil)
+        _stacks = [[NSMutableDictionary alloc] init];
+    
+    if(dic != nil && [dic isKindOfClass:[NSDictionary class]]) {
+        
+        if([dic objectForKey:@"stacks"] != nil && [[dic objectForKey:@"stacks"] isKindOfClass:[NSArray class]]){
+            [self updateLocationWithStacks:[dic objectForKey:@"stacks"]];
+        }
+        
+        if([dic objectForKey:@"ownerId"] != nil) {
+            Player *owner  = [self.gameState getPlayerById:[dic objectForKey:@"ownerId"]];
+            [self changeOwnerToPlayer:owner];
+        }
+        
+        if([dic objectForKey:@"hexTile"] != nil && [[dic objectForKey:@"hexTile"] isKindOfClass:[NSDictionary class]]){
+            _tile = [[GameResource getInstance] getTileForId:[[dic objectForKey:@"hexTile"] objectForKey:@"id"]];
+            _tile.location = self;
+        }
+    }
 }
 
 
