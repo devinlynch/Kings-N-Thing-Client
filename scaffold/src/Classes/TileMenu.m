@@ -78,7 +78,17 @@
     
     for (NSString *key in [location stacks]) {
         Stack *stack = [[location stacks] objectForKey:key];
-        SPImage *stackImage = [[SPImage alloc] initWithContentsOfFile:@"T_Back.png"];
+        SPImage *stackImage;
+        if ([[[stack owner] playerId] isEqualToString:@"player1"]) {
+            stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
+        } else if ([[[stack owner] playerId] isEqualToString:@"player2"]) {
+            stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"yellow-stack.png"];
+        } else if ([[[stack owner] playerId] isEqualToString:@"player3"]) {
+            stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"green-stack.png"];
+        } else if ([[[stack owner] playerId] isEqualToString:@"player4"]) {
+            stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"blue-stack.png"];
+        }
+
         stackImage.name = [stack locationId];
         stackImage.x = x;
         stackImage.y = y;
@@ -242,6 +252,16 @@
                     [newStack addGamePieceToLocation:piece];
                     [newStack addGamePieceToLocation:_selectedPiece];
                     [newStack setOwner:[[[Game currentGame]gameState]getPlayerById:[[[Game currentGame] gameState]myPlayerId]]];
+                    if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player1"]) {
+                        newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
+                    } else if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player2"]) {
+                        newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"yellow-stack.png"];
+                    } else if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player3"]) {
+                        newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"green-stack.png"];
+                    } else if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player4"]) {
+                        newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"blue-stack.png"];
+                    }
+                    [newStack.stackImage setOwner:(id<NSCopying>)newStack];
                     [_location addStack:newStack];
                     [_contents removeAllChildren];
                     [self setupWithLocation:_location];

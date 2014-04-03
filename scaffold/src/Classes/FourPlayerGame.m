@@ -30,6 +30,8 @@
 #import "SideMenu.h"
 #import "Stack.h"
 #import "RecruitCharacter.h"
+#import "SpecialIncomeCounters.h"
+#import "UIAlertView+Blocks.h"
 #import "CombatPhaseScreenController.h"
 
 @interface FourPlayerGame ()
@@ -253,16 +255,6 @@
     
     [_contents addChild:_rackZone];
     
-    //Log button
-//    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
-//    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
-//    logButton.x = _gameWidth - logButton.width * 1.7;
-//    logButton.y = _gameHeight - logButton.height * 2.3;
-//    [_contents addChild:logButton];
-//    
-//    [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-//    
-    
     //Movement done button
     SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"done-button.png"];
     SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
@@ -288,12 +280,6 @@
 
     
     [self addChild:menuButton];
-    
-    
-
-
-    
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pieceSelected:)
@@ -511,7 +497,7 @@
 }
 
 -(void) placementOver: (NSNotification*) notif{
-    [_stateText setText:@"State: Place Creatures"];
+    [_stateText setText:@"State: Wait to Place Creatures"];
     _phase = MOVEMENT;
 }
 
@@ -729,8 +715,15 @@
             if(_selectedPieceImage != nil){
                 [_selectedPieceImage removeFromParent];
             }
-            _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
-                                   @"T_Back.png"];
+            if ([player.playerId isEqualToString:@"player1"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"red-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player2"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"yellow-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player3"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"green-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player4"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"blue-stack.png"];
+            }
             _selectedPieceImage.x = 90;
             _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
             [_contents addChild:_selectedPieceImage];
@@ -1405,20 +1398,18 @@
         case MOVEMENT:
             if (touches.count == 1)
             {
-                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && tile.isHilighted) {
-                    
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     if (clicks.tapCount == 1){
-                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
-                       
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] /*&& tile.isHilighted*/ && ![_selectedPiece isKindOfClass:[Fort class]] &&
+                            ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
+                            [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
+                        }
                     } else if(clicks.tapCount == 2){
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
                         [self tileDoubleTap:location];
                     }
-                }
-                
             }
 
             break;
@@ -1429,7 +1420,7 @@
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
-                    if (clicks.tapCount == 2){
+                    if (clicks.tapCount == 1){
                         switch (_wasBought) {
                             case WAS_BOUGHT:
                                 [self recruitWasBought:location];
@@ -1467,7 +1458,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
             [self clearSelectedPiece:nil];
-
         });
     }];
     
@@ -1475,18 +1465,51 @@
 
 -(void) tileSingleTap: (HexLocation*) location{
     if (_selectedPiece != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addGamePieceToLocation:_selectedPiece];
-                [self clearSelectedPiece:nil];
-                [self unHilightAllTiles];
-            });
-        }];
+        
+        if([[_selectedPiece location] isKindOfClass:[Rack class]]){
+            
+            //DECIDE IF BLUFF OR NOT BLUFF
+            
+//            [UIAlertView displayAlertWithTitle:@"Bluff?"
+//                                       message:@"PLace this piece as a bluff?"
+//                               leftButtonTitle:@"Bluff"
+//                              leftButtonAction:^{
+//                                                              }
+//                              rightButtonTitle:@"Not Bluff"
+//                             rightButtonAction:^{  [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [location addGamePieceToLocation:_selectedPiece];
+//                    [self clearSelectedPiece:nil];
+//                    [self unHilightAllTiles];
+//                });
+//            }];
+//                                 
+//                             }];
+            
+            //CAME FROM THE RACK BUT WE DUN CARE YET
+            [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [location addGamePieceToLocation:_selectedPiece];
+                    [self clearSelectedPiece:nil];
+                    [self unHilightAllTiles];
+                });}];
+
+            
+            }else{
+            [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [location addGamePieceToLocation:_selectedPiece];
+                    [self clearSelectedPiece:nil];
+                    [self unHilightAllTiles];
+                });
+            }];
+        }
     } else if (_selectedStack != nil) {
         [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addStack:_selectedStack];
                 [self clearSelectedPiece:nil];
+                [self unHilightAllTiles];
             });
         }];
     }
@@ -1515,7 +1538,6 @@
 {
     [self addChild:scene];
     scene.visible = YES;
-
 }
 
 -(void) playerMovedPieceToNewLocation: (NSNotification*) notif{
@@ -1539,6 +1561,7 @@
 }
 
 -(void) dealloc{
+    //Unsubscribe from notifications, ARC doesn't do this for us
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -1561,6 +1584,8 @@
         [[[_state.hexLocations objectForKey:location] tile] unhilight];
     }
 }
+
+
 
 
 @end
