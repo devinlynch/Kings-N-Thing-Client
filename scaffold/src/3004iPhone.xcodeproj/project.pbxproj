@@ -287,6 +287,7 @@
 		990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFB9188F251C00D7CA03 /* ServerMessageData.m */; };
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
+		9914029718EE1ADA003F105E /* hilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4173890F18E4DA1100934A1F /* hilight.png */; };
 		992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613E018E3496F0036CA53 /* leavegame@2x.png */; };
 		992613E518E38FC30036CA53 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992613E418E38FC30036CA53 /* config.plist */; };
 		992613E918E390710036CA53 /* TestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 992613E818E390710036CA53 /* TestScreen.m */; };
@@ -2691,6 +2692,7 @@
 				417388C018E4924E00934A1F /* G_10.png in Resources */,
 				99E74F2418931A640048CEA0 /* bg_1@2x.png in Resources */,
 				4173886018E4922B00934A1F /* T_Mountains_036.png in Resources */,
+				9914029718EE1ADA003F105E /* hilight.png in Resources */,
 				4173887318E4922B00934A1F /* T_Plains_017.png in Resources */,
 				DEC0AA6618D7833A0089EF72 /* reference@2x.png in Resources */,
 				417388A718E4924000934A1F /* Bowl.png in Resources */,
@@ -2743,7 +2745,6 @@
 				417388DA18E4925500934A1F /* SC_401.png in Resources */,
 				DE0C710D162417AC00357F6E /* Icon~ipad.png in Resources */,
 				417388B418E4924800934A1F /* C_Fort_378.png in Resources */,
-				4173891018E4DA1100934A1F /* hilight.png in Resources */,
 				4173883B18E4922B00934A1F /* T_Forest_097.png in Resources */,
 				417388CD18E4925500934A1F /* SC_388.png in Resources */,
 				DEF9FF9E18A825120057FAEB /* green-mountain-tile.png in Resources */,
