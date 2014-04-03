@@ -10,6 +10,7 @@
 #import "CombatBattle.h"
 #import "Player.h"
 #import "GameResource.h"
+#import "Utils.h"
 
 @implementation CombatBattleRound
 @synthesize battle,roundId,state,roundNumber, magicData,magicAttackerPiecesTakingHits,meleeData,meleeAttackerPiecesTakingHits,
@@ -27,12 +28,15 @@
     if([stepName isEqualToString:@"magicStep"]) {
         magicData = [[CombatBattleRoundStepData alloc] initFromJson:json forGameState:battle.gameState];
         state = MAGIC_STEP;
+        [Utils notifyOnMainQueue:@"magicStepStarted" withObject:self];
     } else if([stepName isEqualToString:@"rangedStep"]){
         rangeData = [[CombatBattleRoundStepData alloc] initFromJson:json forGameState:battle.gameState];
         state = RANGE_STEP;
+        [Utils notifyOnMainQueue:@"rangeStepStarted" withObject:self];
     } else if([stepName isEqualToString:@"meleeStep"]) {
         meleeData = [[CombatBattleRoundStepData alloc] initFromJson:json forGameState:battle.gameState];
-        state = RANGE_STEP;
+        state = MELEE_STEP;
+        [Utils notifyOnMainQueue:@"meleeStepStarted" withObject:self];
     } else{
         NSLog(@"ERROR:  Step name [%@] is not a valid step", stepName);
     }

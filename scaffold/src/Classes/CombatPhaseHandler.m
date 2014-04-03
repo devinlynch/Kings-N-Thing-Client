@@ -16,6 +16,14 @@
 
 @implementation CombatPhaseHandler
 
+-(void) handleCombatPhaseStarted: (Event*) event{
+    NSLog(@"Succesfully handled handleCombatPhaseStarted message");
+    
+    [Game addLogMessageToCurrentGame:@"The combat phase has started, prepare for battle!"];
+    
+    [[[Game currentGame] gameState] startNewCombatPhase];
+}
+
 -(void) handleBattleStarted: (Event*) event{
     NSLog(@"Handling handleBattleStarted message");
 
@@ -25,21 +33,11 @@
     CombatPhase *combatPhase = [[[Game currentGame] gameState] getOrCreateCombatPhase];
     CombatBattle *battle = [combatPhase updateOrCreateBattleFromJson: battleDic];
     combatPhase.currentBattle = battle;
+    [Utils notifyOnMainQueue:@"combatBattleStarted" withObject:battle];
     
      NSLog(@"Finished handling handleBattleStarted message");
 }
 
--(void) handleCombatPhaseStarted: (Event*) event{
-    NSLog(@"Succesfully handled handleCombatPhaseStarted message");
-    
-    [Game addLogMessageToCurrentGame:@"The combat phase has started, prepare for battle!"];
-    
-    [[[Game currentGame] gameState] startNewCombatPhase];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"handleCombatPhaseStarted" object:nil];
-    });
-}
 
 -(void) handleCombatRoundStarted: (Event*) event{
     NSLog(@"Handling handleCombatRoundStarted message");

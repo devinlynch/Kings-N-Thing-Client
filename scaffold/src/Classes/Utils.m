@@ -94,4 +94,10 @@
     NSDictionary* dataDic = [message.jsonDictionnary objectForKey:@"data"];
     return dataDic;
 }
+
++(void) notifyOnMainQueue: (NSString*) notificationName withObject: (id) object{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:object];
+    });
+}
 @end

@@ -8,6 +8,9 @@
 
 #import "CombatBattle.h"
 #import "CombatBattleRound.h"
+#import "Utils.h"
+#import "GameState.h"
+#import "Player.h"
 
 @implementation CombatBattle
 @synthesize attacker, battleId, defender, gameState, locationOfBattle, amIAttacker, currentRound, isEnded, isStarted, state;
@@ -27,9 +30,16 @@
         [round setRoundId:[json objectForKey:@"roundId"]];
         
         currentRound = round;
+        
+        [Utils notifyOnMainQueue:@"newBattleRoundStarted" withObject:currentRound];
     }
     
     return nil;
+}
+
+-(BOOL) amIInTheBattle{
+    Player *me = [gameState getMe];
+    return (me == attacker) || (me==defender);
 }
 
 @end

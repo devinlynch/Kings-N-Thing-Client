@@ -30,6 +30,7 @@
 #import "SideMenu.h"
 #import "Stack.h"
 #import "RecruitCharacter.h"
+#import "CombatPhaseScreenController.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -98,6 +99,8 @@
     BOOL isSideMenu;
     
     SPButton *menuButton;
+    
+    CombatPhaseScreenController *_combatPhaseController;
 }
 
 -(id) init
@@ -387,6 +390,9 @@
                                              selector:@selector(didStartRecruitCharactersPhase:)
                                                  name:@"didStartRecruitCharactersPhase"
                                                object:nil];
+    
+    _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    [_contents addChild:_combatPhaseController];
 }
 
 

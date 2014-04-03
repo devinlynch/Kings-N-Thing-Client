@@ -15,6 +15,7 @@
 #import "Creature.h"
 #import "SideLocation.h"
 #import "CombatPhase.h"
+#import "Utils.h"
 
 @implementation GameState
 
@@ -147,6 +148,8 @@
 
 -(void) startNewCombatPhase{
     _currentCombatPhase = [[CombatPhase alloc] initWithGameState:self];
+    
+    [Utils notifyOnMainQueue:@"handleCombatPhaseStarted" withObject:_currentCombatPhase];
 }
 
 -(CombatPhase*) getOrCreateCombatPhase{

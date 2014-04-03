@@ -33,5 +33,6 @@ typedef enum CombatBattleState {
 @property CombatBattleState state;
 
 -(CombatBattleRound*) createNewRoundFromSerializedJson: (NSDictionary*) json;
+-(BOOL) amIInTheBattle;
 
 @end

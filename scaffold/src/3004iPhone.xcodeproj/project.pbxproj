@@ -395,6 +395,7 @@
 		99B326C818E29C0700336F3E /* server_config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99B326C718E29C0700336F3E /* server_config.plist */; };
 		99C7604818E742C1004021A6 /* RecruitingHeroMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C7604718E742C1004021A6 /* RecruitingHeroMenu.m */; };
 		99C7604F18E745F6004021A6 /* CombatPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */; };
+		99DB93D218ECD5DC00F0F082 /* CombatPhaseScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB93D118ECD5DC00F0F082 /* CombatPhaseScreenController.m */; };
 		99DF9C791891508F00746646 /* LoginEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DF9C781891508F00746646 /* LoginEventHandler.m */; };
 		99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD92189493A30092CF1A /* GameLobbyViewController.m */; };
 		99DFAD961894B4A40092CF1A /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
@@ -864,6 +865,8 @@
 		99C7604718E742C1004021A6 /* RecruitingHeroMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitingHeroMenu.m; sourceTree = "<group>"; };
 		99C7604D18E745F6004021A6 /* CombatPhaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatPhaseHandler.h; sourceTree = "<group>"; };
 		99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatPhaseHandler.m; sourceTree = "<group>"; };
+		99DB93D018ECD5DC00F0F082 /* CombatPhaseScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatPhaseScreenController.h; sourceTree = "<group>"; };
+		99DB93D118ECD5DC00F0F082 /* CombatPhaseScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatPhaseScreenController.m; sourceTree = "<group>"; };
 		99DF9C771891508F00746646 /* LoginEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginEventHandler.h; sourceTree = "<group>"; };
 		99DF9C781891508F00746646 /* LoginEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginEventHandler.m; sourceTree = "<group>"; };
 		99DF9C7B189167D400746646 /* LoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginProtocol.h; sourceTree = "<group>"; };
@@ -1911,6 +1914,8 @@
 				DEB800E818E514DD0041A48E /* RangeResolutionMenu.m */,
 				DEB800EC18E515680041A48E /* MeleeResolutionMenu.h */,
 				DEB800ED18E515680041A48E /* MeleeResolutionMenu.m */,
+				99DB93D018ECD5DC00F0F082 /* CombatPhaseScreenController.h */,
+				99DB93D118ECD5DC00F0F082 /* CombatPhaseScreenController.m */,
 			);
 			name = "Combat Scenes";
 			sourceTree = "<group>";
@@ -2930,6 +2935,7 @@
 				DEB800FD18E517810041A48E /* BattleSummaryMenu.m in Sources */,
 				4131C2AD18876C81009775EA /* Rack.m in Sources */,
 				4131C2BE18876D93009775EA /* HexTile.m in Sources */,
+				99DB93D218ECD5DC00F0F082 /* CombatPhaseScreenController.m in Sources */,
 				41BD129F18A45209008C6E96 /* GameResource.m in Sources */,
 				DEB800FA18E517730041A48E /* EnemyPiecesMenu.m in Sources */,
 				4131C2C118876DB7009775EA /* Counter.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GameState;
+
 @interface CombatBattleRoundStepData : NSObject
 
 @property NSMutableDictionary *attackerGamePiecesToRolls;
