@@ -10,7 +10,7 @@
 #import "CombatBattle.h"
 #import "GameState.h"
 #import "Player.h"
-#import "PlayingCup.m"
+#import "PlayingCup.h"
 #import "SideLocation.h"
 
 @implementation CombatPhase
