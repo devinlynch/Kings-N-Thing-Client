@@ -15,6 +15,7 @@
     NSString    *_tileId;
     Terrain *_terrain;
     TileImage *_tileImage;
+    SPImage  *_hilightImage;
     BOOL    _isHilighted;
     //NSString *_fileName;
 }
@@ -24,12 +25,14 @@
 @property int tileNumber;
 @property NSString *tileId;
 @property SPImage *image;
+@property SPImage *hilightImage;
 
 -(HexTile*) initWithTerrain: (Terrain *) t andFileName: (NSString*) file andId: (NSString*) tileId;
 
 -(void) changeOwnerTo: (NSString*) playerId;
 
 +(NSMutableDictionary*) initializeTiles;
+
 
 -(void) unhilight;
 -(void)  hilight;
