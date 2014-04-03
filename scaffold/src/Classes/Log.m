@@ -8,6 +8,7 @@
 
 #import "Log.h"
 #import "Game.h"
+#import "LogMessage.h"
 //#import "Transparency.h"
 //#import "SPScrollSprite.h"
 //#import "Sparrow.h"
@@ -82,10 +83,17 @@
    
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
+    log = [[NSMutableArray alloc] init];
     if([Game currentGame] != nil) {
-        log = [NSMutableArray arrayWithArray:[[Game currentGame] logMessages]];
-    } else
-        log = [[NSMutableArray alloc] init];
+        NSArray *logs  =[[Game currentGame] logMessages];
+        for(LogMessage *msg in logs) {
+            NSDateFormatter *format = [[NSDateFormatter alloc] init];
+            [format setDateFormat:@"hh:mm:ss"];
+            NSString *formattedDate = [format stringFromDate:msg.date];
+            [log addObject:[NSString stringWithFormat:@"[%@]: %@", formattedDate, msg.message]];
+        }
+    }
+        
     
 
     

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONSerializable.h"
 
-@class GamePiece, Player;
+@class GamePiece, Player, GameState;
 
 @interface BoardLocation : NSObject<JSONSerializable>{
     NSString *_locationId;
@@ -19,6 +19,7 @@
 
 @property NSString *locationId, *locationName;
 @property NSMutableDictionary *pieces;
+@property GameState *gameState;
 
 
 -(BoardLocation*) init;
@@ -29,6 +30,9 @@
 
 -(GamePiece*) getPieceWithIdFromLocation: (NSString*) gamePieceId;
 
+-(void) updateLocationWithPieces: (NSArray*) array;
+
+-(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic;
 
 
 @end

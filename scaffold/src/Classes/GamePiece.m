@@ -15,6 +15,7 @@
 @synthesize location    = _location;
 @synthesize owner     = _owner;
 @synthesize fileName  = _fileName;
+@synthesize name = _name;
 
 -(id) init{
     self = [super init];

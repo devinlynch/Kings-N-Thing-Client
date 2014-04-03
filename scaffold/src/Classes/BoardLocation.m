@@ -18,6 +18,7 @@
 @synthesize locationId   = _locationId;
 @synthesize locationName = _locationName;
 @synthesize pieces       = _pieces;
+@synthesize gameState;
 
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
@@ -44,7 +45,9 @@
                     }
                 }
             }
+            
         }
+    
     
     return self;
 }
@@ -72,6 +75,43 @@
 
 -(GamePiece*) getPieceWithIdFromLocation: (NSString*) gamePieceId{
     return [_pieces objectForKey:gamePieceId];
+}
+
+-(void) updateLocationWithPieces: (NSArray*) array{
+    for(NSDictionary *pieceMap in array) {
+        if(! [pieceMap isKindOfClass:[NSDictionary class]])
+            continue;
+        
+        NSString *pieceId = [pieceMap objectForKey:@"id"];
+        NSString *ownerId = [pieceMap objectForKey:@"ownerId"];
+
+        if(pieceId == nil || [_pieces objectForKey:pieceId] != nil) {
+            continue;
+        }
+        
+        GamePiece *piece = [[GameResource getInstance] getPieceForId:pieceId];
+        
+        if(ownerId != nil) {
+            Player *p;
+            [p assignPiece:piece];
+        }
+        
+        
+        [self addGamePieceToLocation:piece];
+    }
+}
+
+-(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic{
+    if(dic != nil && [dic isKindOfClass:[NSDictionary class]]) {
+        [self setLocationId:[dic objectForKey:@"locationId"]];
+        
+        if([dic objectForKey:@"name"] != nil)
+            [self setLocationName:[dic objectForKey:@"name"]];
+        
+        if([dic objectForKey:@"gamePieces"] != nil && [[dic objectForKey:@"gamePieces"] isKindOfClass:[NSArray class]]){
+            [self updateLocationWithPieces:[dic objectForKey:@"gamePieces"]];
+        }
+    }
 }
 
 

@@ -30,6 +30,7 @@
 #import "SideMenu.h"
 #import "Stack.h"
 #import "RecruitCharacter.h"
+#import "CombatPhaseScreenController.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -98,6 +99,8 @@
     BOOL isSideMenu;
     
     SPButton *menuButton;
+    
+    CombatPhaseScreenController *_combatPhaseController;
 }
 
 -(id) init
@@ -387,6 +390,9 @@
                                              selector:@selector(didStartRecruitCharactersPhase:)
                                                  name:@"didStartRecruitCharactersPhase"
                                                object:nil];
+    
+    _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    [_contents addChild:_combatPhaseController];
 }
 
 
@@ -596,7 +602,7 @@
         if ([p.playerId isEqualToString:_state.myPlayerId]) {
             username = [[NSString alloc] initWithString:p.username];
         }
-        [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
+        [p setGold:[[[dic objectForKey:p.playerId] objectForKey:@"totalGold"] intValue]];
         if ([p.playerId isEqualToString:@"player1"]) {
            [ _Player1IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
             

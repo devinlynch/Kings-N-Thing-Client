@@ -24,6 +24,8 @@
 #import "ChatScene.h"
 #import "TestScreen.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 void onUncaughtException(NSException *exception)
 {
     NSLog(@"uncaught exception: %@", exception.description);
@@ -46,6 +48,11 @@ void onUncaughtException(NSException *exception)
    
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Hello and welcome to Kings and Things"];
+    [utterance setRate:0.4f];
+    AVSpeechSynthesizer * synthesizer = [[AVSpeechSynthesizer alloc] init];
+    [synthesizer speakUtterance:utterance];
+
     NSString *isTestScreenMode = [config objectForKey:@"test_screen_mode"];
     
     if(isTestScreenMode != nil && [isTestScreenMode isEqualToString:@"yes"]) {

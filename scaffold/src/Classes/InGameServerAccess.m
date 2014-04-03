@@ -248,6 +248,7 @@ static InGameServerAccess *instance;
 }
 
 
+//// CHAT /////
 -(enum InGameRequestTypes) sendChatMessage: (NSString*) message withSuccess:( void (^)(ServerResponseMessage * message))success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:message forKey:@"message"];
@@ -257,6 +258,40 @@ static InGameServerAccess *instance;
     }andSuccessCall:success andRequestType:CHAT_SENDMESSAGE];
     
     return CHAT_SENDMESSAGE;
+}
+
+
+//// COMBAT //////
+
+
+-(enum InGameRequestTypes) combatDidRetreatOrContinue: (BOOL) isRetreating forBattle: (NSString*) battleId andRound: (NSString*) roundId withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:isRetreating == true ? @"true" : @"false" forKey:@"isRetreating"];
+    [params setObject:battleId forKey:@"battleId"];
+    [params setObject:roundId forKey:@"roundId"];
+    
+    [self phasePost:@"combat" type:@"didRetreatOrContinue" params:params requestType:COMBAT_didRetreatOrContinue withSuccess:success];
+    
+    return COMBAT_didRetreatOrContinue;
+}
+
+-(enum InGameRequestTypes) combatLockedInRollAndDamageWithPiecesTakingDamage: (NSArray*) pieceIds forBattle: (NSString*) battleId andRound: (NSString*) roundId andRoundState: (NSString*) state withSuccess:( void (^)(ServerResponseMessage * message))success{
+    
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:battleId forKey:@"battleId"];
+    [params setObject:roundId forKey:@"roundId"];
+    [params setObject:state forKey:@"state"];
+    
+    int i = 0;
+    for(NSString *pieceId in pieceIds) {
+        [params setObject:pieceId forKey:[NSString stringWithFormat:@"piceIdTakingHit_%d", i]];
+        i++;
+    }
+    
+    [self phasePost:@"combat" type:@"didRetreatOrContinue" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
+    
+    return COMBAT_lockedInRollAndDamage;
 }
 
 

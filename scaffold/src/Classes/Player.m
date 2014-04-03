@@ -25,7 +25,7 @@
          _user = [[User alloc] initFromJSON:json];
         _username = [[NSString alloc] initWithString:[json objectForKey:@"username"]];
         _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
-        _gold =  [[json objectForKey:@"gold"] integerValue];
+        _gold =  [[json objectForKey:@"gold"] intValue];
         _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
         _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"] withOwner:self];
         _gamePieces = [[NSMutableDictionary alloc] init];
@@ -45,6 +45,46 @@
         [previousOwner.gamePieces removeObjectForKey:gamePiece.gamePieceId];
     }
     [self.gamePieces setObject:gamePiece forKey:gamePiece.gamePieceId];
+}
+
+-(void) updateFromSerializedJson: (NSDictionary*) json{
+    if(json == nil || ! [json isKindOfClass:[NSDictionary class]])
+        return;
+                      
+    if([json objectForKey:@"username"] != nil) {
+        _username = [[NSString alloc] initWithString:[json objectForKey:@"username"]];
+    }
+    
+    if([json objectForKey:@"playerId"] != nil) {
+        _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
+    }
+    
+    if([json objectForKey:@"gold"] != nil) {
+        _gold =  [[json objectForKey:@"gold"] intValue];
+    }
+    
+    BOOL didCreateRack1 =YES ;
+    BOOL didCreateRack2 =NO;
+    
+    if(_rack1 == nil && [json objectForKey:@"rack1"] != nil){
+        didCreateRack1=YES;
+        _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
+    }
+    
+    
+    if(_rack2 == nil && [json objectForKey:@"rack2"] != nil){
+        didCreateRack2 = YES;
+        _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"] withOwner:self];
+    }
+    
+    if(!didCreateRack1 && _rack1 != nil && [json objectForKey:@"rack1"] != nil) {
+        [_rack1 updateLocationFromSerializedJSONDictionary:[json objectForKey:@"rack1"]];
+    }
+    
+    if(!didCreateRack2 && _rack2 != nil && [json objectForKey:@"rack2"] != nil) {
+        [_rack2 updateLocationFromSerializedJSONDictionary:[json objectForKey:@"rack2"]];
+    }
+    
 }
 
 @end

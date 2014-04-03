@@ -62,6 +62,7 @@ static NSMutableSet* receivedMessageIds;
         [e setReceivedMessageType:HTTP_MESSAGE_TYPE];
         [[ClientReactor instance] dispatch:e];
         
+        [self didHandleMessage:responseMessage];
     } @catch (NSException *exception) {
         NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
     }
@@ -92,11 +93,12 @@ static NSMutableSet* receivedMessageIds;
             return;
         }
         
-        [self didHandleMessage:responseMessage];
         
         Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
         [e setReceivedMessageType:UDP_MESSAGE_TYPE];
         [[ClientReactor instance] dispatch:e];
+        
+        [self didHandleMessage:responseMessage];
     }
     @catch (NSException *exception) {
         NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
@@ -126,7 +128,9 @@ static NSMutableArray *queuedMessages;
 }
 
 +(void) queueMessageToBeHandled: (SentMessage*) newMessage {
-    [SentMessage addMessage:newMessage toArrayInOrderByDate:[self getQueuedMessages]];
+    @synchronized(self) {
+        [SentMessage addMessage:newMessage toArrayInOrderByDate:[self getQueuedMessages]];
+    }
 }
 
 +(void) handleMessageFromQueue{
