@@ -216,6 +216,20 @@ static InGameServerAccess *instance;
     return MOVEMENTPHASE_addPiecesToStack;
 }
 
+-(enum InGameRequestTypes) movementPhaseExploreHex: (NSString*) hexLocationId withStack: (NSString*) stackId andPiece: (NSString*) pieceId andRollNumber: (int) rollNumber withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexLocationId forKey:@"hexLocationId"];
+    if(stackId != nil)
+        [params setObject:stackId forKey:@"stackId"];
+    if(pieceId != nil)
+        [params setObject:pieceId forKey:@"gamePieceId"];
+    [params setObject:[NSString stringWithFormat:@"%d", rollNumber] forKey:@"rollNumber"];
+    
+    [self phasePost:@"movement" type:@"exploreHex" params:params requestType:MOVEMENTPHASE_exploreHex withSuccess:success];
+    
+    return MOVEMENTPHASE_exploreHex;
+}
+
 
 -(enum InGameRequestTypes) movementPhaseDoneMakingMoves{
     [self phasePost:@"movement" type:@"playerIsDoneMakingMoves" params:nil requestType:MOVEMENTPHASE_playerIsDoneMakingMoves withSuccess:nil];
