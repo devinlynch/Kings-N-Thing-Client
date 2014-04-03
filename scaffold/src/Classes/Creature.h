@@ -25,4 +25,7 @@
 
 +(NSMutableDictionary*) initializeAllCreatures;
 
+-(void) bluff;
+-(void) unbluff;
+
 @end

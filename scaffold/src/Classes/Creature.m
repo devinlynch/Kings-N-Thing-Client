@@ -27,6 +27,8 @@
     _terrain = t;
     _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
     _fileName = [[NSString alloc] initWithString:filename];
+    _bluffImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Back.png" andOwner:self];
+    [_bluffImage setVisible:NO];
     [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
 
     
@@ -50,6 +52,15 @@
     }
     
 }
+
+-(void) bluff{
+    [_bluffImage setVisible:YES];
+}
+
+-(void) unbluff{
+    [_bluffImage setVisible:NO];
+}
+
 
 
 +(NSMutableDictionary*) initializeAllCreatures{

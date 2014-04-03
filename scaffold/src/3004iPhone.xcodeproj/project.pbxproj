@@ -237,6 +237,7 @@
 		4186301F18ECDE69001A7AB1 /* green-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301B18ECDE69001A7AB1 /* green-stack.png */; };
 		4186302018ECDE69001A7AB1 /* red-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301C18ECDE69001A7AB1 /* red-stack.png */; };
 		4186302118ECDE69001A7AB1 /* yellow-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301D18ECDE69001A7AB1 /* yellow-stack.png */; };
+		4186302A18EE1278001A7AB1 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4186302918EE1278001A7AB1 /* UIAlertView+Blocks.m */; };
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
 		41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C011898309A00CA876D /* GUIStateHandler.m */; };
 		41B01C051898321D00CA876D /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C041898321D00CA876D /* Move.m */; };
@@ -670,6 +671,8 @@
 		4186301B18ECDE69001A7AB1 /* green-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-stack.png"; sourceTree = "<group>"; };
 		4186301C18ECDE69001A7AB1 /* red-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-stack.png"; sourceTree = "<group>"; };
 		4186301D18ECDE69001A7AB1 /* yellow-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-stack.png"; sourceTree = "<group>"; };
+		4186302818EE1278001A7AB1 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		4186302918EE1278001A7AB1 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		41B01BFA1898126400CA876D /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		41B01BFB1898126400CA876D /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		41B01C001898309A00CA876D /* GUIStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIStateHandler.h; sourceTree = "<group>"; };
@@ -1861,6 +1864,8 @@
 		DE99201A1884BFBE006C759F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4186302818EE1278001A7AB1 /* UIAlertView+Blocks.h */,
+				4186302918EE1278001A7AB1 /* UIAlertView+Blocks.m */,
 				DE48622F18A9D01000272B79 /* SPScrollSprite.h */,
 				DE48623018A9D01000272B79 /* SPScrollSprite.m */,
 				4131C2941885EA99009775EA /* TouchSheet.h */,
@@ -2840,6 +2845,7 @@
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				DEC0AA6318D77F410089EF72 /* RandomEventsMenu.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
+				4186302A18EE1278001A7AB1 /* UIAlertView+Blocks.m in Sources */,
 				99DFAD961894B4A40092CF1A /* IPManager.m in Sources */,
 				4144CB71188EFAF3003A29E4 /* Message.m in Sources */,
 				4131C2F9188770D1009775EA /* SpecialAbility.m in Sources */,
