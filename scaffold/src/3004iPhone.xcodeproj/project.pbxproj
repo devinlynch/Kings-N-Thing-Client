@@ -233,6 +233,10 @@
 		4173890D18E4927000934A1F /* FourPlayerBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12BA18A75243008C6E96 /* FourPlayerBackground@2x.png */; };
 		41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41852B941893458600BFD1B0 /* KeychainItemWrapper.m */; };
 		41852B981893490600BFD1B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41852B971893490600BFD1B0 /* Security.framework */; };
+		4186301E18ECDE69001A7AB1 /* blue-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301A18ECDE69001A7AB1 /* blue-stack.png */; };
+		4186301F18ECDE69001A7AB1 /* green-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301B18ECDE69001A7AB1 /* green-stack.png */; };
+		4186302018ECDE69001A7AB1 /* red-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301C18ECDE69001A7AB1 /* red-stack.png */; };
+		4186302118ECDE69001A7AB1 /* yellow-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4186301D18ECDE69001A7AB1 /* yellow-stack.png */; };
 		41B01BFC1898126400CA876D /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01BFB1898126400CA876D /* Stack.m */; };
 		41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C011898309A00CA876D /* GUIStateHandler.m */; };
 		41B01C051898321D00CA876D /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B01C041898321D00CA876D /* Move.m */; };
@@ -269,6 +273,11 @@
 		41BD14D818A85BC4008C6E96 /* plains-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD14D718A85BC4008C6E96 /* plains-tile.png */; };
 		41BD14E818A95E9C008C6E96 /* TileImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BD14E718A95E9C008C6E96 /* TileImage.m */; };
 		41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */; };
+		41FA0FF118EB6E140048A0E4 /* buy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FA0FEC18EB6E140048A0E4 /* buy_1.png */; };
+		41FA0FF218EB6E140048A0E4 /* continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FA0FED18EB6E140048A0E4 /* continue.png */; };
+		41FA0FF318EB6E140048A0E4 /* downArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FA0FEE18EB6E140048A0E4 /* downArrow@2x.png */; };
+		41FA0FF418EB6E140048A0E4 /* downArrow@2x.psd in Resources */ = {isa = PBXBuildFile; fileRef = 41FA0FEF18EB6E140048A0E4 /* downArrow@2x.psd */; };
+		41FA0FF518EB6E140048A0E4 /* upArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41FA0FF018EB6E140048A0E4 /* upArrow@2x.png */; };
 		990951EF18D4A3D7002737B2 /* MessagesEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 990951EE18D4A3D7002737B2 /* MessagesEventHandler.m */; };
 		99098D99188F54C500139EA4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D98188F54C500139EA4 /* libz.dylib */; };
 		99098DA0188F554C00139EA4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99098D9F188F554C00139EA4 /* XCTest.framework */; };
@@ -657,6 +666,10 @@
 		41852B931893458600BFD1B0 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		41852B941893458600BFD1B0 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		41852B971893490600BFD1B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4186301A18ECDE69001A7AB1 /* blue-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-stack.png"; sourceTree = "<group>"; };
+		4186301B18ECDE69001A7AB1 /* green-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-stack.png"; sourceTree = "<group>"; };
+		4186301C18ECDE69001A7AB1 /* red-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-stack.png"; sourceTree = "<group>"; };
+		4186301D18ECDE69001A7AB1 /* yellow-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-stack.png"; sourceTree = "<group>"; };
 		41B01BFA1898126400CA876D /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		41B01BFB1898126400CA876D /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		41B01C001898309A00CA876D /* GUIStateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIStateHandler.h; sourceTree = "<group>"; };
@@ -797,6 +810,11 @@
 		41BD14E718A95E9C008C6E96 /* TileImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileImage.m; sourceTree = "<group>"; };
 		41D2CFDA18A045000032CFB6 /* SetupEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupEventHandler.h; sourceTree = "<group>"; };
 		41D2CFDB18A045000032CFB6 /* SetupEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupEventHandler.m; sourceTree = "<group>"; };
+		41FA0FEC18EB6E140048A0E4 /* buy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy_1.png; sourceTree = "<group>"; };
+		41FA0FED18EB6E140048A0E4 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
+		41FA0FEE18EB6E140048A0E4 /* downArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrow@2x.png"; sourceTree = "<group>"; };
+		41FA0FEF18EB6E140048A0E4 /* downArrow@2x.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "downArrow@2x.psd"; sourceTree = "<group>"; };
+		41FA0FF018EB6E140048A0E4 /* upArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		990951ED18D4A3D7002737B2 /* MessagesEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesEventHandler.h; sourceTree = "<group>"; };
 		990951EE18D4A3D7002737B2 /* MessagesEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesEventHandler.m; sourceTree = "<group>"; };
@@ -1774,6 +1792,10 @@
 		DE4F80DC14E1541400655D44 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4186301A18ECDE69001A7AB1 /* blue-stack.png */,
+				4186301B18ECDE69001A7AB1 /* green-stack.png */,
+				4186301C18ECDE69001A7AB1 /* red-stack.png */,
+				4186301D18ECDE69001A7AB1 /* yellow-stack.png */,
 				DEB4C79618C7F4AA00AA8DAF /* gameMenu.png */,
 				DEB4C79918C7F74E00AA8DAF /* gameMenu@2x.png */,
 				DE0031EA18C678A5008E2CBA /* infoBackground-trans@2x.png */,
@@ -2211,6 +2233,11 @@
 		DEF9FF2418A8033C0057FAEB /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				41FA0FEC18EB6E140048A0E4 /* buy_1.png */,
+				41FA0FED18EB6E140048A0E4 /* continue.png */,
+				41FA0FEE18EB6E140048A0E4 /* downArrow@2x.png */,
+				41FA0FEF18EB6E140048A0E4 /* downArrow@2x.psd */,
+				41FA0FF018EB6E140048A0E4 /* upArrow@2x.png */,
 				DE07B81D18D4D33D00A19DCB /* close-button-log.png */,
 				DEB800B918E4B7F50041A48E /* BullseyeBtn@2x.png */,
 				DE04CA4D18D68BCD006F5271 /* modify.png */,
@@ -2474,7 +2501,9 @@
 				4173890618E4927000934A1F /* referencesBackground@2x.png in Resources */,
 				DE494E6118BF71140042312D /* frozen-tile.png in Resources */,
 				417388E718E4925F00934A1F /* T_Event_338.png in Resources */,
+				4186301F18ECDE69001A7AB1 /* green-stack.png in Resources */,
 				417388B218E4924800934A1F /* C_Fort_376.png in Resources */,
+				41FA0FF518EB6E140048A0E4 /* upArrow@2x.png in Resources */,
 				DEB800C318E4C4160041A48E /* roll.png in Resources */,
 				DE494E5F18BF70F10042312D /* forest-tile.png in Resources */,
 				4173882818E4922B00934A1F /* T_Desert_115.png in Resources */,
@@ -2498,6 +2527,7 @@
 				4173889418E4922B00934A1F /* T_Swamp_081.png in Resources */,
 				4173885918E4922B00934A1F /* T_Jungle_008.png in Resources */,
 				4173887E18E4922B00934A1F /* T_Plains_028.png in Resources */,
+				41FA0FF418EB6E140048A0E4 /* downArrow@2x.psd in Resources */,
 				4173885F18E4922B00934A1F /* T_Mountains_035.png in Resources */,
 				4173880F18E4920F00934A1F /* menu.png in Resources */,
 				DE04CA4C18D68AB8006F5271 /* discharge.png in Resources */,
@@ -2512,6 +2542,7 @@
 				DEB800F218E5171B0041A48E /* YourPiecesBackground@2x.png in Resources */,
 				DEF9FF2D18A8072C0057FAEB /* desert-tile-menu@2x.png in Resources */,
 				4173884118E4922B00934A1F /* T_Forest_103.png in Resources */,
+				41FA0FF318EB6E140048A0E4 /* downArrow@2x.png in Resources */,
 				4173885218E4922B00934A1F /* T_Jungle_001.png in Resources */,
 				41BD13B518A75244008C6E96 /* atlas.png in Resources */,
 				4173883218E4922B00934A1F /* T_Forest_088.png in Resources */,
@@ -2618,6 +2649,7 @@
 				DEB800E218E511790041A48E /* yourpieces.png in Resources */,
 				41BD142718A75244008C6E96 /* T_Income_369.png in Resources */,
 				4173888218E4922B00934A1F /* T_Plains_032.png in Resources */,
+				41FA0FF118EB6E140048A0E4 /* buy_1.png in Resources */,
 				4173882018E4922B00934A1F /* T_Desert_107.png in Resources */,
 				4173887D18E4922B00934A1F /* T_Plains_027.png in Resources */,
 				DE07B81618D40FF000A19DCB /* chat@2x.png in Resources */,
@@ -2668,6 +2700,7 @@
 				417388D518E4925500934A1F /* SC_396.png in Resources */,
 				4173881C18E4920F00934A1F /* bg_1@2x.png in Resources */,
 				4173887A18E4922B00934A1F /* T_Plains_024.png in Resources */,
+				41FA0FF218EB6E140048A0E4 /* continue.png in Resources */,
 				417388C218E4924E00934A1F /* G_20.png in Resources */,
 				417388B518E4924800934A1F /* C_Fort_379.png in Resources */,
 				DE07B81818D4156E00A19DCB /* title@2x.png in Resources */,
@@ -2685,6 +2718,7 @@
 				DEF9FF3318A8072C0057FAEB /* swamp-tile-menu@2x.png in Resources */,
 				417313F918E25BBB009D27F9 /* music.caf in Resources */,
 				99E8B8311891E47500CAAD3B /* Storyboard.storyboard in Resources */,
+				4186301E18ECDE69001A7AB1 /* blue-stack.png in Resources */,
 				41BD142818A75244008C6E96 /* T_Income_370.png in Resources */,
 				4173885418E4922B00934A1F /* T_Jungle_003.png in Resources */,
 				4173880D18E4920F00934A1F /* btn_sel.png in Resources */,
@@ -2720,6 +2754,8 @@
 				4173886618E4922B00934A1F /* T_Mountains_042.png in Resources */,
 				4173888018E4922B00934A1F /* T_Plains_030.png in Resources */,
 				4173886918E4922B00934A1F /* T_Mountains_045.png in Resources */,
+				4186302018ECDE69001A7AB1 /* red-stack.png in Resources */,
+				4186302118ECDE69001A7AB1 /* yellow-stack.png in Resources */,
 				DEF9FF8D18A824FF0057FAEB /* yellow-forest-tile.png in Resources */,
 				DEB800EB18E515580041A48E /* MeleeResolutionStepBackground@2x.png in Resources */,
 				41BD14BB18A75244008C6E96 /* trade.png in Resources */,

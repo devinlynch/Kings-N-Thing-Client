@@ -15,13 +15,17 @@
     BoardLocation *_location;
     Player *_owner;
     ScaledGamePiece *_pieceImage;
+    ScaledGamePiece *_bluffImage;
     NSString *_fileName;
+    BOOL _isBluff;
 }
 
 @property NSString *gamePieceId;
 @property Player *owner;
 @property BoardLocation *location;
 @property ScaledGamePiece *pieceImage;
+@property ScaledGamePiece *bluffImage;
 @property NSString *fileName;
+@property BOOL isBluff;
 
 @end

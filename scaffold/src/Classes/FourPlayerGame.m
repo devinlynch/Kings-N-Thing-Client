@@ -30,6 +30,7 @@
 #import "SideMenu.h"
 #import "Stack.h"
 #import "RecruitCharacter.h"
+#import "SpecialIncomeCounters.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -723,8 +724,15 @@
             if(_selectedPieceImage != nil){
                 [_selectedPieceImage removeFromParent];
             }
-            _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
-                                   @"T_Back.png"];
+            if ([player.playerId isEqualToString:@"player1"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"red-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player2"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"yellow-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player3"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"green-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player4"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"blue-stack.png"];
+            }
             _selectedPieceImage.x = 90;
             _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
             [_contents addChild:_selectedPieceImage];
@@ -1399,19 +1407,20 @@
         case MOVEMENT:
             if (touches.count == 1)
             {
-                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && tile.isHilighted) {
-                    
+                
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     if (clicks.tapCount == 1){
-                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
-                       
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] /*&& tile.isHilighted*/ && ![_selectedPiece isKindOfClass:[Fort class]] &&
+                            ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
+                            [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
+                        }
                     } else if(clicks.tapCount == 2){
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
                         [self tileDoubleTap:location];
                     }
-                }
+                
                 
             }
 
@@ -1423,7 +1432,7 @@
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
-                    if (clicks.tapCount == 2){
+                    if (clicks.tapCount == 1){
                         switch (_wasBought) {
                             case WAS_BOUGHT:
                                 [self recruitWasBought:location];
@@ -1461,7 +1470,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [location addGamePieceToLocation:_selectedPiece];
             [self clearSelectedPiece:nil];
-
         });
     }];
     
@@ -1481,6 +1489,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addStack:_selectedStack];
                 [self clearSelectedPiece:nil];
+                [self unHilightAllTiles];
             });
         }];
     }

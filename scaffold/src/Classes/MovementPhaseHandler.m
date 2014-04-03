@@ -102,6 +102,16 @@
     Stack *stack = [gameState getStackById: stackId];
     if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
         stack = [[Stack alloc] initFromJSON:stackDic];
+        if ([playerId isEqualToString:@"player1"]) {
+             stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
+        } else if ([playerId isEqualToString:@"player2"]) {
+            stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"yellow-stack.png"];
+        } else if ([playerId isEqualToString:@"player3"]) {
+            stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"green-stack.png"];
+        } else if ([playerId isEqualToString:@"player4"]) {
+            stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"blue-stack.png"];
+        }
+        [stack.stackImage setOwner:(id<NSCopying>)stack];
         [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ created a stack and moved it to %@", p.username, hexLocation.locationName]];
     } else {
         [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a stack to %@", p.username, hexLocation.locationName]];

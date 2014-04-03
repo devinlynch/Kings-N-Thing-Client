@@ -15,6 +15,8 @@
 @synthesize location    = _location;
 @synthesize owner     = _owner;
 @synthesize fileName  = _fileName;
+@synthesize isBluff = _isBluff;
+@synthesize bluffImage = _bluffImage;
 
 -(id) init{
     self = [super init];

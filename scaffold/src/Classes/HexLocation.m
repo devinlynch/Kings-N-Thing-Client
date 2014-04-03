@@ -239,19 +239,15 @@
         [stack.location removeStack:stack];
     }
     
-    if (stack.stackImage == nil) {
-        stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Back.png"];
-        [stack.stackImage setOwner:(id<NSCopying>)stack];
-    }
-    
+        
     SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
                                    transition:SP_TRANSITION_LINEAR];
     
     
     [tween animateProperty:@"x" targetValue:_tile.image.x + 10];
     [tween animateProperty:@"y" targetValue:_tile.image.y + 10];
-    [tween animateProperty:@"scaleX" targetValue:0.25f];
-    [tween animateProperty:@"scaleY" targetValue:0.25f];
+    [tween animateProperty:@"scaleX" targetValue:0.50f];
+    [tween animateProperty:@"scaleY" targetValue:0.50f];
     
     [Sparrow.juggler addObject:tween];
 
