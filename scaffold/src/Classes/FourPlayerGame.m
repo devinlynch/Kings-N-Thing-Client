@@ -33,6 +33,8 @@
 #import "SpecialIncomeCounters.h"
 #import "UIAlertView+Blocks.h"
 #import "CombatPhaseScreenController.h"
+#import "ServerResponseMessage.h"
+#import "Game.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -1487,31 +1489,84 @@
 //                             }];
             
             //CAME FROM THE RACK BUT WE DUN CARE YET
-            [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [location addGamePieceToLocation:_selectedPiece];
-                    [self clearSelectedPiece:nil];
-                    [self unHilightAllTiles];
-                });}];
-
+            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
             
-            }else{
-            [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [location addGamePieceToLocation:_selectedPiece];
-                    [self clearSelectedPiece:nil];
-                    [self unHilightAllTiles];
-                });
-            }];
+        }else{
+            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
         }
     } else if (_selectedStack != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addStack:_selectedStack];
-                [self clearSelectedPiece:nil];
-                [self unHilightAllTiles];
-            });
-        }];
+        [self movePiece:nil orStack:_selectedStack toHexLocation:location];
+    }
+}
+
+
+/**
+ This does the actual moving of a piece or a stack.  You can give it either a stack or a piece to move, or both.  I seperated
+ the code into blocks so that as we add logic we don't have to duplicate
+ */
+-(void) movePiece: (GamePiece*) piece orStack: (Stack*) stack toHexLocation: (HexLocation*) location {
+    BOOL isExploring = NO;
+    
+    if(location.owner == nil) {
+        isExploring = YES;
+    }
+    
+    void (^performAfterExploring)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        [self didGetResponseForServerForExploring: message forLocation:location];
+    };
+    
+    void (^performAlwaysOnSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        [self clearSelectedPiece:nil];
+        [self unHilightAllTiles];
+        
+        if(isExploring) {
+            performAfterExploring(message);
+        }
+    };
+    
+    void (^performForGamePieceAfterSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:piece];
+            performAlwaysOnSuccess(message);
+        });
+    };
+    
+    void (^performForStackAfterSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addStack:stack];
+            performAlwaysOnSuccess(message);
+        });
+    };
+    
+
+    
+    
+    if(piece != nil) {
+        if( ! isExploring ) {
+            [[InGameServerAccess instance] movementPhaseMoveGamePiece:piece.gamePieceId toLocation:location.locationId withSuccess:performForGamePieceAfterSuccess];
+        } else{
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:nil andPiece:piece.gamePieceId withSuccess:performForGamePieceAfterSuccess];
+        }
+    }
+    
+    if(stack != nil) {
+        if( ! isExploring ) {
+            [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
+        } else {
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForGamePieceAfterSuccess];
+        }
+    }
+}
+
+-(void) didGetResponseForServerForExploring: (ServerResponseMessage*) message forLocation: (HexLocation*) location {
+    NSDictionary *map = message.data.map;
+    BOOL didCapture = [map objectForKey:@"didCapture"];
+    NSArray *defendingPieceIds = [map objectForKey:@"defendingPieceIds"];
+    
+    if(didCapture) {
+        [_state.game addLogMessage:[NSString stringWithFormat:@"There were no creatures found on %@.  You captured it!", location.locationName]];
+    } else{
+        [_state.game addLogMessage:[NSString stringWithFormat:@"%ld wild creatures were found on %@.  You will need to battle them during the combat phase!", defendingPieceIds.count, location.locationName]];
     }
 }
 

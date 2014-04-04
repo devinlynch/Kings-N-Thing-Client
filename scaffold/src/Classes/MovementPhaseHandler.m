@@ -221,5 +221,33 @@
 }
 
 
+-(void) handlePlayerExploredHex: (Event*) event {
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    if(dataDic == nil){
+        return;
+    }
+    
+    NSDictionary *hexLocationDic = [dataDic objectForKey:@"hexLocation"];
+    NSString *hexLocationId = [dataDic objectForKey:@"hexLocationId"];
+    NSString *playerId = [dataDic objectForKey:@"playerId"];
+    
+    GameState *gameState = [[Game currentGame] gameState];
+    Player *player = [gameState getPlayerById:playerId];
+    HexLocation *hexInGameState = (HexLocation*)[gameState getBoardLocationById: hexLocationId];
+    [hexInGameState updateLocationFromSerializedJSONDictionary:hexLocationDic];
+    
+    BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
+    BOOL didCapture = [[dataDic objectForKey:@"didCapture"] boolValue];
+
+    if( !isMe ) {
+        if( ! didCapture ) {
+            [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ encountered some enemy pieces while exploring %@", player.username, hexInGameState.locationName]];
+        } else{
+            [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ successfully captured %@", player.username, hexInGameState.locationName]];
+        }
+    }
+}
+
+
 
 @end

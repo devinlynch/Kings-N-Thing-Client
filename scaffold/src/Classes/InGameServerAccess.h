@@ -73,7 +73,7 @@ void (^successBlock)(ServerResponseMessage*);
 -(enum InGameRequestTypes) movementPhaseMoveGamePiece: (NSString*) gamePieceId toLocation: (NSString*) locationId withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) movementPhaseCreateStack: (NSString*) hexLocationId withPieces: (NSArray*) gamePieceIds withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) movementPhaseAddPiecesToStack: (NSString*) stackId pieces: (NSArray*) gamePieceIds withSuccess:( void (^)(ServerResponseMessage * message))success;
--(enum InGameRequestTypes) movementPhaseExploreHex: (NSString*) hexLocationId withStack: (NSString*) stackId andPiece: (NSString*) pieceId andRollNumber: (int) rollNumber withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) movementPhaseExploreHex: (NSString*) hexLocationId withStack: (NSString*) stackId andPiece: (NSString*) pieceId withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) movementPhaseDoneMakingMoves;
 
 // Recruit Characters
