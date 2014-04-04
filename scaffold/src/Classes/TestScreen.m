@@ -11,13 +11,7 @@
 #import "RecruitThings.h"
 #import "FourPlayerGame.h"
 #import "WaitScreen.h"
-#import "MagicStepMenu.h"
-#import "RangeStepMenu.h"
-#import "MeleeStepMenu.h"
 
-#import "MagicResolutionMenu.h"
-#import "RangeResolutionMenu.h"
-#import "MeleeResolutionMenu.h"
 
 #import "PiecesMenu.h"
 #import "EnemyPiecesMenu.h"
