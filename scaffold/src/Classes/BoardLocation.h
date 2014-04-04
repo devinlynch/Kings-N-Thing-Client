@@ -34,5 +34,6 @@
 
 -(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic;
 
+-(NSArray*) getAllPiecesForPlayer: (Player*) p;
 
 @end

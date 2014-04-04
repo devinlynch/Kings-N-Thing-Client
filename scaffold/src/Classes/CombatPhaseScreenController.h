@@ -19,5 +19,6 @@
 
 
 -(id) initWithFourPlayerGame:(FourPlayerGame*) fourPlayerGame;
+-(void) readyForBattleToStart;
 
 @end

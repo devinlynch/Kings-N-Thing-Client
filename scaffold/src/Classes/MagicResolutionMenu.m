@@ -12,7 +12,7 @@
 #import "InGameServerAccess.h"
 #import "SpecialCharacter.h"
 #import "Utils.h"
-#import "YourPiecesMenu.h"
+#import "PiecesMenu.h"
 #import "EnemyPiecesMenu.h"
 @implementation MagicResolutionMenu{
     SPSprite *_contents;
@@ -197,7 +197,7 @@
 }
 
 - (void)showYourPiecesMenu{
-    YourPiecesMenu *yourpiece = [[YourPiecesMenu alloc]init];
+    PiecesMenu *yourpiece = [[PiecesMenu alloc]init];
     [self showScene:yourpiece];
 }
 

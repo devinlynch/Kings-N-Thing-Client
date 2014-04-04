@@ -19,9 +19,10 @@
 #import "RangeResolutionMenu.h"
 #import "MeleeResolutionMenu.h"
 
-#import "YourPiecesMenu.h"
+#import "PiecesMenu.h"
 #import "EnemyPiecesMenu.h"
 #import "BattleSummaryMenu.h"
+#import "BattleStartedMenu.h"
 
 @implementation TestScreen
 
@@ -41,7 +42,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[WaitScreen class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[BattleStartedMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }
