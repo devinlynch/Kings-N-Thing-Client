@@ -25,6 +25,7 @@
 #import "BattleStartedMenu.h"
 
 #import "CombatBattleStepMenu.h"
+#import "CombatBattleStepResolutionMenu.h"
 
 @implementation TestScreen
 
@@ -44,7 +45,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[CombatBattleStepMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[CombatBattleStepResolutionMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }

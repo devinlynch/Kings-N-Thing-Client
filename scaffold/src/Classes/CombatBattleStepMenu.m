@@ -11,6 +11,7 @@
 #import "GamePiece.h"
 #import "GameResource.h"
 #import "InGameServerAccess.h"
+#import "CombatBattleStepResolutionMenu.h"
 
 @implementation CombatBattleStepMenu{
     SPSprite *_rollNumberContents;
@@ -70,7 +71,7 @@
     if(amIAttacker){
         piecesToRolls = stepData.attackerGamePiecesToRolls;
     } else{
-        piecesToRolls = stepData.attackerGamePiecesToRolls;
+        piecesToRolls = stepData.defenderGamePiecesToRolls;
     }
     
     NSEnumerator *enumerator = [piecesToRolls keyEnumerator];
@@ -103,7 +104,7 @@
         rolltext.y = _selectedPieceImage.y;
         rolltext.fontName = @"ArialMT";
         rolltext.fontSize = 25;
-        rolltext.color = 0xffffff;
+        rolltext.color = 0xff0000;
         [_rollNumberContents addChild:rolltext];
         
         numInRow++;
@@ -172,7 +173,8 @@
 }
 
 -(void) didClickOnSkip:(SPEvent*) event {
-    
+    CombatBattleStepResolutionMenu *mnu = [[CombatBattleStepResolutionMenu alloc] initWithRound:_round andController:_combatController];
+    [mnu show];
 }
 
 

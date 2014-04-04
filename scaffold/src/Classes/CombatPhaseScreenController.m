@@ -95,11 +95,41 @@
     
     if(battle.state == IN_PROGRESS) {
         [self removeScreens];
-        CombatBattleStepMenu *battleStepMenu  = [[CombatBattleStepMenu alloc] initWithRound:battle.currentRound andController:self];
-        [battleStepMenu show];
+        [self handleNextScreenForRound:battle.currentRound];
+        [CombatBattleRound subscribeToStepNotifications:self andSelector:@selector(newRoundState:)];
     } else {
         // TODO
     }
+}
+
+-(void) doneWithRoundStep: (CombatBattleRound*) round{
+    NSLog(@"In doneWithRoundStep");
+    [self handleNextScreenForRound:round];
+}
+
+-(void) newRoundState: (NSNotification*) notif{
+    [self handleNextScreenForRound:(CombatBattleRound*) notif.object];
+}
+
+-(void) handleNextScreenForRound: (CombatBattleRound*) round {
+    CombatRoundState state = round.state;
+    NSLog(@"In handleNextScreenForRound");
+    
+    if(state == NOT_STARTED) {
+        NSLog(@"Round not started");
+        // TODO
+    } else if(state == MAGIC_STEP || state == RANGE_STEP || state == MELEE_STEP) {
+        [self removeScreens];
+        CombatBattleStepMenu *battleStepMenu  = [[CombatBattleStepMenu alloc] initWithRound:round andController:self];
+        [battleStepMenu show];
+    } else if (state ==  WAITING_ON_RETREAT_OR_CONTINUE) {
+        NSLog(@"Waiting on retreat or continue");
+        // TODO
+    } else{
+        NSLog(@"Round nover");
+        // TODO
+    }
+    
 }
 
 

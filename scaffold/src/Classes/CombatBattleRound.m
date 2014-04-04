@@ -42,6 +42,18 @@
     }
 }
 
++(void) subscribeToStepNotifications: (id) subscriber andSelector: (SEL)selector{
+    [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"magicStepStarted" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"rangeStepStarted" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"meleeStepStarted" object:nil];
+}
+
++(void) unsubscribeToStepNotifications: (id) subscriber {
+    [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"magicStepStarted" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"rangeStepStarted" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"meleeStepStarted" object:nil];
+}
+
 -(void) player: (NSString*) playerId tookDamageToPieces: (NSArray*) piecesTakingHits forStep: (NSString*) stepName{
     BOOL isAttacker = NO;
     if(battle.attacker != nil && [playerId isEqualToString:battle.attacker.playerId]) {
@@ -97,6 +109,33 @@
         }
         [dic setValue:piece forKey:pId];
     }
+}
+
+-(NSString*) stateString{
+    NSString *s = nil;
+    switch (state) {
+        case MAGIC_STEP:
+            s=@"MAGIC_STEP";
+            break;
+        case MELEE_STEP:
+            s=@"MELEE_STEP";
+            break;
+        case NOT_STARTED:
+            s=@"NOT_STARTED";
+            break;
+        case RANGE_STEP:
+            s=@"RANGE_STEP";
+            break;
+        case ROUND_ENDED:
+            s=@"ROUND_ENDED";
+            break;
+        case WAITING_ON_RETREAT_OR_CONTINUE:
+            s=@"WAITING_ON_RETREAT_OR_CONTINUE";
+            break;
+        default:
+            break;
+    }
+    return s;
 }
 
 @end

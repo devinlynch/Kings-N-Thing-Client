@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SPSprite.h"
 
-@class FourPlayerGame, CombatPhase, CombatBattle;
+@class FourPlayerGame, CombatPhase, CombatBattle, CombatBattleRound;
 
 @interface CombatPhaseScreenController : SPSprite
 {
@@ -20,5 +20,7 @@
 
 -(id) initWithFourPlayerGame:(FourPlayerGame*) fourPlayerGame;
 -(void) readyForBattleToStart: (CombatBattle*) battle;
+-(void) doneWithRoundStep: (CombatBattleRound*) round;
+
 
 @end

@@ -294,7 +294,7 @@ static InGameServerAccess *instance;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:battleId forKey:@"battleId"];
     [params setObject:roundId forKey:@"roundId"];
-    [params setObject:state forKey:@"state"];
+    [params setObject:state forKey:@"roundState"];
     
     int i = 0;
     for(NSString *pieceId in pieceIds) {
@@ -302,7 +302,7 @@ static InGameServerAccess *instance;
         i++;
     }
     
-    [self phasePost:@"combat" type:@"didRetreatOrContinue" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
+    [self phasePost:@"combat" type:@"lockedInRollAndDamage" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
     
     return COMBAT_lockedInRollAndDamage;
 }

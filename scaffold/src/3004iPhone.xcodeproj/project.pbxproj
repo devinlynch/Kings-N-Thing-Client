@@ -311,6 +311,7 @@
 		9978234E18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234D18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m */; };
 		9978235118EF0EBF001DC5C3 /* AbstractInGameScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978235018EF0EBF001DC5C3 /* AbstractInGameScreen.m */; };
 		9978235418EF21FF001DC5C3 /* CombatBattleStepMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */; };
+		9978235718EF350C001DC5C3 /* CombatBattleStepResolutionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978235618EF350C001DC5C3 /* CombatBattleStepResolutionMenu.m */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
@@ -488,7 +489,6 @@
 		DEB800B518E4AEF30041A48E /* WaitScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800B418E4AEF30041A48E /* WaitScreen.m */; };
 		DEB800B818E4AFBF0041A48E /* WaitScreenBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800B718E4AFBF0041A48E /* WaitScreenBackground@2x.png */; };
 		DEB800BA18E4B7F50041A48E /* BullseyeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800B918E4B7F50041A48E /* BullseyeBtn@2x.png */; };
-		DEB800BD18E4BBAD0041A48E /* MagicStepMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800BC18E4BBAD0041A48E /* MagicStepMenu.m */; };
 		DEB800BF18E4C26B0041A48E /* MagicStepBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800BE18E4C26B0041A48E /* MagicStepBackground@2x.png */; };
 		DEB800C118E4C38C0041A48E /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800C018E4C38C0041A48E /* done.png */; };
 		DEB800C318E4C4160041A48E /* roll.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800C218E4C4160041A48E /* roll.png */; };
@@ -500,17 +500,12 @@
 		DEB800C918E4C9A20041A48E /* SC_400.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F318A75243008C6E96 /* SC_400.png */; };
 		DEB800CA18E4C9A20041A48E /* SC_401.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD12F418A75243008C6E96 /* SC_401.png */; };
 		DEB800CC18E4DED90041A48E /* RangeStepBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800CB18E4DED90041A48E /* RangeStepBackground@2x.png */; };
-		DEB800CF18E4DF000041A48E /* RangeStepMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800CE18E4DF000041A48E /* RangeStepMenu.m */; };
 		DEB800D118E4E1050041A48E /* MeleeStepBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800D018E4E1050041A48E /* MeleeStepBackground@2x.png */; };
-		DEB800D418E4E11C0041A48E /* MeleeStepMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800D318E4E11C0041A48E /* MeleeStepMenu.m */; };
-		DEB800DC18E50D6E0041A48E /* MagicResolutionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800DB18E50D6E0041A48E /* MagicResolutionMenu.m */; };
 		DEB800E018E50E890041A48E /* MagicResolutionStepBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800DF18E50E890041A48E /* MagicResolutionStepBackground@2x.png */; };
 		DEB800E218E511790041A48E /* yourpieces.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800E118E511790041A48E /* yourpieces.png */; };
 		DEB800E418E511D50041A48E /* enemypieces.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800E318E511D50041A48E /* enemypieces.png */; };
 		DEB800E618E514C80041A48E /* RangeResolutionStepBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800E518E514C80041A48E /* RangeResolutionStepBackground@2x.png */; };
-		DEB800E918E514DD0041A48E /* RangeResolutionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800E818E514DD0041A48E /* RangeResolutionMenu.m */; };
 		DEB800EB18E515580041A48E /* MeleeResolutionStepBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800EA18E515580041A48E /* MeleeResolutionStepBackground@2x.png */; };
-		DEB800EE18E515680041A48E /* MeleeResolutionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB800ED18E515680041A48E /* MeleeResolutionMenu.m */; };
 		DEB800F018E516A10041A48E /* BattleSummaryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800EF18E516A10041A48E /* BattleSummaryBackground@2x.png */; };
 		DEB800F218E5171B0041A48E /* YourPiecesBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800F118E5171B0041A48E /* YourPiecesBackground@2x.png */; };
 		DEB800F418E517220041A48E /* EnemyPiecesBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEB800F318E517220041A48E /* EnemyPiecesBackground@2x.png */; };
@@ -889,6 +884,8 @@
 		9978235018EF0EBF001DC5C3 /* AbstractInGameScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInGameScreen.m; sourceTree = "<group>"; };
 		9978235218EF21FF001DC5C3 /* CombatBattleStepMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatBattleStepMenu.h; sourceTree = "<group>"; };
 		9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatBattleStepMenu.m; sourceTree = "<group>"; };
+		9978235518EF350C001DC5C3 /* CombatBattleStepResolutionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatBattleStepResolutionMenu.h; sourceTree = "<group>"; };
+		9978235618EF350C001DC5C3 /* CombatBattleStepResolutionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatBattleStepResolutionMenu.m; sourceTree = "<group>"; };
 		997B0E0118A7E7FE009404DE /* InGameServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameServerAccess.h; sourceTree = "<group>"; };
 		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		997B0E0818A81985009404DE /* RecruitThingsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThingsHandler.h; sourceTree = "<group>"; };
@@ -1027,28 +1024,16 @@
 		DEB800B418E4AEF30041A48E /* WaitScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitScreen.m; sourceTree = "<group>"; };
 		DEB800B718E4AFBF0041A48E /* WaitScreenBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WaitScreenBackground@2x.png"; sourceTree = "<group>"; };
 		DEB800B918E4B7F50041A48E /* BullseyeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BullseyeBtn@2x.png"; sourceTree = "<group>"; };
-		DEB800BB18E4BBAD0041A48E /* MagicStepMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicStepMenu.h; sourceTree = "<group>"; };
-		DEB800BC18E4BBAD0041A48E /* MagicStepMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicStepMenu.m; sourceTree = "<group>"; };
 		DEB800BE18E4C26B0041A48E /* MagicStepBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagicStepBackground@2x.png"; sourceTree = "<group>"; };
 		DEB800C018E4C38C0041A48E /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
 		DEB800C218E4C4160041A48E /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roll.png; sourceTree = "<group>"; };
 		DEB800CB18E4DED90041A48E /* RangeStepBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RangeStepBackground@2x.png"; sourceTree = "<group>"; };
-		DEB800CD18E4DF000041A48E /* RangeStepMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeStepMenu.h; sourceTree = "<group>"; };
-		DEB800CE18E4DF000041A48E /* RangeStepMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeStepMenu.m; sourceTree = "<group>"; };
 		DEB800D018E4E1050041A48E /* MeleeStepBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeleeStepBackground@2x.png"; sourceTree = "<group>"; };
-		DEB800D218E4E11C0041A48E /* MeleeStepMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeleeStepMenu.h; sourceTree = "<group>"; };
-		DEB800D318E4E11C0041A48E /* MeleeStepMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeleeStepMenu.m; sourceTree = "<group>"; };
-		DEB800DA18E50D6E0041A48E /* MagicResolutionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicResolutionMenu.h; sourceTree = "<group>"; };
-		DEB800DB18E50D6E0041A48E /* MagicResolutionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicResolutionMenu.m; sourceTree = "<group>"; };
 		DEB800DF18E50E890041A48E /* MagicResolutionStepBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MagicResolutionStepBackground@2x.png"; sourceTree = "<group>"; };
 		DEB800E118E511790041A48E /* yourpieces.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yourpieces.png; sourceTree = "<group>"; };
 		DEB800E318E511D50041A48E /* enemypieces.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemypieces.png; sourceTree = "<group>"; };
 		DEB800E518E514C80041A48E /* RangeResolutionStepBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RangeResolutionStepBackground@2x.png"; sourceTree = "<group>"; };
-		DEB800E718E514DD0041A48E /* RangeResolutionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeResolutionMenu.h; sourceTree = "<group>"; };
-		DEB800E818E514DD0041A48E /* RangeResolutionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeResolutionMenu.m; sourceTree = "<group>"; };
 		DEB800EA18E515580041A48E /* MeleeResolutionStepBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeleeResolutionStepBackground@2x.png"; sourceTree = "<group>"; };
-		DEB800EC18E515680041A48E /* MeleeResolutionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeleeResolutionMenu.h; sourceTree = "<group>"; };
-		DEB800ED18E515680041A48E /* MeleeResolutionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeleeResolutionMenu.m; sourceTree = "<group>"; };
 		DEB800EF18E516A10041A48E /* BattleSummaryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BattleSummaryBackground@2x.png"; sourceTree = "<group>"; };
 		DEB800F118E5171B0041A48E /* YourPiecesBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YourPiecesBackground@2x.png"; sourceTree = "<group>"; };
 		DEB800F318E517220041A48E /* EnemyPiecesBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EnemyPiecesBackground@2x.png"; sourceTree = "<group>"; };
@@ -1947,26 +1932,14 @@
 		DEB800D518E50A000041A48E /* Combat Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				DEB800BB18E4BBAD0041A48E /* MagicStepMenu.h */,
-				DEB800BC18E4BBAD0041A48E /* MagicStepMenu.m */,
 				DEB800B318E4AEF30041A48E /* WaitScreen.h */,
 				DEB800B418E4AEF30041A48E /* WaitScreen.m */,
-				DEB800CD18E4DF000041A48E /* RangeStepMenu.h */,
-				DEB800CE18E4DF000041A48E /* RangeStepMenu.m */,
-				DEB800D218E4E11C0041A48E /* MeleeStepMenu.h */,
-				DEB800D318E4E11C0041A48E /* MeleeStepMenu.m */,
-				DEB800DA18E50D6E0041A48E /* MagicResolutionMenu.h */,
-				DEB800DB18E50D6E0041A48E /* MagicResolutionMenu.m */,
 				DEB800F518E517660041A48E /* PiecesMenu.h */,
 				DEB800F618E517660041A48E /* PiecesMenu.m */,
 				DEB800F818E517730041A48E /* EnemyPiecesMenu.h */,
 				DEB800F918E517730041A48E /* EnemyPiecesMenu.m */,
 				DEB800FB18E517810041A48E /* BattleSummaryMenu.h */,
 				DEB800FC18E517810041A48E /* BattleSummaryMenu.m */,
-				DEB800E718E514DD0041A48E /* RangeResolutionMenu.h */,
-				DEB800E818E514DD0041A48E /* RangeResolutionMenu.m */,
-				DEB800EC18E515680041A48E /* MeleeResolutionMenu.h */,
-				DEB800ED18E515680041A48E /* MeleeResolutionMenu.m */,
 				99DB93D018ECD5DC00F0F082 /* CombatPhaseScreenController.h */,
 				99DB93D118ECD5DC00F0F082 /* CombatPhaseScreenController.m */,
 				9978234318EEFC98001DC5C3 /* BattleStartedMenu.h */,
@@ -1977,6 +1950,8 @@
 				9978234D18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m */,
 				9978235218EF21FF001DC5C3 /* CombatBattleStepMenu.h */,
 				9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */,
+				9978235518EF350C001DC5C3 /* CombatBattleStepResolutionMenu.h */,
+				9978235618EF350C001DC5C3 /* CombatBattleStepResolutionMenu.m */,
 			);
 			name = "Combat Scenes";
 			sourceTree = "<group>";
@@ -2924,7 +2899,6 @@
 				4131C2B318876C9B009775EA /* HexLocation.m in Sources */,
 				990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */,
 				99FD44C018E20DF400EC0FB3 /* RecruitCharactersEventHandler.m in Sources */,
-				DEB800DC18E50D6E0041A48E /* MagicResolutionMenu.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				DEC0AA6318D77F410089EF72 /* RandomEventsMenu.m in Sources */,
 				9914029F18EE6014003F105E /* AIPlayer.m in Sources */,
@@ -2945,7 +2919,6 @@
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
 				9978235418EF21FF001DC5C3 /* CombatBattleStepMenu.m in Sources */,
 				DE04CA3B18D66917006F5271 /* RecruitCharacter.m in Sources */,
-				DEB800CF18E4DF000041A48E /* RangeStepMenu.m in Sources */,
 				4131C2E918877047009775EA /* CityVill.m in Sources */,
 				99E74F2A18932E130048CEA0 /* MainMenuViewController.m in Sources */,
 				4131C2981885EB1F009775EA /* GCDAsyncUdpSocket.m in Sources */,
@@ -2956,18 +2929,16 @@
 				DE3104F318D54446001EE806 /* SuchTeam.m in Sources */,
 				4144CB51188EEF87003A29E4 /* Game.m in Sources */,
 				997B0E2218A85D8B009404DE /* MovementPhaseHandler.m in Sources */,
-				DEB800D418E4E11C0041A48E /* MeleeStepMenu.m in Sources */,
-				DEB800BD18E4BBAD0041A48E /* MagicStepMenu.m in Sources */,
 				4131C2EC18877054009775EA /* NonCityVill.m in Sources */,
 				9978234B18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m in Sources */,
 				4131C2B618876CAE009775EA /* Player.m in Sources */,
-				DEB800EE18E515680041A48E /* MeleeResolutionMenu.m in Sources */,
 				41B01C051898321D00CA876D /* Move.m in Sources */,
 				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
 				DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */,
 				DE48621418A9868B00272B79 /* Log.m in Sources */,
 				41BD12A518A722D7008C6E96 /* GameMessage.m in Sources */,
 				4144CB6C188EFAE9003A29E4 /* ClientReactor.m in Sources */,
+				9978235718EF350C001DC5C3 /* CombatBattleStepResolutionMenu.m in Sources */,
 				4131C2BB18876D77009775EA /* GamePiece.m in Sources */,
 				997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */,
 				99F9B6EE189464D100E4A788 /* FindLobbyViewController.m in Sources */,
@@ -3000,7 +2971,6 @@
 				DEF9FC1618A7243D0057FAEB /* GoldCollectionHandler.m in Sources */,
 				DEC0AA7518D8C2340089EF72 /* ConstructionMenu.m in Sources */,
 				99F9B6E218941F5100E4A788 /* LobbyEventHandler.m in Sources */,
-				DEB800E918E514DD0041A48E /* RangeResolutionMenu.m in Sources */,
 				DEB800B518E4AEF30041A48E /* WaitScreen.m in Sources */,
 				990BEFBA188F251C00D7CA03 /* ServerMessageData.m in Sources */,
 				9978234518EEFC98001DC5C3 /* BattleStartedMenu.m in Sources */,

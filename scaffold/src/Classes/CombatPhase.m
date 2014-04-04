@@ -54,8 +54,10 @@
     Player *me = [gameState getMe];
     BOOL amIAttacker=NO;
     if([me isEqual:attacker]) {
+        NSLog(@"I Am the attacker");
         amIAttacker = YES;
     } else if(!isAIDefender && [me isEqual:defender]) {
+        NSLog(@"I Am NOT the attacker");
         amIAttacker = NO;
     } else{
         NSLog(@"WHOAH, why am I parsing a battle for one im not part of?");
