@@ -310,6 +310,7 @@
 		9978234B18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234A18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m */; };
 		9978234E18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234D18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m */; };
 		9978235118EF0EBF001DC5C3 /* AbstractInGameScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978235018EF0EBF001DC5C3 /* AbstractInGameScreen.m */; };
+		9978235418EF21FF001DC5C3 /* CombatBattleStepMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */; };
 		997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0218A7E7FE009404DE /* InGameServerAccess.m */; };
 		997B0E0A18A81985009404DE /* RecruitThingsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E0918A81985009404DE /* RecruitThingsHandler.m */; };
 		997B0E1518A82061009404DE /* PlayerRecruitment.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E1418A82061009404DE /* PlayerRecruitment.m */; };
@@ -886,6 +887,8 @@
 		9978234D18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCombatPhaseBattleScreen.m; sourceTree = "<group>"; };
 		9978234F18EF0EBF001DC5C3 /* AbstractInGameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInGameScreen.h; sourceTree = "<group>"; };
 		9978235018EF0EBF001DC5C3 /* AbstractInGameScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractInGameScreen.m; sourceTree = "<group>"; };
+		9978235218EF21FF001DC5C3 /* CombatBattleStepMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatBattleStepMenu.h; sourceTree = "<group>"; };
+		9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatBattleStepMenu.m; sourceTree = "<group>"; };
 		997B0E0118A7E7FE009404DE /* InGameServerAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InGameServerAccess.h; sourceTree = "<group>"; };
 		997B0E0218A7E7FE009404DE /* InGameServerAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InGameServerAccess.m; sourceTree = "<group>"; };
 		997B0E0818A81985009404DE /* RecruitThingsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThingsHandler.h; sourceTree = "<group>"; };
@@ -1972,6 +1975,8 @@
 				9978234A18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m */,
 				9978234C18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.h */,
 				9978234D18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m */,
+				9978235218EF21FF001DC5C3 /* CombatBattleStepMenu.h */,
+				9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */,
 			);
 			name = "Combat Scenes";
 			sourceTree = "<group>";
@@ -2938,6 +2943,7 @@
 				991402A318EE6C14003F105E /* GameConfig.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
+				9978235418EF21FF001DC5C3 /* CombatBattleStepMenu.m in Sources */,
 				DE04CA3B18D66917006F5271 /* RecruitCharacter.m in Sources */,
 				DEB800CF18E4DF000041A48E /* RangeStepMenu.m in Sources */,
 				4131C2E918877047009775EA /* CityVill.m in Sources */,

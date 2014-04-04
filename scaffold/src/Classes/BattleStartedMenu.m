@@ -116,7 +116,7 @@
         return;
     }
     
-    [_combatController readyForBattleToStart];
+    [_combatController readyForBattleToStart: _battle];
 }
 
 

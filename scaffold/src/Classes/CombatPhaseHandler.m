@@ -33,7 +33,14 @@
     CombatPhase *combatPhase = [[[Game currentGame] gameState] getOrCreateCombatPhase];
     CombatBattle *battle = [combatPhase updateOrCreateBattleFromJson: battleDic];
     combatPhase.currentBattle = battle;
-    [Utils notifyOnMainQueue:@"combatBattleStarted" withObject:battle];
+    
+    if(battle != nil && [battle amIInTheBattle]){
+        [Utils notifyOnMainQueue:@"combatBattleStarted" withObject:battle];
+    }
+    
+    if(battle != nil){
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"A battle between %@ and %@ has started on %@", battle.attacker.user.username, battle.defender.user.username, battle.locationOfBattle.locationName]];
+    }
     
      NSLog(@"Finished handling handleBattleStarted message");
 }

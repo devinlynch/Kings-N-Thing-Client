@@ -11,6 +11,8 @@
 #import "FourPlayerGame.h"
 #import "WaitScreen.h"
 #import "BattleStartedMenu.h"
+#import "CombatBattleStepMenu.h"
+#import "CombatBattleRound.h"
 
 @implementation CombatPhaseScreenController
 {
@@ -88,8 +90,21 @@
     [bsMenu show];
 }
 
--(void) readyForBattleToStart{
+-(void) readyForBattleToStart: (CombatBattle*) battle{
     NSLog(@"Player ready for battle to start");
+    
+    if(battle.state == IN_PROGRESS) {
+        [self removeScreens];
+        CombatBattleStepMenu *battleStepMenu  = [[CombatBattleStepMenu alloc] initWithRound:battle.currentRound andController:self];
+        [battleStepMenu show];
+    } else {
+        // TODO
+    }
+}
+
+
+-(void) removeScreens{
+    [self removeAllChildren];
 }
 
 
