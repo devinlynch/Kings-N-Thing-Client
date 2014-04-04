@@ -120,7 +120,7 @@
     CombatBattle *battle = [combatPhase currentBattle];
     NSString *battleId = [json objectForKey:@"battleId"];
 
-    if(battle == nil || battleId == nil || [battle.battleId isEqualToString:battleId]) {
+    if(battle == nil || battleId == nil || ![battle.battleId isEqualToString:battleId]) {
         NSLog(@"ERRORRRR!!!!!!!!!!!!!!!!!!  We got a message for a battle that is not current.  The current battle is %@ and the one we expected was %@", battle.battleId, battleId);
         [NSException raise:@"We got a round started message for a battle that is not current." format:@"The current battle is %@ and the one we expected was %@", battle.battleId, battleId];
         return nil;

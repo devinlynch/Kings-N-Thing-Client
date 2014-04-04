@@ -34,5 +34,7 @@ typedef NS_ENUM(NSInteger, WasBought) {
 @interface FourPlayerGame : SPSprite<UIAlertViewDelegate>
 
 -(void) startedRecruitThingsPhase: (NSNotification*) notif;
+-(void) addChildToContents: (SPDisplayObject*) sprite;
+
 
 @end

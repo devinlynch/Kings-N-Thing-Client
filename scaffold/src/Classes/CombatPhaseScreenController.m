@@ -9,6 +9,7 @@
 #import "CombatPhaseScreenController.h"
 #import "CombatPhase.h"
 #import "FourPlayerGame.h"
+#import "WaitScreen.h"
 
 @implementation CombatPhaseScreenController
 
@@ -24,6 +25,8 @@
     self = [self init];
     if(self) {
         _fourPlayerGame = fourPlayerGame;
+        [self setup];
+        [self subscribeToNotifications];
     }
     return self;
 }
@@ -47,7 +50,16 @@
 
 -(void) handleStartCombat{
     NSLog(@"Handling start of combat");
+    [_fourPlayerGame addChildToContents: self];
     [self setVisible: YES];
+    [self showWaitingScreen];
+}
+
+
+-(void) showWaitingScreen{
+    WaitScreen *ws = [[WaitScreen alloc] init];
+    [self addChild:ws];
+    ws.visible = YES;
 }
 
 

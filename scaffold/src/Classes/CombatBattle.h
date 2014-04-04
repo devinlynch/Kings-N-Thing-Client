@@ -30,6 +30,7 @@ typedef enum CombatBattleState {
 @property BOOL amIAttacker;
 @property BOOL isStarted;
 @property BOOL isEnded;
+@property BOOL isAIDefender;
 @property CombatBattleState state;
 
 -(CombatBattleRound*) createNewRoundFromSerializedJson: (NSDictionary*) json;

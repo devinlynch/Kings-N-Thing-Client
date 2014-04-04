@@ -13,7 +13,7 @@
 #import "Player.h"
 
 @implementation CombatBattle
-@synthesize attacker, battleId, defender, gameState, locationOfBattle, amIAttacker, currentRound, isEnded, isStarted, state;
+@synthesize attacker, battleId, defender, gameState, locationOfBattle, amIAttacker, currentRound, isEnded, isStarted, state, isAIDefender;
 
 
 -(CombatBattleRound*) createNewRoundFromSerializedJson: (NSDictionary*) json{
@@ -32,6 +32,8 @@
         currentRound = round;
         
         [Utils notifyOnMainQueue:@"newBattleRoundStarted" withObject:currentRound];
+        
+        return round;
     }
     
     return nil;

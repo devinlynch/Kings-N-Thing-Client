@@ -222,6 +222,8 @@
 
 
 -(void) handlePlayerExploredHex: (Event*) event {
+    NSLog(@"Handling PlayerExploredHex message");
+    
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
     if(dataDic == nil){
         return;
@@ -246,6 +248,8 @@
             [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ successfully captured %@", player.username, hexInGameState.locationName]];
         }
     }
+    
+    NSLog(@"Finished Handling PlayerExploredHex message");
 }
 
 

@@ -380,7 +380,6 @@
                                                object:nil];
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
-    [_contents addChild:_combatPhaseController];
 }
 
 
@@ -1559,8 +1558,10 @@
 }
 
 -(void) didGetResponseForServerForExploring: (ServerResponseMessage*) message forLocation: (HexLocation*) location {
+    NSLog(@"Got response from server when exploring");
+    
     NSDictionary *map = message.data.map;
-    BOOL didCapture = [map objectForKey:@"didCapture"];
+    BOOL didCapture = [[map objectForKey:@"didCapture"] boolValue];
     NSArray *defendingPieceIds = [map objectForKey:@"defendingPieceIds"];
     
     if(didCapture) {
@@ -1640,7 +1641,9 @@
     }
 }
 
-
+-(void) addChildToContents: (SPDisplayObject*) sprite{
+    [_contents addChild:sprite];
+}
 
 
 @end

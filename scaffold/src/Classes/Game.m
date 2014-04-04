@@ -79,11 +79,13 @@ static Game *instance;
 }
 
 -(void) addLogMessage: (NSString*) message{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:message];
-        [utterance setRate:0.4f];
-        [synthesizer speakUtterance:utterance];
-    });
+    if([GameConfig shouldPlayVoice]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:message];
+            [utterance setRate:0.4f];
+            [synthesizer speakUtterance:utterance];
+        });
+    }
     
     NSLog(@"%@",message);
     

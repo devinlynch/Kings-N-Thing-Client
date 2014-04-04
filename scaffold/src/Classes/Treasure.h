@@ -9,11 +9,11 @@
 #import "Thing.h"
 
 @interface Treasure : Thing{
-    NSInteger *_goldValue;
+    int _goldValue;
     NSString *_treasureId;
 }
 
-@property NSInteger *goldValue;
+@property int goldValue;
 @property NSString *treasureId, *fileName;
 
 -(Treasure*) initWithId:(NSString*) treasureId andGoldValue: (int) value andFilename: (NSString*) filename;

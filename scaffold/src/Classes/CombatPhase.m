@@ -32,6 +32,8 @@
         return nil;
     }
     
+    BOOL isAIDefender = [[json objectForKey:@"isAIDefender"] boolValue];
+    
     NSDictionary *attackerDic = [json objectForKey:@"attacker"];
     NSDictionary *defenderDic = [json objectForKey:@"defender"];
     
@@ -44,7 +46,7 @@
     NSString *locationOfBattleId = [json objectForKey:@"locationOfBattleId"];
     HexLocation *locationOfBattle = [[gameState hexLocations] objectForKey:locationOfBattleId];
     
-    if(attacker == nil || defender == nil || locationOfBattleId == nil) {
+    if(attacker == nil || (defender == nil && !isAIDefender) || locationOfBattleId == nil) {
         NSLog(@"THE ATTACKER OR DEFENDER OR LOCATION IN A BATTLE WITH ID [%@] COULD NOT BE FOUND", battleId);
         return nil;
     }
@@ -53,7 +55,7 @@
     BOOL amIAttacker=NO;
     if([me isEqual:attacker]) {
         amIAttacker = YES;
-    } else if([me isEqual:defender]) {
+    } else if(!isAIDefender && [me isEqual:defender]) {
         amIAttacker = NO;
     } else{
         NSLog(@"WHOAH, why am I parsing a battle for one im not part of?");
@@ -73,6 +75,7 @@
         [battle setGameState:gameState];
         [battle setLocationOfBattle:locationOfBattle];
         [battle setBattleId:battleId];
+        [battle setIsAIDefender:isAIDefender];
     }
     
     BOOL isStarted = [[json objectForKey:@"isStarted"] boolValue];

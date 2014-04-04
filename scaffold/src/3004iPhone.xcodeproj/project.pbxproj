@@ -297,6 +297,8 @@
 		990BEFBD188F256F00D7CA03 /* ServerMessageError.m in Sources */ = {isa = PBXBuildFile; fileRef = 990BEFBC188F256F00D7CA03 /* ServerMessageError.m */; };
 		991151821891B03C004E8FFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991151811891B03C004E8FFB /* LoginViewController.m */; };
 		9914029718EE1ADA003F105E /* hilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4173890F18E4DA1100934A1F /* hilight.png */; };
+		9914029F18EE6014003F105E /* AIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9914029E18EE6014003F105E /* AIPlayer.m */; };
+		991402A318EE6C14003F105E /* GameConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 991402A218EE6C14003F105E /* GameConfig.m */; };
 		992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613E018E3496F0036CA53 /* leavegame@2x.png */; };
 		992613E518E38FC30036CA53 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992613E418E38FC30036CA53 /* config.plist */; };
 		992613E918E390710036CA53 /* TestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 992613E818E390710036CA53 /* TestScreen.m */; };
@@ -857,6 +859,10 @@
 		990BEFC1188F291C00D7CA03 /* JSONSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerializable.h; sourceTree = "<group>"; };
 		991151801891B03C004E8FFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
 		991151811891B03C004E8FFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
+		9914029D18EE6014003F105E /* AIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIPlayer.h; sourceTree = "<group>"; };
+		9914029E18EE6014003F105E /* AIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIPlayer.m; sourceTree = "<group>"; };
+		991402A118EE6C14003F105E /* GameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		991402A218EE6C14003F105E /* GameConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConfig.m; sourceTree = "<group>"; };
 		992613E018E3496F0036CA53 /* leavegame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leavegame@2x.png"; sourceTree = "<group>"; };
 		992613E418E38FC30036CA53 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		992613E718E390710036CA53 /* TestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScreen.h; sourceTree = "<group>"; };
@@ -1386,6 +1392,8 @@
 				9909A67918EB0F400092B7B6 /* LogMessage.m */,
 				9909A67B18EBA7110092B7B6 /* CombatBattleRoundStepData.h */,
 				9909A67C18EBA7110092B7B6 /* CombatBattleRoundStepData.m */,
+				9914029D18EE6014003F105E /* AIPlayer.h */,
+				9914029E18EE6014003F105E /* AIPlayer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1911,6 +1919,8 @@
 				DE1807881888699200B03892 /* ScaledGamePiece.m */,
 				41BD14E618A95E9C008C6E96 /* TileImage.h */,
 				41BD14E718A95E9C008C6E96 /* TileImage.m */,
+				991402A118EE6C14003F105E /* GameConfig.h */,
+				991402A218EE6C14003F105E /* GameConfig.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2887,6 +2897,7 @@
 				DEB800DC18E50D6E0041A48E /* MagicResolutionMenu.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				DEC0AA6318D77F410089EF72 /* RandomEventsMenu.m in Sources */,
+				9914029F18EE6014003F105E /* AIPlayer.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
 				4186302A18EE1278001A7AB1 /* UIAlertView+Blocks.m in Sources */,
 				99DFAD961894B4A40092CF1A /* IPManager.m in Sources */,
@@ -2899,6 +2910,7 @@
 				DEC0AA6D18D799660089EF72 /* GameReference.m in Sources */,
 				DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */,
 				DEF9FF0E18A7F5EF0057FAEB /* TileMenu.m in Sources */,
+				991402A318EE6C14003F105E /* GameConfig.m in Sources */,
 				4131C2D218876F04009775EA /* SpecialCharacter.m in Sources */,
 				4131C2E318877003009775EA /* Treasure.m in Sources */,
 				DE04CA3B18D66917006F5271 /* RecruitCharacter.m in Sources */,
