@@ -9,26 +9,25 @@
 #import "WaitScreen.h"
 
 @implementation WaitScreen{
-    SPSprite *_contents;
-    SPSprite *_currentScene;
-    
-    int _gameWidth;
-    int _gameHeight;
-    
-    
     SPTextField *_logText;
     
-    
-    //Scrollingzzszsszsz
     UIScrollView *_scrollView;
     UIView *view;
 }
 
 -(id) init
 {
-    if ((self = [super init]))
+    if ((self = [super initFromCombatController:nil]))
     {
-        
+        [self setup];
+    }
+    
+    return self;
+}
+
+-(id) initFromCombatController:(CombatPhaseScreenController *)controller {
+    if ((self = [super initFromCombatController:controller]))
+    {
         [self setup];
     }
     
@@ -37,16 +36,8 @@
 
 
 -(void) setup{
-    
-    _gameWidth = Sparrow.stage.width;
-    _gameHeight = Sparrow.stage.height;
-    
-    
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
-    
-    _contents = [SPSprite sprite];
-    [self addChild:_contents];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"WaitScreenBackground@2x.png"];
     
@@ -162,6 +153,14 @@
     
 }
 
+-(void) hide{
+    [super hide];
+    _scrollView.hidden = YES;
+}
 
+-(void) show{
+    [super show];
+    _scrollView.hidden = NO;
+}
 
 @end

@@ -13,6 +13,9 @@
 #import "BattleStartedMenu.h"
 
 @implementation CombatPhaseScreenController
+{
+    WaitScreen *_waitScreen;
+}
 
 -(id) init{
     self = [super init];
@@ -44,9 +47,7 @@
 
 -(void) combatPhaseStarted: (NSNotification*) notif{
     _combatPhase =(CombatPhase*) notif.object;
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"handleCombatPhaseStarted"];
-    
+        
     [self handleStartCombat];
 }
 
@@ -65,9 +66,14 @@
 
 
 -(void) showWaitingScreen{
-    WaitScreen *ws = [[WaitScreen alloc] init];
-    [self addChild:ws];
-    ws.visible = YES;
+    if(_waitScreen == nil)
+        _waitScreen = [[WaitScreen alloc] initFromCombatController:self];
+    [_waitScreen show];
+}
+
+-(void) hideWaitingScreen{
+    if(! (_waitScreen == nil))
+        [_waitScreen hide];
 }
 
 
@@ -76,6 +82,8 @@
 }
 
 -(void) handleCombatBattleStarted: (CombatBattle*) battle {
+    [self hideWaitingScreen];
+    
     BattleStartedMenu *bsMenu = [[BattleStartedMenu alloc] initWithBattle:battle andController:self];
     [bsMenu show];
 }

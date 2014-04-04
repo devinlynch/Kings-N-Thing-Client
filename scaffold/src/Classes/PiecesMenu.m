@@ -50,14 +50,13 @@
     
     int numInRow=1;
     int row=1;
-    for(NSString *recruitId in pieces) {
-        GamePiece *gp = [[GameResource getInstance] getPieceForId :recruitId];
+    for(GamePiece *gp in pieces) {
         SPButton *_selectedPieceImage;
         SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
         _selectedPieceImage = [SPButton buttonWithUpState:text];
         _selectedPieceImage.x = (_gameWidth/4)*numInRow-70;
         _selectedPieceImage.y = 40+(90*row);
-        [_selectedPieceImage setName:recruitId];
+        [_selectedPieceImage setName:gp.gamePieceId];
         
         [_selectedPieceImage addEventListener:@selector(didClickOnRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
         
