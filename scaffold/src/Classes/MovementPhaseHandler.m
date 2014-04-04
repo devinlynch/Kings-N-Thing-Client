@@ -101,31 +101,31 @@
         return;
     }
     
-    Stack *stack = [gameState getStackById: stackId];
-    if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
-        stack = [[Stack alloc] initFromJSON:stackDic];
-        if ([playerId isEqualToString:@"player1"]) {
-             stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
-        } else if ([playerId isEqualToString:@"player2"]) {
-            stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"yellow-stack.png"];
-        } else if ([playerId isEqualToString:@"player3"]) {
-            stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"green-stack.png"];
-        } else if ([playerId isEqualToString:@"player4"]) {
-            stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"blue-stack.png"];
-        }
-        [stack.stackImage setOwner:(id<NSCopying>)stack];
-        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ created a stack and moved it to %@", p.username, hexLocation.locationName]];
-    } else {
-        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a stack to %@", p.username, hexLocation.locationName]];
-        [stack updateLocationFromSerializedJSONDictionary:stackDic];
-    }
-    
-    [stack setOwner:p];
-    [hexLocation addStack:stack];
-    
-    NSLog(@"Succesfully parsed updated stack message with stackID: %@", stack.locationId);
-    
     dispatch_async(dispatch_get_main_queue(), ^{
+        Stack *stack = [gameState getStackById: stackId];
+        if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
+            stack = [[Stack alloc] initFromJSON:stackDic];
+            if ([playerId isEqualToString:@"player1"]) {
+                stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
+            } else if ([playerId isEqualToString:@"player2"]) {
+                stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"yellow-stack.png"];
+            } else if ([playerId isEqualToString:@"player3"]) {
+                stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"green-stack.png"];
+            } else if ([playerId isEqualToString:@"player4"]) {
+                stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"blue-stack.png"];
+            }
+            [stack.stackImage setOwner:(id<NSCopying>)stack];
+            [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ created a stack and moved it to %@", p.username, hexLocation.locationName]];
+        } else {
+            [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a stack to %@", p.username, hexLocation.locationName]];
+            [stack updateLocationFromSerializedJSONDictionary:stackDic];
+        }
+        
+        [stack setOwner:p];
+        [hexLocation addStack:stack];
+        
+        NSLog(@"Succesfully parsed updated stack message with stackID: %@", stack.locationId);
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playerUpdatedStack" object:stack];
     });
 }
@@ -168,13 +168,9 @@
     
     [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ moved a %@ to %@", player.username, gamePiece.name != nil ? gamePiece.name : gamePiece.gamePieceId,boardLocation.locationName]];
 
-    
-    [boardLocation addGamePieceToLocation:gamePiece];
-
-    
-    NSLog(@"Succesfully parsed playerMovedPieceToNewLocation with gamepieceid: %@ and locationid: %@", gamePiece.gamePieceId, gamePiece.location.locationId);
-    
     dispatch_async(dispatch_get_main_queue(), ^{
+        [boardLocation addGamePieceToLocation:gamePiece];
+        NSLog(@"Succesfully parsed playerMovedPieceToNewLocation with gamepieceid: %@ and locationid: %@", gamePiece.gamePieceId, gamePiece.location.locationId);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playerMovedPieceToNewLocation" object:gamePiece];
     });
 }
@@ -196,26 +192,27 @@
     NSArray *hexLocations = [dataDic objectForKey:@"hexLocations"];
     GameState *gameState = [[Game currentGame] gameState];
     
-    for(id object in hexLocations) {
-        NSDictionary *hexDic = (NSDictionary*)object;
-        HexLocation *hexInGameState = (HexLocation*)[gameState getBoardLocationById: [hexDic objectForKey:@"locationId"]];
-        
-        // Check all the game pieces given to make sure they are assigned to the hex location
-        NSArray *piecesJsonArr = [hexDic objectForKey:@"gamePieces"];
-        if(piecesJsonArr != nil){
-            [hexInGameState updateLocationWithPieces:piecesJsonArr];
-        }
-        
-        // Now check to make sure stacks are all good
-        NSArray *stacksJsonArr = [hexDic objectForKey:@"stacks"];
-        if(stacksJsonArr != nil) {
-            [hexInGameState updateLocationWithStacks:stacksJsonArr];
-        }
-    }
-    
-    NSLog(@"Succesfully parsed movementPhaseOver");
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        for(id object in hexLocations) {
+            NSDictionary *hexDic = (NSDictionary*)object;
+            HexLocation *hexInGameState = (HexLocation*)[gameState getBoardLocationById: [hexDic objectForKey:@"locationId"]];
+            
+            // Check all the game pieces given to make sure they are assigned to the hex location
+            NSArray *piecesJsonArr = [hexDic objectForKey:@"gamePieces"];
+            if(piecesJsonArr != nil){
+                [hexInGameState updateLocationWithPieces:piecesJsonArr];
+            }
+            
+            // Now check to make sure stacks are all good
+            NSArray *stacksJsonArr = [hexDic objectForKey:@"stacks"];
+            if(stacksJsonArr != nil) {
+                [hexInGameState updateLocationWithStacks:stacksJsonArr];
+            }
+        }
+        
+         NSLog(@"Succesfully parsed movementPhaseOver");
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"movementPhaseOver" object:nil];
     });
 }
@@ -236,7 +233,10 @@
     GameState *gameState = [[Game currentGame] gameState];
     Player *player = [gameState getPlayerById:playerId];
     HexLocation *hexInGameState = (HexLocation*)[gameState getBoardLocationById: hexLocationId];
-    [hexInGameState updateLocationFromSerializedJSONDictionary:hexLocationDic];
+    
+     dispatch_async(dispatch_get_main_queue(), ^{
+         [hexInGameState updateLocationFromSerializedJSONDictionary:hexLocationDic];
+     });
     
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
     BOOL didCapture = [[dataDic objectForKey:@"didCapture"] boolValue];
