@@ -35,6 +35,7 @@
 #import "CombatPhaseScreenController.h"
 #import "ServerResponseMessage.h"
 #import "Game.h"
+#import "Utils.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -380,6 +381,8 @@
                                                object:nil];
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    
+    [Utils showLoaderOnView:Sparrow.currentController.view animated:YES];
 }
 
 
@@ -666,6 +669,7 @@
     
     [[InGameServerAccess instance] setupPhaseReadyForPlacement];
     
+    [Utils removeLoaderOnView:Sparrow.currentController.view animated:YES];
 }
 
 -(void) setupOver: (NSNotification*) notif{
