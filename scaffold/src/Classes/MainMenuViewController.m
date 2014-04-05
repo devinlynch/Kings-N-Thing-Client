@@ -10,6 +10,7 @@
 #import "User.h"
 #import "KeychainItemWrapper.h"
 #import "FindLobbyViewController.h"
+#import "ServerAccess.h"
 
 @interface MainMenuViewController ()
 {
@@ -84,6 +85,8 @@
     
     //reset the user
     [User reInitInstance];
+    
+    [[ServerAccess instance] logout];
     
     //dismiss view
     dispatch_async(dispatch_get_main_queue(), ^{

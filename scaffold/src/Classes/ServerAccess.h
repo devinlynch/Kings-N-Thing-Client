@@ -29,6 +29,8 @@ typedef enum HttpRequestMethods {
 -(void) asynchronousRequestOfType: (HttpRequestMethods) method toUrl: (NSString*) req withParams: (NSMutableDictionary*) params  andDelegateListener: (id) delegateListener andErrorCall:(block_t) errorCall andSuccessCall: (block_t) successCall;
 
 -(void) loginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
+-(void) logout;
+
 -(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener: (id<LoginProtocol>) delegateListener;
 -(void) findAnyLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener;
 -(void) searchLobby: (NSString*) usernameOfHost andDelegateListener: (id<LobbyProtocol>) delegateListener;

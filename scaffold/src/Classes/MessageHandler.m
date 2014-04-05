@@ -30,10 +30,11 @@ static NSMutableSet* receivedMessageIds;
 }
 
 +(void) handleHttpResponseJSONData: (NSData*) data delegate: (id) delegate requestParams: (NSDictionary*) params{
+    Message *responseMessage;
     @try {
         NSDictionary *json = [Utils dictionaryFromJSONData:data];
         
-        Message *responseMessage;
+        
         if([json objectForKey:@"responseStatus"] == nil){
             responseMessage = [[GameMessage alloc] initFromJSON:json];
             NSString *gameId = [json objectForKey:@"gameId"];
@@ -55,15 +56,18 @@ static NSMutableSet* receivedMessageIds;
             NSLog(@"Got a duplicate message id [%@], not handling", responseMessage.messageId);
             return;
         }
-            
+        
+        [self didHandleMessage:responseMessage];
+        
         Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
         [e setRequestParams:params];
         [e setDelegateListener:delegate];
         [e setReceivedMessageType:HTTP_MESSAGE_TYPE];
         [[ClientReactor instance] dispatch:e];
         
-        [self didHandleMessage:responseMessage];
+        
     } @catch (NSException *exception) {
+        [self didNOTHandleMessage:responseMessage];
         NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
     }
 }
@@ -93,14 +97,15 @@ static NSMutableSet* receivedMessageIds;
             return;
         }
         
+        [self didHandleMessage:responseMessage];
         
         Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
         [e setReceivedMessageType:UDP_MESSAGE_TYPE];
         [[ClientReactor instance] dispatch:e];
         
-        [self didHandleMessage:responseMessage];
     }
     @catch (NSException *exception) {
+        [self didNOTHandleMessage:responseMessage];
         NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
     }
 }
@@ -109,6 +114,13 @@ static NSMutableSet* receivedMessageIds;
     if(message.messageId){
         [[MessageHandler receivedMessageIdsInstance] addObject:message.messageId];
         [[ServerAccess instance] tellServerWeGotMessage:message.messageId];
+    }
+    
+}
+
++(void) didNOTHandleMessage: (Message*) message{
+    if(message != nil && message.messageId){
+        [[MessageHandler receivedMessageIdsInstance] removeObject:message.messageId];
     }
     
 }

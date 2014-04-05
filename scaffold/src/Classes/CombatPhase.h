@@ -14,9 +14,11 @@
 @property NSMutableDictionary *battles;
 @property GameState *gameState;
 @property CombatBattle *currentBattle;
+@property NSMutableArray *combatPhaseLog;
 
 
 -(CombatBattle*) updateOrCreateBattleFromJson: (NSDictionary*) json;
 -(id) initWithGameState: (GameState*) _gameState;
+-(void) addLogMessage: (NSString*) message;
 
 @end

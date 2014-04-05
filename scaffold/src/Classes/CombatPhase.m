@@ -12,15 +12,18 @@
 #import "Player.h"
 #import "PlayingCup.h"
 #import "SideLocation.h"
+#import "LogMessage.h"
+#import "Game.h"
 
 @implementation CombatPhase
-@synthesize battles, gameState,currentBattle;
+@synthesize battles, gameState,currentBattle, combatPhaseLog;
 
 -(id) initWithGameState: (GameState*) _gameState{
     self = [super init];
     if(self) {
         battles = [[NSMutableDictionary alloc] init];
         gameState = _gameState;
+        combatPhaseLog = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -31,6 +34,8 @@
         NSLog(@"No battleId given when calling updateOrCreateBattleFromJson!");
         return nil;
     }
+    
+    BOOL isAIDefender = [[json objectForKey:@"isAIDefender"] boolValue];
     
     NSDictionary *attackerDic = [json objectForKey:@"attacker"];
     NSDictionary *defenderDic = [json objectForKey:@"defender"];
@@ -44,7 +49,7 @@
     NSString *locationOfBattleId = [json objectForKey:@"locationOfBattleId"];
     HexLocation *locationOfBattle = [[gameState hexLocations] objectForKey:locationOfBattleId];
     
-    if(attacker == nil || defender == nil || locationOfBattleId == nil) {
+    if(attacker == nil || (defender == nil && !isAIDefender) || locationOfBattleId == nil) {
         NSLog(@"THE ATTACKER OR DEFENDER OR LOCATION IN A BATTLE WITH ID [%@] COULD NOT BE FOUND", battleId);
         return nil;
     }
@@ -52,19 +57,21 @@
     Player *me = [gameState getMe];
     BOOL amIAttacker=NO;
     if([me isEqual:attacker]) {
+        NSLog(@"I Am the attacker");
         amIAttacker = YES;
-    } else if([me isEqual:defender]) {
+    } else if(!isAIDefender && [me isEqual:defender]) {
+        NSLog(@"I Am NOT the attacker");
         amIAttacker = NO;
     } else{
         NSLog(@"WHOAH, why am I parsing a battle for one im not part of?");
         return nil;
     }
     
-    [self updateGameStateFromBattleJson:json];
+    [CombatBattle updateGameState: gameState FromBattleJson:json];
     
     CombatBattle *battle = [battles objectForKey:battleId];
     if(battle == nil) {
-        battle = [[CombatBattle alloc] init];
+        battle = [[CombatBattle alloc] initWithCombatPhase:self];
         [battles setObject:battle forKey:battleId];
         
         [battle setAmIAttacker:amIAttacker];
@@ -73,6 +80,7 @@
         [battle setGameState:gameState];
         [battle setLocationOfBattle:locationOfBattle];
         [battle setBattleId:battleId];
+        [battle setIsAIDefender:isAIDefender];
     }
     
     BOOL isStarted = [[json objectForKey:@"isStarted"] boolValue];
@@ -113,39 +121,11 @@
     return battle;
 }
 
--(void) updateGameStateFromBattleJson:(NSDictionary*) json{
-    NSDictionary *attackerDic = [json objectForKey:@"attacker"];
-    NSDictionary *defenderDic = [json objectForKey:@"defender"];
-    NSArray *hexLocations = [json objectForKey:@"hexLocations"];
-    NSDictionary *sideLocation = [json objectForKey:@"sideLocation"];
-    NSDictionary *playingCup = [json objectForKey:@"playingCup"];
+-(void) addLogMessage: (NSString*) message{
+    LogMessage *msg = [[LogMessage alloc] initWithMessage:message];
+    [self.combatPhaseLog addObject:msg];
     
-    if(hexLocations != nil && ([hexLocations isKindOfClass:[NSArray class]])){
-        [gameState updateHexLocationsFromSerializedJSONArray:hexLocations];
-    }
-    
-    if(sideLocation != nil && ([sideLocation isKindOfClass:[NSDictionary class]])){
-        [gameState.sideLocation updateLocationFromSerializedJSONDictionary:sideLocation];
-    }
-    
-    if(playingCup != nil && ([playingCup isKindOfClass:[NSDictionary class]])){
-        [gameState.playingCup updateLocationFromSerializedJSONDictionary:playingCup];
-    }
-    
-    if(attackerDic != nil) {
-        NSString *attackerId = [attackerDic objectForKey:@"playerId"];
-        if(attackerId != nil) {
-            [[gameState getPlayerById:attackerId] updateFromSerializedJson:attackerDic];
-        }
-    }
-    
-    if(defenderDic != nil) {
-        NSString *defenderId = [defenderDic objectForKey:@"playerId"];
-        if(defenderId != nil) {
-            [[gameState getPlayerById:defenderId] updateFromSerializedJson:attackerDic];
-        }
-    }
-    
+    [Game addLogMessageWithoutVoiceToCurrentGame:message];
 }
 
 @end

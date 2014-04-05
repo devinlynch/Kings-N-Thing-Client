@@ -19,46 +19,46 @@
 @synthesize image = _tileImage;
 @synthesize hilightImage = _hilightImage;
 
+static NSDictionary* textureCache;
+
 -(void) changeOwnerTo: (NSString*) playerId{
-    
-    SPDisplayObjectContainer *container = _tileImage.parent;
-    [_tileImage removeFromParent];
     
     _isHilighted = NO;
     
-    float x = _tileImage.x;
-    float y = _tileImage.y;
-    
+    SPTexture *texture;
     if ([playerId isEqualToString:@"player1"]) {
-        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"red-%@.png",_fileName]];
-        _tileImage.x = x;
-        _tileImage.y = y;
-        _tileImage.owner = self;
-        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
-        [container addChild:_tileImage];
+        texture = [HexTile getOrCreateTexture:[NSString stringWithFormat:@"red-%@.png",_fileName]];
+        //[_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
     } else if ([playerId isEqualToString:@"player2"]) {
-        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"yellow-%@.png",_fileName]];
-        _tileImage.x = x;
-        _tileImage.y = y;
-        _tileImage.owner = self;
-        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
-        [container addChild:_tileImage];
+        texture = [HexTile getOrCreateTexture: [NSString stringWithFormat:@"yellow-%@.png",_fileName]];
+        
     } else if ([playerId isEqualToString:@"player3"]) {
-        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"green-%@.png",_fileName]];
-        _tileImage.x = x;
-        _tileImage.y = y;
-        _tileImage.owner = self;
-        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
-        [container addChild:_tileImage];
+        texture = [HexTile getOrCreateTexture: [NSString stringWithFormat:@"green-%@.png",_fileName]];
+       
     } else if ([playerId isEqualToString:@"player4"]) {
-        _tileImage = [[TileImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"blue-%@.png",_fileName]];
-        _tileImage.x = x;
-        _tileImage.y = y;
-        _tileImage.owner = self;
-        [_tileImage addEventListener:@selector(onTileClick:) atObject:container.parent.parent forType:SP_EVENT_TYPE_TOUCH];
-        [container addChild:_tileImage];
+        texture = [HexTile getOrCreateTexture: [NSString stringWithFormat:@"blue-%@.png",_fileName]];
+        
     }
     
+    if(texture != nil) {
+        [_tileImage setTexture:texture];
+    }
+}
+
++(SPTexture*) getOrCreateTexture: (NSString*) fileName{
+    @synchronized(self){
+        if(textureCache == nil) {
+            textureCache = [[NSMutableDictionary alloc] init];
+        }
+        
+        SPTexture* txt = [textureCache objectForKey:fileName];
+        if(txt == nil) {
+            txt = [[SPTexture alloc] initWithContentsOfFile:fileName];
+            if(txt != nil)
+                [textureCache setValue:txt forKeyPath:fileName];
+        }
+        return txt;
+    }
 }
 
 
@@ -267,6 +267,7 @@
     _terrain = t;
     
     _tileId = [[NSString alloc] initWithString:tileId];
+    _gamePieceId = [[NSString alloc] initWithString:tileId];
 
     _fileName = [[NSString alloc] initWithString:file];
     

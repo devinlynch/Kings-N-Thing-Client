@@ -12,217 +12,212 @@
 #import "InGameServerAccess.h"
 #import "SpecialCharacter.h"
 #import "Utils.h"
-#import "YourPiecesMenu.h"
+#import "PiecesMenu.h"
 #import "EnemyPiecesMenu.h"
+#import "Player.h"
+#import "HexLocation.h"
+#import "InGameServerAccess.h"
 
 @implementation BattleSummaryMenu{
-    SPSprite *_contents;
-    SPSprite *_currentScene;
-    
-    NSMutableArray *_magicCreatures;
-    SpecialCharacter *selectedSpecialCharacter;
-    SPImage *borderImage;
-    
-    
-    int _gameWidth;
-    int _gameHeight;
+
 }
 
--(id) init
-{
-    if ((self = [super init]))
-    {
-        
+-(id) init{
+    self = [super init];
+    if(self) {
         [self setup];
     }
-    
+    return self;
+}
+
+-(id) initWithBattle:(CombatBattle *)battle andController:(CombatPhaseScreenController *)contoller{
+    self = [super initWithBattle:battle andController:contoller];
+    if(self) {
+        [self setup];
+    }
     return self;
 }
 
 
 -(void) setup{
-    
-    _gameWidth = Sparrow.stage.width;
-    _gameHeight = Sparrow.stage.height;
-    
-    _contents = [SPSprite sprite];
-    [self addChild:_contents];
+    [super setup];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"BattleSummaryBackground@2x.png"];
-    
-    //necessary or else it gets placed off screen
     background.x = 0;
     background.y = 0;
     
     [_contents addChild:background];
     
-    //   NSArray *recruits = [NSArray arrayWithObjects:@"specialcharacter_01",@"specialcharacter_02",@"specialcharacter_03",@"specialcharacter_04",@"specialcharacter_05",@"specialcharacter_06",@"specialcharacter_07",@"specialcharacter_08",@"specialcharacter_09",@"specialcharacter_10",@"specialcharacter_11", nil];
     
-    //   _magicCreatures = [NSMutableArray arrayWithArray:recruits];
+    NSString *attackerUserName = _battle.attacker.user.username;
+    NSString *defenderUserName = _battle.defender.user.username;
+    NSString *locationName = _battle.locationOfBattle.locationName;
     
+    // Defender
+    SPTextField *defenderTF = [SPTextField textFieldWithWidth:300 height:120
+                                                         text:[NSString stringWithFormat: @"Defender: %@", defenderUserName]];
+    defenderTF.x = 10;
+    defenderTF.y = 20;
+    defenderTF.fontName = @"ArialMT";
+    defenderTF.fontSize = 20;
+    defenderTF.color = 0x000000;
+    [_contents addChild:defenderTF];
     
+    // Attacker
+    SPTextField *attackerTF = [SPTextField textFieldWithWidth:300 height:120
+                                                         text:[NSString stringWithFormat: @"Attacker: %@", attackerUserName]];
+    attackerTF.x = 10;
+    attackerTF.y = 45;
+    attackerTF.fontName = @"ArialMT";
+    attackerTF.fontSize = 20;
+    attackerTF.color = 0x000000;
+    [_contents addChild:attackerTF];
     
-    int numInRow=1;
-    int row=1;
-    for(NSString *recruitId in _magicCreatures) {
-        SpecialCharacter *gp = [[GameResource getInstance] getSpecialCharacterForId:recruitId];
-        SPButton *_selectedPieceImage;
-        SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
-        _selectedPieceImage = [SPButton buttonWithUpState:text];
-        _selectedPieceImage.x = (_gameWidth/4)*numInRow-70;
-        _selectedPieceImage.y = 40+(90*row);
-        [_selectedPieceImage setName:recruitId];
-        
-        [_selectedPieceImage addEventListener:@selector(didClickOnRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-        
-        [_contents addChild:_selectedPieceImage];
-        numInRow++;
-        if(numInRow>5) {
-            row++;
-            numInRow=1;
-        }
-    }
-    
-    //Username text
-    SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Winner: Username"];
-    welcomeTF.x = 10;
-    welcomeTF.y = 35;
-    welcomeTF.fontName = @"ArialMT";
-    welcomeTF.fontSize = 25;
-    welcomeTF.color = 0xffffff;
-    [_contents addChild:welcomeTF];
-    
-    
-    
-    //Round text
-    SPTextField *roundTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Battle #1"];
-    roundTF.x = 10;
-    roundTF.y = 10;
-    roundTF.fontName = @"ArialMT";
-    roundTF.fontSize = 25;
-    roundTF.color = 0xffffff;
-    [_contents addChild:roundTF];
-    
-    
-    
-    //Action text
-    SPTextField *actionTF = [SPTextField textFieldWithWidth:300 height:120
-                                                      text:@"Your action"];
-    actionTF.x = 10;
-    actionTF.y = 350;
-    actionTF.fontName = @"ArialMT";
-    actionTF.fontSize = 25;
-    actionTF.color = 0xffffff;
-    [_contents addChild:actionTF];
+    // Attacker
+    SPTextField *locationTF = [SPTextField textFieldWithWidth:300 height:120
+                                                         text:[NSString stringWithFormat: @"Location: %@", locationName]];
+    locationTF.x = 10;
+    locationTF.y = 70;
+    locationTF.fontName = @"ArialMT";
+    locationTF.fontSize = 20;
+    locationTF.color = 0x000000;
+    [_contents addChild:locationTF];
 
-
-    
-    
-    
     //Your pieces
     SPTexture *yoursButtonTexture = [SPTexture textureWithContentsOfFile:@"yourpieces.png"];
     SPButton *yoursButton = [SPButton buttonWithUpState:yoursButtonTexture];
-    yoursButton.x = _gameWidth /2 - yoursButton.width/2 + 20;
+    yoursButton.x = _gameWidth /2 - yoursButton.width/2 + 50;
     yoursButton.y = 150;
-    yoursButton.scaleX = yoursButton.scaleY = 0.8;
+    yoursButton.scaleX = yoursButton.scaleY = 0.5;
     [_contents addChild:yoursButton];
     [yoursButton addEventListener:@selector(didClickOnYours:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     //enemy pieces
     SPTexture *enemyButtonTexture = [SPTexture textureWithContentsOfFile:@"enemypieces.png"];
     SPButton *enemyButton = [SPButton buttonWithUpState:enemyButtonTexture];
-    enemyButton.x = _gameWidth /2 - enemyButton.width/2 + 20 ;
-    enemyButton.y = 220;
-    enemyButton.scaleX = enemyButton.scaleY = 0.8;
+    enemyButton.x = _gameWidth /2 - enemyButton.width/2 + 50 ;
+    enemyButton.y = 190;
+    enemyButton.scaleX = enemyButton.scaleY = 0.5;
     [_contents addChild:enemyButton];
     [enemyButton addEventListener:@selector(didClickOnEnemy:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
-    //Retreat Button
-    SPTexture *retreatButtonTexture = [SPTexture textureWithContentsOfFile:@"retreat.png"];
-    SPButton *retreatButton = [SPButton buttonWithUpState:retreatButtonTexture];
-    retreatButton.x = _gameWidth /2 - retreatButton.width/2 + 20;
-    retreatButton.y = 420;
-    retreatButton.scaleX = retreatButton.scaleY = 0.8;
-    [_contents addChild:retreatButton];
-    [retreatButton addEventListener:@selector(didClickOnSkip:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-
     
-    //Done Button
-    SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"keepfighting.png"];
-    SPButton *skipButton = [SPButton buttonWithUpState:skipButtonTexture];
-    skipButton.x = _gameWidth /2 - skipButton.width/2 + 20;
-    skipButton.y = 480;
-    skipButton.scaleX = skipButton.scaleY = 0.8;
-    [_contents addChild:skipButton];
-    [skipButton addEventListener:@selector(didClickOnKeepGoing:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-}
-
--(void) didClickOnRecruit:(SPEvent *) event{
-    SPImage *selectedPiece = (SPImage*)event.target;
     
-    if(borderImage != nil) {
-        [borderImage removeFromParent];
+    NSString *result;
+    
+    BOOL isOver = NO;
+    
+    if(_battle.state == ATTACKER_WON || _battle.state == DEFENDER_WON) {
+        Player *winner;
+        Player *loser;
+        if(_battle.state == ATTACKER_WON) {
+            winner = _battle.attacker;
+            loser = _battle.defender;
+        } else{
+            loser = _battle.attacker;
+            winner = _battle.defender;
+        }
+        
+        result = [NSString stringWithFormat:@"The battle has ended.  The winner is %@.  Use the buttons above to see the result of the battle.", winner.user.username];
+        isOver = YES;
+    } else if(_battle.state == ATTACKER_RETREATED || _battle.state == DEFENDER_REREATED) {
+        Player *retreater;
+        Player *winner;
+        if(_battle.state == ATTACKER_RETREATED) {
+            retreater = _battle.attacker;
+            winner = _battle.defender;
+        } else{
+            winner = _battle.attacker;
+            retreater = _battle.defender;
+        }
+        
+        result = [NSString stringWithFormat:@"The battle has ended.  %@ retreated so %@ has won!.  Use the buttons above to see the result of the battle.", retreater.user.username, winner.user.username];
+        isOver = YES;
+    } else{
+        result = [NSString stringWithFormat:@"The round is over, but there is still more fighting to do.  Would you like to continue or retreat?"];
     }
     
-    selectedSpecialCharacter = [[GameResource getInstance] getSpecialCharacterForId:selectedPiece.name];
-    if(selectedSpecialCharacter != nil) {
-        borderImage = [[SPImage alloc] initWithContentsOfFile:@"borderTile.png"];
-        borderImage.x = selectedPiece.x;
-        borderImage.y = selectedPiece.y;
+    
+    SPTextField *resultText = [SPTextField textFieldWithWidth:300 height:120
+                                                       text:result];
+    resultText.x = 10;
+    resultText.y = 230;
+    resultText.fontName = @"ArialMT";
+    resultText.fontSize = 14;
+    resultText.color = 0x000000;
+    resultText.touchable = NO;
+    [_contents addChild:resultText];
+    
+    if(! isOver ) {
+        //Retreat Button
+        SPTexture *retreatButtonTexture = [SPTexture textureWithContentsOfFile:@"retreat.png"];
+        SPButton *retreatButton = [SPButton buttonWithUpState:retreatButtonTexture];
+        retreatButton.x = _gameWidth /2 - retreatButton.width/2 + 20;
+        retreatButton.y = 420;
+        retreatButton.scaleX = retreatButton.scaleY = 0.8;
+        [_contents addChild:retreatButton];
+        [retreatButton addEventListener:@selector(didClickOnRetreat:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+        
+        
+        //Done Button
+        SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"keepfighting.png"];
+        SPButton *skipButton = [SPButton buttonWithUpState:skipButtonTexture];
+        skipButton.x = _gameWidth /2 - skipButton.width/2 + 20;
+        skipButton.y = 480;
+        skipButton.scaleX = skipButton.scaleY = 0.8;
+        [_contents addChild:skipButton];
+        [skipButton addEventListener:@selector(didClickOnKeepGoing:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+        
+        //Action text
+        SPTextField *actionTF = [SPTextField textFieldWithWidth:300 height:120
+                                                           text:@"Your action"];
+        actionTF.x = 10;
+        actionTF.y = 350;
+        actionTF.fontName = @"ArialMT";
+        actionTF.fontSize = 25;
+        actionTF.color = 0x000000;
+        actionTF.touchable = NO;
+        [_contents addChild:actionTF];
+    } else {
+        //Done Button
+        SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"done.png"];
+        SPButton *skipButton = [SPButton buttonWithUpState:skipButtonTexture];
+        skipButton.x = _gameWidth /2 - skipButton.width/2 + 20;
+        skipButton.y = 480;
+        skipButton.scaleX = skipButton.scaleY = 0.8;
+        [_contents addChild:skipButton];
+        [skipButton addEventListener:@selector(didClickOnDone:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     }
     
-    
-    [_contents addChild:borderImage];
 }
 
-- (void) didClickOnRoll:(SPEvent *) event{
-    NSLog(@"Clicked roll");
-    //TODO: animate the dice roll and display what value the piece got
-    
-    
+
+- (void) didClickOnDone:(SPEvent *) event{
+
 }
 
-- (void) didClickOnSkip:(SPEvent *) event{
+- (void) didClickOnRetreat:(SPEvent *) event{
     NSLog(@"Clicked skip");
-    _contents.visible = NO;
+    [[InGameServerAccess instance] combatDidRetreatOrContinue:YES forBattle:_battle.battleId andRound:_battle.currentRound.roundId withSuccess:^(ServerResponseMessage* message){
+        
+    }];
 }
 
 - (void) didClickOnYours:(SPEvent *) event{
-    NSLog(@"Clicked show your pieces");
-   
-    [self showYourPiecesMenu];
+    [self showPiecesForBattleForMe];
 }
 
 - (void) didClickOnEnemy:(SPEvent *) event{
-    NSLog(@"Clicked show enemy pieces");
-    
-    [self showEnemyPiecesMenu];
+    [self showPiecesForOpposingPlayer];
 }
 
 
 - (void) didClickOnKeepGoing:(SPEvent *) event{
-    NSLog(@"Clicked keep going");
-    
-   
+    [[InGameServerAccess instance] combatDidRetreatOrContinue:NO forBattle:_battle.battleId andRound:_battle.currentRound.roundId withSuccess:^(ServerResponseMessage* message){
+        
+    }];
 }
 
-- (void)showYourPiecesMenu{
-    YourPiecesMenu *yourpiece = [[YourPiecesMenu alloc]init];
-    [self showScene:yourpiece];
-}
-
-- (void)showEnemyPiecesMenu{
-    EnemyPiecesMenu *enemypiece = [[EnemyPiecesMenu alloc]init];
-    [self showScene:enemypiece];
-}
--(void) showScene:(SPSprite *)scene
-{
-    [self addChild:scene];
-    scene.visible = YES;
-    
-}
 
 
 @end

@@ -30,12 +30,21 @@
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
     NSDictionary *battleDic = [dataDic objectForKey:@"battle"];
     
-    CombatPhase *combatPhase = [[[Game currentGame] gameState] getOrCreateCombatPhase];
-    CombatBattle *battle = [combatPhase updateOrCreateBattleFromJson: battleDic];
-    combatPhase.currentBattle = battle;
-    [Utils notifyOnMainQueue:@"combatBattleStarted" withObject:battle];
-    
-     NSLog(@"Finished handling handleBattleStarted message");
+    runOnMainQueueWithoutDeadlocking(^{
+        CombatPhase *combatPhase = [[[Game currentGame] gameState] getOrCreateCombatPhase];
+        CombatBattle *battle = [combatPhase updateOrCreateBattleFromJson: battleDic];
+        combatPhase.currentBattle = battle;
+        
+        if(battle != nil && [battle amIInTheBattle]){
+            [Utils notifyOnMainQueue:@"combatBattleStarted" withObject:battle];
+        }
+        
+        if(battle != nil){
+            [battle addMessageToBattleLog:[NSString stringWithFormat:@"A battle between %@ and %@ has started on %@", battle.attacker.user.username, battle.defender.user.username, battle.locationOfBattle.locationName]];
+        }
+        
+        NSLog(@"Finished handling handleBattleStarted message");
+    });
 }
 
 
@@ -48,13 +57,15 @@
     if(battle == nil)
         return;
     
-    CombatBattleRound *round = [battle createNewRoundFromSerializedJson:dataDic];
-    if(round==nil) {
-        [NSException raise:@"Round could not be created!" format:@""];
-        return;
-    }
-    
-     NSLog(@"Finished handling handleCombatRoundStarted message");
+    runOnMainQueueWithoutDeadlocking(^{
+        CombatBattleRound *round = [battle createNewRoundFromSerializedJson:dataDic];
+        if(round==nil) {
+            [NSException raise:@"Round could not be created!" format:@""];
+            return;
+        }
+        
+         NSLog(@"Finished handling handleCombatRoundStarted message");
+    });
 }
 
 -(void) handleCombatStepStarted: (Event*) event{
@@ -70,7 +81,9 @@
     if(round == nil)
         return;
     
-    [round newStepStarted:[dataDic objectForKey:@"stepName"] withJson:dataDic];
+    runOnMainQueueWithoutDeadlocking(^{
+        [round newStepStarted:[dataDic objectForKey:@"stepName"] withJson:dataDic];
+    });
 }
 
 -(void) handlePlayerTookDamageInBattle: (Event*) event{
@@ -88,9 +101,34 @@
     
     NSString* stepName = [dataDic objectForKey:@"stepName"];
     NSString* playerId = [dataDic objectForKey:@"playerId"];
+    NSDictionary* hexLocationDic = [dataDic objectForKey:@"locationOfBattle"];
     NSArray * gamePiecesTakingHitsIds = [dataDic objectForKey:@"gamePiecesTakingHitsIds"];
     
-    [round player:playerId tookDamageToPieces:gamePiecesTakingHitsIds forStep:stepName];
+    runOnMainQueueWithoutDeadlocking(^{
+        [round player:playerId tookDamageToPieces:gamePiecesTakingHitsIds forStep:stepName];
+        
+        NSString *hexLocId = [hexLocationDic objectForKey:@"locationId"];
+        HexLocation *loc = (HexLocation*)[[[Game currentGame] gameState] getBoardLocationById:hexLocId];
+        if(loc != nil) {
+            [loc updateLocationFromSerializedJSONDictionary:hexLocationDic];
+        }
+    });
+}
+
+-(void)handleRoundResulutionTime: (Event*) event{
+    NSLog(@"Handling handleRoundResulutionTime message");
+    
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    CombatBattleRound *round = [self getRoundOrRaiseExceptionFromJson:dataDic forBattle:battle];
+    if(round == nil)
+        return;
+    
+    [round makeItTimeToRetreatOrContinue];
 }
 
 -(void) handleRetreatCouldNotTakePlace: (Event*) event{
@@ -98,11 +136,31 @@
 }
 
 -(void) handlePlayerRetreatedFromBattle: (Event*) event{
+    NSLog(@"Handling handlePlayerRetreatedFromBattle message");
     
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    runOnMainQueueWithoutDeadlocking(^{
+        [battle handlePlayerRetreated: dataDic];
+    });
 }
 
 -(void) handleBattleOver: (Event*) event{
+    NSLog(@"Handling handleBattleOver message");
     
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    runOnMainQueueWithoutDeadlocking(^{
+        [battle didEndWithJson: dataDic];
+    });
 }
 
 -(CombatBattleRound*) getRoundOrRaiseExceptionFromJson: (NSDictionary*) json forBattle: (CombatBattle*) battle{
@@ -120,7 +178,7 @@
     CombatBattle *battle = [combatPhase currentBattle];
     NSString *battleId = [json objectForKey:@"battleId"];
 
-    if(battle == nil || battleId == nil || [battle.battleId isEqualToString:battleId]) {
+    if(battle == nil || battleId == nil || ![battle.battleId isEqualToString:battleId]) {
         NSLog(@"ERRORRRR!!!!!!!!!!!!!!!!!!  We got a message for a battle that is not current.  The current battle is %@ and the one we expected was %@", battle.battleId, battleId);
         [NSException raise:@"We got a round started message for a battle that is not current." format:@"The current battle is %@ and the one we expected was %@", battle.battleId, battleId];
         return nil;

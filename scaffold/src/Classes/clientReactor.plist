@@ -2,61 +2,60 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>EVENT.33.CLASS</key>
+	<key>EVENT.42.METHOD</key>
+	<string>handleRoundResulutionTime:</string>
+	<key>EVENT.42.CLASS</key>
+	<string>CombatPhaseHandler</string>
+	<key>EVENT.42.TYPE</key>
+	<string>roundResulutionTime</string>
+	<key>EVENT.41.TYPE</key>
+	<string>playerExploredHex</string>
+	<key>EVENT.41.METHOD</key>
+	<string>handlePlayerExploredHex:</string>
+	<key>EVENT.41.CLASS</key>
+	<string>MovementPhaseHandler</string>
+	<key>EVENT.33.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.33.METHOD</key>
 	<string>handleBattleOver:</string>
 	<key>EVENT.33.TYPE</key>
 	<string>battleOver</string>
-    
 	<key>EVENT.34.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.34.METHOD</key>
 	<string>handleBattleStarted:</string>
 	<key>EVENT.34.TYPE</key>
 	<string>battleStarted</string>
-    
-    
 	<key>EVENT.35.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.35.METHOD</key>
 	<string>handleCombatPhaseStarted:</string>
 	<key>EVENT.35.TYPE</key>
 	<string>combatPhaseStarted</string>
-    
-    
 	<key>EVENT.36.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.36.METHOD</key>
 	<string>handleCombatRoundStarted:</string>
 	<key>EVENT.36.TYPE</key>
 	<string>combatRoundStarted</string>
-    
-    
 	<key>EVENT.37.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.37.METHOD</key>
 	<string>handleCombatStepStarted:</string>
 	<key>EVENT.37.TYPE</key>
 	<string>combatStepStarted</string>
-    
-    
 	<key>EVENT.38.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.38.METHOD</key>
 	<string>handlePlayerRetreatedFromBattle:</string>
 	<key>EVENT.38.TYPE</key>
 	<string>playerRetreatedFromBattle</string>
-    
-    
 	<key>EVENT.39.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.39.METHOD</key>
 	<string>handlePlayerTookDamageInBattle:</string>
 	<key>EVENT.39.TYPE</key>
 	<string>playerTookDamageInBattle</string>
-    
-    
 	<key>EVENT.40.CLASS</key>
 	<string>CombatPhaseHandler</string>
 	<key>EVENT.40.METHOD</key>

@@ -15,9 +15,9 @@
     NSMutableDictionary *_creaturePieces;
     NSMutableDictionary *_tilePieces;
     NSMutableDictionary *_fortPieces;
-//    NSMutableDictionary *_magicPieces;
-//    NSMutableDictionary *_treasurePieces;
-//    NSMutableDictionary *_randomPieces;
+    NSMutableDictionary *_magicPieces;
+    NSMutableDictionary *_treasurePieces;
+    NSMutableDictionary *_randomPieces;
     NSMutableDictionary *_cityVillPieces;
     NSMutableDictionary *_nonCityVillPieces;
     NSMutableDictionary *_specialCharacterPieces;

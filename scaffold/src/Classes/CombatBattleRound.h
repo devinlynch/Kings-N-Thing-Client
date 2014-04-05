@@ -42,4 +42,10 @@ typedef enum CombatRoundState {
 
 -(void) newStepStarted: (NSString*) stepName withJson: (NSDictionary*) json;
 -(void) player: (NSString*) playerid tookDamageToPieces: (NSArray*) piecesTakingHits forStep: (NSString*) stepName;
+-(NSString*) stateString;
++(void) subscribeToStepNotifications: (id) subscriber andSelector: (SEL)selector;
++(void) unsubscribeToStepNotifications: (id) subscriber;
+-(void) makeItTimeToRetreatOrContinue;
+
 @end
+

@@ -12,6 +12,7 @@
 #import "GameResource.h"
 #import "Game.h"
 #import "GameState.h"
+#import "AIPlayer.h"
 
 @implementation BoardLocation
 
@@ -39,9 +40,7 @@
                     if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
                         GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
-                        if (piece != nil) {
-                            [self addGamePieceToLocation:piece];
-                        }
+                        [self addGamePieceToLocation:piece];
                     }
                 }
             }
@@ -112,6 +111,23 @@
             [self updateLocationWithPieces:[dic objectForKey:@"gamePieces"]];
         }
     }
+}
+
+-(NSArray*) getAllPiecesForPlayer: (Player*) p{
+    NSMutableArray *pieces  = [[NSMutableArray alloc] init];
+    
+    NSEnumerator *enumerator = [_pieces keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        GamePiece *gp = [_pieces objectForKey:key];
+        if(gp != nil) {
+            if([p isKindOfClass:[AIPlayer class]] && gp.owner == nil)
+                [pieces addObject:gp];
+            else if(gp.owner == p)
+               [pieces addObject:gp];
+        }
+    }
+    return pieces;
 }
 
 

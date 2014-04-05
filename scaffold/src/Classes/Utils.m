@@ -62,7 +62,7 @@
 }
 
 +(void) showAlertWithTitle: (NSString* ) title message: (NSString*) message delegate: (id) delegate cancelButtonTitle: (NSString*) cancelButtonTitle {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    runOnMainQueueWithoutDeadlocking(^{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
@@ -100,4 +100,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:object];
     });
 }
+
+void runOnMainQueueWithoutDeadlocking(void (^block)(void))
+{
+    if ([NSThread isMainThread])
+    {
+        block();
+    }
+    else
+    {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
 @end
