@@ -9,6 +9,7 @@
 #import "Rack.h"
 #import "GameResource.h"
 #import "GamePiece.h"
+#import "Player.h"
 
 @implementation Rack
 
@@ -25,8 +26,8 @@
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                     NSDictionary *gamePieceDic = (NSDictionary*) o;
                     GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
-                    piece.location = self;
-                    piece.owner  = player;
+                    [self addGamePieceToLocation:piece];
+                    [player assignPiece:piece];
                     [_pieces setValue:piece forKey:[piece gamePieceId]];
                 }
             }

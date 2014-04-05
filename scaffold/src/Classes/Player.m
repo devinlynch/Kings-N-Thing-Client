@@ -21,12 +21,12 @@
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self=[super init];
     if(self && json != nil) {
+        _gamePieces = [[NSMutableDictionary alloc] init];
          _user = [[User alloc] initFromJSON:json];
         _username = [[NSString alloc] initWithString:[json objectForKey:@"username"]];
         _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
         _gold =  [[json objectForKey:@"gold"] intValue];
         _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
-        _gamePieces = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -42,6 +42,7 @@
     if(previousOwner != nil && ![previousOwner isKindOfClass:[NSNull class]]) {
         [previousOwner.gamePieces removeObjectForKey:gamePiece.gamePieceId];
     }
+    gamePiece.owner = self;
     [self.gamePieces setObject:gamePiece forKey:gamePiece.gamePieceId];
 }
 
