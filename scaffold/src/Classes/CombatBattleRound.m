@@ -46,12 +46,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"magicStepStarted" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"rangeStepStarted" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"meleeStepStarted" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:subscriber selector:selector name:@"timeForRetreatOrContinue" object:nil];
 }
 
 +(void) unsubscribeToStepNotifications: (id) subscriber {
     [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"magicStepStarted" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"rangeStepStarted" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"meleeStepStarted" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:subscriber name:@"timeForRetreatOrContinue" object:nil];
 }
 
 -(void) player: (NSString*) playerId tookDamageToPieces: (NSArray*) piecesTakingHits forStep: (NSString*) stepName{
@@ -136,6 +138,11 @@
             break;
     }
     return s;
+}
+
+-(void) makeItTimeToRetreatOrContinue{
+    state = WAITING_ON_RETREAT_OR_CONTINUE;
+    [Utils notifyOnMainQueue:@"timeForRetreatOrContinue" withObject:self];
 }
 
 @end

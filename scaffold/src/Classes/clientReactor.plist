@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.42.METHOD</key>
+	<string>handleRoundResulutionTime:</string>
+	<key>EVENT.42.CLASS</key>
+	<string>CombatPhaseHandler</string>
+	<key>EVENT.42.TYPE</key>
+	<string>roundResulutionTime</string>
 	<key>EVENT.41.TYPE</key>
 	<string>playerExploredHex</string>
 	<key>EVENT.41.METHOD</key>

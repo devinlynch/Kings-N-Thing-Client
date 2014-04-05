@@ -45,6 +45,7 @@ typedef enum CombatRoundState {
 -(NSString*) stateString;
 +(void) subscribeToStepNotifications: (id) subscriber andSelector: (SEL)selector;
 +(void) unsubscribeToStepNotifications: (id) subscriber;
+-(void) makeItTimeToRetreatOrContinue;
 
 @end
 

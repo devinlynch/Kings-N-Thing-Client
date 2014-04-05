@@ -115,6 +115,22 @@
     });
 }
 
+-(void)handleRoundResulutionTime: (Event*) event{
+    NSLog(@"Handling handleRoundResulutionTime message");
+    
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    CombatBattleRound *round = [self getRoundOrRaiseExceptionFromJson:dataDic forBattle:battle];
+    if(round == nil)
+        return;
+    
+    [round makeItTimeToRetreatOrContinue];
+}
+
 -(void) handleRetreatCouldNotTakePlace: (Event*) event{
     
 }

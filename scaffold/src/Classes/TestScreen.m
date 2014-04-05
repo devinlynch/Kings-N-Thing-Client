@@ -39,7 +39,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[CombatBattleStepResolutionMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[BattleSummaryMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }

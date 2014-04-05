@@ -27,6 +27,6 @@
 -(void) setup;
 
 
--(void) showPiecesMenuForPlayer: (Player*) p onLocation: (BoardLocation*) location;
+-(void) showPiecesMenuForPlayer: (Player*) p onLocation: (BoardLocation*) location isOpposingPlayer: (BOOL) isOpposingPlayer;
 
 @end

@@ -17,17 +17,19 @@
 @implementation PiecesMenu{    
     GamePiece *_selectedPiece;
     SPImage *borderImage;
+    BOOL _isOpposingPlayer;
 }
 
 @synthesize location = _location;
 @synthesize player = _player;
 
--(id) initForPlayer: (Player*) player onLocation: (BoardLocation*) location withParent: (SPSprite*) parent
+-(id) initForPlayer: (Player*) player onLocation: (BoardLocation*) location withParent: (SPSprite*) parent andIsOpposingPlayer: (BOOL) isOpposingPlayer
 {
     if ((self = [super initFromParent:parent]))
     {
         _player = player;
         _location = location;
+        _isOpposingPlayer = isOpposingPlayer;
         [self setup];
     }
     
@@ -38,7 +40,12 @@
 -(void) setup{
     [super setup];
     
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"YourPiecesBackground@2x.png"];
+    NSString *bgImageName = @"YourPiecesBackground@2x.png";
+    if(_isOpposingPlayer) {
+        bgImageName = @"EnemyPiecesBackground@2x.png";
+    }
+    
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:bgImageName];
     background.x = 0;
     background.y = 0;
     

@@ -41,8 +41,8 @@
     _gameHeight = Sparrow.stage.height;
 }
 
--(void) showPiecesMenuForPlayer: (Player*) p onLocation: (BoardLocation*) location{
-    PiecesMenu* piecesMenu = [[PiecesMenu alloc] initForPlayer:p onLocation:location withParent:self];
+-(void) showPiecesMenuForPlayer: (Player*) p onLocation: (BoardLocation*) location isOpposingPlayer: (BOOL) isOpposingPlayer{
+    PiecesMenu* piecesMenu = [[PiecesMenu alloc] initForPlayer:p onLocation:location withParent:self andIsOpposingPlayer:isOpposingPlayer];
     [piecesMenu show];
 }
 

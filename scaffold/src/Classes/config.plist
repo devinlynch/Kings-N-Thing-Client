@@ -5,7 +5,7 @@
 	<key>shouldPlayVoice</key>
 	<string>NO</string>
 	<key>test_screen_mode</key>
-	<string>no</string>
+	<string>yes</string>
 	<key>test_screen_method</key>
 	<string>testRecruitCharacters:</string>
 </dict>
