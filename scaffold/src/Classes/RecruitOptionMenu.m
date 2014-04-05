@@ -140,12 +140,11 @@
     NSString *rackId = [[me rack1] locationId];
     
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^(ServerResponseMessage *message){
+          dispatch_async(dispatch_get_main_queue(), ^{
         [[me rack1] addGamePieceToLocation:gamePiece];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
-        
         _contents.visible = NO;
-
+          });
     }];
     
 
