@@ -11,7 +11,7 @@
 
 @interface GameLobbyViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
-    NSTimer *lobbyStateChecker;
+    
 }
 @property IBOutlet UILabel *playersInLobbyLabel;
 @property IBOutlet UILabel *playersNeededLabel;
@@ -19,5 +19,6 @@
 @property GameLobby *gameLobby;
 
 -(IBAction)didPressLeave:(id)sender;
++(void) stopLobbyStateChecker;
 
 @end

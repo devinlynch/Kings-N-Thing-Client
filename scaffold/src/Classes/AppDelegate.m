@@ -24,6 +24,7 @@
 #import "ChatScene.h"
 #import "TestScreen.h"
 #import "GameConfig.h"
+#import "GameLobbyViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -93,6 +94,7 @@ void onUncaughtException(NSException *exception)
 
 -(void) handleGameStarted: (NSNotification*) notif{
     dispatch_async(dispatch_get_main_queue(), ^{
+        [GameLobbyViewController stopLobbyStateChecker];
         
         _viewController = [[SPViewController alloc] init];
         
