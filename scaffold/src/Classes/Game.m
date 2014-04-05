@@ -93,6 +93,8 @@ static Game *instance;
 -(void) addLogMessageWithoutVoice: (NSString*) message{
     NSLog(@"%@",message);
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newLogMessage" object:self];
+    
     LogMessage *msg = [[LogMessage alloc] initWithMessage:message];
     [self.logMessages addObject:msg];
 }

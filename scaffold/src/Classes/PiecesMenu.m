@@ -53,7 +53,13 @@
     
 
     
-    NSArray *pieces = [_location getAllPiecesForPlayer:_player];
+    NSArray *pieces;
+    
+    if([_location isKindOfClass:[HexLocation class]]) {
+        pieces = [((HexLocation*)_location) getAllPiecesForPlayerIncludingPiecesInStacks:_player];
+    } else{
+       pieces = [_location getAllPiecesForPlayer:_player];
+    }
     
     int numInRow=1;
     int row=1;
@@ -61,7 +67,7 @@
         SPButton *_selectedPieceImage;
         SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
         _selectedPieceImage = [SPButton buttonWithUpState:text];
-        _selectedPieceImage.x = (_gameWidth/4)*numInRow-70;
+        _selectedPieceImage.x = (_gameWidth/5)*numInRow-65;
         _selectedPieceImage.y = 40+(90*row);
         [_selectedPieceImage setName:gp.gamePieceId];
         

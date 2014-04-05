@@ -122,6 +122,7 @@
     LogMessage *msg = [[LogMessage alloc] initWithMessage:message];
     [self.combatPhaseLog addObject:msg];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newCombatPhaseLog" object:self];
     [Game addLogMessageWithoutVoiceToCurrentGame:message];
 }
 

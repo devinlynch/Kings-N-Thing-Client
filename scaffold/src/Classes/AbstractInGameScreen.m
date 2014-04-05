@@ -34,6 +34,10 @@
 }
 
 -(void) setup {
+    if(_contents != nil) {
+        [_contents removeAllChildren];
+    }
+    
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     

@@ -37,5 +37,5 @@
 -(void) updateLocationWithStacks: (NSArray*) array;
 
 -(void) hilightPossibleMoves;
-
+-(NSArray*) getAllPiecesForPlayerIncludingPiecesInStacks: (Player*) p;
 @end
