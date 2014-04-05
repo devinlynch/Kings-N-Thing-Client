@@ -40,6 +40,8 @@
     
     HexLocation *_location;
     GamePiece *_selectedPiece;
+    Stack    *_selectedStack;
+    SPImage  *_selectedStackImage;
     SPImage  *_selectedPieceImage;
     SPTextField *_selectedText;
 }
@@ -188,11 +190,22 @@
                 [self setupWithLocation:_location];
             });
         }];
+    }else{
+        [_selectedPieceImage removeFromParent];
+        _selectedStack = stack;
+        _selectedStackImage = [[SPImage alloc] initWithTexture:_selectedStack.stackImage.texture];
+        _selectedStackImage.x = _selectedText.x + 100;
+        _selectedStackImage.y = _selectedText.y - 25;
+        [_contents addChild:_selectedStackImage];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:stack];
+
     }
+    
+    
 }
 
 -(void) stackDoubleTap: (Stack*) stack{
-    
+    //bring up stack menu
 }
 
 -(void) onPieceSelected: (SPTouchEvent *) event
@@ -225,13 +238,14 @@
     _selectedPiece = piece;
     
     [_selectedPieceImage removeFromParent];
+    [_selectedStackImage removeFromParent];
     
     _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
     _selectedPieceImage.x = _selectedText.x + 100;
     _selectedPieceImage.y = _selectedText.y - 25;
     [_contents addChild:_selectedPieceImage];
     
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"recruitToBoardFree" object:piece];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:piece];
     
     //_contents.visible = NO;
 }
@@ -254,16 +268,24 @@
                     [newStack setOwner:[[[Game currentGame]gameState]getPlayerById:[[[Game currentGame] gameState]myPlayerId]]];
                     if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player1"]) {
                         newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
+                        newStack.owner = [[[Game currentGame] gameState] getPlayerById:@"player1"];
                     } else if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player2"]) {
                         newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"yellow-stack.png"];
+                        newStack.owner = [[[Game currentGame] gameState] getPlayerById:@"player2"];
                     } else if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player3"]) {
                         newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"green-stack.png"];
+                        newStack.owner = [[[Game currentGame] gameState] getPlayerById:@"player3"];
                     } else if ([[[[Game currentGame] gameState] myPlayerId] isEqualToString:@"player4"]) {
                         newStack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"blue-stack.png"];
+                        newStack.owner = [[[Game currentGame]  gameState] getPlayerById:@"player4"];
                     }
+                    
+                    
                     [newStack.stackImage setOwner:(id<NSCopying>)newStack];
                     [_location addStack:newStack];
                     [_contents removeAllChildren];
+                    [_selectedPieceImage removeFromParent];
+                    _selectedPiece = nil;
                     [self setupWithLocation:_location];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"clearSelectedPiece" object:nil];
                 }
