@@ -9,11 +9,11 @@
 #import "SpecialIncomeCounters.h"
 
 @interface CityVill : SpecialIncomeCounters{
-    NSInteger *_combatValue;
+    int _combatValue;
     //NSString *_fileName;
 }
 
-@property NSInteger *combatValue;
+@property int combatValue;
 @property NSString *fileName;
 
 -(CityVill*) initWithId:(NSString*) cityVillId

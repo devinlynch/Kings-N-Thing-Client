@@ -114,6 +114,13 @@ static ServerAccess *instance;
     } andSuccessCall:nil];
 }
 
+-(void) logout{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: nil];
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:@"account/logout" withParams:dic andDelegateListener: nil andErrorCall:^{
+        NSLog(@"Error doing logout request");
+    } andSuccessCall:nil];
+}
+
 -(void) registerAndLoginWithUsername: (NSString*) username andPassword: (NSString*) password andDelegateListener:(id<LoginProtocol>)delegateListener{
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: username,@"username",password,@"password", nil];
     [self asynchronousRequestOfType:POSTREQUEST toUrl:@"register" withParams:dic andDelegateListener: delegateListener andErrorCall:^{

@@ -216,6 +216,19 @@ static InGameServerAccess *instance;
     return MOVEMENTPHASE_addPiecesToStack;
 }
 
+-(enum InGameRequestTypes) movementPhaseExploreHex: (NSString*) hexLocationId withStack: (NSString*) stackId andPiece: (NSString*) pieceId withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexLocationId forKey:@"hexLocationId"];
+    if(stackId != nil)
+        [params setObject:stackId forKey:@"stackId"];
+    if(pieceId != nil)
+        [params setObject:pieceId forKey:@"gamePieceId"];
+    
+    [self phasePost:@"movement" type:@"exploreHex" params:params requestType:MOVEMENTPHASE_exploreHex withSuccess:success];
+    
+    return MOVEMENTPHASE_exploreHex;
+}
+
 
 -(enum InGameRequestTypes) movementPhaseDoneMakingMoves{
     [self phasePost:@"movement" type:@"playerIsDoneMakingMoves" params:nil requestType:MOVEMENTPHASE_playerIsDoneMakingMoves withSuccess:nil];
@@ -281,7 +294,7 @@ static InGameServerAccess *instance;
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:battleId forKey:@"battleId"];
     [params setObject:roundId forKey:@"roundId"];
-    [params setObject:state forKey:@"state"];
+    [params setObject:state forKey:@"roundState"];
     
     int i = 0;
     for(NSString *pieceId in pieceIds) {
@@ -289,7 +302,7 @@ static InGameServerAccess *instance;
         i++;
     }
     
-    [self phasePost:@"combat" type:@"didRetreatOrContinue" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
+    [self phasePost:@"combat" type:@"lockedInRollAndDamage" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
     
     return COMBAT_lockedInRollAndDamage;
 }

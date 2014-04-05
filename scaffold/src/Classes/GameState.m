@@ -16,6 +16,7 @@
 #import "SideLocation.h"
 #import "CombatPhase.h"
 #import "Utils.h"
+#import "AIPlayer.h"
 
 @implementation GameState
 
@@ -26,9 +27,12 @@
 @synthesize playingCup = _playingCup;
 @synthesize bank = _bank;
 @synthesize currentCombatPhase=_currentCombatPhase;
+@synthesize aiPlayer=_aiPlayer;
+
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
+    
     NSDictionary *_gameStateDic = [json objectForKey:@"gameState"];
     if(self && json != nil) {
         NSArray *playersJsonArr = [_gameStateDic objectForKey:@"players"];
@@ -67,7 +71,20 @@
             _hexLocations = (NSMutableDictionary*)[[NSDictionary alloc] initWithDictionary:locationDic];
         }
     }
+    
+    [self createAiPlayer];
+    
     return self;
+}
+
+-(void) createAiPlayer{
+    _aiPlayer = [[AIPlayer alloc] init];
+    [_aiPlayer setPlayerId:@"ai"];
+    [_aiPlayer setUsername:@"The Computer"];
+    User *u = [[User alloc] init];
+    u.userID = @"ai";
+    u.username =@"The Computer";
+    _aiPlayer.user = u;
 }
 
 -(NSString*) description{
@@ -103,6 +120,11 @@
         if(p != nil && [p.playerId isEqualToString:ID])
             return p;
     }
+    
+    if([_aiPlayer.playerId isEqualToString:ID]){
+        return _aiPlayer;
+    }
+    
     return nil;
 }
 

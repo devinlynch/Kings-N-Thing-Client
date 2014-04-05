@@ -9,10 +9,10 @@
 #import "Thing.h"
 
 @interface SpecialIncomeCounters : Thing{
-    NSInteger *_goldValue;
+    int _goldValue;
 }
 
-@property NSInteger *goldValue;
+@property int goldValue;
 
 
 @end

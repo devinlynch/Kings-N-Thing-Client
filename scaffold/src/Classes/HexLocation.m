@@ -242,7 +242,6 @@
         [stack.location removeStack:stack];
     }
     
-        
     SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
                                    transition:SP_TRANSITION_LINEAR];
     
@@ -316,12 +315,16 @@
         
         if([dic objectForKey:@"ownerId"] != nil) {
             Player *owner  = [self.gameState getPlayerById:[dic objectForKey:@"ownerId"]];
-            [self changeOwnerToPlayer:owner];
+            if(_owner != owner)
+                [self changeOwnerToPlayer:owner];
         }
         
         if([dic objectForKey:@"hexTile"] != nil && [[dic objectForKey:@"hexTile"] isKindOfClass:[NSDictionary class]]){
-            _tile = [[GameResource getInstance] getTileForId:[[dic objectForKey:@"hexTile"] objectForKey:@"id"]];
-            _tile.location = self;
+            HexTile *newTile = [[GameResource getInstance] getTileForId:[[dic objectForKey:@"hexTile"] objectForKey:@"id"]];
+            if(newTile != _tile){
+                _tile = newTile;
+                _tile.location = self;
+            }
         }
     }
     [self setVisited:NO];
@@ -356,6 +359,14 @@
         }
     }
     [self setVisited:NO];
+}
+
+-(void) reAddAllPieceImages {
+    /*(NSEnumerator *enumerator = [_pieces keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        NSDictionary *tmp = [bigUglyDictionary objectForKey:key];
+    }*/
 }
 
 

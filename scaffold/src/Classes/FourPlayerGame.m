@@ -33,6 +33,9 @@
 #import "SpecialIncomeCounters.h"
 #import "UIAlertView+Blocks.h"
 #import "CombatPhaseScreenController.h"
+#import "ServerResponseMessage.h"
+#import "Game.h"
+#import "Utils.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -46,7 +49,6 @@
     int markerCount;
     NSString *placeHex1, *placeHex2, *placeHex3;
     
-    NSInteger _phase;
     NSInteger _placementStep;
     NSInteger _wasBought;
     
@@ -378,7 +380,8 @@
                                                object:nil];
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
-    [_contents addChild:_combatPhaseController];
+    
+    [Utils showLoaderOnView:Sparrow.currentController.view animated:YES];
 }
 
 
@@ -564,7 +567,7 @@
 }
 
 -(void) goldCollection: (NSNotification*) notif{
-    
+    PhaseType previousPhase = _phase;
     _phase = GOLD;
     
     [_stateText setText:@"State: Gold Collection"];
@@ -608,8 +611,9 @@
     [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"Total Gold: %@", total]];
     [[GoldCollection getInstance] setUsername:username];
     
-    [_contents addChild:[GoldCollection getInstance]];
-    [[GoldCollection getInstance] setVisible:YES];
+    if(previousPhase != COMBAT){
+        [self showGoldCollection];
+    }
 }
 
 -(void) collectedGold: (NSNotification*) notif{
@@ -665,6 +669,7 @@
     
     [[InGameServerAccess instance] setupPhaseReadyForPlacement];
     
+    [Utils removeLoaderOnView:Sparrow.currentController.view animated:YES];
 }
 
 -(void) setupOver: (NSNotification*) notif{
@@ -1487,31 +1492,86 @@
 //                             }];
             
             //CAME FROM THE RACK BUT WE DUN CARE YET
-            [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [location addGamePieceToLocation:_selectedPiece];
-                    [self clearSelectedPiece:nil];
-                    [self unHilightAllTiles];
-                });}];
-
+            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
             
-            }else{
-            [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [location addGamePieceToLocation:_selectedPiece];
-                    [self clearSelectedPiece:nil];
-                    [self unHilightAllTiles];
-                });
-            }];
+        }else{
+            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
         }
     } else if (_selectedStack != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addStack:_selectedStack];
-                [self clearSelectedPiece:nil];
-                [self unHilightAllTiles];
-            });
-        }];
+        [self movePiece:nil orStack:_selectedStack toHexLocation:location];
+    }
+}
+
+
+/**
+ This does the actual moving of a piece or a stack.  You can give it either a stack or a piece to move, or both.  I seperated
+ the code into blocks so that as we add logic we don't have to duplicate
+ */
+-(void) movePiece: (GamePiece*) piece orStack: (Stack*) stack toHexLocation: (HexLocation*) location {
+    BOOL isExploring = NO;
+    
+    if(location.owner == nil) {
+        isExploring = YES;
+    }
+    
+    void (^performAfterExploring)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        [self didGetResponseForServerForExploring: message forLocation:location];
+    };
+    
+    void (^performAlwaysOnSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        [self clearSelectedPiece:nil];
+        [self unHilightAllTiles];
+        
+        if(isExploring) {
+            performAfterExploring(message);
+        }
+    };
+    
+    void (^performForGamePieceAfterSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:piece];
+            performAlwaysOnSuccess(message);
+        });
+    };
+    
+    void (^performForStackAfterSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addStack:stack];
+            performAlwaysOnSuccess(message);
+        });
+    };
+    
+
+    
+    
+    if(piece != nil) {
+        if( ! isExploring ) {
+            [[InGameServerAccess instance] movementPhaseMoveGamePiece:piece.gamePieceId toLocation:location.locationId withSuccess:performForGamePieceAfterSuccess];
+        } else{
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:nil andPiece:piece.gamePieceId withSuccess:performForGamePieceAfterSuccess];
+        }
+    }
+    
+    if(stack != nil) {
+        if( ! isExploring ) {
+            [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
+        } else {
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForGamePieceAfterSuccess];
+        }
+    }
+}
+
+-(void) didGetResponseForServerForExploring: (ServerResponseMessage*) message forLocation: (HexLocation*) location {
+    NSLog(@"Got response from server when exploring");
+    
+    NSDictionary *map = message.data.map;
+    BOOL didCapture = [[map objectForKey:@"didCapture"] boolValue];
+    NSArray *defendingPieceIds = [map objectForKey:@"defendingPieceIds"];
+    
+    if(didCapture) {
+        [_state.game addLogMessage:[NSString stringWithFormat:@"There were no creatures found on %@.  You captured it!", location.locationName]];
+    } else{
+        [_state.game addLogMessage:[NSString stringWithFormat:@"%ld wild creatures were found on %@.  You will need to battle them during the combat phase!", defendingPieceIds.count, location.locationName]];
     }
 }
 
@@ -1585,7 +1645,26 @@
     }
 }
 
+-(void) addChildToContents: (SPDisplayObject*) sprite{
+    [_contents addChild:sprite];
+}
 
+-(void) setPhase: (PhaseType) phase{
+    _phase = phase;
+}
+-(PhaseType) getPhase{
+    return _phase;
+}
 
+-(void) reinitializeCombatScreenAndShowGold{
+    [_combatPhaseController removeFromParent];
+    _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    [self showGoldCollection];
+}
+
+-(void) showGoldCollection{
+    [_contents addChild:[GoldCollection getInstance]];
+    [[GoldCollection getInstance] setVisible:YES];
+}
 
 @end

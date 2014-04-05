@@ -7,7 +7,8 @@
 //
 
 #import "SPSprite.h"
+#import "AbstractCombatPhaseBattleScreen.h"
 
-@interface BattleSummaryMenu : SPSprite
+@interface BattleSummaryMenu : AbstractCombatPhaseBattleScreen
 
 @end

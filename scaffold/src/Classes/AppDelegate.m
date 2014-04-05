@@ -23,6 +23,7 @@
 #import "ConstructionMenu.h"
 #import "ChatScene.h"
 #import "TestScreen.h"
+#import "GameConfig.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -44,14 +45,9 @@ void onUncaughtException(NSException *exception)
     
     NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
     
-
+    [GameConfig loadFromDictionary:config];
    
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Hello and welcome to Kings and Things"];
-    [utterance setRate:0.4f];
-    AVSpeechSynthesizer * synthesizer = [[AVSpeechSynthesizer alloc] init];
-    [synthesizer speakUtterance:utterance];
 
     NSString *isTestScreenMode = [config objectForKey:@"test_screen_mode"];
     

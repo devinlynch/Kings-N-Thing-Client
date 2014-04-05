@@ -34,7 +34,7 @@
     
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_01-01"
-                                               terrainType:[Terrain getForestInstance] goldValue:1 fileName:@"T_Income_367.png"] forKey:@"specialIncomeCounter_01"];
+                                               terrainType:[Terrain getForestInstance] goldValue:1 fileName:@"T_Income_367.png"] forKey:@"specialIncomeCounter_01-01"];
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_02-01"
                                                terrainType:[Terrain getFrozenInstance] goldValue:3 fileName:@"T_Income_368.png"] forKey:@"specialIncomeCounter_02-01"];
@@ -58,10 +58,10 @@
                                                terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_366.png"] forKey:@"specialIncomeCounter_08-01"];
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_09-01"
-                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_08-01"];
+                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_09-01"];
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_09-02"
-                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_08-02"];
+                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_09-02"];
     
     
     return nonCityVill;

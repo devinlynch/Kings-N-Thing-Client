@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>shouldPlayVoice</key>
+	<string>NO</string>
 	<key>test_screen_mode</key>
 	<string>no</string>
 	<key>test_screen_method</key>
