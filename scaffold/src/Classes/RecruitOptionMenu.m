@@ -137,10 +137,10 @@
     Player *me = [gs getPlayerById:[gs myPlayerId]];
       // [gs addLogMessage: @"You added the game piece to your rack."];
     
-    NSString *rackId = [[me rack2] locationId];
+    NSString *rackId = [[me rack1] locationId];
     
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^(ServerResponseMessage *message){
-        [[me rack2] addGamePieceToLocation:gamePiece];
+        [[me rack1] addGamePieceToLocation:gamePiece];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
         

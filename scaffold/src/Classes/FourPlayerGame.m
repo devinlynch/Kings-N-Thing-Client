@@ -781,7 +781,6 @@
     }
     
     Rack *rack1 = [player rack1];
-    Rack *rack2 = [player rack2];
     
     float rackX = _rackZone.x;
     float rackY = _rackZone.y;
@@ -798,21 +797,6 @@
         ScaledGamePiece *img = [[rack1.pieces objectForKey:key] pieceImage];
         img.scaleX = .5f;
         img.scaleY = .5f;
-        img.x = rackX + prevX;
-        img.y = rackY;
-        prevX += img.width + 5;
-        [_contents addChild:img];
-        i++;
-    }
-    
-    for (NSString *key in rack2.pieces) {
-        if (i % 6 == 0) {
-            rackY = rackY + 40;
-            prevX = 0;
-        }
-        ScaledGamePiece *img = [[rack2.pieces objectForKey:key] pieceImage];
-        img.scaleX = .6;
-        img.scaleY = .6f;
         img.x = rackX + prevX;
         img.y = rackY;
         prevX += img.width + 5;

@@ -12,7 +12,6 @@
 
 @synthesize user = _user;
 @synthesize rack1 = _rack1;
-@synthesize rack2 = _rack2;
 @synthesize gold = _gold;
 @synthesize playerId = _playerId;
 @synthesize gamePieces = _gamePieces;
@@ -27,7 +26,6 @@
         _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
         _gold =  [[json objectForKey:@"gold"] intValue];
         _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
-        _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"] withOwner:self];
         _gamePieces = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -64,7 +62,6 @@
     }
     
     BOOL didCreateRack1 =YES ;
-    BOOL didCreateRack2 =NO;
     
     if(_rack1 == nil && [json objectForKey:@"rack1"] != nil){
         didCreateRack1=YES;
@@ -72,17 +69,8 @@
     }
     
     
-    if(_rack2 == nil && [json objectForKey:@"rack2"] != nil){
-        didCreateRack2 = YES;
-        _rack2 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack2"] withOwner:self];
-    }
-    
     if(!didCreateRack1 && _rack1 != nil && [json objectForKey:@"rack1"] != nil) {
         [_rack1 updateLocationFromSerializedJSONDictionary:[json objectForKey:@"rack1"]];
-    }
-    
-    if(!didCreateRack2 && _rack2 != nil && [json objectForKey:@"rack2"] != nil) {
-        [_rack2 updateLocationFromSerializedJSONDictionary:[json objectForKey:@"rack2"]];
     }
     
 }

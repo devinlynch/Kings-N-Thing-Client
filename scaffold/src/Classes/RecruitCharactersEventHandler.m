@@ -159,6 +159,7 @@
     NSString *playerId = [dataDic objectForKey:@"playerId"];
     BOOL didRecruit = [[dataDic objectForKey:@"didRecruit"] boolValue];
     int numPostRolls = [[dataDic objectForKey:@"numPostRolls"] intValue];
+    NSMutableDictionary* specialCharDic = [dataDic objectForKey:@"specialCharacter"];
     
     Game *game = [Game currentGame];
     GameState* gameState = game.gameState;
@@ -194,6 +195,7 @@
     
     NSLog(@"Succesfully handled roundOfRecruitCharactersOver message");
     dispatch_async(dispatch_get_main_queue(), ^{
+        [piece updateFromSerializedJson:specialCharDic forGameState:gameState];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"roundOfRecruitCharactersOver" object:[NSNumber numberWithBool:didRecruit]];
     });
 }

@@ -138,8 +138,6 @@
     for(Player *p in self.players) {
         if(p != nil && [p.rack1.locationId isEqualToString:ID])
             return p.rack1;
-        if(p != nil && [p.rack2.locationId isEqualToString:ID])
-            return p.rack2;
     }
     
     HexLocation *hexLocation = [self.hexLocations objectForKey:ID];

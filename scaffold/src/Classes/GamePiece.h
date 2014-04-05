@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ScaledGamePiece, BoardLocation, Player;
+@class ScaledGamePiece, BoardLocation, Player, GameState;
 
 @interface GamePiece : NSObject{
     NSString *_gamePieceId;
@@ -30,5 +30,6 @@
 @property NSString *name;
 @property BOOL isBluff;
 
+-(void) updateFromSerializedJson: (NSDictionary*) json forGameState: (GameState*) gameState;
 
 @end
