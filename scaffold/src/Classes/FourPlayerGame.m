@@ -49,7 +49,6 @@
     int markerCount;
     NSString *placeHex1, *placeHex2, *placeHex3;
     
-    NSInteger _phase;
     NSInteger _placementStep;
     NSInteger _wasBought;
     
@@ -568,7 +567,7 @@
 }
 
 -(void) goldCollection: (NSNotification*) notif{
-    
+    PhaseType previousPhase = _phase;
     _phase = GOLD;
     
     [_stateText setText:@"State: Gold Collection"];
@@ -612,8 +611,9 @@
     [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"Total Gold: %@", total]];
     [[GoldCollection getInstance] setUsername:username];
     
-    [_contents addChild:[GoldCollection getInstance]];
-    [[GoldCollection getInstance] setVisible:YES];
+    if(previousPhase != COMBAT){
+        [self showGoldCollection];
+    }
 }
 
 -(void) collectedGold: (NSNotification*) notif{
@@ -1649,5 +1649,22 @@
     [_contents addChild:sprite];
 }
 
+-(void) setPhase: (PhaseType) phase{
+    _phase = phase;
+}
+-(PhaseType) getPhase{
+    return _phase;
+}
+
+-(void) reinitializeCombatScreenAndShowGold{
+    [_combatPhaseController removeFromParent];
+    _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    [self showGoldCollection];
+}
+
+-(void) showGoldCollection{
+    [_contents addChild:[GoldCollection getInstance]];
+    [[GoldCollection getInstance] setVisible:YES];
+}
 
 @end

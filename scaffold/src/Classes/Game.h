@@ -36,5 +36,6 @@
 -(void) addChatMessage: (GameChatMessage*) message;
 -(void) addLogMessage: (NSString*) message;
 +(void) addLogMessageToCurrentGame: (NSString*) message;
++(void) addLogMessageWithoutVoiceToCurrentGame: (NSString*) message;
 
 @end

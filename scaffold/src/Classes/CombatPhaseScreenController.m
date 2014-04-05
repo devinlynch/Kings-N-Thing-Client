@@ -13,6 +13,7 @@
 #import "BattleStartedMenu.h"
 #import "CombatBattleStepMenu.h"
 #import "CombatBattleRound.h"
+#import "BattleSummaryMenu.h"
 
 @implementation CombatPhaseScreenController
 {
@@ -31,6 +32,7 @@
     self = [self init];
     if(self) {
         _fourPlayerGame = fourPlayerGame;
+        
         [self setup];
     }
     return self;
@@ -49,7 +51,7 @@
 
 -(void) combatPhaseStarted: (NSNotification*) notif{
     _combatPhase =(CombatPhase*) notif.object;
-        
+    [_fourPlayerGame setPhase:COMBAT];
     [self handleStartCombat];
 }
 
@@ -60,7 +62,8 @@
                                              selector:@selector(combatBattleStarted:)
                                                  name:@"combatBattleStarted"
                                                object:nil];
-    
+    [CombatBattle subscribeToBattleNotifications:self andSelector:@selector(didGetUpdatedBattle:)];
+
     [_fourPlayerGame addChildToContents: self];
     [self setVisible: YES];
     [self showWaitingScreen];
@@ -98,7 +101,7 @@
         [self handleNextScreenForRound:battle.currentRound];
         [CombatBattleRound subscribeToStepNotifications:self andSelector:@selector(newRoundState:)];
     } else {
-        // TODO
+        [self handleDidGetUpdatedBattle:battle];
     }
 }
 
@@ -124,12 +127,29 @@
         [battleStepMenu show];
     } else if (state ==  WAITING_ON_RETREAT_OR_CONTINUE) {
         NSLog(@"Waiting on retreat or continue");
-        // TODO
+        [self removeScreens];
+        BattleSummaryMenu *battleSummaryMenu  = [[BattleSummaryMenu alloc] initWithBattle: round.battle andController:self];
+        [battleSummaryMenu show];
     } else{
-        NSLog(@"Round nover");
-        // TODO
+        NSLog(@"Round nover inside handleNextScreenForRound, not doing anything");
+    }
+}
+
+-(void) didGetUpdatedBattle: (NSNotification*) notif{
+    [self handleDidGetUpdatedBattle: (CombatBattle*) notif.object];
+}
+
+-(void) handleDidGetUpdatedBattle: (CombatBattle*) battle{
+    if(battle != _combatPhase.currentBattle) {
+        NSLog(@"Not handling battle because its not the current one");
     }
     
+    NSLog(@"In handleDidGetUpdatedBattle");
+    if(battle.isEnded) {
+        [self removeScreens];
+        BattleSummaryMenu *battleSummaryMenu  = [[BattleSummaryMenu alloc] initWithBattle: battle andController:self];
+        [battleSummaryMenu show];
+    }
 }
 
 
@@ -142,6 +162,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(FourPlayerGame*) fourPlayerGame
+{
+    return _fourPlayerGame;
+}
 
+-(void) handleGoToNextPhase{
+    [_fourPlayerGame reinitializeCombatScreenAndShowGold];
+}
 
 @end

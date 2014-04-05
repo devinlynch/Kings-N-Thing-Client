@@ -86,11 +86,14 @@ static Game *instance;
             [synthesizer speakUtterance:utterance];
         });
     }
-    
+    [self addLogMessageWithoutVoice:message];
+   
+}
+
+-(void) addLogMessageWithoutVoice: (NSString*) message{
     NSLog(@"%@",message);
     
     LogMessage *msg = [[LogMessage alloc] initWithMessage:message];
-    
     [self.logMessages addObject:msg];
 }
 
@@ -98,6 +101,12 @@ static Game *instance;
     Game *g = [self currentGame];
     if(g != nil)
        [g addLogMessage:message];
+}
+
++(void) addLogMessageWithoutVoiceToCurrentGame: (NSString*) message{
+    Game *g = [self currentGame];
+    if(g != nil)
+        [g addLogMessageWithoutVoice:message];
 }
 
 

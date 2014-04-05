@@ -16,6 +16,7 @@
 #import "EnemyPiecesMenu.h"
 #import "Player.h"
 #import "HexLocation.h"
+#import "InGameServerAccess.h"
 
 @implementation BattleSummaryMenu{
 
@@ -140,10 +141,11 @@
     SPTextField *resultText = [SPTextField textFieldWithWidth:300 height:120
                                                        text:result];
     resultText.x = 10;
-    resultText.y = 210;
+    resultText.y = 230;
     resultText.fontName = @"ArialMT";
     resultText.fontSize = 14;
-    resultText.color = 0xffffff;
+    resultText.color = 0x000000;
+    resultText.touchable = NO;
     [_contents addChild:resultText];
     
     if(! isOver ) {
@@ -174,6 +176,7 @@
         actionTF.fontName = @"ArialMT";
         actionTF.fontSize = 25;
         actionTF.color = 0x000000;
+        actionTF.touchable = NO;
         [_contents addChild:actionTF];
     } else {
         //Done Button
@@ -195,7 +198,9 @@
 
 - (void) didClickOnRetreat:(SPEvent *) event{
     NSLog(@"Clicked skip");
-    _contents.visible = NO;
+    [[InGameServerAccess instance] combatDidRetreatOrContinue:YES forBattle:_battle.battleId andRound:_battle.currentRound.roundId withSuccess:^(ServerResponseMessage* message){
+        
+    }];
 }
 
 - (void) didClickOnYours:(SPEvent *) event{
@@ -208,9 +213,9 @@
 
 
 - (void) didClickOnKeepGoing:(SPEvent *) event{
-    NSLog(@"Clicked keep going");
-    
-   
+    [[InGameServerAccess instance] combatDidRetreatOrContinue:NO forBattle:_battle.battleId andRound:_battle.currentRound.roundId withSuccess:^(ServerResponseMessage* message){
+        
+    }];
 }
 
 

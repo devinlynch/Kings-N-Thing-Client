@@ -40,7 +40,7 @@
         }
         
         if(battle != nil){
-            [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"A battle between %@ and %@ has started on %@", battle.attacker.user.username, battle.defender.user.username, battle.locationOfBattle.locationName]];
+            [battle addMessageToBattleLog:[NSString stringWithFormat:@"A battle between %@ and %@ has started on %@", battle.attacker.user.username, battle.defender.user.username, battle.locationOfBattle.locationName]];
         }
         
         NSLog(@"Finished handling handleBattleStarted message");
@@ -136,11 +136,31 @@
 }
 
 -(void) handlePlayerRetreatedFromBattle: (Event*) event{
+    NSLog(@"Handling handlePlayerRetreatedFromBattle message");
     
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    runOnMainQueueWithoutDeadlocking(^{
+        [battle handlePlayerRetreated: dataDic];
+    });
 }
 
 -(void) handleBattleOver: (Event*) event{
+    NSLog(@"Handling handleBattleOver message");
     
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    CombatBattle* battle = [self getBattleOrRaiseExceptionFromJson:dataDic];
+    if(battle == nil)
+        return;
+    
+    runOnMainQueueWithoutDeadlocking(^{
+        [battle didEndWithJson: dataDic];
+    });
 }
 
 -(CombatBattleRound*) getRoundOrRaiseExceptionFromJson: (NSDictionary*) json forBattle: (CombatBattle*) battle{

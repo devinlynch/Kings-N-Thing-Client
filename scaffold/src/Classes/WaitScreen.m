@@ -7,12 +7,17 @@
 //
 
 #import "WaitScreen.h"
+#import "CombatPhaseScreenController.h"
+#import "FourPlayerGame.h"
 
 @implementation WaitScreen{
     SPTextField *_logText;
     
     UIScrollView *_scrollView;
     UIView *view;
+    
+    SPTextField *goldtext;
+    SPButton *goldButton;
 }
 
 -(id) init
@@ -36,6 +41,13 @@
 
 
 -(void) setup{
+    [super setup];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(newPhaseStarted:)
+                                                 name:@"newPhaseStarted"
+                                               object:nil];
+    
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
     
@@ -97,61 +109,29 @@
     
     
     
+    goldtext = [SPTextField textFieldWithWidth:300 height: 30 text:@"Gold Collection Has Started"];
+    goldtext.x = 10;
+    goldtext.y = _gameWidth + 100;
+    goldtext.fontSize = 23;
+    goldtext.color = SP_WHITE;
+    goldtext.visible = NO;
+    [_contents addChild:goldtext];
     
-    // Fun tings
-    
-    SPTextField *boredText = [SPTextField textFieldWithWidth:130 height: 30 text:@"Bored?"];
-    boredText.x = _gameWidth / 2 - boredText.width / 2;
-    boredText.y = _gameWidth + 100;
-    boredText.fontSize = 23;
-    boredText.color = SP_WHITE;
-    [_contents addChild:boredText];
-    
-    
-    SPImage *darkZone2 = [[SPImage alloc] initWithContentsOfFile:@"DarkZone2.png"];
-    darkZone2.x = 50;
-    darkZone2.y = 450;
-    darkZone2.scaleY = 0.5;
-    darkZone2.scaleX = 0.3;
-    [_contents addChild:darkZone2];
-    
-    SPTextField *playBullsEyeText = [SPTextField textFieldWithWidth:130 height: 30 text:@"Play BullsEye"];
-    playBullsEyeText.x = 20;
-    playBullsEyeText.y = 480;
-    playBullsEyeText.fontSize = 10;
-    playBullsEyeText.color = SP_WHITE;
-    [_contents addChild:playBullsEyeText];
-    
-    SPTexture *bullsEyeButtonTexture = [SPTexture textureWithContentsOfFile:@"BullseyeBtn@2x.png"];
-    SPButton *bullsEyeButton = [SPButton buttonWithUpState:bullsEyeButtonTexture];
-    bullsEyeButton.x = 67;
-    bullsEyeButton.y = 455;
-    [_contents addChild:bullsEyeButton];
-    
-    [bullsEyeButton addEventListener:@selector(playBullsEye:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-
+    SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"done.png"];
+    goldButton = [SPButton buttonWithUpState:skipButtonTexture];
+    goldButton.x = _gameWidth /2 - goldButton.width/2 + 20;
+    goldButton.y = 480;
+    goldButton.scaleX = goldButton.scaleY = 0.8;
+    goldButton.visible = NO;
+    [_contents addChild:goldButton];
+    [goldButton addEventListener:@selector(didClickOnSkip:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
 
 }
 
--(void) playBullsEye:(SPTouchEvent*) event{
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    
-    
-    if (touches.count == 1) {
-        
-        // Find card id, show pop up of description
-        NSLog(@"PLAYYYYY");
-        
-        
-    } else if (touches.count == 2){
-        
-        //Selects the card
-        
-        
-    }
-    
-    
+-(void) didClickOnSkip: (SPEvent*) event{
+    [_combatController handleGoToNextPhase];
 }
+
 
 -(void) hide{
     [super hide];
@@ -161,6 +141,23 @@
 -(void) show{
     [super show];
     _scrollView.hidden = NO;
+    
+    [self showGoToNextPhaseIfNeeded];
+}
+
+-(void) newPhaseStarted: (NSNotification*) notif{
+    [self showGoToNextPhaseIfNeeded];
+}
+
+-(void) showGoToNextPhaseIfNeeded{
+    if(_combatController.fourPlayerGame.getPhase != COMBAT) {
+        goldtext.visible = YES;
+        goldButton.visible = YES;
+    }
+}
+
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

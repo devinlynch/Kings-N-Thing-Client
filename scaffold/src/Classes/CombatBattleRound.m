@@ -11,6 +11,8 @@
 #import "Player.h"
 #import "GameResource.h"
 #import "Utils.h"
+#import "Player.h"
+#import "GamePiece.h"
 
 @implementation CombatBattleRound
 @synthesize battle,roundId,state,roundNumber, magicData,magicAttackerPiecesTakingHits,meleeData,meleeAttackerPiecesTakingHits,
@@ -28,15 +30,27 @@
     if([stepName isEqualToString:@"magicStep"]) {
         magicData = [[CombatBattleRoundStepData alloc] initFromJson:json forGameState:battle.gameState];
         state = MAGIC_STEP;
-        [Utils notifyOnMainQueue:@"magicStepStarted" withObject:self];
+        
+        if(battle.amIInTheBattle)
+            [Utils notifyOnMainQueue:@"magicStepStarted" withObject:self];
+        
+        [battle addMessageToBattleLog:[NSString stringWithFormat: @"The magic step has started!"]];
     } else if([stepName isEqualToString:@"rangedStep"]){
         rangeData = [[CombatBattleRoundStepData alloc] initFromJson:json forGameState:battle.gameState];
         state = RANGE_STEP;
-        [Utils notifyOnMainQueue:@"rangeStepStarted" withObject:self];
+        
+        if(battle.amIInTheBattle)
+            [Utils notifyOnMainQueue:@"rangeStepStarted" withObject:self];
+        
+        [battle addMessageToBattleLog:[NSString stringWithFormat: @"The range step has started!"]];
     } else if([stepName isEqualToString:@"meleeStep"]) {
         meleeData = [[CombatBattleRoundStepData alloc] initFromJson:json forGameState:battle.gameState];
         state = MELEE_STEP;
-        [Utils notifyOnMainQueue:@"meleeStepStarted" withObject:self];
+        
+        if(battle.amIInTheBattle)
+            [Utils notifyOnMainQueue:@"meleeStepStarted" withObject:self];
+        
+        [battle addMessageToBattleLog:[NSString stringWithFormat: @"The melee step has started!"]];
     } else{
         NSLog(@"ERROR:  Step name [%@] is not a valid step", stepName);
     }
@@ -58,14 +72,34 @@
 
 -(void) player: (NSString*) playerId tookDamageToPieces: (NSArray*) piecesTakingHits forStep: (NSString*) stepName{
     BOOL isAttacker = NO;
+    Player *player;
     if(battle.attacker != nil && [playerId isEqualToString:battle.attacker.playerId]) {
         isAttacker = YES;
+        player = battle.attacker;
     } else if(battle.defender != nil && [playerId isEqualToString:battle.defender.playerId]){
         isAttacker = NO;
+        player = battle.defender;
     } else{
         NSLog(@"ERROR:  Player [%@] is not bart of the battle %@", playerId, battle.battleId);
         return;
     }
+    
+    
+    NSMutableString *logMessage = [[NSMutableString alloc] init];
+    [logMessage appendString:[NSString stringWithFormat: @"%@ took damage to: ", player.user.username]];
+    int count = 0;
+    for(NSString *gpId in piecesTakingHits) {
+        GamePiece *gp = [[GameResource getInstance] getPieceForId:gpId];
+        if(gp != nil) {
+            [logMessage appendString:[NSString stringWithFormat: @"%@,", gp.name]];
+            count++;
+        }
+    }
+    
+    if(count > 0) {
+        [battle addMessageToBattleLog:logMessage];
+    }
+    
     
     if([stepName isEqualToString:@"magicStep"]) {
         if(isAttacker) {
@@ -142,7 +176,9 @@
 
 -(void) makeItTimeToRetreatOrContinue{
     state = WAITING_ON_RETREAT_OR_CONTINUE;
-    [Utils notifyOnMainQueue:@"timeForRetreatOrContinue" withObject:self];
+    
+    if(battle.amIInTheBattle)
+        [Utils notifyOnMainQueue:@"timeForRetreatOrContinue" withObject:self];
 }
 
 @end

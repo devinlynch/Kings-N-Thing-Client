@@ -21,6 +21,7 @@
 -(id) initWithFourPlayerGame:(FourPlayerGame*) fourPlayerGame;
 -(void) readyForBattleToStart: (CombatBattle*) battle;
 -(void) doneWithRoundStep: (CombatBattleRound*) round;
-
+-(FourPlayerGame*) fourPlayerGame;
+-(void) handleGoToNextPhase;
 
 @end
