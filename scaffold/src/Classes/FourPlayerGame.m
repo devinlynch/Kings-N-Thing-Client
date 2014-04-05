@@ -105,6 +105,8 @@
     SPButton *menuButton;
     
     CombatPhaseScreenController *_combatPhaseController;
+    
+    SPButton * moveDoneButton;
 }
 
 -(id) init
@@ -193,25 +195,25 @@
 
     
     //Income labels
-    _Player1LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player1 Income:"];
+    _Player1LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player1 Gold:"];
     _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2) + 25;
     _Player1LabelText.y = 335;
     _Player1LabelText.color = SP_RED;
     [_contents addChild:_Player1LabelText];
     
-    _Player2LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Income:"];
+    _Player2LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Gold:"];
     _Player2LabelText.x = _gameWidth - _Player2LabelText.width - (_Player2LabelText.width/2) + 25;
     _Player2LabelText.y = 335 + _Player1LabelText.height / 2;
     _Player2LabelText.color = SP_YELLOW;
     [_contents addChild:_Player2LabelText];
     
-    _Player3LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Income:"];
+    _Player3LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Gold:"];
     _Player3LabelText.x = _gameWidth - _Player3LabelText.width - (_Player3LabelText.width/2)+ 25;
     _Player3LabelText.y = 335 + _Player3LabelText.height;
     _Player3LabelText.color = SP_GREEN;
     [_contents addChild:_Player3LabelText];
     
-    _Player4LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Income:"];
+    _Player4LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Gold:"];
     _Player4LabelText.x = _gameWidth - _Player4LabelText.width - (_Player4LabelText.width/2)+ 25;
     _Player4LabelText.y = 335 + _Player4LabelText.height*1.5;
     _Player4LabelText.color = SP_BLUE;
@@ -243,6 +245,7 @@
     _Player4IncomeText.color = SP_BLUE;
     [_contents addChild:_Player4IncomeText];
     
+    [self refreshUserGold];
     
     _rackZone = [[SPImage alloc] initWithContentsOfFile:@"DarkZone2.png"];
     _rackZone.x = 15;
@@ -260,13 +263,13 @@
     
     //Movement done button
     SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"done-button.png"];
-    SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
+    moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
     moveDoneButton.x = _gameWidth - 32 * 2.3;
     moveDoneButton.y = _gameHeight - _rackZone.height;
     moveDoneButton.scaleX = moveDoneButton.scaleY = 0.41;
     [_contents addChild:moveDoneButton];
     [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    
+    moveDoneButton.visible = NO;
     
     SPTexture *menuTexture = [SPTexture textureWithContentsOfFile:@"menu.png"];
     menuButton = [SPButton buttonWithUpState:menuTexture];
@@ -380,6 +383,11 @@
                                                  name:@"didStartRecruitCharactersPhase"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerGoldChanged:)
+                                                 name:@"playerGoldChanged"
+                                               object:nil];
+    
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
     
     [Utils showLoaderOnView:Sparrow.currentController.view animated:YES];
@@ -444,14 +452,9 @@
     
 }
 
-
-
-
 -(void) recruitToBoardBought: (NSNotification*) notif{
     
     _wasBought = WAS_BOUGHT;
-    
-    
     
     GamePiece *piece = (GamePiece*) notif.object;
     
@@ -577,40 +580,20 @@
     
     NSMutableDictionary *dic = notif.object;
     
-    
-    
     NSMutableDictionary *myGoldDic = [dic objectForKey:_state.myPlayerId];
-    
     
     NSString *total = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[myGoldDic objectForKey:@"totalGold"]]];
     NSString *income = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[myGoldDic objectForKey:@"income"]]];
     
     
-    NSString *username;
+    NSString *username = [[[_state getMe] user] username];
     
-    for(Player *p in _state.players){
-        if ([p.playerId isEqualToString:_state.myPlayerId]) {
-            username = [[NSString alloc] initWithString:p.username];
-        }
-        [p setGold:[[[dic objectForKey:p.playerId] objectForKey:@"totalGold"] intValue]];
-        if ([p.playerId isEqualToString:@"player1"]) {
-           [ _Player1IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
-            
-        } else  if ([p.playerId isEqualToString:@"player2"]) {
-            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player2"] objectForKey:@"totalGold"] integerValue]]];
-            
-        } else  if ([p.playerId isEqualToString:@"player3"]) {
-            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player3"] objectForKey:@"totalGold"] integerValue]]];
-            
-        } else  if ([p.playerId isEqualToString:@"player4"]) {
-            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player4"] objectForKey:@"totalGold"] integerValue]]];
-
-        }
-    }
     
     [[GoldCollection getInstance] setIncome:[NSString stringWithFormat:@"Income: %@", income]];
     [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"Total Gold: %@", total]];
     [[GoldCollection getInstance] setUsername:username];
+    
+    [self refreshUserGold];
     
     if(previousPhase != COMBAT){
         [self showGoldCollection];
@@ -1433,9 +1416,11 @@
 }
 
 -(void) recruitWasFree:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
+    GamePiece *p = _selectedPiece;
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:_selectedPiece];
+            [location addGamePieceToLocation:p];
+            [_state.getMe assignPiece:p];
             [self clearSelectedPiece:nil];
 
         });
@@ -1444,9 +1429,11 @@
 }
 
 -(void) recruitWasBought:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
+    GamePiece *p = _selectedPiece;
+    [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:_selectedPiece];
+            [location addGamePieceToLocation:p];
+            [_state.getMe assignPiece:p];
             [self clearSelectedPiece:nil];
         });
     }];
@@ -1583,6 +1570,7 @@
 {
     [self addChild:scene];
     scene.visible = YES;
+    [_stateText setText:@"State:  Wait..."];
 }
 
 -(void) playerMovedPieceToNewLocation: (NSNotification*) notif{
@@ -1592,9 +1580,11 @@
 
 -(void) moveDone:(SPTouchEvent*)event {
     [[InGameServerAccess instance] movementPhaseDoneMakingMoves];
+    moveDoneButton.visible = NO;
 }
 
 -(void) yourTurnToMoveInMovement : (NSNotification*) notif{
+    moveDoneButton.visible = YES;
     [_stateText setText:@"State:  Your turn"];
 }
 
@@ -1653,4 +1643,40 @@
     [[GoldCollection getInstance] setVisible:YES];
 }
 
+
+-(void) refreshUserGold{
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:@"player1"]) {
+            [ _Player1IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+            
+        } else  if ([p.playerId isEqualToString:@"player2"]) {
+            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+            
+        } else  if ([p.playerId isEqualToString:@"player3"]) {
+            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+            
+        } else  if ([p.playerId isEqualToString:@"player4"]) {
+            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+        }
+    }
+    
+    int size  = (int)_state.players.count;
+    if(size < 4) {
+        [_Player4IncomeText removeFromParent];
+        [_Player4LabelText removeFromParent];
+    }
+    if(size <3) {
+        [_Player3IncomeText removeFromParent];
+        [_Player3LabelText removeFromParent];
+    }
+    if(size <2) {
+        [_Player2IncomeText removeFromParent];
+        [_Player2LabelText removeFromParent];
+    }
+}
+
+
+-(void) playerGoldChanged: (NSNotification*) notif{
+    [self refreshUserGold];
+}
 @end

@@ -32,12 +32,12 @@
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
     self = [super init];
+    _players = [[NSMutableArray alloc] init];
     
     NSDictionary *_gameStateDic = [json objectForKey:@"gameState"];
     if(self && json != nil) {
         NSArray *playersJsonArr = [_gameStateDic objectForKey:@"players"];
         if(playersJsonArr != nil){
-            _players = [[NSMutableArray alloc] init];
             for(id o in playersJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                     NSDictionary *playerDic = (NSDictionary*) o;

@@ -51,7 +51,7 @@
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = -60;
+    background.y = 0;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];
