@@ -7,6 +7,7 @@
 //
 
 #import "NonCityVill.h"
+#import "ScaledGamePiece.h"
 
 @implementation NonCityVill
 
@@ -22,12 +23,33 @@
     
     _gamePieceId = [[NSString alloc] initWithString:nonCityVillId];
     _terrain = type;
-    _goldValue = &value;
+    _goldValue = value;
     _fileName = [[NSString alloc] initWithString:name];
+    
+    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:name andOwner:self];
+    [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
     
     return self;
 }
 
+
+-(void) creatureDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:[self pieceImage] andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch *clicks = [touches objectAtIndex:0];
+        if (clicks.tapCount == 2){
+            NSLog(@"le double click");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:self];
+        }
+        
+    }
+    
+}
 
 +(NSMutableDictionary*) initializeAllNonCityVill{
     NSMutableDictionary *nonCityVill = [[NSMutableDictionary alloc]init];

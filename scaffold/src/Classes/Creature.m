@@ -25,10 +25,10 @@
     _combatValue = value;
     _combatType = type;
     _terrain = t;
-    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
     _fileName = [[NSString alloc] initWithString:filename];
     _bluffImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Back.png" andOwner:self];
     [_bluffImage setVisible:NO];
+    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
     [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     _name = name;
 

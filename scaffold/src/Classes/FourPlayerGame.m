@@ -491,6 +491,10 @@
     
     GamePiece *piece = (GamePiece*) notif.object;
     
+    if(piece == nil){
+        NSLog(@"GOD DAMNNIT");
+    }
+    
     _selectedPiece = piece;
     
     [_selectedPieceImage removeFromParent];
