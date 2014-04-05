@@ -57,9 +57,13 @@ static NSMutableSet* receivedMessageIds;
             return;
         }
         
-        [self didHandleMessage:responseMessage];
+        
         
         Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
+        
+        if( ! [responseMessage.type isEqualToString:@"newMessages"] )
+            [self didHandleMessage:responseMessage];
+        
         [e setRequestParams:params];
         [e setDelegateListener:delegate];
         [e setReceivedMessageType:HTTP_MESSAGE_TYPE];

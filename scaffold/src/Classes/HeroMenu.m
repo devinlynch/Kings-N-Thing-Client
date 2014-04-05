@@ -104,6 +104,7 @@
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;
     welcomeTF.color = 0xffffff;
+    welcomeTF.touchable = NO;
     [_contents addChild:welcomeTF];
     
     //During the Recruiting Heroes Phase, choose one unowned face-up hero from

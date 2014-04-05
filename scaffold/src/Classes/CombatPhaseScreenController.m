@@ -16,9 +16,7 @@
 #import "BattleSummaryMenu.h"
 
 @implementation CombatPhaseScreenController
-{
-    WaitScreen *_waitScreen;
-}
+
 
 -(id) init{
     self = [super init];
@@ -36,6 +34,16 @@
         [self setup];
     }
     return self;
+}
+
+-(void) reinitializeForFourPlayerGame: (FourPlayerGame*) fourPlayerGame{
+    [self removeFromParent];
+    [self removeAllChildren];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    _fourPlayerGame = fourPlayerGame;
+    _combatPhase = nil;
+    _waitScreen = nil;
+    [self setup];
 }
 
 -(void) setup{
