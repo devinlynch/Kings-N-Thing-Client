@@ -36,6 +36,7 @@
 #import "ServerResponseMessage.h"
 #import "Game.h"
 #import "Utils.h"
+#import "RackPiecesMenu.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -245,8 +246,6 @@
     _Player4IncomeText.color = SP_BLUE;
     [_contents addChild:_Player4IncomeText];
     
-    [self refreshUserGold];
-    
     _rackZone = [[SPImage alloc] initWithContentsOfFile:@"DarkZone2.png"];
     _rackZone.x = 15;
     _rackZone.y = _gameHeight - _rackZone.height - _rackZone.height/4 + 15;
@@ -260,6 +259,16 @@
     
     
     [_contents addChild:_rackZone];
+    
+    // Expand Rack Button
+    SPTexture *expandtext = [SPTexture textureWithContentsOfFile:@"expand@2x.png"];
+    SPButton* expandButton = [SPButton buttonWithUpState:expandtext];
+    expandButton.x = _gameWidth - 65 * 2.3;
+    expandButton.y = _gameHeight - _rackZone.height + 66;
+    expandButton.scaleX = expandButton.scaleY = 0.71;
+    [_contents addChild:expandButton];
+    [expandButton addEventListener:@selector(expandRack:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
     
     //Movement done button
     SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"done-button.png"];
@@ -386,6 +395,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(playerGoldChanged:)
                                                  name:@"playerGoldChanged"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(rackUpdated:)
+                                                 name:@"rackUpdated"
                                                object:nil];
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
@@ -642,6 +656,8 @@
 
     }
     
+    [self refreshUserGold];
+    
     [_playerIdText setText:_state.myPlayerId];
     
     [_contents addChild:_playerIdText];
@@ -755,36 +771,34 @@
 }
 
 -(void) drawRack{
-    Player *player;
-    
-    for(Player *p in _state.players){
-        if ([p.playerId isEqualToString:[_state myPlayerId]]) {
-            player = p;
-        }
-    }
+    Player *player = [_state getMe];
     
     Rack *rack1 = [player rack1];
     
     float rackX = _rackZone.x;
     float rackY = _rackZone.y;
-    
     float prevX = 0;
     
-    int i = 1;
     
+    int i = 1;
     for (NSString *key in rack1.pieces) {
         if (i % 6 == 0) {
             rackY = rackY + 40;
             prevX = 0;
         }
-        ScaledGamePiece *img = [[rack1.pieces objectForKey:key] pieceImage];
+        ScaledGamePiece *img = [[[GameResource getInstance] getPieceForId:key] pieceImage];
         img.scaleX = .5f;
         img.scaleY = .5f;
         img.x = rackX + prevX;
         img.y = rackY;
         prevX += img.width + 5;
-        [_contents addChild:img];
+        if(img != nil)
+            [_contents addChild:img];
         i++;
+        
+        if(i > 10) {
+            break;
+        }
     }
     
     
@@ -1528,7 +1542,7 @@
         if( ! isExploring ) {
             [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
         } else {
-            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForGamePieceAfterSuccess];
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForStackAfterSuccess];
         }
     }
 }
@@ -1664,14 +1678,23 @@
     if(size < 4) {
         [_Player4IncomeText removeFromParent];
         [_Player4LabelText removeFromParent];
+    } else{
+        [self addChild:_Player4IncomeText];
+        [self addChild:_Player4LabelText];
     }
     if(size <3) {
         [_Player3IncomeText removeFromParent];
         [_Player3LabelText removeFromParent];
+    } else{
+        [self addChild:_Player3IncomeText];
+        [self addChild:_Player3LabelText];
     }
     if(size <2) {
         [_Player2IncomeText removeFromParent];
         [_Player2LabelText removeFromParent];
+    } else{
+        [self addChild:_Player2IncomeText];
+        [self addChild:_Player2LabelText];
     }
 }
 
@@ -1679,4 +1702,26 @@
 -(void) playerGoldChanged: (NSNotification*) notif{
     [self refreshUserGold];
 }
+
+static RackPiecesMenu *rackMenu;
+-(void) expandRack: (SPEvent*) e{
+    Player* me  = [_state getMe];
+    BoardLocation *bl = me.rack1;
+    
+    
+    if(rackMenu == nil)
+        rackMenu = [[RackPiecesMenu alloc] initForPlayer:me onLocation:bl withParent:self andIsOpposingPlayer:NO];
+    else{
+        [rackMenu hide];
+        [rackMenu setup];
+    }
+    
+    
+    [rackMenu show];
+}
+
+-(void) rackUpdated: (NSNotification*) notif{
+    [self drawRack];
+}
+
 @end

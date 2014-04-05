@@ -8,7 +8,11 @@
 
 #import "SPSprite.h"
 #import <UIKit/UIDevice.h>
+#import "AbstractInGameScreen.h"
 
-@interface Log : SPSprite
+@interface Log : AbstractInGameScreen
+
++(Log*) getInstanceFromParent: (SPSprite *)parent;
+-(void) updateLogs;
 
 @end

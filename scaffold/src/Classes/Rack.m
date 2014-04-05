@@ -36,4 +36,10 @@
     }
     return self;
 }
+
+-(void) addGamePieceToLocation:(GamePiece *)piece {
+    [super addGamePieceToLocation:piece];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"rackUpdated" object:self];
+}
 @end

@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AbstractInGameScreen.h"
 
-@interface ChatScene : SPSprite <UITextFieldDelegate>
+@interface ChatScene : AbstractInGameScreen <UITextFieldDelegate>
+
++(ChatScene*) getInstanceFromParent: (SPSprite*) parent;
+-(void) updateChat;
 
 @end

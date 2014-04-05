@@ -15,6 +15,7 @@
 #import "GameState.h"
 #import "Game.h"
 #import "Terrain.h"
+#import "AIPlayer.h"
 
 @implementation HexLocation
 
@@ -369,5 +370,22 @@
     }*/
 }
 
+-(NSArray*) getAllPiecesForPlayerIncludingPiecesInStacks: (Player*) p{
+    NSMutableArray *pieces  = [NSMutableArray arrayWithArray:[self getAllPiecesForPlayer:p]];
+    
+    NSEnumerator *enumerator = [_stacks keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        Stack *stack = [_stacks objectForKey:key];
+        if(stack != nil) {
+            NSArray *piecesInStack = [stack getAllPiecesForPlayer:p];
+            if([p isKindOfClass:[AIPlayer class]] && stack.owner == nil)
+                [pieces addObjectsFromArray:piecesInStack];
+            else if(stack.owner == p)
+                [pieces addObjectsFromArray:piecesInStack];
+        }
+    }
+    return pieces;
+}
 
 @end

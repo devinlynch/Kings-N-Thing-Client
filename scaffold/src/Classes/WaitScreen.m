@@ -9,6 +9,10 @@
 #import "WaitScreen.h"
 #import "CombatPhaseScreenController.h"
 #import "FourPlayerGame.h"
+#import "LogMessage.h"
+#import "CombatPhase.h"
+#import "Game.h"
+#import "GameState.h"
 
 @implementation WaitScreen{
     SPTextField *_logText;
@@ -18,6 +22,8 @@
     
     SPTextField *goldtext;
     SPButton *goldButton;
+    NSMutableArray *logMessages;
+    UITextView *_textView;
 }
 
 -(id) init
@@ -48,6 +54,11 @@
                                                  name:@"newPhaseStarted"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(newLog:)
+                                                 name:@"newCombatPhaseLog"
+                                               object:nil];
+    
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
     
@@ -75,23 +86,12 @@
     [_contents addChild:darkZone];
     
     
-    //Array to hold the logs
-    NSMutableArray *log = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < 50; i++){
-    [log addObject:@"test1"];
-    }
-    
-    //TextView to add in scrollView
-    
-    UITextView *_textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 10, 200, 200)];
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 10, 200, 200)];
     _textView.backgroundColor= [UIColor clearColor];
     _textView.editable = NO;
     _textView.textColor = [UIColor whiteColor];
     
-    //Seperate each line
-    _textView.text = [log componentsJoinedByString:@"\n"];
-    
+    [self updateLogFromCombatPhase];
     
     //Add scroll to scene
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(_gameWidth / 2 - darkZone.width / 2 + 15, _gameWidth / 2.2 + 25, 200, 200)];
@@ -159,6 +159,23 @@
 
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+-(void) updateLogFromCombatPhase{
+    CombatPhase* phase = [[[Game currentGame] gameState] currentCombatPhase];
+    [logMessages removeAllObjects];
+    for(LogMessage *msg in phase.combatPhaseLog) {
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"hh:mm:ss"];
+        NSString *formattedDate = [format stringFromDate:msg.date];
+        [logMessages addObject:[NSString stringWithFormat:@"[%@]: %@", formattedDate, msg.message]];
+    }
+    _textView.text = [logMessages componentsJoinedByString:@"\n"];
+}
+
+-(void) newLog: (NSNotification*) notif{
+    [self updateLogFromCombatPhase];
 }
 
 @end

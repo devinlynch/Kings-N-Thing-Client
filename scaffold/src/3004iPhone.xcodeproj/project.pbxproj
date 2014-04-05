@@ -299,6 +299,8 @@
 		9914029718EE1ADA003F105E /* hilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4173890F18E4DA1100934A1F /* hilight.png */; };
 		9914029F18EE6014003F105E /* AIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9914029E18EE6014003F105E /* AIPlayer.m */; };
 		991402A318EE6C14003F105E /* GameConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 991402A218EE6C14003F105E /* GameConfig.m */; };
+		9921AF6418F081AF006AB537 /* expand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9921AF6318F081AF006AB537 /* expand@2x.png */; };
+		9921AF6818F08936006AB537 /* RackPiecesMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9921AF6718F08935006AB537 /* RackPiecesMenu.m */; };
 		992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613E018E3496F0036CA53 /* leavegame@2x.png */; };
 		992613E518E38FC30036CA53 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992613E418E38FC30036CA53 /* config.plist */; };
 		992613E918E390710036CA53 /* TestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 992613E818E390710036CA53 /* TestScreen.m */; };
@@ -864,6 +866,9 @@
 		9914029E18EE6014003F105E /* AIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIPlayer.m; sourceTree = "<group>"; };
 		991402A118EE6C14003F105E /* GameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		991402A218EE6C14003F105E /* GameConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConfig.m; sourceTree = "<group>"; };
+		9921AF6318F081AF006AB537 /* expand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand@2x.png"; sourceTree = "<group>"; };
+		9921AF6618F08935006AB537 /* RackPiecesMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RackPiecesMenu.h; sourceTree = "<group>"; };
+		9921AF6718F08935006AB537 /* RackPiecesMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackPiecesMenu.m; sourceTree = "<group>"; };
 		992613E018E3496F0036CA53 /* leavegame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leavegame@2x.png"; sourceTree = "<group>"; };
 		992613E418E38FC30036CA53 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		992613E718E390710036CA53 /* TestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScreen.h; sourceTree = "<group>"; };
@@ -1540,6 +1545,7 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				9921AF6318F081AF006AB537 /* expand@2x.png */,
 				9909A67218EAE7560092B7B6 /* continue.png */,
 				992613EA18E3B0CF0036CA53 /* borderTile.png */,
 				DEF9FF2518A803490057FAEB /* Backgrounds */,
@@ -1952,6 +1958,8 @@
 				9978235318EF21FF001DC5C3 /* CombatBattleStepMenu.m */,
 				9978235518EF350C001DC5C3 /* CombatBattleStepResolutionMenu.h */,
 				9978235618EF350C001DC5C3 /* CombatBattleStepResolutionMenu.m */,
+				9921AF6618F08935006AB537 /* RackPiecesMenu.h */,
+				9921AF6718F08935006AB537 /* RackPiecesMenu.m */,
 			);
 			name = "Combat Scenes";
 			sourceTree = "<group>";
@@ -2562,6 +2570,7 @@
 				417388B218E4924800934A1F /* C_Fort_376.png in Resources */,
 				41FA0FF518EB6E140048A0E4 /* upArrow@2x.png in Resources */,
 				DEB800C318E4C4160041A48E /* roll.png in Resources */,
+				9921AF6418F081AF006AB537 /* expand@2x.png in Resources */,
 				DE494E5F18BF70F10042312D /* forest-tile.png in Resources */,
 				4173882818E4922B00934A1F /* T_Desert_115.png in Resources */,
 				4173888818E4922B00934A1F /* T_Swamp_069.png in Resources */,
@@ -2896,6 +2905,7 @@
 				41852B951893458600BFD1B0 /* KeychainItemWrapper.m in Sources */,
 				4131C2FC188876AC009775EA /* LoginMenu.m in Sources */,
 				DE04CA4818D67450006F5271 /* HeroMenu.m in Sources */,
+				9921AF6818F08936006AB537 /* RackPiecesMenu.m in Sources */,
 				4131C2B318876C9B009775EA /* HexLocation.m in Sources */,
 				990BEFB7188F223700D7CA03 /* ServerResponseMessage.m in Sources */,
 				99FD44C018E20DF400EC0FB3 /* RecruitCharactersEventHandler.m in Sources */,

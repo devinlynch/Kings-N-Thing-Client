@@ -179,14 +179,14 @@ static SideMenu *instance = nil;
 
 
 -(void)showLogMenu{
-    Log *log = [[Log alloc]init];
-    [self showScene:log];
+    Log *log = [Log getInstanceFromParent:self.parent];
+    [log show];
 }
 
 
 - (void)showChat{
-    ChatScene *chat = [[ChatScene alloc]init];
-    [self showScene:chat];
+    ChatScene *chat = [ChatScene getInstanceFromParent:self.parent];
+    [chat show];
 }
 
 - (void)showSuchTeamMenu{
