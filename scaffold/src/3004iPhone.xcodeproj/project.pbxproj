@@ -301,6 +301,7 @@
 		991402A318EE6C14003F105E /* GameConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 991402A218EE6C14003F105E /* GameConfig.m */; };
 		9921AF6418F081AF006AB537 /* expand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9921AF6318F081AF006AB537 /* expand@2x.png */; };
 		9921AF6818F08936006AB537 /* RackPiecesMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9921AF6718F08935006AB537 /* RackPiecesMenu.m */; };
+		9921AF6C18F0BDEF006AB537 /* ConstructionPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9921AF6B18F0BDEF006AB537 /* ConstructionPhaseHandler.m */; };
 		992613E118E3496F0036CA53 /* leavegame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613E018E3496F0036CA53 /* leavegame@2x.png */; };
 		992613E518E38FC30036CA53 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992613E418E38FC30036CA53 /* config.plist */; };
 		992613E918E390710036CA53 /* TestScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 992613E818E390710036CA53 /* TestScreen.m */; };
@@ -869,6 +870,8 @@
 		9921AF6318F081AF006AB537 /* expand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand@2x.png"; sourceTree = "<group>"; };
 		9921AF6618F08935006AB537 /* RackPiecesMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RackPiecesMenu.h; sourceTree = "<group>"; };
 		9921AF6718F08935006AB537 /* RackPiecesMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RackPiecesMenu.m; sourceTree = "<group>"; };
+		9921AF6A18F0BDEF006AB537 /* ConstructionPhaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstructionPhaseHandler.h; sourceTree = "<group>"; };
+		9921AF6B18F0BDEF006AB537 /* ConstructionPhaseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstructionPhaseHandler.m; sourceTree = "<group>"; };
 		992613E018E3496F0036CA53 /* leavegame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leavegame@2x.png"; sourceTree = "<group>"; };
 		992613E418E38FC30036CA53 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		992613E718E390710036CA53 /* TestScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScreen.h; sourceTree = "<group>"; };
@@ -1761,6 +1764,8 @@
 				99FD44BF18E20DF400EC0FB3 /* RecruitCharactersEventHandler.m */,
 				99C7604D18E745F6004021A6 /* CombatPhaseHandler.h */,
 				99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */,
+				9921AF6A18F0BDEF006AB537 /* ConstructionPhaseHandler.h */,
+				9921AF6B18F0BDEF006AB537 /* ConstructionPhaseHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -2943,6 +2948,7 @@
 				9978234B18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m in Sources */,
 				4131C2B618876CAE009775EA /* Player.m in Sources */,
 				41B01C051898321D00CA876D /* Move.m in Sources */,
+				9921AF6C18F0BDEF006AB537 /* ConstructionPhaseHandler.m in Sources */,
 				DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */,
 				DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */,
 				DE48621418A9868B00272B79 /* Log.m in Sources */,

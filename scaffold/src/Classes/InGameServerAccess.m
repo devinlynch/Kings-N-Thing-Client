@@ -110,6 +110,10 @@ static InGameServerAccess *instance;
     }andSuccessCall:success andRequestType:requestType];
 }
 
+-(void) phasePost: (NSString*) phase type: (NSString*) type params: (NSMutableDictionary*) params requestType: (InGameRequestTypes) requestType withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:[NSString stringWithFormat:@"phase/%@/%@", phase, type] withParams:params andDelegateListener:delegateListener andErrorCall:error andSuccessCall:success andRequestType:requestType];
+}
+
 // Setup
 -(enum InGameRequestTypes) setupPhaseReadyForPlacement{
     [self phasePost:@"setup" type:@"readyForPlacement" params:nil requestType:SETUPPHASE_readyForPlacement withSuccess:nil];
@@ -305,6 +309,24 @@ static InGameServerAccess *instance;
     [self phasePost:@"combat" type:@"lockedInRollAndDamage" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
     
     return COMBAT_lockedInRollAndDamage;
+}
+
+-(enum InGameRequestTypes) constructionBuiltFortOnHex: (NSString*) hexId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexId forKey:@"hexId"];
+    
+    [self phasePost:@"construction" type:@"didBuyFort" params:params requestType:CONS_BUILD_FORT withSuccess:success andError:error];
+    
+    return CONS_BUILD_FORT;
+}
+
+-(enum InGameRequestTypes) constructionUpgradedFort: (NSString*) fortId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:fortId forKey:@"fortId"];
+    
+    [self phasePost:@"construction" type:@"didUpgradeFort" params:params requestType:CONS_UPGRADE_FORT withSuccess:success andError:error];
+    
+    return CONS_UPGRADE_FORT;
 }
 
 

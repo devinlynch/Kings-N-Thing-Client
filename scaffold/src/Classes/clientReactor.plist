@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.44.TYPE</key>
+	<string>playerWon</string>
+	<key>EVENT.44.CLASS</key>
+	<string>ConstructionPhaseHandler</string>
+	<key>EVENT.44.METHOD</key>
+	<string>handlePlayerWon:</string>
+	<key>EVENT.43.TYPE</key>
+	<string>playerMadeMoveInConstruction</string>
+	<key>EVENT.43.CLASS</key>
+	<string>ConstructionPhaseHandler</string>
+	<key>EVENT.43.METHOD</key>
+	<string>handlePlayerMadeMoveInConstruction:</string>
 	<key>EVENT.42.METHOD</key>
 	<string>handleRoundResulutionTime:</string>
 	<key>EVENT.42.CLASS</key>

@@ -21,6 +21,8 @@
 #import "CombatBattleStepMenu.h"
 #import "CombatBattleStepResolutionMenu.h"
 
+#import "ConstructionMenu.h"
+
 @implementation TestScreen
 
 -(SPViewController*) testRecruitCharacters: (UIWindow*) _window{
@@ -39,7 +41,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[WaitScreen class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[ConstructionMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }

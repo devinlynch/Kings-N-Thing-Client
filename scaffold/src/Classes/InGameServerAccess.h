@@ -29,7 +29,10 @@ typedef enum InGameRequestTypes {
     RECRUITCHARS_POSTROLL,
     CHAT_SENDMESSAGE,
     COMBAT_lockedInRollAndDamage,
-    COMBAT_didRetreatOrContinue
+    COMBAT_didRetreatOrContinue,
+    
+    CONS_UPGRADE_FORT,
+    CONS_BUILD_FORT
 } InGameRequestTypes;
 
 
@@ -88,4 +91,9 @@ void (^successBlock)(ServerResponseMessage*);
 // Combat
 -(enum InGameRequestTypes) combatDidRetreatOrContinue: (BOOL) isRetreating forBattle: (NSString*) battleId andRound: (NSString*) roundId withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) combatLockedInRollAndDamageWithPiecesTakingDamage: (NSArray*) pieceIds forBattle: (NSString*) battleId andRound: (NSString*) roundId andRoundState: (NSString*) state withSuccess:( void (^)(ServerResponseMessage * message))success;
+
+// Construction
+
+-(enum InGameRequestTypes) constructionBuiltFortOnHex: (NSString*) hexId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error;
+-(enum InGameRequestTypes) constructionUpgradedFort: (NSString*) fortId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error;
 @end
