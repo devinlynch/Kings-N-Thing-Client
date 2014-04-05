@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "SPSprite.h"
 
-@class FourPlayerGame, CombatPhase, CombatBattle, CombatBattleRound;
+@class FourPlayerGame, CombatPhase, CombatBattle, CombatBattleRound, WaitScreen;
 
 @interface CombatPhaseScreenController : SPSprite
 {
     FourPlayerGame *_fourPlayerGame;
     CombatPhase *_combatPhase;
+    WaitScreen *_waitScreen;
 }
 
 
@@ -23,5 +24,7 @@
 -(void) doneWithRoundStep: (CombatBattleRound*) round;
 -(FourPlayerGame*) fourPlayerGame;
 -(void) handleGoToNextPhase;
+-(void) showWaitingScreen;
+-(void) reinitializeForFourPlayerGame: (FourPlayerGame*) fourPlayerGame;
 
 @end

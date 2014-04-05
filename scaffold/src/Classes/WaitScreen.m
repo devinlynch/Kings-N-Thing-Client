@@ -109,7 +109,7 @@
     
     
     
-    goldtext = [SPTextField textFieldWithWidth:300 height: 30 text:@"Gold Collection Has Started"];
+    goldtext = [SPTextField textFieldWithWidth:300 height: 30 text:@"The Next Phase Has Started"];
     goldtext.x = 10;
     goldtext.y = _gameWidth + 100;
     goldtext.fontSize = 23;
@@ -129,6 +129,7 @@
 }
 
 -(void) didClickOnSkip: (SPEvent*) event{
+    [self hide];
     [_combatController handleGoToNextPhase];
 }
 

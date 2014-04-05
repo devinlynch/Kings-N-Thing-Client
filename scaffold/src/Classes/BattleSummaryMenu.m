@@ -17,6 +17,7 @@
 #import "Player.h"
 #import "HexLocation.h"
 #import "InGameServerAccess.h"
+#import "CombatPhaseScreenController.h"
 
 @implementation BattleSummaryMenu{
 
@@ -193,7 +194,7 @@
 
 
 - (void) didClickOnDone:(SPEvent *) event{
-
+    [_combatController showWaitingScreen];
 }
 
 - (void) didClickOnRetreat:(SPEvent *) event{

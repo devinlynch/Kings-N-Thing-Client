@@ -116,6 +116,7 @@
     return self;
 }
 
+
 -(void) setup
 {
     [self addChild:[SideMenu getInstance]];
@@ -486,7 +487,7 @@
 }
 
 -(void) recruitThingsPhaseOver: (NSNotification*) notif{
-    _phase = MOVEMENT;
+    [self setPhase: MOVEMENT];
     [_stateText setText:@"Wait for your movement turn"];
 }
 
@@ -495,13 +496,13 @@
 }
 
 -(void) yourTurnInMovement:(NSNotification*) notif{
-    _phase = MOVEMENT;
+    [self setPhase: MOVEMENT];
     [_stateText setText:@"Your turn to move"];
 }
 
 -(void) placementOver: (NSNotification*) notif{
     [_stateText setText:@"State: Wait to Place Creatures"];
-    _phase = MOVEMENT;
+    [self setPhase: MOVEMENT];
 }
 
 -(void) playerPlacedFort: (NSNotification*) notif{
@@ -549,13 +550,13 @@
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
-    _phase = PLACEMENT;
+    [self setPhase: PLACEMENT];
     _placementStep = PLACE_FORT;
     [_stateText setText:@"State: Place fort"];
 }
 
 -(void) yourTurnCM: (NSNotification*) notif{
-    _phase = PLACEMENT;
+    [self setPhase:PLACEMENT];
     _placementStep = PLACE_CM_1;
     [_stateText setText:@"State: Place control marker"];
 
@@ -568,7 +569,7 @@
 
 -(void) goldCollection: (NSNotification*) notif{
     PhaseType previousPhase = _phase;
-    _phase = GOLD;
+    [self setPhase: GOLD];
     
     [_stateText setText:@"State: Gold Collection"];
     
@@ -624,7 +625,7 @@
 
 -(void) gameSetup: (NSNotification*) notif{
     
-    _phase = SETUP;
+    [self setPhase: SETUP];
     
     [_stateText setText:@"State: Setup"];
 
@@ -674,7 +675,7 @@
 
 -(void) setupOver: (NSNotification*) notif{
     
-    _phase = PLACEMENT;
+    [self setPhase: PLACEMENT];
     
     [_stateText setText:@"State: Placement"];
     
@@ -755,7 +756,7 @@
     [[RecruitCharacter getInstance] removeAllChildren];
     [[RecruitCharacter getInstance] removeFromParent];
     
-    _phase = RECRUITMENT;
+    [self setPhase: RECRUITMENT];
     
     NSArray *objectsToRecruit = notif.object;
     
@@ -1627,7 +1628,7 @@
 
 -(void) didStartRecruitCharactersPhase: (NSNotification*) notif{
     
-    _phase = SC_RECRUITMENT;
+    [self setPhase: SC_RECRUITMENT];
     
     RecruitCharacter *rt = [RecruitCharacter getInstance];
     [rt setFourPlayerGame:self];
@@ -1651,14 +1652,15 @@
 
 -(void) setPhase: (PhaseType) phase{
     _phase = phase;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newPhaseStarted" object:self];
 }
 -(PhaseType) getPhase{
     return _phase;
 }
 
 -(void) reinitializeCombatScreenAndShowGold{
-    [_combatPhaseController removeFromParent];
-    _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    [_combatPhaseController reinitializeForFourPlayerGame: self];
     [self showGoldCollection];
 }
 

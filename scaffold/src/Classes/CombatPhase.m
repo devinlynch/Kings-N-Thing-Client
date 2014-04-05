@@ -62,9 +62,6 @@
     } else if(!isAIDefender && [me isEqual:defender]) {
         NSLog(@"I Am NOT the attacker");
         amIAttacker = NO;
-    } else{
-        NSLog(@"WHOAH, why am I parsing a battle for one im not part of?");
-        return nil;
     }
     
     [CombatBattle updateGameState: gameState FromBattleJson:json];

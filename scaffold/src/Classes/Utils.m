@@ -68,7 +68,12 @@
                                                        delegate:delegate
                                               cancelButtonTitle:cancelButtonTitle
                                               otherButtonTitles: nil];
-        [alert show];
+        @try {
+            [alert show];
+        }
+        @catch (NSException *exception) {
+        }
+        
     });
 }
 

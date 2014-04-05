@@ -159,7 +159,7 @@
     if(defenderDic != nil) {
         NSString *defenderId = [defenderDic objectForKey:@"playerId"];
         if(defenderId != nil) {
-            [[gameState getPlayerById:defenderId] updateFromSerializedJson:attackerDic];
+            [[gameState getPlayerById:defenderId] updateFromSerializedJson:defenderDic];
         }
     }
     
