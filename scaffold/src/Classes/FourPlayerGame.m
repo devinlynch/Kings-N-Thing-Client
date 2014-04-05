@@ -477,6 +477,10 @@
     
     GamePiece *piece = (GamePiece*) notif.object;
     
+    if(piece == nil){
+        NSLog(@"GOD DAMNNIT");
+    }
+    
     _selectedPiece = piece;
     
     [_selectedPieceImage removeFromParent];
@@ -1528,7 +1532,7 @@
         if( ! isExploring ) {
             [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
         } else {
-            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForGamePieceAfterSuccess];
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForStackAfterSuccess];
         }
     }
 }

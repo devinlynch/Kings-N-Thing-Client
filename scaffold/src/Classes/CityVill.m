@@ -7,6 +7,7 @@
 //
 
 #import "CityVill.h"
+#import "ScaledGamePiece.h"
 
 @implementation CityVill
 
@@ -26,8 +27,29 @@
     _goldValue = value;
     _combatValue = cValue;
     _fileName = [[NSString alloc] initWithString:filename];
+    
+    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
+    [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
 
     return self;
+}
+
+-(void) creatureDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:[self pieceImage] andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch *clicks = [touches objectAtIndex:0];
+        if (clicks.tapCount == 2){
+            NSLog(@"le double click");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:self];
+        }
+        
+    }
+    
 }
 
 +(NSMutableDictionary*) initializeAllCityVill{

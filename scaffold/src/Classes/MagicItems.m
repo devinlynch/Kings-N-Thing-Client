@@ -7,6 +7,7 @@
 //
 
 #import "MagicItems.h"
+#import "ScaledGamePiece.h"
 
 @implementation MagicItems
 
@@ -19,7 +20,27 @@
     _magicType = [[NSString alloc] initWithString:type];
     _fileName = [[NSString alloc] initWithString:filename];
     
+    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
+    [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
     return self;
+}
+
+-(void) creatureDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:[self pieceImage] andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch *clicks = [touches objectAtIndex:0];
+        if (clicks.tapCount == 2){
+            NSLog(@"le double click");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:self];
+        }
+        
+    }
+    
 }
 
 
@@ -28,48 +49,48 @@
     
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_01"
                                             andMagicType:@"Abwehrstaub"
-                                             andFilename:@"magic_01.png"]
+                                             andFilename:@"T_Event_345.png"]
                    forKey:@"magic_01"];
     
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_02"
                                             andMagicType:@"Ballon"
-                                             andFilename:@"magic_02.png"]
+                                             andFilename:@"T_Event_346.png"]
                    forKey:@"magic_02"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_03"
                                             andMagicType:@"Blasebalg"
-                                             andFilename:@"magic_03.png"]
+                                             andFilename:@"T_Event_347.png"]
                    forKey:@"magic_03"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_04"
                                             andMagicType:@"Elixier"
-                                             andFilename:@"magic_04.png"]
+                                             andFilename:@"T_Event_348.png"]
                    forKey:@"magic_04"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_05"
                                             andMagicType:@"Feuerwand"
-                                             andFilename:@"magic_05.png"]
+                                             andFilename:@"T_Event_349.png"]
                    forKey:@"magic_05"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_06"
                                             andMagicType:@"Glucksbringer"
-                                             andFilename:@"magic_06.png"]
+                                             andFilename:@"T_Event_350.png"]
                    forKey:@"magic_06"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_07"
                                             andMagicType:@"Golem"
-                                             andFilename:@"magic_07.png"]
+                                             andFilename:@"T_Event_351.png"]
                    forKey:@"magic_07"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_08"
                                             andMagicType:@"MagieBannen"
-                                             andFilename:@"magic_08.png"]
+                                             andFilename:@"T_Event_352.png"]
                    forKey:@"magic_08"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_09"
                                             andMagicType:@"Talisman"
-                                             andFilename:@"magic_09.png"]
+                                             andFilename:@"T_Event_353.png"]
                    forKey:@"magic_09"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_10"
                                             andMagicType:@"Zauberbogen"
-                                             andFilename:@"magic_10.png"]
+                                             andFilename:@"T_Event_354.png"]
                    forKey:@"magic_10"];
     [magicItems setObject:[[MagicItems alloc] initWithId:@"magic_11"
                                             andMagicType:@"Zauberschwert"
-                                             andFilename:@"magic_11.png"]
+                                             andFilename:@"T_Event_355.png"]
                    forKey:@"magic_11"];
 
     

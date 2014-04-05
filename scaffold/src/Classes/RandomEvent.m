@@ -7,6 +7,7 @@
 //
 
 #import "RandomEvent.h"
+#import "ScaledGamePiece.h"
 
 @implementation RandomEvent
 
@@ -20,7 +21,27 @@
     _randomType = [[NSString alloc] initWithString:type];
     _fileName = [[NSString alloc] initWithString:filename];
     
+    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:filename andOwner:self];
+    [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
     return self;
+}
+
+-(void) creatureDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:[self pieceImage] andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch *clicks = [touches objectAtIndex:0];
+        if (clicks.tapCount == 2){
+            NSLog(@"le double click");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:self];
+        }
+        
+    }
+    
 }
 
 
@@ -29,57 +50,57 @@
     
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_01"
                                             andRandomType:@"bidJuJu"
-                                             andFilename:@"randomEvent_01.png"]
+                                             andFilename:@"T_Event_337.png"]
                    forKey:@"RandomEvent_01"];
     
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_02"
                                               andRandomType:@"darkPlague"
-                                                andFilename:@"randomEvent_02.png"]
+                                                andFilename:@"T_Event_338.png"]
                      forKey:@"RandomEvent_02"];
     
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_03"
                                               andRandomType:@"defection"
-                                                andFilename:@"randomEvent_03.png"]
+                                                andFilename:@"T_Event_342.png"]
                      forKey:@"RandomEvent_03"];
     
 
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_04"
                                               andRandomType:@"goodHarvest"
-                                                andFilename:@"randomEvent_04.png"]
+                                                andFilename:@"T_Event_340.png"]
                      forKey:@"RandomEvent_04"];
     
 
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_05"
                                               andRandomType:@"motherLode"
-                                                andFilename:@"randomEvent_05.png"]
+                                                andFilename:@"T_Event_339.png"]
                      forKey:@"RandomEvent_05"];
     
 
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_06"
                                               andRandomType:@"teeniepox"
-                                                andFilename:@"randomEvent_06.png"]
+                                                andFilename:@"T_Event_341.png"]
                      forKey:@"RandomEvent_06"];
     
 
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_07"
                                               andRandomType:@"terrainDisaster"
-                                                andFilename:@"randomEvent_07.png"]
+                                                andFilename:@"T_Event_336.png"]
                      forKey:@"RandomEvent_07"];
     
 
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_08"
                                               andRandomType:@"vandals"
-                                                andFilename:@"randomEvent_08.png"]
+                                                andFilename:@"T_Event_343.png"]
                      forKey:@"RandomEvent_08"];
     
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_09"
                                               andRandomType:@"weatherControl"
-                                                andFilename:@"randomEvent_09.png"]
+                                                andFilename:@"T_Event_344.png"]
                      forKey:@"RandomEvent_09"];
     
     [randomEvents setObject:[[RandomEvent alloc] initWithId:@"RandomEvent_10"
                                               andRandomType:@"willingWorkers"
-                                                andFilename:@"randomEvent_10.png"]
+                                                andFilename:@"T_Event_335.png"]
                      forKey:@"RandomEvent_10"];
     
     return randomEvents;
