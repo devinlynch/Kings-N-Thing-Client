@@ -91,7 +91,7 @@
     
     NSString *instructions;
     if(_damgeTaken > 0 && !isAllPiecesNeededToTakeDamage) {
-        instructions= [NSString stringWithFormat:@"Please select %d pieces to take damage", _damageInflicted];
+        instructions= [NSString stringWithFormat:@"Please select %d pieces to take damage", _damgeTaken];
     } else if(isAllPiecesNeededToTakeDamage){
         instructions= [NSString stringWithFormat:@"All of your pieces took damage."];
     } else{

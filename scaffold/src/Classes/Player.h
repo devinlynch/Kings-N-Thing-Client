@@ -25,8 +25,6 @@
 
 @property Rack *rack1;
 
-@property int gold;
-
 @property NSString *username;
 
 @property NSString *playerId;
@@ -39,5 +37,8 @@
 -(void) assignPiece: (GamePiece*) gamePiece;
 
 -(void) updateFromSerializedJson: (NSDictionary*) json;
+
+-(int) gold;
+-(void) setGold: (int) g;
 
 @end

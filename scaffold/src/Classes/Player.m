@@ -12,7 +12,6 @@
 
 @synthesize user = _user;
 @synthesize rack1 = _rack1;
-@synthesize gold = _gold;
 @synthesize playerId = _playerId;
 @synthesize gamePieces = _gamePieces;
 @synthesize username = _username;
@@ -25,7 +24,7 @@
          _user = [[User alloc] initFromJSON:json];
         _username = [[NSString alloc] initWithString:[json objectForKey:@"username"]];
         _playerId   = [[NSString alloc] initWithString:[json objectForKey:@"playerId"]];
-        _gold =  [[json objectForKey:@"gold"] intValue];
+        [self setGold: [[json objectForKey:@"gold"] intValue]];
         _rack1 = [[Rack alloc] initFromJSON:[json objectForKey:@"rack1"] withOwner:self];
     }
     return self;
@@ -33,7 +32,7 @@
 
 -(void) addGold: (int) g{
     NSLog(@"%@ had %d gold", _username, _gold);
-    _gold += g;
+    [self setGold:_gold + g];
     NSLog(@"%@ now has %d gold", _username, _gold);
 }
 
@@ -59,7 +58,7 @@
     }
     
     if([json objectForKey:@"gold"] != nil) {
-        _gold =  [[json objectForKey:@"gold"] intValue];
+        [self setGold: [[json objectForKey:@"gold"] intValue]];
     }
     
     BOOL didCreateRack1 =YES ;
@@ -74,6 +73,15 @@
         [_rack1 updateLocationFromSerializedJSONDictionary:[json objectForKey:@"rack1"]];
     }
     
+}
+
+-(int) gold{
+    return _gold;
+}
+
+-(void) setGold: (int) g{
+    _gold = g;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerGoldChanged" object:self];
 }
 
 @end

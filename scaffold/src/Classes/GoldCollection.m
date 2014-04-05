@@ -67,7 +67,7 @@ static GoldCollection *instance = nil;
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = -45;
+    background.y = 0;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];
@@ -84,13 +84,7 @@ static GoldCollection *instance = nil;
     
     
     //GoldPiece text
-    _goldTF
-    
-    
-    
-    
-    
-    = [SPTextField textFieldWithWidth:300 height:120
+    _goldTF = [SPTextField textFieldWithWidth:300 height:120
                                                      text:@"Gold pieces: 9999"];
     _goldTF.x = _gameWidth / 2 - _goldTF.width / 2;
     _goldTF.y = _gameHeight - _goldTF.height * 2;

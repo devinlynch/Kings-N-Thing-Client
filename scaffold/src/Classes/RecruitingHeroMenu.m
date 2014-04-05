@@ -135,11 +135,19 @@
     //Roll Button
     SPTexture *rollButtonTexture = [SPTexture textureWithContentsOfFile:@"buy_1.png"];
     rollButton = [SPButton buttonWithUpState:rollButtonTexture];
-    rollButton.x = (_gameWidth/2) - (rollButtonTexture.width/2);
+    rollButton.x = (_gameWidth/2) - (rollButton.width/2)+25;
     rollButton.y = _gameHeight - 100;
     rollButton.scaleX = rollButton.scaleY = 0.8;
     [_postRollOption addChild:rollButton];
     [rollButton addEventListener:@selector(didClickOnRoll:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+    SPTexture *skipButtontexture = [SPTexture textureWithContentsOfFile:@"skip.png"];
+    SPButton* skipButton = [SPButton buttonWithUpState:skipButtontexture];
+    skipButton.x = (_gameWidth/2) - (skipButton.width/2)+25;
+    skipButton.y = _gameHeight - 100 - rollButton.height - 6;
+    skipButton.scaleX = skipButton.scaleY = 0.8;
+    [_postRollOption addChild:skipButton];
+    [skipButton addEventListener:@selector(didClickOnSkipBuy:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     
@@ -258,7 +266,7 @@
 -(void) startedRecruitThingsPhase: (NSNotification*) notif{
     SPTexture *rollButtonTexture = [SPTexture textureWithContentsOfFile:@"continue.png"];
     rollButton = [SPButton buttonWithUpState:rollButtonTexture];
-    rollButton.x = (_gameWidth/2) - (rollButtonTexture.width/2);
+    rollButton.x = (_gameWidth/2) - (rollButton.width/2) +25;
     rollButton.y = _gameHeight - 100;
     rollButton.scaleX = rollButton.scaleY = 0.8;
     [_contents addChild:rollButton];
@@ -275,6 +283,10 @@
    // [_postRollInfo removeFromParent];
     
     [_fourPlayerGame startedRecruitThingsPhase:_notif];
+}
+
+-(void) didClickOnSkipBuy: (SPEvent*) event{
+    [self handlePostrollWithPostRollPurchases:0];
 }
 
 @end
