@@ -20,6 +20,9 @@
     int _damgeTaken;
     int _damageInflicted;
     BOOL isAllPiecesNeededToTakeDamage;
+    
+    SPButton *skipButton;
+    SPTextField *waitingText;
 }
 
 -(id) init{
@@ -177,12 +180,24 @@
     
     //Done Button
     SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"done.png"];
-    SPButton *skipButton = [SPButton buttonWithUpState:skipButtonTexture];
+    skipButton = [SPButton buttonWithUpState:skipButtonTexture];
     skipButton.x = _gameWidth /2 - skipButton.width/2 + 20;
     skipButton.y = 480;
     skipButton.scaleX = skipButton.scaleY = 0.8;
     [_contents addChild:skipButton];
     [skipButton addEventListener:@selector(didClickOnSkip:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+
+    waitingText = [SPTextField textFieldWithWidth:300 height:120
+                                                        text:instructions];
+    waitingText.x = 10;
+    waitingText.y = 480;
+    waitingText.fontName = @"ArialMT";
+    waitingText.fontSize = 15;
+    waitingText.color = 0xffffff;
+    waitingText.touchable = NO;
+    waitingText.visible = NO;
+    [_contents addChild:waitingText];
 }
 
 -(void) didClickOnYours: (SPEvent*) event{
@@ -222,7 +237,7 @@
 
 -(void) didClickOnSkip: (SPEvent*) event {
     if(!isAllPiecesNeededToTakeDamage && _damgeTaken > _selectedPieces.count) {
-        [Utils showAlertWithTitle:@"Whoops" message:[NSString stringWithFormat: @"You need to select %ld more pieces to take damage", (_damgeTaken-_selectedPieces.count)] delegate:nil cancelButtonTitle:@"Ok"];
+        [Utils showAlertWithTitle:@"Whoops" message:[NSString stringWithFormat: @"You need to select %d more pieces to take damage", (int)(_damgeTaken-_selectedPieces.count)] delegate:nil cancelButtonTitle:@"Ok"];
         return;
     }
     
@@ -231,8 +246,13 @@
 
 -(void) sendLockedInRollToServer{
     [[InGameServerAccess instance] combatLockedInRollAndDamageWithPiecesTakingDamage:_selectedPieces forBattle:_battle.battleId andRound:_round.roundId andRoundState:_round.stateString withSuccess:^(ServerResponseMessage *msg) {
-        //[_combatController doneWithRoundStep:_round];
+        [self showWaitingText];
     }];
+}
+
+-(void) showWaitingText{
+    [skipButton removeFromParent];
+    waitingText.visible = YES;
 }
 
 @end

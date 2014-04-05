@@ -181,6 +181,10 @@
     NSString *logMessage = [NSString stringWithFormat: @"%@ finished their turn of trying to recruit a %@.  %@.  They bought %d post rolls.", player.username, piece.name != nil ? piece.name : piece.gamePieceId, didHeRecruit, numPostRolls];
     [game addLogMessage:logMessage];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [piece updateFromSerializedJson:specialCharDic forGameState:gameState];
+    });
+    
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
     if(!isMe) {
         NSLog(@"Got roundOfRecruitCharactersOver message but its not me");
@@ -195,7 +199,6 @@
     
     NSLog(@"Succesfully handled roundOfRecruitCharactersOver message");
     dispatch_async(dispatch_get_main_queue(), ^{
-        [piece updateFromSerializedJson:specialCharDic forGameState:gameState];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"roundOfRecruitCharactersOver" object:[NSNumber numberWithBool:didRecruit]];
     });
 }

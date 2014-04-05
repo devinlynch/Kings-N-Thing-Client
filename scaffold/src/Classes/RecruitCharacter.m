@@ -39,8 +39,7 @@ static RecruitCharacter *instance;
 {
     if ((self = [super init]))
     {
-    
-        
+        [self setup];
     }
     
     return self;
