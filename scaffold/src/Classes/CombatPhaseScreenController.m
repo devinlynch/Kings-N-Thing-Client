@@ -154,6 +154,7 @@
     
     NSLog(@"In handleDidGetUpdatedBattle");
     if(battle.isEnded) {
+        [CombatBattleRound unsubscribeToStepNotifications:self];
         [self removeScreens];
         BattleSummaryMenu *battleSummaryMenu  = [[BattleSummaryMenu alloc] initWithBattle: battle andController:self];
         [battleSummaryMenu show];
