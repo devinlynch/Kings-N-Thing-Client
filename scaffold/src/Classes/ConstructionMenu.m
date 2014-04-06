@@ -167,6 +167,7 @@
                 state = CS_WAITING;
                 [actionText setText:@""];
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"clearSelectedPiece" object:nil];
         });
     } andError:^(ServerResponseMessage* messge) {
          NSLog(@"Error building fort");
@@ -198,6 +199,7 @@
                     state = CS_WAITING;
                     [actionText setText:@""];
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"clearSelectedPiece" object:nil];
             });
         } andError:^(ServerResponseMessage* messge) {
             NSLog(@"Error upgrading fort");
