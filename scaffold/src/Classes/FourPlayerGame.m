@@ -475,6 +475,7 @@
             [Sparrow.juggler addObject:tween2];
             [Sparrow.juggler addObject:tween3];
         
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"menuMovedRight" object:nil];
         } else {
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
@@ -493,6 +494,7 @@
             [Sparrow.juggler addObject:tween2];
             [Sparrow.juggler addObject:tween3];
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"menuMovedLeft" object:nil];
         }
 
         isSideMenu = !isSideMenu;
@@ -785,7 +787,7 @@
         }
     }
     
-
+    [_selectedPieceImage addEventListener:@selector(clckedSelectedPiece:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
     
         
     NSLog(@"Selected Piece");
@@ -1468,13 +1470,23 @@
             break;
         case CONSTRUCTION:
             if(touches.count == 1) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"tileClickedInConstruction" object:location];
+                SPTouch *clicks = [touches objectAtIndex:0];
+                if (clicks.tapCount == 1){
+                    [self performSelector:@selector(tileSingleClickedInConstruction:) withObject:location afterDelay:0.15f];
+                } else if(clicks.tapCount == 2){
+                    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+                    [self tileDoubleTap:location];
+                }
             }
             
             break;
         default:
             break;
     }
+}
+
+-(void) tileSingleClickedInConstruction: (HexLocation*) location{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"tileClickedInConstruction" object:location];
 }
 
 -(void) recruitWasFree:(HexLocation*) location{
@@ -1670,6 +1682,9 @@
 }
 
 -(void) tileDoubleTap: (HexLocation*) location{
+    if([location.tile.terrain.terrainName isEqualToString:@"Sea"])
+        return;
+    
     TileMenu *tileMenu = [[TileMenu alloc] initWithHexLocation:location];
     [self showScene:tileMenu];
     tileMenu.visible = YES;
@@ -1741,6 +1756,7 @@
 }
 
 -(void) clearSelectedPiece:(NSNotification*) notif{
+    [self unHilightAllTiles];
     [_selectedPieceImage setVisible:NO];
     [_contents removeChild:_selectedPieceImage];
     _selectedPiece = nil;
@@ -1877,6 +1893,13 @@ static RackPiecesMenu *rackMenu;
     [_stateText setText:@"Construction"];
     NSLog(@"Started construction");
     [cMenu show];
+}
+
+-(void) clckedSelectedPiece: (SPTouchEvent*) event{
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    if(touches.count == 1) {
+        [self clearSelectedPiece:nil];
+    }
 }
 
 @end
