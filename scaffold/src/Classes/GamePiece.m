@@ -10,6 +10,7 @@
 #import "GameState.h"
 #import "BoardLocation.h"
 #import "Player.h"
+#import "ScaledGamePiece.h"
 
 @implementation GamePiece
 
@@ -21,6 +22,7 @@
 @synthesize name = _name;
 @synthesize isBluff = _isBluff;
 @synthesize bluffImage = _bluffImage;
+@synthesize borderImage = _borderImage;
 
 -(id) init{
     self = [super init];
@@ -48,6 +50,24 @@
             }
         }
     }
+}
+
+
+-(void) changeOwnerToPlayer: (Player*) player{
+    
+    _owner = player;
+    
+//    if ([[player playerId] isEqualToString:@"player1"]) {
+//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
+//    } else if ([[player playerId] isEqualToString:@"player2"]) {
+//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
+//    } else if ([[player playerId]isEqualToString:@"player3"]) {
+//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
+//    } else if ([[player playerId] isEqualToString:@"player4"]) {
+//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
+//    }
+
+    
 }
 
 @end

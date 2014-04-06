@@ -123,9 +123,30 @@
         
         [_contents addChild:pieceImage];
         
+        SPImage *borderImage;
+        if ([[[piece owner] playerId] isEqualToString:@"player1"]) {
+            borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"borderTileRed.png"];
+        } else if ([[[piece owner] playerId] isEqualToString:@"player2"]) {
+            borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"borderTileYellow.png"];
+        } else if ([[[piece owner] playerId] isEqualToString:@"player3"]) {
+            borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"borderTileGreen.png"];
+        } else if ([[[piece owner] playerId] isEqualToString:@"player4"]) {
+            borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"borderTileBlue.png"];
+        }
+        
+        borderImage.x = x;
+        borderImage.y = y;
+        borderImage.width = pieceImage.width;
+        borderImage.height = pieceImage.height;
+        borderImage.touchable = NO;
+
+        
+        [_contents addChild:borderImage];
+        
+        
         if((x + pieceImage.x) > _gameWidth){
             x = 10;
-            y = y + pieceImage.y + 5;
+            y = y + pieceImage.height + 5;
         } else{
             x = x + pieceImage.width + 5;
         }
@@ -139,7 +160,7 @@
     backButton.y = 410;
     
     _selectedText = [SPTextField textFieldWithWidth:200 height:30 text:@"Selected:"];
-    _selectedText.x = 320 / 2 - _selectedText.width /2;
+    _selectedText.x = 320 / 2 - _selectedText.width;
     _selectedText.y = backButton.y - 35;
     _selectedText.color = SP_YELLOW;
     [_contents addChild:_selectedText];
@@ -248,7 +269,7 @@
     [_selectedStackImage removeFromParent];
     
     _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:[_selectedPiece fileName]];
-    _selectedPieceImage.x = _selectedText.x + 100;
+    _selectedPieceImage.x = _selectedText.x + 150;
     _selectedPieceImage.y = _selectedText.y - 25;
     [_contents addChild:_selectedPieceImage];
     
