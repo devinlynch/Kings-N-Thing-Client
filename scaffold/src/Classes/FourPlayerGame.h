@@ -16,7 +16,8 @@ typedef enum PhaseType{
     RECRUITMENT,
     GOLD,
     MOVEMENT,
-    COMBAT
+    COMBAT,
+    CONSTRUCTION
 } PhaseType;
 
 typedef NS_ENUM(NSInteger, PlacementStep) {

@@ -72,26 +72,24 @@ static InGameServerAccess *instance;
              }
          }
          
-         if( responseMessage != nil ){
-             if(responseMessage.error != nil && [responseMessage.error.responseError isEqualToString:@"NOT_LOGGED_IN"]){
-                 @try{
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
-                     });
-                 } @catch (NSException *e) {
-                     NSLog(@"Error sending game over notification because user is not logged in: %@", e);
-                 }
-                 return;
-             }
-             
+         if( responseMessage != nil && responseMessage.error == nil ){
              [delegateListener didGetIngameResponseFromServerForRequest:requestType andResponse:responseMessage];
              if (successCall != nil) {
                 successCall(responseMessage);
              }
+         } else if([responseMessage.error.responseError isEqualToString:@"NOT_LOGGED_IN"]){
+             @try{
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+                 });
+             } @catch (NSException *e) {
+                 NSLog(@"Error sending game over notification because user is not logged in: %@", e);
+             }
+             return;
          } else{
              NSLog(@"could not connect to server, doing call, got response code: %d and error: %@", responseStatusCode, error);
              if(errorCall != nil)
-                 errorCall();
+                 errorCall(responseMessage);
          }
      }];
 }
@@ -329,5 +327,11 @@ static InGameServerAccess *instance;
     return CONS_UPGRADE_FORT;
 }
 
+-(enum InGameRequestTypes) constructionReadyForNextPhaseWithSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [self phasePost:@"construction" type:@"readyForNextPhase" params:params requestType:CONS_READY_FOR_NEXT_PHASE withSuccess:success];
+    
+    return CONS_READY_FOR_NEXT_PHASE;
+}
 
 @end

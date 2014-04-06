@@ -37,6 +37,7 @@
 #import "Game.h"
 #import "Utils.h"
 #import "RackPiecesMenu.h"
+#import "ConstructionMenu.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -108,6 +109,8 @@
     CombatPhaseScreenController *_combatPhaseController;
     
     SPButton * moveDoneButton;
+    
+    ConstructionMenu *cMenu;
 }
 
 -(id) init
@@ -400,6 +403,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(rackUpdated:)
                                                  name:@"rackUpdated"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(constructionStarted:)
+                                                 name:@"constructionStarted"
                                                object:nil];
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
@@ -1428,6 +1436,12 @@
                 
             }
             break;
+        case CONSTRUCTION:
+            if(touches.count == 1) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"tileClickedInConstruction" object:location];
+            }
+            
+            break;
         default:
             break;
     }
@@ -1653,7 +1667,7 @@
 
 -(void) reinitializeCombatScreenAndShowGold{
     [_combatPhaseController reinitializeForFourPlayerGame: self];
-    [self showGoldCollection];
+    [self startConstruction];
 }
 
 -(void) showGoldCollection{
@@ -1726,6 +1740,17 @@ static RackPiecesMenu *rackMenu;
 
 -(void) rackUpdated: (NSNotification*) notif{
     [self drawRack];
+}
+
+-(void) constructionStarted: (NSNotification*) notif{
+    cMenu = [[ConstructionMenu alloc] initFromParent:self];
+    [self setPhase:CONSTRUCTION];
+}
+
+-(void) startConstruction{
+    [_stateText setText:@"Construction"];
+    NSLog(@"Started construction");
+    [cMenu show];
 }
 
 @end

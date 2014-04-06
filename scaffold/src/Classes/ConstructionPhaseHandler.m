@@ -13,6 +13,14 @@
 
 @implementation ConstructionPhaseHandler
 
+-(void) hanleConstructionStarted: (Event*) e {
+    [Utils notifyOnMainQueue:@"constructionStarted" withObject:nil];
+}
+
+-(void) handleYourTurn: (Event*) e {
+    [Utils notifyOnMainQueue:@"yourTurnInContruction" withObject:nil];
+}
+
 //playerMadeMoveInConstruction
 -(void) handlePlayerMadeMoveInConstruction: (Event*) e {
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:e];
@@ -31,7 +39,7 @@
     [playingCup updateLocationFromSerializedJSONDictionary:playCupDic];
     
     Player *player = [gs getPlayerById:[playerDic objectForKey:@"playerId"]];
-
+    [player updateFromSerializedJson:playerDic];
     
     NSString *logMessage;
     if([type isEqualToString:@"built"]) {
@@ -51,7 +59,8 @@
     GameState *gs = [[Game currentGame] gameState];
     Player *winner = [gs getPlayerById:playerId];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerWon" object:winner];
+    
+    [Utils notifyOnMainQueue:@"playerWon" withObject:winner];
 }
 
 @end
