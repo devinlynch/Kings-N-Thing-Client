@@ -112,6 +112,9 @@
     SPButton * moveDoneButton;
     
     ConstructionMenu *cMenu;
+    
+    BOOL _canExplore;
+    
 }
 
 -(id) init
@@ -126,7 +129,7 @@
 
 -(void) setup
 {
-    
+    _canExplore = NO;
     
     [self addChild:[SideMenu getInstance]];
     [GameResource getInstance];
@@ -375,6 +378,11 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movementPhaseOver:)
+                                                 name:@"movementPhaseOver"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recruitToBoardBought:)
                                                  name:@"recruitToBoardBought"
                                                object:nil];
@@ -527,6 +535,12 @@
 -(void) yourTurnInMovement:(NSNotification*) notif{
     [self setPhase: MOVEMENT];
     [_stateText setText:@"Your turn to move"];
+}
+
+
+-(void) movementPhaseOver: (NSNotification*) notif{
+    _canExplore = YES;
+    [_stateText setText:@"State: Movement Phase Over"];
 }
 
 -(void) placementOver: (NSNotification*) notif{
@@ -1545,6 +1559,12 @@
     
     if(location.owner == nil) {
         isExploring = YES;
+    }
+    
+    if (!_canExplore && isExploring) {
+        NSLog(@"YOU CANT DO THAT");
+        return;
+        
     }
     
     void (^performAfterExploring)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){

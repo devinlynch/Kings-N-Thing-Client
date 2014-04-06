@@ -41,7 +41,9 @@
     if(previousOwner != nil && ![previousOwner isKindOfClass:[NSNull class]]) {
         [previousOwner.gamePieces removeObjectForKey:gamePiece.gamePieceId];
     }
-    gamePiece.owner = self;
+   
+    [gamePiece changeOwnerToPlayer:self];
+    
     [self.gamePieces setObject:gamePiece forKey:gamePiece.gamePieceId];
 }
 
