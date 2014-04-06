@@ -63,6 +63,7 @@
     
     SPSprite *_currentScene;
     SPSprite *_contents;
+    SPSprite *_phasesScreensContents;
     
     TouchSheet *_sheet;
     SPTextField *_bankText;
@@ -125,6 +126,8 @@
 
 -(void) setup
 {
+    
+    
     [self addChild:[SideMenu getInstance]];
     [GameResource getInstance];
     
@@ -166,7 +169,8 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
-    
+    _phasesScreensContents = [SPSprite sprite];
+    [self addChild:_phasesScreensContents];
    
 
     
@@ -423,30 +427,24 @@
     if (touches.count == 1) {
         
         if(isSideMenu){
-            
             //Display sideMenu and move fourPlayerGame
-
-            
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
                                            transition:SP_TRANSITION_LINEAR];
             SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
                                             transition:SP_TRANSITION_LINEAR];
-            
+            SPTween *tween3 = [SPTween tweenWithTarget:_phasesScreensContents time:0.25f
+                                           transition:SP_TRANSITION_LINEAR];
           
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:panWidth];
             [tween2 animateProperty:@"x" targetValue:panWidth+20];
-
+            [tween3 animateProperty:@"x" targetValue:panWidth];
+            
             [Sparrow.juggler addObject:tween];
             [Sparrow.juggler addObject:tween2];
-
-            
-
-
-            //[_contents setX:panWidth];
-           // tween.onComplete = ^{[self addChild:[SideMenu getInstance]];};
+            [Sparrow.juggler addObject:tween3];
         
         } else {
             
@@ -454,17 +452,17 @@
                                            transition:SP_TRANSITION_LINEAR];
             SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
                                             transition:SP_TRANSITION_LINEAR];
+            SPTween *tween3 = [SPTween tweenWithTarget:_phasesScreensContents time:0.25f
+                                            transition:SP_TRANSITION_LINEAR];
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:0];
             [tween2 animateProperty:@"x" targetValue:10];
+            [tween3 animateProperty:@"x" targetValue:0];
 
             [Sparrow.juggler addObject:tween];
             [Sparrow.juggler addObject:tween2];
-
-            //[_contents setX:panWidth];
-          //  tween.onComplete = ^{[self addChild:_contents];};
-
+            [Sparrow.juggler addObject:tween3];
             
         }
 
@@ -777,7 +775,7 @@
     
     [rt initWithObjectsToRecruit: objectsToRecruit];
     
-    [self addChild:rt];
+    [_phasesScreensContents addChild:rt];
 
     rt.visible = YES;
 }
@@ -1618,7 +1616,7 @@
 }
 
 -(void) tileSingleTapFort: (HexLocation*) location{
-    if(_selectedPiece != nil){
+    if(_selectedPiece != nil && [_selectedPiece isKindOfClass:[Fort class]]){
         [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addGamePieceToLocation:_selectedPiece];
@@ -1678,7 +1676,7 @@
     [rt setFourPlayerGame:self];
     [rt setup];
     
-    [self addChild:rt];
+    [_phasesScreensContents addChild:rt];
     
     [rt setVisible:YES];
     
@@ -1693,6 +1691,10 @@
 
 -(void) addChildToContents: (SPDisplayObject*) sprite{
     [_contents addChild:sprite];
+}
+
+-(void) addChildToPhasesContent: (SPDisplayObject*) sprite{
+    [_phasesScreensContents addChild:sprite];
 }
 
 -(void) setPhase: (PhaseType) phase{

@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, WasBought) {
 
 -(void) startedRecruitThingsPhase: (NSNotification*) notif;
 -(void) addChildToContents: (SPDisplayObject*) sprite;
+-(void) addChildToPhasesContent: (SPDisplayObject*) sprite;
 
 -(void) setPhase: (PhaseType) phase;
 -(PhaseType) getPhase;
