@@ -309,6 +309,7 @@
 		992613EB18E3B0CF0036CA53 /* borderTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 992613EA18E3B0CF0036CA53 /* borderTile.png */; };
 		9933E85218BFCC630010C910 /* GeneralGameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */; };
 		993B1CD218D4F00A0055056F /* SentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B1CD118D4F00A0055056F /* SentMessage.m */; };
+		993E8B1C18F1C10E0001BD20 /* RecruitTradeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 993E8B1B18F1C10E0001BD20 /* RecruitTradeMenu.m */; };
 		9978234518EEFC98001DC5C3 /* BattleStartedMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234418EEFC98001DC5C3 /* BattleStartedMenu.m */; };
 		9978234818EEFF64001DC5C3 /* ConbatBattleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9978234718EEFF64001DC5C3 /* ConbatBattleBackground@2x.png */; };
 		9978234B18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234A18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m */; };
@@ -885,6 +886,8 @@
 		9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralGameEventHandler.m; sourceTree = "<group>"; };
 		993B1CD018D4F00A0055056F /* SentMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentMessage.h; sourceTree = "<group>"; };
 		993B1CD118D4F00A0055056F /* SentMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentMessage.m; sourceTree = "<group>"; };
+		993E8B1A18F1C10E0001BD20 /* RecruitTradeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitTradeMenu.h; sourceTree = "<group>"; };
+		993E8B1B18F1C10E0001BD20 /* RecruitTradeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitTradeMenu.m; sourceTree = "<group>"; };
 		9978234318EEFC98001DC5C3 /* BattleStartedMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleStartedMenu.h; sourceTree = "<group>"; };
 		9978234418EEFC98001DC5C3 /* BattleStartedMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleStartedMenu.m; sourceTree = "<group>"; };
 		9978234718EEFF64001DC5C3 /* ConbatBattleBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ConbatBattleBackground@2x.png"; sourceTree = "<group>"; };
@@ -1981,6 +1984,8 @@
 				DEA6350918A097510031BF8C /* RecruitThings.m */,
 				DEA6350C18A09B470031BF8C /* RecruitOptionMenu.h */,
 				DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */,
+				993E8B1A18F1C10E0001BD20 /* RecruitTradeMenu.h */,
+				993E8B1B18F1C10E0001BD20 /* RecruitTradeMenu.m */,
 			);
 			name = "Recruit Things Scenes";
 			sourceTree = "<group>";
@@ -2949,6 +2954,7 @@
 				4131C2981885EB1F009775EA /* GCDAsyncUdpSocket.m in Sources */,
 				993B1CD218D4F00A0055056F /* SentMessage.m in Sources */,
 				DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */,
+				993E8B1C18F1C10E0001BD20 /* RecruitTradeMenu.m in Sources */,
 				41B01C021898309A00CA876D /* GUIStateHandler.m in Sources */,
 				41BD14E818A95E9C008C6E96 /* TileImage.m in Sources */,
 				DE3104F318D54446001EE806 /* SuchTeam.m in Sources */,

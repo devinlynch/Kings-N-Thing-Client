@@ -128,7 +128,7 @@
 
 -(void) setup
 {
-    
+    _canExplore = NO;
     
     [self addChild:[SideMenu getInstance]];
     [GameResource getInstance];
@@ -396,6 +396,11 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movementPhaseOver:)
+                                                 name:@"movementPhaseOver"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(recruitToBoardBought:)
                                                  name:@"recruitToBoardBought"
                                                object:nil];
@@ -546,6 +551,12 @@
 -(void) yourTurnInMovement:(NSNotification*) notif{
     [self setPhase: MOVEMENT];
     [_stateText setText:@"Your turn to move"];
+}
+
+
+-(void) movementPhaseOver: (NSNotification*) notif{
+    _canExplore = YES;
+    [_stateText setText:@"State: Movement Phase Over"];
 }
 
 -(void) placementOver: (NSNotification*) notif{
@@ -737,7 +748,7 @@
             _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
             [_contents addChild:_selectedPieceImage];
             
-            if ([piece.location isKindOfClass:[HexLocation class]]) {
+            if ([piece.location isKindOfClass:[HexLocation class]] && ![piece isKindOfClass:[Fort class]]) {
                 HexLocation *location = (HexLocation*) piece.location;
                 [location hilightPossibleMoves];
             }
@@ -1495,6 +1506,8 @@
                 [location addGamePieceToLocation:p];
                 [_state.getMe assignPiece:p];
                 [self clearSelectedPiece:nil];
+                [_selectedPieceImage removeFromParent];
+                [[RecruitThings getInstance] setVisible:YES];
             });
         }];
     }else{
@@ -1552,6 +1565,12 @@
     
     if(location.owner == nil) {
         isExploring = YES;
+    }
+    
+    if (!_canExplore && isExploring) {
+        NSLog(@"YOU CANT DO THAT");
+        return;
+        
     }
     
     void (^performAfterExploring)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){

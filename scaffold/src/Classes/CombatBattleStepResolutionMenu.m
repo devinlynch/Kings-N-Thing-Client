@@ -246,7 +246,9 @@
 
 -(void) sendLockedInRollToServer{
     [[InGameServerAccess instance] combatLockedInRollAndDamageWithPiecesTakingDamage:_selectedPieces forBattle:_battle.battleId andRound:_round.roundId andRoundState:_round.stateString withSuccess:^(ServerResponseMessage *msg) {
-        [self showWaitingText];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showWaitingText];
+        });
     }];
 }
 

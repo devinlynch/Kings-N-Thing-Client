@@ -10,6 +10,8 @@
 #import "RecruitCharacter.h"
 #import "RecruitThings.h"
 #import "FourPlayerGame.h"
+
+#import "RecruitOptionMenu.h"
 #import "WaitScreen.h"
 
 
