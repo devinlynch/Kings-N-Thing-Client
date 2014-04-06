@@ -42,4 +42,7 @@
 
 -(void) hilightPossibleMoves;
 -(NSArray*) getAllPiecesForPlayerIncludingPiecesInStacks: (Player*) p;
+
+-(int) getPieceCountForPlayer: (Player*) player;
+
 @end

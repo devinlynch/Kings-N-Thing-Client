@@ -1393,8 +1393,7 @@
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     if (clicks.tapCount == 1){
-                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] /*&& tile.isHilighted*/ && ![_selectedPiece isKindOfClass:[Fort class]] &&
-                            ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] /*&& tile.isHilighted*/ && ![_selectedPiece isKindOfClass:[Fort class]] && ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
                             [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
                         }
                     } else if(clicks.tapCount == 2){
@@ -1536,17 +1535,24 @@
     
     if(piece != nil) {
         if( ! isExploring ) {
-            [[InGameServerAccess instance] movementPhaseMoveGamePiece:piece.gamePieceId toLocation:location.locationId withSuccess:performForGamePieceAfterSuccess];
+            if([location getPieceCountForPlayer:[_state getMe]] < 10){
+                [[InGameServerAccess instance] movementPhaseMoveGamePiece:piece.gamePieceId toLocation:location.locationId withSuccess:performForGamePieceAfterSuccess];
+            }
         } else{
             [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:nil andPiece:piece.gamePieceId withSuccess:performForGamePieceAfterSuccess];
+            
         }
     }
     
     if(stack != nil) {
         if( ! isExploring ) {
-            [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
+            if([location getPieceCountForPlayer:[_state getMe]] + stack.pieces.count < 10){
+                [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
+            }
         } else {
+       
             [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForStackAfterSuccess];
+            
         }
     }
 }

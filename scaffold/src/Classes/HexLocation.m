@@ -211,7 +211,7 @@
             break;
     }
     
-    [self updatePieceCount];
+    
     
     return self;
 }
@@ -231,7 +231,7 @@
     [Sparrow.juggler addObject:tween];
 
     [[_tile.image parent] addChild:piece.pieceImage];
-    [self updatePieceCount];
+    
 }
 
 
@@ -261,7 +261,7 @@
     
     stack.location = self;
     [_stacks setObject:stack forKey:[stack locationId]];
-    [self updatePieceCount];
+    
 }
 
 -(void) removeStack: (Stack*) stack{
@@ -303,7 +303,7 @@
             [self addStack:stack];
         }
     }
-    [self updatePieceCount];
+    
 }
 
 
@@ -333,7 +333,7 @@
             }
         }
     }
-    [self updatePieceCount];
+    
     [self setVisited:NO];
 }
 
@@ -394,7 +394,7 @@
     return pieces;
 }
 
--(void) updatePieceCount{
+-(int) getPieceCountForPlayer: (Player*) player{
     int count1 = 0;
     int count2 = 0;
     int count3 = 0;
@@ -432,10 +432,17 @@
 
     }
     
-    _player1count = count1;
-    _player2count = count2;
-    _player3count = count3;
-    _player4count = count4;
+    if ([player.playerId isEqualToString:@"player1"]) {
+        return count1;
+    } else if ([player.playerId isEqualToString:@"player2"]) {
+       return count2;
+    } else if ([player.playerId isEqualToString:@"player3"]) {
+        return count3;
+    } else if ([player.playerId isEqualToString:@"player4"]) {
+        return count4;
+    }
+
+    return 0;
 }
 
 @end
