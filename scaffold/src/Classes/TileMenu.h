@@ -8,10 +8,12 @@
 
 #import "SPSprite.h"
 
-@class HexLocation;
+@class HexLocation, GamePiece;
 
 @interface TileMenu : SPSprite
 
 -(TileMenu*) initWithHexLocation: (HexLocation*) location;
+
+-(void) setSelectedPiece: (GamePiece*) piece;
 
 @end

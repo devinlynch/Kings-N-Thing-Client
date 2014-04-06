@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "HexLocation.h"
 #import "Player.h"
+#import "TileMenu.h"
 
 @implementation PiecesMenu{    
     GamePiece *_selectedPiece;
@@ -135,6 +136,12 @@
     }
     
     [_contents addChild:borderImage];
+    
+    if ([_parent.parent isKindOfClass:[TileMenu class]]) {
+        TileMenu *menu = (TileMenu*) _parent.parent;
+        [menu setSelectedPiece:_selectedPiece];
+    }
+    
 }
 
 

@@ -211,6 +211,8 @@
             break;
     }
     
+    
+    
     return self;
 }
 
@@ -229,6 +231,7 @@
     [Sparrow.juggler addObject:tween];
 
     [[_tile.image parent] addChild:piece.pieceImage];
+    
 }
 
 
@@ -258,6 +261,7 @@
     
     stack.location = self;
     [_stacks setObject:stack forKey:[stack locationId]];
+    
 }
 
 -(void) removeStack: (Stack*) stack{
@@ -299,6 +303,7 @@
             [self addStack:stack];
         }
     }
+    
 }
 
 
@@ -328,6 +333,7 @@
             }
         }
     }
+    
     [self setVisited:NO];
 }
 
@@ -386,6 +392,57 @@
         }
     }
     return pieces;
+}
+
+-(int) getPieceCountForPlayer: (Player*) player{
+    int count1 = 0;
+    int count2 = 0;
+    int count3 = 0;
+    int count4 = 0;
+    
+    for (GamePiece *pieceKey in _pieces) {
+        GamePiece *piece = [_pieces objectForKey:pieceKey];
+        if ([piece.owner.playerId isEqualToString:@"player1"]) {
+            count1++;
+        } else if ([piece.owner.playerId isEqualToString:@"player2"]) {
+            count2++;
+        } else if ([piece.owner.playerId isEqualToString:@"player3"]) {
+            count3++;
+        } else if ([piece.owner.playerId isEqualToString:@"player4"]) {
+            count4++;
+        }
+
+    }
+    
+    for (Stack *stackKey in _stacks) {
+        Stack *stack = [_stacks objectForKey:stackKey];
+        for (GamePiece *pieceKey in stack.pieces) {
+            GamePiece *piece = [stack.pieces objectForKey:pieceKey];
+            if ([piece.owner.playerId isEqualToString:@"player1"]) {
+                count1++;
+            } else if ([piece.owner.playerId isEqualToString:@"player2"]) {
+                count2++;
+            } else if ([piece.owner.playerId isEqualToString:@"player3"]) {
+                count3++;
+            } else if ([piece.owner.playerId isEqualToString:@"player4"]) {
+                count4++;
+            }
+            
+        }
+
+    }
+    
+    if ([player.playerId isEqualToString:@"player1"]) {
+        return count1;
+    } else if ([player.playerId isEqualToString:@"player2"]) {
+       return count2;
+    } else if ([player.playerId isEqualToString:@"player3"]) {
+        return count3;
+    } else if ([player.playerId isEqualToString:@"player4"]) {
+        return count4;
+    }
+
+    return 0;
 }
 
 @end

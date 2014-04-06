@@ -22,6 +22,7 @@
 #import "InGameServerAccess.h"
 #import "Game.h"
 #import "GameState.h"
+#import "PiecesMenu.h"
 
 @interface TileMenu ()
 - (void) setup;
@@ -44,6 +45,7 @@
     SPImage  *_selectedStackImage;
     SPImage  *_selectedPieceImage;
     SPTextField *_selectedText;
+    PiecesMenu *_stackMenu;
 }
 
 
@@ -204,8 +206,13 @@
     
 }
 
+
 -(void) stackDoubleTap: (Stack*) stack{
-    //bring up stack menu
+    Player* me  = [[[Game currentGame] gameState] getMe];
+    
+    _stackMenu = [[PiecesMenu alloc] initForPlayer:me onLocation:stack withParent:_contents andIsOpposingPlayer:NO];
+    
+    [_stackMenu show];
 }
 
 -(void) onPieceSelected: (SPTouchEvent *) event
@@ -302,6 +309,10 @@
     NSLog(@"Back to board things");
     _contents.visible = NO;
     
+}
+
+-(void) setSelectedPiece: (GamePiece*) piece{
+    [self pieceSingleTap:piece];
 }
 
 
