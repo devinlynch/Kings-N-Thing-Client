@@ -18,6 +18,10 @@
     Player *_owner;
     BOOL _isStartingPoint;
     BOOL _visited;
+    int _player1count;
+    int _player2count;
+    int _player3count;
+    int _player4count;
 }
 
 @property HexTile *tile;
