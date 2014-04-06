@@ -30,7 +30,14 @@
 #import "SideMenu.h"
 #import "Stack.h"
 #import "RecruitCharacter.h"
-#import "ChatScene.h"
+#import "SpecialIncomeCounters.h"
+#import "UIAlertView+Blocks.h"
+#import "CombatPhaseScreenController.h"
+#import "ServerResponseMessage.h"
+#import "Game.h"
+#import "Utils.h"
+#import "RackPiecesMenu.h"
+#import "ConstructionMenu.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -99,6 +106,12 @@
     BOOL isSideMenu;
     
     SPButton *menuButton;
+    
+    CombatPhaseScreenController *_combatPhaseController;
+    
+    SPButton * moveDoneButton;
+    
+    ConstructionMenu *cMenu;
     SPButton *chatNotifButton;
 }
 
@@ -1654,10 +1667,8 @@
 }
 
 -(void) moveDone:(SPTouchEvent*)event {
-     [[InGameServerAccess instance] movementPhaseDoneMakingMoves];
-    
-    [self moveChatNotifDown];
-    
+    [[InGameServerAccess instance] movementPhaseDoneMakingMoves];
+    moveDoneButton.visible = NO;
 }
 
 -(void) didClickChatNotif:(SPTouchEvent*)event{
