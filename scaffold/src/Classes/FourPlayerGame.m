@@ -627,7 +627,7 @@
 }
 
 -(void) collectedGold: (NSNotification*) notif{
-    [[GoldCollection getInstance] setVisible:NO];
+    [[GoldCollection getInstance] removeFromParent];
     [_stateText setText:@"State: Collected Gold"];
     [[InGameServerAccess instance] goldCollectionPhaseDidCollectGold];
 }
@@ -777,7 +777,7 @@
     
     [rt initWithObjectsToRecruit: objectsToRecruit];
     
-    [_contents addChild:rt];
+    [self addChild:rt];
 
     rt.visible = YES;
 }
@@ -1638,8 +1638,9 @@
     
     RecruitCharacter *rt = [RecruitCharacter getInstance];
     [rt setFourPlayerGame:self];
+    [rt setup];
     
-    [_contents addChild:rt];
+    [self addChild:rt];
     
     [rt setVisible:YES];
     
@@ -1671,7 +1672,8 @@
 }
 
 -(void) showGoldCollection{
-    [_contents addChild:[GoldCollection getInstance]];
+    [[GoldCollection getInstance]  removeFromParent];
+    [self addChild:[GoldCollection getInstance]];
     [[GoldCollection getInstance] setVisible:YES];
 }
 
@@ -1697,22 +1699,22 @@
         [_Player4IncomeText removeFromParent];
         [_Player4LabelText removeFromParent];
     } else{
-        [self addChild:_Player4IncomeText];
-        [self addChild:_Player4LabelText];
+        [_contents addChild:_Player4IncomeText];
+        [_contents addChild:_Player4LabelText];
     }
     if(size <3) {
         [_Player3IncomeText removeFromParent];
         [_Player3LabelText removeFromParent];
     } else{
-        [self addChild:_Player3IncomeText];
-        [self addChild:_Player3LabelText];
+        [_contents addChild:_Player3IncomeText];
+        [_contents addChild:_Player3LabelText];
     }
     if(size <2) {
         [_Player2IncomeText removeFromParent];
         [_Player2LabelText removeFromParent];
     } else{
-        [self addChild:_Player2IncomeText];
-        [self addChild:_Player2LabelText];
+        [_contents addChild:_Player2IncomeText];
+        [_contents addChild:_Player2LabelText];
     }
 }
 
