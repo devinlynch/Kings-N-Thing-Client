@@ -1415,7 +1415,7 @@
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     if (clicks.tapCount == 1){
-                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] /*&& tile.isHilighted*/ && ![_selectedPiece isKindOfClass:[Fort class]] && ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] && (tile.isHilighted || [tile.owner.playerId isEqualToString:[_state myPlayerId]]) && ![_selectedPiece isKindOfClass:[Fort class]] && ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
                             [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
                         }
                     } else if(clicks.tapCount == 2){

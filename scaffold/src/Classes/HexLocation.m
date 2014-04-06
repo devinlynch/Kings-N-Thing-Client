@@ -351,6 +351,11 @@
     
     [self.tile hilight];
     
+    if (![self.owner isEqual:[[[Game currentGame] gameState] getMe]]) {
+        [self setVisited:NO];
+        return;
+    }
+    
     for (NSString *hexId in _neighbourIds) {
         HexLocation *location = [[[[Game currentGame] gameState] hexLocations] objectForKey:hexId];
         if(!location.visited && ![location.tile.terrain isEqual:[Terrain getSeaInstance]]){
