@@ -716,7 +716,7 @@
             _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
             [_contents addChild:_selectedPieceImage];
             
-            if ([piece.location isKindOfClass:[HexLocation class]]) {
+            if ([piece.location isKindOfClass:[HexLocation class]] && ![piece isKindOfClass:[Fort class]]) {
                 HexLocation *location = (HexLocation*) piece.location;
                 [location hilightPossibleMoves];
             }

@@ -15,6 +15,7 @@
 #import "GameState.h"
 #import "GameResource.h"
 #import "InGameServerAccess.h"
+#import "RecruitTradeMenu.h"
 
 @interface RecruitThings()
 - (void)setup;
@@ -148,7 +149,7 @@ static RecruitThings *instance;
     
     [_contents addChild:tradeButton];
     
-    //[button3 addEventListener:@selector(onButtonTriggered:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    [tradeButton addEventListener:@selector(didClickOnTradeRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     SPTexture *backButtonTexture = [SPTexture textureWithContentsOfFile:@"back.png"];
@@ -206,6 +207,11 @@ static RecruitThings *instance;
     [[InGameServerAccess instance] recruitThingsPhaseReadyForNextPhase];
     NSLog(@"Back");
     self.visible = NO;
+}
+
+-(void) didClickOnTradeRecruit: (SPEvent*) event{
+    RecruitTradeMenu *tradeMnu = [[RecruitTradeMenu alloc] initWithPossibleTrades:tradeRecruits andPlayer:[[[Game currentGame] gameState] getMe] andParent:self];
+    [tradeMnu show];
 }
 
 
