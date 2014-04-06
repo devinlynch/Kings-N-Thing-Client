@@ -49,6 +49,8 @@
 -(void) setup{
     [super setup];
     
+    logMessages = [[NSMutableArray alloc] init];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(newPhaseStarted:)
                                                  name:@"newPhaseStarted"

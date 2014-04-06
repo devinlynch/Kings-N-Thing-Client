@@ -13,5 +13,7 @@
 +(RecruitCharacter*) getInstance;
 //-(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit;
 -(void) setFourPlayerGame :(FourPlayerGame*) game;
+-(void) setup;
+
 
 @end

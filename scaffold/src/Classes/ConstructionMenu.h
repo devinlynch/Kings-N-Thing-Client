@@ -7,7 +7,17 @@
 //
 
 #import "SPSprite.h"
+#import "AbstractInGameScreen.h"
 
-@interface ConstructionMenu : SPSprite
+
+
+typedef enum ConstructionState{
+    CS_WAITING,
+    CS_BUYING,
+    CS_UPGRADING
+} ConstructionState;
+
+
+@interface ConstructionMenu : AbstractInGameScreen
 
 @end

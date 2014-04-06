@@ -110,8 +110,13 @@ static NSDictionary* textureCache;
     
     [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getForestInstance]  andFileName:@"forest-tile" andId:@"forest-tile-06"] forKey:@"forest-tile-06"];
     
+    [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getForestInstance]  andFileName:@"forest-tile" andId:@"forest-tile-07"] forKey:@"forest-tile-07"];
     
+    [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getForestInstance]  andFileName:@"forest-tile" andId:@"forest-tile-08"] forKey:@"forest-tile-08"];
     
+    [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getForestInstance]  andFileName:@"forest-tile" andId:@"forest-tile-09"] forKey:@"forest-tile-09"];
+    
+    [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getForestInstance]  andFileName:@"forest-tile" andId:@"forest-tile-10"] forKey:@"forest-tile-10"];
     
     
     [tiles setObject:[[HexTile alloc] initWithTerrain:[Terrain getFrozenInstance]  andFileName:@"frozen-tile" andId:@"frozen-tile-01"] forKey:@"frozen-tile-01"];
