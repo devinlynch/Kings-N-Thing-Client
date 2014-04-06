@@ -1420,8 +1420,6 @@
                             break;
 
                         }
-                        [_selectedPieceImage removeFromParent];
-                        [[RecruitThings getInstance] setVisible:YES];
                     }
                 }
                 
@@ -1434,26 +1432,46 @@
 
 -(void) recruitWasFree:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:p];
-            [_state.getMe assignPiece:p];
-            [self clearSelectedPiece:nil];
-
-        });
-    }];
+    if([location getPieceCountForPlayer:[_state getMe]] < 10){
+        [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:p];
+                [_state.getMe assignPiece:p];
+                [self clearSelectedPiece:nil];
+                [_selectedPieceImage removeFromParent];
+                [[RecruitThings getInstance] setVisible:YES];
+            });
+        }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                        message:@"You may not exceed 10 of your own pieces on a hex."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
     
 }
 
 -(void) recruitWasBought:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:p];
-            [_state.getMe assignPiece:p];
-            [self clearSelectedPiece:nil];
-        });
-    }];
+    if([location getPieceCountForPlayer:[_state getMe]] < 10){
+        [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:p];
+                [_state.getMe assignPiece:p];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                        message:@"You may not exceed 10 of your own pieces on a hex."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
 }
 
@@ -1537,6 +1555,13 @@
         if( ! isExploring ) {
             if([location getPieceCountForPlayer:[_state getMe]] < 10){
                 [[InGameServerAccess instance] movementPhaseMoveGamePiece:piece.gamePieceId toLocation:location.locationId withSuccess:performForGamePieceAfterSuccess];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                                message:@"You may not exceed 10 of your own pieces on a hex."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
             }
         } else{
             [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:nil andPiece:piece.gamePieceId withSuccess:performForGamePieceAfterSuccess];
@@ -1546,8 +1571,15 @@
     
     if(stack != nil) {
         if( ! isExploring ) {
-            if([location getPieceCountForPlayer:[_state getMe]] + stack.pieces.count < 10){
+            if([location getPieceCountForPlayer:[_state getMe]] + stack.pieces.count <= 10){
                 [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                                message:@"You may not exceed 10 of your own pieces on a hex."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
             }
         } else {
        

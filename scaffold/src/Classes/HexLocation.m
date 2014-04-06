@@ -417,7 +417,7 @@
     for (Stack *stackKey in _stacks) {
         Stack *stack = [_stacks objectForKey:stackKey];
         for (GamePiece *pieceKey in stack.pieces) {
-            GamePiece *piece = [_pieces objectForKey:pieceKey];
+            GamePiece *piece = [stack.pieces objectForKey:pieceKey];
             if ([piece.owner.playerId isEqualToString:@"player1"]) {
                 count1++;
             } else if ([piece.owner.playerId isEqualToString:@"player2"]) {
