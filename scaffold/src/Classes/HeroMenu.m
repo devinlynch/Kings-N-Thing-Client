@@ -26,7 +26,6 @@
     
     SPImage *borderImage;
     SpecialCharacter *selectedSpecialCharacter;
-    UITextField *_chatTextField;
     UIButton *doneButton;
     SPButton *rollButton;
     InGameServerAccess *access;
@@ -34,6 +33,8 @@
     
     RecruitingHeroMenu *nextMenu;
     FourPlayerGame *_fourPlayerGame;
+    
+    SPTextField *numrollsTxt;
 }
 
 -(id) init
@@ -125,7 +126,7 @@
     [rollButton addEventListener:@selector(didClickOnRoll:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
 
-    UIView *view = Sparrow.currentController.view;
+   /* UIView *view = Sparrow.currentController.view;
     
     _chatTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, _gameHeight - 70, 120, 30)];
     _chatTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -139,7 +140,20 @@
     _chatTextField.enabled = NO;
     [view addSubview:_chatTextField];
     _chatTextField.delegate = self;
-    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];
+    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];*/
+    
+    
+    //Username text
+    numrollsTxt = [SPTextField textFieldWithWidth:130 height:30
+                                                        text:@"0"];
+    numrollsTxt.x = 15;
+    numrollsTxt.y = _gameHeight - 70;
+    numrollsTxt.fontName = @"ArialMT";
+    numrollsTxt.fontSize = 17;
+    numrollsTxt.color = 0xffffff;
+    numrollsTxt.touchable = NO;
+    [_contents addChild:numrollsTxt];
+    
     
     
     SPTexture *upButtonText = [SPTexture textureWithContentsOfFile:@"upArrow@2x.png"];
@@ -201,16 +215,16 @@
         return;
     }
     
-    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];
+    [numrollsTxt setText:[NSString stringWithFormat:@"%d", numRolls]];
 }
 
 -(void) didClickDownBtn: (SPEvent*) event{
     numRolls--;
-    [_chatTextField setText:[NSString stringWithFormat:@"%d", numRolls]];
+    [numrollsTxt setText:[NSString stringWithFormat:@"%d", numRolls]];
 }
 
 -(void) didClickOnRoll: (SPEvent*) event{
-    NSString* numPreRollsString = _chatTextField.text;
+    NSString* numPreRollsString = numrollsTxt.text;
     int numPreRolls = 0;
     if(numPreRollsString != nil && [numPreRollsString length] != 0) {
         numPreRolls =  numPreRollsString.intValue;
@@ -231,11 +245,10 @@
 -(void) didGetIngameResponseFromServerForRequest: (InGameRequestTypes) requestType andResponse: (ServerResponseMessage*) responseMessage{
     [Utils removeLoaderOnView: Sparrow.currentController.view animated:true];
     if(requestType == RECRUITCHARS_MAKEROLLFORPLAYER) {
-        if(responseMessage == nil) {
+        if(responseMessage == nil || responseMessage.error != nil) {
             [Utils showAlertWithTitle:@"Whoops" message:@"There was a problem with that.  Please try again." delegate:nil cancelButtonTitle:@"Ok"];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_chatTextField setHidden:YES];
                 [self showScene:nextMenu];
             });
         }

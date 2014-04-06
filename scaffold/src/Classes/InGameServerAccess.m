@@ -161,6 +161,16 @@ static InGameServerAccess *instance;
     return RECRUITTHINGSPHASE_recruitedAndPlacedThing;
 }
 
+-(enum InGameRequestTypes) recruitThingsTradePiece: (NSString*) oldPieceId forPiece: (NSString*) newPieceId withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:oldPieceId forKey:@"oldThingId"];
+    [params setObject:newPieceId forKey:@"newThingId"];
+    
+    [self phasePost:@"recruitThings" type:@"tradedThing" params:params requestType:RECRUITTHINGSPHASE_tradingPiece withSuccess:success];
+    
+    return RECRUITTHINGSPHASE_tradingPiece;
+}
+
 -(enum InGameRequestTypes) recruitThingsPhaseReadyForNextPhase{
     [self phasePost:@"recruitThings" type:@"readyForNextPhase" params:nil requestType:RECRUITTHINGSPHASE_readyForNextPhase withSuccess:nil];
 

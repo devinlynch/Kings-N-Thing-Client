@@ -72,7 +72,7 @@
                                                object:nil];
     [CombatBattle subscribeToBattleNotifications:self andSelector:@selector(didGetUpdatedBattle:)];
 
-    [_fourPlayerGame addChildToContents: self];
+    [_fourPlayerGame addChildToPhasesContent: self];
     [self setVisible: YES];
     [self showWaitingScreen];
 }

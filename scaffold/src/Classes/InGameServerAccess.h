@@ -19,6 +19,7 @@ typedef enum InGameRequestTypes {
     GOLDCOLLECTIONPHASE_didCollectGold,
     RECRUITTHINGSPHASE_recruitedAndPlacedThing,
     RECRUITTHINGSPHASE_readyForNextPhase,
+    RECRUITTHINGSPHASE_tradingPiece,
     MOVEMENTPHASE_moveStack,
     MOVEMENTPHASE_moveGamePiece,
     MOVEMENTPHASE_createStack,
@@ -70,6 +71,7 @@ void (^successBlock)(ServerResponseMessage*);
 
 // Recruit Things
 -(enum InGameRequestTypes) recruitThingsPhaseRecruited: (NSString*) thingId palcedOnLocation: (NSString*) locationId wasBought:(BOOL) wasBought withSuccess:( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) recruitThingsTradePiece: (NSString*) oldPieceId forPiece: (NSString*) newPieceId withSuccess:( void (^)(ServerResponseMessage * message))success;
 -(enum InGameRequestTypes) recruitThingsPhaseReadyForNextPhase;
 
 // Movement
