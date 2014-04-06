@@ -61,6 +61,14 @@
                                                  name:@"newCombatPhaseLog"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(newLog:)
+                                                 name:@"newCombatPhaseLog"
+                                               object:nil];
+    
+    
+    //menuMovedRight
+    
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
     

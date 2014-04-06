@@ -82,7 +82,6 @@
             continue;
         
         NSString *pieceId = [pieceMap objectForKey:@"id"];
-        NSString *ownerId = [pieceMap objectForKey:@"ownerId"];
 
         if(pieceId == nil || [_pieces objectForKey:pieceId] != nil) {
             continue;
@@ -90,13 +89,8 @@
         
         GamePiece *piece = [[GameResource getInstance] getPieceForId:pieceId];
         
-        if(ownerId != nil) {
-            Player *p;
-            [p assignPiece:piece];
-        }
-        
-        
         [self addGamePieceToLocation:piece];
+        [piece updateFromSerializedJson:pieceMap forGameState:[[Game currentGame] gameState]];
     }
 }
 

@@ -310,6 +310,10 @@
 		9933E85218BFCC630010C910 /* GeneralGameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9933E85118BFCC630010C910 /* GeneralGameEventHandler.m */; };
 		993B1CD218D4F00A0055056F /* SentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 993B1CD118D4F00A0055056F /* SentMessage.m */; };
 		993E8B1C18F1C10E0001BD20 /* RecruitTradeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 993E8B1B18F1C10E0001BD20 /* RecruitTradeMenu.m */; };
+		99517A4818F1F9610072E105 /* borderTileBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 99517A4418F1F9610072E105 /* borderTileBlue.png */; };
+		99517A4918F1F9610072E105 /* borderTileGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 99517A4518F1F9610072E105 /* borderTileGreen.png */; };
+		99517A4A18F1F9610072E105 /* borderTileRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 99517A4618F1F9610072E105 /* borderTileRed.png */; };
+		99517A4B18F1F9610072E105 /* borderTileYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 99517A4718F1F9610072E105 /* borderTileYellow.png */; };
 		9978234518EEFC98001DC5C3 /* BattleStartedMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234418EEFC98001DC5C3 /* BattleStartedMenu.m */; };
 		9978234818EEFF64001DC5C3 /* ConbatBattleBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9978234718EEFF64001DC5C3 /* ConbatBattleBackground@2x.png */; };
 		9978234B18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9978234A18EEFFF1001DC5C3 /* AbstractCombatPhaseScreen.m */; };
@@ -886,6 +890,10 @@
 		993B1CD118D4F00A0055056F /* SentMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentMessage.m; sourceTree = "<group>"; };
 		993E8B1A18F1C10E0001BD20 /* RecruitTradeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitTradeMenu.h; sourceTree = "<group>"; };
 		993E8B1B18F1C10E0001BD20 /* RecruitTradeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitTradeMenu.m; sourceTree = "<group>"; };
+		99517A4418F1F9610072E105 /* borderTileBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderTileBlue.png; sourceTree = "<group>"; };
+		99517A4518F1F9610072E105 /* borderTileGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderTileGreen.png; sourceTree = "<group>"; };
+		99517A4618F1F9610072E105 /* borderTileRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderTileRed.png; sourceTree = "<group>"; };
+		99517A4718F1F9610072E105 /* borderTileYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderTileYellow.png; sourceTree = "<group>"; };
 		9978234318EEFC98001DC5C3 /* BattleStartedMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleStartedMenu.h; sourceTree = "<group>"; };
 		9978234418EEFC98001DC5C3 /* BattleStartedMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BattleStartedMenu.m; sourceTree = "<group>"; };
 		9978234718EEFF64001DC5C3 /* ConbatBattleBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ConbatBattleBackground@2x.png"; sourceTree = "<group>"; };
@@ -1553,6 +1561,10 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				99517A4418F1F9610072E105 /* borderTileBlue.png */,
+				99517A4518F1F9610072E105 /* borderTileGreen.png */,
+				99517A4618F1F9610072E105 /* borderTileRed.png */,
+				99517A4718F1F9610072E105 /* borderTileYellow.png */,
 				9921AF6318F081AF006AB537 /* expand@2x.png */,
 				9909A67218EAE7560092B7B6 /* continue.png */,
 				992613EA18E3B0CF0036CA53 /* borderTile.png */,
@@ -2624,6 +2636,7 @@
 				DEF9FF2D18A8072C0057FAEB /* desert-tile-menu@2x.png in Resources */,
 				4173884118E4922B00934A1F /* T_Forest_103.png in Resources */,
 				41FA0FF318EB6E140048A0E4 /* downArrow@2x.png in Resources */,
+				99517A4A18F1F9610072E105 /* borderTileRed.png in Resources */,
 				4173885218E4922B00934A1F /* T_Jungle_001.png in Resources */,
 				41BD13B518A75244008C6E96 /* atlas.png in Resources */,
 				4173883218E4922B00934A1F /* T_Forest_088.png in Resources */,
@@ -2635,6 +2648,7 @@
 				9921AF7118F0E899006AB537 /* construc@2x.png in Resources */,
 				41BD13B718A75244008C6E96 /* back.png in Resources */,
 				41BD142318A75244008C6E96 /* T_Income_365.png in Resources */,
+				99517A4B18F1F9610072E105 /* borderTileYellow.png in Resources */,
 				4173884518E4922B00934A1F /* T_Frozen_Waste_053.png in Resources */,
 				417313F718E25B21009D27F9 /* 8bit.caf in Resources */,
 				41BD142518A75244008C6E96 /* T_Income_367.png in Resources */,
@@ -2750,6 +2764,7 @@
 				41BD13B818A75244008C6E96 /* besbuton.png in Resources */,
 				DE07B81A18D41B5100A19DCB /* gamelog@2x.png in Resources */,
 				417388F518E4925F00934A1F /* T_Event_352.png in Resources */,
+				99517A4818F1F9610072E105 /* borderTileBlue.png in Resources */,
 				4173886518E4922B00934A1F /* T_Mountains_041.png in Resources */,
 				417388EA18E4925F00934A1F /* T_Event_341.png in Resources */,
 				417388D218E4925500934A1F /* SC_393.png in Resources */,
@@ -2830,6 +2845,7 @@
 				4173890418E4927000934A1F /* chatBackground@2x.png in Resources */,
 				4173882E18E4922B00934A1F /* T_Desert_121.png in Resources */,
 				4173885A18E4922B00934A1F /* T_Jungle_009.png in Resources */,
+				99517A4918F1F9610072E105 /* borderTileGreen.png in Resources */,
 				DEF9FF9A18A825120057FAEB /* green-desert-tile.png in Resources */,
 				417388C918E4925500934A1F /* SC_384.png in Resources */,
 				DEF9FFAC18A825210057FAEB /* blue-mountain-tile.png in Resources */,
