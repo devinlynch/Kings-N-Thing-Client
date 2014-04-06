@@ -16,6 +16,7 @@
     Player *_owner;
     ScaledGamePiece *_pieceImage;
     ScaledGamePiece *_bluffImage;
+    ScaledGamePiece *_borderImage;
     NSString *_fileName;
     NSString *_name;
     BOOL _isBluff;
@@ -26,10 +27,13 @@
 @property BoardLocation *location;
 @property ScaledGamePiece *pieceImage;
 @property ScaledGamePiece *bluffImage;
+@property ScaledGamePiece *borderImage;
 @property NSString *fileName;
 @property NSString *name;
 @property BOOL isBluff;
 
 -(void) updateFromSerializedJson: (NSDictionary*) json forGameState: (GameState*) gameState;
+
+-(void) changeOwnerToPlayer: (Player*) player;
 
 @end
