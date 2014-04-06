@@ -38,6 +38,7 @@
 #import "Utils.h"
 #import "RackPiecesMenu.h"
 #import "ConstructionMenu.h"
+#import "ChatScene.h"
 
 @interface FourPlayerGame ()
 - (void) setup;

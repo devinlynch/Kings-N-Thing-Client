@@ -8,5 +8,7 @@
 	<string>yes</string>
 	<key>test_screen_method</key>
 	<string>testRecruitCharacters:</string>
+	<key></key>
+	<string></string>
 </dict>
 </plist>
