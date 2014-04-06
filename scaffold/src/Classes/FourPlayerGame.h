@@ -21,6 +21,7 @@ typedef enum PhaseType{
 } PhaseType;
 
 typedef NS_ENUM(NSInteger, PlacementStep) {
+    PLACE_CM_0,
     PLACE_CM_1,
     PLACE_CM_2,
     PLACE_CM_3,
