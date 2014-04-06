@@ -1575,7 +1575,7 @@
     if(didCapture) {
         [_state.game addLogMessage:[NSString stringWithFormat:@"There were no creatures found on %@.  You captured it!", location.locationName]];
     } else{
-        [_state.game addLogMessage:[NSString stringWithFormat:@"%ld wild creatures were found on %@.  You will need to battle them during the combat phase!", defendingPieceIds.count, location.locationName]];
+        [_state.game addLogMessage:[NSString stringWithFormat:@"%ld wild creatures were found on %@.  You will need to battle them during the combat phase!", (unsigned long)defendingPieceIds.count, location.locationName]];
     }
 }
 
