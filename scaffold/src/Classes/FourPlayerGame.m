@@ -113,6 +113,9 @@
     SPButton * moveDoneButton;
     
     ConstructionMenu *cMenu;
+    
+    BOOL _canExplore;
+    
     SPButton *chatNotifButton;
 }
 

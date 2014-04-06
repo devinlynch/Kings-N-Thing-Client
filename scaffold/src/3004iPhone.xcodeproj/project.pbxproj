@@ -486,6 +486,8 @@
 		DE937C7C18DB34FF0012F30D /* dischargehero.png in Resources */ = {isa = PBXBuildFile; fileRef = DE937C7B18DB34FF0012F30D /* dischargehero.png */; };
 		DE937C8018DB6E340012F30D /* ChatScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DE937C7F18DB6E340012F30D /* ChatScene.m */; };
 		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
+		DE99C69918F1F59E008C884B /* WinningScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = DE99C69818F1F59E008C884B /* WinningScreen.m */; };
+		DE99C69C18F1F6DF008C884B /* endgame.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99C69B18F1F6DF008C884B /* endgame.png */; };
 		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
 		DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350918A097510031BF8C /* RecruitThings.m */; };
 		DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */; };
@@ -1025,6 +1027,9 @@
 		DE937C8218DB6F2E0012F30D /* chatBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBackground@2x.png"; sourceTree = "<group>"; };
 		DE991F7E18846CFD006C759F /* TwoThreePlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoThreePlayerGame.h; sourceTree = "<group>"; };
 		DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoThreePlayerGame.m; sourceTree = "<group>"; };
+		DE99C69718F1F59E008C884B /* WinningScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningScreen.h; sourceTree = "<group>"; };
+		DE99C69818F1F59E008C884B /* WinningScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningScreen.m; sourceTree = "<group>"; };
+		DE99C69B18F1F6DF008C884B /* endgame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endgame.png; sourceTree = "<group>"; };
 		DEA17CEC189801B200A743C6 /* FourPlayerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPlayerGame.h; sourceTree = "<group>"; };
 		DEA17CED189801B200A743C6 /* FourPlayerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPlayerGame.m; sourceTree = "<group>"; };
 		DEA6350818A097510031BF8C /* RecruitThings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitThings.h; sourceTree = "<group>"; };
@@ -1925,6 +1930,8 @@
 				DEC0AA7418D8C2340089EF72 /* ConstructionMenu.m */,
 				9978234F18EF0EBF001DC5C3 /* AbstractInGameScreen.h */,
 				9978235018EF0EBF001DC5C3 /* AbstractInGameScreen.m */,
+				DE99C69718F1F59E008C884B /* WinningScreen.h */,
+				DE99C69818F1F59E008C884B /* WinningScreen.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -2327,6 +2334,7 @@
 				DEC099AD18CE403900487534 /* rolldice.png */,
 				DE04CA4B18D68AB8006F5271 /* discharge.png */,
 				DE48620918A97A3A00272B79 /* InfoButton@2x.png */,
+				DE99C69B18F1F6DF008C884B /* endgame.png */,
 				DEB800C218E4C4160041A48E /* roll.png */,
 				DE48620A18A97A3A00272B79 /* SmallButton@2x.png */,
 				DEB800C018E4C38C0041A48E /* done.png */,
@@ -2642,6 +2650,7 @@
 				41BD142318A75244008C6E96 /* T_Income_365.png in Resources */,
 				4173884518E4922B00934A1F /* T_Frozen_Waste_053.png in Resources */,
 				417313F718E25B21009D27F9 /* 8bit.caf in Resources */,
+				DE99C69C18F1F6DF008C884B /* endgame.png in Resources */,
 				41BD142518A75244008C6E96 /* T_Income_367.png in Resources */,
 				4173888A18E4922B00934A1F /* T_Swamp_071.png in Resources */,
 				4173887218E4922B00934A1F /* T_Plains_016.png in Resources */,
@@ -2992,6 +3001,7 @@
 				997B0E0318A7E7FE009404DE /* InGameServerAccess.m in Sources */,
 				9909A67A18EB0F400092B7B6 /* LogMessage.m in Sources */,
 				99C7604818E742C1004021A6 /* RecruitingHeroMenu.m in Sources */,
+				DE99C69918F1F59E008C884B /* WinningScreen.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DEA6351418A0A3910031BF8C /* Combat.m in Sources */,
 				DE48623118A9D01000272B79 /* SPScrollSprite.m in Sources */,

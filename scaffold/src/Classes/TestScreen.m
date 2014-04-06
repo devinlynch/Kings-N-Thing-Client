@@ -26,6 +26,7 @@
 #import "ConstructionMenu.h"
 #import "HeroMenu.h"
 #import "ChatScene.h"
+#import "WinningScreen.h"
 
 @implementation TestScreen
 
@@ -35,7 +36,7 @@
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
     
-    _viewController = [[ChatScene alloc] init];
+    _viewController = [[SPViewController alloc] init];
     
     _viewController.multitouchEnabled = YES;
     
@@ -45,7 +46,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[ChatScene class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[WinningScreen class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }
