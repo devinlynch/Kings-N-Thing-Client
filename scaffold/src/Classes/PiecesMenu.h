@@ -22,5 +22,6 @@
 
 -(id) initForPlayer: (Player*) player onLocation: (BoardLocation*) location withParent: (SPSprite*) parent andIsOpposingPlayer: (BOOL) isOpposingPlayer;
 -(void) didClickOnRecruit:(SPEvent *) event;
+
 @end
 
