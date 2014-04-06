@@ -210,7 +210,7 @@
 -(void) stackDoubleTap: (Stack*) stack{
     Player* me  = [[[Game currentGame] gameState] getMe];
     
-    _stackMenu = [[PiecesMenu alloc] initForPlayer:me onLocation:stack withParent:_contents andIsOpposingPlayer:NO];
+    _stackMenu = [[PiecesMenu alloc] initForPlayer:stack.owner onLocation:stack withParent:_contents andIsOpposingPlayer:(me==stack.owner)];
     
     [_stackMenu show];
 }

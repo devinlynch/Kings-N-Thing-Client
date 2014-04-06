@@ -1474,6 +1474,8 @@
                 [location addGamePieceToLocation:p];
                 [_state.getMe assignPiece:p];
                 [self clearSelectedPiece:nil];
+                [_selectedPieceImage removeFromParent];
+                [[RecruitThings getInstance] setVisible:YES];
             });
         }];
     }else{
