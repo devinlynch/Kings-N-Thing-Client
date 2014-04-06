@@ -39,7 +39,6 @@ static RecruitCharacter *instance;
 {
     if ((self = [super init]))
     {
-    
         [self setup];
     }
     
@@ -52,11 +51,17 @@ static RecruitCharacter *instance;
 
 
 -(void) setup{
+    if(_contents == nil) {
+        _contents = [SPSprite sprite];
+    } else{
+        [_contents removeAllChildren];
+        _contents.visible = YES;
+    }
+    
     
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
-    _contents = [SPSprite sprite];
     [self addChild:_contents];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"RecruitThingsBackground@2x.png"];

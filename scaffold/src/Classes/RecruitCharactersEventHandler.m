@@ -108,7 +108,7 @@
         didHeRecruit = @"They did not recruit it";
     }
     
-    NSString *logMessage = [NSString stringWithFormat: @"%@ rolled a %d and bought %d pre roll changes in while trying to recruit a %@.  %@.", player.username, theRoll, numPreRolls, piece.gamePieceId, didHeRecruit];
+    NSString *logMessage = [NSString stringWithFormat: @"%@ rolled a %d and bought %d pre roll changes in while trying to recruit a %@.  %@.", player.username, theRoll, numPreRolls, piece.name != nil ? piece.name : piece.gamePieceId, didHeRecruit];
     [game addLogMessage:logMessage];
     
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
@@ -159,6 +159,7 @@
     NSString *playerId = [dataDic objectForKey:@"playerId"];
     BOOL didRecruit = [[dataDic objectForKey:@"didRecruit"] boolValue];
     int numPostRolls = [[dataDic objectForKey:@"numPostRolls"] intValue];
+    NSMutableDictionary* specialCharDic = [dataDic objectForKey:@"specialCharacter"];
     
     Game *game = [Game currentGame];
     GameState* gameState = game.gameState;
@@ -177,8 +178,12 @@
         didHeRecruit = @"They did not recruit it";
     }
     
-    NSString *logMessage = [NSString stringWithFormat: @"%@ finished their turn of trying to recruit a %@.  %@.  They bought %d post rolls.", player.username, piece.gamePieceId, didHeRecruit, numPostRolls];
+    NSString *logMessage = [NSString stringWithFormat: @"%@ finished their turn of trying to recruit a %@.  %@.  They bought %d post rolls.", player.username, piece.name != nil ? piece.name : piece.gamePieceId, didHeRecruit, numPostRolls];
     [game addLogMessage:logMessage];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [piece updateFromSerializedJson:specialCharDic forGameState:gameState];
+    });
     
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
     if(!isMe) {

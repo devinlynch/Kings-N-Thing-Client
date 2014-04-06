@@ -62,13 +62,18 @@
 }
 
 +(void) showAlertWithTitle: (NSString* ) title message: (NSString*) message delegate: (id) delegate cancelButtonTitle: (NSString*) cancelButtonTitle {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    runOnMainQueueWithoutDeadlocking(^{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:delegate
                                               cancelButtonTitle:cancelButtonTitle
                                               otherButtonTitles: nil];
-        [alert show];
+        @try {
+            [alert show];
+        }
+        @catch (NSException *exception) {
+        }
+        
     });
 }
 
@@ -94,4 +99,23 @@
     NSDictionary* dataDic = [message.jsonDictionnary objectForKey:@"data"];
     return dataDic;
 }
+
++(void) notifyOnMainQueue: (NSString*) notificationName withObject: (id) object{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:object];
+    });
+}
+
+void runOnMainQueueWithoutDeadlocking(void (^block)(void))
+{
+    if ([NSThread isMainThread])
+    {
+        block();
+    }
+    else
+    {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
+}
+
 @end

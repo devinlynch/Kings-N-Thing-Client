@@ -1,36 +1,36 @@
 //
-//  MeleeStepMenu.m
+//  YourPiecesMenu.m
 //  3004iPhone
 //
 //  Created by Richard Ison on 2014-03-27.
 //
 //
 
-#import "MeleeStepMenu.h"
+#import "PiecesMenu.h"
 #import "GameResource.h"
 #import "GamePiece.h"
 #import "InGameServerAccess.h"
-#import "SpecialCharacter.h"
 #import "Utils.h"
+#import "HexLocation.h"
+#import "Player.h"
+#import "TileMenu.h"
 
-@implementation MeleeStepMenu{
-    SPSprite *_contents;
-    SPSprite *_currentScene;
-    
-    NSMutableArray *_magicCreatures;
-    SpecialCharacter *selectedSpecialCharacter;
+@implementation PiecesMenu{    
+    GamePiece *_selectedPiece;
     SPImage *borderImage;
-    
-    
-    int _gameWidth;
-    int _gameHeight;
+    BOOL _isOpposingPlayer;
 }
 
--(id) init
+@synthesize location = _location;
+@synthesize player = _player;
+
+-(id) initForPlayer: (Player*) player onLocation: (BoardLocation*) location withParent: (SPSprite*) parent andIsOpposingPlayer: (BOOL) isOpposingPlayer
 {
-    if ((self = [super init]))
+    if ((self = [super initFromParent:parent]))
     {
-        
+        _player = player;
+        _location = location;
+        _isOpposingPlayer = isOpposingPlayer;
         [self setup];
     }
     
@@ -39,37 +39,38 @@
 
 
 -(void) setup{
+    [super setup];
     
-    _gameWidth = Sparrow.stage.width;
-    _gameHeight = Sparrow.stage.height;
+    NSString *bgImageName = @"YourPiecesBackground@2x.png";
+    if(_isOpposingPlayer) {
+        bgImageName = @"EnemyPiecesBackground@2x.png";
+    }
     
-    _contents = [SPSprite sprite];
-    [self addChild:_contents];
-    
-    SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"MeleeStepBackground@2x.png"];
-    
-    //necessary or else it gets placed off screen
+    SPImage *background = [[SPImage alloc] initWithContentsOfFile:bgImageName];
     background.x = 0;
     background.y = 0;
     
     [_contents addChild:background];
     
-    NSArray *recruits = [NSArray arrayWithObjects:@"specialcharacter_01",@"specialcharacter_02",@"specialcharacter_03",@"specialcharacter_04",@"specialcharacter_05",@"specialcharacter_06",@"specialcharacter_07",@"specialcharacter_08",@"specialcharacter_09",@"specialcharacter_10",@"specialcharacter_11", nil];
+
     
-    _magicCreatures = [NSMutableArray arrayWithArray:recruits];
+    NSArray *pieces;
     
-    
+    if([_location isKindOfClass:[HexLocation class]]) {
+        pieces = [((HexLocation*)_location) getAllPiecesForPlayerIncludingPiecesInStacks:_player];
+    } else{
+       pieces = [_location getAllPiecesForPlayer:_player];
+    }
     
     int numInRow=1;
     int row=1;
-    for(NSString *recruitId in _magicCreatures) {
-        SpecialCharacter *gp = [[GameResource getInstance] getSpecialCharacterForId:recruitId];
+    for(GamePiece *gp in pieces) {
         SPButton *_selectedPieceImage;
         SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
         _selectedPieceImage = [SPButton buttonWithUpState:text];
-        _selectedPieceImage.x = (_gameWidth/4)*numInRow-70;
+        _selectedPieceImage.x = (_gameWidth/5)*numInRow-65;
         _selectedPieceImage.y = 40+(90*row);
-        [_selectedPieceImage setName:recruitId];
+        [_selectedPieceImage setName:gp.gamePieceId];
         
         [_selectedPieceImage addEventListener:@selector(didClickOnRecruit:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
         
@@ -83,7 +84,7 @@
     
     //Username text
     SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:@"Username"];
+                                                        text:_player.user.username];
     welcomeTF.x = welcomeTF.y = 10;
     welcomeTF.fontName = @"ArialMT";
     welcomeTF.fontSize = 25;
@@ -92,19 +93,10 @@
     
     
     
-    //Roll Button
-    SPTexture *rollButtonTexture = [SPTexture textureWithContentsOfFile:@"roll.png"];
-    SPButton *rollButton = [SPButton buttonWithUpState:rollButtonTexture];
-    rollButton.x = _gameWidth /2 - rollButton.width/2 + 20;
-    rollButton.y = 400;
-    rollButton.scaleX = rollButton.scaleY = 0.8;
-    [_contents addChild:rollButton];
-    [rollButton addEventListener:@selector(didClickOnRoll:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    
     //Done Button
     SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"done.png"];
     SPButton *skipButton = [SPButton buttonWithUpState:skipButtonTexture];
-    skipButton.x = _gameWidth /2 - rollButton.width/2 + 20;
+    skipButton.x = _gameWidth /2 - skipButton.width/2 + 20;
     skipButton.y = 480;
     skipButton.scaleX = skipButton.scaleY = 0.8;
     [_contents addChild:skipButton];
@@ -136,28 +128,25 @@
         [borderImage removeFromParent];
     }
     
-    selectedSpecialCharacter = [[GameResource getInstance] getSpecialCharacterForId:selectedPiece.name];
-    if(selectedSpecialCharacter != nil) {
+    _selectedPiece = [[GameResource getInstance] getPieceForId:selectedPiece.name];
+    if(_selectedPiece != nil) {
         borderImage = [[SPImage alloc] initWithContentsOfFile:@"borderTile.png"];
         borderImage.x = selectedPiece.x;
         borderImage.y = selectedPiece.y;
     }
     
-    
     [_contents addChild:borderImage];
+    
+    if ([_parent.parent isKindOfClass:[TileMenu class]]) {
+        TileMenu *menu = (TileMenu*) _parent.parent;
+        [menu setSelectedPiece:_selectedPiece];
+    }
+    
 }
 
-- (void) didClickOnRoll:(SPEvent *) event{
-    NSLog(@"Clicked roll");
-    //TODO: animate the dice roll and display what value the piece got
-    
-    
-}
 
 - (void) didClickOnSkip:(SPEvent *) event{
-    NSLog(@"Clicked skip");
-    _contents.visible = NO;
+    [self hide];
 }
-
 
 @end

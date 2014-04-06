@@ -34,9 +34,20 @@
     }
     
     [Game addLogMessageToCurrentGame:@"Gold collection has started, please collect your gold!"];
+    GameState *gameState  = [[Game currentGame] gameState];
 
-    
     NSDictionary* goldCollectionDic = [message.jsonDictionnary objectForKey:@"data"];
+    
+    NSEnumerator *enumerator = [goldCollectionDic keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        Player *p = [gameState getPlayerById:key];
+        NSDictionary *playerGoldDic = [goldCollectionDic objectForKey:key];
+        if(p != nil) {
+            int totalGold  = [[playerGoldDic objectForKey:@"totalGold"] intValue];
+            [p setGold:totalGold];
+        }
+    }
 
     
     if(goldCollectionDic == nil){

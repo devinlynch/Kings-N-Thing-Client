@@ -8,8 +8,13 @@
 
 #import "Game.h"
 #import "GameChatMessage.h"
+#import "LogMessage.h"
 
-@implementation Game
+#import <AVFoundation/AVFoundation.h>
+
+@implementation Game{
+    AVSpeechSynthesizer * synthesizer;
+}
 
 @synthesize gameID = _gameID;
 @synthesize gameState = _gameState;
@@ -36,6 +41,7 @@ static Game *instance;
     if(self) {
         [self setChatMessages:[[NSMutableArray alloc] init]];
         [self setLogMessages:[[NSMutableArray alloc] init]];
+        synthesizer = [[AVSpeechSynthesizer alloc] init];
     }
     return self;
 }
@@ -73,14 +79,36 @@ static Game *instance;
 }
 
 -(void) addLogMessage: (NSString*) message{
+    if([GameConfig shouldPlayVoice]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:message];
+            [utterance setRate:0.4f];
+            [synthesizer speakUtterance:utterance];
+        });
+    }
+    [self addLogMessageWithoutVoice:message];
+   
+}
+
+-(void) addLogMessageWithoutVoice: (NSString*) message{
     NSLog(@"%@",message);
-    [self.logMessages addObject:message];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newLogMessage" object:self];
+    
+    LogMessage *msg = [[LogMessage alloc] initWithMessage:message];
+    [self.logMessages addObject:msg];
 }
 
 +(void) addLogMessageToCurrentGame: (NSString*) message{
     Game *g = [self currentGame];
     if(g != nil)
        [g addLogMessage:message];
+}
+
++(void) addLogMessageWithoutVoiceToCurrentGame: (NSString*) message{
+    Game *g = [self currentGame];
+    if(g != nil)
+        [g addLogMessageWithoutVoice:message];
 }
 
 

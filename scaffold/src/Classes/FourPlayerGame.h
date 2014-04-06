@@ -9,15 +9,16 @@
 #import "SPImage.h"
 #import <UIKit/UIDevice.h>
 
-typedef NS_ENUM(NSInteger, GamePhase) {
+typedef enum PhaseType{
     SETUP,
     PLACEMENT,
     SC_RECRUITMENT,
     RECRUITMENT,
     GOLD,
     MOVEMENT,
-    COMBAT
-} ;
+    COMBAT,
+    CONSTRUCTION
+} PhaseType;
 
 typedef NS_ENUM(NSInteger, PlacementStep) {
     PLACE_CM_1,
@@ -31,8 +32,16 @@ typedef NS_ENUM(NSInteger, WasBought) {
     WAS_NOT_BOUGHT
 } ;
 
-@interface FourPlayerGame : SPSprite
+@interface FourPlayerGame : SPSprite<UIAlertViewDelegate>{
+    PhaseType _phase;
+}
 
 -(void) startedRecruitThingsPhase: (NSNotification*) notif;
+-(void) addChildToContents: (SPDisplayObject*) sprite;
+-(void) addChildToPhasesContent: (SPDisplayObject*) sprite;
+
+-(void) setPhase: (PhaseType) phase;
+-(PhaseType) getPhase;
+-(void) reinitializeCombatScreenAndShowGold;
 
 @end

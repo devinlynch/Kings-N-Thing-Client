@@ -11,17 +11,18 @@
 #import "RecruitThings.h"
 #import "FourPlayerGame.h"
 #import "WaitScreen.h"
-#import "MagicStepMenu.h"
-#import "RangeStepMenu.h"
-#import "MeleeStepMenu.h"
 
-#import "MagicResolutionMenu.h"
-#import "RangeResolutionMenu.h"
-#import "MeleeResolutionMenu.h"
 
-#import "YourPiecesMenu.h"
+#import "PiecesMenu.h"
 #import "EnemyPiecesMenu.h"
 #import "BattleSummaryMenu.h"
+#import "BattleStartedMenu.h"
+
+#import "CombatBattleStepMenu.h"
+#import "CombatBattleStepResolutionMenu.h"
+
+#import "ConstructionMenu.h"
+#import "HeroMenu.h"
 
 @implementation TestScreen
 
@@ -31,7 +32,7 @@
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     _window = [[UIWindow alloc] initWithFrame:screenBounds];
     
-    _viewController = [[SPViewController alloc] init];
+    _viewController = [[HeroMenu alloc] init];
     
     _viewController.multitouchEnabled = YES;
     

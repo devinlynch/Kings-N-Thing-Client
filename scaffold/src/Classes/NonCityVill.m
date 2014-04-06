@@ -7,6 +7,7 @@
 //
 
 #import "NonCityVill.h"
+#import "ScaledGamePiece.h"
 
 @implementation NonCityVill
 
@@ -22,19 +23,40 @@
     
     _gamePieceId = [[NSString alloc] initWithString:nonCityVillId];
     _terrain = type;
-    _goldValue = &value;
+    _goldValue = value;
     _fileName = [[NSString alloc] initWithString:name];
+    
+    _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:name andOwner:self];
+    [_pieceImage addEventListener:@selector(creatureDoubleClick:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+
     
     return self;
 }
 
+
+-(void) creatureDoubleClick: (SPTouchEvent*) event
+{
+    NSArray *touches = [[event touchesWithTarget:[self pieceImage] andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1)
+    {
+        //Double Click
+        SPTouch *clicks = [touches objectAtIndex:0];
+        if (clicks.tapCount == 2){
+            NSLog(@"le double click");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"pieceSelected" object:self];
+        }
+        
+    }
+    
+}
 
 +(NSMutableDictionary*) initializeAllNonCityVill{
     NSMutableDictionary *nonCityVill = [[NSMutableDictionary alloc]init];
     
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_01-01"
-                                               terrainType:[Terrain getForestInstance] goldValue:1 fileName:@"T_Income_367.png"] forKey:@"specialIncomeCounter_01"];
+                                               terrainType:[Terrain getForestInstance] goldValue:1 fileName:@"T_Income_367.png"] forKey:@"specialIncomeCounter_01-01"];
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_02-01"
                                                terrainType:[Terrain getFrozenInstance] goldValue:3 fileName:@"T_Income_368.png"] forKey:@"specialIncomeCounter_02-01"];
@@ -58,10 +80,10 @@
                                                terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_366.png"] forKey:@"specialIncomeCounter_08-01"];
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_09-01"
-                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_08-01"];
+                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_09-01"];
     
     [nonCityVill setObject:[[NonCityVill alloc] initWithId:@"specialIncomeCounter_09-02"
-                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_08-02"];
+                                               terrainType:[Terrain getMountainInstance] goldValue:1 fileName:@"T_Income_369.png"] forKey:@"specialIncomeCounter_09-02"];
     
     
     return nonCityVill;

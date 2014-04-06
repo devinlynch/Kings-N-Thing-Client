@@ -17,7 +17,6 @@
     NSMutableDictionary *_gamePieces;
     NSString *_username;
     Rack *_rack1;
-    Rack *_rack2;
     int   _gold;
     
 }
@@ -25,10 +24,6 @@
 @property User *user;
 
 @property Rack *rack1;
-
-@property Rack *rack2;
-
-@property int gold;
 
 @property NSString *username;
 
@@ -41,5 +36,9 @@
 
 -(void) assignPiece: (GamePiece*) gamePiece;
 
+-(void) updateFromSerializedJson: (NSDictionary*) json;
+
+-(int) gold;
+-(void) setGold: (int) g;
 
 @end

@@ -44,7 +44,6 @@
     int markerCount;
     NSString *placeHex1, *placeHex2, *placeHex3;
     
-    NSInteger _phase;
     NSInteger _placementStep;
     NSInteger _wasBought;
     
@@ -57,6 +56,7 @@
     
     SPSprite *_currentScene;
     SPSprite *_contents;
+    SPSprite *_phasesScreensContents;
     
     TouchSheet *_sheet;
     SPTextField *_bankText;
@@ -111,8 +111,11 @@
     return self;
 }
 
+
 -(void) setup
 {
+    
+    
     [self addChild:[SideMenu getInstance]];
     [GameResource getInstance];
     
@@ -154,7 +157,8 @@
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
-    
+    _phasesScreensContents = [SPSprite sprite];
+    [self addChild:_phasesScreensContents];
    
 
     
@@ -187,25 +191,25 @@
 
     
     //Income labels
-    _Player1LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player1 Income:"];
+    _Player1LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player1 Gold:"];
     _Player1LabelText.x = _gameWidth - _Player1LabelText.width - (_Player1LabelText.width/2) + 25;
     _Player1LabelText.y = 335;
     _Player1LabelText.color = SP_RED;
     [_contents addChild:_Player1LabelText];
     
-    _Player2LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Income:"];
+    _Player2LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player2 Gold:"];
     _Player2LabelText.x = _gameWidth - _Player2LabelText.width - (_Player2LabelText.width/2) + 25;
     _Player2LabelText.y = 335 + _Player1LabelText.height / 2;
     _Player2LabelText.color = SP_YELLOW;
     [_contents addChild:_Player2LabelText];
     
-    _Player3LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Income:"];
+    _Player3LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player3 Gold:"];
     _Player3LabelText.x = _gameWidth - _Player3LabelText.width - (_Player3LabelText.width/2)+ 25;
     _Player3LabelText.y = 335 + _Player3LabelText.height;
     _Player3LabelText.color = SP_GREEN;
     [_contents addChild:_Player3LabelText];
     
-    _Player4LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Income:"];
+    _Player4LabelText = [SPTextField textFieldWithWidth:110 height:30 text:@"Player4 Gold:"];
     _Player4LabelText.x = _gameWidth - _Player4LabelText.width - (_Player4LabelText.width/2)+ 25;
     _Player4LabelText.y = 335 + _Player4LabelText.height*1.5;
     _Player4LabelText.color = SP_BLUE;
@@ -237,7 +241,6 @@
     _Player4IncomeText.color = SP_BLUE;
     [_contents addChild:_Player4IncomeText];
     
-    
     _rackZone = [[SPImage alloc] initWithContentsOfFile:@"DarkZone2.png"];
     _rackZone.x = 15;
     _rackZone.y = _gameHeight - _rackZone.height - _rackZone.height/4 + 15;
@@ -252,25 +255,25 @@
     
     [_contents addChild:_rackZone];
     
-    //Log button
-//    SPTexture *logButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"SmallButton@2x.png"];
-//    SPButton * logButton = [SPButton buttonWithUpState:logButtonBackgroundTexture];
-//    logButton.x = _gameWidth - logButton.width * 1.7;
-//    logButton.y = _gameHeight - logButton.height * 2.3;
-//    [_contents addChild:logButton];
-//    
-//    [logButton addEventListener:@selector(onLogTriggered:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-//    
+    // Expand Rack Button
+    SPTexture *expandtext = [SPTexture textureWithContentsOfFile:@"expand@2x.png"];
+    SPButton* expandButton = [SPButton buttonWithUpState:expandtext];
+    expandButton.x = _gameWidth - 65 * 2.3;
+    expandButton.y = _gameHeight - _rackZone.height + 66;
+    expandButton.scaleX = expandButton.scaleY = 0.71;
+    [_contents addChild:expandButton];
+    [expandButton addEventListener:@selector(expandRack:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
     
     //Movement done button
     SPTexture *moveDoneButtonBackgroundTexture = [SPTexture textureWithContentsOfFile:@"done-button.png"];
-    SPButton * moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
+    moveDoneButton = [SPButton buttonWithUpState:moveDoneButtonBackgroundTexture];
     moveDoneButton.x = _gameWidth - 32 * 2.3;
     moveDoneButton.y = _gameHeight - _rackZone.height;
     moveDoneButton.scaleX = moveDoneButton.scaleY = 0.41;
     [_contents addChild:moveDoneButton];
     [moveDoneButton addEventListener:@selector(moveDone:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
-    
+    moveDoneButton.visible = NO;
     
     SPTexture *menuTexture = [SPTexture textureWithContentsOfFile:@"menu.png"];
     menuButton = [SPButton buttonWithUpState:menuTexture];
@@ -402,6 +405,25 @@
                                              selector:@selector(didStartRecruitCharactersPhase:)
                                                  name:@"didStartRecruitCharactersPhase"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerGoldChanged:)
+                                                 name:@"playerGoldChanged"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(rackUpdated:)
+                                                 name:@"rackUpdated"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(constructionStarted:)
+                                                 name:@"constructionStarted"
+                                               object:nil];
+    
+    _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
+    
+    [Utils showLoaderOnView:Sparrow.currentController.view animated:YES];
 }
 
 
@@ -412,30 +434,24 @@
     if (touches.count == 1) {
         
         if(isSideMenu){
-            
             //Display sideMenu and move fourPlayerGame
-
-            
             
             SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
                                            transition:SP_TRANSITION_LINEAR];
             SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
                                             transition:SP_TRANSITION_LINEAR];
-            
+            SPTween *tween3 = [SPTween tweenWithTarget:_phasesScreensContents time:0.25f
+                                           transition:SP_TRANSITION_LINEAR];
           
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:panWidth];
             [tween2 animateProperty:@"x" targetValue:panWidth+20];
-
+            [tween3 animateProperty:@"x" targetValue:panWidth];
+            
             [Sparrow.juggler addObject:tween];
             [Sparrow.juggler addObject:tween2];
-
-            
-
-
-            //[_contents setX:panWidth];
-           // tween.onComplete = ^{[self addChild:[SideMenu getInstance]];};
+            [Sparrow.juggler addObject:tween3];
         
         } else {
             
@@ -443,17 +459,17 @@
                                            transition:SP_TRANSITION_LINEAR];
             SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
                                             transition:SP_TRANSITION_LINEAR];
+            SPTween *tween3 = [SPTween tweenWithTarget:_phasesScreensContents time:0.25f
+                                            transition:SP_TRANSITION_LINEAR];
             
             //Tell the tween that it should transition the x value
             [tween animateProperty:@"x" targetValue:0];
             [tween2 animateProperty:@"x" targetValue:10];
+            [tween3 animateProperty:@"x" targetValue:0];
 
             [Sparrow.juggler addObject:tween];
             [Sparrow.juggler addObject:tween2];
-
-            //[_contents setX:panWidth];
-          //  tween.onComplete = ^{[self addChild:_contents];};
-
+            [Sparrow.juggler addObject:tween3];
             
         }
 
@@ -463,14 +479,9 @@
     
 }
 
-
-
-
 -(void) recruitToBoardBought: (NSNotification*) notif{
     
     _wasBought = WAS_BOUGHT;
-    
-    
     
     GamePiece *piece = (GamePiece*) notif.object;
     
@@ -493,6 +504,10 @@
     
     GamePiece *piece = (GamePiece*) notif.object;
     
+    if(piece == nil){
+        NSLog(@"GOD DAMNNIT");
+    }
+    
     _selectedPiece = piece;
     
     [_selectedPieceImage removeFromParent];
@@ -506,7 +521,7 @@
 }
 
 -(void) recruitThingsPhaseOver: (NSNotification*) notif{
-    _phase = MOVEMENT;
+    [self setPhase: MOVEMENT];
     [_stateText setText:@"Wait for your movement turn"];
 }
 
@@ -515,13 +530,13 @@
 }
 
 -(void) yourTurnInMovement:(NSNotification*) notif{
-    _phase = MOVEMENT;
+    [self setPhase: MOVEMENT];
     [_stateText setText:@"Your turn to move"];
 }
 
 -(void) placementOver: (NSNotification*) notif{
-    [_stateText setText:@"State: Place Creatures"];
-    _phase = MOVEMENT;
+    [_stateText setText:@"State: Wait to Place Creatures"];
+    [self setPhase: MOVEMENT];
 }
 
 -(void) playerPlacedFort: (NSNotification*) notif{
@@ -569,13 +584,13 @@
 }
 
 -(void) yourTurnFort: (NSNotification*) notif{
-    _phase = PLACEMENT;
+    [self setPhase: PLACEMENT];
     _placementStep = PLACE_FORT;
     [_stateText setText:@"State: Place fort"];
 }
 
 -(void) yourTurnCM: (NSNotification*) notif{
-    _phase = PLACEMENT;
+    [self setPhase:PLACEMENT];
     _placementStep = PLACE_CM_1;
     [_stateText setText:@"State: Place control marker"];
 
@@ -587,8 +602,8 @@
 }
 
 -(void) goldCollection: (NSNotification*) notif{
-    
-    _phase = GOLD;
+    PhaseType previousPhase = _phase;
+    [self setPhase: GOLD];
     
     [_stateText setText:@"State: Gold Collection"];
     
@@ -596,54 +611,35 @@
     
     NSMutableDictionary *dic = notif.object;
     
-    
-    
     NSMutableDictionary *myGoldDic = [dic objectForKey:_state.myPlayerId];
-    
     
     NSString *total = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[myGoldDic objectForKey:@"totalGold"]]];
     NSString *income = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",[myGoldDic objectForKey:@"income"]]];
     
     
-    NSString *username;
+    NSString *username = [[[_state getMe] user] username];
     
-    for(Player *p in _state.players){
-        if ([p.playerId isEqualToString:_state.myPlayerId]) {
-            username = [[NSString alloc] initWithString:p.username];
-        }
-        [p addGold:[[[dic objectForKey:p.playerId] objectForKey:@"income"] integerValue]];
-        if ([p.playerId isEqualToString:@"player1"]) {
-           [ _Player1IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player1"] objectForKey:@"totalGold"] integerValue]]];
-            
-        } else  if ([p.playerId isEqualToString:@"player2"]) {
-            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player2"] objectForKey:@"totalGold"] integerValue]]];
-            
-        } else  if ([p.playerId isEqualToString:@"player3"]) {
-            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player3"] objectForKey:@"totalGold"] integerValue]]];
-            
-        } else  if ([p.playerId isEqualToString:@"player4"]) {
-            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%ld",(long)[[[dic objectForKey:@"player4"] objectForKey:@"totalGold"] integerValue]]];
-
-        }
-    }
     
     [[GoldCollection getInstance] setIncome:[NSString stringWithFormat:@"Income: %@", income]];
     [[GoldCollection getInstance] setTotal:[NSString stringWithFormat:@"Total Gold: %@", total]];
     [[GoldCollection getInstance] setUsername:username];
     
-    [_contents addChild:[GoldCollection getInstance]];
-    [[GoldCollection getInstance] setVisible:YES];
+    [self refreshUserGold];
+    
+    if(previousPhase != COMBAT){
+        [self showGoldCollection];
+    }
 }
 
 -(void) collectedGold: (NSNotification*) notif{
-    [[GoldCollection getInstance] setVisible:NO];
+    [[GoldCollection getInstance] removeFromParent];
     [_stateText setText:@"State: Collected Gold"];
     [[InGameServerAccess instance] goldCollectionPhaseDidCollectGold];
 }
 
 -(void) gameSetup: (NSNotification*) notif{
     
-    _phase = SETUP;
+    [self setPhase: SETUP];
     
     [_stateText setText:@"State: Setup"];
 
@@ -677,6 +673,8 @@
 
     }
     
+    [self refreshUserGold];
+    
     [_playerIdText setText:_state.myPlayerId];
     
     [_contents addChild:_playerIdText];
@@ -688,11 +686,12 @@
     
     [[InGameServerAccess instance] setupPhaseReadyForPlacement];
     
+    [Utils removeLoaderOnView:Sparrow.currentController.view animated:YES];
 }
 
 -(void) setupOver: (NSNotification*) notif{
     
-    _phase = PLACEMENT;
+    [self setPhase: PLACEMENT];
     
     [_stateText setText:@"State: Placement"];
     
@@ -738,8 +737,15 @@
             if(_selectedPieceImage != nil){
                 [_selectedPieceImage removeFromParent];
             }
-            _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:
-                                   @"T_Back.png"];
+            if ([player.playerId isEqualToString:@"player1"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"red-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player2"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"yellow-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player3"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"green-stack.png"];
+            } else if ([player.playerId isEqualToString:@"player4"]) {
+                _selectedPieceImage = [[SPImage alloc] initWithContentsOfFile:@"blue-stack.png"];
+            }
             _selectedPieceImage.x = 90;
             _selectedPieceImage.y = _rackZone.y - _selectedPieceImage.height;
             [_contents addChild:_selectedPieceImage];
@@ -766,7 +772,7 @@
     [[RecruitCharacter getInstance] removeAllChildren];
     [[RecruitCharacter getInstance] removeFromParent];
     
-    _phase = RECRUITMENT;
+    [self setPhase: RECRUITMENT];
     
     NSArray *objectsToRecruit = notif.object;
     
@@ -776,58 +782,40 @@
     
     [rt initWithObjectsToRecruit: objectsToRecruit];
     
-    [_contents addChild:rt];
+    [_phasesScreensContents addChild:rt];
 
     rt.visible = YES;
 }
 
 -(void) drawRack{
-    Player *player;
-    
-    for(Player *p in _state.players){
-        if ([p.playerId isEqualToString:[_state myPlayerId]]) {
-            player = p;
-        }
-    }
+    Player *player = [_state getMe];
     
     Rack *rack1 = [player rack1];
-    Rack *rack2 = [player rack2];
     
     float rackX = _rackZone.x;
     float rackY = _rackZone.y;
-    
     float prevX = 0;
     
-    int i = 1;
     
+    int i = 1;
     for (NSString *key in rack1.pieces) {
         if (i % 6 == 0) {
             rackY = rackY + 40;
             prevX = 0;
         }
-        ScaledGamePiece *img = [[rack1.pieces objectForKey:key] pieceImage];
+        ScaledGamePiece *img = [[[GameResource getInstance] getPieceForId:key] pieceImage];
         img.scaleX = .5f;
         img.scaleY = .5f;
         img.x = rackX + prevX;
         img.y = rackY;
         prevX += img.width + 5;
-        [_contents addChild:img];
+        if(img != nil)
+            [_contents addChild:img];
         i++;
-    }
-    
-    for (NSString *key in rack2.pieces) {
-        if (i % 6 == 0) {
-            rackY = rackY + 40;
-            prevX = 0;
+        
+        if(i > 10) {
+            break;
         }
-        ScaledGamePiece *img = [[rack2.pieces objectForKey:key] pieceImage];
-        img.scaleX = .6;
-        img.scaleY = .6f;
-        img.x = rackX + prevX;
-        img.y = rackY;
-        prevX += img.width + 5;
-        [_contents addChild:img];
-        i++;
     }
     
     
@@ -1414,20 +1402,17 @@
         case MOVEMENT:
             if (touches.count == 1)
             {
-                if (![tile.terrain.terrainName isEqualToString:@"Sea"] && tile.isHilighted) {
-                    
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     if (clicks.tapCount == 1){
-                        [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
-                       
+                        if (![tile.terrain.terrainName isEqualToString:@"Sea"] /*&& tile.isHilighted*/ && ![_selectedPiece isKindOfClass:[Fort class]] && ![_selectedPiece isKindOfClass:[SpecialIncomeCounters class]]) {
+                            [self performSelector:@selector(tileSingleTap:) withObject:location afterDelay:0.15f];
+                        }
                     } else if(clicks.tapCount == 2){
                         [NSObject cancelPreviousPerformRequestsWithTarget:self];
                         [self tileDoubleTap:location];
                     }
-                }
-                
             }
 
             break;
@@ -1438,7 +1423,7 @@
                     //Make a UIAlert asking user if they want to move a stack or an individual creature
                     SPTouch *clicks = [touches objectAtIndex:0];
                     
-                    if (clicks.tapCount == 2){
+                    if (clicks.tapCount == 1){
                         switch (_wasBought) {
                             case WAS_BOUGHT:
                                 [self recruitWasBought:location];
@@ -1448,12 +1433,16 @@
                             break;
 
                         }
-                        [_selectedPieceImage removeFromParent];
-                        [[RecruitThings getInstance] setVisible:YES];
                     }
                 }
                 
             }
+            break;
+        case CONSTRUCTION:
+            if(touches.count == 1) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"tileClickedInConstruction" object:location];
+            }
+            
             break;
         default:
             break;
@@ -1461,48 +1450,180 @@
 }
 
 -(void) recruitWasFree:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:_selectedPiece];
-            [self clearSelectedPiece:nil];
-
-        });
-    }];
+    GamePiece *p = _selectedPiece;
+    if([location getPieceCountForPlayer:[_state getMe]] < 10){
+        [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:p];
+                [_state.getMe assignPiece:p];
+                [self clearSelectedPiece:nil];
+                [_selectedPieceImage removeFromParent];
+                [[RecruitThings getInstance] setVisible:YES];
+            });
+        }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                        message:@"You may not exceed 10 of your own pieces on a hex."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
     
 }
 
 -(void) recruitWasBought:(HexLocation*) location{
-    [[InGameServerAccess instance] recruitThingsPhaseRecruited:_selectedPiece.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [location addGamePieceToLocation:_selectedPiece];
-            [self clearSelectedPiece:nil];
-
-        });
-    }];
+    GamePiece *p = _selectedPiece;
+    if([location getPieceCountForPlayer:[_state getMe]] < 10){
+        [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [location addGamePieceToLocation:p];
+                [_state.getMe assignPiece:p];
+                [self clearSelectedPiece:nil];
+            });
+        }];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                        message:@"You may not exceed 10 of your own pieces on a hex."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
     
 }
 
 -(void) tileSingleTap: (HexLocation*) location{
     if (_selectedPiece != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addGamePieceToLocation:_selectedPiece];
-                [self clearSelectedPiece:nil];
-                [self unHilightAllTiles];
-            });
-        }];
+        
+        if([[_selectedPiece location] isKindOfClass:[Rack class]]){
+            
+            //DECIDE IF BLUFF OR NOT BLUFF
+            
+//            [UIAlertView displayAlertWithTitle:@"Bluff?"
+//                                       message:@"PLace this piece as a bluff?"
+//                               leftButtonTitle:@"Bluff"
+//                              leftButtonAction:^{
+//                                                              }
+//                              rightButtonTitle:@"Not Bluff"
+//                             rightButtonAction:^{  [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [location addGamePieceToLocation:_selectedPiece];
+//                    [self clearSelectedPiece:nil];
+//                    [self unHilightAllTiles];
+//                });
+//            }];
+//                                 
+//                             }];
+            
+            //CAME FROM THE RACK BUT WE DUN CARE YET
+            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
+            
+        }else{
+            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
+        }
     } else if (_selectedStack != nil) {
-        [[InGameServerAccess instance] movementPhaseMoveStack:_selectedStack.locationId toHex:location.locationId withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addStack:_selectedStack];
-                [self clearSelectedPiece:nil];
-            });
-        }];
+        [self movePiece:nil orStack:_selectedStack toHexLocation:location];
+    }
+}
+
+
+/**
+ This does the actual moving of a piece or a stack.  You can give it either a stack or a piece to move, or both.  I seperated
+ the code into blocks so that as we add logic we don't have to duplicate
+ */
+-(void) movePiece: (GamePiece*) piece orStack: (Stack*) stack toHexLocation: (HexLocation*) location {
+    BOOL isExploring = NO;
+    
+    if(location.owner == nil) {
+        isExploring = YES;
+    }
+    
+    void (^performAfterExploring)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        [self didGetResponseForServerForExploring: message forLocation:location];
+    };
+    
+    void (^performAlwaysOnSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        [self clearSelectedPiece:nil];
+        [self unHilightAllTiles];
+        
+        if(isExploring) {
+            performAfterExploring(message);
+        }
+    };
+    
+    void (^performForGamePieceAfterSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addGamePieceToLocation:piece];
+            performAlwaysOnSuccess(message);
+        });
+    };
+    
+    void (^performForStackAfterSuccess)(ServerResponseMessage * message) = ^(ServerResponseMessage *message){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [location addStack:stack];
+            performAlwaysOnSuccess(message);
+        });
+    };
+    
+
+    
+    
+    if(piece != nil) {
+        if( ! isExploring ) {
+            if([location getPieceCountForPlayer:[_state getMe]] < 10){
+                [[InGameServerAccess instance] movementPhaseMoveGamePiece:piece.gamePieceId toLocation:location.locationId withSuccess:performForGamePieceAfterSuccess];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                                message:@"You may not exceed 10 of your own pieces on a hex."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        } else{
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:nil andPiece:piece.gamePieceId withSuccess:performForGamePieceAfterSuccess];
+            
+        }
+    }
+    
+    if(stack != nil) {
+        if( ! isExploring ) {
+            if([location getPieceCountForPlayer:[_state getMe]] + stack.pieces.count <= 10){
+                [[InGameServerAccess instance] movementPhaseMoveStack:stack.locationId toHex:location.locationId withSuccess: performForStackAfterSuccess];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
+                                                                message:@"You may not exceed 10 of your own pieces on a hex."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        } else {
+       
+            [[InGameServerAccess instance] movementPhaseExploreHex:location.locationId withStack:stack.locationId andPiece:nil withSuccess:performForStackAfterSuccess];
+            
+        }
+    }
+}
+
+-(void) didGetResponseForServerForExploring: (ServerResponseMessage*) message forLocation: (HexLocation*) location {
+    NSLog(@"Got response from server when exploring");
+    
+    NSDictionary *map = message.data.map;
+    BOOL didCapture = [[map objectForKey:@"didCapture"] boolValue];
+    NSArray *defendingPieceIds = [map objectForKey:@"defendingPieceIds"];
+    
+    if(didCapture) {
+        [_state.game addLogMessage:[NSString stringWithFormat:@"There were no creatures found on %@.  You captured it!", location.locationName]];
+    } else{
+        [_state.game addLogMessage:[NSString stringWithFormat:@"%ld wild creatures were found on %@.  You will need to battle them during the combat phase!", (unsigned long)defendingPieceIds.count, location.locationName]];
     }
 }
 
 -(void) tileSingleTapFort: (HexLocation*) location{
-    if(_selectedPiece != nil){
+    if(_selectedPiece != nil && [_selectedPiece isKindOfClass:[Fort class]]){
         [[InGameServerAccess instance] placementPhasePlaceFort:location.locationId withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [location addGamePieceToLocation:_selectedPiece];
@@ -1524,7 +1645,7 @@
 {
     [self addChild:scene];
     scene.visible = YES;
-
+    [_stateText setText:@"State:  Wait..."];
 }
 
 -(void) playerMovedPieceToNewLocation: (NSNotification*) notif{
@@ -1581,6 +1702,7 @@
 
 
 -(void) yourTurnToMoveInMovement : (NSNotification*) notif{
+    moveDoneButton.visible = YES;
     [_stateText setText:@"State:  Your turn"];
 }
 
@@ -1592,17 +1714,19 @@
 }
 
 -(void) dealloc{
+    //Unsubscribe from notifications, ARC doesn't do this for us
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) didStartRecruitCharactersPhase: (NSNotification*) notif{
     
-    _phase = SC_RECRUITMENT;
+    [self setPhase: SC_RECRUITMENT];
     
     RecruitCharacter *rt = [RecruitCharacter getInstance];
     [rt setFourPlayerGame:self];
+    [rt setup];
     
-    [_contents addChild:rt];
+    [_phasesScreensContents addChild:rt];
     
     [rt setVisible:YES];
     
@@ -1615,5 +1739,110 @@
     }
 }
 
+-(void) addChildToContents: (SPDisplayObject*) sprite{
+    [_contents addChild:sprite];
+}
+
+-(void) addChildToPhasesContent: (SPDisplayObject*) sprite{
+    [_phasesScreensContents addChild:sprite];
+}
+
+-(void) setPhase: (PhaseType) phase{
+    _phase = phase;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newPhaseStarted" object:self];
+}
+-(PhaseType) getPhase{
+    return _phase;
+}
+
+-(void) reinitializeCombatScreenAndShowGold{
+    [_combatPhaseController reinitializeForFourPlayerGame: self];
+    [self startConstruction];
+}
+
+-(void) showGoldCollection{
+    [[GoldCollection getInstance]  removeFromParent];
+    [self addChild:[GoldCollection getInstance]];
+    [[GoldCollection getInstance] setVisible:YES];
+}
+
+
+-(void) refreshUserGold{
+    for(Player *p in _state.players){
+        if ([p.playerId isEqualToString:@"player1"]) {
+            [ _Player1IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+            
+        } else  if ([p.playerId isEqualToString:@"player2"]) {
+            [ _Player2IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+            
+        } else  if ([p.playerId isEqualToString:@"player3"]) {
+            [ _Player3IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+            
+        } else  if ([p.playerId isEqualToString:@"player4"]) {
+            [ _Player4IncomeText setText:[NSString stringWithFormat:@"%d", p.gold]];
+        }
+    }
+    
+    int size  = (int)_state.players.count;
+    if(size < 4) {
+        [_Player4IncomeText removeFromParent];
+        [_Player4LabelText removeFromParent];
+    } else{
+        [_contents addChild:_Player4IncomeText];
+        [_contents addChild:_Player4LabelText];
+    }
+    if(size <3) {
+        [_Player3IncomeText removeFromParent];
+        [_Player3LabelText removeFromParent];
+    } else{
+        [_contents addChild:_Player3IncomeText];
+        [_contents addChild:_Player3LabelText];
+    }
+    if(size <2) {
+        [_Player2IncomeText removeFromParent];
+        [_Player2LabelText removeFromParent];
+    } else{
+        [_contents addChild:_Player2IncomeText];
+        [_contents addChild:_Player2LabelText];
+    }
+}
+
+
+-(void) playerGoldChanged: (NSNotification*) notif{
+    [self refreshUserGold];
+}
+
+static RackPiecesMenu *rackMenu;
+-(void) expandRack: (SPEvent*) e{
+    Player* me  = [_state getMe];
+    BoardLocation *bl = me.rack1;
+    
+    
+    if(rackMenu == nil)
+        rackMenu = [[RackPiecesMenu alloc] initForPlayer:me onLocation:bl withParent:self andIsOpposingPlayer:NO];
+    else{
+        [rackMenu hide];
+        [rackMenu setup];
+    }
+    
+    
+    [rackMenu show];
+}
+
+-(void) rackUpdated: (NSNotification*) notif{
+    [self drawRack];
+}
+
+-(void) constructionStarted: (NSNotification*) notif{
+    cMenu = [[ConstructionMenu alloc] initFromParent:self];
+    [self setPhase:CONSTRUCTION];
+}
+
+-(void) startConstruction{
+    [_stateText setText:@"Construction"];
+    NSLog(@"Started construction");
+    [cMenu show];
+}
 
 @end

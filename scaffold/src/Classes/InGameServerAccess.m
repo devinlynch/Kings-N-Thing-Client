@@ -72,26 +72,24 @@ static InGameServerAccess *instance;
              }
          }
          
-         if( responseMessage != nil ){
-             if(responseMessage.error != nil && [responseMessage.error.responseError isEqualToString:@"NOT_LOGGED_IN"]){
-                 @try{
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
-                     });
-                 } @catch (NSException *e) {
-                     NSLog(@"Error sending game over notification because user is not logged in: %@", e);
-                 }
-                 return;
-             }
-             
+         if( responseMessage != nil && responseMessage.error == nil ){
              [delegateListener didGetIngameResponseFromServerForRequest:requestType andResponse:responseMessage];
              if (successCall != nil) {
                 successCall(responseMessage);
              }
+         } else if([responseMessage.error.responseError isEqualToString:@"NOT_LOGGED_IN"]){
+             @try{
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [[NSNotificationCenter defaultCenter] postNotificationName:@"gameOver" object:nil];
+                 });
+             } @catch (NSException *e) {
+                 NSLog(@"Error sending game over notification because user is not logged in: %@", e);
+             }
+             return;
          } else{
              NSLog(@"could not connect to server, doing call, got response code: %d and error: %@", responseStatusCode, error);
              if(errorCall != nil)
-                 errorCall();
+                 errorCall(responseMessage);
          }
      }];
 }
@@ -108,6 +106,10 @@ static InGameServerAccess *instance;
     [self asynchronousRequestOfType:POSTREQUEST toUrl:[NSString stringWithFormat:@"phase/%@/%@", phase, type] withParams:params andDelegateListener:delegateListener andErrorCall:^{
         [delegateListener didGetIngameResponseFromServerForRequest:requestType andResponse:nil];
     }andSuccessCall:success andRequestType:requestType];
+}
+
+-(void) phasePost: (NSString*) phase type: (NSString*) type params: (NSMutableDictionary*) params requestType: (InGameRequestTypes) requestType withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error{
+    [self asynchronousRequestOfType:POSTREQUEST toUrl:[NSString stringWithFormat:@"phase/%@/%@", phase, type] withParams:params andDelegateListener:delegateListener andErrorCall:error andSuccessCall:success andRequestType:requestType];
 }
 
 // Setup
@@ -157,6 +159,16 @@ static InGameServerAccess *instance;
     [self phasePost:@"recruitThings" type:@"recruitedAndPlacedThing" params:params requestType:RECRUITTHINGSPHASE_recruitedAndPlacedThing withSuccess:success];
     
     return RECRUITTHINGSPHASE_recruitedAndPlacedThing;
+}
+
+-(enum InGameRequestTypes) recruitThingsTradePiece: (NSString*) oldPieceId forPiece: (NSString*) newPieceId withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:oldPieceId forKey:@"oldThingId"];
+    [params setObject:newPieceId forKey:@"newThingId"];
+    
+    [self phasePost:@"recruitThings" type:@"tradedThing" params:params requestType:RECRUITTHINGSPHASE_tradingPiece withSuccess:success];
+    
+    return RECRUITTHINGSPHASE_tradingPiece;
 }
 
 -(enum InGameRequestTypes) recruitThingsPhaseReadyForNextPhase{
@@ -216,6 +228,19 @@ static InGameServerAccess *instance;
     return MOVEMENTPHASE_addPiecesToStack;
 }
 
+-(enum InGameRequestTypes) movementPhaseExploreHex: (NSString*) hexLocationId withStack: (NSString*) stackId andPiece: (NSString*) pieceId withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexLocationId forKey:@"hexLocationId"];
+    if(stackId != nil)
+        [params setObject:stackId forKey:@"stackId"];
+    if(pieceId != nil)
+        [params setObject:pieceId forKey:@"gamePieceId"];
+    
+    [self phasePost:@"movement" type:@"exploreHex" params:params requestType:MOVEMENTPHASE_exploreHex withSuccess:success];
+    
+    return MOVEMENTPHASE_exploreHex;
+}
+
 
 -(enum InGameRequestTypes) movementPhaseDoneMakingMoves{
     [self phasePost:@"movement" type:@"playerIsDoneMakingMoves" params:nil requestType:MOVEMENTPHASE_playerIsDoneMakingMoves withSuccess:nil];
@@ -248,6 +273,7 @@ static InGameServerAccess *instance;
 }
 
 
+//// CHAT /////
 -(enum InGameRequestTypes) sendChatMessage: (NSString*) message withSuccess:( void (^)(ServerResponseMessage * message))success{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:message forKey:@"message"];
@@ -259,5 +285,63 @@ static InGameServerAccess *instance;
     return CHAT_SENDMESSAGE;
 }
 
+
+//// COMBAT //////
+
+
+-(enum InGameRequestTypes) combatDidRetreatOrContinue: (BOOL) isRetreating forBattle: (NSString*) battleId andRound: (NSString*) roundId withSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:isRetreating == true ? @"true" : @"false" forKey:@"isRetreating"];
+    [params setObject:battleId forKey:@"battleId"];
+    [params setObject:roundId forKey:@"roundId"];
+    
+    [self phasePost:@"combat" type:@"didRetreatOrContinue" params:params requestType:COMBAT_didRetreatOrContinue withSuccess:success];
+    
+    return COMBAT_didRetreatOrContinue;
+}
+
+-(enum InGameRequestTypes) combatLockedInRollAndDamageWithPiecesTakingDamage: (NSArray*) pieceIds forBattle: (NSString*) battleId andRound: (NSString*) roundId andRoundState: (NSString*) state withSuccess:( void (^)(ServerResponseMessage * message))success{
+    
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:battleId forKey:@"battleId"];
+    [params setObject:roundId forKey:@"roundId"];
+    [params setObject:state forKey:@"roundState"];
+    
+    int i = 0;
+    for(NSString *pieceId in pieceIds) {
+        [params setObject:pieceId forKey:[NSString stringWithFormat:@"piceIdTakingHit_%d", i]];
+        i++;
+    }
+    
+    [self phasePost:@"combat" type:@"lockedInRollAndDamage" params:params requestType:COMBAT_lockedInRollAndDamage withSuccess:success];
+    
+    return COMBAT_lockedInRollAndDamage;
+}
+
+-(enum InGameRequestTypes) constructionBuiltFortOnHex: (NSString*) hexId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:hexId forKey:@"hexId"];
+    
+    [self phasePost:@"construction" type:@"didBuyFort" params:params requestType:CONS_BUILD_FORT withSuccess:success andError:error];
+    
+    return CONS_BUILD_FORT;
+}
+
+-(enum InGameRequestTypes) constructionUpgradedFort: (NSString*) fortId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:fortId forKey:@"fortId"];
+    
+    [self phasePost:@"construction" type:@"didUpgradeFort" params:params requestType:CONS_UPGRADE_FORT withSuccess:success andError:error];
+    
+    return CONS_UPGRADE_FORT;
+}
+
+-(enum InGameRequestTypes) constructionReadyForNextPhaseWithSuccess:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [self phasePost:@"construction" type:@"readyForNextPhase" params:params requestType:CONS_READY_FOR_NEXT_PHASE withSuccess:success];
+    
+    return CONS_READY_FOR_NEXT_PHASE;
+}
 
 @end

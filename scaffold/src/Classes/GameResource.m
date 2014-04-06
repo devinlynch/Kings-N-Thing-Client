@@ -13,6 +13,9 @@
 #import "CityVill.h"
 #import "NonCityVill.h"
 #import "SpecialCharacter.h"
+#import "Treasure.h"
+#import "MagicItems.h"
+#import "RandomEvent.h"
 
 @implementation GameResource
 
@@ -48,6 +51,14 @@ static GameResource *instance;
     _specialCharacterPieces = [SpecialCharacter initializeAllSpecialCharacters];
     [_allPieces addEntriesFromDictionary: _specialCharacterPieces];
     
+    _treasurePieces = [Treasure initializeAllTreasures];
+    [_allPieces addEntriesFromDictionary: _treasurePieces];
+    
+    _magicPieces = [MagicItems initializeAllMagicItems];
+    [_allPieces addEntriesFromDictionary: _magicPieces];
+    
+    _randomPieces = [RandomEvent initializeAllRandomEvent];
+    [_allPieces addEntriesFromDictionary: _randomPieces];
     
     return self;
 }

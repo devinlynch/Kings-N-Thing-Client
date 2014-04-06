@@ -43,6 +43,7 @@
         GameState *gameState;
         @try{
             gameState = [[GameState alloc] initFromJSON:setupDic];
+            [gameState setGame:[Game currentGame]];
             [[Game currentGame] setGameState:gameState];
         } @catch (NSException *e) {
             NSLog(@"%@",e);

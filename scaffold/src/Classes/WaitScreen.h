@@ -7,7 +7,8 @@
 //
 
 #import "SPSprite.h"
+#import "AbstractCombatPhaseScreen.h"
 
-@interface WaitScreen : SPSprite
+@interface WaitScreen : AbstractCombatPhaseScreen
 
 @end

@@ -51,7 +51,7 @@
     
     //necessary or else it gets placed off screen
     background.x = 0;
-    background.y = -60;
+    background.y = 0;
     
     background.blendMode = SP_BLEND_MODE_NONE;
     [_contents addChild:background];
@@ -137,15 +137,16 @@
     Player *me = [gs getPlayerById:[gs myPlayerId]];
       // [gs addLogMessage: @"You added the game piece to your rack."];
     
-    NSString *rackId = [[me rack2] locationId];
+    NSString *rackId = [[me rack1] locationId];
     
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^(ServerResponseMessage *message){
-        [[me rack2] addGamePieceToLocation:gamePiece];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
-        
-        _contents.visible = NO;
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[me rack1] addGamePieceToLocation:gamePiece];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
+            
+            _contents.visible = NO;
+        });
     }];
     
 

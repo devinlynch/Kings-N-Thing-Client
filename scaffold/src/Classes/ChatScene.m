@@ -13,12 +13,6 @@
 
 @implementation ChatScene
 {
-    SPSprite *_contents;
-    //SPSprite *_currentScene;
-    
-    int _gameWidth;
-    int _gameHeight;
-    
     
     SPTextField *_logText;
     
@@ -34,9 +28,9 @@
     
 }
 
--(id) init
+-(id) initFromParent:(SPSprite *)parent
 {
-    if ((self = [super init]))
+    if ((self = [super initFromParent:parent]))
     {
         
         
@@ -48,17 +42,20 @@
 }
 
 
+static ChatScene *instance;
++(ChatScene*) getInstanceFromParent: (SPSprite*) parent{
+    if(instance == nil) {
+        instance = [[ChatScene alloc] initFromParent:parent];
+    }
+    return instance;
+}
+
+
 -(void) setup
 {
-    _gameWidth = Sparrow.stage.width;
-    _gameHeight = Sparrow.stage.height;
-    _contents = [SPSprite sprite];
-    
+    [super setup];
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
-    
-    [self addChild:_contents];
-    
     
     SPImage *background = [[SPImage alloc]
                            initWithContentsOfFile:@"chatBackground@2x.png"];
@@ -108,7 +105,7 @@
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(5, 50, 300, 260)];
     _scrollView.pagingEnabled = NO;
     _scrollView.showsVerticalScrollIndicator = YES;
-    _scrollView.hidden = NO;
+    _scrollView.hidden = YES;
     
     
     [view addSubview:_scrollView];
@@ -129,6 +126,7 @@
     _chatTextField.delegate = self;
     [view addSubview:_chatTextField];
     _chatTextField.selected=true;
+    _chatTextField.hidden=YES;
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -141,14 +139,7 @@
 
 -(void) onButtonTriggered: (SPEvent *) event
 {
-    NSLog(@"Back to board things");
-    _contents.visible = NO;
-    
-    //Hide scrollView
-    _scrollView.hidden = YES; //[view removeFromSuperview];
-    _chatTextField.hidden = YES;
-    
-    
+    [self hide];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -175,7 +166,23 @@
     return YES;
 }
 
+-(void) show{
+    [super show];
+    _scrollView.hidden = NO;
+    _chatTextField.hidden = NO;
+}
+
+-(void) hide{
+    [super hide];
+    _scrollView.hidden = YES;
+    _chatTextField.hidden = YES;
+}
+
 -(void) newChatMessage: (NSNotification*) notif{
+    [self updateChat];
+}
+
+-(void) updateChat{
     NSMutableArray *log = [[NSMutableArray alloc] init];
     
     if([Game currentGame] != nil){
@@ -187,5 +194,8 @@
     _textView.text = [log componentsJoinedByString:@"\n"];
 }
 
+-(void) dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

@@ -15,6 +15,7 @@
 #import "GameState.h"
 #import "Game.h"
 #import "Terrain.h"
+#import "AIPlayer.h"
 
 @implementation HexLocation
 
@@ -31,12 +32,15 @@
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
     self = [super initFromJSON:json];
     
-    _tile = [[GameResource getInstance] getTileForId:[[json objectForKey:@"hexTile"] objectForKey:@"id"]];
-    _tileNumber = [[json objectForKey:@"hexNumber"] integerValue];
+    _tileNumber = [[json objectForKey:@"hexNumber"] intValue];
+    _locationName =[NSString stringWithFormat:@"%@", self];
     
     _tile.location = self;
     _stacks = [[NSMutableDictionary alloc] init];
     _visited = NO;
+    
+    [self updateLocationFromSerializedJSONDictionary:json];
+    
     
     switch (_tileNumber) {
         case 19:
@@ -207,6 +211,8 @@
             break;
     }
     
+    
+    
     return self;
 }
 
@@ -225,6 +231,7 @@
     [Sparrow.juggler addObject:tween];
 
     [[_tile.image parent] addChild:piece.pieceImage];
+    
 }
 
 
@@ -239,19 +246,14 @@
         [stack.location removeStack:stack];
     }
     
-    if (stack.stackImage == nil) {
-        stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Back.png"];
-        [stack.stackImage setOwner:(id<NSCopying>)stack];
-    }
-    
     SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
                                    transition:SP_TRANSITION_LINEAR];
     
     
     [tween animateProperty:@"x" targetValue:_tile.image.x + 10];
     [tween animateProperty:@"y" targetValue:_tile.image.y + 10];
-    [tween animateProperty:@"scaleX" targetValue:0.25f];
-    [tween animateProperty:@"scaleY" targetValue:0.25f];
+    [tween animateProperty:@"scaleX" targetValue:0.50f];
+    [tween animateProperty:@"scaleY" targetValue:0.50f];
     
     [Sparrow.juggler addObject:tween];
 
@@ -259,6 +261,7 @@
     
     stack.location = self;
     [_stacks setObject:stack forKey:[stack locationId]];
+    
 }
 
 -(void) removeStack: (Stack*) stack{
@@ -276,7 +279,62 @@
 
 
 -(NSString*) description{
-    return [NSString stringWithFormat:@"Tile with number %d", _tileNumber];
+    return [NSString stringWithFormat:@"Hex location with number %d", _tileNumber];
+}
+
+-(void) updateLocationWithStacks: (NSArray*) array{
+    if(_stacks == nil)
+        _stacks = [[NSMutableDictionary alloc] init];
+    for(NSDictionary *stackMap in array) {
+        NSString *stackId = [stackMap objectForKey:@"locationId"];
+        NSString *ownerId = [stackMap objectForKey:@"ownerId"];
+        NSArray *piecesArr = [stackMap objectForKey:@"gamePieces"];
+        
+        Stack *stack = [self.gameState getStackById: stackId];
+        if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
+            stack = [[Stack alloc] initFromJSON:stackMap];
+            Player *p = [self.gameState getPlayerById:ownerId];
+            [stack setOwner:p];
+        }
+        
+        [stack updateLocationWithPieces:piecesArr];
+        
+        if([_stacks objectForKey:stackId] == nil) {
+            [self addStack:stack];
+        }
+    }
+    
+}
+
+
+-(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic{
+    [super updateLocationFromSerializedJSONDictionary:dic];
+    
+    if(_stacks == nil)
+        _stacks = [[NSMutableDictionary alloc] init];
+    
+    if(dic != nil && [dic isKindOfClass:[NSDictionary class]]) {
+        
+        if([dic objectForKey:@"stacks"] != nil && [[dic objectForKey:@"stacks"] isKindOfClass:[NSArray class]]){
+            [self updateLocationWithStacks:[dic objectForKey:@"stacks"]];
+        }
+        
+        if([dic objectForKey:@"ownerId"] != nil) {
+            Player *owner  = [self.gameState getPlayerById:[dic objectForKey:@"ownerId"]];
+            if(_owner != owner)
+                [self changeOwnerToPlayer:owner];
+        }
+        
+        if([dic objectForKey:@"hexTile"] != nil && [[dic objectForKey:@"hexTile"] isKindOfClass:[NSDictionary class]]){
+            HexTile *newTile = [[GameResource getInstance] getTileForId:[[dic objectForKey:@"hexTile"] objectForKey:@"id"]];
+            if(newTile != _tile){
+                _tile = newTile;
+                _tile.location = self;
+            }
+        }
+    }
+    
+    [self setVisited:NO];
 }
 
 -(void) hilightPossibleMoves{
@@ -295,7 +353,7 @@
     
     for (NSString *hexId in _neighbourIds) {
         HexLocation *location = [[[[Game currentGame] gameState] hexLocations] objectForKey:hexId];
-        if(!location.visited){
+        if(!location.visited && ![location.tile.terrain isEqual:[Terrain getSeaInstance]]){
            // swamp, mountain, forest and jungle hex cost 2
             if ([location.tile.terrain isEqual:[Terrain getSwampInstance]] ||
                 [location.tile.terrain isEqual:[Terrain getForestInstance]] ||
@@ -310,5 +368,81 @@
     [self setVisited:NO];
 }
 
+-(void) reAddAllPieceImages {
+    /*(NSEnumerator *enumerator = [_pieces keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        NSDictionary *tmp = [bigUglyDictionary objectForKey:key];
+    }*/
+}
+
+-(NSArray*) getAllPiecesForPlayerIncludingPiecesInStacks: (Player*) p{
+    NSMutableArray *pieces  = [NSMutableArray arrayWithArray:[self getAllPiecesForPlayer:p]];
+    
+    NSEnumerator *enumerator = [_stacks keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        Stack *stack = [_stacks objectForKey:key];
+        if(stack != nil) {
+            NSArray *piecesInStack = [stack getAllPiecesForPlayer:p];
+            if([p isKindOfClass:[AIPlayer class]] && stack.owner == nil)
+                [pieces addObjectsFromArray:piecesInStack];
+            else if(stack.owner == p)
+                [pieces addObjectsFromArray:piecesInStack];
+        }
+    }
+    return pieces;
+}
+
+-(int) getPieceCountForPlayer: (Player*) player{
+    int count1 = 0;
+    int count2 = 0;
+    int count3 = 0;
+    int count4 = 0;
+    
+    for (GamePiece *pieceKey in _pieces) {
+        GamePiece *piece = [_pieces objectForKey:pieceKey];
+        if ([piece.owner.playerId isEqualToString:@"player1"]) {
+            count1++;
+        } else if ([piece.owner.playerId isEqualToString:@"player2"]) {
+            count2++;
+        } else if ([piece.owner.playerId isEqualToString:@"player3"]) {
+            count3++;
+        } else if ([piece.owner.playerId isEqualToString:@"player4"]) {
+            count4++;
+        }
+
+    }
+    
+    for (Stack *stackKey in _stacks) {
+        Stack *stack = [_stacks objectForKey:stackKey];
+        for (GamePiece *pieceKey in stack.pieces) {
+            GamePiece *piece = [stack.pieces objectForKey:pieceKey];
+            if ([piece.owner.playerId isEqualToString:@"player1"]) {
+                count1++;
+            } else if ([piece.owner.playerId isEqualToString:@"player2"]) {
+                count2++;
+            } else if ([piece.owner.playerId isEqualToString:@"player3"]) {
+                count3++;
+            } else if ([piece.owner.playerId isEqualToString:@"player4"]) {
+                count4++;
+            }
+            
+        }
+
+    }
+    
+    if ([player.playerId isEqualToString:@"player1"]) {
+        return count1;
+    } else if ([player.playerId isEqualToString:@"player2"]) {
+       return count2;
+    } else if ([player.playerId isEqualToString:@"player3"]) {
+        return count3;
+    } else if ([player.playerId isEqualToString:@"player4"]) {
+        return count4;
+    }
+
+    return 0;
+}
 
 @end

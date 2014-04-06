@@ -70,7 +70,7 @@
 
 -(void) handleGameStarted: (NSNotification*) notif{
     Game* game = notif.object;
-    [self stopLobbyStateChecker];
+    [GameLobbyViewController stopLobbyStateChecker];
     NSLog(@"In GameLobbyViewController and got game started message for game %@", game);
 }
 
@@ -131,15 +131,21 @@
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    [self stopLobbyStateChecker];
+    [GameLobbyViewController stopLobbyStateChecker];
     UIViewController *controller = segue.destinationViewController;
     if([controller isKindOfClass:[MainMenuViewController class]]){
         
     }
 }
 
+
+static NSTimer *lobbyStateChecker;
 - (void) startLobbyStateChecker
 {
+    if(lobbyStateChecker != nil) {
+        [lobbyStateChecker invalidate];
+    }
+    
     lobbyStateChecker = [NSTimer scheduledTimerWithTimeInterval:5
                                                     target:self
                                                   selector:@selector(updateState:)
@@ -147,7 +153,7 @@
                                                    repeats:YES];
 }
 
-- (void) stopLobbyStateChecker
++ (void) stopLobbyStateChecker
 {
     if(lobbyStateChecker != nil)
         [lobbyStateChecker invalidate];

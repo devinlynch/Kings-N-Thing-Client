@@ -21,5 +21,7 @@
 +(void) showLoaderOnView: (UIView*) view animated: (BOOL) animated;
 +(void) removeLoaderOnView: (UIView*) view animated: (BOOL) animated;
 +(NSDictionary*) getDataDictionaryFromGameMessageEvent: (Event*) event;
++(void) notifyOnMainQueue: (NSString*) notificationName withObject: (id) object;
+void runOnMainQueueWithoutDeadlocking(void (^block)(void));
 
 @end

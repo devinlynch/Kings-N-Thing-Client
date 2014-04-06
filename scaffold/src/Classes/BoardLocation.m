@@ -12,12 +12,14 @@
 #import "GameResource.h"
 #import "Game.h"
 #import "GameState.h"
+#import "AIPlayer.h"
 
 @implementation BoardLocation
 
 @synthesize locationId   = _locationId;
 @synthesize locationName = _locationName;
 @synthesize pieces       = _pieces;
+@synthesize gameState;
 
 
 -(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
@@ -38,13 +40,13 @@
                     if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
                         GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
-                        if (piece != nil) {
-                            [self addGamePieceToLocation:piece];
-                        }
+                        [self addGamePieceToLocation:piece];
                     }
                 }
             }
+            
         }
+    
     
     return self;
 }
@@ -73,6 +75,61 @@
 -(GamePiece*) getPieceWithIdFromLocation: (NSString*) gamePieceId{
     return [_pieces objectForKey:gamePieceId];
 }
+
+-(void) updateLocationWithPieces: (NSArray*) array{
+    for(NSDictionary *pieceMap in array) {
+        if(! [pieceMap isKindOfClass:[NSDictionary class]])
+            continue;
+        
+        NSString *pieceId = [pieceMap objectForKey:@"id"];
+        NSString *ownerId = [pieceMap objectForKey:@"ownerId"];
+
+        if(pieceId == nil || [_pieces objectForKey:pieceId] != nil) {
+            continue;
+        }
+        
+        GamePiece *piece = [[GameResource getInstance] getPieceForId:pieceId];
+        
+        if(ownerId != nil) {
+            Player *p;
+            [p assignPiece:piece];
+        }
+        
+        
+        [self addGamePieceToLocation:piece];
+    }
+}
+
+-(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic{
+    if(dic != nil && [dic isKindOfClass:[NSDictionary class]]) {
+        [self setLocationId:[dic objectForKey:@"locationId"]];
+        
+        if([dic objectForKey:@"name"] != nil)
+            [self setLocationName:[dic objectForKey:@"name"]];
+        
+        if([dic objectForKey:@"gamePieces"] != nil && [[dic objectForKey:@"gamePieces"] isKindOfClass:[NSArray class]]){
+            [self updateLocationWithPieces:[dic objectForKey:@"gamePieces"]];
+        }
+    }
+}
+
+-(NSArray*) getAllPiecesForPlayer: (Player*) p{
+    NSMutableArray *pieces  = [[NSMutableArray alloc] init];
+    
+    NSEnumerator *enumerator = [_pieces keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        GamePiece *gp = [_pieces objectForKey:key];
+        if(gp != nil) {
+            if([p isKindOfClass:[AIPlayer class]] && gp.owner == nil)
+                [pieces addObject:gp];
+            else if(gp.owner == p)
+               [pieces addObject:gp];
+        }
+    }
+    return pieces;
+}
+
 
 
 @end

@@ -15,6 +15,7 @@
 #import "Thing.h"
 #import "BoardLocation.h"
 #import "Game.h"
+#import "GameResource.h"
 
 @implementation RecruitThingsHandler
 
@@ -27,7 +28,7 @@
     NSArray *possibleRecruitments = [dataDic objectForKey:@"possibleRecruitments"];
 
 
-    [Game addLogMessageToCurrentGame:@"The Recruit Characters phase has started!"];
+    [Game addLogMessageToCurrentGame:@"The Recruit Things phase has started!"];
     
     NSLog(@"Succesfully parsed DidStartRecruitThingsPhase message with possible recruits: %@", possibleRecruitments);
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -51,17 +52,48 @@
         return;
     }
     
-    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ recruited a %@ and placed it on %@", player.username, thing.gamePieceId,location.locationName]];
+    [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ recruited a %@ and placed it on %@", player.username, thing.name,location.locationName]];
     
-    [location addGamePieceToLocation:thing];
-    [player assignPiece:thing];
-    
-    NSLog(@"Succesfully parsed PlayerRecruitedAndPlacedThing");
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [location addGamePieceToLocation:thing];
+        [player assignPiece:thing];
+        
+        NSLog(@"Succesfully parsed PlayerRecruitedAndPlacedThing");
+        
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"playerRecruitedAndPlacedThing" object:pRecruitment];
     });
 }
+
+-(void) handlePlayerTradedThing: (Event*) event {
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    if(dataDic == nil){
+        return;
+    }
+    
+    NSDictionary *playerDic = [dataDic objectForKey:@"player"];
+    NSDictionary *oldThingDic = [dataDic objectForKey:@"oldThing"];
+    NSDictionary *newThingDic = [dataDic objectForKey:@"newThing"];
+    
+    GameState *gameState = [[Game currentGame] gameState];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        Player *player = [gameState getPlayerById:[playerDic objectForKey:@"playerId"]];
+        [player updateFromSerializedJson:playerDic];
+        
+        GamePiece *oldThing = [[GameResource getInstance] getPieceForId:[oldThingDic objectForKey:@"id"]];
+        [oldThing updateFromSerializedJson:oldThingDic forGameState:gameState];
+        
+        GamePiece *newThing = [[GameResource getInstance] getPieceForId:[newThingDic objectForKey:@"id"]];
+        [newThing updateFromSerializedJson:newThingDic forGameState:gameState];
+        
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"%@ traded their %@ a for a %@", player.username, oldThing.name,newThing.name]];
+        
+        NSLog(@"Succesfully parsed handlePlayerTradedThing");
+    });
+}
+
 
 -(void) handleRecruitThingsPhaseOver:(Event *)event{
     NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
