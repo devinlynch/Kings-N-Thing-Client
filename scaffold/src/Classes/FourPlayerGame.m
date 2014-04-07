@@ -38,6 +38,9 @@
 #import "Utils.h"
 #import "RackPiecesMenu.h"
 #import "ConstructionMenu.h"
+#import "User.h"
+#import "Rack.h"
+#import "SpecialCharacter.h"
 #import "GameBoardHelper.h"
 
 @interface FourPlayerGame ()

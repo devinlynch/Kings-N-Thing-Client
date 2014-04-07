@@ -140,8 +140,9 @@
         borderImage.height = pieceImage.height;
         borderImage.touchable = NO;
 
-        if(borderImage != nil)
+        if(borderImage != nil){
             [_contents addChild:borderImage];
+        }
         
         
         if((x + pieceImage.x) > _gameWidth){
