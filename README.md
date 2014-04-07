@@ -7,13 +7,17 @@ A 4 player real time strategy game for iOS based on the 1980's game Kings and Th
 
 Contributions:
 ------
-Devin Lynch: Networking, server side code (game logic, RESTful web service, game state / model class creation, etc.), authentication screens, game lobby / game matching, combat and special characters GUI, game logic, synchronization of client and server game state, database design, chat messaging
+####Devin Lynch
+Networking, server side code (game logic, RESTful web service, game state / model class creation, etc.), authentication screens, game lobby / game matching, combat and special characters GUI, game logic, synchronization of client and server game state, database design, chat messaging
 
-John Marsh: GUI design / Sparrow Expert, client side model classes, implemented movement (pieces moving, path highlighting, restricitons on movement, etc.)
+####John Marsh
+GUI design / Sparrow Expert, client side model classes, implemented movement (pieces moving, path highlighting, restricitons on movement, etc.)
 
-Richard Ison:  All GUI screens
+####Richard Ison
+All GUI screens
 
-Gabriel Tobian: Game expert, logic coding, documentation
+####Gabriel Tobian
+Game expert, logic coding, documentation
 
 
 Screenshots:
