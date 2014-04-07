@@ -25,6 +25,7 @@
 
 #import "ConstructionMenu.h"
 #import "HeroMenu.h"
+#import "RecruitTradeMenu.h"
 
 @implementation TestScreen
 
@@ -44,7 +45,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[RecruitOptionMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[RecruitTradeMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }
