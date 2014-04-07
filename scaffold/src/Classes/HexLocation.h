@@ -45,4 +45,6 @@
 
 -(int) getPieceCountForPlayer: (Player*) player;
 
+-(id<JSONSerializable>) initFromJSON:(NSDictionary*) json andIs23PlayerGame: (BOOL) is23PlayerGame;
+
 @end

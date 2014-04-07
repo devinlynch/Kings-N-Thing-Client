@@ -29,7 +29,7 @@
 @synthesize visited = _visited;
 
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
+-(id<JSONSerializable>) initFromJSON:(NSDictionary*) json andIs23PlayerGame: (BOOL) is23PlayerGame{
     self = [super initFromJSON:json];
     
     _tileNumber = [[json objectForKey:@"hexNumber"] intValue];
@@ -41,23 +41,48 @@
     
     [self updateLocationFromSerializedJSONDictionary:json];
     
-    
-    switch (_tileNumber) {
-        case 19:
-            _isStartingPoint = YES;
-            break;
-        case 32:
-            _isStartingPoint = YES;
-            break;
-        case 28:
-            _isStartingPoint = YES;
-            break;
-        case 23:
-            _isStartingPoint = YES;
-            break;
-        default:
-            _isStartingPoint = NO;
-            break;
+    if( ! is23PlayerGame ) {
+        switch (_tileNumber) {
+            case 19:
+                _isStartingPoint = YES;
+                break;
+            case 32:
+                _isStartingPoint = YES;
+                break;
+            case 28:
+                _isStartingPoint = YES;
+                break;
+            case 23:
+                _isStartingPoint = YES;
+                break;
+            default:
+                _isStartingPoint = NO;
+                break;
+        }
+    } else{
+        switch (_tileNumber) {
+            case 8:
+                _isStartingPoint = YES;
+                break;
+            case 18:
+                _isStartingPoint = YES;
+                break;
+            case 16:
+                _isStartingPoint = YES;
+                break;
+            case 14:
+                _isStartingPoint = YES;
+                break;
+            case 12:
+                _isStartingPoint = YES;
+                break;
+            case 10:
+                _isStartingPoint = YES;
+                break;
+            default:
+                _isStartingPoint = NO;
+                break;
+        }
     }
     
     switch(_tileNumber) {

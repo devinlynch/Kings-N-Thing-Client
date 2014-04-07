@@ -144,6 +144,7 @@
             [_contents addChild:borderImage];
         }
         
+        
         if((x + pieceImage.x) > _gameWidth){
             x = 10;
             y = y + pieceImage.height + 5;

@@ -60,12 +60,14 @@
         [_sideLocation setGameState: self];
         
         
+        BOOL is23PlayerGame = self.players.count <4;
+        
         NSArray *hexLocationJsonArr = [_gameStateDic objectForKey:@"hexLocations"];
         NSMutableDictionary *locationDic = [[NSMutableDictionary alloc] init];
         if(hexLocationJsonArr != nil){
             for(id o in hexLocationJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                    HexLocation *hexLocation =[[HexLocation alloc] initFromJSON:o];
+                    HexLocation *hexLocation =[[HexLocation alloc] initFromJSON:o andIs23PlayerGame: is23PlayerGame];
                     [hexLocation setGameState: self];
                     [locationDic setObject:hexLocation forKey:[o objectForKey:@"locationId"]];
                 }
