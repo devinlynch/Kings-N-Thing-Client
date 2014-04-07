@@ -10,6 +10,7 @@
 #import "Event.h"
 #import "Game.h"
 #import "Utils.h"
+#import "User.h"
 
 @implementation ConstructionPhaseHandler
 

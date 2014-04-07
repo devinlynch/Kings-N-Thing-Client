@@ -15,6 +15,7 @@
 #import "Player.h"
 #import "TileMenu.h"
 #import "ScaledGamePiece.h"
+#import "User.h"
 
 @implementation PiecesMenu{    
     SPImage *borderImage;

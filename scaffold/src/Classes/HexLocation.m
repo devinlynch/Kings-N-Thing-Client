@@ -352,7 +352,7 @@
     [self.tile hilight];
     
     if (![self.owner isEqual:[[[Game currentGame] gameState] getMe]]) {
-        [self setVisited:NO];
+        [self setVisited:NO]; 
         return;
     }
     

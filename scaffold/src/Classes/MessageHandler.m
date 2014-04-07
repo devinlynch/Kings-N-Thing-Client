@@ -15,6 +15,7 @@
 #import "Game.h"
 #import "ServerAccess.h"
 #import "SentMessage.h"
+#import "User.h"
 
 @implementation MessageHandler
 
