@@ -61,6 +61,7 @@ void onUncaughtException(NSException *exception)
         SEL selector = NSSelectorFromString(testScreenMethodName);
         
         _viewController = [testScreen performSelector:selector withObject:_window];
+        _viewController.showStats = NO;
         
         [_window setRootViewController:_viewController];
         
@@ -101,7 +102,7 @@ void onUncaughtException(NSException *exception)
         _viewController.multitouchEnabled = YES;
         
         // Enable some common settings here:
-        _viewController.showStats = YES;
+       // _viewController.showStats = YES;
         _viewController.multitouchEnabled = YES;
         // _viewController.preferredFramesPerSecond = 60;
         _viewController.showStats=NO;

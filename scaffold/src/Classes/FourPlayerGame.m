@@ -38,6 +38,7 @@
 #import "Utils.h"
 #import "RackPiecesMenu.h"
 #import "ConstructionMenu.h"
+#import "ChatScene.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -115,6 +116,7 @@
     
     BOOL _canExplore;
     
+    SPButton *chatNotifButton;
 }
 
 -(id) init
@@ -305,6 +307,25 @@
 
     
     [self addChild:menuButton];
+    
+    
+    
+    
+    // Chat notif image
+    SPTexture *chatNotifTexture = [SPTexture textureWithContentsOfFile:@"dogechatnotif@2x.png"];
+    chatNotifButton = [SPButton buttonWithNoState:chatNotifTexture];
+    chatNotifButton.x=0;
+    chatNotifButton.y=-80;
+    
+    [chatNotifButton addEventListener:@selector(didClickChatNotif:) atObject:self forType:SP_EVENT_TYPE_TOUCH];
+    
+    [self addChild:chatNotifButton];
+    
+    
+
+
+    
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pieceSelected:)
@@ -1687,6 +1708,47 @@
     [[InGameServerAccess instance] movementPhaseDoneMakingMoves];
     moveDoneButton.visible = NO;
 }
+
+-(void) didClickChatNotif:(SPTouchEvent*)event{
+    
+    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
+    
+    if (touches.count == 1) {
+        chatNotifButton.y = -80;
+        ChatScene *chatScene = [[ChatScene alloc]init];
+        [self showScene:chatScene];
+    }
+
+    
+   }
+
+-(void) moveChatNotifUp{
+    //Just testing chat notif
+    SPTween *tween = [SPTween tweenWithTarget:chatNotifButton time:0.60f
+                                   transition:SP_TRANSITION_LINEAR];
+    //Tell the tween that it should transition the x value
+    [tween animateProperty:@"y" targetValue:-80];
+    
+    [Sparrow.juggler addObject:tween];
+}
+
+-(void) moveChatNotifDown{
+    //Just testing chat notif
+    SPTween *tween = [SPTween tweenWithTarget:chatNotifButton time:0.55f
+                                   transition:SP_TRANSITION_LINEAR];
+    //Tell the tween that it should transition the x value
+    [tween animateProperty:@"y" targetValue:0];
+    
+    [Sparrow.juggler addObject:tween];
+    
+    [NSTimer scheduledTimerWithTimeInterval:2.5
+                                     target:self
+                                   selector:@selector(moveChatNotifUp)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+
 
 -(void) yourTurnToMoveInMovement : (NSNotification*) notif{
     moveDoneButton.visible = YES;

@@ -25,7 +25,10 @@
 
 #import "ConstructionMenu.h"
 #import "HeroMenu.h"
+#import "ChatScene.h"
+#import "WinningScreen.h"
 #import "RecruitTradeMenu.h"
+#import "RandomEventsMenu.h"
 
 @implementation TestScreen
 
@@ -45,7 +48,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[RecruitTradeMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[RandomEventsMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }
