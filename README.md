@@ -1,4 +1,4 @@
-Kings-N-Thing-Client
+Kings and Things: iOS
 ====================
 
 About
