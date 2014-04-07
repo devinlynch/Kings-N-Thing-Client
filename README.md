@@ -14,7 +14,7 @@ Networking, server side code (game logic, RESTful web service, game state / mode
 GUI design / Sparrow Expert, client side model classes, implemented movement (pieces moving, path highlighting, restricitons on movement, etc.)
 
 ####Richard Ison
-All GUI screens
+All GUI screens, documentation
 
 ####Gabriel Tobian
 Game expert, logic coding, documentation
