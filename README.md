@@ -14,13 +14,13 @@ Contributions:
 Networking, server side code (game logic, RESTful web service, game state / model class creation, etc.), authentication screens, game lobby / game matching, combat and special characters GUI, game logic, synchronization of client and server game state, database design, chat messaging
 
 ####John Marsh
-GUI design / Sparrow Expert, client side model classes, implemented movement (pieces moving, path highlighting, restricitons on movement, etc.)
+GUI design / Sparrow(iOS game engine) Expert, client side model classes, implemented movement (pieces moving, path highlighting, restricitons on movement, etc.), client side rule chekcking and client side object interaction design.
 
 ####Richard Ison
 All GUI screens, documentation
 
 ####Gabriel Tobian
-Game expert, logic coding, documentation
+Game expert, game logic coding, documentation
 
 
 Screenshots:
