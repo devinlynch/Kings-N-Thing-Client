@@ -15,7 +15,6 @@
     BoardLocation *_location;
     Player *_owner;
     ScaledGamePiece *_pieceImage;
-    ScaledGamePiece *_bluffImage;
     ScaledGamePiece *_borderImage;
     NSString *_fileName;
     NSString *_name;
