@@ -14,4 +14,6 @@
 @property GamePiece *gamePiece;
 @property BOOL isBuy;
 
+-(RecruitOptionMenu*) initWithGamePiece: (GamePiece*) piece;
+
 @end

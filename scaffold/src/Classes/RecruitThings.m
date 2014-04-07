@@ -174,8 +174,7 @@ static RecruitThings *instance;
     GamePiece *gp = [freeRecruits objectAtIndex:0];
     [freeRecruits removeObjectAtIndex:0];
     
-    RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
-    [recruitMenu setGamePiece:gp];
+    RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] initWithGamePiece:gp];
     [self showScene:recruitMenu];
 }
 
