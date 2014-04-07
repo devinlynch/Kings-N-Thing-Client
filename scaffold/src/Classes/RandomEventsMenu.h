@@ -8,7 +8,8 @@
 
 #import "SPSprite.h"
 #import <UIKit/UIKit.h>
+#import "AbstractInGameScreen.h"
 
-@interface RandomEventsMenu : SPSprite
+@interface RandomEventsMenu : AbstractInGameScreen
 
 @end

@@ -492,6 +492,7 @@
 		DE991F8218846CFD006C759F /* TwoThreePlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DE991F7F18846CFD006C759F /* TwoThreePlayerGame.m */; };
 		DE99C69918F1F59E008C884B /* WinningScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = DE99C69818F1F59E008C884B /* WinningScreen.m */; };
 		DE99C69C18F1F6DF008C884B /* endgame.png in Resources */ = {isa = PBXBuildFile; fileRef = DE99C69B18F1F6DF008C884B /* endgame.png */; };
+		DE99C6AF18F3241D008C884B /* T_Income_363.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BD131618A75243008C6E96 /* T_Income_363.png */; };
 		DEA17CEE189801B200A743C6 /* FourPlayerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA17CED189801B200A743C6 /* FourPlayerGame.m */; };
 		DEA6350A18A097510031BF8C /* RecruitThings.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350918A097510031BF8C /* RecruitThings.m */; };
 		DEA6350E18A09B470031BF8C /* RecruitOptionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6350D18A09B470031BF8C /* RecruitOptionMenu.m */; };
@@ -2581,6 +2582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE99C6AF18F3241D008C884B /* T_Income_363.png in Resources */,
 				DE74F1B418EDF44800A8B4BE /* hilight.png in Resources */,
 				417388C118E4924E00934A1F /* G_15.png in Resources */,
 				4173888618E4922B00934A1F /* T_Swamp_067.png in Resources */,

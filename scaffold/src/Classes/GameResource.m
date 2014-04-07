@@ -91,5 +91,8 @@ static GameResource *instance;
     return [_specialCharacterPieces objectForKeyedSubscript:pieceId];
 }
 
+-(RandomEvent*) getRandomEventForId:(NSString*) pieceId {
+    return [_randomPieces objectForKey:pieceId];
+}
 
 @end
