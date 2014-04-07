@@ -16,7 +16,6 @@
 #import "TileMenu.h"
 
 @implementation PiecesMenu{    
-    GamePiece *_selectedPiece;
     SPImage *borderImage;
     BOOL _isOpposingPlayer;
 }
