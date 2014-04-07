@@ -18,6 +18,7 @@
 #import "CombatPhase.h"
 #import "GameResource.h"
 #import "GamePiece.h"
+#import "User.h"
 
 @implementation CombatBattle
 @synthesize attacker, battleId, defender, gameState, locationOfBattle, amIAttacker, currentRound, isEnded, isStarted, state, isAIDefender, battleLog, combatPhase;

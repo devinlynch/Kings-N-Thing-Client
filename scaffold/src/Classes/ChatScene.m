@@ -10,6 +10,7 @@
 #import "Game.h"
 #import "InGameServerAccess.h"
 #import "GameChatMessage.h"
+#import "User.h"
 
 @implementation ChatScene
 {

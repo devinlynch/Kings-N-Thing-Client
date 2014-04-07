@@ -9,7 +9,7 @@
 #import "Game.h"
 #import "GameChatMessage.h"
 #import "LogMessage.h"
-
+#import "User.h"
 #import <AVFoundation/AVFoundation.h>
 
 @implementation Game{

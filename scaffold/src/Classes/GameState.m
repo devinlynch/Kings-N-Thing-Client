@@ -17,6 +17,8 @@
 #import "CombatPhase.h"
 #import "Utils.h"
 #import "AIPlayer.h"
+#import "User.h"
+#import "Rack.h"
 
 @implementation GameState
 

@@ -38,6 +38,9 @@
 #import "Utils.h"
 #import "RackPiecesMenu.h"
 #import "ConstructionMenu.h"
+#import "User.h"
+#import "Rack.h"
+#import "SpecialCharacter.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -1518,28 +1521,44 @@
 -(void) tileSingleTap: (HexLocation*) location{
     if (_selectedPiece != nil) {
         
-        if([[_selectedPiece location] isKindOfClass:[Rack class]]){
+        if([[_selectedPiece location] isKindOfClass:[Rack class]] && ![_selectedPiece isKindOfClass:[SpecialCharacter class]]){
             
-            //DECIDE IF BLUFF OR NOT BLUFF
-            
-//            [UIAlertView displayAlertWithTitle:@"Bluff?"
-//                                       message:@"PLace this piece as a bluff?"
-//                               leftButtonTitle:@"Bluff"
-//                              leftButtonAction:^{
-//                                                              }
-//                              rightButtonTitle:@"Not Bluff"
-//                             rightButtonAction:^{  [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [location addGamePieceToLocation:_selectedPiece];
-//                    [self clearSelectedPiece:nil];
-//                    [self unHilightAllTiles];
-//                });
-//            }];
-//                                 
-//                             }];
-            
-            //CAME FROM THE RACK BUT WE DUN CARE YET
-            [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
+            if ([[_state getMe] canSupportCreature:_selectedPiece atLocation:location]) {
+                [UIAlertView displayAlertWithTitle:@"Bluff?"
+                                           message:@"Place this piece as a bluff?"
+                                   leftButtonTitle:@"Bluff"
+                                  leftButtonAction:^{
+                                      [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                              [location addGamePieceToLocation:_selectedPiece];
+                                              [self clearSelectedPiece:nil];
+                                              [self unHilightAllTiles];
+                                          });
+                                      }];
+                                  }
+                                  rightButtonTitle:@"Not Bluff"
+                                 rightButtonAction:^{  [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [location addGamePieceToLocation:_selectedPiece];
+                        [self clearSelectedPiece:nil];
+                        [self unHilightAllTiles];
+                    });
+                }];}];
+            } else{
+                [UIAlertView displayAlertWithTitle:@"Piece not supported"
+                                           message:@"This piece may only be placed as a bluff."
+                                   leftButtonTitle:@"Do not place"
+                                  leftButtonAction:^{
+                                  }
+                                  rightButtonTitle:@"Place as bluff"
+                                 rightButtonAction:^{  [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [location addGamePieceToLocation:_selectedPiece];
+                        [self clearSelectedPiece:nil];
+                        [self unHilightAllTiles];
+                    });
+                }];}];
+            }
             
         }else{
             [self movePiece:_selectedPiece orStack:nil toHexLocation:location];
