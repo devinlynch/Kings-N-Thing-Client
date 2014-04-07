@@ -3,7 +3,10 @@ Kings-N-Thing-Client
 
 About
 ------
-A 4 player real time strategy game for iOS based on the 1980's game Kings and Things.
+An online 4 player real time strategy game for iOS based on the 1980's game Kings and Things.
+
+####Game server code
+https://github.com/devinlynch/Kings-N-Things-Server
 
 Contributions:
 ------
