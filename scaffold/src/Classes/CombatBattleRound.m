@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "Player.h"
 #import "GamePiece.h"
+#import "User.h"
 
 @implementation CombatBattleRound
 @synthesize battle,roundId,state,roundNumber, magicData,magicAttackerPiecesTakingHits,meleeData,meleeAttackerPiecesTakingHits,

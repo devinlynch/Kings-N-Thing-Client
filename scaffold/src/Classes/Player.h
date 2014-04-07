@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
-#import "Rack.h"
+#import "JSONSerializable.h"
+
+@class User, Rack, Creature, GamePiece, HexLocation;
 
 @interface Player : NSObject <JSONSerializable>
 {
@@ -40,5 +41,7 @@
 
 -(int) gold;
 -(void) setGold: (int) g;
+
+-(BOOL) canSupportCreature: (Creature*) creature atLocation: (HexLocation*) hexLocation;
 
 @end

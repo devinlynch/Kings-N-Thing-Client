@@ -21,7 +21,6 @@
 @synthesize fileName  = _fileName;
 @synthesize name = _name;
 @synthesize isBluff = _isBluff;
-@synthesize bluffImage = _bluffImage;
 @synthesize borderImage = _borderImage;
 
 -(id) init{
@@ -49,25 +48,23 @@
                 [o assignPiece:self];
             }
         }
+        if([json objectForKey:@"isBluff"] != nil) {
+            _isBluff = [[json objectForKey:@"isBluff"] boolValue];
+            if(_isBluff){
+                _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"T_Back.png"];
+            } else{
+                _pieceImage = [[ScaledGamePiece alloc] initWithContentsOfFile:_fileName];
+            }
+        }
     }
+    
+
+    
 }
 
 
 -(void) changeOwnerToPlayer: (Player*) player{
-    
     _owner = player;
-    
-//    if ([[player playerId] isEqualToString:@"player1"]) {
-//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
-//    } else if ([[player playerId] isEqualToString:@"player2"]) {
-//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
-//    } else if ([[player playerId]isEqualToString:@"player3"]) {
-//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
-//    } else if ([[player playerId] isEqualToString:@"player4"]) {
-//        _borderImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@""];
-//    }
-
-    
 }
 
 @end

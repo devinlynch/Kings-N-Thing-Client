@@ -18,6 +18,7 @@
 #import "HexLocation.h"
 #import "InGameServerAccess.h"
 #import "CombatPhaseScreenController.h"
+#import "User.h"
 
 @implementation BattleSummaryMenu{
 

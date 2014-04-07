@@ -7,7 +7,17 @@
 //
 
 #import "Player.h"
-#import "GamePiece.h"
+#import "Rack.h"
+#import "User.h"
+#import "Creature.h"
+#import "Game.h"
+#import "GameState.h"
+#import "HexLocation.h"
+#import "HexTile.h"
+#import "Terrain.h"
+#import "SpecialCharacter.h"
+
+
 @implementation Player
 
 @synthesize user = _user;
@@ -84,6 +94,46 @@
 -(void) setGold: (int) g{
     _gold = g;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerGoldChanged" object:self];
+}
+
+
+-(BOOL) canSupportCreature:(Creature *)creature atLocation:(HexLocation *)hexLocation{
+    
+    //Check if player has a supporting hex
+    for (NSString *locationKey in [[[Game currentGame] gameState] hexLocations]) {
+        HexLocation *location = [[[[Game currentGame] gameState] hexLocations] objectForKeyedSubscript:locationKey];
+        if ([[location owner] isEqual:self]) {
+            if ([location.tile.terrain isEqual:creature.terrain]) {
+                return YES;
+            }
+        }
+    }
+    
+    //Check if player has a terrain lord at this location
+    for(NSString *pieceKey in [hexLocation pieces]){
+        GamePiece *piece = [[hexLocation pieces] objectForKey:pieceKey];
+        if ([piece isKindOfClass:[SpecialCharacter class]]) {
+            if ([piece.owner isEqual:self]) {
+                if ([piece.gamePieceId isEqualToString:@"specialcharacter_12"]) {
+                    return [creature.terrain isEqual:[Terrain getDesertInstance]];
+                } else if ([piece.gamePieceId isEqualToString:@"specialcharacter_13"]) {
+                    return [creature.terrain isEqual:[Terrain getFrozenInstance]];
+                } else if ([piece.gamePieceId isEqualToString:@"specialcharacter_14"]) {
+                    return [creature.terrain isEqual:[Terrain getJungleInstance]];
+                } else if ([piece.gamePieceId isEqualToString:@"specialcharacter_15"]) {
+                    return [creature.terrain isEqual:[Terrain getForestInstance]];
+                } else if ([piece.gamePieceId isEqualToString:@"specialcharacter_16"]) {
+                    return [creature.terrain isEqual:[Terrain getPlainesInstance]];
+                } else if ([piece.gamePieceId isEqualToString:@"specialcharacter_17"]) {
+                    return [creature.terrain isEqual:[Terrain getMountainInstance]];
+                } else if ([piece.gamePieceId isEqualToString:@"specialcharacter_18"]) {
+                    return [creature.terrain isEqual:[Terrain getSwampInstance]];
+                }
+            }
+        }
+    }
+    
+    return NO;
 }
 
 @end

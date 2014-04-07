@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "CombatBattle.h"
 #import "CombatBattleRound.h"
+#import "User.h"
 
 @implementation CombatPhaseHandler
 

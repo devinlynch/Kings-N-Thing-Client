@@ -10,6 +10,7 @@
 #import "CombatPhaseScreenController.h"
 #import "Player.h"
 #import "HexLocation.h"
+#import "User.h"
 
 @implementation BattleStartedMenu{
     SPButton *_playBattleButton;
