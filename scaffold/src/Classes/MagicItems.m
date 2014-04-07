@@ -44,6 +44,7 @@
 }
 
 
+
 +(NSMutableDictionary*) initializeAllMagicItems{
     NSMutableDictionary *magicItems = [[NSMutableDictionary alloc] init];
     

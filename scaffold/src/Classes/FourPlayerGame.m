@@ -42,6 +42,12 @@
 #import "Rack.h"
 #import "SpecialCharacter.h"
 #import "GameBoardHelper.h"
+#import "PlayingCup.h"
+#import "RandomEvent.h"
+#import "MagicItems.h"
+#import "NonCityVill.h"
+#import "CityVill.h"
+#import "Treasure.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -532,9 +538,6 @@
     [_stateText setText:@"Wait for your movement turn"];
 }
 
--(void) addToRack: (NSNotification*) notif{
-    
-}
 
 -(void) yourTurnInMovement:(NSNotification*) notif{
     [self setPhase: MOVEMENT];
@@ -1010,16 +1013,65 @@
 
 -(void) recruitWasFree:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
+    
+    
+    
     if([location getPieceCountForPlayer:[_state getMe]] < 10){
-        [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addGamePieceToLocation:p];
-                [_state.getMe assignPiece:p];
-                [self clearSelectedPiece:nil];
-                [_selectedPieceImage removeFromParent];
-                [[RecruitThings getInstance] setVisible:YES];
-            });
-        }];
+        
+        
+        if ([[_state getMe] canSupportCreature:_selectedPiece atLocation:location]) {
+            [UIAlertView displayAlertWithTitle:@"Bluff?"
+                                       message:@"Place this piece as a bluff?"
+                               leftButtonTitle:@"Bluff"
+                              leftButtonAction:^{
+                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [location addGamePieceToLocation:p];
+                                          [_state.getMe assignPiece:p];
+                                          [self clearSelectedPiece:nil];
+                                          [_selectedPieceImage removeFromParent];
+                                          [[RecruitThings getInstance] setVisible:YES];
+                                      });
+                                  }];
+                              }
+                              rightButtonTitle:@"Not Bluff"
+                             rightButtonAction:^{       [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [location addGamePieceToLocation:p];
+                    [_state.getMe assignPiece:p];
+                    [self clearSelectedPiece:nil];
+                    [_selectedPieceImage removeFromParent];
+                    [[RecruitThings getInstance] setVisible:YES];
+                });
+            }];}];
+        } else{
+            [UIAlertView displayAlertWithTitle:@"Piece not supported"
+                                       message:@"This piece may only be placed as a bluff."
+                               leftButtonTitle:@"Place on rack"
+                              leftButtonAction:^{
+                                  [[[_state getMe] rack1] addGamePieceToLocation:p];
+                                  [_state.getMe assignPiece:p];
+                                  [self clearSelectedPiece:nil];
+                                  [_selectedPieceImage removeFromParent];
+                                  [[RecruitThings getInstance] setVisible:YES];
+                              }
+                              rightButtonTitle:@"Place as bluff"
+                             rightButtonAction:^{  [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:NO withSuccess:^(ServerResponseMessage *message){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [location addGamePieceToLocation:p];
+                    [_state.getMe assignPiece:p];
+                    [self clearSelectedPiece:nil];
+                    [_selectedPieceImage removeFromParent];
+                    [[RecruitThings getInstance] setVisible:YES];
+                });
+            }];}];
+        }
+
+        
+        
+        
+        
+  
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
                                                         message:@"You may not exceed 10 of your own pieces on a hex."
@@ -1035,15 +1087,55 @@
 -(void) recruitWasBought:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
     if([location getPieceCountForPlayer:[_state getMe]] < 10){
-        [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [location addGamePieceToLocation:p];
-                [_state.getMe assignPiece:p];
-                [self clearSelectedPiece:nil];
-                [_selectedPieceImage removeFromParent];
-                [[RecruitThings getInstance] setVisible:YES];
-            });
-        }];
+        if ([[_state getMe] canSupportCreature:_selectedPiece atLocation:location]) {
+            [UIAlertView displayAlertWithTitle:@"Bluff?"
+                                       message:@"Place this piece as a bluff?"
+                               leftButtonTitle:@"Bluff"
+                              leftButtonAction:^{
+                                  [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [location addGamePieceToLocation:p];
+                                          [_state.getMe assignPiece:p];
+                                          [self clearSelectedPiece:nil];
+                                          [_selectedPieceImage removeFromParent];
+                                          [[RecruitThings getInstance] setVisible:YES];
+                                      });
+                                  }];
+                              }
+                              rightButtonTitle:@"Not Bluff"
+                             rightButtonAction:^{       [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [location addGamePieceToLocation:p];
+                    [_state.getMe assignPiece:p];
+                    [self clearSelectedPiece:nil];
+                    [_selectedPieceImage removeFromParent];
+                    [[RecruitThings getInstance] setVisible:YES];
+                });
+            }];}];
+        } else{
+            [UIAlertView displayAlertWithTitle:@"Piece not supported"
+                                       message:@"This piece may only be placed as a bluff."
+                               leftButtonTitle:@"place on rack"
+                              leftButtonAction:^{
+                                  [[[_state getMe] rack1] addGamePieceToLocation:p];
+                                  [_state.getMe assignPiece:p];
+                                  [self clearSelectedPiece:nil];
+                                  [_selectedPieceImage removeFromParent];
+                                  [[RecruitThings getInstance] setVisible:YES];
+                              }
+                              rightButtonTitle:@"Place as bluff"
+                             rightButtonAction:^{  [[InGameServerAccess instance] recruitThingsPhaseRecruited:p.gamePieceId palcedOnLocation:location.locationId wasBought:YES withSuccess:^(ServerResponseMessage *message){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [location addGamePieceToLocation:p];
+                    [_state.getMe assignPiece:p];
+                    [self clearSelectedPiece:nil];
+                    [_selectedPieceImage removeFromParent];
+                    [[RecruitThings getInstance] setVisible:YES];
+                });
+            }];}];
+        }
+        
+
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Too Many Pieces"
                                                         message:@"You may not exceed 10 of your own pieces on a hex."
@@ -1056,9 +1148,9 @@
 }
 
 -(void) tileSingleTap: (HexLocation*) location{
-    if (_selectedPiece != nil) {
-        
-        if([[_selectedPiece location] isKindOfClass:[Rack class]] && ![_selectedPiece isKindOfClass:[SpecialCharacter class]]){
+    if (_selectedPiece != nil && ![_selectedPiece isKindOfClass:[RandomEvent class]] && ![_selectedPiece isKindOfClass:[NonCityVill class]]
+        && ![_selectedPiece isKindOfClass:[MagicItems class]] && ![_selectedPiece isKindOfClass:[Treasure class]]) {
+        if(([[_selectedPiece location] isKindOfClass:[Rack class]] || [[_selectedPiece location] isKindOfClass:[PlayingCup class]] ) && ![_selectedPiece isKindOfClass:[SpecialCharacter class]]){
             
             if ([[_state getMe] canSupportCreature:_selectedPiece atLocation:location]) {
                 [UIAlertView displayAlertWithTitle:@"Bluff?"
@@ -1068,6 +1160,7 @@
                                       [[InGameServerAccess instance] movementPhaseMoveGamePiece:_selectedPiece.gamePieceId toLocation:location.locationId withSuccess:^(ServerResponseMessage *message){
                                           dispatch_async(dispatch_get_main_queue(), ^{
                                               [location addGamePieceToLocation:_selectedPiece];
+                                              
                                               [self clearSelectedPiece:nil];
                                               [self unHilightAllTiles];
                                           });
@@ -1119,6 +1212,9 @@
     
     if (!_canExplore && isExploring) {
         NSLog(@"YOU CANT DO THAT");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Allowed" message:@"You can't explore in the placement phase" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        
+        [alert show];
         return;
         
     }
