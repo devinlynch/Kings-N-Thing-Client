@@ -214,5 +214,9 @@ static RecruitThings *instance;
     [tradeMnu show];
 }
 
+-(void) setPossibleTradeRecruits: (NSArray*) arr{
+    tradeRecruits = [NSMutableArray arrayWithArray:arr];
+}
+
 
 @end

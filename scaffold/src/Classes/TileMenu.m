@@ -140,9 +140,9 @@
         borderImage.height = pieceImage.height;
         borderImage.touchable = NO;
 
-        
-        [_contents addChild:borderImage];
-        
+        if(borderImage != nil){
+            [_contents addChild:borderImage];
+        }
         
         if((x + pieceImage.x) > _gameWidth){
             x = 10;
@@ -231,7 +231,7 @@
 -(void) stackDoubleTap: (Stack*) stack{
     Player* me  = [[[Game currentGame] gameState] getMe];
     
-    _stackMenu = [[PiecesMenu alloc] initForPlayer:stack.owner onLocation:stack withParent:_contents andIsOpposingPlayer:(me==stack.owner)];
+    _stackMenu = [[PiecesMenu alloc] initForPlayer:stack.owner onLocation:stack withParent:_contents andIsOpposingPlayer:(me!=stack.owner)];
     
     [_stackMenu show];
 }

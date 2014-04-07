@@ -13,5 +13,6 @@
 
 +(RecruitThings*) getInstance;
 -(void)initWithObjectsToRecruit: (NSArray*)objectsToRecruit;
+-(void) setPossibleTradeRecruits: (NSArray*) arr;
 
 @end

@@ -9,9 +9,10 @@
 #import "SPSprite.h"
 #import "AbstractInGameScreen.h"
 
-@class Player, BoardLocation;
+@class Player, BoardLocation, GamePiece;
 @interface PiecesMenu : AbstractInGameScreen
 {
+    GamePiece *_selectedPiece;
     Player *_player;
     BoardLocation *_location;
 }
@@ -22,6 +23,7 @@
 
 -(id) initForPlayer: (Player*) player onLocation: (BoardLocation*) location withParent: (SPSprite*) parent andIsOpposingPlayer: (BOOL) isOpposingPlayer;
 -(void) didClickOnRecruit:(SPEvent *) event;
+- (void) didClickOnSkip:(SPEvent *) event;
 
 @end
 

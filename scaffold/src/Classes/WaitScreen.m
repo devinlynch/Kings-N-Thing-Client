@@ -67,7 +67,16 @@
                                                object:nil];
     
     
-    //menuMovedRight
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moveRight:)
+                                                 name:@"menuMovedRight"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moveLeft:)
+                                                 name:@"menuMovedLeft"
+                                               object:nil];
+    
     
     //To add UIKit stuffs to sparrow
     view = Sparrow.currentController.view;
@@ -186,6 +195,16 @@
 
 -(void) newLog: (NSNotification*) notif{
     [self updateLogFromCombatPhase];
+}
+
+-(void) moveRight: (NSNotification*) notif {
+     _textView.hidden = YES;
+}
+
+
+-(void) moveLeft: (NSNotification*) notif {
+    _textView.hidden = NO;
+
 }
 
 @end
