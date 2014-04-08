@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.49.METHOD</key>
+	<string>handleRandomEventMove:</string>
+	<key>EVENT.49.CLASS</key>
+	<string>RandomEventHandler</string>
+	<key>EVENT.49.TYPE</key>
+	<string>randomEventMove</string>
+	<key>EVENT.48.METHOD</key>
+	<string>handlePhaseStarted:</string>
+	<key>EVENT.48.CLASS</key>
+	<string>RandomEventHandler</string>
+	<key>EVENT.48.TYPE</key>
+	<string>randomEventsStarted</string>
 	<key>EVENT.47.TYPE</key>
 	<string>playerTradedThing</string>
 	<key>EVENT.47.CLASS</key>

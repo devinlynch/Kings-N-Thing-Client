@@ -12,6 +12,10 @@
 
 +(BOOL) shouldPlayVoice;
 +(void) setShouldPlayVoice: (BOOL) b;
+
++(BOOL) isDemo;
++(void) setDemo: (BOOL) b;
+
 +(void) loadFromDictionary:(NSDictionary *) dic;
 
 @end
