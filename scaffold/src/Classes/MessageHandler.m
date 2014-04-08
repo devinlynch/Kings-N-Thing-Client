@@ -62,15 +62,16 @@ static NSMutableSet* receivedMessageIds;
         
         Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
         
-        if( ! [responseMessage.type isEqualToString:@"newMessages"] )
-            [self didHandleMessage:responseMessage];
+        if( ! [responseMessage.type isEqualToString:@"newMessages"] && responseMessage.messageId != nil )
+            [self addMessageIdAsBeingHandled:responseMessage.messageId];
         
         [e setRequestParams:params];
         [e setDelegateListener:delegate];
         [e setReceivedMessageType:HTTP_MESSAGE_TYPE];
         [[ClientReactor instance] dispatch:e];
         
-        
+        if( ! [responseMessage.type isEqualToString:@"newMessages"] )
+            [self didHandleMessage:responseMessage];
     } @catch (NSException *exception) {
         [self didNOTHandleMessage:responseMessage];
         NSLog(@"ERROR HANDLING MESSAGE:  %@", exception);
@@ -102,12 +103,14 @@ static NSMutableSet* receivedMessageIds;
             return;
         }
         
-        [self didHandleMessage:responseMessage];
+        if(responseMessage.messageId != nil)
+            [self addMessageIdAsBeingHandled:responseMessage.messageId];
         
         Event *e = [[Event alloc] initForType:responseMessage.type withMessage:responseMessage];
         [e setReceivedMessageType:UDP_MESSAGE_TYPE];
         [[ClientReactor instance] dispatch:e];
         
+        [self didHandleMessage:responseMessage];
     }
     @catch (NSException *exception) {
         [self didNOTHandleMessage:responseMessage];
@@ -117,10 +120,14 @@ static NSMutableSet* receivedMessageIds;
 
 +(void) didHandleMessage: (Message*) message{
     if(message.messageId){
-        [[MessageHandler receivedMessageIdsInstance] addObject:message.messageId];
+        [self addMessageIdAsBeingHandled:message.messageId];
         [[ServerAccess instance] tellServerWeGotMessage:message.messageId];
     }
     
+}
+
++(void) addMessageIdAsBeingHandled: (NSString*) messageId{
+    [[MessageHandler receivedMessageIdsInstance] addObject:messageId];
 }
 
 +(void) didNOTHandleMessage: (Message*) message{

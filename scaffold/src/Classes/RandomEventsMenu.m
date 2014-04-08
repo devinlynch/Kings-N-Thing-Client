@@ -60,10 +60,7 @@
     
     [_contents addChild:background];
     
-    NSArray *recruits = [NSArray arrayWithObjects:@"RandomEvent_01",@"RandomEvent_02",@"RandomEvent_03",@"RandomEvent_04",@"RandomEvent_05",@"RandomEvent_06",@"RandomEvent_07",@"RandomEvent_08",@"RandomEvent_09",@"RandomEvent_10", nil];
-    
     _randomEvents= [NSMutableArray arrayWithArray:[[[[Game currentGame] gameState] getMe] getRandomEvents]];
-    
     
     
     int numInRow=1;
