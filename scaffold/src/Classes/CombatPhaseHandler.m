@@ -104,7 +104,8 @@
     NSString* stepName = [dataDic objectForKey:@"stepName"];
     NSString* playerId = [dataDic objectForKey:@"playerId"];
     NSDictionary* hexLocationDic = [dataDic objectForKey:@"locationOfBattle"];
-    NSArray * gamePiecesTakingHitsIds = [dataDic objectForKey:@"gamePiecesTakingHitsIds"];
+    NSArray* gamePiecesTakingHitsIds = [dataDic objectForKey:@"gamePiecesTakingHitsIds"];
+    NSArray* gamePiecesTakingHitsSerialized = [dataDic objectForKey:@"gamePiecesTakingHitsSerialized"];
     
     runOnMainQueueWithoutDeadlocking(^{
         [round player:playerId tookDamageToPieces:gamePiecesTakingHitsIds forStep:stepName];
@@ -113,6 +114,16 @@
         HexLocation *loc = (HexLocation*)[[[Game currentGame] gameState] getBoardLocationById:hexLocId];
         if(loc != nil) {
             [loc updateLocationFromSerializedJSONDictionary:hexLocationDic];
+        }
+        
+        for(NSDictionary *gamePieceDic in gamePiecesTakingHitsSerialized) {
+            NSString *gamePieceId = [gamePieceDic objectForKey:@"id"];
+            if(gamePieceId != nil) {
+                GamePiece* piece = [[GameResource getInstance] getPieceForId:gamePieceId];
+                if(piece != nil) {
+                    [piece updateFromSerializedJson:gamePieceDic forGameState:battle.gameState];
+                }
+            }
         }
     });
 }
