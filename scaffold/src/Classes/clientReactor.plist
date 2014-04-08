@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EVENT.50.METHOD</key>
+	<string>handleUpdatedGamePiece:</string>
+	<key>EVENT.50.CLASS</key>
+	<string>GameEventHandler</string>
+	<key>EVENT.50.TYPE</key>
+	<string>updatedGamePiece</string>
 	<key>EVENT.49.METHOD</key>
 	<string>handleRandomEventMove:</string>
 	<key>EVENT.49.CLASS</key>

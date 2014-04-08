@@ -9,6 +9,8 @@
 #import "GameEventHandler.h"
 #import "Event.h"
 #import "Game.h"
+#import "Utils.h"
+#import "GameResource.h"
 
 @implementation GameEventHandler
 
@@ -50,6 +52,22 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"gameStarted" object:game];
     });
+}
+
+-(void) handleUpdatedGamePiece:(Event*) event {
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    GameState *state = [[Game currentGame] gameState];
+    
+    NSDictionary* pieceDataDic = [dataDic objectForKey:@"gamePiece"];
+    NSString *gamePieceId = [pieceDataDic objectForKey:@"id"];
+    
+    if(gamePieceId != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            GamePiece *piece = [[GameResource getInstance] getPieceForId:gamePieceId];
+            [piece updateFromSerializedJson:pieceDataDic forGameState:state];
+    
+        });
+    }
 }
 
 @end

@@ -73,7 +73,7 @@
         [self setGold: [[json objectForKey:@"gold"] intValue]];
     }
     
-    BOOL didCreateRack1 =YES ;
+    BOOL didCreateRack1 = NO;
     
     if(_rack1 == nil && [json objectForKey:@"rack1"] != nil){
         didCreateRack1=YES;

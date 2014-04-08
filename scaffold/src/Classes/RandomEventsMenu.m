@@ -17,12 +17,14 @@
 #import "GameState.h"
 #import "Player.h"
 #import "InGameServerAccess.h"
+#import "DefectionMenu.h"
 
 @implementation RandomEventsMenu{
     NSMutableArray *_randomEvents;
     SPImage *borderImage;
     RandomEvent *selectedRandomEvent;
     SPButton *playButton;
+    NSMutableArray *playedPieces;
 }
 
 
@@ -41,6 +43,7 @@
     if ((self = [super initFromParent:parent]))
     {
         [self setup];
+        playedPieces = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -60,8 +63,6 @@
     
     [_contents addChild:background];
     
-    NSArray *recruits = [NSArray arrayWithObjects:@"RandomEvent_01",@"RandomEvent_02",@"RandomEvent_03",@"RandomEvent_04",@"RandomEvent_05",@"RandomEvent_06",@"RandomEvent_07",@"RandomEvent_08",@"RandomEvent_09",@"RandomEvent_10", nil];
-    
     _randomEvents= [NSMutableArray arrayWithArray:[[[[Game currentGame] gameState] getMe] getRandomEvents]];
     
     
@@ -69,6 +70,9 @@
     int numInRow=1;
     int row=1;
     for(RandomEvent *gp in _randomEvents) {
+        if([playedPieces containsObject:gp.gamePieceId])
+            continue;
+        
         SPButton *_selectedPieceImage;
         SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
         _selectedPieceImage = [SPButton buttonWithUpState:text];
@@ -137,22 +141,24 @@
 }
 
 -(void) didClickOnPlay:(SPTouchEvent*) event{
-    NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
-    
-    
-    if (touches.count == 1) {
-        
-        // Find card id, show pop up of description
-        
-        NSLog(@"Clicked play");
+    if(selectedRandomEvent != nil && [selectedRandomEvent.gamePieceId isEqualToString:@"RandomEvent_03"]) {
+        DefectionMenu *dMenu = [[DefectionMenu alloc] initFromParent:self withDefectionPiece:selectedRandomEvent];
+        [dMenu show];
+    } else{
+        [Utils showAlertWithTitle:@"Sorry" message:@"This random event is not supported" delegate:nil cancelButtonTitle:@"Ok"];
     }
-    
 }
 
 - (void) didClickOnSkip:(SPEvent *) event{
     NSLog(@"Clicked skip");
     [self hide];
     [[InGameServerAccess instance] randomEventReadyForNextPhase:nil];
+}
+
+-(void) removeRandomEventPiece: (RandomEvent*) piece;
+{
+    [playedPieces addObject:piece.gamePieceId];
+    [self setup];
 }
 
 

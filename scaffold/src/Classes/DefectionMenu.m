@@ -12,7 +12,7 @@
 #import "GamePiece.h"
 #import "Utils.h"
 #import "UIAlertView+Blocks.h"
-
+#import "RandomEventsMenu.h"
 
 @implementation DefectionMenu
 {
@@ -27,7 +27,7 @@
     return self;
 }
 
--(id) initFromParent:(SPSprite *)parent withDefectionPiece: (GamePiece*) defectionPiece{
+-(id) initFromParent:(RandomEventsMenu *)parent withDefectionPiece: (GamePiece*) defectionPiece{
     self = [super initFromParent:parent];
     if(self) {
         _player = nil;
@@ -77,12 +77,13 @@
         [[InGameServerAccess instance] randomEventPlacedDefection:_defectionPiece.gamePieceId recruitingForId:_selectedPiece.gamePieceId andDidRecruit:didRecruit andSuccess:^(ServerResponseMessage* message) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSString* msg;
-                if(didRecruit) {
+                if(!didRecruit) {
                     msg = @"Sorry the recruitment was unsuccessful";
                 } else{
                     msg = @"You recruited it!";
                 }
                 
+                [((RandomEventsMenu*)_parent) removeRandomEventPiece:(RandomEvent*)_defectionPiece];
                 [self hide];
                 [Utils showAlertWithTitle:@"Alert" message:msg delegate:nil cancelButtonTitle:@"Ok"];
             });

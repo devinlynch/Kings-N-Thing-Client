@@ -8,6 +8,7 @@
 
 #import "PiecesMenu.h"
 
+@class RandomEventsMenu;
 @interface DefectionMenu : PiecesMenu
-
+-(id) initFromParent:(RandomEventsMenu *)parent withDefectionPiece: (GamePiece*) defectionPiece;
 @end
