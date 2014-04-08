@@ -30,6 +30,7 @@
 @synthesize bank = _bank;
 @synthesize currentCombatPhase=_currentCombatPhase;
 @synthesize aiPlayer=_aiPlayer;
+@synthesize isDemo = _isDemo;
 
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
@@ -59,6 +60,12 @@
         _sideLocation = [[SideLocation alloc] initFromJSON:[_gameStateDic objectForKey:@"sideLocation"] withGameState:self];
         [_sideLocation setGameState: self];
         
+        
+        if([_gameStateDic objectForKey:@"isDemo"] != nil) {
+            _isDemo = [[_gameStateDic objectForKey:@"isDemo"]  boolValue];
+        } else{
+            _isDemo = NO;
+        }
         
         BOOL is23PlayerGame = self.players.count <4;
         

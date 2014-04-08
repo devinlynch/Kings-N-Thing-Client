@@ -677,6 +677,8 @@
 
     _state = (GameState*) notif.object;
     
+    _canExplore = _state.isDemo;
+    
     NSLog(@"%@", _state);
     
     NSString *myId = [_state myPlayerId];
