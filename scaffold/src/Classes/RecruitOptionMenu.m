@@ -151,6 +151,7 @@
     
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
+            [me assignPiece:gamePiece];
             [[me rack1] addGamePieceToLocation:gamePiece];
             _contents.visible = NO;
         });

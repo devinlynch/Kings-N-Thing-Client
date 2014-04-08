@@ -15,7 +15,7 @@
 
 @synthesize owner = _owner;
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary *)json withOwner:(Player*) player{
+-(id) initFromJSON:(NSDictionary *)json withOwner:(Player*) player{
     self = [super init];
     if(self && json != nil) {
         _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];

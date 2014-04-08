@@ -9,7 +9,7 @@
 #import "BoardLocation.h"
 #import "JSONSerializable.h"
 
-@interface PlayingCup : BoardLocation<JSONSerializable>
+@interface PlayingCup : BoardLocation
 
 
 

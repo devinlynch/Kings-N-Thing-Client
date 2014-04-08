@@ -11,7 +11,7 @@
 
 @class GamePiece, Player, GameState;
 
-@interface BoardLocation : NSObject<JSONSerializable>{
+@interface BoardLocation : NSObject{
     NSString *_locationId;
     NSString *_locationName;
     NSMutableDictionary *_pieces;
@@ -35,5 +35,7 @@
 -(void) updateLocationFromSerializedJSONDictionary: (NSDictionary*) dic;
 
 -(NSArray*) getAllPiecesForPlayer: (Player*) p;
+
+-(id) initFromJSON:(NSDictionary *)json withGameState: (GameState*) gameState;
 
 @end

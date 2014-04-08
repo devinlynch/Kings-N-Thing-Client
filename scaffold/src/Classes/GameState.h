@@ -23,6 +23,7 @@
     SideLocation *_sideLocation;
     CombatPhase *_currentCombatPhase;
     AIPlayer *_aiPlayer;
+    BOOL _isDemo;
 }
 
 @property NSString *myPlayerId;
@@ -34,7 +35,7 @@
 @property SideLocation *sideLocation;
 @property CombatPhase *currentCombatPhase;
 @property AIPlayer *aiPlayer;
-
+@property BOOL isDemo;
 
 -(void) findPathFromLocation: (HexLocation *) location withMoves: (int) moves;
 -(Player*) getPlayerById: (NSString*) ID;

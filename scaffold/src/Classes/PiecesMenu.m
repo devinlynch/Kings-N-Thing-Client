@@ -67,8 +67,8 @@
     int row=1;
     for(GamePiece *gp in pieces) {
         SPButton *_selectedPieceImage;
-        //SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
-        SPTexture *text = gp.pieceImage.texture;
+        SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
+       // SPTexture *text = gp.pieceImage.texture;
         _selectedPieceImage = [SPButton buttonWithUpState:text];
         _selectedPieceImage.x = (_gameWidth/5)*numInRow-65;
         _selectedPieceImage.y = 40+(90*row);

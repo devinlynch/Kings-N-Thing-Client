@@ -70,7 +70,7 @@
     Player *_player4;
 
 
-    
+    SPSprite *_bottomLayerContents;
     SPSprite *_currentScene;
     SPSprite *_contents;
     SPSprite *_phasesScreensContents;
@@ -179,6 +179,9 @@
     
     gamePieces = [[NSMutableArray alloc]init];
     
+    _bottomLayerContents = [SPSprite sprite];
+    [self addChild:_bottomLayerContents];
+    
     _contents = [SPSprite sprite];
     [self addChild:_contents];
     
@@ -200,7 +203,7 @@
     _sheet = [[TouchSheet alloc] initWithQuad:_background];
     
     //Add the sheet to the contents so that it appears
-    [_contents addChild:_sheet];
+    [_bottomLayerContents addChild:_sheet];
     
     
     _playerIdText = [SPTextField textFieldWithWidth:200 height:30 text:@""];
@@ -432,6 +435,19 @@
                                                  name:@"constructionStarted"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movePieceImage:)
+                                                 name:@"movePieceImage"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moveStackImage:)
+                                                 name:@"moveStackImage"
+                                               object:nil];
+    
+
+    
+    
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
     
     [Utils showLoaderOnView:Sparrow.currentController.view animated:YES];
@@ -661,6 +677,8 @@
 
     _state = (GameState*) notif.object;
     
+    _canExplore = _state.isDemo;
+    
     NSLog(@"%@", _state);
     
     NSString *myId = [_state myPlayerId];
@@ -842,7 +860,7 @@
 
 -(void) drawTiles
 {
-    [GameBoardHelper populateHexLocationsFromFourPlayerGame:self is2Player:true fromGameState:_state withTouchSheet:_sheet];
+    [GameBoardHelper populateHexLocationsFromFourPlayerGame:self is2Player:true fromGameState:_state withTouchSheet:_bottomLayerContents];
 }
 
 
@@ -1490,6 +1508,46 @@ static RackPiecesMenu *rackMenu;
     if(touches.count == 1) {
         [self clearSelectedPiece:nil];
     }
+}
+
+-(void) movePieceImage: (NSNotification*) notif{
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    SPTween *tween = [SPTween tweenWithTarget:piece.pieceImage time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    
+    
+    int x = [GameBoardHelper getXValueForHexLocation:(HexLocation*)piece.location];
+    int y = [GameBoardHelper getYValueForHexLocation:(HexLocation*)piece.location];
+    
+    [tween animateProperty:@"x" targetValue:x + 10];
+    [tween animateProperty:@"y" targetValue:y + 10];
+    [tween animateProperty:@"scaleX" targetValue:0.3f];
+    [tween animateProperty:@"scaleY" targetValue:0.3f];
+    
+    [Sparrow.juggler addObject:tween];
+    
+    [_contents addChild:piece.pieceImage];
+}
+
+-(void) moveStackImage:(NSNotification*) notif{
+    Stack* stack = (Stack*) notif.object;
+    
+    SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    
+    int x = [GameBoardHelper getXValueForHexLocation:(HexLocation*)stack.location];
+    int y = [GameBoardHelper getYValueForHexLocation:(HexLocation*)stack.location];
+    
+    [tween animateProperty:@"x" targetValue:x +10];
+    [tween animateProperty:@"y" targetValue:y +10];
+    [tween animateProperty:@"scaleX" targetValue:0.3f];
+    [tween animateProperty:@"scaleY" targetValue:0.3f];
+    
+    [Sparrow.juggler addObject:tween];
+    
+    [_contents addChild:stack.stackImage];
+    
 }
 
 @end

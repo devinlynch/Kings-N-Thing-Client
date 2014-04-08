@@ -188,8 +188,8 @@ static RecruitThings *instance;
     GamePiece *gp = [paidRecruits objectAtIndex:0];
     [paidRecruits removeObjectAtIndex:0];
     
-    RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] init];
-    [recruitMenu setGamePiece:gp];
+    RecruitOptionMenu *recruitMenu = [[RecruitOptionMenu alloc] initWithGamePiece:gp];
+    [self showScene:recruitMenu];
     recruitMenu.isBuy = YES;
     [self showScene:recruitMenu];
 }

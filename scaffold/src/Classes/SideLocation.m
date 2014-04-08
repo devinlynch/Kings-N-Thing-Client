@@ -14,7 +14,7 @@
 
 @synthesize sidePieces = _sidePieces;
 
--(id <JSONSerializable>) initFromJSON:(NSDictionary *)json{
+-(id) initFromJSON:(NSDictionary *)json withGameState: (GameState*) gameState{
     self = [super init];
     if (self && json != nil){
         _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];

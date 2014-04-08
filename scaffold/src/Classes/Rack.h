@@ -11,13 +11,13 @@
 
 
 
-@interface Rack : BoardLocation<JSONSerializable>{
+@interface Rack : BoardLocation{
     Player *_owner;
 }
 
 @property Player *owner;
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary *)json withOwner:(Player*) player;
+-(id) initFromJSON:(NSDictionary *)json withOwner:(Player*) player;
 
 
 @end
