@@ -470,6 +470,7 @@
 		DE115963162320F800A25086 /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE115962162320F800A25086 /* background@2x.jpg */; };
 		DE126A291899CC2F0095DD6D /* GoldCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = DE126A281899CC2F0095DD6D /* GoldCollection.m */; };
 		DE1807891888699200B03892 /* ScaledGamePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1807881888699200B03892 /* ScaledGamePiece.m */; };
+		DE2CFCBB18F4620900F80E09 /* daticon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE2CFCBA18F4620900F80E09 /* daticon.png */; };
 		DE3104EE18D5428D001EE806 /* close-button-log.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3104ED18D5428D001EE806 /* close-button-log.png */; };
 		DE3104F318D54446001EE806 /* SuchTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3104F218D54446001EE806 /* SuchTeam.m */; };
 		DE3F093811B7B9DC009D4DB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
@@ -1014,6 +1015,7 @@
 		DE126A281899CC2F0095DD6D /* GoldCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoldCollection.m; sourceTree = "<group>"; };
 		DE1807871888699100B03892 /* ScaledGamePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaledGamePiece.h; sourceTree = "<group>"; };
 		DE1807881888699200B03892 /* ScaledGamePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaledGamePiece.m; sourceTree = "<group>"; };
+		DE2CFCBA18F4620900F80E09 /* daticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = daticon.png; path = ../daticon.png; sourceTree = "<group>"; };
 		DE3104ED18D5428D001EE806 /* close-button-log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close-button-log.png"; path = "../close-button-log.png"; sourceTree = "<group>"; };
 		DE3104EF18D542A1001EE806 /* suchTeamBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "suchTeamBackground@2x.png"; path = "../suchTeamBackground@2x.png"; sourceTree = "<group>"; };
 		DE3104F118D54446001EE806 /* SuchTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuchTeam.h; sourceTree = "<group>"; };
@@ -1585,6 +1587,7 @@
 				99517A4518F1F9610072E105 /* borderTileGreen.png */,
 				99517A4618F1F9610072E105 /* borderTileRed.png */,
 				99517A4718F1F9610072E105 /* borderTileYellow.png */,
+				DE2CFCBA18F4620900F80E09 /* daticon.png */,
 				9921AF6318F081AF006AB537 /* expand@2x.png */,
 				9909A67218EAE7560092B7B6 /* continue.png */,
 				992613EA18E3B0CF0036CA53 /* borderTile.png */,
@@ -2890,6 +2893,7 @@
 				41BD14BB18A75244008C6E96 /* trade.png in Resources */,
 				DEB800C418E4C9A20041A48E /* SC_383.png in Resources */,
 				DEF9FFA918A825210057FAEB /* blue-forest-tile.png in Resources */,
+				DE2CFCBB18F4620900F80E09 /* daticon.png in Resources */,
 				41BD14D818A85BC4008C6E96 /* plains-tile.png in Resources */,
 				DE48620B18A97A3A00272B79 /* InfoButton@2x.png in Resources */,
 				41BD143518A75244008C6E96 /* Rack.png in Resources */,
