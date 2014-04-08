@@ -42,6 +42,8 @@
 #import "Rack.h"
 #import "SpecialCharacter.h"
 #import "GameBoardHelper.h"
+#import "WinningScreen.h"
+#import "RandomEventsMenu.h"
 
 @interface FourPlayerGame ()
 - (void) setup;
@@ -68,6 +70,7 @@
     SPSprite *_currentScene;
     SPSprite *_contents;
     SPSprite *_phasesScreensContents;
+    SPSprite *_winningContents;
     
     TouchSheet *_sheet;
     SPTextField *_bankText;
@@ -179,7 +182,8 @@
     _phasesScreensContents = [SPSprite sprite];
     [self addChild:_phasesScreensContents];
    
-
+    _winningContents = [SPSprite sprite];
+    [self addChild:_winningContents];
     
      _background = [[SPImage alloc] initWithContentsOfFile:@"FourPlayerBackground@2x.png"];
     
@@ -316,6 +320,11 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(gameOver:)
+                                                 name:@"gameOver"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearSelectedPiece:)
                                                  name:@"clearSelectedPiece"
                                                object:nil];
@@ -425,6 +434,17 @@
                                              selector:@selector(constructionStarted:)
                                                  name:@"constructionStarted"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerWon:)
+                                                 name:@"playerWon"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(randomEventsStarted:)
+                                                 name:@"randomEventsStarted"
+                                               object:nil];
+    
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
     
@@ -1394,6 +1414,27 @@ static RackPiecesMenu *rackMenu;
     if(touches.count == 1) {
         [self clearSelectedPiece:nil];
     }
+}
+
+-(void) playerWon:(NSNotification*) notif{
+    Player *winner = (Player*) notif.object;
+    [_contents removeFromParent];
+    [_phasesScreensContents removeFromParent];
+    
+    WinningScreen* winningScreen = [[WinningScreen alloc] initFromParent:_winningContents withWinner:winner];
+    [winningScreen show];
+    
+}
+
+-(void) gameOver: (NSNotification*) notif {
+    [_contents removeAllChildren];
+    [_phasesScreensContents removeAllChildren];
+    [_winningContents removeAllChildren];
+}
+
+-(void) randomEventsStarted: (NSNotification*) notif{
+    RandomEventsMenu *menu = [[RandomEventsMenu alloc] initFromParent:_phasesScreensContents];
+    [menu show];
 }
 
 @end

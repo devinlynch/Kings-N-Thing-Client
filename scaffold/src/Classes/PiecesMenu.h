@@ -15,6 +15,8 @@
     GamePiece *_selectedPiece;
     Player *_player;
     BoardLocation *_location;
+    NSArray *presetPieces;
+    NSString *bgFileName;
 }
 
 @property Player *player;

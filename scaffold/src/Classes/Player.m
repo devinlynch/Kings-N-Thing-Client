@@ -16,7 +16,7 @@
 #import "HexTile.h"
 #import "Terrain.h"
 #import "SpecialCharacter.h"
-
+#import "RandomEvent.h"
 
 @implementation Player
 
@@ -134,6 +134,21 @@
     }
     
     return NO;
+}
+
+-(NSArray*) getRandomEvents{
+    NSMutableArray *events = [[NSMutableArray alloc] init];
+    
+    NSEnumerator *enumerator = [_gamePieces keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        GamePiece *gp = [_gamePieces objectForKey:key];
+        if([gp isKindOfClass:[RandomEvent class]]) {
+            [events addObject:(RandomEvent*)gp];
+        }
+    }
+    
+    return events;
 }
 
 @end

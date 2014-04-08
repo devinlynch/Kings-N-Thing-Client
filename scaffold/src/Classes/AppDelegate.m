@@ -115,6 +115,8 @@ void onUncaughtException(NSException *exception)
 
 -(void) handleGameOver: (NSNotification*) notif{
     dispatch_async(dispatch_get_main_queue(), ^{
+        [_viewController removeFromParentViewController];
+        [[_viewController root] removeFromParent];
         _viewController=nil;
         
         NSLog(@"Got game over message, going back to lobby");

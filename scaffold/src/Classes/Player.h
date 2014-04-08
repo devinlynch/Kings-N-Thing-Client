@@ -44,4 +44,6 @@
 
 -(BOOL) canSupportCreature: (Creature*) creature atLocation: (HexLocation*) hexLocation;
 
+-(NSArray*) getRandomEvents;
+
 @end

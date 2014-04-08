@@ -344,4 +344,20 @@ static InGameServerAccess *instance;
     return CONS_READY_FOR_NEXT_PHASE;
 }
 
+-(enum InGameRequestTypes) randomEventPlacedDefection: (NSString*) defectionPieceId recruitingForId: (NSString*) recruitingForId andDidRecruit: (BOOL) didRecruit andSuccess: ( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:defectionPieceId forKey:@"randomEventPieceId"];
+    [params setObject:recruitingForId forKey:@"recruitingForId"];
+    [params setObject:didRecruit ? @"true" : @"false" forKey:@"didRecruit"];
+    
+    [self phasePost:@"RandomEvent" type:@"playDefection" params:params requestType:RANDOME_PLAYEDDEFECTION withSuccess:success];
+    return RANDOME_PLAYEDDEFECTION;
+}
+-(enum InGameRequestTypes) randomEventReadyForNextPhase:( void (^)(ServerResponseMessage * message))success{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [self phasePost:@"RandomEvent" type:@"doneMakingMoves" params:params requestType:RANDOME_DONEMAKINGMOVE withSuccess:success];
+    return RANDOME_DONEMAKINGMOVE;
+}
+
+
 @end
