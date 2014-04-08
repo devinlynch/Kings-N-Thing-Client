@@ -22,7 +22,7 @@
 @synthesize gameState;
 
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary *)json{
+-(id) initFromJSON:(NSDictionary *)json withGameState: (GameState*) gameState{
     self = [super init];
         if(self && json != nil) {
             _locationId = [[NSString alloc] initWithString:[json objectForKey:@"locationId"]];
@@ -40,6 +40,11 @@
                     if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
                         NSDictionary *gamePieceDic = (NSDictionary*) o;
                         GamePiece *piece = [[GameResource getInstance] getPieceForId:[gamePieceDic objectForKey:@"id"]];
+                        if([gamePieceDic objectForKey:@"ownerId"] != nil) {
+                            Player *owner = [gameState getPlayerById:[gamePieceDic objectForKey:@"ownerId"]];
+                            if(owner != nil)
+                                [owner assignPiece:piece];
+                        }
                         [self addGamePieceToLocation:piece];
                     }
                 }

@@ -99,6 +99,10 @@
 
 -(BOOL) canSupportCreature:(Creature *)creature atLocation:(HexLocation *)hexLocation{
     
+    if(![creature isKindOfClass:[Creature class]]){
+        return YES;
+    }
+    
     //Check if player has a supporting hex
     for (NSString *locationKey in [[[Game currentGame] gameState] hexLocations]) {
         HexLocation *location = [[[[Game currentGame] gameState] hexLocations] objectForKeyedSubscript:locationKey];

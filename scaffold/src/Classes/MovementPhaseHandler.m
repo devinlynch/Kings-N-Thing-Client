@@ -104,7 +104,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         Stack *stack = [gameState getStackById: stackId];
         if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
-            stack = [[Stack alloc] initFromJSON:stackDic];
+            stack = [[Stack alloc] initFromJSON:stackDic withGameState:gameState];
             if ([playerId isEqualToString:@"player1"]) {
                 stack.stackImage = [[ScaledGamePiece alloc] initWithContentsOfFile:@"red-stack.png"];
             } else if ([playerId isEqualToString:@"player2"]) {

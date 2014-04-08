@@ -12,6 +12,7 @@
 #import "Utils.h"
 #import "MessageHandler.h"
 #import "IPManager.h"
+#import "GameConfig.h"
 
 @implementation ServerAccess
 
@@ -130,7 +131,12 @@ static ServerAccess *instance;
 }
 
 -(void) findAnyLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", nil];
+    NSString *isDemo = @"false";
+    if([GameConfig isDemo]) {
+        isDemo = @"true";
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", isDemo, @"isDemo", nil];
     [self handleJoinLobbyWithParams:dic type:@"joinLobby" delegateListener:delegateListener];
 }
 
@@ -140,7 +146,12 @@ static ServerAccess *instance;
 }
 
 -(void) hostLobby: (int) numberPreferredPlayers andDelegateListener: (id<LobbyProtocol>) delegateListener{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", nil];
+    NSString *isDemo = @"false";
+    if([GameConfig isDemo]) {
+        isDemo = @"true";
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys: [NSString stringWithFormat:@"%d", numberPreferredPlayers] , @"numberOfPreferredPlayers", isDemo, @"isDemo", nil];
     [self handleJoinLobbyWithParams:dic type:@"hostLobby" delegateListener:delegateListener];
 }
 

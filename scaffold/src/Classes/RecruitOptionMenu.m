@@ -13,6 +13,10 @@
 #import "GameState.h"
 #import "InGameServerAccess.h"
 #import "Rack.h"
+#import "NonCityVill.h"
+#import "Treasure.h"
+#import "MagicItems.h"
+#import "RandomEvent.h"
 
 @implementation RecruitOptionMenu{
     
@@ -26,10 +30,11 @@
 }
 @synthesize gamePiece, isBuy;
 
--(id) init
+-(id) initWithGamePiece:(GamePiece*) piece
 {
     if ((self = [super init]))
     {
+        [self setGamePiece:piece];
         [self setup];
     }
     return self;
@@ -67,28 +72,33 @@
     
     
     //Button
-    SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"board.png"];
-    SPButton * button = [SPButton buttonWithUpState:buttonTexture];
     
-    button.x = 320 / 2 - button.width /2;
-    button.y = 35 + 170;
-    
-    [_contents addChild:button];
-    
-    [button addEventListener:@selector(placeOnBoard:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    if (![gamePiece isKindOfClass:[RandomEvent class]] && ![gamePiece isKindOfClass:[NonCityVill class]]
+        && ![gamePiece isKindOfClass:[MagicItems class]] && ![gamePiece isKindOfClass:[Treasure class]]){
+        SPTexture *buttonTexture = [SPTexture textureWithContentsOfFile:@"board.png"];
+        SPButton * button = [SPButton buttonWithUpState:buttonTexture];
+        
+        button.x = 320 / 2 - button.width /2;
+        button.y = 35 + 170;
+        
+        [_contents addChild:button];
+        
+        [button addEventListener:@selector(placeOnBoard:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    }
     
     
     //Button
+
+        SPTexture *buttonTexture2 = [SPTexture textureWithContentsOfFile:@"rackbtn.png"];
+        SPButton * button2 = [SPButton buttonWithUpState:buttonTexture2];
+        
+        button2.x = 320 / 2 - button2.width /2;
+        button2.y = 110 + 170;
+        
+        [_contents addChild:button2];
+        
+        [button2 addEventListener:@selector(placeOnRack:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
-    SPTexture *buttonTexture2 = [SPTexture textureWithContentsOfFile:@"rackbtn.png"];
-    SPButton * button2 = [SPButton buttonWithUpState:buttonTexture2];
-    
-    button2.x = 320 / 2 - button2.width /2;
-    button2.y = 110 + 170;
-    
-    [_contents addChild:button2];
-    
-    [button2 addEventListener:@selector(placeOnRack:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
     
     
     
@@ -96,7 +106,7 @@
     SPTexture *buttonTexture3 = [SPTexture textureWithContentsOfFile:@"back.png"];
     SPButton * button3 = [SPButton buttonWithUpState:buttonTexture3];
     
-    button3.x = 320 / 2 - button2.width /2;
+    button3.x = 320 / 2 - button3.width /2;
     button3.y = 410;
     
     [_contents addChild:button3];
@@ -141,10 +151,8 @@
     
     [[InGameServerAccess instance] recruitThingsPhaseRecruited:gamePiece.gamePieceId palcedOnLocation:rackId wasBought:isBuy withSuccess:^(ServerResponseMessage *message){
         dispatch_async(dispatch_get_main_queue(), ^{
+            [me assignPiece:gamePiece];
             [[me rack1] addGamePieceToLocation:gamePiece];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"addToRack" object:nil];
-            
             _contents.visible = NO;
         });
     }];

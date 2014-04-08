@@ -22,6 +22,7 @@
     int _player2count;
     int _player3count;
     int _player4count;
+    BOOL hasBeenInitialized;
 }
 
 @property HexTile *tile;
@@ -45,6 +46,5 @@
 
 -(int) getPieceCountForPlayer: (Player*) player;
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary*) json andIs23PlayerGame: (BOOL) is23PlayerGame;
-
+-(id<JSONSerializable>) initFromJSON:(NSDictionary*) json andIs23PlayerGame: (BOOL) is23PlayerGame andGameState: (GameState*) gs;
 @end

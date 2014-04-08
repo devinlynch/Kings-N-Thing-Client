@@ -11,6 +11,7 @@
 @implementation GameConfig
 
 static BOOL shouldPlayVoice;
+static BOOL isDemo;
 
 +(BOOL) shouldPlayVoice{
     return shouldPlayVoice;
@@ -23,7 +24,15 @@ static BOOL shouldPlayVoice;
 +(void) loadFromDictionary:(NSDictionary *) dic{
     if([dic objectForKey:@"shouldPlayVoice"] != nil) {
         shouldPlayVoice = [[dic objectForKey:@"shouldPlayVoice"] isEqualToString:@"YES"];
+        isDemo = [[dic objectForKey:@"isDemo"] isEqualToString:@"YES"];
     }
+}
+
++(BOOL) isDemo{
+    return isDemo;
+}
++(void) setDemo: (BOOL) b{
+    isDemo = b;
 }
 
 

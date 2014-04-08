@@ -16,6 +16,7 @@
 #import "Game.h"
 #import "Terrain.h"
 #import "AIPlayer.h"
+#import "GameBoardHelper.h"
 
 @implementation HexLocation
 
@@ -29,8 +30,12 @@
 @synthesize visited = _visited;
 
 
--(id<JSONSerializable>) initFromJSON:(NSDictionary*) json andIs23PlayerGame: (BOOL) is23PlayerGame{
-    self = [super initFromJSON:json];
+-(id<JSONSerializable>) initFromJSON:(NSDictionary*) json andIs23PlayerGame: (BOOL) is23PlayerGame andGameState: (GameState*) gs{
+    self = [super initFromJSON:json withGameState:gs];
+    
+    hasBeenInitialized = YES;
+    
+    self.gameState = gs;
     
     _tileNumber = [[json objectForKey:@"hexNumber"] intValue];
     _locationName =[NSString stringWithFormat:@"%@", self];
@@ -242,20 +247,11 @@
 }
 
 -(void) addGamePieceToLocation: (GamePiece*) piece{
+    if(!hasBeenInitialized)
+        return;
     [super addGamePieceToLocation:piece];
     
-    SPTween *tween = [SPTween tweenWithTarget:piece.pieceImage time:0.25f
-                                   transition:SP_TRANSITION_LINEAR];
-    
-
-    [tween animateProperty:@"x" targetValue:_tile.image.x + 10];
-    [tween animateProperty:@"y" targetValue:_tile.image.y + 10];
-    [tween animateProperty:@"scaleX" targetValue:0.25f];
-    [tween animateProperty:@"scaleY" targetValue:0.25f];
-    
-    [Sparrow.juggler addObject:tween];
-
-    [[_tile.image parent] addChild:piece.pieceImage];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"movePieceImage" object:piece];
     
 }
 
@@ -270,22 +266,9 @@
     if(stack.location != nil && ! [stack.location isKindOfClass:[NSNull class]]) {
         [stack.location removeStack:stack];
     }
-    
-    SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
-                                   transition:SP_TRANSITION_LINEAR];
-    
-    
-    [tween animateProperty:@"x" targetValue:_tile.image.x + 10];
-    [tween animateProperty:@"y" targetValue:_tile.image.y + 10];
-    [tween animateProperty:@"scaleX" targetValue:0.50f];
-    [tween animateProperty:@"scaleY" targetValue:0.50f];
-    
-    [Sparrow.juggler addObject:tween];
-
-    [[_tile.image parent] addChild:stack.stackImage];
-    
-    stack.location = self;
     [_stacks setObject:stack forKey:[stack locationId]];
+    stack.location = self;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"moveStackImage" object:stack];
     
 }
 
@@ -317,7 +300,7 @@
         
         Stack *stack = [self.gameState getStackById: stackId];
         if(stack == nil || [stack isKindOfClass:[NSNull class]]) {
-            stack = [[Stack alloc] initFromJSON:stackMap];
+            stack = [[Stack alloc] initFromJSON:stackMap withGameState:self.gameState];
             Player *p = [self.gameState getPlayerById:ownerId];
             [stack setOwner:p];
         }
@@ -340,6 +323,14 @@
     
     if(dic != nil && [dic isKindOfClass:[NSDictionary class]]) {
         
+        if([dic objectForKey:@"hexTile"] != nil && [[dic objectForKey:@"hexTile"] isKindOfClass:[NSDictionary class]]){
+            HexTile *newTile = [[GameResource getInstance] getTileForId:[[dic objectForKey:@"hexTile"] objectForKey:@"id"]];
+            if(newTile != _tile){
+                _tile = newTile;
+                _tile.location = self;
+            }
+        }
+        
         if([dic objectForKey:@"stacks"] != nil && [[dic objectForKey:@"stacks"] isKindOfClass:[NSArray class]]){
             [self updateLocationWithStacks:[dic objectForKey:@"stacks"]];
         }
@@ -348,14 +339,6 @@
             Player *owner  = [self.gameState getPlayerById:[dic objectForKey:@"ownerId"]];
             if(_owner != owner)
                 [self changeOwnerToPlayer:owner];
-        }
-        
-        if([dic objectForKey:@"hexTile"] != nil && [[dic objectForKey:@"hexTile"] isKindOfClass:[NSDictionary class]]){
-            HexTile *newTile = [[GameResource getInstance] getTileForId:[[dic objectForKey:@"hexTile"] objectForKey:@"id"]];
-            if(newTile != _tile){
-                _tile = newTile;
-                _tile.location = self;
-            }
         }
     }
     

@@ -30,6 +30,7 @@
 @synthesize bank = _bank;
 @synthesize currentCombatPhase=_currentCombatPhase;
 @synthesize aiPlayer=_aiPlayer;
+@synthesize isDemo = _isDemo;
 
 
 -(id<JSONSerializable>)initFromJSON:(NSDictionary*) json{
@@ -51,14 +52,20 @@
         
         _myPlayerId = [[NSString alloc] initWithString:[json objectForKey:@"myPlayerId"]];
         
-        _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"]];
+        _playingCup = [[PlayingCup alloc] initFromJSON:[_gameStateDic objectForKey:@"playingCup"] withGameState:self];
         [_playingCup setGameState: self];
         
         _bank = [[Bank alloc] initFromJSON:[_gameStateDic objectForKey:@"bank"]];
         
-        _sideLocation = [[SideLocation alloc] initFromJSON:[_gameStateDic objectForKey:@"sideLocation"]];
+        _sideLocation = [[SideLocation alloc] initFromJSON:[_gameStateDic objectForKey:@"sideLocation"] withGameState:self];
         [_sideLocation setGameState: self];
         
+        
+        if([_gameStateDic objectForKey:@"isDemo"] != nil) {
+            _isDemo = [[_gameStateDic objectForKey:@"isDemo"]  boolValue];
+        } else{
+            _isDemo = NO;
+        }
         
         BOOL is23PlayerGame = self.players.count <4;
         
@@ -67,7 +74,7 @@
         if(hexLocationJsonArr != nil){
             for(id o in hexLocationJsonArr) {
                 if(o != nil && ([o isKindOfClass:[NSDictionary class]])){
-                    HexLocation *hexLocation =[[HexLocation alloc] initFromJSON:o andIs23PlayerGame: is23PlayerGame];
+                    HexLocation *hexLocation =[[HexLocation alloc] initFromJSON:o andIs23PlayerGame: is23PlayerGame andGameState:self];
                     [hexLocation setGameState: self];
                     [locationDic setObject:hexLocation forKey:[o objectForKey:@"locationId"]];
                 }
