@@ -44,4 +44,11 @@
     [piece.pieceImage removeFromParent];
 }
 
+-(void) destroy{
+    [self.location removeStack:self];
+    self.location = nil;
+    self.owner = nil;
+    [self.stackImage removeFromParent];
+}
+
 @end

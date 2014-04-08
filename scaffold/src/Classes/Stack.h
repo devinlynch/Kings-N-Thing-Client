@@ -21,4 +21,6 @@
 @property Player *owner;
 @property ScaledGamePiece *stackImage;
 
+-(void) destroy;
+
 @end
