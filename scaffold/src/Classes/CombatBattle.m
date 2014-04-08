@@ -19,6 +19,7 @@
 #import "GameResource.h"
 #import "GamePiece.h"
 #import "User.h"
+#import "Stack.h"
 
 @implementation CombatBattle
 @synthesize attacker, battleId, defender, gameState, locationOfBattle, amIAttacker, currentRound, isEnded, isStarted, state, isAIDefender, battleLog, combatPhase;
@@ -90,6 +91,14 @@
             }
             
             [self addMessageToBattleLog:[NSString stringWithFormat: @"Damage took place for %@ during battle.  It is now %@", gp.name, resultS]];
+        }
+    }
+    
+    NSArray *destroyedStacks = [json objectForKey:@"destroyedStackIds"];
+    for(NSString *stackId in destroyedStacks) {
+        Stack *stack = [gameState getStackById:stackId];
+        if(stack != nil) {
+            [stack destroy];
         }
     }
     
