@@ -18,6 +18,7 @@
 		4117EA1218F3722000DA2696 /* green-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4117EA0E18F3721F00DA2696 /* green-stack.png */; };
 		4117EA1318F3722000DA2696 /* red-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4117EA0F18F3722000DA2696 /* red-stack.png */; };
 		4117EA1418F3722000DA2696 /* yellow-stack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4117EA1018F3722000DA2696 /* yellow-stack.png */; };
+		4117EA1918F46C4900DA2696 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4117EA1818F46C4900DA2696 /* Images.xcassets */; };
 		4131C2961885EA99009775EA /* TouchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2951885EA99009775EA /* TouchSheet.m */; };
 		4131C2981885EB1F009775EA /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FB718838AA300872890 /* GCDAsyncUdpSocket.m */; };
 		4131C2AA18876C70009775EA /* BoardLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4131C2A918876C70009775EA /* BoardLocation.m */; };
@@ -625,6 +626,8 @@
 		4117EA0E18F3721F00DA2696 /* green-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-stack.png"; sourceTree = "<group>"; };
 		4117EA0F18F3722000DA2696 /* red-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-stack.png"; sourceTree = "<group>"; };
 		4117EA1018F3722000DA2696 /* yellow-stack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-stack.png"; sourceTree = "<group>"; };
+		4117EA1718F46B4F00DA2696 /* daticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daticon.png; sourceTree = "<group>"; };
+		4117EA1818F46C4900DA2696 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = 3004iPhone/Images.xcassets; sourceTree = "<group>"; };
 		4131C2941885EA99009775EA /* TouchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSheet.h; sourceTree = "<group>"; };
 		4131C2951885EA99009775EA /* TouchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSheet.m; sourceTree = "<group>"; };
 		4131C2A818876C70009775EA /* BoardLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardLocation.h; sourceTree = "<group>"; };
@@ -1350,6 +1353,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				4117EA1718F46B4F00DA2696 /* daticon.png */,
 				DE4A3DA210FFB0D400FDA492 /* Sparrow.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1374,6 +1378,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4117EA1818F46C4900DA2696 /* Images.xcassets */,
 				DE0C71121624180300357F6E /* system */,
 				DE4F80D914E1541400655D44 /* audio */,
 				DE4F80DC14E1541400655D44 /* graphics */,
@@ -2542,7 +2547,7 @@
 				LastUpgradeCheck = 0450;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = 3HCQ3S2YN9;
+						DevelopmentTeam = SYB85L3A7X;
 					};
 					99098D9D188F554C00139EA4 = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
@@ -2615,6 +2620,7 @@
 				41BAF2AD18F243F800076A08 /* SC_402.png in Resources */,
 				DE494E6318BF71CB0042312D /* swamp-tile.png in Resources */,
 				4173882F18E4922B00934A1F /* T_Desert_122.png in Resources */,
+				4117EA1918F46C4900DA2696 /* Images.xcassets in Resources */,
 				417388D118E4925500934A1F /* SC_392.png in Resources */,
 				417388BD18E4924E00934A1F /* G_01.png in Resources */,
 				DE494E6218BF71880042312D /* sea-tile.png in Resources */,
@@ -3202,6 +3208,8 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3219,6 +3227,8 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

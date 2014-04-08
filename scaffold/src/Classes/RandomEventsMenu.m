@@ -66,7 +66,6 @@
     _randomEvents= [NSMutableArray arrayWithArray:[[[[Game currentGame] gameState] getMe] getRandomEvents]];
     
     
-    
     int numInRow=1;
     int row=1;
     for(RandomEvent *gp in _randomEvents) {
