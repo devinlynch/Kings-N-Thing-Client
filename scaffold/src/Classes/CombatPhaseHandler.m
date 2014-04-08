@@ -14,6 +14,7 @@
 #import "CombatBattle.h"
 #import "CombatBattleRound.h"
 #import "User.h"
+#import "GameResource.h"
 
 @implementation CombatPhaseHandler
 
@@ -186,6 +187,24 @@
     }
     
     return battle;
+}
+
+/*
+ msg.addToData("playerCallingBluffId", player.getPlayerId());
+ msg.addToData("playerCalledOutId", owner.getPlayerId());
+ msg.addToData("calledOutPiece", p);*/
+-(void) handleCalledOutBluff:(Event*) event{
+    NSDictionary* dataDic = [Utils getDataDictionaryFromGameMessageEvent:event];
+    
+    NSString* calledOutPlayerId = [dataDic objectForKey:@"playerCalledOutId"];
+    NSString* playerCallingBluffId = [dataDic objectForKey:@"playerCallingBluffId"];
+    NSDictionary* pieceDic =[dataDic objectForKey:@"calledOutPiece"];
+    GamePiece* piece = [[GameResource getInstance] getPieceForId:[pieceDic objectForKey:@"id"]];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [piece updateFromSerializedJson:pieceDic forGameState:[[Game currentGame] gameState]];
+        [Game addLogMessageToCurrentGame:[NSString stringWithFormat:@"Player got called out on their bluff"]];
+    });
 }
 
 @end

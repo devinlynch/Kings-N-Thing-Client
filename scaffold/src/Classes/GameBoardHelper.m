@@ -13,15 +13,19 @@
 #import "HexTile.h"
 #import "HexLocation.h"
 #import "TouchSheet.h"
+#import "HexLocation.h"
 
 
 @implementation GameBoardHelper
 
-
+static NSMutableDictionary* locationsInstance;
 +(NSMutableDictionary*) locations{
+    if(locationsInstance != nil){
+        return locationsInstance;
+    }
     NSMutableDictionary *d  = [[NSMutableDictionary alloc] init];
     
-    [d setObject:[[TileLocation alloc] initWithHexNumber:0 andColumn:3 andRow:3] forKey:@""];
+    [d setObject:[[TileLocation alloc] initWithHexNumber:0 andColumn:3 andRow:3] forKey:@"0"];
     [d setObject:[[TileLocation alloc] initWithHexNumber:1 andColumn:3 andRow:2] forKey:@"1"];
     [d setObject:[[TileLocation alloc] initWithHexNumber:2 andColumn:4 andRow:2] forKey:@"2"];
     [d setObject:[[TileLocation alloc] initWithHexNumber:3 andColumn:4 andRow:3] forKey:@"3"];
@@ -58,10 +62,12 @@
     [d setObject:[[TileLocation alloc] initWithHexNumber:34 andColumn:0 andRow:2] forKey:@"34"];
     [d setObject:[[TileLocation alloc] initWithHexNumber:35 andColumn:0 andRow:1] forKey:@"35"];
     [d setObject:[[TileLocation alloc] initWithHexNumber:36 andColumn:0 andRow:0] forKey:@"36"];
-    return d;
+    
+    locationsInstance = d;
+    return locationsInstance;
 }
 
-+(void) populateHexLocationsFromFourPlayerGame: (FourPlayerGame*) fourPlayerGame is2Player:(BOOL) is2Player fromGameState: (GameState*) gameState withTouchSheet: (TouchSheet*) _sheet{
++(void) populateHexLocationsFromFourPlayerGame: (FourPlayerGame*) fourPlayerGame is2Player:(BOOL) is2Player fromGameState: (GameState*) gameState withTouchSheet: (SPSprite*) parent{
     
     NSMutableDictionary* locations = [GameBoardHelper locations];
     NSEnumerator *enumerator = [locations keyEnumerator];
@@ -78,8 +84,8 @@
         tile.image.x = tile.hilightImage.x  = [GameBoardHelper getXValueForHexAtColumn:location.column];
         tile.image.y = tile.hilightImage.y = [GameBoardHelper getYValueForHexAtRow:location.row andColumn:location.column];
         [tile.image addEventListener:@selector(onTileClick:) atObject:fourPlayerGame forType:SP_EVENT_TYPE_TOUCH];
-        [_sheet addChild: tile.image];
-        [_sheet addChild: tile.hilightImage];
+        [parent addChild: tile.image];
+        [parent addChild: tile.hilightImage];
 
     }
 }
@@ -123,6 +129,16 @@
             break;
     }
     return 0;
+}
+
++(int) getYValueForHexLocation: (HexLocation*) hexLocation{
+    TileLocation* loc = [[GameBoardHelper locations] objectForKey:[NSString stringWithFormat:@"%d", hexLocation.tileNumber]];
+    return [GameBoardHelper getYValueForHexAtRow:loc.row andColumn:loc.column];
+}
+
++(int) getXValueForHexLocation: (HexLocation*) hexLocation{
+    TileLocation* loc = [[GameBoardHelper locations] objectForKey:[NSString stringWithFormat:@"%d", hexLocation.tileNumber]];
+    return [GameBoardHelper getXValueForHexAtColumn:loc.column];
 }
 
 @end
