@@ -329,6 +329,11 @@
 		997B0E2218A85D8B009404DE /* MovementPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 997B0E2118A85D8B009404DE /* MovementPhaseHandler.m */; };
 		998DC49B18F307BB008B7254 /* GameBoardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 998DC49A18F307BB008B7254 /* GameBoardHelper.m */; };
 		998DC49F18F30A8D008B7254 /* TileLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 998DC49E18F30A8D008B7254 /* TileLocation.m */; };
+		998DC4A718F33C12008B7254 /* WinningScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 998DC4A618F33C12008B7254 /* WinningScreen.m */; };
+		998DC4A918F33C8C008B7254 /* endgame.png in Resources */ = {isa = PBXBuildFile; fileRef = 998DC4A818F33C8C008B7254 /* endgame.png */; };
+		998DC4AD18F34024008B7254 /* WinningScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 998DC4AC18F34024008B7254 /* WinningScreen@2x.png */; };
+		998DC4B018F3730B008B7254 /* RandomEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 998DC4AF18F3730B008B7254 /* RandomEventHandler.m */; };
+		998DC4B318F376A3008B7254 /* DefectionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 998DC4B218F376A3008B7254 /* DefectionMenu.m */; };
 		99A78F2018957B1E005D31E5 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F1F18957B1E005D31E5 /* GameState.m */; };
 		99A78F2418957DE4005D31E5 /* GameEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A78F2318957DE4005D31E5 /* GameEventHandler.m */; };
 		99B3264E18E2613600336F3E /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 99098DBC188F5C3200139EA4 /* Utils.m */; };
@@ -920,6 +925,14 @@
 		998DC49A18F307BB008B7254 /* GameBoardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoardHelper.m; sourceTree = "<group>"; };
 		998DC49D18F30A8D008B7254 /* TileLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileLocation.h; sourceTree = "<group>"; };
 		998DC49E18F30A8D008B7254 /* TileLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileLocation.m; sourceTree = "<group>"; };
+		998DC4A518F33C12008B7254 /* WinningScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinningScreen.h; sourceTree = "<group>"; };
+		998DC4A618F33C12008B7254 /* WinningScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinningScreen.m; sourceTree = "<group>"; };
+		998DC4A818F33C8C008B7254 /* endgame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endgame.png; sourceTree = "<group>"; };
+		998DC4AC18F34024008B7254 /* WinningScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WinningScreen@2x.png"; sourceTree = "<group>"; };
+		998DC4AE18F3730B008B7254 /* RandomEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomEventHandler.h; sourceTree = "<group>"; };
+		998DC4AF18F3730B008B7254 /* RandomEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomEventHandler.m; sourceTree = "<group>"; };
+		998DC4B118F376A3008B7254 /* DefectionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefectionMenu.h; sourceTree = "<group>"; };
+		998DC4B218F376A3008B7254 /* DefectionMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefectionMenu.m; sourceTree = "<group>"; };
 		99A78F1E18957B1E005D31E5 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		99A78F1F18957B1E005D31E5 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
@@ -1567,6 +1580,7 @@
 		41BD12A718A75243008C6E96 /* 1x */ = {
 			isa = PBXGroup;
 			children = (
+				998DC4A818F33C8C008B7254 /* endgame.png */,
 				99517A4418F1F9610072E105 /* borderTileBlue.png */,
 				99517A4518F1F9610072E105 /* borderTileGreen.png */,
 				99517A4618F1F9610072E105 /* borderTileRed.png */,
@@ -1789,6 +1803,8 @@
 				99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */,
 				9921AF6A18F0BDEF006AB537 /* ConstructionPhaseHandler.h */,
 				9921AF6B18F0BDEF006AB537 /* ConstructionPhaseHandler.m */,
+				998DC4AE18F3730B008B7254 /* RandomEventHandler.h */,
+				998DC4AF18F3730B008B7254 /* RandomEventHandler.m */,
 			);
 			name = UDP;
 			sourceTree = "<group>";
@@ -1942,6 +1958,8 @@
 				9978235018EF0EBF001DC5C3 /* AbstractInGameScreen.m */,
 				998DC49918F307BB008B7254 /* GameBoardHelper.h */,
 				998DC49A18F307BB008B7254 /* GameBoardHelper.m */,
+				998DC4A518F33C12008B7254 /* WinningScreen.h */,
+				998DC4A618F33C12008B7254 /* WinningScreen.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -2036,6 +2054,8 @@
 			children = (
 				DEC0AA6118D77F410089EF72 /* RandomEventsMenu.h */,
 				DEC0AA6218D77F410089EF72 /* RandomEventsMenu.m */,
+				998DC4B118F376A3008B7254 /* DefectionMenu.h */,
+				998DC4B218F376A3008B7254 /* DefectionMenu.m */,
 			);
 			name = "Random Events Scenes";
 			sourceTree = "<group>";
@@ -2372,6 +2392,7 @@
 		DEF9FF2518A803490057FAEB /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				998DC4AC18F34024008B7254 /* WinningScreen@2x.png */,
 				9921AF7018F0E899006AB537 /* construc@2x.png */,
 				9978234718EEFF64001DC5C3 /* ConbatBattleBackground@2x.png */,
 				DEB800E518E514C80041A48E /* RangeResolutionStepBackground@2x.png */,
@@ -2521,7 +2542,7 @@
 				LastUpgradeCheck = 0450;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = SYB85L3A7X;
+						DevelopmentTeam = 3HCQ3S2YN9;
 					};
 					99098D9D188F554C00139EA4 = {
 						TestTargetID = 1D6058900D05DD3D006BFB54;
@@ -2657,6 +2678,7 @@
 				41BD13B718A75244008C6E96 /* back.png in Resources */,
 				41BD142318A75244008C6E96 /* T_Income_365.png in Resources */,
 				99517A4B18F1F9610072E105 /* borderTileYellow.png in Resources */,
+				998DC4A918F33C8C008B7254 /* endgame.png in Resources */,
 				4173884518E4922B00934A1F /* T_Frozen_Waste_053.png in Resources */,
 				417313F718E25B21009D27F9 /* 8bit.caf in Resources */,
 				41BD142518A75244008C6E96 /* T_Income_367.png in Resources */,
@@ -2820,6 +2842,7 @@
 				DE04CA4218D67365006F5271 /* skip.png in Resources */,
 				DEB800C518E4C9A20041A48E /* SC_390.png in Resources */,
 				DE0C71031624177500357F6E /* Default@2x.png in Resources */,
+				998DC4AD18F34024008B7254 /* WinningScreen@2x.png in Resources */,
 				4173883C18E4922B00934A1F /* T_Forest_098.png in Resources */,
 				41BAF2A718F243F800076A08 /* SC_384.png in Resources */,
 				4173882B18E4922B00934A1F /* T_Desert_118.png in Resources */,
@@ -2924,10 +2947,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998DC4B018F3730B008B7254 /* RandomEventHandler.m in Sources */,
 				4117EA0718F2452700DA2696 /* MagicItems.h in Sources */,
 				99C7604F18E745F6004021A6 /* CombatPhaseHandler.m in Sources */,
 				41D2CFDC18A045000032CFB6 /* SetupEventHandler.m in Sources */,
 				99DFAD93189493A30092CF1A /* GameLobbyViewController.m in Sources */,
+				998DC4B318F376A3008B7254 /* DefectionMenu.m in Sources */,
 				4144CB6E188EFAE9003A29E4 /* Event.m in Sources */,
 				99F9B6E81894390A00E4A788 /* LobbyNotification.m in Sources */,
 				4144CB4D188DDBFB003A29E4 /* User.m in Sources */,
@@ -3044,6 +3069,7 @@
 				41BD129F18A45209008C6E96 /* GameResource.m in Sources */,
 				9978234E18EF02B9001DC5C3 /* AbstractCombatPhaseBattleScreen.m in Sources */,
 				DEB800FA18E517730041A48E /* EnemyPiecesMenu.m in Sources */,
+				998DC4A718F33C12008B7254 /* WinningScreen.m in Sources */,
 				4131C2C118876DB7009775EA /* Counter.m in Sources */,
 				DE4F80D614E153E600655D44 /* Media.m in Sources */,
 			);

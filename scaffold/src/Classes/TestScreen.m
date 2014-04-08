@@ -27,6 +27,11 @@
 #import "HeroMenu.h"
 #import "RecruitTradeMenu.h"
 
+#import "WinningScreen.h"
+
+#import "RandomEventsMenu.h"
+#import "DefectionMenu.h"
+
 @implementation TestScreen
 
 -(SPViewController*) testRecruitCharacters: (UIWindow*) _window{
@@ -45,7 +50,7 @@
     _viewController.multitouchEnabled = YES;
     // _viewController.preferredFramesPerSecond = 60;
     
-    [_viewController startWithRoot:[RecruitTradeMenu class] supportHighResolutions:YES doubleOnPad:YES];
+    [_viewController startWithRoot:[DefectionMenu class] supportHighResolutions:YES doubleOnPad:YES];
  
     return _viewController;
 }

@@ -7,20 +7,39 @@
 //
 
 #import "RandomEventsMenu.h"
+#import "GameResource.h"
+#import "GamePiece.h"
+#import "InGameServerAccess.h"
+#import "SpecialCharacter.h"
+#import "Utils.h"
+#import "RandomEvent.h"
+#import "Game.h"
+#import "GameState.h"
+#import "Player.h"
+#import "InGameServerAccess.h"
 
 @implementation RandomEventsMenu{
-    SPSprite *_contents;
-    SPSprite *_currentScene;
-    
-    int _gameWidth;
-    int _gameHeight;
+    NSMutableArray *_randomEvents;
+    SPImage *borderImage;
+    RandomEvent *selectedRandomEvent;
+    SPButton *playButton;
 }
+
 
 -(id) init
 {
-    if ((self = [super init]))
+    if ((self = [super initFromParent:nil]))
     {
-        
+        [self setup];
+    }
+    
+    return self;
+}
+
+-(id) initFromParent:(SPSprite *)parent
+{
+    if ((self = [super initFromParent:parent]))
+    {
         [self setup];
     }
     
@@ -28,13 +47,10 @@
 }
 
 
+
 -(void) setup{
+    [super setup];
     
-    _gameWidth = Sparrow.stage.width;
-    _gameHeight = Sparrow.stage.height;
-    
-    _contents = [SPSprite sprite];
-    [self addChild:_contents];
     
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:@"randomEventsBackground@2x.png"];
     
@@ -43,6 +59,32 @@
     background.y = 0;
     
     [_contents addChild:background];
+    
+    NSArray *recruits = [NSArray arrayWithObjects:@"RandomEvent_01",@"RandomEvent_02",@"RandomEvent_03",@"RandomEvent_04",@"RandomEvent_05",@"RandomEvent_06",@"RandomEvent_07",@"RandomEvent_08",@"RandomEvent_09",@"RandomEvent_10", nil];
+    
+    _randomEvents= [NSMutableArray arrayWithArray:[[[[Game currentGame] gameState] getMe] getRandomEvents]];
+    
+    
+    
+    int numInRow=1;
+    int row=1;
+    for(RandomEvent *gp in _randomEvents) {
+        SPButton *_selectedPieceImage;
+        SPTexture *text = [SPTexture textureWithContentsOfFile:[gp fileName]];
+        _selectedPieceImage = [SPButton buttonWithUpState:text];
+        _selectedPieceImage.x = (_gameWidth/4)*numInRow-70;
+        _selectedPieceImage.y = 40+(90*row);
+        [_selectedPieceImage setName:gp.gamePieceId];
+        
+        [_selectedPieceImage addEventListener:@selector(didClickOnRandomEvent:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+        
+        [_contents addChild:_selectedPieceImage];
+        numInRow++;
+        if(numInRow>5) {
+            row++;
+            numInRow=1;
+        }
+    }
     
     //Username text
     SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
@@ -53,24 +95,16 @@
     welcomeTF.color = 0xffffff;
     [_contents addChild:welcomeTF];
     
-    //TODO:
-    //
-    // Implement real time instructions to tell users what to do.
-    //
-    // One click will tell the description of the event
-    // Double click to select and pressing play will use the event
-
     
     //Play Button
     SPTexture *playButtonTexture = [SPTexture textureWithContentsOfFile:@"play.png"];
-    SPButton *playButton = [SPButton buttonWithUpState:playButtonTexture];
+    playButton = [SPButton buttonWithUpState:playButtonTexture];
     playButton.x = 0;
     playButton.y = 400;
     playButton.scaleX = playButton.scaleY = 0.8;
     [_contents addChild:playButton];
-    [playButton addEventListener:@selector(didClickOnPlay:) atObject:self forType:
-     
-     SP_EVENT_TYPE_TOUCH];
+    [playButton addEventListener:@selector(didClickOnPlay:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    playButton.enabled = NO;
     
     //Skip Button
     SPTexture *skipButtonTexture = [SPTexture textureWithContentsOfFile:@"skip.png"];
@@ -80,6 +114,26 @@
     skipButton.scaleX = skipButton.scaleY = 0.8;
     [_contents addChild:skipButton];
     [skipButton addEventListener:@selector(didClickOnSkip:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
+    
+    
+    
+}
+
+-(void) didClickOnRandomEvent:(SPEvent *) event{
+    SPImage *selectedPiece = (SPImage*)event.target;
+    
+    if(borderImage != nil) {
+        [borderImage removeFromParent];
+    }
+    
+    selectedRandomEvent = [[GameResource getInstance] getRandomEventForId:selectedPiece.name];
+    if(selectedRandomEvent != nil) {
+        borderImage = [[SPImage alloc] initWithContentsOfFile:@"borderTile.png"];
+        borderImage.x = selectedPiece.x;
+        borderImage.y = selectedPiece.y;
+        [_contents addChild:borderImage];
+        playButton.enabled = YES;
+    }
 }
 
 -(void) didClickOnPlay:(SPTouchEvent*) event{
@@ -90,20 +144,15 @@
         
         // Find card id, show pop up of description
         
-
-    } else if (touches.count == 2){
-        
-        //Selects the card
-    
-    
+        NSLog(@"Clicked play");
     }
-    
     
 }
 
 - (void) didClickOnSkip:(SPEvent *) event{
     NSLog(@"Clicked skip");
-    _contents.visible = NO;
+    [self hide];
+    [[InGameServerAccess instance] randomEventReadyForNextPhase:nil];
 }
 
 

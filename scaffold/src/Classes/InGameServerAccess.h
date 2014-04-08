@@ -34,7 +34,10 @@ typedef enum InGameRequestTypes {
     
     CONS_UPGRADE_FORT,
     CONS_BUILD_FORT,
-    CONS_READY_FOR_NEXT_PHASE
+    CONS_READY_FOR_NEXT_PHASE,
+    
+    RANDOME_DONEMAKINGMOVE,
+    RANDOME_PLAYEDDEFECTION
 } InGameRequestTypes;
 
 
@@ -100,4 +103,9 @@ void (^successBlock)(ServerResponseMessage*);
 -(enum InGameRequestTypes) constructionBuiltFortOnHex: (NSString*) hexId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error;
 -(enum InGameRequestTypes) constructionUpgradedFort: (NSString*) fortId withSuccess:( void (^)(ServerResponseMessage * message))success andError: ( void (^)(ServerResponseMessage * message))error;
 -(enum InGameRequestTypes) constructionReadyForNextPhaseWithSuccess:( void (^)(ServerResponseMessage * message))success;
+
+// Random events
+-(enum InGameRequestTypes) randomEventPlacedDefection: (NSString*) defectionPieceId recruitingForId: (NSString*) recruitingForId andDidRecruit: (BOOL) didRecruit andSuccess: ( void (^)(ServerResponseMessage * message))success;
+-(enum InGameRequestTypes) randomEventReadyForNextPhase:( void (^)(ServerResponseMessage * message))success;
+
 @end

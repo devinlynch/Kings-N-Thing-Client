@@ -61,11 +61,6 @@
                                                  name:@"newCombatPhaseLog"
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(newLog:)
-                                                 name:@"newCombatPhaseLog"
-                                               object:nil];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(moveRight:)
@@ -144,7 +139,8 @@
     goldButton.visible = NO;
     [_contents addChild:goldButton];
     [goldButton addEventListener:@selector(didClickOnSkip:) atObject:self forType:SP_EVENT_TYPE_TRIGGERED];
-
+    
+    [self showGoToNextPhaseIfNeeded];
 }
 
 -(void) didClickOnSkip: (SPEvent*) event{

@@ -47,6 +47,10 @@
         bgImageName = @"EnemyPiecesBackground@2x.png";
     }
     
+    if(bgFileName != nil) {
+        bgImageName = bgFileName;
+    }
+    
     SPImage *background = [[SPImage alloc] initWithContentsOfFile:bgImageName];
     background.x = 0;
     background.y = 0;
@@ -56,11 +60,14 @@
 
     
     NSArray *pieces;
-    
-    if([_location isKindOfClass:[HexLocation class]]) {
-        pieces = [((HexLocation*)_location) getAllPiecesForPlayerIncludingPiecesInStacks:_player];
+    if(presetPieces == nil){
+        if([_location isKindOfClass:[HexLocation class]]) {
+            pieces = [((HexLocation*)_location) getAllPiecesForPlayerIncludingPiecesInStacks:_player];
+        } else{
+           pieces = [_location getAllPiecesForPlayer:_player];
+        }
     } else{
-       pieces = [_location getAllPiecesForPlayer:_player];
+        pieces = presetPieces;
     }
     
     int numInRow=1;
@@ -84,14 +91,16 @@
         }
     }
     
-    //Username text
-    SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
-                                                        text:_player.user.username];
-    welcomeTF.x = welcomeTF.y = 10;
-    welcomeTF.fontName = @"ArialMT";
-    welcomeTF.fontSize = 25;
-    welcomeTF.color = 0xffffff;
-    [_contents addChild:welcomeTF];
+    if(_player != nil){
+        //Username text
+        SPTextField *welcomeTF = [SPTextField textFieldWithWidth:300 height:120
+                                                            text:_player.user.username];
+        welcomeTF.x = welcomeTF.y = 10;
+        welcomeTF.fontName = @"ArialMT";
+        welcomeTF.fontSize = 25;
+        welcomeTF.color = 0xffffff;
+        [_contents addChild:welcomeTF];
+    }
     
     
     

@@ -23,5 +23,6 @@
 +(NSDictionary*) getDataDictionaryFromGameMessageEvent: (Event*) event;
 +(void) notifyOnMainQueue: (NSString*) notificationName withObject: (id) object;
 void runOnMainQueueWithoutDeadlocking(void (^block)(void));
++(BOOL) getYesOrNo;
 
 @end
