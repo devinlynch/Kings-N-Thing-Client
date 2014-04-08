@@ -42,6 +42,12 @@
 #import "Rack.h"
 #import "SpecialCharacter.h"
 #import "GameBoardHelper.h"
+#import "PlayingCup.h"
+#import "RandomEvent.h"
+#import "MagicItems.h"
+#import "NonCityVill.h"
+#import "CityVill.h"
+#import "Treasure.h"
 #import "WinningScreen.h"
 #import "RandomEventsMenu.h"
 
@@ -447,6 +453,18 @@
                                              selector:@selector(randomEventsStarted:)
                                                  name:@"randomEventsStarted"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movePieceImage:)
+                                                 name:@"movePieceImage"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moveStackImage:)
+                                                 name:@"moveStackImage"
+                                               object:nil];
+    
+
     
     
     _combatPhaseController = [[CombatPhaseScreenController alloc] initWithFourPlayerGame:self];
@@ -1518,7 +1536,6 @@ static RackPiecesMenu *rackMenu;
     
     WinningScreen* winningScreen = [[WinningScreen alloc] initFromParent:_winningContents withWinner:winner];
     [winningScreen show];
-    
 }
 
 -(void) gameOver: (NSNotification*) notif {
@@ -1530,6 +1547,46 @@ static RackPiecesMenu *rackMenu;
 -(void) randomEventsStarted: (NSNotification*) notif{
     RandomEventsMenu *menu = [[RandomEventsMenu alloc] initFromParent:_phasesScreensContents];
     [menu show];
+}
+
+-(void) movePieceImage: (NSNotification*) notif{
+    GamePiece *piece = (GamePiece*) notif.object;
+    
+    SPTween *tween = [SPTween tweenWithTarget:piece.pieceImage time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    
+    
+    int x = [GameBoardHelper getXValueForHexLocation:(HexLocation*)piece.location];
+    int y = [GameBoardHelper getYValueForHexLocation:(HexLocation*)piece.location];
+    
+    [tween animateProperty:@"x" targetValue:x + 10];
+    [tween animateProperty:@"y" targetValue:y + 10];
+    [tween animateProperty:@"scaleX" targetValue:0.3f];
+    [tween animateProperty:@"scaleY" targetValue:0.3f];
+    
+    [Sparrow.juggler addObject:tween];
+    
+    [_contents addChild:piece.pieceImage];
+}
+
+-(void) moveStackImage:(NSNotification*) notif{
+    Stack* stack = (Stack*) notif.object;
+    
+    SPTween *tween = [SPTween tweenWithTarget:stack.stackImage time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    
+    int x = [GameBoardHelper getXValueForHexLocation:(HexLocation*)stack.location];
+    int y = [GameBoardHelper getYValueForHexLocation:(HexLocation*)stack.location];
+    
+    [tween animateProperty:@"x" targetValue:x +10];
+    [tween animateProperty:@"y" targetValue:y +10];
+    [tween animateProperty:@"scaleX" targetValue:0.3f];
+    [tween animateProperty:@"scaleY" targetValue:0.3f];
+    
+    [Sparrow.juggler addObject:tween];
+    
+    [_contents addChild:stack.stackImage];
+    
 }
 
 @end
