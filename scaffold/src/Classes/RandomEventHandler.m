@@ -11,6 +11,7 @@
 #import "Game.h"
 #import "Utils.h"
 #import "User.h"
+#import "GameResource.h"
 
 @implementation RandomEventHandler
 
@@ -24,12 +25,25 @@
     
     NSDictionary *playerDic = [dataDic objectForKey:@"player"];
     NSString *clientLog = [dataDic objectForKey:@"clientLog"];
+    NSArray *affectedPieces = [dataDic objectForKey:@"affectedPieces"];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if(clientLog != nil)
             [Game addLogMessageToCurrentGame:clientLog];
         
         GameState *gs = [[Game currentGame] gameState];
+        
+        if(affectedPieces != nil) {
+            for(NSDictionary *pieceDic in affectedPieces) {
+                NSString *gamePieceId = [pieceDic objectForKey:@"id"];
+                if(gamePieceId != nil) {
+                    GamePiece *piece = [[GameResource getInstance] getPieceForId:gamePieceId];
+                    if(piece != nil) {
+                        [piece updateFromSerializedJson:pieceDic forGameState:gs];
+                    }
+                }
+            }
+        }
         
         Player *p = [gs getPlayerById:[playerDic objectForKey:@"playerId"]];
         [p updateFromSerializedJson:playerDic];

@@ -10,5 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "AbstractInGameScreen.h"
 
+@class RandomEvent;
 @interface RandomEventsMenu : AbstractInGameScreen
+-(void) removeRandomEventPiece: (RandomEvent*) piece;
 @end

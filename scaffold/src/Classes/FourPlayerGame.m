@@ -480,51 +480,31 @@
     if (touches.count == 1) {
         
         if(isSideMenu){
-            //Display sideMenu and move fourPlayerGame
-            
-            SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
-                                           transition:SP_TRANSITION_LINEAR];
-            SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
-                                            transition:SP_TRANSITION_LINEAR];
-            SPTween *tween3 = [SPTween tweenWithTarget:_phasesScreensContents time:0.25f
-                                           transition:SP_TRANSITION_LINEAR];
-          
-            
-            //Tell the tween that it should transition the x value
-            [tween animateProperty:@"x" targetValue:panWidth];
-            [tween2 animateProperty:@"x" targetValue:panWidth+20];
-            [tween3 animateProperty:@"x" targetValue:panWidth];
-            
-            [Sparrow.juggler addObject:tween];
-            [Sparrow.juggler addObject:tween2];
-            [Sparrow.juggler addObject:tween3];
+            [self moveOverSpriteToRightForMenu:_contents withX:panWidth];
+            [self moveOverSpriteToRightForMenu:menuButton withX:panWidth+10];
+            [self moveOverSpriteToRightForMenu:_phasesScreensContents withX:panWidth];
+            [self moveOverSpriteToRightForMenu:_bottomLayerContents withX:panWidth];
         
             [[NSNotificationCenter defaultCenter] postNotificationName:@"menuMovedRight" object:nil];
         } else {
-            
-            SPTween *tween = [SPTween tweenWithTarget:_contents time:0.25f
-                                           transition:SP_TRANSITION_LINEAR];
-            SPTween *tween2 = [SPTween tweenWithTarget:menuButton time:0.25f
-                                            transition:SP_TRANSITION_LINEAR];
-            SPTween *tween3 = [SPTween tweenWithTarget:_phasesScreensContents time:0.25f
-                                            transition:SP_TRANSITION_LINEAR];
-            
-            //Tell the tween that it should transition the x value
-            [tween animateProperty:@"x" targetValue:0];
-            [tween2 animateProperty:@"x" targetValue:10];
-            [tween3 animateProperty:@"x" targetValue:0];
-
-            [Sparrow.juggler addObject:tween];
-            [Sparrow.juggler addObject:tween2];
-            [Sparrow.juggler addObject:tween3];
+            [self moveOverSpriteToRightForMenu:_contents withX:0];
+            [self moveOverSpriteToRightForMenu:menuButton withX:10];
+            [self moveOverSpriteToRightForMenu:_phasesScreensContents withX:0];
+            [self moveOverSpriteToRightForMenu:_bottomLayerContents withX:0];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"menuMovedLeft" object:nil];
         }
 
         isSideMenu = !isSideMenu;
     }
-   
-    
+}
+
+-(void) moveOverSpriteToRightForMenu: (SPDisplayObjectContainer*) sprite withX: (int) x{
+    SPTween *tween = [SPTween tweenWithTarget:sprite time:0.25f
+                                   transition:SP_TRANSITION_LINEAR];
+    [tween animateProperty:@"x" targetValue:x];
+    [Sparrow.juggler addObject:tween];
+
 }
 
 -(void) recruitToBoardBought: (NSNotification*) notif{
