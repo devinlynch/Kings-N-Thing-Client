@@ -35,6 +35,7 @@
 -(User*) getUserByUserId:(NSString*) userId;
 -(void) addChatMessage: (GameChatMessage*) message;
 -(void) addLogMessage: (NSString*) message;
+-(void) addLogMessageWithoutTalking: (NSString*) message;
 +(void) addLogMessageToCurrentGame: (NSString*) message;
 +(void) addLogMessageWithoutVoiceToCurrentGame: (NSString*) message;
 

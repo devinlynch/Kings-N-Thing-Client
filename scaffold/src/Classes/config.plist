@@ -5,7 +5,7 @@
 	<key>isDemo</key>
 	<string>NO</string>
 	<key>shouldPlayVoice</key>
-	<string>NO</string>
+	<string>YES</string>
 	<key>test_screen_mode</key>
 	<string>no</string>
 	<key>test_screen_method</key>

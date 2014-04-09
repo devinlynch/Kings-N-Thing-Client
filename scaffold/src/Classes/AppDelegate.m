@@ -25,6 +25,7 @@
 #import "TestScreen.h"
 #import "GameConfig.h"
 #import "GameLobbyViewController.h"
+#import "GameAudioManager.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -89,6 +90,10 @@ void onUncaughtException(NSException *exception)
                                              selector:@selector(handleGameOver:)
                                                  name:@"gameOver"
                                                object:nil];
+    
+    [self startMusic];
+    
+    
     return YES;
 }
 
@@ -151,6 +156,8 @@ void onUncaughtException(NSException *exception)
     [MessageHandler handleGetNewMessage];
 }
      
-
+-(void) startMusic{
+    [[GameAudioManager instance] startMainMusic];
+}
 
 @end

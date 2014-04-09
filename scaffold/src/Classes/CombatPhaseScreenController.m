@@ -14,6 +14,7 @@
 #import "CombatBattleStepMenu.h"
 #import "CombatBattleRound.h"
 #import "BattleSummaryMenu.h"
+#import "GameAudioManager.h"
 
 @implementation CombatPhaseScreenController
 
@@ -75,6 +76,13 @@
     [_fourPlayerGame addChildToPhasesContent: self];
     [self setVisible: YES];
     [self showWaitingScreen];
+    
+    @try {
+        [[GameAudioManager instance] startCombatMusic];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
 }
 
 
@@ -177,6 +185,13 @@
 }
 
 -(void) handleGoToNextPhase{
+    @try {
+        [[GameAudioManager instance] stopCombatMusic];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
+    
     [_fourPlayerGame reinitializeCombatScreenAndShowGold];
 }
 

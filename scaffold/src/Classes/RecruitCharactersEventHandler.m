@@ -109,7 +109,7 @@
     }
     
     NSString *logMessage = [NSString stringWithFormat: @"%@ rolled a %d and bought %d pre roll changes in while trying to recruit a %@.  %@.", player.username, theRoll, numPreRolls, piece.name != nil ? piece.name : piece.gamePieceId, didHeRecruit];
-    [game addLogMessage:logMessage];
+    [game addLogMessageWithoutTalking:logMessage];
     
     BOOL isMe = [[dataDic objectForKey:@"isMe"] boolValue];
     if(!isMe) {
