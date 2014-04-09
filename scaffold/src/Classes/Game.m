@@ -87,7 +87,11 @@ static Game *instance;
         });
     }
     [self addLogMessageWithoutVoice:message];
-   
+}
+
+-(void) addLogMessageWithoutTalking: (NSString*) message;
+{
+    [self addLogMessageWithoutVoice:message];
 }
 
 -(void) addLogMessageWithoutVoice: (NSString*) message{

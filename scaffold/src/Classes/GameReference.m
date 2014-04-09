@@ -78,7 +78,14 @@
     
     NSMutableArray *log = [[NSMutableArray alloc]init];
     
-    log = [NSMutableArray arrayWithObjects:@"game reference stuffs", nil];
+    log = [NSMutableArray arrayWithObjects:
+           @"BASIC GAME CONTROLS",
+           @"-------------------",
+           @"Select a piece from your rack or the board: double tap the piece",
+           @"Select a piece from a tile menu: single tap the piece",
+           @"Create a stack: From the tile menu, click on a piece to select it.  Now double tap another piece on the same hex.  To add pieces to the stack, select the piece and then select a stack",
+           @"View pieces in a stack: double tap the stack from the tile menu",
+           nil];
 
     
     

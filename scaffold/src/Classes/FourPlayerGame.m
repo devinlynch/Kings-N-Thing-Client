@@ -149,8 +149,6 @@
     
     [self.stage addChild:self];
     
-   // _state = [[GameState alloc] initGame];
-
     _gameWidth = Sparrow.stage.width;
     _gameHeight = Sparrow.stage.height;
     
@@ -163,21 +161,6 @@
      placeHex1 = [[NSString alloc] init];
      placeHex2 = [[NSString alloc] init];
      placeHex3 = [[NSString alloc] init];
-    
-    //For adding UIKit stuff ontop of Sparrow
-   
-    
-    
-//    [SPAudioEngine start];
-//    
-//
-//    SPSound *gameOfThrones = [SPSound soundWithContentsOfFile:@"music.aifc"];
-//    SPSoundChannel *channel = [gameOfThrones createChannel];
-//    
-//    
-//    [channel setLoop:YES];
-//    [channel play];
-    
 
     
     gamePieces = [[NSMutableArray alloc]init];
@@ -199,10 +182,6 @@
     //necessary or else it gets placed off screen
     _background.x = 0;
     _background.y = 0;
-    
-    // used to handle movement and zooming of board
-   // TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
-    //TouchSheet *sheet = [[TouchSheet alloc] initWithQuad:background];
     
     _sheet = [[TouchSheet alloc] initWithQuad:_background];
     
@@ -1031,7 +1010,8 @@
 -(void) recruitWasFree:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
     
-    
+    if(p==nil)
+        return;
     
     if([location getPieceCountForPlayer:[_state getMe]] < 10){
         
@@ -1103,6 +1083,10 @@
 
 -(void) recruitWasBought:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
+    
+    if(p == nil)
+        return;
+    
     if([location getPieceCountForPlayer:[_state getMe]] < 10){
         if ([[_state getMe] canSupportCreature:_selectedPiece atLocation:location]) {
             [UIAlertView displayAlertWithTitle:@"Bluff?"

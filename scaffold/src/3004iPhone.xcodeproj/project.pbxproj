@@ -428,6 +428,9 @@
 		99B326C518E2741400336F3E /* UDPMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 99F14FBA18838ADF00872890 /* UDPMessageReceiver.m */; };
 		99B326C618E2741400336F3E /* IPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DFAD951894B4A40092CF1A /* IPManager.m */; };
 		99B326C818E29C0700336F3E /* server_config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99B326C718E29C0700336F3E /* server_config.plist */; };
+		99BC3F2A18F4F6F300DD70CB /* 8bit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99BC3F2918F4F6F300DD70CB /* 8bit.mp3 */; };
+		99BC3F2E18F4FA7600DD70CB /* GameAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BC3F2D18F4FA7600DD70CB /* GameAudioManager.m */; };
+		99BC3F3018F4FC2100DD70CB /* battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 99BC3F2F18F4FC2100DD70CB /* battle.mp3 */; };
 		99C7604818E742C1004021A6 /* RecruitingHeroMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C7604718E742C1004021A6 /* RecruitingHeroMenu.m */; };
 		99C7604F18E745F6004021A6 /* CombatPhaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C7604E18E745F6004021A6 /* CombatPhaseHandler.m */; };
 		99DB93D218ECD5DC00F0F082 /* CombatPhaseScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99DB93D118ECD5DC00F0F082 /* CombatPhaseScreenController.m */; };
@@ -941,6 +944,10 @@
 		99A78F2218957DE4005D31E5 /* GameEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEventHandler.h; sourceTree = "<group>"; };
 		99A78F2318957DE4005D31E5 /* GameEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEventHandler.m; sourceTree = "<group>"; };
 		99B326C718E29C0700336F3E /* server_config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = server_config.plist; sourceTree = "<group>"; };
+		99BC3F2918F4F6F300DD70CB /* 8bit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 8bit.mp3; sourceTree = "<group>"; };
+		99BC3F2C18F4FA7600DD70CB /* GameAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAudioManager.h; sourceTree = "<group>"; };
+		99BC3F2D18F4FA7600DD70CB /* GameAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAudioManager.m; sourceTree = "<group>"; };
+		99BC3F2F18F4FC2100DD70CB /* battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = battle.mp3; sourceTree = "<group>"; };
 		99C7604618E742C1004021A6 /* RecruitingHeroMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecruitingHeroMenu.h; sourceTree = "<group>"; };
 		99C7604718E742C1004021A6 /* RecruitingHeroMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitingHeroMenu.m; sourceTree = "<group>"; };
 		99C7604D18E745F6004021A6 /* CombatPhaseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatPhaseHandler.h; sourceTree = "<group>"; };
@@ -1681,6 +1688,8 @@
 				41852B941893458600BFD1B0 /* KeychainItemWrapper.m */,
 				99098DBB188F5C3200139EA4 /* Utils.h */,
 				99098DBC188F5C3200139EA4 /* Utils.m */,
+				99BC3F2C18F4FA7600DD70CB /* GameAudioManager.h */,
+				99BC3F2D18F4FA7600DD70CB /* GameAudioManager.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1885,6 +1894,8 @@
 		DE4F80D914E1541400655D44 /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				99BC3F2F18F4FC2100DD70CB /* battle.mp3 */,
+				99BC3F2918F4F6F300DD70CB /* 8bit.mp3 */,
 				417313FC18E25FED009D27F9 /* music.aifc */,
 				417313F818E25BBB009D27F9 /* music.caf */,
 				417313F618E25B21009D27F9 /* 8bit.caf */,
@@ -2873,6 +2884,7 @@
 				4173883B18E4922B00934A1F /* T_Forest_097.png in Resources */,
 				DEF9FF9E18A825120057FAEB /* green-mountain-tile.png in Resources */,
 				417388AF18E4924800934A1F /* C_City.png in Resources */,
+				99BC3F2A18F4F6F300DD70CB /* 8bit.mp3 in Resources */,
 				4173886E18E4922B00934A1F /* T_Mountains_050.png in Resources */,
 				4173890018E4926500934A1F /* T_Income_366.png in Resources */,
 				DEC0AA7218D8BD610089EF72 /* done-button.png in Resources */,
@@ -2886,6 +2898,7 @@
 				4173885A18E4922B00934A1F /* T_Jungle_009.png in Resources */,
 				99517A4918F1F9610072E105 /* borderTileGreen.png in Resources */,
 				DEF9FF9A18A825120057FAEB /* green-desert-tile.png in Resources */,
+				99BC3F3018F4FC2100DD70CB /* battle.mp3 in Resources */,
 				DEF9FFAC18A825210057FAEB /* blue-mountain-tile.png in Resources */,
 				DEC0AA7718D8C9750089EF72 /* upgrade.png in Resources */,
 				4173886618E4922B00934A1F /* T_Mountains_042.png in Resources */,
@@ -2979,6 +2992,7 @@
 				99FD44C018E20DF400EC0FB3 /* RecruitCharactersEventHandler.m in Sources */,
 				4144CB57188EF0F7003A29E4 /* Bank.m in Sources */,
 				DEC0AA6318D77F410089EF72 /* RandomEventsMenu.m in Sources */,
+				99BC3F2E18F4FA7600DD70CB /* GameAudioManager.m in Sources */,
 				9914029F18EE6014003F105E /* AIPlayer.m in Sources */,
 				4131C2F6188770C1009775EA /* CombatType.m in Sources */,
 				4186302A18EE1278001A7AB1 /* UIAlertView+Blocks.m in Sources */,

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>isDemo</key>
-	<string>YES</string>
-	<key>shouldPlayVoice</key>
 	<string>NO</string>
+	<key>shouldPlayVoice</key>
+	<string>YES</string>
 	<key>test_screen_mode</key>
 	<string>no</string>
 	<key>test_screen_method</key>
