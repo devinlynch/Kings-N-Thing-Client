@@ -50,6 +50,8 @@
         
     } else if(type == SEARCH_FOR_HOST) {
         infoLabel.text = @"Username of host to search for:";
+        detailstextField.keyboardType = UIKeyboardTypeDefault;
+        detailstextField.autocorrectionType = UITextAutocorrectionTypeNo;
     } else if(type == HOST_A_GAME) {
         
     }
