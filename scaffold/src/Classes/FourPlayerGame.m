@@ -1031,7 +1031,8 @@
 -(void) recruitWasFree:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
     
-    
+    if(p==nil)
+        return;
     
     if([location getPieceCountForPlayer:[_state getMe]] < 10){
         
@@ -1103,6 +1104,10 @@
 
 -(void) recruitWasBought:(HexLocation*) location{
     GamePiece *p = _selectedPiece;
+    
+    if(p == nil)
+        return;
+    
     if([location getPieceCountForPlayer:[_state getMe]] < 10){
         if ([[_state getMe] canSupportCreature:_selectedPiece atLocation:location]) {
             [UIAlertView displayAlertWithTitle:@"Bluff?"

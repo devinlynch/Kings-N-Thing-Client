@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ip_address</key>
-	<string>172.17.41.177</string>
+	<string>192.168.0.22</string>
 	<key>port</key>
 	<string>8080</string>
 </dict>
