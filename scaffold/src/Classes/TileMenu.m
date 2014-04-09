@@ -185,6 +185,10 @@
     
     Stack *stack = [[_location stacks] objectForKey:img.name];
     
+    if(![stack.owner isEqual:[[[Game currentGame] gameState] getMe]]){
+        return;
+    }
+    
     
     if (touches.count == 1)
     {
@@ -207,6 +211,15 @@
 
     
     if (_selectedPiece != nil) {
+        if (stack.pieces.count >= 10) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Stack Full!"
+                                                            message:@"You may not exceed 10 pieces per stack."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
         [[InGameServerAccess instance] movementPhaseAddPiecesToStack:stack.locationId pieces:pieces withSuccess:^(ServerResponseMessage *message){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [stack addGamePieceToLocation:_selectedPiece];
@@ -244,6 +257,10 @@
     NSArray *touches = [[event touchesWithTarget:self andPhase:SPTouchPhaseBegan] allObjects];
     
     GamePiece *gamePiece = [[GameResource getInstance] getPieceForId:img.name];
+    
+    if(![gamePiece.owner isEqual:[[[Game currentGame] gameState] getMe]]){
+        return;
+    }
     
     if (touches.count == 1)
     {
